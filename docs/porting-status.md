@@ -43,6 +43,7 @@ MRC 本身的容差不适合保证串口精度，因此只作启动过渡，工�
 | 验证 | 结果 |
 | --- | --- |
 | 原生 CMake/Ninja HC32 全新构建 | 成功，编译器与 CMake 零警告；Flash 25552 B，RAM 4224 B |
+| 独立克隆构建 | 对 `b0bd5ee270042dcd2b007ad0d65025e1a8629ead` 执行 `git clone --no-local` 到外部新目录；doctor、全新 HC32 构建与自动镜像审计通过，内存占用相同 |
 | ELF/配置审计 | HC32 board、Flash/SRAM 边界、160 项向量表、初始 SP、Thumb reset 地址、ICG 值均通过 |
 | 源码来源审计 | 117 个编译单元全部在项目内，18 个显式头文件路径限于项目/SDK/Python，CMSIS_6 位于项目内 |
 | 审计反例 | 损坏 ICG、初始 SP、复位向量或将编译源指向外部 Zephyr 时均失败退出 |
@@ -50,6 +51,12 @@ MRC 本身的容差不适合保证串口精度，因此只作启动过渡，工�
 | pyOCD 离线检查 | 真实 Session 跨目录加载配置/脚本，修正局部 SRAM，不打开探针；通过 |
 | QEMU 软件回归 | 本仓库 Twister：2 个场景中 HC32 编译场景被过滤，MPS2 运行 1/1 通过，零警告，20.19 秒 |
 | 源码风格 | SoC CMake/Kconfig 风格、UART/GPIO clang-format 检查通过 |
+
+独立克隆位于原 west 工作区之外，未复制本机配置或原构建缓存，只显式使用已安装的 SDK 与 Python 环境。
+启动前故意设置无效的外部 `ZEPHYR_BASE`、`ZEPHYR_MODULES` 和 `EXTRA_ZEPHYR_MODULES`，
+工程入口均正确覆盖或清除；117 个编译单元全部来自克隆目录，18 个显式头文件搜索路径审计通过。
+该次 ELF SHA-256 为 `ce36b09374597eff863c546f9a0c54d8b78108f85652154a2eb47a44e70eb411`。
+这验证了受控文件的独立构建完整性；新机器自动创建虚拟环境的 Setup 脚本已做语法检查，尚未实跑重装工具依赖。
 
 ```powershell
 . ./scripts/Enter-Environment.ps1
@@ -61,7 +68,7 @@ python scripts/project.py test
 ```
 
 本机结果在被忽略的 `build/hc32-build.log`、`build/hc32-image-audit.json`、
-`build/qemu-test.log`、`build/twister/`，ELF/HEX/BIN 在 `build/bringup/zephyr/`。
+`build/qemu-test.log`、`build/standalone-build.log`、`build/twister/`，ELF/HEX/BIN 在 `build/bringup/zephyr/`。
 镜像审计记录 ELF SHA-256，以便对应具体构建，重编后以最新审计为准。
 
 ## 待实板验收与后续扩展

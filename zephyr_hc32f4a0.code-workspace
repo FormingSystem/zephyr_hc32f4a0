@@ -15,7 +15,7 @@
         "C_Cpp.default.compileCommands": [
             "${workspaceFolder:zephyr_hc32f4a0}/build/bringup/compile_commands.json"
         ],
-        "python.defaultInterpreterPath": "${workspaceFolder:zephyr_hc32f4a0}/../.venv/Scripts/python.exe",
+        "python.defaultInterpreterPath": "${workspaceFolder:zephyr_hc32f4a0}/.venv/Scripts/python.exe",
         "terminal.integrated.cwd": "${workspaceFolder:zephyr_hc32f4a0}",
         "terminal.integrated.profiles.windows": {
             "HC32 Zephyr": {
