@@ -7,11 +7,11 @@ SPDX-License-Identifier: Apache-2.0
 
 这是包含完整 Zephyr 源码的 HC32F4A0PITB / UYUP-RPI-A-2.5 开发仓库。
 内核、架构、驱动框架、设备树、构建系统，以及 CMSIS_6 和华大 HAL 源码都在本仓库内；
-工程使用自己的 Git 历史。源码来源和版本见 [源码基线](docs/source-baseline.md)。
+工程使用自己的 Git 历史。源码来源和版本见 [源码基线](project-docs/source-baseline.md)。
 
 当前已实现 HC32 SoC、板级设备树、GPIO 与轮询 USART1 控制台，默认构建目标为
 `uyup_rpi_a/hc32f4a0pitb`。首版使用板载 12 MHz 晶振直接驱动系统时钟，不启用 PLL。
-编译结果与实板验证状态分别记录在 [移植状态](docs/porting-status.md)。
+编译结果与实板验证状态分别记录在 [移植状态](project-docs/porting-status.md)。
 
 ## 开始开发
 
@@ -40,7 +40,7 @@ python scripts/project.py test
 
 新机器先准备 Zephyr SDK 和主机工具，再运行 `scripts/Setup-Environment.ps1 -SdkRoot <SDK目录>`。
 该脚本创建仓库内 `.venv`、安装工程与 Zephyr 基础 Python 依赖，并保存本机 SDK 配置。
-完整命令、调试与板卡操作见 [开发文档](docs/development.md)。
+完整命令、调试与板卡操作见 [开发文档](project-docs/development.md)。
 
 ## 目录
 
@@ -54,14 +54,16 @@ python scripts/project.py test
 | `samples/bringup/` | 控制台与 GPIO 心跳示例 |
 | `debug/` | 10 MHz SWD 配置、SRAM 地址修正及离线检查 |
 | `scripts/`、`tests/tooling/` | 环境入口、工程命令和工具回归 |
-| `docs/`、`governance/` | 项目文档与 Git 协作框架 |
+| [`project-docs/`](project-docs/README.md) | 工程介绍、移植记录和 Zephyr 学习资料 |
+| `governance/` | Git 协作框架 |
 | `doc/` | Zephyr 上游文档源码 |
 
 本机 SDK、虚拟环境、`.local/` 和 `build/` 不提交。导入源码保留原许可证；自研实现采用
 Apache-2.0，治理框架的来源和许可见 [框架来源](governance/architecture/framework_provenance.md)。
 
-- [组件架构](docs/architecture.md)
-- [硬件事实与操作](docs/hardware.md)
-- [开发与调试](docs/development.md)
-- [移植状态](docs/porting-status.md)
+- [工程文档与学习资料](project-docs/README.md)
+- [组件架构](project-docs/architecture.md)
+- [硬件事实与操作](project-docs/hardware.md)
+- [开发与调试](project-docs/development.md)
+- [移植状态](project-docs/porting-status.md)
 - [Git 规范](governance/conventions/git_guide.md)

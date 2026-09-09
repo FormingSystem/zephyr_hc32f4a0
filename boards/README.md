@@ -28,4 +28,4 @@ pyOCD runner 显式加载仓库根目录的 `debug/pyocd.yaml`，同时指定项
 
 默认构建入口是 `python scripts/project.py build`，源码和基础依赖均在本仓库。
 构建通过不等于实板运行通过；SWD、下载、串口和 LED 验收另行记录。
-板级事实统一见 [`../docs/hardware.md`](../docs/hardware.md)。
+板级事实统一见 [`../project-docs/hardware.md`](../project-docs/hardware.md)。
