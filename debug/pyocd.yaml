@@ -1,0 +1,11 @@
+# SPDX-FileCopyrightText: Copyright The Zephyr HC32F4A0 Contributors
+# SPDX-License-Identifier: Apache-2.0
+
+# Set --project to the repository root when invoking pyOCD.
+target_override: hc32f4a0xi
+user_script: debug/pyocd_user.py
+# The UYUP onboard CMSIS-DAP 2.x / WinUSB probe supports 10 MHz SWD.
+frequency: 10000000
+dap_protocol: swd
+# Do not automatically erase a protected part to unlock debug access.
+auto_unlock: false

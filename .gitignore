@@ -1,0 +1,38 @@
+# SPDX-FileCopyrightText: Copyright (c) 2026 FormingSystem
+# SPDX-License-Identifier: Apache-2.0
+# Reproducible build output and local dependency installations.
+/build/
+/build-*/
+/build_*/
+/twister-out*/
+/.venv/
+/.west/
+/.cache/
+/.local/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+compile_commands.json
+
+# Firmware, debug sessions, logs, and editor state.
+*.elf
+*.hex
+*.bin
+*.map
+*.log
+*.bak
+*.swp
+*.swo
+/.vscode/
+/.idea/
+.DS_Store
+Thumbs.db
+
+# Keep machine paths, local SDK configuration and credentials out of Git.
+.env
+.env.*
+!.env.example
+*.local.json
+*.local.yaml
+*.local.yml
