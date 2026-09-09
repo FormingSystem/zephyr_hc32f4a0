@@ -1,0 +1,140 @@
+/*
+ * Copyright The zephyr_hc32f4a0 Contributors
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+#include <arm/armv7-m.dtsi>
+#include <mem.h>
+#include <freq.h>
+#include <zephyr/dt-bindings/gpio/gpio.h>
+
+/ {
+	cpus {
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		cpu0: cpu@0 {
+			compatible = "arm,cortex-m4f";
+			reg = <0>;
+			/* UYUP bring-up uses the 12 MHz crystal directly, without a PLL. */
+			clock-frequency = <DT_FREQ_M(12)>;
+		};
+	};
+
+	mrc: mrc-clock {
+		compatible = "fixed-clock";
+		#clock-cells = <0>;
+		clock-frequency = <DT_FREQ_M(8)>;
+		status = "disabled";
+	};
+
+	soc {
+		flash0: flash@0 {
+			compatible = "soc-nv-flash";
+		};
+
+		sram0: memory@1ffe0000 {
+			compatible = "mmio-sram";
+		};
+
+		gpioa: gpio@40053800 {
+			compatible = "xhsc,hc32-gpio";
+			reg = <0x40053800 0x10>;
+			port-index = <0>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			ngpios = <16>;
+			status = "disabled";
+		};
+
+		gpiob: gpio@40053810 {
+			compatible = "xhsc,hc32-gpio";
+			reg = <0x40053810 0x10>;
+			port-index = <1>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			ngpios = <16>;
+			status = "disabled";
+		};
+
+		gpioc: gpio@40053820 {
+			compatible = "xhsc,hc32-gpio";
+			reg = <0x40053820 0x10>;
+			port-index = <2>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			ngpios = <16>;
+			status = "disabled";
+		};
+
+		gpiod: gpio@40053830 {
+			compatible = "xhsc,hc32-gpio";
+			reg = <0x40053830 0x10>;
+			port-index = <3>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			ngpios = <16>;
+			status = "disabled";
+		};
+
+		gpioe: gpio@40053840 {
+			compatible = "xhsc,hc32-gpio";
+			reg = <0x40053840 0x10>;
+			port-index = <4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			ngpios = <16>;
+			status = "disabled";
+		};
+
+		gpiof: gpio@40053850 {
+			compatible = "xhsc,hc32-gpio";
+			reg = <0x40053850 0x10>;
+			port-index = <5>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			ngpios = <16>;
+			status = "disabled";
+		};
+
+		gpiog: gpio@40053860 {
+			compatible = "xhsc,hc32-gpio";
+			reg = <0x40053860 0x10>;
+			port-index = <6>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			ngpios = <16>;
+			status = "disabled";
+		};
+
+		gpioh: gpio@40053870 {
+			compatible = "xhsc,hc32-gpio";
+			reg = <0x40053870 0x10>;
+			port-index = <7>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			ngpios = <16>;
+			status = "disabled";
+		};
+
+		gpioi: gpio@40053880 {
+			compatible = "xhsc,hc32-gpio";
+			reg = <0x40053880 0x10>;
+			port-index = <8>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			ngpios = <16>;
+			status = "disabled";
+		};
+
+		usart1: serial@4001cc00 {
+			compatible = "xhsc,hc32-uart";
+			reg = <0x4001cc00 0x400>;
+			status = "disabled";
+		};
+	};
+};
+
+&nvic {
+	arm,num-irq-priority-bits = <4>;
+};

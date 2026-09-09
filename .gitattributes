@@ -8,6 +8,9 @@ LICENSE text eol=lf
 .githooks/* text eol=lf
 *.c text eol=lf
 *.h text eol=lf
+*.S text eol=lf
+*.ld text eol=lf
+*_defconfig text eol=lf
 *.cmake text eol=lf
 CMakeLists.txt text eol=lf
 Kconfig* text eol=lf
@@ -18,7 +21,9 @@ Kconfig* text eol=lf
 *.yaml text eol=lf
 *.yml text eol=lf
 *.json text eol=lf
+*.code-workspace text eol=lf
 *.toml text eol=lf
+*.tsv text eol=lf
 *.md text eol=lf
 *.rst text eol=lf
 *.txt text eol=lf
@@ -31,3 +36,18 @@ Kconfig* text eol=lf
 *.png binary
 *.jpg binary
 *.zip binary
+
+# Preserve upstream fixture bytes instead of applying host newline conversion.
+boards/native/doc/Zephyr_and_bsim.svg -text
+boards/nordic/nrf52840dongle/doc/img/nRF52840_dongle_press_reset.svg -text
+doc/services/pm/images/devr-async-ops.svg -text
+doc/services/pm/images/devr-sync-ops.svg -text
+samples/net/sockets/dumb_http_server/src/response_big.html.bin -text
+samples/net/sockets/dumb_http_server/src/response_small.html.bin -text
+samples/net/sockets/dumb_http_server_mt/src/response_100k.html.bin -text
+modules/hal/cmsis_6/CMSIS/CoreValidation/Layer/Target/CM0/RTE/Device/ARMCM0/clang_ti_linker_script.cmd -text
+modules/hal/cmsis_6/CMSIS/CoreValidation/Layer/Target/CM0plus/RTE/Device/ARMCM0P/clang_ti_linker_script.cmd -text
+modules/hal/cmsis_6/CMSIS/CoreValidation/Layer/Target/CM3/RTE/Device/ARMCM3/clang_ti_linker_script.cmd -text
+modules/hal/cmsis_6/CMSIS/CoreValidation/Layer/Target/CM33/RTE/Device/ARMCM33/clang_ti_linker_script.cmd -text
+modules/hal/cmsis_6/CMSIS/CoreValidation/Layer/Target/CM33NS/RTE/Device/ARMCM33/clang_ti_linker_script.cmd -text
+modules/hal/cmsis_6/CMSIS/CoreValidation/Layer/Target/CM33S/RTE/Device/ARMCM33/clang_ti_linker_script.cmd -text

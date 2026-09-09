@@ -1,61 +1,76 @@
 <!--
-SPDX-FileCopyrightText: Copyright The Zephyr HC32F4A0 Contributors
+SPDX-FileCopyrightText: Copyright The zephyr_hc32f4a0 Contributors
 SPDX-License-Identifier: Apache-2.0
 -->
 
-# 工程边界与结构
+# 完整源码工程结构
 
-本仓库是 HC32F4A0PITB / UYUP-RPI-A-2.5 的独立开发仓库。Git 历史、工程脚本、板级依据、
-调试器适配和移植代码由本仓库管理；Zephyr 内核、SDK、west 模块与厂商资料是外部依赖。
-本仓库与 `zephyr/` 源码依赖并列，目录布局如下：
+本仓库在一个源码根目录中维护 Zephyr 与 HC32F4A0PITB 移植。编译时 `ZEPHYR_BASE` 指向
+本仓库根目录，CMSIS_6 和华大 HAL 也从本仓库读取；不依赖旁边的官方源码目录。
+Git 历史由本工程独立维护，导入的是源文件快照，不包含上游 Git 对象或历史。
 
 ```text
-workspace/
-├── zephyr_hc32f4a0/  本项目开发仓库
-├── zephyr/          Zephyr 源码依赖
-├── modules/         west 管理的模块
-└── .venv/           共享构建工具环境
+zephyr_hc32f4a0/
+├── kernel/ arch/ include/ subsys/ cmake/   Zephyr 完整核心源码
+├── soc/xhsc/hc32f4a0/                    HC32 SoC 适配
+├── boards/uyup/ dts/arm/xhsc/            板卡和设备树
+├── drivers/                             Zephyr 驱动与 HC32 GPIO/USART
+├── modules/hal/cmsis_6/                  CMSIS_6 源码
+├── modules/hal/xhsc/                     华大 HAL 源码
+├── samples/bringup/                     板卡启动示例
+├── scripts/ debug/ tests/tooling/        开发、调试及验证工具
+├── docs/ governance/                    项目记录与协作约定
+├── .venv/ .local/                        本机环境，不提交
+└── build/                               编译与测试产物，不提交
 ```
 
-本仓库文件只进入自身 Git 历史。
+## 构建路径
 
-## 组件关系
+`scripts/project.py build` 直接调用本仓库 CMake 和 Ninja，以
+`uyup_rpi_a/hc32f4a0pitb` 构建 `samples/bringup`。构建显式指定本仓库的 CMSIS_6 与华大 HAL，
+不通过外部 west 工作区发现模块。源码快照的版本和文件数保存在
+[dependencies.lock.json](../dependencies.lock.json)，解释见 [source-baseline.md](source-baseline.md)。
 
-| 组件 | 责任 |
-| --- | --- |
-| `scripts/Enter-Environment.ps1` | 在当前终端定位并加载外部 Python、Zephyr、SDK 与工具 |
-| `scripts/project.py` | 统一 doctor、check、build、test、debug 入口，解析工程和依赖路径 |
-| `samples/bringup` | 工程自己的基础样例；当前使用 `mps2/an386` 验证编译与 QEMU 执行 |
-| `zephyr/module.yml` | 本仓库作为外部 Zephyr 模块的集成入口；仅登记实际存在的组件 |
-| `debug/pyocd.yaml` | HC32F4A0xI 目标、10 MHz SWD 和用户脚本配置 |
-| `debug/pyocd_user.py` | 修正 pyOCD 当前目标实例的主 SRAM 地址，不访问寄存器 |
-| `debug/verify_pyocd.py` | 离线验证真实配置、跨目录脚本解析、钩子时序及存储区保持 |
-| `docs/hardware.md` | 唯一板级事实记录；包含用户确认、原理图映射和模板冲突 |
+原始 `west.yml` 保留上游模块目录信息，不表示所有其他厂商 HAL 都已导入。
+当前目标只需要已内置的模块；后续功能引入其他模块时，独立记录其来源、版本和许可证。
+SDK 与 Python 环境是本机工具，源码工程不将它们纳入版本控制。
 
-未来 SoC、board、DTS、Kconfig、驱动等组件仍在本仓库中实现，通过 Zephyr 的外部模块机制
-接入构建。硬件尚未具备对应实现时，不用空板定义或仿真板别名冒充 HC32 支持。
+## SoC 启动
 
-## 外部依赖
+`soc/xhsc/hc32f4a0` 使用 Zephyr 的 Cortex-M4F 启动路径，声明 144 个外设中断、4 位 NVIC
+优先级和 FPU。硬件具有 MPU，但首版未提供区域配置，`CONFIG_ARM_MPU` 保持关闭。
 
-Zephyr 基线为 4.4.99，提交 `f19d03c78ba70a670e3dadc2121523d33984a5c7`；
-SDK 基线为 1.0.1、ARM GCC 14.3.0。构建使用 west 工作区的 CMSIS/CMSIS_6。
-已有华大 `hal_xhsc` 位于外部模块，其基线提交为
-`a84e04900616f68097d80cda2e89eaa8af3afadd`；当前 Zephyr 清单没有登记它。
-本工程依赖记录中的 `enabled_for_hardware` 当前为 false，仿真样例不依赖该 HAL；
-实现 HC32 集成时再明确启用并作为额外模块加载。
+本地 `soc_reset_hook` 在 C 运行时初始化前清除 SRAM 奇偶校验/ECC 状态，并正常返回。
+`icg.ld` 在内部 Flash `0x400` 固定保留 24 字的 ICG 配置，使用 KEEP 和链接断言检查位置、
+大小与加载偏移；普通代码不得占用该地址。
 
-源码依赖不会复制进本仓库。其他 west 模块按实际功能补齐，不能因为基本示例能编译就认为
-整个 west 工作区已同步。升级 Zephyr、SDK、CMSIS 或华大 HAL 后，重新执行构建、测试和
-调试器离线验证，并更新依赖记录。
+`soc_early_init_hook` 先使用 MRC 作为低频过渡，配置所有总线 DIV1 与 Flash/SRAM 0 等待，
+然后将 PH0/PH1 设为晶振模拟引脚，以适合 12 MHz 的低驱动档启动 XTAL。稳定计数选择最长的
+8163 周期档（约 31 ms），软件使用独立的有限轮询预算等待硬件稳定标志，再切换到
+**12 MHz XTAL 直驱系统时钟**；PLLH/PLLA 均关闭。稳定失败进入 panic，不以 MRC 静默代替晶振。
+8 MHz 过渡和 12 MHz 工作频率均满足 Flash、所有 SRAM 的 0 等待条件。晶振实际起振裕量仍需实板验证。
+MRC 规格容差为 ±10%，只用于启动过渡，不作为串口和系统定时器的最终时基。
 
-参考 PDF、DDL 压缩包与旧模板在独立资料目录保存；本文档以文件名、版本和厂商页面引用它们。
-厂商代码确需导入时，先核对许可证、版本、最小导入范围与 Zephyr 构建边界，保留原始许可。
+Zephyr 负责向量表重定位、FPU 与内核初始化。适配只调用 `SystemCoreClockUpdate()`，
+不调用会覆盖 VTOR 的厂商 `SystemInit()`。SoC 显式编译所需 DDL 文件，不使用厂商的
+reset/vector 回调实现，也不修改厂商源文件。整个编译统一预包含本地 DDL 配置，避免厂商头文件
+同目录包含模板而开启未使用的模块或打印重定向。
 
-## 调试器边界
+## 驱动与样例
 
-pyOCD 配置使用相对路径 `debug/pyocd_user.py`。工程入口以仓库根目录作为 `--project`，
-并显式传入配置文件，因此从其他目录启动时仍能加载正确脚本。
+GPIO 支持基础输入输出；轮询 USART1 使用 PA9/PA10 提供 115200 8N1 控制台。
+内核时基使用 Cortex-M SysTick。轮询外设无需 INTC 外设源路由；后续中断驱动需分别配置
+HC32 INTC 源选择和 Zephyr/NVIC 中断连接，不能把外设源编号直接当作 NVIC IRQ 号。
 
-用户钩子在 `will_init_target` 阶段修正内置 `hc32f4a0xi` 的 SRAM 元数据，发生在目标初始化
-序列执行前；Flash、OTP 算法和全局内置目标定义保持原样。离线验证只用无硬件后端的探针桩，
-不能证明真实 SWD、复位、烧录或时钟配置可用。
+`build/bringup` 保存 HC32 镜像；显式 `--board mps2/an386` 使用 `build/mps2`。
+`test` 在 QEMU 上执行软件回归，产物位于 `build/twister`。两种目标的镜像与结果分别解释。
+板级事实统一在 [hardware.md](hardware.md)，实现与验证进度在 [porting-status.md](porting-status.md)。
+
+## 调试边界
+
+`debug/pyocd.yaml` 使用相对脚本路径，工程入口将仓库根作为 pyOCD `--project`。
+目标为 2 MiB Flash 的 `hc32f4a0xi`，板载 DAP 默认 10 MHz SWD，关闭自动解锁擦除。
+初始化钩子修正 pyOCD 0.45.1 的主 SRAM 起点为 `0x1FFE0000`，保留 Flash/OTP 算法与全局目标图。
+
+离线检查加载实际配置并核对钩子时序，不打开探针、不访问寄存器。
+编译、离线检查、QEMU 与实板验证是不同证据，状态文档分别记录。

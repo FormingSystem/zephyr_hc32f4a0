@@ -1,0 +1,22 @@
+# SPDX-FileCopyrightText: Copyright The Zephyr HC32F4A0 Contributors
+# SPDX-License-Identifier: Apache-2.0
+
+if SOC_HC32F4A0PITB
+
+config SYS_CLOCK_HW_CYCLES_PER_SEC
+	default 12000000
+
+config NUM_IRQS
+	default 144
+
+config FPU
+	default y
+
+# The SRAM map crosses a power-of-two boundary; MPU regions need a separate port.
+config ARM_MPU
+	default n
+
+config HW_STACK_PROTECTION
+	default n
+
+endif # SOC_HC32F4A0PITB

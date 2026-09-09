@@ -1,55 +1,67 @@
-<!-- SPDX-FileCopyrightText: Copyright The zephyr_hc32f4a0 Contributors -->
-<!-- SPDX-License-Identifier: Apache-2.0 -->
+<!--
+SPDX-FileCopyrightText: Copyright The zephyr_hc32f4a0 Contributors
+SPDX-License-Identifier: Apache-2.0
+-->
 
 # zephyr_hc32f4a0
 
-HC32F4A0PITB / UYUP-RPI-A-2.5 的 Zephyr 外部移植模块和工程工具。
-本仓库保存自研组件，Zephyr 内核、SDK 和厂商 HAL 作为外部依赖使用。
+这是包含完整 Zephyr 源码的 HC32F4A0PITB / UYUP-RPI-A-2.5 开发仓库。
+内核、架构、驱动框架、设备树、构建系统，以及 CMSIS_6 和华大 HAL 源码都在本仓库内；
+工程使用自己的 Git 历史。源码来源和版本见 [源码基线](docs/source-baseline.md)。
 
-当前具备独立 Git 框架、模块入口、bring-up 示例、构建/测试工具和 pyOCD 调试配置。
-示例以 `mps2/an386` 验证主机工具链和模块接入；HC32 SoC、开发板与硬件驱动尚待实现。
+当前已实现 HC32 SoC、板级设备树、GPIO 与轮询 USART1 控制台，默认构建目标为
+`uyup_rpi_a/hc32f4a0pitb`。首版使用板载 12 MHz 晶振直接驱动系统时钟，不启用 PLL。
+编译结果与实板验证状态分别记录在 [移植状态](docs/porting-status.md)。
 
-## 在当前工作区开始
+## 开始开发
 
-在本仓库根目录的 PowerShell 中执行：
+打开本仓库的 [VS Code 工作区](zephyr_hc32f4a0.code-workspace)。工作区只有本仓库一个根目录，
+可以直接查看和修改 Zephyr 全部源码及 HC32 组件。新终端和工程任务会加载本仓库环境。
+
+已有开发环境时，在仓库根目录执行：
 
 ```powershell
-. .\scripts\Enter-Environment.ps1
+. ./scripts/Enter-Environment.ps1
 python scripts/git_setup.py
 python scripts/project.py doctor
 python scripts/project.py check
 python scripts/project.py build
+```
+
+`build` 直接使用本仓库的 CMake 构建系统与内置模块，不要求外部 west 工作区。
+HC32 固件输出到 `build/bringup/zephyr/`，编译数据库为 `build/bringup/compile_commands.json`。
+QEMU 软件回归使用独立目标：
+
+```powershell
 python scripts/project.py test
 ```
 
-入口会使用现有 west 工作区的 Python 虚拟环境和 Zephyr SDK，然后停留在本仓库根目录。
-构建与测试输出均放在本仓库 `build/` 中。工具不会自动下载依赖、推送提交或擦除芯片。
+该测试运行 `mps2/an386`，用于软件回归；HC32 实板下载和运行另行验证。
 
-## 工程组成
+新机器先准备 Zephyr SDK 和主机工具，再运行 `scripts/Setup-Environment.ps1 -SdkRoot <SDK目录>`。
+该脚本创建仓库内 `.venv`、安装工程与 Zephyr 基础 Python 依赖，并保存本机 SDK 配置。
+完整命令、调试与板卡操作见 [开发文档](docs/development.md)。
 
-| 位置 | 职责 |
+## 目录
+
+| 位置 | 内容 |
 | --- | --- |
-| `zephyr/module.yml`、根 CMake/Kconfig | Zephyr 外部模块入口与搜索根 |
-| `soc/`、`boards/`、`dts/`、`drivers/` | 后续 HC32 SoC、UYUP 板卡、设备树与外设实现 |
-| `samples/bringup/` | 可运行的控制台/心跳示例，兼容后续实板启动 |
-| `debug/` | 10 MHz SWD 配置、HC32 SRAM 映射修正与离线验证 |
-| `scripts/` | 本地 Git 配置、环境发现、工程命令与提交校验 |
-| `tests/tooling/` | Git 钩子与工程工具测试 |
-| `governance/` | 从 linux-note 继承并适配的 Git 协作框架 |
+| `kernel/`、`arch/`、`include/`、`subsys/`、`cmake/` | Zephyr 内核、架构、接口、子系统和构建源码 |
+| `modules/hal/cmsis_6/`、`modules/hal/xhsc/` | 当前 ARM/HC32 构建使用的完整模块源码快照 |
+| `soc/xhsc/hc32f4a0/` | HC32 启动、12 MHz 晶振时钟、ICG 布局与 DDL 集成 |
+| `boards/uyup/`、`dts/arm/xhsc/` | UYUP 板卡、HC32 SoC 及存储/引脚描述 |
+| `drivers/` | Zephyr 驱动框架与本工程 GPIO/USART 实现 |
+| `samples/bringup/` | 控制台与 GPIO 心跳示例 |
+| `debug/` | 10 MHz SWD 配置、SRAM 地址修正及离线检查 |
+| `scripts/`、`tests/tooling/` | 环境入口、工程命令和工具回归 |
+| `docs/`、`governance/` | 项目文档与 Git 协作框架 |
+| `doc/` | Zephyr 上游文档源码 |
 
-- [开发与调试](docs/development.md)
+本机 SDK、虚拟环境、`.local/` 和 `build/` 不提交。导入源码保留原许可证；自研实现采用
+Apache-2.0，治理框架的来源和许可见 [框架来源](governance/architecture/framework_provenance.md)。
+
 - [组件架构](docs/architecture.md)
-- [硬件事实与板卡操作](docs/hardware.md)
+- [硬件事实与操作](docs/hardware.md)
+- [开发与调试](docs/development.md)
 - [移植状态](docs/porting-status.md)
 - [Git 规范](governance/conventions/git_guide.md)
-- [框架来源与适配范围](governance/architecture/framework_provenance.md)
-
-## 依赖与许可
-
-固定依赖基线见 [dependencies.lock.json](dependencies.lock.json)。Python 工程工具依赖见
-[requirements-tools.txt](requirements-tools.txt)；Zephyr 构建依赖仍按其源码中的 requirements 安装。
-激活脚本按并列布局定位同级 `zephyr/` 源码目录，也可通过 `ZEPHYR_BASE`、`VIRTUAL_ENV` 和
-`ZEPHYR_SDK_INSTALL_DIR` 使用其他已准备好的本机工作区。
-
-本项目新增实现采用 Apache-2.0；直接继承自 linux-note 的治理文件和钩子保留其
-GPL-2.0-only 许可与来源说明。第三方 Zephyr、HAL 和资料不复制进本仓库。

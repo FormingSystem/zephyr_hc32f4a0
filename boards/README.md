@@ -3,21 +3,29 @@ SPDX-FileCopyrightText: Copyright The Zephyr Project Contributors
 SPDX-License-Identifier: Apache-2.0
 -->
 
-# 板级组件
+# HC32 板级组件
 
-此目录已通过 `zephyr/module.yml` 注册为外部 board root。
-当前没有可构建的 HC32 板级目标，也没有用于冒充实板支持的 `board.yml`。
-`mps2/an386` 验证的是模块加载、工具链和示例运行。
+本目录属于仓库内完整 Zephyr 源码树。UYUP 板级实现位于
+[`uyup/uyup_rpi_a/`](uyup/uyup_rpi_a/)，使用 hardware model v2，
+提供 `board.yml`、Kconfig、DTS、defconfig、平台元数据和 pyOCD runner。
+目标名称为 **`uyup_rpi_a/hc32f4a0pitb`**。
 
-目标板为 UYUP-RPI-A-2.5，芯片为 HC32F4A0PITB / LQFP100，
-2 MiB Flash、512 KiB 系统 SRAM，板载主晶振为 **12 MHz**。
-未引出管脚按 NC 处理。USART1 的 TX/RX 使用 PA9/PA10；
-PD10 蓝灯与 PE15 绿灯均为低有效。
+UYUP-RPI-A-2.5 采用 HC32F4A0PITB / LQFP100，具有 2 MiB Flash 和
+512 KiB 主 SRAM。初始配置由板载 **12 MHz XTAL 直接提供系统时钟，不启用 PLL**。
+未引出的引脚按 NC 处理，并由封装 DTS 的保留范围及 GPIO 驱动掩码共同限制。
 
-未来按当前 Zephyr hardware model v2 建立板目录，包含 `board.yml`、
-`Kconfig.<board>`、DTS、defconfig 和 pyOCD runner 配置。
-对应 SoC 和基础驱动可构建后再发布板目标；调试、下载和实板验证另行记录。
+| 板级功能 | 配置 |
+| --- | --- |
+| 控制台 | USART1，TX PA9、RX PA10，115200 8N1，polling |
+| `led0` / `led1` | PD10 蓝灯 / PE15 绿灯，均低有效 |
+| `sw0` / `sw1` | PA3 / PE2，内部上拉、低有效，gpio-keys 使用 polling |
+| 调试 | 板载 CMSIS-DAP 2.x / WinUSB，10 MHz SWD |
 
-板载 CMSIS-DAP 默认为 2.x / WinUSB，支持 10 MHz SWD，
-一根 USB 线提供调试与串口输出。使用外部调试器前停用板载 DAP：
-关电、按住复位、开电、松开复位；完整操作两次，橙灯不闪表示已停用。
+pyOCD runner 显式加载仓库根目录的 `debug/pyocd.yaml`，同时指定项目根目录，
+使用户脚本中的 SRAM 地址修正在烧录和 GDB server 两条入口中均可解析。
+板载 DAP 的一根 USB 线提供调试与串口输出。使用外部调试器前，按硬件记录
+停用板载 DAP：关电、按住复位、开电、松开复位；完整操作两次，橙灯不闪表示停用。
+
+默认构建入口是 `python scripts/project.py build`，源码和基础依赖均在本仓库。
+构建通过不等于实板运行通过；SWD、下载、串口和 LED 验收另行记录。
+板级事实统一见 [`../docs/hardware.md`](../docs/hardware.md)。

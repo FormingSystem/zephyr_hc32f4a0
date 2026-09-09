@@ -39,7 +39,7 @@ int main(void)
 	printk("LED0 is unavailable; console heartbeat enabled\n");
 #endif
 
-	printk("HC32F4A0 bringup module ready on %s\n", CONFIG_BOARD_TARGET);
+	printk("HC32F4A0 bringup ready on %s\n", CONFIG_BOARD_TARGET);
 
 	while (true) {
 #if HAS_LED0
