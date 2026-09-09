@@ -3,57 +3,74 @@ SPDX-FileCopyrightText: Copyright The Zephyr HC32F4A0 Contributors
 SPDX-License-Identifier: Apache-2.0
 -->
 
-# 移植状态
+# HC32F4A0PITB 移植状态
 
-记录日期：2026-09-09。目标为 UYUP-RPI-A-2.5 的 HC32F4A0PITB，12 MHz 外部晶振、
-2 MiB Flash、512 KiB 主 SRAM。工程当前处于独立仓库与开发组件建立阶段。
+记录日期：2026-09-09。板卡 UYUP-RPI-A-2.5，目标 `uyup_rpi_a/hc32f4a0pitb`，
+LQFP100、2 MiB Flash、512 KiB 主 SRAM。已实现首轮可构建的移植；实板运行尚未验收。
 
-| 项目 | 状态与证据 |
+## 工程与源码节点
+
+仓库根目录包含完整 Zephyr 源码快照，以及 HC32 需要的 CMSIS_6、华大 HAL。
+不依赖同级官方源码，不导入上游 Git 历史，SDK、虚拟环境与构建产物不提交。
+准确基线见 [source-baseline.md](source-baseline.md) 和
+[dependencies.lock.json](../dependencies.lock.json)。
+
+导入清单核对：Zephyr 66244 个受控源文件、CMSIS_6 793 个、HAL 224 个，零缺失。
+CMSIS_6/HAL 的文件内容与基线一致；Zephyr 已有文件仅修改工程治理配置、
+GPIO/UART 的 CMake/Kconfig 接入及厂商前缀，其余移植采用新增文件；LICENSE 仅清理末尾空行。
+源文件合计 340132030 字节，约 324.4 MiB，不含 Git 历史或工具安装。
+
+## 已实现的目标能力
+
+| 项目 | 实现 |
 | --- | --- |
-| 主机编译环境 | 已核验 Zephyr 4.4.99、SDK 1.0.1、GCC 14.3.0、Python 3.12.10、west 1.5.0、CMake 4.4.3 |
-| 外部 Zephyr 基础验证 | `mps2/an386` 的 hello_world 构建与 QEMU 输出成功；Twister 1/1 通过 |
-| 工程依赖检查 | `project.py doctor` 通过 Zephyr 模块 schema、锁定的 Zephyr/SDK/CMSIS_6/pyOCD 版本检查 |
-| 板卡资料 | 已核对单页原理图与厂商引脚表，用户确认 12 MHz、NC 和板载 DAP 操作；见 hardware.md |
-| pyOCD 工程配置 | 使用 hc32f4a0xi、10 MHz SWD、禁用自动解锁擦除，修正主 SRAM 地址 |
-| pyOCD 离线验证 | 真实 Session 跨目录加载相对脚本、真实初始化钩子与重复调用通过；Flash/OTP 算法、备份 RAM、全局目标图保持不变 |
-| 工程工具检查 | `project.py check` 通过 10 项测试（5 项 Git、5 项路径回归）与 pyOCD 离线检查；CMake/Kconfig 风格检查通过 |
-| 工程基础样例 | `project.py build` 构建 samples/bringup / mps2/an386 成功，Flash 19356 B、RAM 6440 B |
-| 工程运行测试 | `project.py test` 在并列工作区布局中执行本仓库样例，Twister 1/1 通过、零警告，耗时 19.55 秒 |
-| CI 配置 | 已有 GitHub Actions 工具检查矩阵；尚未在远端执行 CI |
-| HC32 SoC、board 与驱动 | 尚未实现，不能构建 HC32 Zephyr 固件 |
-| 实板调试与运行 | 未完成；此前主机只读枚举未发现可用调试探针 |
+| SoC / board | 硬件模型 v2；Cortex-M4F、144 个外设 IRQ 槽、4 位 NVIC 优先级 |
+| 启动与链接 | Zephyr 原生启动/向量，项目复位钩子正确返回；ICG 固定 `0x400..0x45f` 并保留、断言长度 |
+| 存储布局 | Flash `0x00000000` / 2 MiB；SRAM `0x1FFE0000` / 512 KiB；备份 SRAM 不并入主内存 |
+| 时钟 | PH0/PH1 的 12 MHz XTAL 直接驱动 CPU/总线，DIV1，Flash/SRAM 0 wait；PLLH/PLLA 关闭 |
+| 时钟启动 | MRC 仅作过渡；等待晶振稳定，失败 panic，不以 RC 冒充 12 MHz |
+| 控制台 | USART1，PA9/PA10，115200 8N1；polling 输入、输出、错误检查 |
+| GPIO | 输入、推挽/开漏输出、上拉、端口读写/toggle；拒绝 NC、下拉与尚未支持的中断模式 |
+| 板级信号 | PD10/PE15 低有效 LED；PA3/PE2 按键轮询；LQFP100 未引出脚由保留范围与驱动掩码排除 |
+| pyOCD | 2 MiB Flash 目标、10 MHz SWD、修正 SRAM 起点、禁止自动解锁擦除 |
+| VS Code | 单一项目根展示完整源码；自动终端环境；默认构建 HC32，成功后自动审计镜像 |
 
-外部 hello_world 历史验证与本仓库 samples/bringup 分别执行过构建与运行测试。
-本仓库验证命令如下：
+MRC 本身的容差不适合保证串口精度，因此只作启动过渡，工作时钟使用板载晶振。
+12 MHz 下 USART 分频的理论量化误差约 +0.03%；这不是串口实测结果。
+
+## 已执行验证
+
+| 验证 | 结果 |
+| --- | --- |
+| 原生 CMake/Ninja HC32 全新构建 | 成功，编译器与 CMake 零警告；Flash 25552 B，RAM 4224 B |
+| ELF/配置审计 | HC32 board、Flash/SRAM 边界、160 项向量表、初始 SP、Thumb reset 地址、ICG 值均通过 |
+| 源码来源审计 | 117 个编译单元全部在项目内，18 个显式头文件路径限于项目/SDK/Python，CMSIS_6 位于项目内 |
+| 审计反例 | 损坏 ICG、初始 SP、复位向量或将编译源指向外部 Zephyr 时均失败退出 |
+| 工具回归 | 23 项 Git/目录/命令/快照差异测试通过，包括源隔离、编译失败不审旧镜像、审计失败传播 |
+| pyOCD 离线检查 | 真实 Session 跨目录加载配置/脚本，修正局部 SRAM，不打开探针；通过 |
+| QEMU 软件回归 | 本仓库 Twister：2 个场景中 HC32 编译场景被过滤，MPS2 运行 1/1 通过，零警告，20.19 秒 |
+| 源码风格 | SoC CMake/Kconfig 风格、UART/GPIO clang-format 检查通过 |
 
 ```powershell
+. ./scripts/Enter-Environment.ps1
 python scripts/project.py doctor
 python scripts/project.py check
-python scripts/project.py build
+python scripts/project.py build --pristine
+python scripts/verify_hc32_image.py
 python scripts/project.py test
-python debug/verify_pyocd.py
 ```
 
-本地结果日志为 `build/project-check.log`、`build/project-build.log`、`build/project-test.log`；
-编译产物在 `build/bringup`，Twister 结构化结果在 `build/twister`。这些文件不受版本控制。
+本机结果在被忽略的 `build/hc32-build.log`、`build/hc32-image-audit.json`、
+`build/qemu-test.log`、`build/twister/`，ELF/HEX/BIN 在 `build/bringup/zephyr/`。
+镜像审计记录 ELF SHA-256，以便对应具体构建，重编后以最新审计为准。
 
-项目采用 `zephyr_hc32f4a0/` 与 `zephyr/` 并列布局。已从清空依赖环境变量的终端验证
-自动发现，并在 PowerShell 5.1 中验证重新激活、清除错误模块路径以及保存测试日志。
-目录调整前的构建缓存归档在被忽略的 `.local/build-before-relocation/`，当前构建使用新生成的缓存。
+## 待实板验收与后续扩展
 
-## 首轮移植顺序
+尚未执行目标连接、复位、Flash 擦写、下载、晶振/时钟测量、串口回显或 LED 实测。
+编译和 QEMU 通过不等于 HC32 实板通过。完整 Zephyr 上游合规与远端 CI 尚未执行。
 
-1. 根据官方设备定义建立 SoC、Flash/SRAM 布局、启动与异常/中断入口。
-2. 建立 12 MHz 时钟路径，校验 PLL、Flash 等待周期、总线时钟和 SysTick。
-3. 实现必要的 GPIO、pinctrl、USART1 控制台及中断源路由。
-4. 建立 UYUP-RPI-A-2.5 板级 DTS/Kconfig/CMake 与 pyOCD runner；蓝灯 PD10 低有效。
-5. 接板验证 SWD、SRAM、复位、LED3 和 115200 8N1 串口，再扩展外设。
-
-原理图中的通用芯片符号、24 MHz 旧模板和其他板卡 BSP 不能直接作为本板实现。
-硬件事实统一维护在 [hardware.md](hardware.md)，工程边界见 [architecture.md](architecture.md)。
-
-## 尚未验证
-
-尚未对实板进行时钟测量、连接、复位、Flash 擦写、下载或 Zephyr 运行测试；
-未完成完整 Zephyr 上游合规检查，也未声称所有 west 模块已同步。
-离线调试检查不访问目标寄存器；QEMU 通过不构成 HC32 硬件通过。
+下一步接 USB2/DAP，核对探针/串口枚举，验证 SWD、晶振起振、SysTick、115200 控制台和 LED。
+再增加外设中断源路由、UART 中断/DMA、GPIO 中断、时钟/引脚框架、Flash 驱动及其他外设。
+MPU 暂不启用：主 SRAM 起点不满足单个 512 KiB MPU 区域对齐，需要分区设计。
+PLL 提频需要单独核对 12 MHz 输入、VCO、总线、Flash/SRAM 等待与实测，不复制旧 24 MHz 模板。
+硬件事实与板载 DAP 操作持续以 [hardware.md](hardware.md) 为准。

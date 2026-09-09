@@ -1,0 +1,117 @@
+// SPDX-FileCopyrightText: Copyright The zephyr_hc32f4a0 Contributors
+// SPDX-License-Identifier: Apache-2.0
+{
+    "folders": [
+        {
+            "name": "zephyr_hc32f4a0",
+            "path": "."
+        }
+    ],
+    "settings": {
+        "files.encoding": "utf8",
+        "files.eol": "\n",
+        "cmake.configureOnOpen": false,
+        "clangd.enable": false,
+        "C_Cpp.default.compileCommands": [
+            "${workspaceFolder:zephyr_hc32f4a0}/build/bringup/compile_commands.json"
+        ],
+        "python.defaultInterpreterPath": "${workspaceFolder:zephyr_hc32f4a0}/../.venv/Scripts/python.exe",
+        "terminal.integrated.cwd": "${workspaceFolder:zephyr_hc32f4a0}",
+        "terminal.integrated.profiles.windows": {
+            "HC32 Zephyr": {
+                "path": "powershell.exe",
+                "args": [
+                    "-NoLogo",
+                    "-NoProfile",
+                    "-NoExit",
+                    "-File",
+                    "${workspaceFolder:zephyr_hc32f4a0}/scripts/Enter-Environment.ps1"
+                ]
+            }
+        },
+        "terminal.integrated.defaultProfile.windows": "HC32 Zephyr",
+        "search.exclude": {
+            "**/build": true,
+            "**/.local": true
+        },
+        "files.watcherExclude": {
+            "**/build/**": true,
+            "**/.local/**": true
+        }
+    },
+    "extensions": {
+        "recommendations": [
+            "ms-vscode.cpptools",
+            "ms-vscode.powershell",
+            "ms-python.python",
+            "marus25.cortex-debug",
+            "redhat.vscode-yaml",
+            "plorefice.devicetree",
+            "luveti.kconfig"
+        ]
+    },
+    "tasks": {
+        "version": "2.0.0",
+        "tasks": [
+            {
+                "label": "HC32: Build bringup",
+                "type": "process",
+                "command": "powershell.exe",
+                "args": ["-NoLogo", "-NoProfile", "-File", "${workspaceFolder:zephyr_hc32f4a0}/scripts/Invoke-Project.ps1", "-Action", "build"],
+                "options": { "cwd": "${workspaceFolder:zephyr_hc32f4a0}" },
+                "group": { "kind": "build", "isDefault": true },
+                "problemMatcher": ["$gcc"],
+                "presentation": { "reveal": "always", "panel": "dedicated" }
+            },
+            {
+                "label": "HC32: Rebuild bringup (pristine)",
+                "type": "process",
+                "command": "powershell.exe",
+                "args": ["-NoLogo", "-NoProfile", "-File", "${workspaceFolder:zephyr_hc32f4a0}/scripts/Invoke-Project.ps1", "-Action", "build", "-Pristine"],
+                "options": { "cwd": "${workspaceFolder:zephyr_hc32f4a0}" },
+                "group": "build",
+                "problemMatcher": ["$gcc"],
+                "presentation": { "reveal": "always", "panel": "dedicated" }
+            },
+            {
+                "label": "Zephyr: Check environment",
+                "type": "process",
+                "command": "powershell.exe",
+                "args": ["-NoLogo", "-NoProfile", "-File", "${workspaceFolder:zephyr_hc32f4a0}/scripts/Invoke-Project.ps1", "-Action", "doctor"],
+                "options": { "cwd": "${workspaceFolder:zephyr_hc32f4a0}" },
+                "problemMatcher": [],
+                "presentation": { "reveal": "always", "panel": "dedicated" }
+            },
+            {
+                "label": "Zephyr: Check project tooling",
+                "type": "process",
+                "command": "powershell.exe",
+                "args": ["-NoLogo", "-NoProfile", "-File", "${workspaceFolder:zephyr_hc32f4a0}/scripts/Invoke-Project.ps1", "-Action", "check"],
+                "options": { "cwd": "${workspaceFolder:zephyr_hc32f4a0}" },
+                "group": "test",
+                "problemMatcher": [],
+                "presentation": { "reveal": "always", "panel": "dedicated" }
+            },
+            {
+                "label": "Zephyr: Test bringup (QEMU)",
+                "type": "process",
+                "command": "powershell.exe",
+                "args": ["-NoLogo", "-NoProfile", "-File", "${workspaceFolder:zephyr_hc32f4a0}/scripts/Invoke-Project.ps1", "-Action", "test"],
+                "options": { "cwd": "${workspaceFolder:zephyr_hc32f4a0}" },
+                "group": "test",
+                "problemMatcher": ["$gcc"],
+                "presentation": { "reveal": "always", "panel": "dedicated" }
+            },
+            {
+                "label": "HC32: Start pyOCD GDB server (hardware)",
+                "detail": "Connect the HC32 board first. Starts the project pyOCD server at 10 MHz SWD with the corrected SRAM map.",
+                "type": "process",
+                "command": "powershell.exe",
+                "args": ["-NoLogo", "-NoProfile", "-File", "${workspaceFolder:zephyr_hc32f4a0}/scripts/Invoke-Project.ps1", "-Action", "debug"],
+                "options": { "cwd": "${workspaceFolder:zephyr_hc32f4a0}" },
+                "problemMatcher": [],
+                "presentation": { "reveal": "always", "panel": "dedicated" }
+            }
+        ]
+    }
+}

@@ -1,0 +1,14 @@
+# SPDX-FileCopyrightText: Copyright The Zephyr HC32F4A0 Contributors
+# SPDX-License-Identifier: Apache-2.0
+
+config SOC_HC32F4A0PITB
+	select ARM
+	select CPU_CORTEX_M4
+	select CPU_HAS_FPU
+	select CPU_HAS_ARM_MPU
+	select CPU_CORTEX_M_HAS_SYSTICK
+	select CPU_CORTEX_M_HAS_VTOR
+	select SOC_RESET_HOOK
+	select SOC_EARLY_INIT_HOOK
+	select CMSIS_CORE_HAS_SYSTEM_CORE_CLOCK
+	select BUILD_OUTPUT_HEX

@@ -7,7 +7,7 @@ SPDX-License-Identifier: Apache-2.0
 
 核对日期：2026-09-09。目标为 HC32F4A0PITB-LQFP100，Cortex-M4F，2 MiB Flash、
 512 KiB 主 SRAM，另有 4 KiB 备份 SRAM。本文记录原理图核对结果与用户确认的板卡事实，
-是本工程的板级配置依据；当前尚未完成 HC32 Zephyr 移植或实板运行验证。
+是本工程的板级配置依据；已实现首轮可构建的 HC32 Zephyr 移植，尚未完成实板运行验证。
 
 ## 资料与解释顺序
 
