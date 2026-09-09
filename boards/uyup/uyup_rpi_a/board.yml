@@ -1,0 +1,9 @@
+# Copyright The zephyr_hc32f4a0 Contributors
+# SPDX-License-Identifier: Apache-2.0
+
+board:
+  name: uyup_rpi_a
+  full_name: UYUP-RPI-A-2.5 HC32F4A0PITB
+  vendor: uyup
+  socs:
+    - name: hc32f4a0pitb
