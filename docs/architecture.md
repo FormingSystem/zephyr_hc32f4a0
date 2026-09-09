@@ -7,7 +7,17 @@ SPDX-License-Identifier: Apache-2.0
 
 本仓库是 HC32F4A0PITB / UYUP-RPI-A-2.5 的独立开发仓库。Git 历史、工程脚本、板级依据、
 调试器适配和移植代码由本仓库管理；Zephyr 内核、SDK、west 模块与厂商资料是外部依赖。
-即使检出目录放在 Zephyr 源码内部，也不把本仓库文件并入 Zephyr 的 Git 历史。
+本仓库与 `zephyr/` 源码依赖并列，目录布局如下：
+
+```text
+workspace/
+├── zephyr_hc32f4a0/  本项目开发仓库
+├── zephyr/          Zephyr 源码依赖
+├── modules/         west 管理的模块
+└── .venv/           共享构建工具环境
+```
+
+本仓库文件只进入自身 Git 历史。
 
 ## 组件关系
 
