@@ -22,13 +22,14 @@ def run(args, *, env=None, capture=False):
     return subprocess.run(
         list(map(str, args)), cwd=ROOT, env=env, check=True,
         stdout=subprocess.PIPE if capture else None,
+        stderr=subprocess.STDOUT,
         encoding="utf-8", errors="replace",
     )
 
 
 def environment():
     env = os.environ.copy()
-    zephyr = Path(env.get("ZEPHYR_BASE", ROOT.parent)).resolve()
+    zephyr = Path(env.get("ZEPHYR_BASE", ROOT.parent / "zephyr")).resolve()
     if not (zephyr / "VERSION").is_file() or not (zephyr / "west.yml").is_file():
         raise RuntimeError("Set ZEPHYR_BASE to the prepared Zephyr source directory")
     sdk = Path(env.get("ZEPHYR_SDK_INSTALL_DIR",
@@ -38,6 +39,14 @@ def environment():
     env["ZEPHYR_BASE"] = str(zephyr)
     env["ZEPHYR_SDK_INSTALL_DIR"] = str(sdk.resolve())
     env["ZEPHYR_TOOLCHAIN_VARIANT"] = "zephyr"
+    misplaced_root = zephyr / "_hc32f4a0"
+    for variable in ("EXTRA_ZEPHYR_MODULES", "ZEPHYR_EXTRA_MODULES"):
+        if variable in env:
+            # Discard the exact stale entry left by relocating this checkout.
+            env[variable] = ";".join(
+                p for p in env[variable].split(";")
+                if p and Path(p).resolve() != misplaced_root
+            )
     extras = [str(ROOT)] + env.get("EXTRA_ZEPHYR_MODULES", "").split(";")
     env["EXTRA_ZEPHYR_MODULES"] = ";".join(dict.fromkeys(p for p in extras if p))
     return env
