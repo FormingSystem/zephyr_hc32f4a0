@@ -3,10 +3,11 @@
 
 # 项目协作约定
 
-本项目的独立开发仓库是 `G:\zephyr\zephyr\_hc32f4a0`，远程为
+本项目的独立开发仓库是 `G:\zephyr\zephyr_hc32f4a0`，远程为
 `git@github.com:FormingSystem/zephyr_hc32f4a0.git`。本段绝对路径仅用于本机工作树发现。
 执行任何 Git 写操作前，核对 `git rev-parse --show-toplevel` 指向本仓库。
-上一级目录是独立的 Zephyr 源码依赖，不在其索引中添加本仓库，也不在其中开发本项目组件。
+同级目录 `G:\zephyr\zephyr` 是独立的 Zephyr 源码依赖。两个仓库并列，
+不在 Zephyr 的索引中添加本项目，也不在其源码目录内开发本项目组件。
 
 先读 `README.md`、`docs/architecture.md`、`docs/hardware.md` 和
 `governance/conventions/git_guide.md`。硬件事实以 `docs/hardware.md` 为唯一项目记录。

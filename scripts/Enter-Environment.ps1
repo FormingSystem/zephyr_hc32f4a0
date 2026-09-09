@@ -8,7 +8,9 @@ $projectRoot = Split-Path -Parent $PSScriptRoot
 $dependencyLock = Get-Content -LiteralPath (Join-Path $projectRoot 'dependencies.lock.json') -Raw |
     ConvertFrom-Json
 $zephyrRoot = $env:ZEPHYR_BASE
-if (-not $zephyrRoot) { $zephyrRoot = Split-Path -Parent $projectRoot }
+if (-not $zephyrRoot) {
+    $zephyrRoot = Join-Path (Split-Path -Parent $projectRoot) 'zephyr'
+}
 if (-not (Test-Path -LiteralPath (Join-Path $zephyrRoot 'VERSION'))) {
     throw 'Set ZEPHYR_BASE to the prepared Zephyr source directory.'
 }
@@ -40,6 +42,15 @@ $env:ZEPHYR_BASE = $zephyrRoot
 $env:ZEPHYR_SDK_INSTALL_DIR = (Resolve-Path -LiteralPath $sdkRoot).Path
 $env:ZEPHYR_TOOLCHAIN_VARIANT = 'zephyr'
 # Use Zephyr's current variable name; preserve other user-selected extra modules.
+$misplacedRoot = Join-Path $zephyrRoot '_hc32f4a0'
+foreach ($moduleVariable in @('EXTRA_ZEPHYR_MODULES', 'ZEPHYR_EXTRA_MODULES')) {
+    $currentModules = [Environment]::GetEnvironmentVariable($moduleVariable, 'Process') -split ';'
+    # Discard the exact stale entry left by relocating this checkout.
+    $currentModules = @($currentModules | Where-Object {
+        $_ -and [IO.Path]::GetFullPath($_) -ne $misplacedRoot
+    })
+    [Environment]::SetEnvironmentVariable($moduleVariable, ($currentModules -join ';'), 'Process')
+}
 $extraModules = @($projectRoot) + ($env:EXTRA_ZEPHYR_MODULES -split ';')
 $env:EXTRA_ZEPHYR_MODULES = ($extraModules | Where-Object { $_ } | Select-Object -Unique) -join ';'
 Set-Location -LiteralPath $projectRoot

@@ -48,7 +48,7 @@ python scripts/project.py test
 
 固定依赖基线见 [dependencies.lock.json](dependencies.lock.json)。Python 工程工具依赖见
 [requirements-tools.txt](requirements-tools.txt)；Zephyr 构建依赖仍按其源码中的 requirements 安装。
-激活脚本支持现有嵌套布局，也可通过 `ZEPHYR_BASE`、`VIRTUAL_ENV` 和
+激活脚本按并列布局定位同级 `zephyr/` 源码目录，也可通过 `ZEPHYR_BASE`、`VIRTUAL_ENV` 和
 `ZEPHYR_SDK_INSTALL_DIR` 使用其他已准备好的本机工作区。
 
 本项目新增实现采用 Apache-2.0；直接继承自 linux-note 的治理文件和钩子保留其

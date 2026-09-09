@@ -16,9 +16,9 @@ SPDX-License-Identifier: Apache-2.0
 | 板卡资料 | 已核对单页原理图与厂商引脚表，用户确认 12 MHz、NC 和板载 DAP 操作；见 hardware.md |
 | pyOCD 工程配置 | 使用 hc32f4a0xi、10 MHz SWD、禁用自动解锁擦除，修正主 SRAM 地址 |
 | pyOCD 离线验证 | 真实 Session 跨目录加载相对脚本、真实初始化钩子与重复调用通过；Flash/OTP 算法、备份 RAM、全局目标图保持不变 |
-| 工程工具检查 | `project.py check` 通过 5 项真实 Git 工具测试与 pyOCD 离线检查；CMake/Kconfig 风格检查通过 |
+| 工程工具检查 | `project.py check` 通过 10 项测试（5 项 Git、5 项路径回归）与 pyOCD 离线检查；CMake/Kconfig 风格检查通过 |
 | 工程基础样例 | `project.py build` 构建 samples/bringup / mps2/an386 成功，Flash 19356 B、RAM 6440 B |
-| 工程运行测试 | `project.py test` 执行本仓库样例，Twister 1/1 通过、零警告，耗时 18.26 秒 |
+| 工程运行测试 | `project.py test` 在并列工作区布局中执行本仓库样例，Twister 1/1 通过、零警告，耗时 19.55 秒 |
 | CI 配置 | 已有 GitHub Actions 工具检查矩阵；尚未在远端执行 CI |
 | HC32 SoC、board 与驱动 | 尚未实现，不能构建 HC32 Zephyr 固件 |
 | 实板调试与运行 | 未完成；此前主机只读枚举未发现可用调试探针 |
@@ -36,6 +36,10 @@ python debug/verify_pyocd.py
 
 本地结果日志为 `build/project-check.log`、`build/project-build.log`、`build/project-test.log`；
 编译产物在 `build/bringup`，Twister 结构化结果在 `build/twister`。这些文件不受版本控制。
+
+项目采用 `zephyr_hc32f4a0/` 与 `zephyr/` 并列布局。已从清空依赖环境变量的终端验证
+自动发现，并在 PowerShell 5.1 中验证重新激活、清除错误模块路径以及保存测试日志。
+目录调整前的构建缓存归档在被忽略的 `.local/build-before-relocation/`，当前构建使用新生成的缓存。
 
 ## 首轮移植顺序
 
