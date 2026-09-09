@@ -19,7 +19,8 @@ zephyr_hc32f4a0/
 ├── modules/hal/xhsc/                     华大 HAL 源码
 ├── samples/bringup/                     板卡启动示例
 ├── scripts/ debug/ tests/tooling/        开发、调试及验证工具
-├── docs/ governance/                    项目记录与协作约定
+├── project-docs/                        工程介绍、移植记录和 Zephyr 学习资料
+├── governance/                          Git 协作约定
 ├── .venv/ .local/                        本机环境，不提交
 └── build/                               编译与测试产物，不提交
 ```

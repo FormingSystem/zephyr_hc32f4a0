@@ -10,8 +10,8 @@
 本仓库直接包含完整 Zephyr 源码，以及构建 HC32 所需的 CMSIS_6、厂商 HAL。
 单独 clone 本仓库后应能使用已安装工具链构建，不能偷偷回退到旁边的官方目录。
 
-先读 `README.md`、`docs/architecture.md`、`docs/hardware.md` 和
-`governance/conventions/git_guide.md`。硬件事实以 `docs/hardware.md` 为唯一项目记录。
+先读 `README.md`、`project-docs/architecture.md`、`project-docs/hardware.md` 和
+`governance/conventions/git_guide.md`。硬件事实以 `project-docs/hardware.md` 为唯一项目记录。
 
 ## 工程边界
 
@@ -23,7 +23,8 @@
   虚拟环境、缓存、固件产物、凭据或未经确认许可的资料。
 - 厂商 HAL 的集成修正在树内 SoC/驱动中处理；不修改已安装的 Python 包。
 - 不能创建虚假的可用 HC32 board/SoC，也不能把 QEMU 成功称作 HC32 实板验证。
-- 每次交付更新 `docs/porting-status.md`，记录完成范围、验证方法与尚未执行的硬件步骤。
+- 工程介绍、移植记录和 Zephyr 学习资料维护在 `project-docs/`，目录入口为 `project-docs/README.md`。
+- 每次交付更新 `project-docs/porting-status.md`，记录完成范围、验证方法与尚未执行的硬件步骤。
 
 ## 硬件约束
 

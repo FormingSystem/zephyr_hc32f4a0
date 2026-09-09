@@ -5,8 +5,12 @@ SPDX-License-Identifier: Apache-2.0
 
 # HC32F4A0PITB 移植状态
 
-记录日期：2026-09-09。板卡 UYUP-RPI-A-2.5，目标 `uyup_rpi_a/hc32f4a0pitb`，
+验证日期：2026-09-09；文档更新：2026-09-10。板卡 UYUP-RPI-A-2.5，目标 `uyup_rpi_a/hc32f4a0pitb`，
 LQFP100、2 MiB Flash、512 KiB 主 SRAM。已实现首轮可构建的移植；实板运行尚未验收。
+
+工程文档目录已统一为 `project-docs/`，用于工程介绍、移植记录和 Zephyr 学习资料；
+导航见 [文档入口](README.md)。本次调整更新目录与引用，38 个本地 Markdown 链接和 Git 差异检查通过；
+未重新执行固件构建，既有构建和硬件验证状态不变。
 
 ## 工程与源码节点
 

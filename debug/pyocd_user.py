@@ -6,7 +6,7 @@
 pyOCD 0.45.1 starts main RAM at 0x1FFFE000; the vendor map places its
 512 KiB at 0x1FFE0000..0x2005FFFF. Backup RAM and Flash algorithms stay
 intact. This hook changes metadata only and performs no register writes.
-Vendor evidence and board configuration are recorded in docs/hardware.md.
+Vendor evidence and board configuration are recorded in project-docs/hardware.md.
 
 Hook API: https://pyocd.io/docs/user_scripts.html#will_init_target
 """
