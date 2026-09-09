@@ -1,0 +1,19 @@
+# SPDX-FileCopyrightText: Copyright The Zephyr Project Contributors
+# SPDX-License-Identifier: Apache-2.0
+
+sample:
+  name: HC32F4A0 port integration bringup
+  description: External module loading, console heartbeat, and optional LED0.
+tests:
+  sample.hc32f4a0.bringup:
+    tags:
+      - introduction
+    integration_platforms:
+      - mps2/an386
+    platform_allow:
+      - mps2/an386
+    harness: console
+    harness_config:
+      type: one_line
+      regex:
+        - "HC32F4A0 bringup module ready on mps2/an386"
