@@ -19,7 +19,8 @@ SPDX-License-Identifier: Apache-2.0
 | `HC32F4A0_DDL_Rev2.4.0` | 官方设备头文件、系统初始化、启动文件及外设接口；保留其 BSD-3-Clause 许可 |
 | UYUP 模板 `SW-TEMPLATE/UYUP-RPI-A/HC32F4A0` | `main.c` 与 `UYUP-RPI-A.uvprojx` 仅用于交叉核对；模板仍含 A_2_2 与 24 MHz 配置 |
 
-原始 PDF、压缩包和厂商源码在外部资料目录维护，不复制进本仓库。
+原始 PDF、压缩包和旧板卡模板在外部资料目录维护，不复制进本仓库。
+构建所需的华大 HAL 源码已经按固定节点内置，见 [源码基线](source-baseline.md)。
 芯片官方资料入口为[厂商产品页](https://www.xhsc.com.cn/product/1220.html)。
 板卡用户确认事实优先于通用原理图的默认装配和旧模板；引脚功能以目标型号的数据手册为准。
 
