@@ -1,0 +1,14 @@
+# SPDX-FileCopyrightText: Copyright The Zephyr Project Contributors
+# SPDX-License-Identifier: Apache-2.0
+
+menuconfig HC32F4A0_PORT_MODULE
+	bool "HC32F4A0 port module"
+	help
+	  Enable the external HC32F4A0 port integration. This option exposes
+	  module components; it does not enable an HC32 SoC or board target.
+
+if HC32F4A0_PORT_MODULE
+
+rsource "drivers/Kconfig"
+
+endif

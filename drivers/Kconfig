@@ -1,0 +1,4 @@
+# SPDX-FileCopyrightText: Copyright The Zephyr Project Contributors
+# SPDX-License-Identifier: Apache-2.0
+
+# Add driver Kconfig files here when their implementations are available.
