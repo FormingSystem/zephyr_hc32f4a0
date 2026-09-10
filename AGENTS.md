@@ -50,12 +50,21 @@
 
 - C、Kconfig、CMake 和设备树遵循当前 Zephyr 对应风格规范；新文件保留 SPDX。
   具体规范见 `doc/contribute/style/`；上游原文件的许可证和作者记录保持不变。
-- 本仓库提交语法继承 linux-note：`<类型>[(项目[/模块])]!?: <中文结果>`；
-  正文按需使用 `- ` 列表，规则和来源见 governance 文档。
-- 主线为 `master`，只接受验证通过的快进更新。已交付历史用 revert，不 reset 或强推。
+- Git 规则继承 linux-note 的固定来源节点，完整规则与核对范围见
+  [Git 规范](governance/conventions/git_guide.md)和[继承记录](governance/architecture/framework_provenance.md)。
+  不得自行简化规则、添加尾注例外，或仅以钩子通过代替规则审查。
+- 提交标题使用 `<类型>[(项目[/模块])]!?: <中文结果>`。知识正文/研究内容用 `content`，
+  使用说明/设计/治理文档用 `docs`；其他类型按规范的用途选择，不能按文件后缀分类。
+- 范围语法可选，允许任意语言的一到两层；能够明确定位项目/模块时按实际对象填写，
+  仓库整体变更没有准确范围时可以省略，不设范围白名单。
+- 一个提交只形成一个可独立审查和回退的结果。实现所需测试与文档随实现；独立治理政策、
+  知识内容和发布动作分别提交，不按扩展名分组，也不因用户说“全部提交”就合并无关结果。
+- 标题能表达单一结果时不强加正文；需要正文时，每个非空非注释行使用 `- 描述`。
+  继承的钩子不接受独立 `Assisted-by`、`Signed-off-by` 或 `Co-authored-by` 尾注；不得代造人工签署。
+- 主线为 `master`，只接受验证通过的快进更新。已交付或推送历史用 revert 撤销，不擅自改写。
+  只有开发者明确授权的仓库级历史迁移，才可在创建并验证完整 bundle 备份后使用 `--force-with-lease`。
 - 明确列出暂存路径并检查暂存区。禁止 `git add .`、`git add -A` 或提交依赖仓库。
-- 代理创建的提交包含一个 `Assisted-by` 尾注；不添加 `Signed-off-by` 或 `Co-authored-by`。
-  人工签署的有效尾注不得删除。不得在提交中声称未执行的硬件验证。
+- 已有历史中的作者、签署和提交消息保持原样。不得在提交中声称未执行的硬件验证。
 - 本地初始化使用 `python scripts/git_setup.py`；检查使用 `python scripts/project.py check`。
   修改模块或示例后再运行 `python scripts/project.py build` 和 `python scripts/project.py test`。
 - 未获推送指令时只建立和验证本地提交，不自动发布到远端。
