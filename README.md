@@ -16,6 +16,8 @@ SPDX-License-Identifier: Apache-2.0
 ## 开始开发
 
 第一次接触本工程，可以先按[四篇入门介绍](project-docs/README.md)的顺序认识工程、运行过程、构建和芯片移植。
+随后沿[Zephyr 学习与实验路线](project-docs/learning/README.md)逐篇深入；完整蓝图规划了 14 组、88 个专题，
+分别说明前置知识、实验目标与平台条件，详细正文和实验按专题陆续实现。
 
 打开本仓库的 [VS Code 工作区](zephyr_hc32f4a0.code-workspace)。工作区只有本仓库一个根目录，
 可以直接查看和修改 Zephyr 全部源码及 HC32 组件。新终端和工程任务会加载本仓库环境。
