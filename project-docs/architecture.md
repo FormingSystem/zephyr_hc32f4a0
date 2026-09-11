@@ -18,6 +18,7 @@ zephyr_hc32f4a0/
 ├── modules/hal/cmsis_6/                  CMSIS_6 源码
 ├── modules/hal/xhsc/                     华大 HAL 源码
 ├── samples/bringup/                     板卡启动示例
+├── samples/learning/ tests/learning/    课程实验与自动化用例
 ├── scripts/ debug/ tests/tooling/        开发、调试及验证工具
 ├── project-docs/                        工程介绍、移植记录和 Zephyr 学习资料
 ├── governance/                          Git 协作约定
@@ -35,6 +36,11 @@ zephyr_hc32f4a0/
 原始 `west.yml` 保留上游模块目录信息，不表示所有其他厂商 HAL 都已导入。
 当前目标只需要已内置的模块；后续功能引入其他模块时，独立记录其来源、版本和许可证。
 SDK 与 Python 环境是本机工具，源码工程不将它们纳入版本控制。
+
+课程应用使用独立的 [scripts/learning/run.py](../scripts/learning/README.md)，通过 `--app` 选择实验目录，
+按应用、目标与分组记录构建或模拟结果；原有 project.py 继续负责启动示例。
+编译对象观察实验另用 inspect_objects.py，生成用于比较符号与布局的文件；它不产生可直接启动的固件。
+具体课程入口与当前完成度见[学习路线](learning/README.md)。
 
 ## SoC 启动
 
