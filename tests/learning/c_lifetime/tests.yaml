@@ -1,0 +1,14 @@
+# SPDX-FileCopyrightText: Copyright The zephyr_hc32f4a0 Contributors
+# SPDX-License-Identifier: Apache-2.0
+
+tests:
+  learning.c_lifetime:
+    tags:
+      - introduction
+      - learning
+    harness: ztest
+    timeout: 30
+    integration_platforms:
+      - mps2/an386
+    platform_allow:
+      - mps2/an386
