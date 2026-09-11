@@ -32,6 +32,11 @@ LQFP100、2 MiB Flash、512 KiB 主 SRAM。已实现首轮可构建的移植；�
 该修正只涉及 Git 治理与测试，已发布历史保留，未修改固件或操作硬件。来源与适配详见
 [Git 框架继承记录](../governance/architecture/framework_provenance.md)。
 
+2026-09-11 直接复核 linux-note 当前 Git 规则、钩子与模板，确认来源仍为固定节点且相关文件没有未提交差异。
+6 项 Git 工作流测试及本地配置检查通过；两条旧提交消息在来源与恢复后的钩子中均被拒绝，历史自写版本会放行。
+对齐范围说明，并明确标注项目附加执行约定；复核证据见[Git 框架来源](../governance/architecture/framework_provenance.md)。
+本次只修改协作与复核说明，没有修改提交钩子、重写历史或操作硬件。
+
 ## 工程与源码节点
 
 仓库根目录包含完整 Zephyr 源码快照，以及 HC32 需要的 CMSIS_6、华大 HAL。

@@ -222,7 +222,8 @@ git diff --cached --check
 git diff --cached
 ```
 
-不得用 `git add .`、`git add -A` 或 `git commit -a` 混入未审查文件。
+来源要求明确选择文件并检查暂存区。本项目另加执行限制：禁止使用 `git add .`、`git add -A` 或 `git commit -a`；
+该限制比来源的明文要求更严格，不属于来源钩子的校验行为。
 带 shebang 且设计为直接执行的 Shell 脚本必须以 Git 模式 `100755` 提交；
 只供 `source` 的脚本库使用 `100644`。
 Windows 首次暂存直接执行的提交钩子后，可用
