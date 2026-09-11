@@ -1,0 +1,11 @@
+# SPDX-FileCopyrightText: Copyright The zephyr_hc32f4a0 Contributors
+# SPDX-License-Identifier: Apache-2.0
+mainmenu "First evidence experiment"
+
+config LEARNING_INJECT_FAILURE
+	bool "Deliberately use an incorrect expected sum"
+	default n
+	help
+	  Exercise the assertion-to-host failure path without undefined behavior.
+
+source "Kconfig.zephyr"
