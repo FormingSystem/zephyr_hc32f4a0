@@ -63,6 +63,20 @@ python scripts/project.py test
 结果保存到 `build/twister`。QEMU 验证软件回归，不能替代 HC32 的时钟、UART、GPIO 或 Flash 实板验收。
 不要将 MPS2 镜像下载到 HC32。
 
+## 学习实验
+
+课程应用通过独立入口选择，不向 project.py 添加不存在的应用参数：
+
+```powershell
+python scripts/learning/run.py test --app tests/learning/c_lifetime --variant normal
+python scripts/learning/run.py test --app tests/learning/first_evidence --variant normal
+```
+
+以上分别运行对象边界和基础断言实验，默认目标为 `mps2/an386`。
+需要选择目标、附加配置或设置超时时，查[工具使用说明](../scripts/learning/README.md)。
+各次结果保存在独立的 build/learning/runs 目录，终端的 Evidence 路径定位本次记录；原始日志不提交。
+故障与恢复步骤、编译对象观察实验从[学习路线](learning/README.md)进入，首次阅读先看[开始学习](learning/开始学习.md)。
+
 ## VS Code 工作区
 
 打开根目录的 `zephyr_hc32f4a0.code-workspace`：
