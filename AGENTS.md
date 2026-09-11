@@ -64,7 +64,8 @@
 - 主线为 `master`，只接受验证通过的快进更新。已交付或推送历史用 revert 撤销，不擅自改写。
   只有开发者明确授权的仓库级历史迁移，才可在创建并验证完整 bundle 备份后使用 `--force-with-lease`。
 - 明确列出暂存路径并检查暂存区。本项目附加的执行限制：禁止 `git add .`、`git add -A` 或提交依赖仓库。
-- 已有历史中的作者、签署和提交消息保持原样。不得在提交中声称未执行的硬件验证。
+- 日常提交保持已有历史中的作者、签署和提交消息原样；显式授权的历史迁移按上方备份与保护约定执行。
+  已完成的授权迁移见[历史记录](governance/architecture/git_history_repair_20260911.md)。不得在提交中声称未执行的硬件验证。
 - 本地初始化使用 `python scripts/git_setup.py`；检查使用 `python scripts/project.py check`。
   修改模块或示例后再运行 `python scripts/project.py build` 和 `python scripts/project.py test`。
 - 本项目附加的发布约定：未获推送指令时只建立和验证本地提交，不自动发布到远端。
