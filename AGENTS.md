@@ -36,6 +36,9 @@
 - 厂商 HAL 的集成修正在树内 SoC/驱动中处理；不修改已安装的 Python 包。
 - 不能创建虚假的可用 HC32 board/SoC，也不能把 QEMU 成功称作 HC32 实板验证。
 - 工程介绍、移植记录和 Zephyr 学习资料维护在 `project-docs/`，目录入口为 `project-docs/README.md`。
+- 项目环境所需的通用知识教学与独立工具实验维护在根目录 `learning/`，面向已有嵌入式经验的专题初学者。
+  `project-docs/` 保留项目事实与实际用法；新增通用教程不在两处重复维护。主线采用 UCRT64 Bash，
+  示例使用相对路径；实验生成数据进入 `build/learning-tools/`，不提交环境或临时 Git 历史。
 - 系统学习与实验按 [专题蓝图](project-docs/learning/专题蓝图.md) 分批建设，执行
   [实验约定](project-docs/learning/实验规范.md)。阅读入口只登记真实文章；文档、构建、模拟运行和实板验证分别记录状态。
 - 每次交付更新 `project-docs/porting-status.md`，记录完成范围、验证方法与尚未执行的硬件步骤。

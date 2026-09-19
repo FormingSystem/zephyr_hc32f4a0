@@ -37,6 +37,23 @@ setup_environment.py、project_env.py、configure_west.py。west 采用父目录
 
 仓库环境已通过主机工具检查、HC32 构建及源码审计与 QEMU 软件回归；实板调试仍未验收。
 
+### 2026-09-19：工具补充教学与 Bash 实验
+
+根目录 [learning](../learning/README.md) 新增实验准备、4 篇 venv 与 5 篇 west 教程及本地源码，
+面向已有嵌入式经验的专题初学者。通用工具知识与实验在 learning 维护；项目实际依赖、源码和用法留在
+[Python 环境入口](python/venv/README.md)和 [west 项目说明](west/README.md)，同步根目录、文档中心与 T05 导航。
+既有 88 专题 Zephyr 路线和 HC32 源码不变，本次新增工具教程不计入其已完成专题数。
+
+在 UCRT64 Bash 下实跑 Windows Python 3.12.10、pip 25.0.1、west 1.5.0、setuptools 80.9.0：
+环境身份、版本隔离、冻结重建、约束失败、配置覆盖、导入遮蔽、可编辑安装、多仓库更新、清单导入、
+扩展命令与中文空格路径移动通过。正文 venv Bash 命令块及 west 本地/克隆初始化另行实跑；
+初始化辅助器保护工程已有 .west，实验最终产物在被忽略的 build/learning-tools 内。
+
+工程原有环境与 Git for Windows 下 `python scripts/project.py check` 通过 41 项主机工具测试、
+pyOCD 离线检查与差异检查。MSYS2 Git 的参数展开及现有工程检查的路径格式差异已记录在
+[教学验证记录](../learning/VALIDATION.md)。本轮未重建 HC32 固件、未运行 QEMU、未访问探针或执行实板烧录，
+原有硬件验证状态不变。
+
 工程文档目录已统一为 `project-docs/`，用于工程介绍、移植记录和 Zephyr 学习资料。
 新增四篇入门介绍，依次解释工程身份、运行过程、源码到固件、HC32 移植组成，导航见 [文档入口](README.md)。
 章节依据当前源码和既有产物核对，既有构建和硬件验证状态不变；本次未重新构建固件或操作硬件。

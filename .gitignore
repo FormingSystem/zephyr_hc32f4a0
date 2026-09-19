@@ -59,6 +59,9 @@ doc/doc.warnings
 hide-defaults-note
 venv
 .venv
+# These are tutorial source directories, not Python environments.
+!/learning/python/venv/
+!/project-docs/python/venv/
 .envrc
 .DS_Store
 .clangd
