@@ -1,17 +1,21 @@
 # SPDX-FileCopyrightText: Copyright (c) 2026 FormingSystem
 # SPDX-License-Identifier: GPL-2.0-only
-# Inherited verbatim from linux-note 5fd52c4a37e484079b694daeb8af848898281fb1.
+# Adapted from linux-note 5fd52c4a37e484079b694daeb8af848898281fb1.
+# Original retained in upstream/git_commit_message.txt.
 
 # <类型>[(<project>/<module>)]!?: <中文结果>
-# 标题能够完整说明时直接提交，不需要正文。
-# 只有多个结果或风险无法在标题中说清时，才保留以下列表：
-# - 描述1
-# - 描述2
+#
+# 每条提交都必须有正文；标题后空一行，各条明细单独换行：
+# - 概括解决的问题和采取的改动，让别人理解为什么需要这次变更
+# - 说明改动后的行为或使用效果，必要时交代重要限制
+# 按实际变化写总结，不列文件清单、编辑步骤或测试数量，不机械填满所有项目。
+# 明细不能仅重复标题，也不能使用“详情1”等占位内容。
 #
 # 类型：
 # feat fix refactor perf security content docs test build ci release revert chore
 #
 # 示例：
-# feat(practice/bank): 支持按模块和训练阶段导入题库
-# docs: 更新仓库使用说明
-# content(knowledge/rcu): 补充宽限期状态汇聚过程
+# fix(build/environment): 修正环境切换后使用旧依赖的问题
+#
+# - 重新进入环境时清除遗留模块路径，让构建使用当前工程选定的依赖
+# - 保留用户额外配置的其他模块，避免修正默认路径时误删扩展依赖

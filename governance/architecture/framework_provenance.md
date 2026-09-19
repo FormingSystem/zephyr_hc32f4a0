@@ -8,11 +8,14 @@ SPDX-License-Identifier: Apache-2.0
 本项目的 Git 工作流以 [linux-note](https://github.com/FormingSystem/linux_note) 仓库的提交 `5fd52c4a37e484079b694daeb8af848898281fb1` 为来源基线。
 2026-09-10 重新核对同一节点的 Git 规范、根协作说明的 Git 一节、模板和钩子，修正此前继承时擅自简化或增加的规则。
 继承包括提交类型的用途、真实范围、中文结果、按需列表正文、单一结果粒度、分支/暂存区验证及已发布历史保护。
+其中“按需正文”为来源原规则；2026-09-19 按开发者要求增加本项目覆盖：每条提交必须有具体列表明细。
 
 | 本项目文件 | 来源或实现方式 | 许可证 |
 | --- | --- | --- |
-| `.githooks/commit-msg` | 保留来源仓库同路径脚本正文，仅添加 SPDX 与来源注释 | GPL-2.0-only |
-| `governance/templates/git_commit_message.txt` | 保留来源模板正文，仅添加 SPDX 与来源注释 | GPL-2.0-only |
+| `.githooks/upstream/commit-msg` | 保留来源仓库脚本正文，仅添加 SPDX 与来源注释 | GPL-2.0-only |
+| `.githooks/commit-msg` | 先调用来源校验，再要求项目提交必须包含非空列表正文 | GPL-2.0-only |
+| `governance/templates/upstream/git_commit_message.txt` | 保留来源模板正文，仅添加 SPDX 与来源注释 | GPL-2.0-only |
+| `governance/templates/git_commit_message.txt` | 按开发者要求改为每条提交必填具体列表明细 | GPL-2.0-only |
 | `scripts/git_setup.py` | 独立实现本仓库本地 Git 配置和根目录检查 | Apache-2.0 |
 | `tests/tooling/test_git_workflow.py` | 真实 Git 钩子行为、来源正文校验、配置幂等性和父仓库保护测试 | Apache-2.0 |
 | `.gitattributes`、`.gitignore`、`.editorconfig` | 按固件工程重新编写，采用来源仓库的 LF 管理原则 | Apache-2.0 |
@@ -28,7 +31,7 @@ SPDX-License-Identifier: Apache-2.0
 | 1.1 目标、1.5 粒度 | 一个提交形成一个可独立审查/回退的结果；必要测试和文档随实现，独立治理与知识内容分别提交 |
 | 1.2 分支 | 短期任务分支，完成后基于远端主线整理，以快进方式进入 master |
 | 1.3 类型与范围 | 保留全部类型用途；知识正文用 content，说明/设计/治理用 docs；一到两层任意语言范围语法可选 |
-| 1.4 正文 | 单一结果无需正文；有正文时每个非空非注释行使用列表，钩子没有独立尾注例外 |
+| 1.4 正文 | 来源允许按需正文；本项目经授权要求每条提交都有列表正文，仍无独立尾注例外 |
 | 1.6 验证 | 保留版本化钩子/模板、显式暂存和暂存区审查；运行本工程工具、文档检查及变更涉及的固件检查 |
 | 1.7 历史 | 已推送/交付提交不擅自改写；撤销使用 revert；显式授权的仓库级历史迁移先创建并验证完整 bundle |
 | 1.8 发布 | 保留版本交付与验证原则，不把 Loop 或 linux-note 的专属标签用作固件项目版本 |
@@ -47,13 +50,14 @@ SPDX-License-Identifier: Apache-2.0
 
 ## 来源正文校验
 
-测试去除本项目添加的两行 SPDX 与一行来源注释，将换行统一为 LF 后核对 SHA-256。
+测试对 upstream 目录中的原始快照去除两行 SPDX 与一行来源注释，将换行统一为 LF 后核对 SHA-256。
+当前包装钩子与模板采用项目规则；运行测试另行检查它们的附加约束，不将其伪称为来源原文。
 未来更新规则时必须先核对新的来源版本及语义，再同步下面的记录与测试，不能只为通过检查修改摘要。
 
 | 来源文件 | 正文 SHA-256 |
 | --- | --- |
-| `.githooks/commit-msg` | `83b0c6db5d93ca5e3c11c7004094c96d29116f050ecd2c25c2d710b53690c78b` |
-| `governance/templates/git_commit_message.txt` | `bee96272811082c7312b15322d641c43bc67ee5442c7f7c3231be1ffe90b5193` |
+| `.githooks/upstream/commit-msg` | `83b0c6db5d93ca5e3c11c7004094c96d29116f050ecd2c25c2d710b53690c78b` |
+| `governance/templates/upstream/git_commit_message.txt` | `bee96272811082c7312b15322d641c43bc67ee5442c7f7c3231be1ffe90b5193` |
 
 没有复制来源仓库的 `.git`、Git 历史、远端、本地身份配置、工作树状态或用户内容。知识库目录、Obsidian 配置、`format.sh` 及其元数据/标题/链接格式工具、MarkBook 发布流水线和 Loop 应用配置不属于固件工程的 Git 基础框架。
 
@@ -78,3 +82,11 @@ SPDX-License-Identifier: Apache-2.0
 
 来源 AGENTS 的专题整理段仍有 `structure`、`rewrite`、`link` 等旧类型措辞，与其 Git 专节和规范禁用旧类型的要求冲突。
 本项目继承明确的 Git 专节与当前实际钩子，不将这条遗留专题措辞扩展为新提交类型；来源仓库保持只读。
+
+## 2026-09-19 项目强制明细规则
+
+开发者明确要求全部历史提交补充逐行明细，并纠正后续提交没有正文的问题。
+因此本项目覆盖来源的“正文可选”，保留其标题、类型、范围与列表语法，新增至少一条具体正文的要求。
+原始脚本与模板移动到各自 upstream 子目录，源码正文摘要保持原值；没有修改来源仓库。
+历史只补充原本缺失的说明，已有消息与事实边界保留，具体范围与节点对照见
+[本次迁移记录](git_history_details_20260919.md)。

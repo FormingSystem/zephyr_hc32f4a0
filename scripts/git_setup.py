@@ -39,6 +39,7 @@ def configure_repository(repo_root: Path, check_only: bool = False) -> int:
         raise ValueError(f"Git 根目录与脚本所属仓库不一致：{repo_root}")
     for relative_path in (
         ".githooks/commit-msg",
+        ".githooks/upstream/commit-msg",
         "governance/templates/git_commit_message.txt",
     ):
         if not (repo_root / relative_path).is_file():
