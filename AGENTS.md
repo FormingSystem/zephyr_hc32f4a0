@@ -29,6 +29,8 @@
 - 所有自研板级支持、SoC、设备树、驱动、示例、工具和文档都在本仓库中维护。
 - Zephyr、CMSIS 和厂商 HAL 源码纳入版本控制；SDK/Python 是外部主机工具。
   源码基线见 `dependencies.lock.json`，导入代码保留原许可证；不要提交依赖仓库的 `.git`。
+- 当前开发环境使用根目录 `.venv`，通过 `scripts/setup_environment.py` 安装、`scripts/project_env.py` 执行工程命令。
+  west 本机配置由 `scripts/configure_west.py` 在仓库父目录生成，选择 `project-west.yml`；根上游 `west.yml` 不作为当前项目活动清单。
 - 构建产物仅进入被忽略的 `build/`，本机配置进入 `.local/`，外部参考资料进入 `.cache/`。不得提交绝对路径、
   虚拟环境、缓存、固件产物、凭据或未经确认许可的资料。
 - 厂商 HAL 的集成修正在树内 SoC/驱动中处理；不修改已安装的 Python 包。

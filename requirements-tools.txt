@@ -3,4 +3,5 @@
 jsonschema>=4.18,<5
 PyYAML>=6,<7
 pyocd==0.45.1
+west==1.5.0
 pyelftools>=0.29,<1

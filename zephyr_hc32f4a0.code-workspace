@@ -17,19 +17,6 @@
         ],
         "python.defaultInterpreterPath": "${workspaceFolder:zephyr_hc32f4a0}/.venv/Scripts/python.exe",
         "terminal.integrated.cwd": "${workspaceFolder:zephyr_hc32f4a0}",
-        "terminal.integrated.profiles.windows": {
-            "HC32 Zephyr": {
-                "path": "powershell.exe",
-                "args": [
-                    "-NoLogo",
-                    "-NoProfile",
-                    "-NoExit",
-                    "-File",
-                    "${workspaceFolder:zephyr_hc32f4a0}/scripts/Enter-Environment.ps1"
-                ]
-            }
-        },
-        "terminal.integrated.defaultProfile.windows": "HC32 Zephyr",
         "search.exclude": {
             "**/build": true,
             "**/.local": true
@@ -42,7 +29,6 @@
     "extensions": {
         "recommendations": [
             "ms-vscode.cpptools",
-            "ms-vscode.powershell",
             "ms-python.python",
             "marus25.cortex-debug",
             "redhat.vscode-yaml",
@@ -56,61 +42,176 @@
             {
                 "label": "HC32: Build bringup",
                 "type": "process",
-                "command": "powershell.exe",
-                "args": ["-NoLogo", "-NoProfile", "-File", "${workspaceFolder:zephyr_hc32f4a0}/scripts/Invoke-Project.ps1", "-Action", "build"],
-                "options": { "cwd": "${workspaceFolder:zephyr_hc32f4a0}" },
-                "group": { "kind": "build", "isDefault": true },
-                "problemMatcher": ["$gcc"],
-                "presentation": { "reveal": "always", "panel": "dedicated" }
+                "command": "${workspaceFolder:zephyr_hc32f4a0}/.venv/Scripts/python.exe",
+                "args": [
+                    "${workspaceFolder:zephyr_hc32f4a0}/scripts/project_env.py",
+                    "build"
+                ],
+                "options": {
+                    "cwd": "${workspaceFolder:zephyr_hc32f4a0}"
+                },
+                "group": {
+                    "kind": "build",
+                    "isDefault": true
+                },
+                "problemMatcher": [
+                    "$gcc"
+                ],
+                "presentation": {
+                    "reveal": "always",
+                    "panel": "dedicated"
+                },
+                "linux": {
+                    "command": "${workspaceFolder:zephyr_hc32f4a0}/.venv/bin/python"
+                },
+                "osx": {
+                    "command": "${workspaceFolder:zephyr_hc32f4a0}/.venv/bin/python"
+                }
             },
             {
                 "label": "HC32: Rebuild bringup (pristine)",
                 "type": "process",
-                "command": "powershell.exe",
-                "args": ["-NoLogo", "-NoProfile", "-File", "${workspaceFolder:zephyr_hc32f4a0}/scripts/Invoke-Project.ps1", "-Action", "build", "-Pristine"],
-                "options": { "cwd": "${workspaceFolder:zephyr_hc32f4a0}" },
+                "command": "${workspaceFolder:zephyr_hc32f4a0}/.venv/Scripts/python.exe",
+                "args": [
+                    "${workspaceFolder:zephyr_hc32f4a0}/scripts/project_env.py",
+                    "build",
+                    "--pristine"
+                ],
+                "options": {
+                    "cwd": "${workspaceFolder:zephyr_hc32f4a0}"
+                },
                 "group": "build",
-                "problemMatcher": ["$gcc"],
-                "presentation": { "reveal": "always", "panel": "dedicated" }
+                "problemMatcher": [
+                    "$gcc"
+                ],
+                "presentation": {
+                    "reveal": "always",
+                    "panel": "dedicated"
+                },
+                "linux": {
+                    "command": "${workspaceFolder:zephyr_hc32f4a0}/.venv/bin/python"
+                },
+                "osx": {
+                    "command": "${workspaceFolder:zephyr_hc32f4a0}/.venv/bin/python"
+                }
             },
             {
                 "label": "Zephyr: Check environment",
                 "type": "process",
-                "command": "powershell.exe",
-                "args": ["-NoLogo", "-NoProfile", "-File", "${workspaceFolder:zephyr_hc32f4a0}/scripts/Invoke-Project.ps1", "-Action", "doctor"],
-                "options": { "cwd": "${workspaceFolder:zephyr_hc32f4a0}" },
+                "command": "${workspaceFolder:zephyr_hc32f4a0}/.venv/Scripts/python.exe",
+                "args": [
+                    "${workspaceFolder:zephyr_hc32f4a0}/scripts/project_env.py",
+                    "doctor"
+                ],
+                "options": {
+                    "cwd": "${workspaceFolder:zephyr_hc32f4a0}"
+                },
                 "problemMatcher": [],
-                "presentation": { "reveal": "always", "panel": "dedicated" }
+                "presentation": {
+                    "reveal": "always",
+                    "panel": "dedicated"
+                },
+                "linux": {
+                    "command": "${workspaceFolder:zephyr_hc32f4a0}/.venv/bin/python"
+                },
+                "osx": {
+                    "command": "${workspaceFolder:zephyr_hc32f4a0}/.venv/bin/python"
+                }
             },
             {
                 "label": "Zephyr: Check project tooling",
                 "type": "process",
-                "command": "powershell.exe",
-                "args": ["-NoLogo", "-NoProfile", "-File", "${workspaceFolder:zephyr_hc32f4a0}/scripts/Invoke-Project.ps1", "-Action", "check"],
-                "options": { "cwd": "${workspaceFolder:zephyr_hc32f4a0}" },
+                "command": "${workspaceFolder:zephyr_hc32f4a0}/.venv/Scripts/python.exe",
+                "args": [
+                    "${workspaceFolder:zephyr_hc32f4a0}/scripts/project_env.py",
+                    "check"
+                ],
+                "options": {
+                    "cwd": "${workspaceFolder:zephyr_hc32f4a0}"
+                },
                 "group": "test",
                 "problemMatcher": [],
-                "presentation": { "reveal": "always", "panel": "dedicated" }
+                "presentation": {
+                    "reveal": "always",
+                    "panel": "dedicated"
+                },
+                "linux": {
+                    "command": "${workspaceFolder:zephyr_hc32f4a0}/.venv/bin/python"
+                },
+                "osx": {
+                    "command": "${workspaceFolder:zephyr_hc32f4a0}/.venv/bin/python"
+                }
             },
             {
                 "label": "Zephyr: Test bringup (QEMU)",
                 "type": "process",
-                "command": "powershell.exe",
-                "args": ["-NoLogo", "-NoProfile", "-File", "${workspaceFolder:zephyr_hc32f4a0}/scripts/Invoke-Project.ps1", "-Action", "test"],
-                "options": { "cwd": "${workspaceFolder:zephyr_hc32f4a0}" },
+                "command": "${workspaceFolder:zephyr_hc32f4a0}/.venv/Scripts/python.exe",
+                "args": [
+                    "${workspaceFolder:zephyr_hc32f4a0}/scripts/project_env.py",
+                    "test"
+                ],
+                "options": {
+                    "cwd": "${workspaceFolder:zephyr_hc32f4a0}"
+                },
                 "group": "test",
-                "problemMatcher": ["$gcc"],
-                "presentation": { "reveal": "always", "panel": "dedicated" }
+                "problemMatcher": [
+                    "$gcc"
+                ],
+                "presentation": {
+                    "reveal": "always",
+                    "panel": "dedicated"
+                },
+                "linux": {
+                    "command": "${workspaceFolder:zephyr_hc32f4a0}/.venv/bin/python"
+                },
+                "osx": {
+                    "command": "${workspaceFolder:zephyr_hc32f4a0}/.venv/bin/python"
+                }
             },
             {
                 "label": "HC32: Start pyOCD GDB server (hardware)",
                 "detail": "Connect the HC32 board first. Starts the project pyOCD server at 10 MHz SWD with the corrected SRAM map.",
                 "type": "process",
-                "command": "powershell.exe",
-                "args": ["-NoLogo", "-NoProfile", "-File", "${workspaceFolder:zephyr_hc32f4a0}/scripts/Invoke-Project.ps1", "-Action", "debug"],
-                "options": { "cwd": "${workspaceFolder:zephyr_hc32f4a0}" },
+                "command": "${workspaceFolder:zephyr_hc32f4a0}/.venv/Scripts/python.exe",
+                "args": [
+                    "${workspaceFolder:zephyr_hc32f4a0}/scripts/project_env.py",
+                    "debug"
+                ],
+                "options": {
+                    "cwd": "${workspaceFolder:zephyr_hc32f4a0}"
+                },
                 "problemMatcher": [],
-                "presentation": { "reveal": "always", "panel": "dedicated" }
+                "presentation": {
+                    "reveal": "always",
+                    "panel": "dedicated"
+                },
+                "linux": {
+                    "command": "${workspaceFolder:zephyr_hc32f4a0}/.venv/bin/python"
+                },
+                "osx": {
+                    "command": "${workspaceFolder:zephyr_hc32f4a0}/.venv/bin/python"
+                }
+            }
+        ]
+    },
+    "launch": {
+        "version": "0.2.0",
+        "configurations": [
+            {
+                "name": "HC32: Attach to existing pyOCD (hardware)",
+                "type": "cortex-debug",
+                "request": "attach",
+                "servertype": "external",
+                "cwd": "${workspaceFolder:zephyr_hc32f4a0}",
+                "executable": "${workspaceFolder:zephyr_hc32f4a0}/build/bringup/zephyr/zephyr.elf",
+                "gdbTarget": "localhost:3333",
+                "gdbPath": "${config:cortex-debug.armToolchainPath}/arm-zephyr-eabi-gdb.exe",
+                "linux": {
+                    "gdbPath": "${config:cortex-debug.armToolchainPath}/arm-zephyr-eabi-gdb"
+                },
+                "osx": {
+                    "gdbPath": "${config:cortex-debug.armToolchainPath}/arm-zephyr-eabi-gdb"
+                }
             }
         ]
     }

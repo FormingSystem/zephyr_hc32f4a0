@@ -1,0 +1,6 @@
+# SPDX-License-Identifier: Apache-2.0
+# Project build, offline checks, and Twister/QEMU dependencies.
+-r scripts/requirements-base.txt
+-r scripts/requirements-build-test.txt
+-r scripts/requirements-run-test.txt
+-r requirements-tools.txt

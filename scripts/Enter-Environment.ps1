@@ -18,19 +18,10 @@ if (-not (Test-Path -LiteralPath (Join-Path $zephyrRoot 'VERSION'))) {
 }
 $zephyrRoot = (Resolve-Path -LiteralPath $zephyrRoot).Path
 $westWorkspace = Split-Path -Parent $zephyrRoot
-$pythonEnvironment = $env:VIRTUAL_ENV
-if (-not $pythonEnvironment -and $localEnvironment) {
-    $pythonEnvironment = $localEnvironment.python_environment
-}
-if (-not $pythonEnvironment) {
-    $pythonEnvironment = Join-Path $projectRoot '.venv'
-    if (-not (Test-Path -LiteralPath (Join-Path $pythonEnvironment 'Scripts/python.exe'))) {
-        $pythonEnvironment = Join-Path $westWorkspace '.venv'
-    }
-}
+$pythonEnvironment = Join-Path $projectRoot '.venv'
 $pythonScripts = Join-Path $pythonEnvironment 'Scripts'
 if (-not (Test-Path -LiteralPath (Join-Path $pythonScripts 'python.exe'))) {
-    throw 'Set VIRTUAL_ENV to a Python environment containing Zephyr dependencies.'
+    throw 'Create the repository .venv using scripts/setup_environment.py first.'
 }
 $sdkRoot = $env:ZEPHYR_SDK_INSTALL_DIR
 if (-not $sdkRoot -and $localEnvironment) { $sdkRoot = $localEnvironment.sdk_root }

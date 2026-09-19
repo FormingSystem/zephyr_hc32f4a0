@@ -1,0 +1,8 @@
+# SPDX-License-Identifier: Apache-2.0
+# Complete source checkout: required CMSIS and HAL snapshots are already tracked.
+manifest:
+  version: "1.2"
+  projects: []
+  self:
+    path: zephyr_hc32f4a0
+    west-commands: scripts/west-commands.yml

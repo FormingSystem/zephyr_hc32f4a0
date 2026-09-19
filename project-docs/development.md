@@ -8,33 +8,31 @@ SPDX-License-Identifier: Apache-2.0
 以下命令在本仓库根目录执行。本仓库包含 Zephyr 和当前 HC32 所需模块的源码，
 不需要初始化外部 west 工作区，也不从旁边的官方源码目录构建。
 
+主线使用 UCRT64 Bash。首次安装、源码与工具选择见[工程环境](environment.md)，
+west 初始化见[项目 west](west/README.md)，发布给他人的克隆步骤见[发布与重建](distribution.md)。
+工具机制与独立实验见[learning](../learning/README.md)。
+
 ## 新机器准备
 
-先安装 Python 3.12、Git、CMake、Ninja、devicetree compiler、gperf，以及 Zephyr SDK 1.0.1
-的 ARM 工具链。主机工具的安装方法见
-[Zephyr Getting Started Guide](https://docs.zephyrproject.org/latest/develop/getting_started/index.html)；
-本工程已包含源码快照，不必重复执行文档中的源码下载流程。
+按环境文档安装工具后，在本仓库创建 Python 环境并登记 SDK：
 
-在 PowerShell 中指定已经安装好的 SDK：
-
-```powershell
-$SdkRoot = Read-Host '请输入现有 Zephyr SDK 目录'
-./scripts/Setup-Environment.ps1 -SdkRoot $SdkRoot
-. ./scripts/Enter-Environment.ps1
-python scripts/git_setup.py
-python scripts/project.py doctor
+```bash
+read -r -p "请输入已安装的 SDK 目录: " SDK_DIR
+py -3.12 scripts/setup_environment.py --sdk "$SDK_DIR"
+source .venv/Scripts/activate
+python scripts/configure_west.py
+python scripts/project_env.py doctor
 ```
 
-Setup 在仓库内创建 `.venv`，安装 `requirements-tools.txt` 与
-`scripts/requirements-base.txt`，保存本机 SDK 位置；不会把 SDK 或虚拟环境写入 Git。
-现有机器可以加载已经配置的环境，日常不需要重复执行 Setup。主机工具可用性和依赖由 doctor 检查。
+安装入口汇总构建和测试依赖；日常入口固定根目录 .venv 与本仓库源码，不回退到共享环境。
+原 PowerShell 脚本保留兼容，不再是主线前提。
 
 ## 日常命令
 
-```powershell
-. ./scripts/Enter-Environment.ps1
-python scripts/project.py check
-python scripts/project.py build
+```bash
+source .venv/Scripts/activate
+python scripts/project_env.py check
+python scripts/project_env.py build
 ```
 
 `check` 运行工程工具和 pyOCD 离线检查。`build` 直接调用 CMake/Ninja，默认目标是
@@ -46,7 +44,7 @@ python scripts/project.py build
 | 编译数据库 | `build/bringup/compile_commands.json` |
 | 生成的设备树与配置 | `build/bringup/zephyr/zephyr.dts`、`.config` |
 
-需要重新配置时执行 `python scripts/project.py build --pristine`。
+需要重新配置时执行 `python scripts/project_env.py build --pristine`。
 HC32 构建成功后自动运行 `scripts/verify_hc32_image.py`，检查目标、向量表、ICG、
 内存边界和编译源码来源；审计失败会使构建入口失败，也可单独执行该脚本复核现有产物。
 首版 CPU 与总线使用 **板载 12 MHz XTAL 直驱**，所有总线 DIV1、Flash/SRAM 0 等待，不启用 PLL。
@@ -54,9 +52,9 @@ MRC 仅作为启动过渡；晶振稳定失败会停止启动。该固件的工�
 
 ## QEMU 软件回归
 
-```powershell
-python scripts/project.py build --board mps2/an386
-python scripts/project.py test
+```bash
+python scripts/project_env.py build --board mps2/an386
+python scripts/project_env.py test
 ```
 
 显式 MPS2 构建保存到 `build/mps2`；test 通过本仓库 Twister 在 `mps2/an386` 上运行样例，
@@ -67,9 +65,9 @@ python scripts/project.py test
 
 课程应用通过独立入口选择，不向 project.py 添加不存在的应用参数：
 
-```powershell
-python scripts/learning/run.py test --app tests/learning/c_lifetime --variant normal
-python scripts/learning/run.py test --app tests/learning/first_evidence --variant normal
+```bash
+python scripts/project_env.py exec python scripts/learning/run.py test --app tests/learning/c_lifetime --variant normal
+python scripts/project_env.py exec python scripts/learning/run.py test --app tests/learning/first_evidence --variant normal
 ```
 
 以上分别运行对象边界和基础断言实验，默认目标为 `mps2/an386`。
@@ -81,16 +79,18 @@ python scripts/learning/run.py test --app tests/learning/first_evidence --varian
 
 打开根目录的 `zephyr_hc32f4a0.code-workspace`：
 
-```powershell
+```bash
 code ./zephyr_hc32f4a0.code-workspace
 ```
 
 资源管理器只有本仓库一个根目录，直接呈现完整 Zephyr 源码和 HC32 组件。
-新终端加载工程环境；`Ctrl+Shift+B` 构建默认 HC32 目标。环境检查、工具检查、
+终端按需激活 .venv，工程任务自行配置环境；`Ctrl+Shift+B` 构建默认 HC32 目标。环境检查、工具检查、
 QEMU 测试与 pyOCD 服务从“终端 → 运行任务”选择。
 
 C/C++ 补全读取 `build/bringup/compile_commands.json`，首次使用前构建一次。
 构建统一通过项目任务发起，避免 CMake 扩展另建一套配置。
+工作区另有连接现有 pyOCD 服务的 Cortex-Debug 附加配置，不自动烧录。
+插件安装、主机断点与 HC32 附加步骤见[VS Code 教程](../learning/vscode/P01_搭建编译与单步调试环境.md)。
 Python 使用工程配置的虚拟环境；VS Code 已记住其他解释器时，通过“Python: Select Interpreter”切换。
 
 ## 调试器与实板操作
@@ -98,9 +98,9 @@ Python 使用工程配置的虚拟环境；VS Code 已记住其他解释器时�
 操作开发板前阅读 [hardware.md](hardware.md)。板载 CMSIS-DAP 出厂为 2.x/WinUSB，
 支持 10 MHz SWD；USB2/DAP 一根线同时提供调试与串口。
 
-```powershell
-pyocd list
-python scripts/project.py debug
+```bash
+python scripts/project_env.py exec pyocd list
+python scripts/project_env.py debug
 ```
 
 工程 debug 命令启动 GDB 服务，使用 `debug/pyocd.yaml` 的 `hc32f4a0xi`、10 MHz SWD、
@@ -109,14 +109,14 @@ SRAM 地址修正与禁止自动解锁擦除配置。GDB 服务启动本身不�
 
 外部探针需要更低 SWD 频率时：
 
-```powershell
-python scripts/project.py debug --frequency 1000000
+```bash
+python scripts/project_env.py debug --frequency 1000000
 ```
 
 原生 pyOCD 的等价配置方式为：
 
-```powershell
-pyocd gdbserver --project . --config debug/pyocd.yaml
+```bash
+python scripts/project_env.py exec pyocd gdbserver --project . --config debug/pyocd.yaml
 ```
 
 `--project` 和 `--config` 放在子命令之后。若从其他目录调用，将两者指向本仓库根与配置文件。
@@ -127,7 +127,7 @@ pyocd gdbserver --project . --config debug/pyocd.yaml
 
 仅检查主机配置而不接触硬件：
 
-```powershell
+```bash
 python debug/verify_pyocd.py
 ```
 

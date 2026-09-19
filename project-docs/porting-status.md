@@ -29,6 +29,14 @@ LQFP100、2 MiB Flash、512 KiB 主 SRAM。已实现首轮可构建的移植；�
 本地迁移阶段未重复固件构建或硬件操作；随后已按授权推送，节点对照与备份边界见
 [历史明细迁移记录](../governance/architecture/git_history_details_20260919.md)。
 
+### 2026-09-19：项目环境、west 发布流程与构建/板级教学
+
+已建立根目录 `.venv`，使用 `requirements-dev.txt` 汇总构建与测试依赖；新增 Bash 可调用的
+setup_environment.py、project_env.py、configure_west.py。west 采用父目录工作区，选择 project-west.yml，
+源码仍由当前 Git 仓库完整提供。新增[环境说明](environment.md)与[发布/克隆说明](distribution.md)，工具由各机器安装。
+
+仓库环境已通过主机工具检查、HC32 构建及源码审计与 QEMU 软件回归；实板调试仍未验收。
+
 工程文档目录已统一为 `project-docs/`，用于工程介绍、移植记录和 Zephyr 学习资料。
 新增四篇入门介绍，依次解释工程身份、运行过程、源码到固件、HC32 移植组成，导航见 [文档入口](README.md)。
 章节依据当前源码和既有产物核对，既有构建和硬件验证状态不变；本次未重新构建固件或操作硬件。
