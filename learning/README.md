@@ -13,8 +13,12 @@
 | --- | --- | --- |
 | 不同项目需要不同 Python 包版本 | [venv 大纲](python/venv/大纲.md) | 两个环境同时运行不同版本，第三个环境可重建 |
 | 多个代码仓库必须使用配套版本 | [west 大纲](west/大纲.md) | 自建多仓库清单并写一个可运行的新命令 |
+| 新增 C 文件或可复用模块怎样参与编译 | [CMake 大纲](cmake/大纲.md) | 定位漏实现链接错误，验证模块开关 |
+| VS Code 怎样构建、打断点和单步 | [编辑器与调试大纲](vscode/大纲.md) | 用 GDB 观察变量变化，理解实板调试链路 |
+| 怎样选芯片、适配 PCB 接线并验证 | [板级配置大纲](board/大纲.md) | 找到 Kconfig/DTS 输入，区分编译、模拟与实板证据 |
 
 venv 与 west 可独立学习；west 的安装会用到虚拟环境，没学过时先读 venv 第一章。
+CMake 主机实验先于 VS Code 单步；Zephyr 模块与板级实验先完成[项目环境](../project-docs/environment.md)。
 当前工程 west 初始化及新 GitHub 克隆步骤分别见[项目 west](../project-docs/west/README.md)、[发布与重建](../project-docs/distribution.md)。
 
 ## 文件放在哪里
@@ -23,10 +27,14 @@ venv 与 west 可独立学习；west 的安装会用到虚拟环境，没学过�
 learning/
   python/venv/          教程、大纲、labs 实验源码
   west/                教程、大纲、labs 实验源码
+  cmake/               源文件、普通库与 Zephyr 模块实验
+  vscode/              主机调试工作区与 GDB 命令文件
+  board/               Kconfig、设备树、Twister/QEMU 教程与配置片段
   requirements-tools.txt  已验证的工具直接依赖版本
   check_labs.py        自动验收主线及关键失败场景
   VALIDATION.md        实测环境、通过项目与未覆盖范围
   DESIGN.md            面向维护者的教学设计
+  BUILD_BOARD_VALIDATION.md  构建、调试与板级实验验收边界
 ```
 
 生成的环境、仓库与运行证据统一放在根目录 `build/learning-tools/`，不提交。

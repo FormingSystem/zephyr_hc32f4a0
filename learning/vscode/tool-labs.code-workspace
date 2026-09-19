@@ -1,0 +1,84 @@
+// SPDX-License-Identifier: Apache-2.0
+{
+  "folders": [
+    {
+      "name": "tool-labs",
+      "path": "../.."
+    }
+  ],
+  "settings": {
+    "cmake.configureOnOpen": false,
+    "C_Cpp.default.compileCommands": [
+      "${workspaceFolder}/build/learning-tools/cmake-host/compile_commands.json"
+    ]
+  },
+  "extensions": {
+    "recommendations": [
+      "ms-vscode.cpptools",
+      "ms-vscode.cmake-tools"
+    ]
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Lab: Configure",
+        "type": "process",
+        "command": "cmake",
+        "args": [
+          "-S",
+          "${workspaceFolder}/learning/cmake/labs/host",
+          "-B",
+          "${workspaceFolder}/build/learning-tools/cmake-host",
+          "-G",
+          "Ninja",
+          "-DCMAKE_C_COMPILER=gcc",
+          "-DCMAKE_BUILD_TYPE=Debug"
+        ],
+        "problemMatcher": [
+          "$gcc"
+        ]
+      },
+      {
+        "label": "Lab: Build",
+        "type": "process",
+        "command": "cmake",
+        "args": [
+          "--build",
+          "${workspaceFolder}/build/learning-tools/cmake-host"
+        ],
+        "dependsOn": "Lab: Configure",
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "problemMatcher": [
+          "$gcc"
+        ]
+      }
+    ]
+  },
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Lab: GDB step through calibration",
+        "type": "cppdbg",
+        "request": "launch",
+        "program": "${workspaceFolder}/build/learning-tools/cmake-host/sensor_demo.exe",
+        "cwd": "${workspaceFolder}",
+        "MIMode": "gdb",
+        "miDebuggerPath": "gdb",
+        "stopAtEntry": true,
+        "externalConsole": false,
+        "preLaunchTask": "Lab: Build",
+        "linux": {
+          "program": "${workspaceFolder}/build/learning-tools/cmake-host/sensor_demo"
+        },
+        "osx": {
+          "program": "${workspaceFolder}/build/learning-tools/cmake-host/sensor_demo"
+        }
+      }
+    ]
+  }
+}

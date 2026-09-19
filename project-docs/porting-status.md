@@ -5,14 +5,22 @@ SPDX-License-Identifier: Apache-2.0
 
 # HC32F4A0PITB 移植状态
 
-首轮验证日期：2026-09-09；最后交付复核：2026-09-11。板卡 UYUP-RPI-A-2.5，目标 `uyup_rpi_a/hc32f4a0pitb`，
+首轮验证日期：2026-09-09；工具教学交付复核：2026-09-19。板卡 UYUP-RPI-A-2.5，目标 `uyup_rpi_a/hc32f4a0pitb`，
 LQFP100、2 MiB Flash、512 KiB 主 SRAM。已实现首轮可构建的移植；实板运行尚未验收。
 
 当前详细学习专题完成 **6/88**，入门入口为[开始学习](learning/开始学习.md)。
-最新复核通过 41 项主机工具测试、HC32 构建及镜像/来源审计、QEMU 启动回归和 T03 编译对象实验。
+2026-09-11 的固件复核通过 41 项主机工具测试、HC32 构建及镜像/来源审计、QEMU 启动回归和 T03 编译对象实验；
+2026-09-19 早期交付仅复核主机工具教学；随后环境与构建教学补充已重新验证固件构建及 QEMU，见最新记录。
 下文的早期测试数量与“本轮未执行”仅描述对应交付，不能替代最后复核结果。
 
 ## 历次交付记录
+
+### 2026-09-19：按独立变更归档工程环境与教学成果
+
+本次按 Git 规则修正、工程环境、venv/west 工具教学、构建调试与板级教学四个独立结果组织提交。
+提交正文解释修改目的和行为变化；工具测试、文档检查及前述构建与实验结果共同作为验收依据。
+project-docs/architecture 下四份旧草稿仍包含过时环境描述，保留本地，未纳入这批已验收内容。
+未增加实板验证结论，SDK、虚拟环境、本机设置和历史备份仍不提交。
 
 ### 2026-09-19：Git 历史明细与强制正文规则
 
@@ -35,7 +43,15 @@ LQFP100、2 MiB Flash、512 KiB 主 SRAM。已实现首轮可构建的移植；�
 setup_environment.py、project_env.py、configure_west.py。west 采用父目录工作区，选择 project-west.yml，
 源码仍由当前 Git 仓库完整提供。新增[环境说明](environment.md)与[发布/克隆说明](distribution.md)，工具由各机器安装。
 
-仓库环境已通过主机工具检查、HC32 构建及源码审计与 QEMU 软件回归；实板调试仍未验收。
+根 learning 新增 6 篇 CMake、VS Code/GDB、Kconfig、设备树与 Twister/QEMU 教程及实验；
+旧开发入口、Python/west 页、T05 和导航已同步。根 VS Code 工作区任务改用仓库 Python，提供外部 pyOCD 附加配置。
+
+48 项工具测试、pyOCD 离线检查、HC32 项目构建及 west 构建的 ELF/来源审计通过。
+原 bringup QEMU 1 项、新模块启用/关闭 QEMU 2 项运行通过；HC32 Twister 仅编译 1 项。
+主机 CMake/CTest、GDB 单步、漏实现失败恢复、LED overlay 编译与非法 UART 属性失败均已验证。
+现有 venv/west 实验与 T05 子进程实验重跑通过。完整边界见[本轮验收](../learning/BUILD_BOARD_VALIDATION.md)。
+
+未创建/推送新 GitHub 仓库，未验证全新电脑安装；VS Code 图形操作、实板烧录与调试尚未验收。
 
 ### 2026-09-19：工具补充教学与 Bash 实验
 

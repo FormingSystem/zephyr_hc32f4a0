@@ -23,31 +23,37 @@ SPDX-License-Identifier: Apache-2.0
 从[版本与证据](project-docs/learning/evidence/README.md)开始，具体结果见[第一组验收记录](project-docs/learning/第一组验收记录.md)。
 
 打开本仓库的 [VS Code 工作区](zephyr_hc32f4a0.code-workspace)。工作区只有本仓库一个根目录，
-可以直接查看和修改 Zephyr 全部源码及 HC32 组件。新终端和工程任务会加载本仓库环境。
+可以直接查看和修改 Zephyr 全部源码及 HC32 组件。工程任务通过根目录 `.venv` 和 Python 入口配置环境。
 
-已有开发环境时，在仓库根目录执行：
+Python 环境隔离与 west 的专题入门、常用命令及本地实验见 [工具学习中心](learning/README.md)，
+主线采用 UCRT64 Bash。项目自身的用法分别见 [Python 环境](project-docs/python/venv/README.md)
+和 [west 的项目边界](project-docs/west/README.md)。
 
-```powershell
-. ./scripts/Enter-Environment.ps1
-python scripts/git_setup.py
-python scripts/project.py doctor
-python scripts/project.py check
-python scripts/project.py build
+新机器先按[工程环境](project-docs/environment.md)安装主机工具和 SDK，再建立根目录 `.venv`。
+已有开发环境时，在仓库根目录的 UCRT64 Bash 执行：
+
+```bash
+source .venv/Scripts/activate
+python scripts/configure_west.py
+python scripts/project_env.py doctor
+python scripts/project_env.py check
+python scripts/project_env.py build
 ```
 
 `build` 直接使用本仓库的 CMake 构建系统与内置模块，不要求外部 west 工作区。
 HC32 固件输出到 `build/bringup/zephyr/`，编译数据库为 `build/bringup/compile_commands.json`。
 QEMU 软件回归使用独立目标：
 
-```powershell
-python scripts/project.py test
+```bash
+python scripts/project_env.py test
 ```
 
 该测试运行 `mps2/an386`，用于软件回归；HC32 实板下载和运行另行验证。
 
-新机器先准备 Zephyr SDK 和主机工具，再运行 `scripts/Setup-Environment.ps1 -SdkRoot <SDK目录>`。
-该脚本创建仓库内 `.venv`、安装工程与 Zephyr 基础 Python 依赖，并保存本机 SDK 配置。
-完整命令、调试与板卡操作见 [开发文档](project-docs/development.md)。
+west 使用 [project-west.yml](project-west.yml)，详细配置见[项目 west](project-docs/west/README.md)。
+新 GitHub 仓库给别人克隆时，提交源码、依赖说明和初始化脚本，由对方安装工具，见[发布与重建](project-docs/distribution.md)。
+新增源文件/模块、VS Code 单步调试与板级适配的实验入口见[学习中心](learning/README.md)。
+完整日常命令、调试与板卡操作见 [开发文档](project-docs/development.md)。
 
 ## 目录
 
@@ -64,6 +70,7 @@ python scripts/project.py test
 | `debug/` | 10 MHz SWD 配置、SRAM 地址修正及离线检查 |
 | `scripts/`、`tests/tooling/` | 环境入口、工程命令和工具回归 |
 | [`project-docs/`](project-docs/README.md) | 工程介绍、移植记录和 Zephyr 学习资料 |
+| [`learning/`](learning/README.md) | 环境工具知识、构建调试与板级配置的可运行实验 |
 | `governance/` | Git 协作框架 |
 | `doc/` | Zephyr 上游文档源码 |
 

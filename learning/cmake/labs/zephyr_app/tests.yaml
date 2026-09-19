@@ -1,0 +1,21 @@
+# SPDX-License-Identifier: Apache-2.0
+tests:
+  learning.module.enabled:
+    platform_allow: mps2/an386
+    integration_platforms:
+      - mps2/an386
+    harness: console
+    harness_config:
+      type: one_line
+      regex:
+        - "module result=42"
+  learning.module.disabled:
+    platform_allow: mps2/an386
+    integration_platforms:
+      - mps2/an386
+    extra_args: EXTRA_CONF_FILE=no_module.conf
+    harness: console
+    harness_config:
+      type: one_line
+      regex:
+        - "module disabled"

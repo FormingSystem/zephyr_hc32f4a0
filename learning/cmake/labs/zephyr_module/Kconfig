@@ -1,0 +1,6 @@
+# SPDX-License-Identifier: Apache-2.0
+config LEARNING_SCALE
+    bool "Enable the learning scale module"
+    default y
+    help
+      Compile the small demonstration module and expose its header.

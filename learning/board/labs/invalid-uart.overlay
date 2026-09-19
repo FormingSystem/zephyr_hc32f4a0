@@ -1,0 +1,5 @@
+/* SPDX-License-Identifier: Apache-2.0 */
+/* Intentional schema failure: HC32 port pin indices are 0..15. */
+&usart1 {
+    tx-pin = <16>;
+};

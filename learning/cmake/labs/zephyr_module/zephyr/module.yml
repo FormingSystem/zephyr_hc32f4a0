@@ -1,0 +1,5 @@
+# SPDX-License-Identifier: Apache-2.0
+name: learning_scale
+build:
+  cmake: .
+  kconfig: Kconfig

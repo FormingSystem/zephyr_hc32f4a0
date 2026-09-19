@@ -12,6 +12,10 @@ SPDX-License-Identifier: Apache-2.0
 不预设你已经熟悉 Zephyr；Zephyr 是本工程采用的嵌入式操作系统项目名称。
 
 `project-docs/` 维护工程介绍、开发说明、移植记录和 Zephyr 学习资料；`doc/` 保存 Zephyr 上游文档源码。
+项目环境所需的通用工具教学与独立实验统一放在根目录 [learning/](../learning/README.md)，
+面向已有嵌入式经验、尚未接触这些工具的读者；这里保留项目采用方式和工程事实。
+当前入口为 [Python venv 的项目用法](python/venv/README.md)与 [west 的项目边界](west/README.md)。
+本目录下已有的 `learning/` 是结合本项目源码的 Zephyr 课程，与根目录的工具补充教学分工不同。
 介绍依据本仓库固定的 Zephyr 4.4.99 源码与当前实现，准确节点见[源码基线](source-baseline.md)。
 
 ## 从认识工程到理解移植
@@ -47,6 +51,9 @@ T07—T88 尚待逐篇实现，实板验证仍单独登记。
 | [工程概览](../README.md) | 项目目标、开发入口与源码目录 |
 | [组件架构](architecture.md) | 工程组织、启动过程、驱动与调试边界 |
 | [开发与调试](development.md) | 环境准备、构建、VS Code 和板卡调试 |
+| [源码与工具环境](environment.md) | 仓库 .venv、SDK 选择、Bash/Python 入口与依赖来源 |
+| [项目 west](west/README.md) | 专用清单、父目录工作区初始化及更新边界 |
+| [发布与重建](distribution.md) | 新 GitHub 仓库的分发范围与接收者安装流程 |
 | [硬件依据](hardware.md) | 芯片资源、引脚、时钟与板载 DAP 操作 |
 | [移植状态](porting-status.md) | 已实现能力、验证结果与后续工作 |
 | [源码基线](source-baseline.md) | Zephyr、CMSIS 和厂商 HAL 的来源节点与导入范围 |

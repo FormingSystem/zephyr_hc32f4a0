@@ -1,0 +1,7 @@
+/* SPDX-License-Identifier: Apache-2.0 */
+/* Use an already wired LED; this does not invent a new PCB pin assignment. */
+/ {
+    aliases {
+        led0 = &green_led;
+    };
+};
