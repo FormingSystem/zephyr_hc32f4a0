@@ -3,7 +3,7 @@
   "folders": [
     {
       "name": "tool-labs",
-      "path": "../.."
+      "path": "../../.."
     }
   ],
   "settings": {
