@@ -9,13 +9,29 @@ domains: [embedded, tools]
 
 # 2. 接入 Zephyr 模块
 
-## 2.1 三种“模块”先分开
+上一章把一个普通 C 库链接到主机程序。现在想让同一组功能在 Zephyr 应用中可选择地启用：开启时编译库，关闭时应用仍能构建。仅把目录复制进仓库，还缺“从哪里读规则”和“是否启用”两件事。
 
-[上一章](P01_把源文件和库加入构建.md)的 scale 是普通 CMake 库。Zephyr module 是带元数据的源码目录，告诉 Zephyr 到哪里读 CMake、Kconfig 等入口。west project 则是清单里的 Git 仓库。这三者可以组合，但名称相近不等于同一件事：west 下载了代码，不代表应用就会编译代码。
+这就是本章要建立的最小模块。我们只做模块发现、配置与编译；运行测试留到 Twister/QEMU 章节。不要为了看懂怎样接入一个目录，先背另一套测试工具的选项。
 
-本章使用仓库里的 [zephyr_module](labs/zephyr_module/zephyr/module.yml) 和 [zephyr_app](labs/zephyr_app/CMakeLists.txt)，不联网获取新模块。先按[项目环境](../../project-docs/environment.md)建立 .venv 和 SDK；当前位置仍是仓库根目录。
+## 2.1 三个叫“模块”的东西，先按职责区分
 
-## 2.2 一个最小模块有哪些入口
+普通 CMake 库是一个构建目标。**Zephyr module** 是带元数据的源码目录，用元数据告诉 Zephyr 到哪里读 CMake、Kconfig 等入口。west project 则是由清单管理的 Git 仓库。一份仓库可以提供一个模块，但下载成功并不会自动让代码参与编译。
+
+本章用仓库自带原件，不添加网络依赖。需要已安装 SDK 和项目 Python 环境；在仓库根目录打开 UCRT64 Bash，执行：
+
+```bash
+source .venv/Scripts/activate
+python scripts/project_env.py doctor
+mkdir build/learning-tools/module-textbook
+cp -R learning/cmake/labs/zephyr_app build/learning-tools/module-textbook/zephyr_app
+cp -R learning/cmake/labs/zephyr_module build/learning-tools/module-textbook/zephyr_module
+```
+
+若尚无 .venv，先按准备章的工程工具准备建立它；doctor 检查工具而不替你创建模块。module-textbook 必须是新目录。以下始终从仓库根目录执行，只编辑这份复制品。
+
+## 2.2 先让一个目录被发现
+
+zephyr_module 的内容很小：
 
 ```text
 zephyr_module/
@@ -26,54 +42,174 @@ zephyr_module/
   src/scale.c
 ```
 
-module.yml 声明模块名 learning_scale，并指定相对于模块根目录的 CMake 目录与 Kconfig 文件。Kconfig 定义布尔选项 LEARNING_SCALE；应用配置写 CONFIG_LEARNING_SCALE=y。
+zephyr/module.yml 的完整内容是：
 
-模块 CMake 在该符号开启时调用 zephyr_library、zephyr_library_sources，并公开 include 路径。关闭后源码不应参与编译。应用 main 也用同一条件决定是否调用函数，避免模块关闭后留下未定义引用。
+```yaml
+name: learning_scale
+build:
+  cmake: .
+  kconfig: Kconfig
+```
 
-## 2.3 在应用发现 Zephyr 之前追加模块
+name 是模块名；cmake 指模块根目录下的 CMake 入口所在目录，点表示根目录本身；kconfig 指选项定义文件。路径相对模块根，不相对 shell 当前目录。元数据说明“如何接入”，还没有决定开关是否打开。
 
-实验应用明确使用当前仓库的 Zephyr 与两个基础模块，然后在 find_package 之前追加模块。
-CMSIS（Common Microcontroller Software Interface Standard）提供 Arm 微控制器通用支持；HAL（Hardware Abstraction Layer，硬件抽象层）在这里是华大芯片支持代码。它们的来源由项目锁定记录确定。
-ZEPHYR_BASE 是 Zephyr 源码根目录变量；find_package 的 REQUIRED 关键字表示找不到就终止，HINTS 提供搜索位置提示。
-target_sources 的 PRIVATE 仍表示源码仅属于 app 目标，含义与上一章相同：
+应用 zephyr_app/CMakeLists.txt 完整如下：
 
 ```cmake
-list(APPEND EXTRA_ZEPHYR_MODULES
-     "${CMAKE_CURRENT_LIST_DIR}/../zephyr_module")
-find_package(Zephyr REQUIRED HINTS "${ZEPHYR_BASE}")
+cmake_minimum_required(VERSION 3.28.0)
+get_filename_component(lesson_root "${CMAKE_CURRENT_LIST_DIR}/../../../.." ABSOLUTE)
+set(ZEPHYR_BASE "${lesson_root}")
+set(Zephyr_DIR "${lesson_root}/share/zephyr-package/cmake")
+set(ZEPHYR_MODULES
+  "${lesson_root}/modules/hal/cmsis_6"
+  "${lesson_root}/modules/hal/xhsc"
+)
+list(APPEND EXTRA_ZEPHYR_MODULES "${CMAKE_CURRENT_LIST_DIR}/../zephyr_module")
+find_package(Zephyr REQUIRED)
 project(learning_module)
 target_sources(app PRIVATE src/main.c)
 ```
 
-CMAKE_CURRENT_LIST_DIR 指当前 CMake 文件目录，与终端从哪里运行无关。EXTRA_ZEPHYR_MODULES 让工程在已有基础模块外增加本应用模块。当前 project_env.py 已设置基础 ZEPHYR_MODULES；不要只改同名普通 CMake 变量然后假定它覆盖环境输入。
+CMAKE_CURRENT_LIST_DIR 是当前 CMake 文件所在目录，与终端位置无关。向上四层取得本仓库根：原件与本章复制品都保持这个深度，所以相对位置仍成立。这里明确选择本仓库 Zephyr 和已纳管的 CMSIS/HAL，不会回退到电脑旁边另一份源码。
 
-模块发现发生在 find_package 期间，放在之后就太晚。查生成的 zephyr_modules.txt、Kconfig.modules 和 compile_commands.json，可分别验证“发现了目录”“读到了选项”“实际编译了源文件”。三种证据不应混为一谈。[官方模块说明](https://docs.zephyrproject.org/latest/develop/modules.html)
+EXTRA_ZEPHYR_MODULES 追加我们的目录，find_package(Zephyr REQUIRED) 才开始 Zephyr 的配置过程，并要求找不到时停止。追加必须发生在 find_package 之前，因为模块发现就在这个过程中完成。应用最终仍通过 target_sources 给 app 目标增加自己的 main.c。
 
-## 2.4 开启与关闭分别运行一次
+## 2.3 再决定是否编译它
 
-```bash
-source .venv/Scripts/activate
-python scripts/project_env.py exec python scripts/twister -p mps2/an386 -T learning/cmake/labs/zephyr_app --short-build-path --outdir build/learning-tools/module-test --inline-logs
+Kconfig 是 Zephyr 定义软件选项的机制。本章只用一个布尔选项；复杂依赖留到板级配置章节。模块 Kconfig 内容为：
+
+```kconfig
+config LEARNING_SCALE
+    bool "Enable the learning scale module"
+    default y
+    help
+      Compile the small demonstration module and expose its header.
 ```
 
-Twister 是 Zephyr 的测试编排工具，本章先借它运行两个现成场景；[板级 P03](../board/P03_用Twister和QEMU验证配置.md)解释参数与报告。tests.yaml 中 enabled 使用 prj.conf，disabled 叠加 no_module.conf。预期 2/2 执行通过，分别匹配 module result=42 和 module disabled。
+它定义名字与类型，默认启用。应用的 prj.conf 请求 `CONFIG_LEARNING_SCALE=y`，no_module.conf 请求 `CONFIG_LEARNING_SCALE=n`。定义时名字不带 CONFIG_，应用配置和生成结果带这个前缀。
 
-Windows 下 --short-build-path 通过短构建路径避免工具对长对象文件路径的限制；报告仍在指定 outdir。切勿把构建出错归因于业务源码之前，跳过错误日志里的文件路径。
+模块 CMakeLists.txt 把开关接到构建：
 
-在 module-test 内搜索生成的 .config 与 compile_commands.json：开启场景的 .config 是 y，编译命令包含 zephyr_module/src/scale.c；关闭场景应为未设置且没有该源文件的编译命令。若只看模块目录存在，无法证明条件编译生效。
+```cmake
+if(CONFIG_LEARNING_SCALE)
+  zephyr_library()
+  zephyr_library_sources(src/scale.c)
+  zephyr_include_directories(include)
+endif()
+```
 
-## 2.5 常见失败与修改实验
+只有开启时才建库、加入源文件并提供头文件目录。zephyr_library 系列函数由 Zephyr 提供，参与它的构建组织，不是 CMake 自带同名命令。
 
-找不到 LEARNING_SCALE：模块未发现或 Kconfig 入口路径错，先看 CMake 配置日志，不能在生成的 .config 手改补救。scale.h 不可见：确认模块开启及 include 声明。链接找不到 scale_sample：确认模块源文件入库且调用者与模块开关一致。
+src/scale.c 的有效代码如下：
 
-练习把 scale_sample 的倍数改为 3：先预测启用场景输出 63、关闭场景不变，再修改 enabled 场景预期字符串，运行两个场景。也可新增第二个源文件，并在模块 zephyr_library_sources 中登记，比较编译数据库。
+```c
+#include "scale.h"
 
-工程常用习惯是保持模块公共接口小、私有源码封装、开关关闭仍可构建；增加平台依赖时显式写 Kconfig 依赖及测试平台约束。引入外部模块先核对版本与许可证，不能只贴本机路径。
+int scale_sample(int value)
+{
+    return value * 2;
+}
+```
 
-## 2.6 如何把实验迁移到项目
+include/scale.h 的完整有效内容为：
 
-本项目长期源码可以树内维护，并在实际应用 find_package 前追加该目录。若要成为受控基础依赖，需要同步 dependencies.lock.json、模块选择和源码审计规则；不能让项目入口悄悄引用相邻源码树。
+```c
+#ifndef LEARNING_SCALE_H
+#define LEARNING_SCALE_H
+int scale_sample(int value);
+#endif
+```
 
-本实验产物仅在 build/learning-tools/module-test。保留源码与清单，产物可在不运行测试时清理；Windows junction 只作为构建辅助，不手动沿链接递归删除源码目录。
+应用的完整 main.c 为：
 
-完成标志是两个场景都运行通过，且能从配置和编译命令解释差异。[CMake 大纲](大纲.md) · [VS Code 调试](../vscode/P01_搭建编译与单步调试环境.md)
+```c
+#include <zephyr/kernel.h>
+#include <zephyr/sys/printk.h>
+#ifdef CONFIG_LEARNING_SCALE
+#include "scale.h"
+#endif
+
+int main(void)
+{
+#ifdef CONFIG_LEARNING_SCALE
+    printk("module result=%d\n", scale_sample(21));
+#else
+    printk("module disabled\n");
+#endif
+    return 0;
+}
+```
+
+printk 是 Zephyr 的输出函数。应用与模块使用同一开关，所以关闭时既不编译库，也不留下对 scale_sample 的调用。这一点比“开时能编译”多了一个要求：可选模块关闭时也应完整成立。
+
+## 2.4 分别配置开启与关闭的构建
+
+这里选择已支持的模拟目标 mps2/an386，仅作可移植软件构建，不代表 HC32 板。先构建默认开启状态：
+
+```bash
+python scripts/project_env.py exec cmake -S build/learning-tools/module-textbook/zephyr_app -B build/learning-tools/module-textbook/enabled -G Ninja -DBOARD=mps2/an386
+python scripts/project_env.py exec cmake --build build/learning-tools/module-textbook/enabled
+rg -n "CONFIG_LEARNING_SCALE" build/learning-tools/module-textbook/enabled/zephyr/.config
+rg -n "zephyr_module.*scale.c" build/learning-tools/module-textbook/enabled/compile_commands.json
+```
+
+project_env.py 用项目记录的工具环境运行后面的命令。预期 .config 为 y，编译数据库含模块 scale.c，构建生成 ELF。它证明选项开启且源码编入，没有证明程序已经在模拟器运行。
+
+再使用独立目录关闭：
+
+```bash
+python scripts/project_env.py exec cmake -S build/learning-tools/module-textbook/zephyr_app -B build/learning-tools/module-textbook/disabled -G Ninja -DBOARD=mps2/an386 -DEXTRA_CONF_FILE=no_module.conf
+python scripts/project_env.py exec cmake --build build/learning-tools/module-textbook/disabled
+rg -n "CONFIG_LEARNING_SCALE" build/learning-tools/module-textbook/disabled/zephyr/.config
+rg -n "zephyr_module.*scale.c" build/learning-tools/module-textbook/disabled/compile_commands.json
+echo $?
+```
+
+EXTRA_CONF_FILE 相对应用源码目录解析，所以找到复制品中的 no_module.conf。最终配置应显示未设置该选项；第二个 rg 应无匹配并返回 1，这是本次所需观察：关闭后那个源文件没有参与编译。不要把“找到模块目录”和“编译了模块源码”合成同一个结论。
+
+## 2.5 改一个条件，看看调用端会怎样
+
+先做一个可恢复的错误。备份复制品的 main.c，再将它临时改为不加条件的调用：
+
+```bash
+cp build/learning-tools/module-textbook/zephyr_app/src/main.c build/learning-tools/module-textbook/main-before.c
+```
+
+新的完整 main.c：
+
+```c
+#include <zephyr/sys/printk.h>
+
+int scale_sample(int value);
+
+int main(void)
+{
+    printk("module result=%d\n", scale_sample(21));
+    return 0;
+}
+```
+
+此处直接给出函数声明，故意排除头文件找不到的干扰，让我们观察链接阶段。构建关闭状态：
+
+```bash
+python scripts/project_env.py exec cmake --build build/learning-tools/module-textbook/disabled
+echo $?
+```
+
+应报告 scale_sample 未定义：应用仍调用，模块却没有提供实现。恢复备份，再重建两种状态：
+
+```bash
+cp build/learning-tools/module-textbook/main-before.c build/learning-tools/module-textbook/zephyr_app/src/main.c
+python scripts/project_env.py exec cmake --build build/learning-tools/module-textbook/disabled
+python scripts/project_env.py exec cmake --build build/learning-tools/module-textbook/enabled
+```
+
+都应通过。找不到选项定义时查模块发现与 Kconfig 入口；找不到头文件查模块开关与 include；链接缺实现查源文件是否编入及调用条件。每种错误都有一个可以检查的连接点。
+
+## 2.6 将这个模式用于项目
+
+新增普通业务文件时继续放进 app；需要多个应用复用并带独立开关时，再考虑模块。接入外部模块还要管理版本、许可证与来源。对于本仓库的长期基础依赖，需同步受控源码、dependencies.lock.json 及模块选择规则，不能把本机邻居目录偷偷当成构建输入。
+
+练习把复制品 scale.c 的倍数改成 3，再构建 enabled。编译数据库仍包含同一文件，构建日志应重新编译它；disabled 不受这个实现的业务变化影响。按源码推算，开启后的输出会是 63，但本章尚未运行它，不把推算写成实测。练习后恢复倍数 2，给后面运行测试留下统一起点。
+
+[Zephyr 模块元数据说明](https://docs.zephyrproject.org/latest/develop/modules.html)用于核对入口关系。[上一章](P01_把源文件和库加入构建.md) · [大纲](大纲.md)
