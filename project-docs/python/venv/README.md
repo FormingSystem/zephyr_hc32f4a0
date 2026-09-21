@@ -4,6 +4,8 @@
 
 每个克隆使用根目录 `.venv`。不跟随共享工程的虚拟环境，也不把环境目录放进 Git；跟随仓库的是依赖描述和创建脚本。专题机制与独立实验见 [venv 大纲](../../../learning/python/venv/大纲.md)。
 
+第一次接触环境隔离，先完成 [venv 手把手实训](../../../learning/python/venv/labs/README.md)：它提供独立应用、requirements 和两项单元测试，让你观察版本冲突、卸载、重建与源码修改。练习只写 build/learning-tools/venv-practice，不修改本项目根 .venv；再回本页配置真实工程。
+
 ## 安装入口与依赖来源
 
 [requirements-dev.txt](../../../requirements-dev.txt) 汇总当前 Zephyr 基础、构建测试、运行测试依赖和 [requirements-tools.txt](../../../requirements-tools.txt)。后者固定 west 1.5.0、pyOCD 0.45.1。源码及 SDK 版本见 [dependencies.lock.json](../../../dependencies.lock.json)。

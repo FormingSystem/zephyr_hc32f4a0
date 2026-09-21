@@ -64,6 +64,10 @@ def check_venv(root):
             f"lab-greeting=={version}.0.0")
         assert run(python, "-c", "from lab_greeting import greet; print(greet())") == f"hello reader from v{version}"
         assert "No broken requirements" in run(python, "-m", "pip", "check")
+        # 同一应用契约：v1 通过，v2 可安装却不符合旧应用的行为要求。
+        output = run(python, "-m", "unittest", "discover", "-s",
+                     sources / "application/tests", "-v", expected=0 if version == 1 else 1)
+        assert ("OK" if version == 1 else "FAILED (failures=2)") in output, output
     frozen = run(interpreters["a"], "-m", "pip", "freeze")
     assert frozen == "lab-greeting==1.0.0", frozen
     snapshot = root / "requirements.txt"
