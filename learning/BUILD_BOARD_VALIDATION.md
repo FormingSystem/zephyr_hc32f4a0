@@ -2,7 +2,28 @@
 
 # 构建、板级配置与环境发布验收
 
-日期：2026-09-19。此记录覆盖本轮新增的 CMake、VS Code、Kconfig/设备树、Twister/QEMU 教程，以及工程 .venv/west 配置。早期 venv/west 教学验收保留在 [VALIDATION.md](VALIDATION.md)，两者按各自范围阅读。
+## 2026-09-21 单元内实验重编后的实跑
+
+本轮只在教学副本中修改源文件与配置，未改变板级驱动实现。以下是新版正文的实际观察；后面的 2026-09-19 记录仅保留历史。
+
+| 单元 | 实际结果 |
+| --- | --- |
+| CMake 主机 | 起始程序 43；新增 limit.c 尚未登记时链接失败，登记后输出 40 且 CTest 通过；漏 calibrate 再次失败并恢复 |
+| Zephyr 模块 | enabled 配置含源文件、disabled 不含；关闭模块却保留调用时链接缺 scale_sample；恢复条件编译后两种构建通过 |
+| GDB | 原始 Debug 程序命中 calibrate，value=42，next 后 corrected=43，正常退出 |
+| VS Code 材料 | 工作区移入 labs，根目录变量解析仍准确；正文 JSON 与实际材料一致，未操作图形界面 |
+| Kconfig | 默认与附加 debug.conf 分目录配置，最终调试优化为 y；menuconfig 交互步骤未操作 |
+| 设备树 | green/blue 最终 led0 分别对应 led-1/led-0，均构建通过；tx-pin=16 在 binding 阶段失败，明确切回合法 overlay 后同目录恢复构建 |
+| Twister 正常与错误期望 | 两场景执行通过；期望改为 999 时日志仍为 42，按预期超时失败；恢复后两项通过 |
+| Twister 源码变化练习 | 倍数 3、期望 42 时失败且输出 63；接受期望 63 后两项通过；恢复源码与场景后再得两项通过 |
+| 工程回归 | project_env.py build 的 HC32 ELF 与源码来源审计通过；project_env.py test 的 QEMU 软件场景通过 |
+| HC32 测试选择 | Twister 1 项 built (not run)，另一平台场景过滤，无运行或实板成功声明 |
+
+实跑修复了递归搜索被 Git 忽略产物时漏读日志的问题：正文 rg 增加 --no-ignore 并解释作用。SDK 1.0.1、ARM GCC 14.3.0，主机编译器为 UCRT64 GCC。详细日志留在 .local/textbook-validation。未连接探针，未烧录，也未验证 PCB 上的灯与串口；源码观察与模拟器结果保持各自边界。
+
+## 2026-09-19 初次补充记录
+
+此记录覆盖当时新增的 CMake、VS Code、Kconfig/设备树、Twister/QEMU 教程，以及工程 .venv/west 配置。早期 venv/west 教学验收保留在 [VALIDATION.md](VALIDATION.md)，两者按各自范围阅读。
 
 ## 实际执行结果
 
