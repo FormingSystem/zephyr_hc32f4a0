@@ -130,6 +130,17 @@ def check_west(root):
         return run(sys.executable, "-m", "west", *args, cwd=workspace, expected=expected)
 
     run(sys.executable, LEARNING / "west/labs/init_workspace.py", "-l", "manifest", cwd=workspace)
+    reader_test = LEARNING / "west/labs/test_workspace.py"
+    output = run(sys.executable, reader_test, "--workspace", workspace,
+                 "--revision", "v1.0", expected=1)
+    assert "An active project is missing" in output, output
+    # 完整参考答案也必须保留错误路径：计数不能绕过未克隆检查。
+    extension_copy = workspace / "manifest/commands/inventory.py"
+    shutil.copy2(LEARNING / "west/labs/solutions/inventory_count.py", extension_copy)
+    assert west("inventory", "--count") == "2"
+    assert "An active project is missing" in west(
+        "inventory", "--count", "--require-cloned", expected=1)
+    shutil.copy2(LEARNING / "west/labs/templates/commands/inventory.py", extension_copy)
     run(sys.executable, LEARNING / "west/labs/init_workspace.py", "-l", "manifest", cwd=workspace, expected=1)
     from_source = workspace.parent / "from-source"
     run(sys.executable, LEARNING / "west/labs/init_workspace.py", "-m", "./workspace/manifest",
@@ -141,6 +152,7 @@ def check_west(root):
     assert not (workspace / "app").exists()
     west("inventory", "--require-cloned", expected=1)
     west("update")
+    run(sys.executable, reader_test, "--workspace", workspace, "--revision", "v1.0")
     assert run(sys.executable, "app/main.py", cwd=workspace) == "2 + 3 = 5"
     assert not (workspace / "docs" / "guide").exists()
     assert len(json.loads(west("inventory", "--format", "json"))) == 2
@@ -157,6 +169,7 @@ def check_west(root):
     west("inventory", "--require-cloned", expected=1)
     west("update")
     assert len(json.loads(west("inventory", "--format", "json"))) == 3
+    run(sys.executable, reader_test, "--workspace", workspace, "--revision", "v1.0", "--docs")
     west("config", "--local", "manifest.group-filter", "--", "-docs")
     assert len(json.loads(west("inventory", "--format", "json"))) == 2
     assert (workspace / "docs" / "guide").exists()
@@ -167,11 +180,15 @@ def check_west(root):
     project["revision"] = "v2.0"
     manifest_file.write_text(yaml.safe_dump(manifest, sort_keys=False), encoding="utf-8")
     arithmetic = workspace / "libs" / "arithmetic"
+    output = run(sys.executable, reader_test, "--workspace", workspace,
+                 "--revision", "v2.0", expected=1)
+    assert "FAILED" in output, output
     old = run("git", "rev-parse", "HEAD", cwd=arithmetic)
     west("update", "arithmetic")
     current = run("git", "rev-parse", "HEAD", cwd=arithmetic)
     assert current != old
     assert current == run("git", "rev-parse", "manifest-rev", cwd=arithmetic)
+    run(sys.executable, reader_test, "--workspace", workspace, "--revision", "v2.0")
     run("git", "symbolic-ref", "-q", "HEAD", cwd=arithmetic, expected=1)
     frozen = yaml.safe_load(west("manifest", "--freeze"))
     assert next(p for p in frozen["manifest"]["projects"] if p["name"] == "arithmetic")["revision"] == current
@@ -192,6 +209,7 @@ def check_west(root):
     ENV["WEST_CONFIG_LOCAL"] = str(replay / ".west" / "config")
     run(sys.executable, LEARNING / "west/labs/init_workspace.py", "-l", "manifest", cwd=replay)
     run(sys.executable, "-m", "west", "update", cwd=replay)
+    run(sys.executable, reader_test, "--workspace", replay, "--revision", "v2.0")
     assert run("git", "rev-parse", "HEAD", cwd=replay / "libs" / "arithmetic") == current
     assert not (replay / "libs" / "arithmetic" / "LOCAL_NOTE.md").exists()
     assert run(sys.executable, "app/main.py", cwd=replay) == "2 + 3 = 5"
