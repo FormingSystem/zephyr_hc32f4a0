@@ -8,7 +8,7 @@ int main(void)
 {
     int raw = 21;
     int scaled = scale_sample(raw);
-    int result = limit_value(calibrate(scaled), 40);
+    int result = limit_value(calibrate(scaled), 40); /* 先校准为 43，再限为 40。 */
 
     printf("value=%d\n", result);
     return result == 40 ? 0 : 1;

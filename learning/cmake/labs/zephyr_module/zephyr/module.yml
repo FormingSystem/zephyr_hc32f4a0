@@ -1,5 +1,7 @@
 # SPDX-License-Identifier: Apache-2.0
 name: learning_scale
 build:
+  # 相对模块根目录，指向包含 CMakeLists.txt 的目录。
   cmake: .
+  # 相对模块根目录，指向选项定义文件。
   kconfig: Kconfig

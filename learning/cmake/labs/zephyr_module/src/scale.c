@@ -3,5 +3,5 @@
 
 int scale_sample(int value)
 {
-    return value * 2;
+    return value * 2; /* 将调用者提供的样本放大两倍。 */
 }

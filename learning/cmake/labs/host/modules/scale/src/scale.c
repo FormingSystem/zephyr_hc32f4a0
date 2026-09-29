@@ -3,5 +3,5 @@
 
 int scale_sample(int value)
 {
-    return value * 2;
+    return value * 2; /* 接收调用者的值，不自行获取传感器数据。 */
 }

@@ -3,5 +3,5 @@
 
 int limit_value(int value, int maximum)
 {
-    return value > maximum ? maximum : value;
+    return value > maximum ? maximum : value; /* 超过上限才截断，否则保留原值。 */
 }
