@@ -2,6 +2,32 @@
 
 # 构建、板级配置与环境发布验收
 
+## 2026-09-29 逐步教学重构后的正文重放
+
+本轮覆盖公共准备章、CMake 两章、VS Code 一章、板级三章、三份大纲与配套材料。沿用原有实验与稳定文件身份，新增就地说明、源码/生成物关系和步骤定位。基线为 10f26bb93，实验使用新的 host-guided-0929、module-guided-0929、board-guided-0929、twister-guided-0929 与 cmake-host-guided-0929 目录，不覆盖旧练习。
+
+| 验证对象 | 实际结果 |
+| --- | --- |
+| CMake P01 样章 | 从当前正文提取命令和完整 C 文件；原程序输出 43，漏 limit_value 链接失败，登记后输出 40 且 CTest 通过；遗漏 calibrate 再失败并恢复；最大值改为 50 后输出仍为 43 |
+| CMake P02 | enabled/disabled 均构建；最终配置与编译数据库分别含/不含 scale.c；关闭库但留下调用时确实缺 scale_sample；恢复两配置通过，倍数 3 的构建练习及恢复也已执行 |
+| VS Code 主机路线 | 主机 Debug 程序输出 43；批处理 GDB 命中 calibrate，value=42，next 后 corrected=43，进程正常退出；工作区 JSONC 去注释后与原配置语义相同 |
+| Board P01 | 默认与追加 debug.conf 分目录配置，DEBUG_OPTIMIZATIONS=y；调试配置的 HC32 镜像构建成功 |
+| Board P02 | green、blue 的 led0 分别对应绿灯与蓝灯；tx-pin=16 在属性枚举检查阶段失败，同目录切回合法 overlay 后构建恢复。最终蓝绿对照都保留 debug.conf，补跑 blue 配置与构建并检查最终优化值 |
+| Board P03 正常与错误期望 | 首次两个场景执行通过；只改期望为 999 时 enabled 因 Timeout 失败、输出仍为 42；恢复后两项通过 |
+| Board P03 源码变化 | 倍数改为 3、期望仍为 42 时失败，运行输出为 63；接受期望 63 后两项通过；恢复源码与期望后再次两项通过 |
+| 工程检查、构建与运行 | UCRT64 环境中 project_env.py check 的 49 项测试、调试配置离线检查和差异检查通过；project_env.py build 的 HC32 镜像及源码来源审计通过；正文中的 project_env.py test 软件回归通过 |
+| HC32 Twister | 1 项 built (not run)，1 项因平台过滤，0 项在实板执行；没有将生成 ELF 写成硬件运行通过 |
+| 文档与图 | check_docs.py：42 文档、16 章节、22 ID、0 错误；7 章的 106 个 Bash 操作单元通过语法、顺序与位置注释检查，41 个小节步骤保持同一路线；61 张 Mermaid（含三份大纲）实际渲染，并抽看路线、构建关系与调试时序 |
+| 材料一致性 | 18 个变动的 labs 文件去除注释后与基线语义一致；C、CMake、YAML、JSONC、GDB 注释与正文同步，保留原许可证。蓝色 overlay 的配置命令额外带上原有 debug.conf，以隔离本次比较变量 |
+
+环境为 Windows、UCRT64 Bash、Python 3.12.10、west 1.5.0、CMake 4.4.3、SDK 1.0.1、ARM GCC 14.3.0。源码版本与硬件事实仍以项目记录为准。先在 PowerShell 启动的工程检查因测试调用 sh 而失败，未通过修改测试规避；改用教材约定的 UCRT64 环境后完整通过。蓝灯最终检查最初仅匹配解析后的节点路径，实际工具保留标签引用；已同时核对别名引用及节点身份，未把文本表现差异误判为构建失败。
+
+本轮未操作 VS Code 图形界面、menuconfig 交互菜单、探针枚举、烧录或实板调试；准备章的网络安装和已有 west 配置没有为文档重写重复执行。Linux/macOS 仍是路径替换说明，没有本轮实机结果。命令行 GDB、离线配置检查和模拟器结果分别记录，不互相冒充。
+
+证据保存在忽略目录 `.local/guided-build-20260929/`：before 快照、host/build/debug/twister 日志、blue-final.log、project-check-bash.log、project-build.log、render-final.log、审计候选与渲染图。命令顺序检查允许的唯一原有命令差量是 blue 构建补入相同 debug.conf。作者冷读与通用审计候选的处理见 REVIEW；未声称经过真实初学者试读。
+
+下方按日期保留早期记录，其“未执行”与计数仅描述当时轮次。
+
 ## 2026-09-21 单元内实验重编后的实跑
 
 本轮只在教学副本中修改源文件与配置，未改变板级驱动实现。以下是新版正文的实际观察；后面的 2026-09-19 记录仅保留历史。
