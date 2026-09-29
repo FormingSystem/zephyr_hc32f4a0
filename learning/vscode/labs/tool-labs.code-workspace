@@ -3,26 +3,31 @@
   "folders": [
     {
       "name": "tool-labs",
+      // 相对本工作区文件向上三级，回到仓库根目录。
       "path": "../../.."
     }
   ],
   "settings": {
+    // 本章用显式任务配置，避免打开工作区就产生另一份构建目录。
     "cmake.configureOnOpen": false,
+    // 供编辑器理解头文件与宏；它不执行编译。
     "C_Cpp.default.compileCommands": [
       "${workspaceFolder}/build/learning-tools/cmake-host/compile_commands.json"
     ]
   },
   "extensions": {
+    // 推荐列表不会自动安装编译器或 GDB。
     "recommendations": [
       "ms-vscode.cpptools",
       "ms-vscode.cmake-tools"
     ]
   },
   "tasks": {
-    "version": "2.0.0",
+    "version": "2.0.0", // 任务配置格式版本，不是 CMake 版本。
     "tasks": [
       {
         "label": "Lab: Configure",
+        // process 直接启动 command；args 每项都是一个独立参数。
         "type": "process",
         "command": "cmake",
         "args": [
@@ -47,10 +52,10 @@
           "--build",
           "${workspaceFolder}/build/learning-tools/cmake-host"
         ],
-        "dependsOn": "Lab: Configure",
+        "dependsOn": "Lab: Configure", // 构建前先确保规则已生成。
         "group": {
           "kind": "build",
-          "isDefault": true
+          "isDefault": true // Ctrl+Shift+B 选择这个构建任务。
         },
         "problemMatcher": [
           "$gcc"
@@ -59,19 +64,19 @@
     ]
   },
   "launch": {
-    "version": "0.2.0",
+    "version": "0.2.0", // 调试配置格式版本。
     "configurations": [
       {
         "name": "Lab: GDB step through calibration",
         "type": "cppdbg",
-        "request": "launch",
+        "request": "launch", // 由调试器启动一份新的主机进程。
         "program": "${workspaceFolder}/build/learning-tools/cmake-host/sensor_demo.exe",
-        "cwd": "${workspaceFolder}",
+        "cwd": "${workspaceFolder}", // 被调试程序的工作目录。
         "MIMode": "gdb",
         "miDebuggerPath": "gdb",
-        "stopAtEntry": true,
+        "stopAtEntry": true, // 第一次先停在入口，再继续到用户断点。
         "externalConsole": false,
-        "preLaunchTask": "Lab: Build",
+        "preLaunchTask": "Lab: Build", // 必须与上方任务 label 完全一致。
         "linux": {
           "program": "${workspaceFolder}/build/learning-tools/cmake-host/sensor_demo"
         },
