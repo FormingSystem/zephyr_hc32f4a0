@@ -52,20 +52,26 @@ def seed(name):
     app = remotes / "app"
     guide = remotes / "guide"
     new_repo(arithmetic)
-    write(arithmetic, "arithmetic.py", '"""第一版：整数相加。"""\n\ndef add(a, b):\n    return a + b\n')
+    write(arithmetic, "arithmetic.py", '"""第一版：整数相加。"""\n\n# 定义加法函数；这里只描述做法，真正调用时才执行 return。\ndef add(a, b):\n    # 把计算结果交回调用者，不在库里直接打印。\n    return a + b\n')
     v1 = commit(arithmetic, "Add arithmetic v1")
     git(arithmetic, "tag", "v1.0")
-    write(arithmetic, "arithmetic.py", '"""第二版：保留加法，增加乘法。"""\n\ndef add(a, b):\n    return a + b\n\ndef multiply(a, b):\n    return a * b\n')
+    write(arithmetic, "arithmetic.py", '"""第二版：保留加法，增加乘法。"""\n\n# 保留第一版的接口，原来的 app/main.py 仍可以调用它。\ndef add(a, b):\n    return a + b\n\n# 第二版新增的接口，用不同结果证明我们确实取得了新代码。\ndef multiply(a, b):\n    return a * b\n')
     v2 = commit(arithmetic, "Add multiplication in v2")
     git(arithmetic, "tag", "v2.0")
     new_repo(app)
     write(app, "main.py", '''"""直接读取相邻仓库中的教学代码，不安装 Python 包。"""
+# sys 提供当前解释器的模块搜索路径。
 import sys
+# Path 用来按目录层次计算位置，避免写死本机盘符。
 from pathlib import Path
 
+# 从 app/main.py 回到 workspace，再找到相邻的库目录。
+# insert(0, ...) 把这个目录放到本次 Python 进程的搜索路径最前面。
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "libs" / "arithmetic"))
+# 在刚加入的目录里找到 arithmetic.py，取出 add 函数。
 from arithmetic import add
 
+# 先计算 add(2, 3)，再把结果填进文字并显示。
 print(f"2 + 3 = {add(2, 3)}")
 ''')
     commit(app, "Add arithmetic client")
