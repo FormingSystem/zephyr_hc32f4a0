@@ -1,19 +1,21 @@
 # SPDX-License-Identifier: Apache-2.0
 tests:
+  # 作者命名的第一种场景：采用应用默认的模块开启配置。
   learning.module.enabled:
     platform_allow: mps2/an386
     integration_platforms:
       - mps2/an386
-    harness: console
+    harness: console # 用运行时控制台输出判断，而不是只看编译成功。
     harness_config:
       type: one_line
       regex:
-        - "module result=42"
+        - "module result=42" # 稍后的错误期望实验只改这一项。
+  # 同一个应用的第二种场景，不是另一个源码目录。
   learning.module.disabled:
     platform_allow: mps2/an386
     integration_platforms:
       - mps2/an386
-    extra_args: EXTRA_CONF_FILE=no_module.conf
+    extra_args: EXTRA_CONF_FILE=no_module.conf # 追加关闭模块的配置片段。
     harness: console
     harness_config:
       type: one_line
