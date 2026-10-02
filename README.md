@@ -29,7 +29,9 @@ Python 环境隔离与 west 的专题入门、常用命令及本地实验见 [�
 主线采用 UCRT64 Bash。项目自身的用法分别见 [Python 环境](project-docs/python/venv/README.md)
 和 [west 的项目边界](project-docs/west/README.md)。
 
-新机器先按[工程环境](project-docs/environment.md)安装主机工具和 SDK，再建立根目录 `.venv`。
+从 Windows 终端安装、国内换源和源码下载开始，可读[Zephyr 下载与工程准备](learning/P01_zephyr_make_project/大纲.md)，配有可编辑教学课件。
+
+新机器先按[下载与安装说明](project-docs/environment.md)取得本工程、安装主机工具和 SDK，再建立根目录 `.venv`。
 已有开发环境时，在仓库根目录的 UCRT64 Bash 执行：
 
 ```bash

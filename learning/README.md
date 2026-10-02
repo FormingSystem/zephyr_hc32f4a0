@@ -13,6 +13,7 @@
 
 | 你遇到的问题 | 阅读路线 | 完成标志 |
 | --- | --- | --- |
+| Windows 上怎样安装终端、国内换源并下载源码 | [Zephyr 下载与工程准备](P01_zephyr_make_project/大纲.md) | 工具可用、源码取得成功，能区分源码快照与 Git 历史 |
 | 不同项目需要不同 Python 包版本 | [venv 大纲](python/venv/大纲.md) | 两个环境同时运行不同版本，第三个环境可重建 |
 | 多个代码仓库必须使用配套版本 | [west 大纲](west/大纲.md) | 自建多仓库清单并写一个可运行的新命令 |
 | 新增 C 文件或可复用模块怎样参与编译 | [CMake 大纲](cmake/大纲.md) | 定位漏实现链接错误，验证模块开关 |
@@ -27,6 +28,8 @@ CMake 主机实验先于 VS Code 单步；板级 P01、P02、P03 依次学习，
 
 ```text
 learning/
+  P01_zephyr_make_project/  UCRT64 与 Zephyr 下载主线、截图和课件源码
+  download_zephyr/      下载方案参考草稿，版本与命令待进一步核验
   python/venv/          教程、大纲、labs 实验源码
   west/                教程、大纲、labs 实验源码
   cmake/               源文件、普通库与 Zephyr 模块实验

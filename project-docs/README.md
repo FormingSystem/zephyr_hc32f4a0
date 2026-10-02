@@ -51,7 +51,7 @@ T07—T88 尚待逐篇实现，实板验证仍单独登记。
 | [工程概览](../README.md) | 项目目标、开发入口与源码目录 |
 | [组件架构](architecture.md) | 工程组织、启动过程、驱动与调试边界 |
 | [开发与调试](development.md) | 环境准备、构建、VS Code 和板卡调试 |
-| [源码与工具环境](environment.md) | 仓库 .venv、SDK 选择、Bash/Python 入口与依赖来源 |
+| [下载、安装与工具环境](environment.md) | 源码克隆、Windows/Ubuntu 主机工具、SDK 下载校验、根 .venv 与首次验收 |
 | [项目 west](west/README.md) | 专用清单、父目录工作区初始化及更新边界 |
 | [发布与重建](distribution.md) | 新 GitHub 仓库的分发范围与接收者安装流程 |
 | [硬件依据](hardware.md) | 芯片资源、引脚、时钟与板载 DAP 操作 |
