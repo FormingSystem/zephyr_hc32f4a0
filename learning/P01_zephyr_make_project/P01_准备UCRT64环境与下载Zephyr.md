@@ -1,15 +1,15 @@
 ---
 id: zephyr-download-ucrt64
 title: 准备 UCRT64 环境与下载 Zephyr
-kind: tutorial
-status: ready
+kind: engineering
+status: evolving
 domains: [zephyr, tools]
 ---
 
 <!-- SPDX-FileCopyrightText: Copyright The zephyr_hc32f4a0 Contributors -->
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 
-# 1. 准备 UCRT64 环境与下载 Zephyr
+# 第1章\_准备\_UCRT64\_环境与下载\_Zephyr
 
 准备下载 Zephyr 时，Windows 电脑往往还缺少终端和 Git。本章从安装 MSYS2 开始，先让下载工具可用，再选择 Git 克隆或 ZIP 压缩包取得源码，最后按需补回 Git 历史。已有的下载截图和终端记录保留作对照，软件版本、文件大小和提交数量以实际下载结果为准。
 
@@ -21,7 +21,7 @@ domains: [zephyr, tools]
 
 > 本章演示下载 Zephyr 官方上游源码，使用独立的练习目录。HC32 是本项目使用的华大单片机系列名。当前 HC32 工程已经包含源码和板级修改；准备使用本工程的读者应接着看[本工程环境说明](../../project-docs/environment.md)，不要把上游源码解压覆盖到现有工程。
 
-## 1.1 安装并打开 UCRT64 终端
+## 1.1\_安装并打开\_UCRT64\_终端
 
 先在 Windows“设置 → 系统 → 系统信息”查看“系统类型”，再到 [MSYS2 官网](https://www.msys2.org/)选择与电脑匹配的安装包。下载页中的 x64 和 ARM64 指的是运行 Windows 的电脑，不是稍后连接的开发板。
 
@@ -49,13 +49,13 @@ echo "$MINGW_PREFIX"
 
 x64 主线预期依次输出 `UCRT64` 和 `/ucrt64`；ARM64 读者在 CLANGARM64 中检查时，应得到 `CLANGARM64` 和 `/clangarm64`。前者确认当前环境，后者确认这套原生工具的安装前缀。UCRT64 默认优先搜索 `/ucrt64/bin`，随后也能使用 `/usr/bin` 中的通用命令；详见 [MSYS2 Environments 的 Overview](https://www.msys2.org/docs/environments/#overview)。
 
-## 1.2 将 MSYS2 软件源切换为国内镜像
+## 1.2\_将\_MSYS2\_软件源切换为国内镜像
 
 现在进入“安装终端 → **国内换源** → 安装工具 → 下载源码”的第二步。MSYS2 使用名为 `pacman` 的软件包管理器下载、安装和更新工具；“换源”就是调整它优先访问的包服务器。本节采用中国大陆的中科大镜像作为首选，清华镜像作为后备。读者可按自己的网络情况调整顺序。
 
 这只影响 MSYS2 软件包下载。GitHub 源码、Python 包和 Zephyr 工具链各有下载渠道，不会随之换源。
 
-### 1.2.1 先分清电脑架构、工具环境与开发板架构
+### 1.2.1\_先分清电脑架构\_工具环境与开发板架构
 
 换源时要下载的是在电脑上运行的工具，因此先看 **主机架构**，即运行 Windows 的电脑采用哪种处理器指令集。常见 Intel/AMD 64 位电脑使用 `x86_64`，也称 x64 或 AMD64；Windows ARM64 电脑使用 `aarch64`，也称 ARM64。旧称“x86”有时专指 32 位，对应这里的 `i686`，不要把它与 x64 混用。可以在 Windows“设置 → 系统 → 系统信息”的“系统类型”中确认自己的电脑。
 
@@ -81,7 +81,7 @@ MSYS2 将不同工具环境的包分开保存。UCRT64 和 CLANG64 都面向 x64
 
 因此，即使在 x64 电脑上，**也不能把 MinGW 镜像统一写成 `mingw/$arch/` 或 `mingw/x86_64/`**。当 pacman 同步 UCRT64 时，错误模板会请求 `mingw/x86_64/ucrt64.db`，正确模板才会请求 `mingw/ucrt64/ucrt64.db`。同样，不要因使用 ARM64 电脑就把所有路径替换成 `aarch64`。
 
-### 1.2.2 备份并写入中科大源与后备源
+### 1.2.2\_备份并写入中科大源与后备源
 
 以下命令在 **MSYS2 的 Bash 终端**中执行，本文使用 UCRT64，ARM64 原生环境则使用 CLANGARM64；不要直接粘贴到 PowerShell 或 CMD。两种环境使用相同的占位符模板，无需手工替换架构名。配置文件位于当前 MSYS2 安装的 `/etc/pacman.d/`，其 Windows 路径可用 `cygpath -w /etc/pacman.d` 查看，与安装盘符无关。
 
@@ -117,7 +117,7 @@ Server = https://mirrors.tuna.tsinghua.edu.cn/msys2/mingw/$repo/
 EOF
 ```
 
-### 1.2.3 检查 pacman 实际使用的地址
+### 1.2.3\_检查\_pacman\_实际使用的地址
 
 只看文件首行，还无法确认占位符是否正确展开。用 `pacman-conf` 读取与 pacman 相同的配置，先核对当前环境、配置架构和启用的仓库：
 
@@ -153,7 +153,7 @@ https://mirrors.ustc.edu.cn/msys2/mingw/clangarm64/
 
 路径依据为官方实际使用的 [mirrorlist.mingw](https://github.com/msys2/MSYS2-packages/blob/master/pacman-mirrors/mirrorlist.mingw) 和 [pacman.conf](https://github.com/msys2/MSYS2-packages/blob/master/pacman/pacman.conf)；架构关系参照 [MSYS2 Environments](https://www.msys2.org/docs/environments/) 与 [ARM64 Support](https://www.msys2.org/docs/arm64/)。镜像服务参照[中科大使用帮助](https://mirrors.ustc.edu.cn/help/msys2.html)与[清华使用帮助](https://mirrors.tuna.tsinghua.edu.cn/help/msys2/)，核对日期为 2026-10-02。
 
-### 1.2.4 刷新索引并完成系统更新
+### 1.2.4\_刷新索引并完成系统更新
 
 实际地址检查正确后，强制重新下载软件包索引，并升级已有软件包：
 
@@ -173,7 +173,7 @@ pacman -Syu
 
 直到没有待更新包再安装新工具。以后日常更新使用 `pacman -Syu` 即可，不必每次强制刷新。MSYS2 采用滚动更新，只支持完整升级；不要仅执行 `pacman -Sy` 后停在索引已更新、旧软件未升级的状态。关闭终端后继续更新的流程见 [Updating MSYS2](https://www.msys2.org/docs/updating/)。
 
-### 1.2.5 根据错误类型排查与恢复
+### 1.2.5\_根据错误类型排查与恢复
 
 `404` 表示服务器上找不到所请求的文件，要先检查请求路径。若 `ucrt64.db`、`clang64.db` 等多个数据库一起失败，优先按 1.2.3 检查展开地址，特别是旧教程误写的 `mingw/$arch/`。后面即使还有正确的清华地址，前面的错误请求也可能触发“返回错误过多，将跳过该服务器”的警告，因此只在错误行后面追加正确行仍可能失败。
 
@@ -190,11 +190,11 @@ pacman -Syyu
 
 恢复后重新同步并完整升级。若报签名错误，先核对系统时间和官方密钥更新说明，不用关闭签名校验来绕过问题。恢复列表不会卸载已安装工具。
 
-## 1.3 安装下载与后续构建工具
+## 1.3\_安装下载与后续构建工具
 
 现在进入“安装终端 → 国内换源 → **安装工具** → 下载源码”的第三步。先安装取得源码需要的工具，再按学习进度安装构建工具；包管理器会同时处理它们的依赖。
 
-### 1.3.1 安装 Git 与下载解压工具
+### 1.3.1\_安装\_Git\_与下载解压工具
 
 ```bash
 # 当前位置：任意目录；终端：UCRT64。此前已完成系统更新。
@@ -218,7 +218,7 @@ command -v git
 
 前六条应显示版本，最后一条通常指向 `/usr/bin/git`。若提示 `command not found`，先确认安装没有失败、当前确实是 UCRT64；使用 `type -a git` 可以查看是否同时存在多套 Git。
 
-### 1.3.2 按需安装构建辅助工具
+### 1.3.2\_按需安装构建辅助工具
 
 准备继续构建 Zephyr 时，再安装下列 UCRT64 软件包；如果只是阅读源码，可以稍后再做。
 
@@ -242,7 +242,7 @@ pacman -S --needed \
 
 包名可在官方索引的 [CMake](https://packages.msys2.org/packages/mingw-w64-ucrt-x86_64-cmake)、[Ninja](https://packages.msys2.org/packages/mingw-w64-ucrt-x86_64-ninja)、[dtc](https://packages.msys2.org/packages/mingw-w64-ucrt-x86_64-dtc)、[gperf](https://packages.msys2.org/packages/mingw-w64-ucrt-x86_64-gperf) 页面核对。安装后逐项执行表中的命令，再运行 `type -a cmake ninja dtc gperf` 核对路径；本节安装的原生工具通常在 `/ucrt64/bin`。
 
-### 1.3.3 准备 Windows Python，并区分主机与目标编译器
+### 1.3.3\_准备\_Windows\_Python\_并区分主机与目标编译器
 
 Zephyr 的构建脚本和多仓库管理工具 west 由 Python 运行。沿用本仓库的学习环境，选择 **Windows 原生 Python 3.12**，从 [Python Windows 下载页](https://www.python.org/downloads/windows/)选择对应版本的 64 位安装程序，保留 Python Launcher（`py` 启动器）。安装后重开 UCRT64，检查：
 
@@ -265,7 +265,7 @@ gdb --version
 
 这些工具生成、调试 Windows 程序。编译 HC32 的 ARM 固件还需 Zephyr SDK（Software Development Kit，软件开发工具包）内的目标交叉编译器；它生成在开发板上运行的程序。SDK 的版本及安装步骤按[本工程环境说明](../../project-docs/environment.md)选择，安装 UCRT64 GCC 不能替代它。
 
-## 1.4 下载 Zephyr 源码
+## 1.4\_下载\_Zephyr\_源码
 
 现在进入“安装终端 → 国内换源 → 安装工具 → **下载源码**”的第四步。先选择独立源码存放目录。例如在 Windows 资源管理器中进入准备存放练习的位置，右键复制路径，再在 UCRT64 中执行。下面用自定变量 `SOURCE_DIR` 保存输入路径：
 
@@ -280,7 +280,7 @@ pwd
 
 ![Zephyr 官方仓库地址与下载入口](./assets/image-20261002095521595.png)
 
-### 1.4.1 使用 Git 克隆
+### 1.4.1\_使用\_Git\_克隆
 
 Git 是版本控制工具，clone 表示取得一个远程仓库及其历史。在选好的源码存放目录执行：
 
@@ -318,7 +318,7 @@ curl -I -x http://127.0.0.1:10808 https://github.com
 
 curl 测试通常先显示 `200 Connection established`，还应继续看到 GitHub 的 HTTP 响应；仅建立代理隧道不代表整个请求成功。**Git 代理配置不控制浏览器**：下面用浏览器下载 ZIP 时，还需在 v2rayN 开启系统代理，或让浏览器使用同一代理入口。
 
-### 1.4.2 使用 ZIP 下载
+### 1.4.2\_使用\_ZIP\_下载
 
 Git 克隆遇到连接问题时，原记录曾出现：
 
@@ -358,7 +358,7 @@ Kconfig             README.rst         doc          modules  subsys
 
 到这里已可阅读源码。若还需要提交记录、版本比较和分支操作，再继续补充 Git 数据；这仍需访问 GitHub，不能用来绕过尚未解决的 Git 网络故障。
 
-## 1.5 为 ZIP 源码补充 Git 仓库信息
+## 1.5\_为\_ZIP\_源码补充\_Git\_仓库信息
 
 Git 元数据保存在 `.git/`，包括提交对象、分支引用与仓库配置。下面用 Partial Clone（部分克隆）减少初次取得的文件内容，再把这份元数据接到 ZIP 的源码目录。操作顺序是“建立临时仓库 → 核对提交 → 接入元数据 → 建立索引 → 检查文件”。
 
@@ -378,7 +378,7 @@ Git 元数据保存在 `.git/`，包括提交对象、分支引用与仓库配�
 
 ZIP 提供当前源码，Git 提供版本信息。这种做法避免 checkout（检出）第二套工作区文件，但后续比较仍可能下载 Git 对象，不能保证完全不重复传输文件内容。
 
-### 1.5.1 建立临时 Git 元数据仓库
+### 1.5.1\_建立临时\_Git\_元数据仓库
 
 在 `zephyr-main` 的上一级目录执行，先确认当前位置和目标目录：
 
@@ -417,7 +417,7 @@ git clone \
 
 三个减量选项各有作用：过滤文件内容、暂不检出源码、限制历史深度。它们让我们先接好仓库，再按需补历史。
 
-### 1.5.2 核对临时仓库与 ZIP 版本
+### 1.5.2\_核对临时仓库与\_ZIP\_版本
 
 commit 指 Git 的一次提交。先查看临时仓库的提交和远程来源：
 
@@ -448,7 +448,7 @@ git -C git-meta rev-parse --is-shallow-repository
 
 预期依次为 `blob:none` 和 `true`。后者表示提交历史仍在指定深度被截断，正是 `--depth=1` 的结果。
 
-### 1.5.3 接入 Git 元数据并建立索引
+### 1.5.3\_接入\_Git\_元数据并建立索引
 
 确认临时仓库取得成功、版本匹配、目标没有 `.git` 后，移动元数据并删除空临时目录：
 
@@ -470,7 +470,7 @@ git read-tree --reset HEAD
 
 这条命令读取 HEAD 的文件树并重建索引，没有使用 `-u`，因此不把文件检出到工作区。不要替换为 `git reset --hard HEAD`：后者会改写工作区，可能覆盖源码修改。此处的目标是保留 ZIP 文件，再让 Git 比较它们；具体行为见 [git-read-tree 的 Description](https://git-scm.com/docs/git-read-tree#_description)。
 
-### 1.5.4 检查工作区状态
+### 1.5.4\_检查工作区状态
 
 索引建立后检查文件与提交是否一致：
 
@@ -492,7 +492,7 @@ nothing to commit, working tree clean
 
 此时可用 `git log -1 --oneline` 查看当前提交、`git branch` 查看本地分支、`git remote -v` 查看来源、`git diff` 比较改动。但历史仍然很浅；工作区干净不等于历史已经完整。
 
-## 1.6 补全 main 分支的提交历史
+## 1.6\_补全\_main\_分支的提交历史
 
 已恢复 Git 工作区之后，如果需要追溯 main 的历史，再执行本节。历史深度与文件内容是两个独立维度：commit 记录提交，tree 记录目录和文件关系，blob 保存文件内容。
 
@@ -506,7 +506,7 @@ nothing to commit, working tree clean
            提交追溯多远        预先下载哪些 blob
 ```
 
-### 1.6.1 获取历史并验证深度
+### 1.6.1\_获取历史并验证深度
 
 先确认仓库是否仍为浅仓库：
 
@@ -551,7 +551,7 @@ git log --oneline --decorate -20
 
 这不表示全部远程分支、标签和 blob 都已在本地。fetch 也不会自动把工作区切到最新 main；它取得对象和更新引用，当前检出的提交可以保持原样。后续某个操作需要本地缺失的历史文件时，Git 仍可能联网获取。
 
-### 1.6.2 按需获取其他分支和发布标签
+### 1.6.2\_按需获取其他分支和发布标签
 
 查看当前远程获取规则：
 
@@ -589,7 +589,7 @@ git tag -l
 
 这样补充标签引用，仍保留文件内容按需下载的方式。可以按需求停在三个层次之一：恢复 Git 工作区、补全 main 历史，或继续获取其他分支与标签。
 
-## 1.7 排查 GitHub 连接与代理
+## 1.7\_排查\_GitHub\_连接与代理
 
 如果 clone 或 fetch 报 `Connection reset by peer`、`Failed to connect to github.com:443`，首先定位 Git 到 GitHub 的网络连接。这些错误本身不能证明 ZIP 损坏、索引建立失败、部分克隆失效或 `.git` 损坏。
 
@@ -629,7 +629,7 @@ git -c http.proxy= ls-remote https://github.com/zephyrproject-rtos/zephyr.git HE
 
 如果仍有按网址配置的代理，先根据前面的配置来源检查对应项。小请求成功后再回到先前失败的下载步骤；重试补历史前再次确认浅仓库状态，已为 `false` 时不再使用 `--unshallow`。
 
-## 1.8 回顾 ZIP 与 Git 仓库信息的组合流程
+## 1.8\_回顾\_ZIP\_与\_Git\_仓库信息的组合流程
 
 至此，ZIP 恢复路线可以串成下面的过程。图用于对照已完成的步骤，已经操作成功的目录不需要再重跑一次。
 
@@ -664,7 +664,7 @@ main 提交历史补全
 
 整个流程不依赖固定安装路径或某个盘符，只要求最初在 `zephyr-main` 的上一级目录操作，进入源码目录后在该仓库内执行后续命令。最终用 `git status` 验证工作区、`git rev-parse --is-shallow-repository` 验证历史深度、`git log` 验证可追溯记录；三个结果回答不同问题。
 
-## 1.9 在仓库内配置 Git 提交身份
+## 1.9\_在仓库内配置\_Git\_提交身份
 
 只下载源码不要求配置姓名和邮箱；准备提交自己的修改时才需要。请先进入已经克隆的 `zephyr`，或完成 1.5 后的 `zephyr-main`。单纯 ZIP 解压目录还不是 Git 仓库，不能执行局部配置。
 
@@ -679,7 +679,7 @@ git config --local --get user.name
 
 先核对第一条输出的根目录，再把示例邮箱和姓名替换成自己的信息。`--local` 把配置写入当前仓库的 `.git/config`，不影响其他仓库；在仓库外执行会报错。它记录提交作者身份，不等于配置 GitHub 登录凭据。
 
-## 1.10 检查结果并进入下一步
+## 1.10\_检查结果并进入下一步
 
 完成后，你应能在 UCRT64 中看到正确的环境标识，使用 pacman 更新工具，执行 Git 下载命令，并区分“只有源码快照”“浅 Git 仓库”和“main 历史已经补全但部分文件对象仍按需下载”这几种状态。只选择 ZIP 阅读源码也已经完成本章的下载目标。
 

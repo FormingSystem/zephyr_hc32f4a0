@@ -50,9 +50,9 @@ def main():
         if chapter:
             chapters += 1
             number = int(chapter.group(1))
-            if not re.search(rf"^# {number}\. \S", body, re.M):
+            if not re.search(rf"^# (?:{number}\. |第{number}章\\_)\S", body, re.M):
                 errors.append(f"{path.name}: 章编号与文件名不一致")
-            sections = re.findall(rf"^## {number}\.(\d+) ", body, re.M)
+            sections = re.findall(rf"^## {number}\.(\d+)(?: |\\_)", body, re.M)
             if list(map(int, sections)) != list(range(1, len(sections) + 1)):
                 errors.append(f"{path.name}: 小节编号不连续")
             for key in ("id", "title", "kind", "status", "domains"):

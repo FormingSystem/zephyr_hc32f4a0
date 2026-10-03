@@ -8,7 +8,7 @@ domains: [zephyr, tools]
 
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 
-# 2. 从零理解：我们到底怎样把 Zephyr 源码下载下来
+# 第2章\_从零理解\_我们到底怎样把\_Zephyr\_源码下载下来
 
 下载前先按[本地代理配置](代理配置.md)核对 v2rayN 的 `10808` 混合端口，配置 Git 并测试连接；浏览器下载 ZIP 还需使用系统代理或浏览器代理。
 
@@ -24,7 +24,7 @@ domains: [zephyr, tools]
 
 ------
 
-### 1. 什么是 Git 仓库
+## 2.1\_什么是\_Git\_仓库
 
 Zephyr 的源代码托管在 Git 仓库中。
 
@@ -86,7 +86,7 @@ Git 默认不仅会得到当前源码，还会获取这个仓库的历史对象�
 
 ------
 
-## 2.1 `git clone` 是什么
+## 2.2\_git\_clone\_是什么
 
 先看最普通的命令：
 
@@ -96,7 +96,7 @@ git clone https://github.com/zephyrproject-rtos/zephyr.git
 
 一段一段解释。
 
-### 2.1 `git`
+### 2.2.1\_git
 
 ```
 git
@@ -118,7 +118,7 @@ west
 
 ------
 
-### 2.2 `clone`
+### 2.2.2\_clone
 
 ```
 git clone
@@ -201,7 +201,7 @@ zephyr/
 
 ------
 
-## 2.2 为什么完整 `git clone` 可能不是我们想要的
+## 2.3\_为什么完整\_git\_clone\_可能不是我们想要的
 
 我们只是想学习或者编译一个确定版本的 Zephyr。
 
@@ -257,7 +257,7 @@ git clone
 
 ------
 
-## 2.3 第一种优化：浅克隆 `--depth`
+## 2.4\_第一种优化\_浅克隆\_--depth
 
 例如：
 
@@ -273,7 +273,7 @@ git clone --depth 1 https://github.com/zephyrproject-rtos/zephyr.git
 
 ------
 
-### 4.1 `depth` 是什么意思
+### 2.4.1\_depth\_是什么意思
 
 `depth`：
 
@@ -355,7 +355,7 @@ Git 官方文档对 `--depth <depth>` 的定义就是创建一个截断历史的
 
 ------
 
-## 2.4 为什么教学环境适合 `--depth 1`
+## 2.5\_为什么教学环境适合\_--depth\_1
 
 假设我们的目标只是：
 
@@ -427,7 +427,7 @@ subsys/
 
 ------
 
-## 2.5 但我们还没有指定到底要哪个 Zephyr 版本
+## 2.6\_但我们还没有指定到底要哪个\_Zephyr\_版本
 
 例如：
 
@@ -468,7 +468,7 @@ git clone \
 
 ------
 
-## 2.6 `--branch` 是什么
+## 2.7\_branch\_是什么
 
 这里：
 
@@ -504,7 +504,7 @@ Git 官方 `clone` 文档也说明，`--branch` 可以让 clone 指向指定 bra
 
 ------
 
-## 2.7 什么是 branch
+## 2.8\_什么是\_branch
 
 `branch` 就是：
 
@@ -536,7 +536,7 @@ development
 
 ------
 
-## 2.8 什么是 tag
+## 2.9\_什么是\_tag
 
 软件发布正式版本时，经常会给某个 commit 打一个固定标记。
 
@@ -590,7 +590,7 @@ v4.4.0
 
 ------
 
-## 2.9 现在把整条命令重新读一遍
+## 2.10\_现在把整条命令重新读一遍
 
 ```
 git clone \
@@ -637,7 +637,7 @@ https://github.com/zephyrproject-rtos/zephyr.git
 
 ------
 
-## 2.10 那么 `sparse-checkout` 又是什么
+## 2.11\_那么\_sparse-checkout\_又是什么
 
 到这里开始进入另外一个完全不同的问题。
 
@@ -659,7 +659,7 @@ https://github.com/zephyrproject-rtos/zephyr.git
 
 ------
 
-## 2.11 什么叫 checkout
+## 2.12\_什么叫\_checkout
 
 这是 Git 初学者非常容易困惑的一个单词。
 
@@ -718,7 +718,7 @@ arch/
 
 ------
 
-## 2.12 什么叫 sparse
+## 2.13\_什么叫\_sparse
 
 `sparse`：
 
@@ -770,7 +770,7 @@ Git 官方文档把 sparse-checkout 描述为：让工作树只包含用户关�
 
 ------
 
-## 2.13 一个最简单的 sparse-checkout 示例
+## 2.14\_一个最简单的\_sparse-checkout\_示例
 
 这里先不用 Zephyr。
 
@@ -808,7 +808,7 @@ git sparse-checkout set app driver
 
 ------
 
-### `git sparse-checkout`
+### 2.14.1\_git\_sparse-checkout
 
 表示：
 
@@ -816,7 +816,7 @@ git sparse-checkout set app driver
 
 ------
 
-### `init`
+### 2.14.2\_init
 
 ```
 git sparse-checkout init
@@ -834,7 +834,7 @@ git sparse-checkout init
 
 ------
 
-### `--cone`
+### 2.14.3\_--cone
 
 ```
 --cone
@@ -859,7 +859,7 @@ git sparse-checkout set app driver
 
 ------
 
-### `set`
+### 2.14.4\_set
 
 ```
 git sparse-checkout set app driver
@@ -878,7 +878,7 @@ driver/
 
 ------
 
-## 2.14 这里有一个非常容易产生的误解
+## 2.15\_这里有一个非常容易产生的误解
 
 很多初学者看到：
 
@@ -926,7 +926,7 @@ sparse-checkout
 
 ------
 
-## 2.15 用一张图理解三种东西
+## 2.16\_用一张图理解三种东西
 
 目前我们已经碰到了三个概念：
 
@@ -984,7 +984,7 @@ v4.4.0
 
 ------
 
-## 2.16 如果真的希望减少“文件内容”的网络下载呢
+## 2.17\_如果真的希望减少\_文件内容\_的网络下载呢
 
 Git 还有另外一个概念：
 
@@ -1012,7 +1012,7 @@ git clone \
 
 ------
 
-## 2.17 什么是 blob
+## 2.18\_什么是\_blob
 
 Git 内部会把不同数据保存成不同类型的对象。
 
@@ -1038,7 +1038,7 @@ README.md
 
 ------
 
-## 2.18 `--filter=blob:none` 是什么意思
+## 2.19\_filter=blob:none\_是什么意思
 
 ```
 --filter=blob:none
@@ -1091,7 +1091,7 @@ partial clone 则更像：
 
 ------
 
-## 2.19 sparse-checkout 和 partial clone 可以组合
+## 2.20\_sparse-checkout\_和\_partial\_clone\_可以组合
 
 例如：
 
@@ -1132,7 +1132,7 @@ Git 官方 `clone` 本身就提供：
 
 ------
 
-## 2.20 为什么我们暂时不推荐对 Zephyr 主仓库做 sparse-checkout
+## 2.21\_为什么我们暂时不推荐对\_Zephyr\_主仓库做\_sparse-checkout
 
 现在读者终于有足够背景理解这句话了。
 
@@ -1239,7 +1239,7 @@ subsys/
 
 ------
 
-## 2.21 所以我们真正推荐什么
+## 2.22\_所以我们真正推荐什么
 
 对于 **Zephyr 主仓库**，推荐：
 
@@ -1286,7 +1286,7 @@ Git 历史          很多             很少
 
 ------
 
-## 2.22 真正应该大规模裁剪的是“仓库数量”
+## 2.23\_真正应该大规模裁剪的是\_仓库数量
 
 这里开始进入 Zephyr 与普通单仓库项目最大的区别。
 
@@ -1360,7 +1360,7 @@ Zephyr 外部模块
 
 ------
 
-## 2.23 用 HC32F4A0 举例
+## 2.24\_用\_HC32F4A0\_举例
 
 例如我们的目标芯片是：
 
@@ -1434,7 +1434,7 @@ ARM Toolchain
 
 ------
 
-## 2.24 因此最终的下载优化可以分成四层
+## 2.25\_因此最终的下载优化可以分成四层
 
 以后整篇教程都可以沿着这个模型往下讲。
 
@@ -1495,7 +1495,7 @@ ARM Toolchain
 
 ------
 
-## 2.25 给完全没有 Git 基础读者的一张总结表
+## 2.26\_给完全没有\_Git\_基础读者的一张总结表
 
 | 命令/概念         | 它解决什么问题        | 初学者可以怎样理解                     |
 | ----------------- | --------------------- | -------------------------------------- |

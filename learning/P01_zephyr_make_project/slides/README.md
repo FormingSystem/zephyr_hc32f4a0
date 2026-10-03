@@ -1,12 +1,20 @@
+---
+id: zephyr-download-slides
+title: 教学课件维护
+kind: reference
+status: maintained
+domains: [zephyr, tools]
+---
+
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 
-# P01 教学课件维护
+# 第1章\_教学课件维护
 
 正式课件为本目录的 `P01_准备UCRT64环境与下载Zephyr.pptx`，当前共 28 页，在作者原有内容的 ZIP 下载页前补充一页代理配置。
 历史审阅副本不随仓库发布，修改时以本目录正式课件为准。正文、图片、表格与讲解备注均可在 PowerPoint 内编辑；
 代码页使用白底和语法配色，正文页使用自动幻灯片编号，封面不编号。
 
-## 源码与重建
+## 1.1\_源码与重建
 
 `src/` 保存正式课件的原生 Open XML 源码和内嵌素材，`source.json` 记录实际页序、标题及文件清单。
 `src/ppt/slides/` 为页面内容与排版，`src/ppt/notesSlides/` 为讲解备注，`src/ppt/media/` 为图片。
@@ -23,7 +31,7 @@ python build.py build --force
 这会将源码打包为本目录的正式课件，保留原生可编辑对象、代码颜色和自动页码。
 `--force` 表示覆盖已有正式课件；也可以用 `--output 新文件.pptx` 输出另一份文件。
 
-## 在 PowerPoint 中修改后同步
+## 1.2\_在\_PowerPoint\_中修改后同步
 
 先保存并关闭课件，再同步源码。推荐始终编辑正式课件：
 

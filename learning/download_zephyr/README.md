@@ -1,6 +1,14 @@
+---
+id: zephyr-download-notes-index
+title: Zephyr 下载方案参考草稿
+kind: track
+status: draft
+domains: [zephyr, tools]
+---
+
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 
-# Zephyr 下载方案参考草稿
+# 第1章\_Zephyr\_下载方案参考草稿
 
 本目录保留源码精简、ZIP 与 Git、清单依赖、SDK 和主机工具的六篇讨论材料。这次整理补齐编号、元信息和导航，保留原有技术内容；示例中的模块名、版本与路径不等同于当前工程配置，命令尚未整体实测。
 

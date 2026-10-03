@@ -42,6 +42,7 @@
 - 系统学习与实验按 [专题蓝图](project-docs/learning/专题蓝图.md) 分批建设，执行
   [实验约定](project-docs/learning/实验规范.md)。阅读入口只登记真实文章；文档、构建、模拟运行和实板验证分别记录状态。
 - 每次交付更新 `project-docs/porting-status.md`，记录完成范围、验证方法与尚未执行的硬件步骤。
+- 自有 Markdown 遵循从 linux-note 继承的 [文档格式规范](governance/conventions/markdown_guide.md)，采用分级阅读序号、标题下划线转义和稳定元数据。仅在本次授权的自有文档范围内整理，禁止为统一格式修改 Zephyr 原生 Markdown 或其他第三方文档。
 
 ## 硬件约束
 
