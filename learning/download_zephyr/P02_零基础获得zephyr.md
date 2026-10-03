@@ -1,6 +1,6 @@
 ---
 id: zephyr-download-notes-02
-title: 从零理解：我们到底怎样把 Zephyr 源码下载下来
+title: Git 下载基础与减量方法
 kind: reference
 status: draft
 domains: [zephyr, tools]
@@ -8,15 +8,26 @@ domains: [zephyr, tools]
 
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 
-# 第2章\_从零理解\_我们到底怎样把\_Zephyr\_源码下载下来
+# 第2章\_Git\_下载基础与减量方法
+
+本章操作终端统一为 **MSYS2 UCRT64 Bash**，主机仍是 Windows x64。独立下载实验使用 `~/zephyr-download-lab`；路径、工具准备和当前 HC32 集成工程的区别见[环境与目录约定](环境与目录约定.md)。下文保留的版本、模块名和仓库地址示例须结合实际清单核对。
 
 下载前先按[本地代理配置](代理配置.md)核对 v2rayN 的 `10808` 混合端口，配置 Git 并测试连接；浏览器下载 ZIP 还需使用系统代理或浏览器代理。
 
 > 本篇为下载方案的参考草稿，保留原有讨论与示例，尚未完成逐项版本核验和完整安装实测。当前 HC32 工程请按[项目安装流程](../../project-docs/environment.md)操作；已整理的入门主线见[工程准备大纲](../P01_zephyr_make_project/大纲.md)。
 
-对，这个教学方向更合适。不能直接写“不要用 `sparse-checkout`”，因为一个没接触过 Git 的读者根本不知道 **checkout 是什么、sparse 又是在稀疏什么、它和减少下载量是不是一回事**。
+**本章目录**
 
-这一部分建议直接改成下面这种写法。
+- [2.1 认识仓库与克隆](#section-2-1)
+- [2.2 选择历史深度和版本](#section-2-2)
+- [2.3 理解检出与稀疏工作区](#section-2-3)
+- [2.4 按需取得文件对象](#section-2-4)
+- [2.5 选择适合本工程的下载策略](#section-2-5)
+
+
+在选择下载优化方法前，需要先理解 Git 的几个基本动作。不能直接记住“不要用 `sparse-checkout`”，而不清楚 **checkout 是什么、sparse 又是在稀疏什么、它和减少下载量是不是一回事**。
+
+本章沿着仓库、克隆、版本、检出和文件对象的顺序逐项说明。
 
 在讨论“怎么少下载一些 Zephyr 内容”之前，需要先理解 Git 下载一个工程时，到底下载了什么。
 
@@ -24,13 +35,19 @@ domains: [zephyr, tools]
 
 ------
 
-## 2.1\_什么是\_Git\_仓库
+<a id="section-2-1"></a>
+
+## 2.1\_认识仓库与克隆
+
+先认识 Git 仓库中保存的内容，再看 clone 为什么可能产生较大的下载量。
+
+### 2.1.1\_什么是\_Git\_仓库
 
 Zephyr 的源代码托管在 Git 仓库中。
 
 可以暂时把 Git 仓库理解成：
 
-```
+```text
 Git 仓库
 │
 ├── 当前版本的源代码
@@ -56,7 +73,7 @@ Git 仓库
 
 例如 Zephyr 可能经历：
 
-```
+```text
 commit A
    ↓
 commit B
@@ -76,7 +93,8 @@ commit N
 
 因此，如果执行最普通的：
 
-```
+```bash
+# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
 git clone https://github.com/zephyrproject-rtos/zephyr.git
 ```
 
@@ -86,19 +104,20 @@ Git 默认不仅会得到当前源码，还会获取这个仓库的历史对象�
 
 ------
 
-## 2.2\_git\_clone\_是什么
+### 2.1.2\_git\_clone\_是什么
 
 先看最普通的命令：
 
-```
+```bash
+# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
 git clone https://github.com/zephyrproject-rtos/zephyr.git
 ```
 
 一段一段解释。
 
-### 2.2.1\_git
+#### (1)\_git
 
-```
+```text
 git
 ```
 
@@ -108,7 +127,7 @@ git
 
 类似于：
 
-```
+```text
 python
 cmake
 west
@@ -118,9 +137,10 @@ west
 
 ------
 
-### 2.2.2\_clone
+#### (2)\_clone
 
-```
+```bash
+# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
 git clone
 ```
 
@@ -132,7 +152,7 @@ git clone
 
 而是：
 
-```
+```text
 远程 Git 仓库
        │
        │ git clone
@@ -142,7 +162,7 @@ git clone
 
 最终本地通常会出现：
 
-```
+```text
 zephyr/
 │
 ├── arch/
@@ -156,13 +176,13 @@ zephyr/
 
 这里有一个非常重要的目录：
 
-```
+```text
 .git/
 ```
 
 普通文件：
 
-```
+```text
 kernel/
 drivers/
 arch/
@@ -172,13 +192,13 @@ arch/
 
 而：
 
-```
+```text
 .git/
 ```
 
 保存 Git 自己管理的数据，例如：
 
-```
+```text
 提交历史
 分支
 标签
@@ -189,7 +209,7 @@ arch/
 
 因此可以简单理解为：
 
-```
+```text
 zephyr/
 │
 ├── 我们工作的源代码
@@ -201,19 +221,19 @@ zephyr/
 
 ------
 
-## 2.3\_为什么完整\_git\_clone\_可能不是我们想要的
+### 2.1.3\_为什么完整\_git\_clone\_可能不是我们想要的
 
 我们只是想学习或者编译一个确定版本的 Zephyr。
 
 例如：
 
-```
+```text
 Zephyr v4.4.x
 ```
 
 我们可能根本不关心：
 
-```
+```text
 2019 年的版本
 2020 年的版本
 2021 年的版本
@@ -223,7 +243,8 @@ Zephyr v4.4.x
 
 但是普通：
 
-```
+```bash
+# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
 git clone
 ```
 
@@ -231,7 +252,7 @@ git clone
 
 于是出现一个问题：
 
-```
+```text
 我们真正需要：
 
 当前教学版本源码
@@ -241,7 +262,7 @@ git clone
 
 而不是：
 
-```
+```text
 当前源码
 +
 大量历史版本
@@ -257,27 +278,34 @@ git clone
 
 ------
 
-## 2.4\_第一种优化\_浅克隆\_--depth
+<a id="section-2-2"></a>
+
+## 2.2\_选择历史深度和版本
+
+浅克隆控制历史深度；分支和标签决定取得哪个版本，两者分别说明。
+
+### 2.2.1\_第一种优化\_浅克隆\_--depth
 
 例如：
 
-```
+```bash
+# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
 git clone --depth 1 https://github.com/zephyrproject-rtos/zephyr.git
 ```
 
 这里增加了：
 
-```
+```text
 --depth 1
 ```
 
 ------
 
-### 2.4.1\_depth\_是什么意思
+#### (1)\_depth\_是什么意思
 
 `depth`：
 
-```
+```text
 深度
 ```
 
@@ -287,7 +315,7 @@ git clone --depth 1 https://github.com/zephyrproject-rtos/zephyr.git
 
 例如完整仓库：
 
-```
+```text
 最新版本
    │
    ▼
@@ -304,25 +332,25 @@ commit 1
 
 正常 clone：
 
-```
+```text
 把完整历史关系获取下来
 ```
 
 而：
 
-```
+```text
 --depth 1
 ```
 
 可以简单理解成：
 
-```
+```text
 只保留最靠近当前版本的一层历史
 ```
 
 例如：
 
-```
+```text
 远程仓库：
 
 commit 1000  ← 当前版本
@@ -343,7 +371,7 @@ commit 1000
 
 这种 Git 仓库通常叫：
 
-```
+```text
 shallow clone
 ```
 
@@ -355,11 +383,11 @@ Git 官方文档对 `--depth <depth>` 的定义就是创建一个截断历史的
 
 ------
 
-## 2.5\_为什么教学环境适合\_--depth\_1
+### 2.2.2\_为什么教学环境适合\_--depth\_1
 
 假设我们的目标只是：
 
-```
+```text
 下载源码
 →
 配置 Zephyr
@@ -375,13 +403,13 @@ Git 官方文档对 `--depth <depth>` 的定义就是创建一个截断历史的
 
 因此：
 
-```
+```text
 git clone --depth 1 ...
 ```
 
 通常比：
 
-```
+```text
 git clone ...
 ```
 
@@ -389,7 +417,7 @@ git clone ...
 
 两者得到的当前源码基本都是完整的：
 
-```
+```text
 arch/
 boards/
 drivers/
@@ -404,7 +432,7 @@ subsys/
 
 可以理解成：
 
-```
+```text
 普通 clone
 
 源码：★★★★★
@@ -427,11 +455,12 @@ subsys/
 
 ------
 
-## 2.6\_但我们还没有指定到底要哪个\_Zephyr\_版本
+### 2.2.3\_但我们还没有指定到底要哪个\_Zephyr\_版本
 
 例如：
 
-```
+```bash
+# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
 git clone --depth 1 https://github.com/zephyrproject-rtos/zephyr.git
 ```
 
@@ -441,13 +470,13 @@ git clone --depth 1 https://github.com/zephyrproject-rtos/zephyr.git
 
 因为：
 
-```
+```text
 今天下载
 ```
 
 和：
 
-```
+```text
 半年后下载
 ```
 
@@ -459,7 +488,8 @@ git clone --depth 1 https://github.com/zephyrproject-rtos/zephyr.git
 
 例如：
 
-```
+```bash
+# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
 git clone \
     --branch v4.4.0 \
     --depth 1 \
@@ -468,11 +498,11 @@ git clone \
 
 ------
 
-## 2.7\_branch\_是什么
+### 2.2.4\_branch\_是什么
 
 这里：
 
-```
+```text
 --branch v4.4.0
 ```
 
@@ -482,19 +512,19 @@ git clone \
 
 `--branch` 可以简写为：
 
-```
+```text
 -b
 ```
 
 所以：
 
-```
+```text
 git clone --branch v4.4.0 ...
 ```
 
 和：
 
-```
+```text
 git clone -b v4.4.0 ...
 ```
 
@@ -504,17 +534,17 @@ Git 官方 `clone` 文档也说明，`--branch` 可以让 clone 指向指定 bra
 
 ------
 
-## 2.8\_什么是\_branch
+### 2.2.5\_什么是\_branch
 
 `branch` 就是：
 
-```
+```text
 分支
 ```
 
 可以把软件开发想象成：
 
-```
+```text
                  ┌── 开发功能 A
                  │
 主开发线 ─────────┼── 开发功能 B
@@ -526,7 +556,7 @@ Git 可以同时维护不同开发线。
 
 例如：
 
-```
+```text
 main
 release
 development
@@ -536,13 +566,13 @@ development
 
 ------
 
-## 2.9\_什么是\_tag
+### 2.2.6\_什么是\_tag
 
 软件发布正式版本时，经常会给某个 commit 打一个固定标记。
 
 例如：
 
-```
+```text
 某个 commit
     │
     └── tag: v4.4.0
@@ -554,7 +584,7 @@ development
 
 例如：
 
-```
+```text
 v4.3.0
 v4.3.1
 v4.4.0
@@ -562,19 +592,19 @@ v4.4.0
 
 所以教学环境一般更喜欢：
 
-```
+```text
 --branch v4.4.0
 ```
 
 而不是：
 
-```
+```text
 --branch main
 ```
 
 因为：
 
-```
+```text
 main
 ```
 
@@ -582,7 +612,7 @@ main
 
 而：
 
-```
+```text
 v4.4.0
 ```
 
@@ -590,9 +620,10 @@ v4.4.0
 
 ------
 
-## 2.10\_现在把整条命令重新读一遍
+### 2.2.7\_现在把整条命令重新读一遍
 
-```
+```bash
+# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
 git clone \
     --branch v4.4.0 \
     --depth 1 \
@@ -603,7 +634,7 @@ git clone \
 
 可以逐项翻译。
 
-```
+```text
 git
 │
 └── 使用 Git 工具
@@ -637,13 +668,19 @@ https://github.com/zephyrproject-rtos/zephyr.git
 
 ------
 
-## 2.11\_那么\_sparse-checkout\_又是什么
+<a id="section-2-3"></a>
+
+## 2.3\_理解检出与稀疏工作区
+
+从 checkout 的含义开始，区分磁盘上显示哪些文件与网络实际传输了什么。
+
+### 2.3.1\_那么\_sparse-checkout\_又是什么
 
 到这里开始进入另外一个完全不同的问题。
 
 前面的：
 
-```
+```text
 --depth 1
 ```
 
@@ -659,7 +696,7 @@ https://github.com/zephyrproject-rtos/zephyr.git
 
 ------
 
-## 2.12\_什么叫\_checkout
+### 2.3.2\_什么叫\_checkout
 
 这是 Git 初学者非常容易困惑的一个单词。
 
@@ -669,13 +706,13 @@ https://github.com/zephyrproject-rtos/zephyr.git
 
 例如 `.git` 中保存 Git 数据：
 
-```
+```text
 .git/
 ```
 
 然后 Git 根据某个版本，将文件展开到：
 
-```
+```text
 kernel/
 drivers/
 arch/
@@ -684,7 +721,7 @@ arch/
 
 这些我们能够：
 
-```
+```text
 打开
 阅读
 编辑
@@ -693,7 +730,7 @@ arch/
 
 的文件，组成：
 
-```
+```text
 working tree
 ```
 
@@ -703,7 +740,7 @@ working tree
 
 因此：
 
-```
+```text
 Git 数据库
 .git/
     │
@@ -718,17 +755,17 @@ arch/
 
 ------
 
-## 2.13\_什么叫\_sparse
+### 2.3.3\_什么叫\_sparse
 
 `sparse`：
 
-```
+```text
 稀疏的
 ```
 
 因此：
 
-```
+```text
 sparse-checkout
 ```
 
@@ -738,7 +775,7 @@ sparse-checkout
 
 例如一个仓库有：
 
-```
+```text
 project/
 ├── arch/
 ├── boards/
@@ -751,7 +788,7 @@ project/
 
 而我只关心：
 
-```
+```text
 arch/
 drivers/
 kernel/
@@ -759,7 +796,7 @@ kernel/
 
 使用 sparse-checkout 后，工作目录可以只显示：
 
-```
+```text
 project/
 ├── arch/
 ├── drivers/
@@ -770,13 +807,13 @@ Git 官方文档把 sparse-checkout 描述为：让工作树只包含用户关�
 
 ------
 
-## 2.14\_一个最简单的\_sparse-checkout\_示例
+### 2.3.4\_一个最简单的\_sparse-checkout\_示例
 
 这里先不用 Zephyr。
 
 假设有一个仓库：
 
-```
+```text
 demo/
 ├── app/
 ├── driver/
@@ -787,20 +824,22 @@ demo/
 
 我们只想看到：
 
-```
+```text
 app/
 driver/
 ```
 
 可以执行：
 
-```
+```bash
+# 当前位置：待检查的 Zephyr 源码根目录；终端：UCRT64 Bash。
 git sparse-checkout init --cone
 ```
 
 然后：
 
-```
+```bash
+# 当前位置：待检查的 Zephyr 源码根目录；终端：UCRT64 Bash。
 git sparse-checkout set app driver
 ```
 
@@ -808,7 +847,7 @@ git sparse-checkout set app driver
 
 ------
 
-### 2.14.1\_git\_sparse-checkout
+#### (1)\_git\_sparse-checkout
 
 表示：
 
@@ -816,9 +855,10 @@ git sparse-checkout set app driver
 
 ------
 
-### 2.14.2\_init
+#### (2)\_init
 
-```
+```bash
+# 当前位置：待检查的 Zephyr 源码根目录；终端：UCRT64 Bash。
 git sparse-checkout init
 ```
 
@@ -828,15 +868,15 @@ git sparse-checkout init
 
 也就是告诉 Git：
 
-```
+```text
 从现在开始，这个仓库不是默认把所有目录都放到工作区。
 ```
 
 ------
 
-### 2.14.3\_--cone
+#### (3)\_--cone
 
-```
+```text
 --cone
 ```
 
@@ -844,13 +884,14 @@ git sparse-checkout init
 
 例如：
 
-```
+```bash
+# 当前位置：待检查的 Zephyr 源码根目录；终端：UCRT64 Bash。
 git sparse-checkout set app driver
 ```
 
 这种写法就非常直观：
 
-```
+```text
 我要 app/
 我要 driver/
 ```
@@ -859,9 +900,10 @@ git sparse-checkout set app driver
 
 ------
 
-### 2.14.4\_set
+#### (4)\_set
 
-```
+```bash
+# 当前位置：待检查的 Zephyr 源码根目录；终端：UCRT64 Bash。
 git sparse-checkout set app driver
 ```
 
@@ -871,18 +913,18 @@ git sparse-checkout set app driver
 
 最后工作目录可能主要看到：
 
-```
+```text
 app/
 driver/
 ```
 
 ------
 
-## 2.15\_这里有一个非常容易产生的误解
+### 2.3.5\_这里有一个非常容易产生的误解
 
 很多初学者看到：
 
-```
+```text
 工作目录只剩几个目录
 ```
 
@@ -896,7 +938,7 @@ driver/
 
 单独使用：
 
-```
+```text
 sparse-checkout
 ```
 
@@ -912,13 +954,13 @@ sparse-checkout
 
 因此：
 
-```
+```text
 sparse-checkout
 ```
 
 不能简单等价为：
 
-```
+```text
 只从服务器下载这些目录。
 ```
 
@@ -926,11 +968,11 @@ sparse-checkout
 
 ------
 
-## 2.16\_用一张图理解三种东西
+### 2.3.6\_用一张图理解三种东西
 
 目前我们已经碰到了三个概念：
 
-```
+```text
 branch
 depth
 sparse-checkout
@@ -938,7 +980,7 @@ sparse-checkout
 
 它们分别控制完全不同的事情。
 
-```
+```text
 Git 仓库
 │
 ├── 哪个版本？
@@ -956,7 +998,8 @@ Git 仓库
 
 比如：
 
-```
+```bash
+# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
 git clone \
     --branch v4.4.0 \
     --depth 1 \
@@ -965,7 +1008,7 @@ git clone \
 
 表达的是：
 
-```
+```text
 版本：
 v4.4.0
 
@@ -978,17 +1021,23 @@ v4.4.0
 
 而 sparse-checkout 又是在另外一个维度控制：
 
-```
+```text
 工作区需要展开哪些目录。
 ```
 
 ------
 
-## 2.17\_如果真的希望减少\_文件内容\_的网络下载呢
+<a id="section-2-4"></a>
+
+## 2.4\_按需取得文件对象
+
+在工作区裁剪之外，继续理解 blob、部分克隆及它们的组合。
+
+### 2.4.1\_如果真的希望减少\_文件内容\_的网络下载呢
 
 Git 还有另外一个概念：
 
-```
+```text
 partial clone
 ```
 
@@ -998,7 +1047,8 @@ partial clone
 
 例如：
 
-```
+```bash
+# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
 git clone \
     --filter=blob:none \
     https://github.com/zephyrproject-rtos/zephyr.git
@@ -1006,19 +1056,19 @@ git clone \
 
 这里出现：
 
-```
+```text
 --filter=blob:none
 ```
 
 ------
 
-## 2.18\_什么是\_blob
+### 2.4.2\_什么是\_blob
 
 Git 内部会把不同数据保存成不同类型的对象。
 
 对于初学者目前只需要知道：
 
-```
+```text
 blob
 ```
 
@@ -1028,7 +1078,7 @@ blob
 
 比如：
 
-```
+```text
 main.c
 driver.c
 README.md
@@ -1038,9 +1088,9 @@ README.md
 
 ------
 
-## 2.19\_filter=blob:none\_是什么意思
+### 2.4.3\_filter=blob:none\_是什么意思
 
-```
+```text
 --filter=blob:none
 ```
 
@@ -1050,7 +1100,7 @@ README.md
 
 Git 官方文档明确说明：
 
-```
+```text
 --filter=blob:none
 ```
 
@@ -1058,7 +1108,7 @@ Git 官方文档明确说明：
 
 于是：
 
-```
+```text
 普通 clone
 
 服务器
@@ -1075,7 +1125,7 @@ Git 官方文档明确说明：
 
 partial clone 则更像：
 
-```
+```text
 服务器
   │
   ├── 先给必要的 Git 信息
@@ -1091,11 +1141,12 @@ partial clone 则更像：
 
 ------
 
-## 2.20\_sparse-checkout\_和\_partial\_clone\_可以组合
+### 2.4.4\_sparse-checkout\_和\_partial\_clone\_可以组合
 
 例如：
 
-```
+```bash
+# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
 git clone \
     --filter=blob:none \
     --sparse \
@@ -1104,13 +1155,13 @@ git clone \
 
 Git 官方 `clone` 本身就提供：
 
-```
+```text
 --sparse
 ```
 
 以及：
 
-```
+```text
 --filter=<filter-spec>
 ```
 
@@ -1118,7 +1169,7 @@ Git 官方 `clone` 本身就提供：
 
 可以粗略理解：
 
-```
+```text
 --filter
     ↓
 控制服务器初始给我多少 Git 对象
@@ -1132,7 +1183,13 @@ Git 官方 `clone` 本身就提供：
 
 ------
 
-## 2.21\_为什么我们暂时不推荐对\_Zephyr\_主仓库做\_sparse-checkout
+<a id="section-2-5"></a>
+
+## 2.5\_选择适合本工程的下载策略
+
+回到 Zephyr 和 HC32 的依赖特点，比较源码、历史、仓库数量与工具链四层优化。
+
+### 2.5.1\_为什么我们暂时不推荐对\_Zephyr\_主仓库做\_sparse-checkout
 
 现在读者终于有足够背景理解这句话了。
 
@@ -1148,7 +1205,7 @@ Zephyr 构建涉及大量跨目录依赖。
 
 例如：
 
-```
+```text
 应用程序
    │
    ▼
@@ -1185,13 +1242,14 @@ Drivers
 
 初学者很难提前准确回答：
 
-```
+```text
 我的这个板子编译到底会访问哪些目录？
 ```
 
 如果一开始就写：
 
-```
+```bash
+# 当前位置：待检查的 Zephyr 源码根目录；终端：UCRT64 Bash。
 git sparse-checkout set \
     kernel \
     drivers \
@@ -1202,25 +1260,25 @@ git sparse-checkout set \
 
 但是可能很快发现：
 
-```
+```text
 还需要 cmake/
 ```
 
 补上以后：
 
-```
+```text
 又需要 scripts/
 ```
 
 之后：
 
-```
+```text
 还需要 dts/
 ```
 
 然后：
 
-```
+```text
 还需要 include/
 soc/
 boards/
@@ -1230,7 +1288,7 @@ subsys/
 
 最后可能变成：
 
-```
+```text
 我们为了节省一点目录，
 却花了大量时间维护“到底缺哪个目录”。
 ```
@@ -1239,11 +1297,11 @@ subsys/
 
 ------
 
-## 2.22\_所以我们真正推荐什么
+### 2.5.2\_所以我们真正推荐什么
 
 对于 **Zephyr 主仓库**，推荐：
 
-```
+```text
 git clone \
     --branch <固定版本> \
     --depth 1 \
@@ -1252,7 +1310,7 @@ git clone \
 
 原则是：
 
-```
+```text
 源码目录：
 完整保留
 
@@ -1262,7 +1320,7 @@ Git 历史：
 
 即：
 
-```
+```text
               普通 clone       推荐方案
 
 当前源代码        完整             完整
@@ -1276,7 +1334,7 @@ Git 历史          很多             很少
 
 而不是首先：
 
-```
+```text
 砍 kernel
 砍 drivers
 砍 subsys
@@ -1286,19 +1344,19 @@ Git 历史          很多             很少
 
 ------
 
-## 2.23\_真正应该大规模裁剪的是\_仓库数量
+### 2.5.3\_真正应该大规模裁剪的是\_仓库数量
 
 这里开始进入 Zephyr 与普通单仓库项目最大的区别。
 
 Zephyr 开发环境并不只有：
 
-```
+```text
 zephyr.git
 ```
 
 还可能存在很多独立 Git 仓库：
 
-```
+```text
 zephyr
 cmsis
 hal_stm32
@@ -1314,13 +1372,13 @@ littlefs
 
 这时候：
 
-```
+```text
 少下载一个 Zephyr 源码目录
 ```
 
 和：
 
-```
+```text
 整个 hal_nxp 仓库都不下载
 ```
 
@@ -1328,7 +1386,7 @@ littlefs
 
 我们的策略因此应该是：
 
-```
+```text
 第一层：
 
 Zephyr 主仓库
@@ -1360,23 +1418,23 @@ Zephyr 外部模块
 
 ------
 
-## 2.24\_用\_HC32F4A0\_举例
+### 2.5.4\_用\_HC32F4A0\_举例
 
 例如我们的目标芯片是：
 
-```
+```text
 HC32F4A0PITB
 ```
 
 CPU：
 
-```
+```text
 ARM Cortex-M4F
 ```
 
 我们首先推导：
 
-```
+```text
 HC32F4A0
     │
     ▼
@@ -1395,7 +1453,7 @@ ARM Cortex-M4F
 
 但它完全不需要：
 
-```
+```text
 STM32 HAL
 NXP HAL
 Nordic HAL
@@ -1405,7 +1463,7 @@ Renesas HAL
 
 所以真正应该优化的是：
 
-```
+```text
 不要：
 
 Zephyr
@@ -1420,7 +1478,7 @@ Zephyr
 
 而是：
 
-```
+```text
 只要：
 
 Zephyr
@@ -1434,11 +1492,11 @@ ARM Toolchain
 
 ------
 
-## 2.25\_因此最终的下载优化可以分成四层
+### 2.5.5\_因此最终的下载优化可以分成四层
 
 以后整篇教程都可以沿着这个模型往下讲。
 
-```
+```text
               我到底想减少什么？
                      │
         ┌────────────┼─────────────┐
@@ -1466,7 +1524,7 @@ ARM Toolchain
 
 对于我们的教学环境，优先级应该是：
 
-```
+```text
 优先级 1
 固定 Zephyr 版本
 
@@ -1495,7 +1553,7 @@ ARM Toolchain
 
 ------
 
-## 2.26\_给完全没有\_Git\_基础读者的一张总结表
+### 2.5.6\_给完全没有\_Git\_基础读者的一张总结表
 
 | 命令/概念         | 它解决什么问题        | 初学者可以怎样理解                     |
 | ----------------- | --------------------- | -------------------------------------- |
@@ -1510,13 +1568,13 @@ ARM Toolchain
 
 其中尤其需要记住：
 
-```
+```text
 --depth
 ```
 
 和：
 
-```
+```text
 sparse-checkout
 ```
 
@@ -1524,7 +1582,8 @@ sparse-checkout
 
 更不是：
 
-```
+```bash
+# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
 west manifest
 ```
 
@@ -1532,7 +1591,7 @@ west manifest
 
 它们分别处在三层：
 
-```
+```text
 一个仓库有多少历史
        ↓
     --depth

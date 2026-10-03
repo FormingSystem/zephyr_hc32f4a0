@@ -1,6 +1,6 @@
 ---
 id: zephyr-download-notes-05
-title: Zephyr SDK 与 ARM 交叉编译工具链：HC32F4A0 到底需要下载什么
+title: Windows 主机的 Zephyr SDK 与 ARM 工具链
 kind: reference
 status: draft
 domains: [zephyr, tools]
@@ -8,15 +8,28 @@ domains: [zephyr, tools]
 
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 
-# 第5章\_Zephyr\_SDK\_与\_ARM\_交叉编译工具链\_HC32F4A0\_到底需要下载什么
+# 第5章\_Windows\_主机的\_Zephyr\_SDK\_与\_ARM\_工具链
+
+本章操作终端统一为 **MSYS2 UCRT64 Bash**，主机仍是 Windows x64。独立下载实验使用 `~/zephyr-download-lab`；路径、工具准备和当前 HC32 集成工程的区别见[环境与目录约定](环境与目录约定.md)。下文保留的版本、模块名和仓库地址示例须结合实际清单核对。
 
 下载前先按[本地代理配置](代理配置.md)核对 v2rayN 的 `10808` 混合端口，配置 Git 并测试连接；浏览器下载 ZIP 还需使用系统代理或浏览器代理。
 
 > 本篇为下载方案的参考草稿，保留原有讨论与示例，尚未完成逐项版本核验和完整安装实测。当前 HC32 工程请按[项目安装流程](../../project-docs/environment.md)操作；已整理的入门主线见[工程准备大纲](../P01_zephyr_make_project/大纲.md)。
 
+**本章目录**
+
+- [5.1 区分主机与目标工具链](#section-5-1)
+- [5.2 选择适合 Windows ARM 目标的下载包](#section-5-2)
+- [5.3 校验并解压 SDK](#section-5-3)
+- [5.4 检查目标工具并理解产物](#section-5-4)
+- [5.5 理解主机工具和目标库的边界](#section-5-5)
+- [5.6 让构建系统找到 SDK](#section-5-6)
+- [5.7 汇总最小工具链环境](#section-5-7)
+
+
 前面我们已经把“源码下载”拆开了：
 
-```
+```text
 Zephyr 主源码 ZIP
         +
 目标芯片需要的 Module ZIP
@@ -26,7 +39,7 @@ Zephyr 主源码 ZIP
 
 现在进入第三部分：
 
-```
+```text
 目标架构工具链
 ```
 
@@ -40,7 +53,7 @@ Zephyr SDK 本身已经支持按架构拆分。对于 HC32F4A0 这种 Cortex-M4F
 
 我们真正要解决的是：
 
-```
+```text
 我的电脑是什么架构？
         ↓
 我的目标 MCU 是什么架构？
@@ -54,11 +67,17 @@ Zephyr SDK 又提供了哪些公共 Host Tools？
 
 ------
 
-## 5.1\_首先区分两台\_计算机
+<a id="section-5-1"></a>
+
+## 5.1\_区分主机与目标工具链
+
+从运行编译器的电脑和运行固件的 MCU 开始，说明交叉编译及各工具的职责。
+
+### 5.1.1\_首先区分两台\_计算机
 
 做嵌入式开发时，实际上同时存在两个运行环境：
 
-```
+```text
 开发电脑
 Host
 Windows 11 / x86-64
@@ -74,7 +93,7 @@ HC32F4A0 / ARM Cortex-M4F
 
 例如你的开发电脑可能是：
 
-```
+```text
 Windows 11
 Intel/AMD x86-64
 ```
@@ -83,32 +102,32 @@ Intel/AMD x86-64
 
 而是运行在：
 
-```
+```text
 HC32F4A0
 ARM Cortex-M4F
 ```
 
 所以：
 
-```
+```text
 编译器自己运行在哪里？
 ```
 
 答案是：
 
-```
+```text
 Windows x86-64
 ```
 
 但：
 
-```
+```text
 编译器生成谁能执行的机器码？
 ```
 
 答案是：
 
-```
+```text
 ARM Cortex-M4F
 ```
 
@@ -118,11 +137,11 @@ ARM Cortex-M4F
 
 ------
 
-## 5.2\_什么叫交叉编译
+### 5.1.2\_什么叫交叉编译
 
 普通 PC 程序可能是：
 
-```
+```text
 x86-64 PC
    │
    │ gcc
@@ -139,7 +158,7 @@ x86-64 程序
 
 而 MCU 开发则是：
 
-```
+```text
 Windows x86-64 PC
         │
         │ ARM GCC
@@ -152,24 +171,24 @@ HC32F4A0
 
 也就是说：
 
-```
+```text
 Host Architecture != Target Architecture
 ```
 
 因此叫：
 
-```
+```text
 Cross Compilation
 交叉编译
 ```
 
 ------
 
-## 5.3\_所以我们实际上需要两类工具
+### 5.1.3\_所以我们实际上需要两类工具
 
 整个 Zephyr 构建环境可以先划分为：
 
-```
+```text
                  Zephyr 开发工具
                        │
              ┌─────────┴─────────┐
@@ -190,11 +209,11 @@ Cross Compilation
 
 ------
 
-## 5.4\_什么是\_Toolchain
+### 5.1.4\_什么是\_Toolchain
 
 `Toolchain` 中文通常叫：
 
-```
+```text
 工具链
 ```
 
@@ -202,13 +221,13 @@ Cross Compilation
 
 因为从：
 
-```
+```text
 main.c
 ```
 
 最终变成：
 
-```
+```text
 zephyr.bin
 ```
 
@@ -216,7 +235,7 @@ zephyr.bin
 
 大概经历：
 
-```
+```text
 main.c
    │
    │ Compiler
@@ -254,11 +273,11 @@ driver.o
 
 ------
 
-## 5.5\_GCC\_只是其中一个
+### 5.1.5\_GCC\_只是其中一个
 
 例如 ARM Zephyr GNU Toolchain 中会存在类似：
 
-```
+```text
 arm-zephyr-eabi-gcc
 arm-zephyr-eabi-g++
 arm-zephyr-eabi-as
@@ -290,7 +309,7 @@ arm-zephyr-eabi-gdb
 
 所以：
 
-```
+```text
 Toolchain
 ```
 
@@ -298,17 +317,17 @@ Toolchain
 
 ------
 
-## 5.6\_为什么每个程序前面都有\_arm-zephyr-eabi-
+### 5.1.6\_为什么每个程序前面都有\_arm-zephyr-eabi-
 
 例如：
 
-```
+```text
 arm-zephyr-eabi-gcc
 ```
 
 可以拆成：
 
-```
+```text
 arm
 -
 zephyr
@@ -320,7 +339,7 @@ gcc
 
 这里最重要的是第一部分：
 
-```
+```text
 arm
 ```
 
@@ -330,7 +349,7 @@ arm
 
 最后：
 
-```
+```text
 gcc
 ```
 
@@ -340,13 +359,13 @@ gcc
 
 而：
 
-```
+```text
 eabi
 ```
 
 可以理解成：
 
-```
+```text
 Embedded Application Binary Interface
 ```
 
@@ -354,13 +373,13 @@ Embedded Application Binary Interface
 
 对于初学阶段，不需要深入 ABI 的每一个细节，只需要知道：
 
-```
+```text
 arm-zephyr-eabi-gcc
 ```
 
 不是：
 
-```
+```text
 给 Windows PC 编译程序的 gcc
 ```
 
@@ -370,11 +389,11 @@ arm-zephyr-eabi-gcc
 
 ------
 
-## 5.7\_为什么不是\_aarch64-zephyr-elf
+### 5.1.7\_为什么不是\_aarch64-zephyr-elf
 
 Zephyr SDK Release 页面还会看到：
 
-```
+```text
 aarch64-zephyr-elf
 ```
 
@@ -386,31 +405,31 @@ aarch64-zephyr-elf
 
 HC32F4A0：
 
-```
+```text
 ARM Cortex-M4F
 ```
 
 属于：
 
-```
+```text
 32-bit ARM
 ```
 
 因此应该选择：
 
-```
+```text
 arm-zephyr-eabi
 ```
 
 而：
 
-```
+```text
 aarch64-zephyr-elf
 ```
 
 是：
 
-```
+```text
 64-bit ARM
 ```
 
@@ -420,7 +439,7 @@ aarch64-zephyr-elf
 
 所以：
 
-```
+```text
 HC32F4A0
     ↓
 Cortex-M4F
@@ -432,7 +451,7 @@ arm-zephyr-eabi
 
 不是：
 
-```
+```text
 aarch64-zephyr-elf
 ```
 
@@ -442,13 +461,19 @@ Zephyr SDK 官方支持 ARM A/R/M Profiles，同时把具体 GNU 工具链拆分
 
 ------
 
-## 5.8\_一个特别容易混淆的文件名
+<a id="section-5-2"></a>
+
+## 5.2\_选择适合\_Windows\_ARM\_目标的下载包
+
+识别主机平台、目标架构和 SDK bundle，保留 Linux 主机对照以避免选错归档。
+
+### 5.2.1\_一个特别容易混淆的文件名
 
 假设我们在 Windows 11 PC 上开发 HC32F4A0。
 
 Release 页面会看到类似：
 
-```
+```text
 toolchain_gnu_windows-x86_64_arm-zephyr-eabi.7z
 ```
 
@@ -456,7 +481,7 @@ toolchain_gnu_windows-x86_64_arm-zephyr-eabi.7z
 
 其实可以分成：
 
-```
+```text
 toolchain_gnu
 │
 └── GNU 工具链
@@ -479,7 +504,7 @@ arm-zephyr-eabi
 
 所以：
 
-```
+```text
 toolchain_gnu_windows-x86_64_arm-zephyr-eabi.7z
 ```
 
@@ -489,13 +514,13 @@ toolchain_gnu_windows-x86_64_arm-zephyr-eabi.7z
 
 这里同时出现：
 
-```
+```text
 x86_64
 ```
 
 和：
 
-```
+```text
 arm
 ```
 
@@ -503,7 +528,7 @@ arm
 
 它们分别描述：
 
-```
+```text
 x86_64
    ↓
 编译器在哪里运行
@@ -516,30 +541,30 @@ arm
 
 ------
 
-## 5.9\_如果是在\_Linux\_PC\_呢
+### 5.2.2\_如果是在\_Linux\_PC\_呢
 
 假如 Host 是：
 
-```
+```text
 Ubuntu 22.04
 x86-64
 ```
 
 HC32 还是：
 
-```
+```text
 ARM Cortex-M4F
 ```
 
 那么文件名变成类似：
 
-```
+```text
 toolchain_gnu_linux-x86_64_arm-zephyr-eabi.tar.xz
 ```
 
 变化的是：
 
-```
+```text
 Windows
    ↓
 Linux
@@ -547,13 +572,13 @@ Linux
 
 目标仍然是：
 
-```
+```text
 arm-zephyr-eabi
 ```
 
 因此：
 
-```
+```text
 Host OS
 +
 Host CPU
@@ -565,11 +590,11 @@ Target Architecture
 
 ------
 
-## 5.10\_所以选择工具链的判断方法非常简单
+### 5.2.3\_所以选择工具链的判断方法非常简单
 
 对于任何板子，都可以按照：
 
-```
+```text
 我的开发电脑
         ↓
 Host OS
@@ -593,7 +618,7 @@ ARM / RISC-V / Xtensa / x86 ...
 
 对于我们的环境：
 
-```
+```text
 Host OS:
 Windows 11
 
@@ -609,7 +634,7 @@ ARM Cortex-M4F
 
 所以：
 
-```
+```text
 toolchain
     =
 GNU
@@ -623,7 +648,7 @@ arm-zephyr-eabi
 
 最终就是：
 
-```
+```text
 toolchain_gnu_windows-x86_64_arm-zephyr-eabi.7z
 ```
 
@@ -631,11 +656,11 @@ toolchain_gnu_windows-x86_64_arm-zephyr-eabi.7z
 
 ------
 
-## 5.11\_那\_Zephyr\_SDK\_又是什么
+### 5.2.4\_那\_Zephyr\_SDK\_又是什么
 
 现在可以把：
 
-```
+```text
 Zephyr SDK
 ```
 
@@ -645,7 +670,7 @@ Zephyr SDK
 
 而是一套 Zephyr 官方整理好的：
 
-```
+```text
 Zephyr SDK
 │
 ├── Host Tools
@@ -661,13 +686,13 @@ Zephyr SDK
 
 传统方式会直接下载一个很大的：
 
-```
+```text
 GNU SDK Bundle
 ```
 
 里面把很多目标架构一起打包：
 
-```
+```text
 ARM
 AArch64
 RISC-V
@@ -679,7 +704,7 @@ ARC
 
 对于我们只开发：
 
-```
+```text
 HC32F4A0
 ```
 
@@ -687,7 +712,7 @@ HC32F4A0
 
 ------
 
-## 5.12\_Zephyr\_SDK\_现在提供三种\_Bundle
+### 5.2.5\_Zephyr\_SDK\_现在提供三种\_Bundle
 
 当前官方 SDK 文档把 bundle 分成：
 
@@ -699,7 +724,7 @@ HC32F4A0
 
 也就是说：
 
-```
+```text
 minimal
 ```
 
@@ -707,7 +732,7 @@ minimal
 
 它不是：
 
-```
+```text
 什么都没有的 SDK
 ```
 
@@ -719,11 +744,11 @@ minimal
 
 ------
 
-## 5.13\_这正好符合我们的\_小环境\_思想
+### 5.2.6\_这正好符合我们的\_小环境\_思想
 
 传统：
 
-```
+```text
 Zephyr GNU SDK
 │
 ├── Host Tools
@@ -738,7 +763,7 @@ Zephyr GNU SDK
 
 我们的方案：
 
-```
+```text
 Zephyr Minimal SDK
 │
 ├── Host Tools
@@ -753,7 +778,7 @@ arm-zephyr-eabi
 
 这样就实现：
 
-```
+```text
 需要 ARM
     ↓
 只下载 ARM
@@ -761,7 +786,7 @@ arm-zephyr-eabi
 
 而不是：
 
-```
+```text
 需要 ARM
     ↓
 把 Zephyr 支持的所有 CPU 工具链一起下载
@@ -769,29 +794,29 @@ arm-zephyr-eabi
 
 ------
 
-## 5.14\_HC32F4A0\_推荐下载的两个压缩包
+### 5.2.7\_HC32F4A0\_推荐下载的两个压缩包
 
 以当前 Zephyr SDK 1.0.1 和 Windows x86-64 为例，可以在 SDK Release 页面中找到：
 
-```
+```text
 zephyr-sdk-1.0.1_windows-x86_64_minimal.7z
 ```
 
 以及：
 
-```
+```text
 toolchain_gnu_windows-x86_64_arm-zephyr-eabi.7z
 ```
 
 第一个：
 
-```
+```text
 minimal SDK
 ```
 
 负责：
 
-```
+```text
 SDK 基础目录
 Host Tools
 CMake SDK integration
@@ -800,13 +825,13 @@ SDK metadata
 
 第二个：
 
-```
+```text
 arm-zephyr-eabi
 ```
 
 负责：
 
-```
+```text
 ARM GCC
 ARM G++
 assembler
@@ -820,11 +845,12 @@ target libraries
 
 ------
 
-## 5.15\_为什么我们不直接执行\_west\_sdk\_install
+### 5.2.8\_为什么我们不直接执行\_west\_sdk\_install
 
 官方 Getting Started 会告诉用户：
 
-```
+```bash
+# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
 west sdk install
 ```
 
@@ -832,7 +858,7 @@ west sdk install
 
 west 会帮你：
 
-```
+```text
 确定 SDK
         ↓
 下载
@@ -842,7 +868,8 @@ west 会帮你：
 
 还可以指定：
 
-```
+```bash
+# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
 west sdk install --toolchains arm-zephyr-eabi
 ```
 
@@ -854,13 +881,13 @@ west sdk install --toolchains arm-zephyr-eabi
 
 所以我们暂时不选择：
 
-```
+```text
 命令运行过程中在线下载
 ```
 
 而选择：
 
-```
+```text
 浏览器 / 下载工具
         ↓
 把压缩包一次性拿下来
@@ -870,7 +897,7 @@ west sdk install --toolchains arm-zephyr-eabi
 
 这和前面：
 
-```
+```text
 Zephyr ZIP
 CMSIS ZIP
 HC32 HAL ZIP
@@ -880,11 +907,11 @@ HC32 HAL ZIP
 
 ------
 
-## 5.16\_我们的下载目录现在可以设计成这样
+### 5.2.9\_我们的下载目录现在可以设计成这样
 
 例如：
 
-```
+```text
 downloads/
 │
 ├── source/
@@ -899,7 +926,7 @@ downloads/
 
 到这里：
 
-```
+```text
 源码
 +
 编译器
@@ -909,7 +936,7 @@ downloads/
 
 以后即使：
 
-```
+```text
 GitHub 暂时打不开
 ```
 
@@ -917,31 +944,36 @@ GitHub 暂时打不开
 
 ------
 
-## 5.17\_下载完先不要急着安装
+<a id="section-5-3"></a>
+
+## 5.3\_校验并解压\_SDK
+
+在 UCRT64 中核对摘要、查看归档布局，再将 Minimal SDK 与 ARM 工具链放到正确位置。
+
+### 5.3.1\_下载完先不要急着安装
 
 建议首先检查：
 
-```
+```text
 文件是否完整。
 ```
 
-比如 Windows PowerShell：
+比如 UCRT64 Bash：
 
-```
-Get-FileHash `
-    .\zephyr-sdk-1.0.1_windows-x86_64_minimal.7z `
-    -Algorithm SHA256
+```bash
+# 当前位置：存放 SDK 下载包的目录，例如 ~/zephyr-download-lab/downloads/sdk。
+sha256sum ./zephyr-sdk-1.0.1_windows-x86_64_minimal.7z
 ```
 
 逐项解释。
 
 ------
 
-### 5.17.1\_Get-FileHash
+#### (1)\_sha256sum
 
-这是 PowerShell 用来：
+这是 Bash 用来：
 
-```
+```text
 计算文件摘要
 ```
 
@@ -953,25 +985,23 @@ Get-FileHash `
 
 ------
 
-### 5.17.2\_-Algorithm\_SHA256
+#### (2)\_SHA256\_摘要与文件名
 
 表示：
 
-```
-使用 SHA-256 算法
+```text
+sha256sum 固定使用 SHA-256 算法，无需另传算法选项
 ```
 
 最后会输出类似：
 
-```
-Algorithm Hash                                     Path
---------- ----                                     ----
-SHA256    ABCDEF123456...                          ...
+```text
+abcdef123456...  ./zephyr-sdk-1.0.1_windows-x86_64_minimal.7z
 ```
 
 然后和 Zephyr SDK Release 提供的：
 
-```
+```text
 sha256.sum
 ```
 
@@ -981,11 +1011,11 @@ sha256.sum
 
 ------
 
-## 5.18\_为什么需要检查\_SHA256
+### 5.3.2\_为什么需要检查\_SHA256
 
 因为下载大文件时可能发生：
 
-```
+```text
 网络中断
 代理问题
 缓存异常
@@ -995,7 +1025,7 @@ sha256.sum
 
 有时候压缩包甚至：
 
-```
+```text
 可以解压
 ```
 
@@ -1003,19 +1033,19 @@ sha256.sum
 
 SHA256 相当于给文件算一个：
 
-```
+```text
 数字指纹
 ```
 
 如果官方：
 
-```
+```text
 SHA256 = ABCD...
 ```
 
 本地：
 
-```
+```text
 SHA256 = ABCD...
 ```
 
@@ -1023,33 +1053,41 @@ SHA256 = ABCD...
 
 如果不同：
 
-```
+```text
 不要继续安装。
 ```
 
 ------
 
-## 5.19\_解压\_Minimal\_SDK
+### 5.3.3\_解压\_Minimal\_SDK
 
-例如我们准备：
+例如我们在 UCRT64 中准备独立目录（`mkdir -p "$HOME/zephyr-download-lab"`）：
 
+```text
+~/zephyr-download-lab/
 ```
-D:\zephyr_env\
+
+使用已安装的 UCRT64 7-Zip；命令从下载实验根目录执行。先用 `7z l` 查看归档顶层，以下 minimal 包会展开出 SDK 自身目录：
+
+```bash
+cd "$HOME/zephyr-download-lab"
+7z l ./downloads/sdk/zephyr-sdk-1.0.1_windows-x86_64_minimal.7z
+7z x ./downloads/sdk/zephyr-sdk-1.0.1_windows-x86_64_minimal.7z -o.
 ```
 
-使用 7-Zip 解压：
+这里解压的文件仍是：
 
-```
+```text
 zephyr-sdk-1.0.1_windows-x86_64_minimal.7z
 ```
 
 最终得到类似：
 
-```
-D:\zephyr_env\
-└── zephyr-sdk-1.0.1\
-    ├── cmake\
-    ├── hosttools\
+```text
+~/zephyr-download-lab/
+└── zephyr-sdk-1.0.1/
+    ├── cmake/
+    ├── hosttools/
     ├── sdk_version
     ├── sdk_gnu_toolchains
     ├── setup.cmd
@@ -1058,7 +1096,7 @@ D:\zephyr_env\
 
 这时候注意：
 
-```
+```text
 arm-zephyr-eabi
 ```
 
@@ -1066,7 +1104,7 @@ arm-zephyr-eabi
 
 因为我们下载的是：
 
-```
+```text
 minimal
 ```
 
@@ -1076,25 +1114,27 @@ minimal
 
 ------
 
-## 5.20\_如果这时候直接运行\_setup.cmd\_会发生什么
+### 5.3.4\_如果这时候直接运行\_setup.cmd\_会发生什么
 
 例如：
 
-```
-cd D:\zephyr_env\zephyr-sdk-1.0.1
+```bash
+# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
+cd "$HOME/zephyr-download-lab/zephyr-sdk-1.0.1"
 
-.\setup.cmd
+# setup.cmd 是 Windows 批处理文件；仍从 UCRT64 调用 Windows cmd 执行。
+MSYS2_ARG_CONV_EXCL='*' cmd.exe /d /c setup.cmd
 ```
 
 脚本会询问类似：
 
-```
+```text
 Install GNU toolchain?
 ```
 
 如果发现某些 GNU toolchain 不存在，还会继续询问：
 
-```
+```text
 是否安装某个 target toolchain
 ```
 
@@ -1102,7 +1142,7 @@ Install GNU toolchain?
 
 如果你回答：
 
-```
+```text
 Yes
 ```
 
@@ -1110,7 +1150,7 @@ Yes
 
 从当前 Windows `setup.cmd` 的实现可以看到，它会构造：
 
-```
+```text
 https://github.com/zephyrproject-rtos/sdk-ng/releases/...
 ```
 
@@ -1118,7 +1158,7 @@ https://github.com/zephyrproject-rtos/sdk-ng/releases/...
 
 这正是我们想避免的：
 
-```
+```text
 安装进行到一半
         ↓
 突然依赖 GitHub 网络
@@ -1130,25 +1170,31 @@ https://github.com/zephyrproject-rtos/sdk-ng/releases/...
 
 ------
 
-## 5.21\_所以我们的方案是\_工具链也提前下载
+### 5.3.5\_所以我们的方案是\_工具链也提前下载
 
 提前从 Release 页面下载：
 
-```
+```text
 toolchain_gnu_windows-x86_64_arm-zephyr-eabi.7z
 ```
 
 然后将它安装到 Minimal SDK 的：
 
-```
+```text
 gnu/
 ```
 
-目录中。
+目录中。从下载实验根目录执行，先查看 ARM 归档内是否以 `arm-zephyr-eabi/` 为顶层，再选择输出位置；以下命令适用于该顶层布局：
+
+```bash
+7z l ./downloads/sdk/toolchain_gnu_windows-x86_64_arm-zephyr-eabi.7z
+mkdir -p ./zephyr-sdk-1.0.1/gnu
+7z x ./downloads/sdk/toolchain_gnu_windows-x86_64_arm-zephyr-eabi.7z -o./zephyr-sdk-1.0.1/gnu
+```
 
 最终目标应该类似：
 
-```
+```text
 zephyr-sdk-1.0.1/
 │
 ├── hosttools/
@@ -1169,15 +1215,15 @@ zephyr-sdk-1.0.1/
 
 Zephyr SDK 的 Windows 安装脚本本身就是通过检查：
 
-```
-gnu\<toolchain-name>\
+```text
+gnu/<toolchain-name>/
 ```
 
 是否存在来判断工具链是否已经装好；缺失时才进行下载和解压。[GitHub](https://github.com/zephyrproject-rtos/sdk-ng/blob/main/scripts/template_setup_win)
 
 所以对于我们的离线环境：
 
-```
+```text
 先把 ARM 工具链准备好
         ↓
 再执行 SDK 注册配置
@@ -1187,13 +1233,13 @@ gnu\<toolchain-name>\
 
 ------
 
-## 5.22\_为什么目录叫\_gnu/arm-zephyr-eabi
+### 5.3.6\_为什么目录叫\_gnu/arm-zephyr-eabi
 
 这是非常值得理解的一层。
 
 最终：
 
-```
+```text
 zephyr-sdk-1.0.1/
 │
 └── gnu/
@@ -1202,31 +1248,31 @@ zephyr-sdk-1.0.1/
 
 其中：
 
-```
+```text
 gnu
 ```
 
 表示：
 
-```
+```text
 工具链家族
 ```
 
 ：
 
-```
+```text
 arm-zephyr-eabi
 ```
 
 表示：
 
-```
+```text
 目标平台
 ```
 
 以后如果还有 RISC-V：
 
-```
+```text
 gnu/
 ├── arm-zephyr-eabi/
 └── riscv64-zephyr-elf/
@@ -1234,7 +1280,7 @@ gnu/
 
 如果还有 AArch64：
 
-```
+```text
 gnu/
 ├── arm-zephyr-eabi/
 ├── riscv64-zephyr-elf/
@@ -1245,7 +1291,7 @@ gnu/
 
 而更像：
 
-```
+```text
 SDK 框架
     +
 若干可以插入的 Toolchain
@@ -1255,39 +1301,46 @@ SDK 框架
 
 ------
 
-## 5.23\_安装完成以后怎么确认\_ARM\_GCC\_真正存在
+<a id="section-5-4"></a>
+
+## 5.4\_检查目标工具并理解产物
+
+逐项检查 GCC、objcopy 和调试工具，说明 ELF 与烧录、调试的关系。
+
+### 5.4.1\_安装完成以后怎么确认\_ARM\_GCC\_真正存在
 
 假设 SDK 在：
 
-```
-D:\zephyr_env\zephyr-sdk-1.0.1
+```text
+~/zephyr-download-lab/zephyr-sdk-1.0.1
 ```
 
 工具链可能位于：
 
-```
-D:\zephyr_env\
-└── zephyr-sdk-1.0.1\
-    └── gnu\
-        └── arm-zephyr-eabi\
-            └── bin\
+```text
+~/zephyr-download-lab/
+└── zephyr-sdk-1.0.1/
+    └── gnu/
+        └── arm-zephyr-eabi/
+            └── bin/
 ```
 
 进入：
 
-```
-cd D:\zephyr_env\zephyr-sdk-1.0.1\gnu\arm-zephyr-eabi\bin
+```bash
+# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
+cd "$HOME/zephyr-download-lab/zephyr-sdk-1.0.1/gnu/arm-zephyr-eabi/bin"
 ```
 
 查看：
 
-```
-Get-ChildItem
+```text
+ls -al
 ```
 
 应该能够看到：
 
-```
+```text
 arm-zephyr-eabi-gcc.exe
 arm-zephyr-eabi-g++.exe
 arm-zephyr-eabi-ld.exe
@@ -1299,18 +1352,19 @@ arm-zephyr-eabi-gdb.exe
 
 ------
 
-## 5.24\_验证\_GCC
+### 5.4.2\_验证\_GCC
 
 可以直接：
 
-```
-.\arm-zephyr-eabi-gcc.exe --version
+```bash
+# 当前位置：SDK 的 gnu/arm-zephyr-eabi/bin；终端：UCRT64 Bash。
+./arm-zephyr-eabi-gcc.exe --version
 ```
 
 其中：
 
-```
-.\
+```text
+./
 ```
 
 表示：
@@ -1319,7 +1373,7 @@ arm-zephyr-eabi-gdb.exe
 
 ：
 
-```
+```text
 arm-zephyr-eabi-gcc.exe
 ```
 
@@ -1329,7 +1383,7 @@ arm-zephyr-eabi-gcc.exe
 
 ：
 
-```
+```text
 --version
 ```
 
@@ -1339,14 +1393,14 @@ arm-zephyr-eabi-gcc.exe
 
 只要正常输出 GCC 版本：
 
-```
+```text
 arm-zephyr-eabi-gcc ...
 Copyright ...
 ```
 
 至少说明：
 
-```
+```text
 工具链文件存在
 +
 Windows 可以启动这个程序
@@ -1356,17 +1410,18 @@ Windows 可以启动这个程序
 
 ------
 
-## 5.25\_还可以验证\_objcopy
+### 5.4.3\_还可以验证\_objcopy
 
 执行：
 
-```
-.\arm-zephyr-eabi-objcopy.exe --version
+```bash
+# 当前位置：SDK 的 gnu/arm-zephyr-eabi/bin；终端：UCRT64 Bash。
+./arm-zephyr-eabi-objcopy.exe --version
 ```
 
 这一步验证：
 
-```
+```text
 GNU binutils
 ```
 
@@ -1374,20 +1429,20 @@ GNU binutils
 
 因为最终 Zephyr 经常需要把：
 
-```
+```text
 zephyr.elf
 ```
 
 转换成：
 
-```
+```text
 zephyr.bin
 zephyr.hex
 ```
 
 这就是：
 
-```
+```text
 objcopy
 ```
 
@@ -1395,29 +1450,29 @@ objcopy
 
 ------
 
-## 5.26\_Zephyr\_最终编译为什么首先产生\_ELF
+### 5.4.4\_Zephyr\_最终编译为什么首先产生\_ELF
 
 初学者经常只关心：
 
-```
+```text
 .bin
 ```
 
 但编译系统真正核心的最终产物通常是：
 
-```
+```text
 zephyr.elf
 ```
 
 ELF 中不仅有：
 
-```
+```text
 机器码
 ```
 
 还可以保存：
 
-```
+```text
 符号表
 段信息
 调试信息
@@ -1428,7 +1483,7 @@ ELF 中不仅有：
 
 因此：
 
-```
+```text
 编译
    ↓
 zephyr.elf
@@ -1436,7 +1491,7 @@ zephyr.elf
 
 之后才能进一步：
 
-```
+```text
 zephyr.elf
     │
     ├── objcopy
@@ -1460,11 +1515,11 @@ zephyr.elf
 
 ------
 
-## 5.27\_GDB\_为什么也属于\_Target\_Toolchain
+### 5.4.5\_GDB\_为什么也属于\_Target\_Toolchain
 
 例如：
 
-```
+```text
 arm-zephyr-eabi-gdb
 ```
 
@@ -1472,7 +1527,7 @@ GDB 本身在 Windows PC 上运行。
 
 但是它理解：
 
-```
+```text
 ARM 寄存器
 ARM 指令
 ARM ELF
@@ -1481,7 +1536,7 @@ ARM 调试信息
 
 然后通过：
 
-```
+```text
 GDB
   │
   ▼
@@ -1498,7 +1553,7 @@ HC32F4A0
 
 例如 GDB Server 可以由：
 
-```
+```text
 OpenOCD
 pyOCD
 J-Link GDB Server
@@ -1508,13 +1563,13 @@ J-Link GDB Server
 
 这也是为什么：
 
-```
+```text
 GDB
 ```
 
 和：
 
-```
+```text
 OpenOCD
 ```
 
@@ -1522,11 +1577,11 @@ OpenOCD
 
 ------
 
-## 5.28\_GDB\_和\_OpenOCD\_的关系
+### 5.4.6\_GDB\_和\_OpenOCD\_的关系
 
 可以理解成：
 
-```
+```text
 VS Code
     │
     ▼
@@ -1546,7 +1601,7 @@ HC32F4A0
 
 GDB 负责：
 
-```
+```text
 断点
 单步
 变量
@@ -1557,7 +1612,7 @@ GDB 负责：
 
 OpenOCD / pyOCD 负责：
 
-```
+```text
 连接实际 Debug Probe
 控制 SWD/JTAG
 读写目标内存
@@ -1569,17 +1624,23 @@ OpenOCD / pyOCD 负责：
 
 ------
 
-## 5.29\_那么\_Host\_Tools\_为什么不跟\_ARM\_Toolchain\_放在一起
+<a id="section-5-5"></a>
+
+## 5.5\_理解主机工具和目标库的边界
+
+继续区分 Host Tools、sysroot 和 MCU C 库，避免把主机系统库混入目标环境。
+
+### 5.5.1\_那么\_Host\_Tools\_为什么不跟\_ARM\_Toolchain\_放在一起
 
 因为：
 
-```
+```text
 arm-zephyr-eabi
 ```
 
 是与：
 
-```
+```text
 Target Architecture
 ```
 
@@ -1589,7 +1650,7 @@ Target Architecture
 
 例如：
 
-```
+```text
 OpenOCD
 QEMU
 wget
@@ -1598,7 +1659,7 @@ SDK CMake scripts
 
 更接近：
 
-```
+```text
 Host Environment
 ```
 
@@ -1606,7 +1667,7 @@ Host Environment
 
 因此 SDK 结构上把它们分开：
 
-```
+```text
 Host Tools
         +
 Target Toolchain
@@ -1616,11 +1677,11 @@ Target Toolchain
 
 ------
 
-## 5.30\_什么是\_Sysroot
+### 5.5.2\_什么是\_Sysroot
 
 这里顺便解释另一个常见术语：
 
-```
+```text
 sysroot
 ```
 
@@ -1630,7 +1691,7 @@ sysroot
 
 例如一个 Linux 交叉工具链可能存在：
 
-```
+```text
 sysroot/
 ├── usr/
 │   ├── include/
@@ -1640,7 +1701,7 @@ sysroot/
 
 里面放：
 
-```
+```text
 目标平台头文件
 目标平台 C 库
 目标平台链接库
@@ -1648,7 +1709,7 @@ sysroot/
 
 而不是直接使用 Windows：
 
-```
+```text
 C:\Program Files\...
 ```
 
@@ -1656,7 +1717,7 @@ C:\Program Files\...
 
 否则就会出现荒唐情况：
 
-```
+```text
 Windows PC 的库
     ↓
 拿去链接 ARM MCU 程序
@@ -1666,11 +1727,11 @@ Windows PC 的库
 
 ------
 
-## 5.31\_MCU\_Toolchain\_和\_Linux\_Sysroot\_又有区别
+### 5.5.3\_MCU\_Toolchain\_和\_Linux\_Sysroot\_又有区别
 
 对于嵌入式 Linux：
 
-```
+```text
 Target
 =
 Linux
@@ -1678,13 +1739,13 @@ Linux
 
 通常会有比较完整的：
 
-```
+```text
 sysroot
 ```
 
 例如：
 
-```
+```text
 glibc
 /usr/include
 /usr/lib
@@ -1695,7 +1756,7 @@ glibc
 
 但 HC32F4A0：
 
-```
+```text
 Target
 =
 Bare-metal MCU + Zephyr RTOS
@@ -1703,7 +1764,7 @@ Bare-metal MCU + Zephyr RTOS
 
 它没有：
 
-```
+```text
 Linux /usr
 Linux glibc
 Linux dynamic linker
@@ -1715,7 +1776,7 @@ Linux dynamic linker
 
 Zephyr 自己负责：
 
-```
+```text
 Kernel
 Scheduler
 Driver
@@ -1726,7 +1787,7 @@ System API
 
 Toolchain 则提供：
 
-```
+```text
 Compiler
 Binutils
 目标架构运行库
@@ -1737,25 +1798,25 @@ C/C++ 基础支持
 
 ------
 
-## 5.32\_Zephyr\_SDK\_1.0.x\_的\_C\_库
+### 5.5.4\_Zephyr\_SDK\_1.0.x\_的\_C\_库
 
 当前 Zephyr SDK 1.0.x 的 GNU Toolchain 已经以 GCC 14.3 / Binutils 2.43 为基础，并由 SDK 提供 Picolibc；1.0.0 起 SDK 不再提供 Newlib/Newlib-nano。[GitHub](https://github.com/zephyrproject-rtos/sdk-ng/blob/main/release-notes.md?utm_source=chatgpt.com)
 
 不过这里教学时不要误解：
 
-```
+```text
 SDK 中存在 C library
 ```
 
 不意味着：
 
-```
+```text
 所有 Zephyr 工程永远强制使用同一个 libc 配置。
 ```
 
 最终启用哪种 libc 仍然与：
 
-```
+```text
 Zephyr configuration
 Kconfig
 SDK version
@@ -1769,17 +1830,23 @@ SDK version
 
 ------
 
-## 5.33\_setup.cmd\_到底做什么
+<a id="section-5-6"></a>
+
+## 5.6\_让构建系统找到\_SDK
+
+说明 Windows setup 脚本、CMake 注册与环境变量各自做什么。
+
+### 5.6.1\_setup.cmd\_到底做什么
 
 现在终于可以理解：
 
-```
+```text
 setup.cmd
 ```
 
 不是：
 
-```
+```text
 安装一个 Windows 软件
 ```
 
@@ -1787,7 +1854,7 @@ setup.cmd
 
 Zephyr SDK 本身主要就是：
 
-```
+```text
 解压后的目录
 ```
 
@@ -1797,7 +1864,7 @@ Zephyr SDK 本身主要就是：
 
 `setup.cmd` 主要完成：
 
-```
+```text
 检查依赖
         ↓
 选择/安装 Toolchain
@@ -1809,7 +1876,7 @@ Zephyr SDK 本身主要就是：
 
 当前 Windows setup 脚本还提供：
 
-```
+```text
 /t <toolchain>
 /h
 /c
@@ -1819,23 +1886,23 @@ Zephyr SDK 本身主要就是：
 
 ------
 
-## 5.34\_什么叫\_向\_CMake\_注册\_SDK
+### 5.6.2\_什么叫\_向\_CMake\_注册\_SDK
 
 Zephyr 构建最终需要回答：
 
-```
+```text
 Zephyr SDK 在哪里？
 ```
 
 假设：
 
-```
-D:\zephyr_env\zephyr-sdk-1.0.1
+```text
+~/zephyr-download-lab/zephyr-sdk-1.0.1
 ```
 
 如果 CMake 已经登记了这个 SDK：
 
-```
+```text
 Zephyr Build
       │
       ▼
@@ -1852,7 +1919,7 @@ zephyr-sdk-1.0.1
 
 如果没有注册，也可以显式告诉它：
 
-```
+```text
 ZEPHYR_SDK_INSTALL_DIR
 ```
 
@@ -1860,46 +1927,46 @@ ZEPHYR_SDK_INSTALL_DIR
 
 ------
 
-## 5.35\_ZEPHYR\_SDK\_INSTALL\_DIR\_是什么
+### 5.6.3\_ZEPHYR\_SDK\_INSTALL\_DIR\_是什么
 
-例如 PowerShell：
+例如 Bash：
 
-```
-$env:ZEPHYR_SDK_INSTALL_DIR =
-    "D:\zephyr_env\zephyr-sdk-1.0.1"
+```bash
+# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
+export ZEPHYR_SDK_INSTALL_DIR="$(cygpath -m "$HOME/zephyr-download-lab/zephyr-sdk-1.0.1")"
 ```
 
 拆开解释。
 
-```
-$env:
+```text
+export
 ```
 
 表示：
 
-```
-PowerShell 环境变量
+```text
+把变量导出给当前 Bash 后续启动的子进程
 ```
 
 ：
 
-```
+```text
 ZEPHYR_SDK_INSTALL_DIR
 ```
 
 表示：
 
-```
+```text
 Zephyr SDK 安装目录
 ```
 
 ：
 
-```
-"D:\zephyr_env\zephyr-sdk-1.0.1"
+```text
+"$(cygpath -m "$HOME/zephyr-download-lab/zephyr-sdk-1.0.1")"
 ```
 
-就是实际路径。
+是将实验 SDK 目录转为 Windows 原生工具可读取的路径。`$HOME` 在双引号中展开，`cygpath -m` 输出盘符和正斜杠；实际 SDK 放在别处时，替换为自己的目录。
 
 整句话相当于告诉 Zephyr：
 
@@ -1907,12 +1974,13 @@ Zephyr SDK 安装目录
 
 ------
 
-## 5.36\_ZEPHYR\_TOOLCHAIN\_VARIANT\_又是什么
+### 5.6.4\_ZEPHYR\_TOOLCHAIN\_VARIANT\_又是什么
 
 另外还会看到：
 
-```
-$env:ZEPHYR_TOOLCHAIN_VARIANT = "zephyr"
+```bash
+# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
+export ZEPHYR_TOOLCHAIN_VARIANT="zephyr"
 ```
 
 意思是：
@@ -1921,13 +1989,13 @@ $env:ZEPHYR_TOOLCHAIN_VARIANT = "zephyr"
 
 因为 Zephyr 不只支持：
 
-```
+```text
 Zephyr SDK
 ```
 
 也可以使用：
 
-```
+```text
 GNU Arm Embedded
 LLVM
 IAR
@@ -1937,13 +2005,13 @@ Host GCC
 
 所以这个变量实际上是在告诉构建系统：
 
-```
+```text
 到底选择哪一类 Toolchain。
 ```
 
 官方文档也说明，可以设置：
 
-```
+```text
 ZEPHYR_TOOLCHAIN_VARIANT=zephyr
 ```
 
@@ -1951,33 +2019,39 @@ ZEPHYR_TOOLCHAIN_VARIANT=zephyr
 
 ------
 
-## 5.37\_我们最终推荐的\_HC32F4A0\_工具链环境
+<a id="section-5-7"></a>
+
+## 5.7\_汇总最小工具链环境
+
+把所选下载包、目录和剩余主机依赖放回完整环境中。
+
+### 5.7.1\_我们最终推荐的\_HC32F4A0\_工具链环境
 
 因此第一版教学环境可以收敛成：
 
-```
-D:\zephyr_env\
+```text
+~/zephyr-download-lab/
 │
-├── zephyr\
+├── zephyr/
 │
-├── modules\
-│   └── hal\
-│       ├── cmsis_6\
-│       └── hc32\
+├── modules/
+│   └── hal/
+│       ├── cmsis_6/
+│       └── hc32/
 │
-└── zephyr-sdk-1.0.1\
+└── zephyr-sdk-1.0.1/
     │
-    ├── hosttools\
+    ├── hosttools/
     │
-    ├── cmake\
+    ├── cmake/
     │
-    └── gnu\
-        └── arm-zephyr-eabi\
+    └── gnu/
+        └── arm-zephyr-eabi/
 ```
 
 重点是：
 
-```
+```text
 没有：
 
 gnu/riscv64-zephyr-elf
@@ -1989,17 +2063,17 @@ gnu/arc-...
 
 因为：
 
-```
+```text
 当前开发对象只有 HC32F4A0。
 ```
 
 ------
 
-## 5.38\_到这里我们的\_小环境\_已经非常清晰
+### 5.7.2\_到这里我们的\_小环境\_已经非常清晰
 
 下载集合现在变成：
 
-```
+```text
 HC32F4A0 Zephyr Mini Environment
 
 Source
@@ -2017,7 +2091,7 @@ Tool
 
 整个决策过程是：
 
-```
+```text
 选择 MCU
    ↓
 HC32F4A0
@@ -2045,7 +2119,7 @@ toolchain_gnu_windows-x86_64_arm-zephyr-eabi.7z
 
 这个逻辑比：
 
-```
+```text
 去 Zephyr 网站
 ↓
 把 SDK 全下载下来
@@ -2055,13 +2129,13 @@ toolchain_gnu_windows-x86_64_arm-zephyr-eabi.7z
 
 因为以后目标换成：
 
-```
+```text
 RISC-V
 ```
 
 他自己就知道：
 
-```
+```text
 Target Architecture 变了
         ↓
 Toolchain 也应该变
@@ -2071,11 +2145,11 @@ Toolchain 也应该变
 
 ------
 
-## 5.39\_这一阶段我们仍然不需要\_Git
+### 5.7.3\_这一阶段我们仍然不需要\_Git
 
 注意现在整个环境：
 
-```
+```text
 Zephyr ZIP
 CMSIS ZIP
 HC32 ZIP
@@ -2087,7 +2161,7 @@ ARM Toolchain 7z
 
 所以：
 
-```
+```text
 GitHub 的 git clone 链路
 ```
 
@@ -2095,7 +2169,7 @@ GitHub 的 git clone 链路
 
 我们的思想始终没有变化：
 
-```
+```text
 第一目标：
 先获得可以工作的源码和工具链
 
@@ -2108,7 +2182,7 @@ GitHub 的 git clone 链路
 
 而不是：
 
-```
+```text
 第一步：
 先把 Git 世界搭完整
 
@@ -2117,11 +2191,11 @@ GitHub 的 git clone 链路
 
 ------
 
-## 5.40\_现在只剩下一个非常关键的问题
+### 5.7.4\_现在只剩下一个非常关键的问题
 
 到目前为止我们已经拥有：
 
-```
+```text
 源码
 Modules
 ARM Toolchain
@@ -2130,7 +2204,7 @@ SDK Host Tools
 
 但是电脑上还有：
 
-```
+```text
 Python
 CMake
 Ninja
@@ -2142,7 +2216,7 @@ Devicetree Compiler
 
 它们和：
 
-```
+```text
 Zephyr SDK
 ```
 
@@ -2150,7 +2224,7 @@ Zephyr SDK
 
 哪些属于：
 
-```
+```text
 必须安装
 ```
 
@@ -2158,7 +2232,7 @@ Zephyr SDK
 
 哪些其实：
 
-```
+```text
 SDK 已经带了
 ```
 
@@ -2166,7 +2240,7 @@ SDK 已经带了
 
 哪些属于：
 
-```
+```text
 Python package
 ```
 
@@ -2174,7 +2248,7 @@ Python package
 
 哪些只有：
 
-```
+```text
 Linux 需要
 ```
 
@@ -2182,7 +2256,7 @@ Linux 需要
 
 最容易犯的错误就是把：
 
-```
+```text
 Zephyr SDK
 ```
 

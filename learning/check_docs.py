@@ -76,15 +76,17 @@ def main():
         visible = re.sub(r"```.*?```", "", body, flags=re.S)
         for target in re.findall(r"\]\(([^)]+)\)", visible):
             target = target.strip("<>")
-            if urlsplit(target).scheme or target.startswith("#"):
+            if urlsplit(target).scheme:
                 continue
             filename, _, anchor = unquote(target).partition("#")
-            linked = path.parent / filename
+            linked = path.parent / filename if filename else path
             if not linked.exists():
                 errors.append(f"{path.relative_to(ROOT)}: 失效链接 {target}")
             elif anchor and linked.suffix == ".md":
-                headings = re.findall(r"^#+ (.+)$", linked.read_text(encoding="utf-8"), re.M)
-                if anchor not in headings:
+                linked_body = linked.read_text(encoding="utf-8")
+                headings = re.findall(r"^#+ (.+)$", linked_body, re.M)
+                explicit_ids = re.findall(r'<a\s+id=[\"\x27]([^\"\x27]+)[\"\x27]', linked_body)
+                if anchor not in headings and anchor not in explicit_ids:
                     errors.append(f"{path.name}: 无目标标题 {target}")
         for line_number, line in enumerate(body.splitlines(), 1):
             if line.rstrip() != line and not line.endswith("  "):

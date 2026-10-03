@@ -1,6 +1,6 @@
 ---
 id: zephyr-download-notes-03
-title: Zephyr 环境下载：ZIP 优先、Git 按需补全
+title: ZIP 下载与 Git 元数据接入
 kind: reference
 status: draft
 domains: [zephyr, tools]
@@ -8,23 +8,42 @@ domains: [zephyr, tools]
 
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 
-# 第3章\_Zephyr\_环境下载\_ZIP\_优先\_Git\_按需补全
+# 第3章\_ZIP\_下载与\_Git\_元数据接入
+
+本章操作终端统一为 **MSYS2 UCRT64 Bash**，主机仍是 Windows x64。独立下载实验使用 `~/zephyr-download-lab`；路径、工具准备和当前 HC32 集成工程的区别见[环境与目录约定](环境与目录约定.md)。下文保留的版本、模块名和仓库地址示例须结合实际清单核对。
 
 下载前先按[本地代理配置](代理配置.md)核对 v2rayN 的 `10808` 混合端口，配置 Git 并测试连接；浏览器下载 ZIP 还需使用系统代理或浏览器代理。
 
 > 本篇为下载方案的参考草稿，保留原有讨论与示例，尚未完成逐项版本核验和完整安装实测。当前 HC32 工程请按[项目安装流程](../../project-docs/environment.md)操作；已整理的入门主线见[工程准备大纲](../P01_zephyr_make_project/大纲.md)。
 
-可以，而且我认为这非常适合你这份教学文档。对于国内访问 GitHub 不稳定的场景，可以把 Zephyr 环境搭建明确设计成：
+**本章目录**
+
+- [3.1 先用固定版本的 ZIP 取得源码](#section-3-1)
+- [3.2 按清单补齐模块](#section-3-2)
+- [3.3 准备工具链与构建入口](#section-3-3)
+- [3.4 按需补充 Git 元数据](#section-3-4)
+- [3.5 把元数据接回源码目录](#section-3-5)
+- [3.6 逐步扩展历史](#section-3-6)
+- [3.7 保存可复用的下载环境](#section-3-7)
+
+
+对于国内访问 GitHub 不稳定的场景，本专题把 Zephyr 环境搭建明确设计成：
 
 > **源码下载与 Git 历史下载解耦。先用浏览器 ZIP 快速获得“能编译的源码环境”，Git 版本数据库以后需要时再按需补。**
 
 这和传统的“先 `git clone`，再 `west update`”思路完全不同。
 
-## 3.1\_为什么要把\_源码\_和\_Git\_分开
+<a id="section-3-1"></a>
+
+## 3.1\_先用固定版本的\_ZIP\_取得源码
+
+先明确 ZIP 包含什么、缺少什么，再选择固定版本和独立目录。
+
+### 3.1.1\_为什么要把\_源码\_和\_Git\_分开
 
 很多初学者容易认为：
 
-```
+```text
 Git 仓库 = 源代码
 ```
 
@@ -32,7 +51,7 @@ Git 仓库 = 源代码
 
 一个 Git 工程大致有两部分：
 
-```
+```text
 zephyr/
 │
 ├── arch/
@@ -48,7 +67,7 @@ zephyr/
 
 其中：
 
-```
+```text
 arch/
 drivers/
 kernel/
@@ -57,7 +76,7 @@ kernel/
 
 才是我们真正拿来：
 
-```
+```text
 阅读
 修改
 编译
@@ -67,13 +86,13 @@ kernel/
 
 而：
 
-```
+```text
 .git/
 ```
 
 是 Git 自己的数据库，其中保存：
 
-```
+```text
 commit
 tree
 blob
@@ -85,13 +104,13 @@ remote
 
 所以理论上：
 
-```
+```text
 没有 .git
 ```
 
 并不会导致：
 
-```
+```text
 C/C++ 源代码无法编译。
 ```
 
@@ -99,11 +118,11 @@ Git 是源码管理工具，不是 C 编译器。
 
 ------
 
-## 3.2\_GitHub\_的\_Download\_ZIP\_得到的是什么
+### 3.1.2\_GitHub\_的\_Download\_ZIP\_得到的是什么
 
 在 GitHub 页面：
 
-```
+```text
 Code
   ↓
 Download ZIP
@@ -115,7 +134,7 @@ Download ZIP
 
 比如：
 
-```
+```text
 zephyr/
 ├── arch/
 ├── boards/
@@ -129,13 +148,14 @@ zephyr/
 
 但是不会包含：
 
-```
+```text
 .git/
 ```
 
 所以它不能直接执行：
 
-```
+```bash
+# 当前位置：待检查的 Zephyr 源码根目录；终端：UCRT64 Bash。
 git log
 git diff
 git status
@@ -145,7 +165,7 @@ git pull
 
 因为 Git 不知道：
 
-```
+```text
 这些文件来自哪个 commit
 它们以前是什么样
 远程仓库在哪里
@@ -154,7 +174,7 @@ git pull
 
 但它完全可以用来：
 
-```
+```text
 阅读 Zephyr
 配置 Board
 编译 Zephyr
@@ -165,7 +185,7 @@ Zephyr 官方也明确支持**不使用 west/Git 进行构建**；这种情况�
 
 ------
 
-## 3.3\_我们推荐的下载模型
+### 3.1.3\_我们推荐的下载模型
 
 教学环境可以设计成四个阶段：
 
@@ -197,7 +217,7 @@ arm-zephyr-eabi
 
 于是最开始根本不需要：
 
-```
+```text
 git clone zephyr
 west update 全仓库
 完整 Git 历史
@@ -205,11 +225,11 @@ west update 全仓库
 
 ------
 
-## 3.4\_第一步\_不要直接下载\_main\_的\_ZIP
+### 3.1.4\_第一步\_不要直接下载\_main\_的\_ZIP
 
 GitHub 上确实可以：
 
-```
+```text
 Code → Download ZIP
 ```
 
@@ -217,19 +237,19 @@ Code → Download ZIP
 
 如果当前页面是：
 
-```
+```text
 main
 ```
 
 那么你今天下载：
 
-```
+```text
 main.zip
 ```
 
 和半年以后下载：
 
-```
+```text
 main.zip
 ```
 
@@ -239,13 +259,13 @@ main.zip
 
 例如：
 
-```
+```text
 Zephyr v4.x.x
 ```
 
 然后进入对应：
 
-```
+```text
 Tags
 或者
 Releases
@@ -255,7 +275,7 @@ Releases
 
 再执行：
 
-```
+```text
 Code
 →
 Download ZIP
@@ -263,45 +283,45 @@ Download ZIP
 
 这样我们下载的是：
 
-```
+```text
 固定版本源码快照
 ```
 
 而不是：
 
-```
+```text
 不断变化的 main
 ```
 
 ------
 
-## 3.5\_下载之后\_可以先完全不管\_Git
+### 3.1.5\_下载之后\_可以先完全不管\_Git
 
 假设下载：
 
-```
+```text
 zephyr-vX.Y.Z.zip
 ```
 
 解压：
 
-```
-D:\zephyr_env\
-└── zephyr\
-    ├── arch\
-    ├── boards\
-    ├── drivers\
-    ├── kernel\
-    ├── soc\
-    ├── scripts\
-    ├── subsys\
+```text
+~/zephyr-download-lab/
+└── zephyr/
+    ├── arch/
+    ├── boards/
+    ├── drivers/
+    ├── kernel/
+    ├── soc/
+    ├── scripts/
+    ├── subsys/
     └── west.yml
 ```
 
 此时：
 
-```
-D:\zephyr_env\zephyr\.git
+```text
+~/zephyr-download-lab/zephyr/.git
 ```
 
 根本不存在。
@@ -310,13 +330,13 @@ D:\zephyr_env\zephyr\.git
 
 我们的第一目标不是：
 
-```
+```text
 git status 能不能执行
 ```
 
 而是：
 
-```
+```text
 源码是否完整
 依赖是否完整
 编译器是否完整
@@ -325,23 +345,29 @@ git status 能不能执行
 
 ------
 
-## 3.6\_第二步\_根据\_MCU\_决定还要下载什么
+<a id="section-3-2"></a>
+
+## 3.2\_按清单补齐模块
+
+主源码就位后，依照匹配版本的清单补充 CMSIS 与厂商 HAL。
+
+### 3.2.1\_第二步\_根据\_MCU\_决定还要下载什么
 
 例如目标芯片型号：
 
-```
+```text
 HC32F4A0PITB
 ```
 
 CPU：
 
-```
+```text
 ARM Cortex-M4F
 ```
 
 那么先推导：
 
-```
+```text
 HC32F4A0
     │
     ▼
@@ -360,13 +386,13 @@ ARM Cortex-M4F
 
 这里：
 
-```
+```text
 Zephyr ARM 架构代码
 ```
 
 已经包含在刚才的：
 
-```
+```text
 zephyr.zip
 ```
 
@@ -374,7 +400,7 @@ zephyr.zip
 
 接下来主要找：
 
-```
+```text
 CMSIS
 HC32 HAL/DDL
 ```
@@ -386,13 +412,13 @@ HC32 HAL/DDL
 > 1. 怎么知道是CMSIS？有什么说法吗？是怎么把CMSIS和芯片型号绑定的？这里解释清楚
 > 2. HC32 HAL/DDL 为什么是这个？也解释清楚，无论是行业传统还是说芯片公司自己的出产物啥的，你都要这里解释清楚，完成逻辑闭环
 
-## 3.7\_怎么知道\_Zephyr\_需要哪个版本的\_CMSIS
+### 3.2.2\_怎么知道\_Zephyr\_需要哪个版本的\_CMSIS
 
 不要凭感觉下载最新版 CMSIS。
 
 打开：
 
-```
+```text
 zephyr/west.yml
 ```
 
@@ -404,7 +430,7 @@ zephyr/west.yml
 
 里面会看到类似：
 
-```
+```text
 - name: cmsis
   revision: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
   path: modules/hal/cmsis
@@ -412,13 +438,13 @@ zephyr/west.yml
 
 这里：
 
-```
+```text
 name: cmsis
 ```
 
 表示项目名字。
 
-```
+```text
 revision:
 ```
 
@@ -428,7 +454,7 @@ revision:
 
 可能是：
 
-```
+```text
 tag
 branch
 commit SHA
@@ -436,7 +462,7 @@ commit SHA
 
 而：
 
-```
+```text
 path: modules/hal/cmsis
 ```
 
@@ -448,11 +474,11 @@ path: modules/hal/cmsis
 
 ------
 
-## 3.8\_手工下载\_CMSIS\_ZIP
+### 3.2.3\_手工下载\_CMSIS\_ZIP
 
 假设 `west.yml` 指定：
 
-```
+```text
 cmsis
 revision = ABCDEF123456...
 ```
@@ -461,7 +487,7 @@ revision = ABCDEF123456...
 
 切换到：
 
-```
+```text
 ABCDEF123456...
 ```
 
@@ -469,7 +495,7 @@ ABCDEF123456...
 
 然后：
 
-```
+```text
 Code
 →
 Download ZIP
@@ -479,19 +505,19 @@ Download ZIP
 
 最后整理目录：
 
-```
-D:\zephyr_env\
+```text
+~/zephyr-download-lab/
 │
-├── zephyr\
+├── zephyr/
 │
-└── modules\
-    └── hal\
-        └── cmsis\
+└── modules/
+    └── hal/
+        └── cmsis/
 ```
 
 这里目录最好与：
 
-```
+```text
 path: modules/hal/cmsis
 ```
 
@@ -501,17 +527,17 @@ path: modules/hal/cmsis
 
 ------
 
-## 3.9\_HC32\_HAL\_也是同样处理
+### 3.2.4\_HC32\_HAL\_也是同样处理
 
 假设我们的 HC32 支持单独存在：
 
-```
+```text
 hal_hc32
 ```
 
 同样：
 
-```
+```text
 GitHub
 →
 固定 commit/tag
@@ -521,20 +547,20 @@ Download ZIP
 
 然后：
 
-```
-D:\zephyr_env\
+```text
+~/zephyr-download-lab/
 │
-├── zephyr\
+├── zephyr/
 │
-└── modules\
-    └── hal\
-        ├── cmsis\
-        └── hc32\
+└── modules/
+    └── hal/
+        ├── cmsis/
+        └── hc32/
 ```
 
 最终我们只下载：
 
-```
+```text
 Zephyr
 CMSIS
 HC32 HAL
@@ -542,7 +568,7 @@ HC32 HAL
 
 完全没有：
 
-```
+```text
 STM32 HAL
 NXP HAL
 Nordic HAL
@@ -553,17 +579,18 @@ Renesas HAL
 
 ------
 
-## 3.10\_这实际上已经实现\_人工\_west\_update
+### 3.2.5\_这实际上已经实现\_人工\_west\_update
 
 官方：
 
-```
+```bash
+# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
 west update
 ```
 
 做的事情可以粗略理解为：
 
-```
+```text
 读取 west.yml
      │
      ▼
@@ -581,7 +608,7 @@ west update
 
 我们现在人工做的是：
 
-```
+```text
 读取 west.yml
      │
      ▼
@@ -599,7 +626,7 @@ west update
 
 结果对于：
 
-```
+```text
 编译器
 ```
 
@@ -607,7 +634,7 @@ west update
 
 编译器关心的是：
 
-```
+```text
 文件在不在
 路径对不对
 版本兼不兼容
@@ -615,7 +642,8 @@ west update
 
 它不关心这些文件是不是通过：
 
-```
+```bash
+# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
 git clone
 ```
 
@@ -623,13 +651,19 @@ git clone
 
 ------
 
-## 3.11\_第三步\_工具链也直接下载压缩包
+<a id="section-3-3"></a>
+
+## 3.3\_准备工具链与构建入口
+
+模块准备只是构建条件的一部分，还需要 SDK、主机工具和实际存在的板级移植。
+
+### 3.3.1\_第三步\_工具链也直接下载压缩包
 
 这一点现在 Zephyr SDK 非常适合。
 
 Zephyr SDK 1.0.1 官方 Release 已经把：
 
-```
+```text
 完整 SDK
 Minimal SDK
 各个架构工具链
@@ -639,19 +673,19 @@ Minimal SDK
 
 例如 Windows x86-64 可以单独获得：
 
-```
+```text
 zephyr-sdk-1.0.1_windows-x86_64_minimal.7z
 ```
 
 以及：
 
-```
+```text
 toolchain_gnu_windows-x86_64_arm-zephyr-eabi.7z
 ```
 
 也就是说我们完全没有必要下载：
 
-```
+```text
 RISC-V
 Xtensa
 x86
@@ -662,7 +696,7 @@ AArch64
 
 HC32F4A0 是 Cortex-M4F，只需要：
 
-```
+```text
 arm-zephyr-eabi
 ```
 
@@ -670,13 +704,13 @@ arm-zephyr-eabi
 
 ------
 
-## 3.12\_为什么还需要\_Minimal\_SDK
+### 3.3.2\_为什么还需要\_Minimal\_SDK
 
 Zephyr SDK 不只是 GCC。
 
 它还有：
 
-```
+```text
 Host Tools
 CMake integration
 OpenOCD 等辅助工具
@@ -685,7 +719,7 @@ SDK metadata
 
 官方现在把 bundle 分成：
 
-```
+```text
 GNU
 LLVM
 Minimal
@@ -693,7 +727,7 @@ Minimal
 
 其中：
 
-```
+```text
 minimal
 ```
 
@@ -701,7 +735,7 @@ minimal
 
 因此对于我们的环境：
 
-```
+```text
 Minimal SDK
 +
 arm-zephyr-eabi
@@ -711,7 +745,7 @@ arm-zephyr-eabi
 
 即：
 
-```
+```text
 Zephyr 开发环境
 │
 ├── Zephyr ZIP
@@ -729,37 +763,37 @@ Zephyr 开发环境
 
 ------
 
-## 3.13\_这时候完全可以开始编译
+### 3.3.3\_这时候完全可以开始编译
 
 这时候目录可能是：
 
-```
-D:\zephyr_hc32\
+```text
+~/zephyr-download-lab/
 │
-├── zephyr\
+├── zephyr/
 │
-├── modules\
-│   └── hal\
-│       ├── cmsis\
-│       └── hc32\
+├── modules/
+│   └── hal/
+│       ├── cmsis/
+│       └── hc32/
 │
-├── sdk\
-│   └── zephyr-sdk-1.0.1\
+├── sdk/
+│   └── zephyr-sdk-1.0.1/
 │
-├── app\
+├── app/
 │
-└── build\
+└── build/
 ```
 
 没有：
 
-```
+```text
 .git
 ```
 
 也没有：
 
-```
+```text
 .west
 ```
 
@@ -767,20 +801,24 @@ D:\zephyr_hc32\
 
 官方明确给出了不用 west 的构建形式：
 
-```
-cmake -B build -GNinja -DZEPHYR_MODULES=module1;module2 app
+```text
+cmake -B build -GNinja "-DZEPHYR_MODULES=module1;module2" app
 ninja -C build
-``` :chatgpt-content-reference{index="3"}
+```
 
+
+以下仍是独立教学目录的构建示例：从 `~/zephyr-download-lab` 执行，先按 P06 设置 Python 和 SDK。只有 `zephyr/` 已包含 HC32 移植、两个模块及 `app/` 已准备好时才适用；官方原版 ZIP 不会自动包含本项目的板级支持。当前集成工程直接使用 `python scripts/project_env.py build`。
+
+Bash 中必须给带分号的整个 `-D` 参数加引号；`cygpath -m` 将目录换成 Windows CMake 能读取的盘符加正斜杠形式。
 
 例如概念上：
 
-```powershell
-cmake `
-    -B build `
-    -GNinja `
-    -DBOARD=uyup_rpi_a/hc32f4a0pitb `
-    "-DZEPHYR_MODULES=D:/zephyr_hc32/modules/hal/cmsis;D:/zephyr_hc32/modules/hal/hc32" `
+```bash
+cmake \
+    -B build \
+    -GNinja \
+    -DBOARD=uyup_rpi_a/hc32f4a0pitb \
+    "-DZEPHYR_MODULES=$(cygpath -m "$PWD/modules/hal/cmsis");$(cygpath -m "$PWD/modules/hal/hc32")" \
     app
 
 cmake --build build
@@ -792,11 +830,17 @@ cmake --build build
 
 ------
 
-## 3.14\_那什么时候才需要\_Git
+<a id="section-3-4"></a>
+
+## 3.4\_按需补充\_Git\_元数据
+
+先说明何时需要 Git，再理解临时仓库和各个减量参数。
+
+### 3.4.1\_那什么时候才需要\_Git
 
 当你开始需要这些能力：
 
-```
+```text
 git status
 git diff
 git log
@@ -808,7 +852,7 @@ git blame
 
 才需要：
 
-```
+```text
 .git
 ```
 
@@ -820,7 +864,7 @@ git blame
 
 而且这恰恰可以利用：
 
-```
+```text
 partial clone
 ```
 
@@ -828,14 +872,14 @@ partial clone
 
 ------
 
-## 3.15\_最重要的方案\_ZIP\_源码\_+\_Blobless\_Git\_Metadata
+### 3.4.2\_最重要的方案\_ZIP\_源码\_+\_Blobless\_Git\_Metadata
 
 这是我最推荐写进教学文档的高级方案。
 
 假设现在：
 
-```
-D:\zephyr_hc32\zephyr\
+```text
+~/zephyr-download-lab/zephyr/
 ```
 
 已经是我们从 ZIP 解压出来的完整源码。
@@ -844,7 +888,7 @@ D:\zephyr_hc32\zephyr\
 
 只想补：
 
-```
+```text
 commit
 tree
 branch
@@ -858,7 +902,7 @@ remote
 
 这时候使用：
 
-```
+```text
 --filter=blob:none
 ```
 
@@ -866,7 +910,7 @@ remote
 
 Git 官方称之为：
 
-```
+```text
 blobless partial clone
 ```
 
@@ -874,11 +918,11 @@ GitHub 也支持这种方式。GitHub 的说明是：`--filter=blob:none` 会先
 
 ------
 
-## 3.16\_什么叫\_blob
+### 3.4.3\_什么叫\_blob
 
 Git 内部大致有：
 
-```
+```text
 commit
 tree
 blob
@@ -886,7 +930,7 @@ blob
 
 可以暂时理解：
 
-```
+```text
 commit
 =
 一次版本记录
@@ -902,7 +946,7 @@ blob
 
 而通常占空间比较大的恰恰是：
 
-```
+```text
 blob
 ```
 
@@ -910,7 +954,7 @@ blob
 
 所以：
 
-```
+```text
 --filter=blob:none
 ```
 
@@ -922,31 +966,32 @@ Git 真正需要某个文件内容时，再从服务器拿。
 
 ------
 
-## 3.17\_已经有\_ZIP\_后\_推荐使用临时\_Metadata\_仓库
+### 3.4.4\_已经有\_ZIP\_后\_推荐使用临时\_Metadata\_仓库
 
 假设我们已经有：
 
-```
-D:\zephyr_hc32\zephyr
+```text
+~/zephyr-download-lab/zephyr
 ```
 
 不要直接在里面做完整 clone。
 
 另外建立一个临时目录：
 
-```
-D:\zephyr_hc32\git-meta
+```text
+~/zephyr-download-lab/git-meta
 ```
 
-执行：
+先在实验根目录核对 ZIP 的标签或提交；`vX.Y.Z` 是待替换的版本占位符，必须与 ZIP 对应，再执行：
 
-```
-git clone `
-    --filter=blob:none `
-    --no-checkout `
-    --depth 1 `
-    --branch vX.Y.Z `
-    https://github.com/zephyrproject-rtos/zephyr.git `
+```bash
+# 当前位置：~/zephyr-download-lab；以下续行符为 Bash 的反斜杠。
+git clone \
+    --filter=blob:none \
+    --no-checkout \
+    --depth 1 \
+    --branch vX.Y.Z \
+    https://github.com/zephyrproject-rtos/zephyr.git \
     git-meta
 ```
 
@@ -954,9 +999,9 @@ git clone `
 
 ------
 
-## 3.18\_filter=blob:none
+### 3.4.5\_filter=blob:none
 
-```
+```text
 不要立即下载文件内容 blob。
 ```
 
@@ -966,17 +1011,18 @@ git clone `
 
 ------
 
-## 3.19\_no-checkout
+### 3.4.6\_no-checkout
 
 普通：
 
-```
+```bash
+# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
 git clone
 ```
 
 最后还会进行：
 
-```
+```text
 checkout
 ```
 
@@ -984,7 +1030,7 @@ checkout
 
 但是：
 
-```
+```text
 我们已经有源码。
 ```
 
@@ -992,7 +1038,7 @@ checkout
 
 于是使用：
 
-```
+```text
 --no-checkout
 ```
 
@@ -1004,17 +1050,17 @@ GitHub 也专门展示过 `--filter=blob:none --no-checkout` 的组合用法。[
 
 ------
 
-## 3.20\_depth\_1
+### 3.4.7\_depth\_1
 
 这里进一步限制：
 
-```
+```text
 历史 commit 深度 = 1
 ```
 
 所以我们开始甚至连完整：
 
-```
+```text
 commit 历史
 ```
 
@@ -1024,15 +1070,16 @@ commit 历史
 
 ------
 
-## 3.21\_整条命令的中文含义
+### 3.4.8\_整条命令的中文含义
 
-```
-git clone `
-    --filter=blob:none `
-    --no-checkout `
-    --depth 1 `
-    --branch vX.Y.Z `
-    https://github.com/zephyrproject-rtos/zephyr.git `
+```bash
+# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
+git clone \
+    --filter=blob:none \
+    --no-checkout \
+    --depth 1 \
+    --branch vX.Y.Z \
+    https://github.com/zephyrproject-rtos/zephyr.git \
     git-meta
 ```
 
@@ -1044,7 +1091,8 @@ git clone `
 
 这时候真正使用 GitHub 网络传输的内容已经比普通：
 
-```
+```bash
+# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
 git clone
 ```
 
@@ -1052,24 +1100,30 @@ git clone
 
 ------
 
-## 3.22\_然后把.git\_接到\_ZIP\_源码上
+<a id="section-3-5"></a>
+
+## 3.5\_把元数据接回源码目录
+
+保留原有文件，依次移动元数据、建立索引并检查版本对应关系。
+
+### 3.5.1\_然后把.git\_接到\_ZIP\_源码上
 
 临时目录中：
 
-```
+```text
 git-meta/
 └── .git/
 ```
 
 真正有价值的是：
 
-```
+```text
 .git/
 ```
 
 而我们的源码已经在：
 
-```
+```text
 zephyr/
 ```
 
@@ -1077,7 +1131,7 @@ zephyr/
 
 因此概念上就是：
 
-```
+```text
 git-meta/.git
         │
         │ 搬过去
@@ -1087,7 +1141,7 @@ zephyr/.git
 
 变成：
 
-```
+```text
 zephyr/
 │
 ├── .git/
@@ -1100,7 +1154,7 @@ zephyr/
 
 然后删除空的：
 
-```
+```text
 git-meta
 ```
 
@@ -1108,49 +1162,51 @@ git-meta
 
 ------
 
-## 3.23\_Windows\_PowerShell\_示例
+### 3.5.2\_UCRT64\_Bash\_接入示例
 
 假设：
 
-```
-D:\zephyr_hc32\
-├── zephyr\
-└── git-meta\
+```text
+~/zephyr-download-lab/
+├── zephyr/
+└── git-meta/
 ```
 
 可以：
 
-```
-Move-Item `
-    .\git-meta\.git `
-    .\zephyr\.git
+```bash
+# 当前位置：~/zephyr-download-lab；先确认 ZIP 与 git-meta 是同一版本。
+test -d ./git-meta/.git && test -d ./zephyr && test ! -e ./zephyr/.git &&
+    mv -- ./git-meta/.git ./zephyr/.git
 ```
 
 然后：
 
-```
-Remove-Item .\git-meta -Recurse
+```bash
+# 仅在上一条 mv 成功后执行；非空目录会保留并报错。
+rmdir -- ./git-meta
 ```
 
 进入：
 
-```
-cd .\zephyr
+```bash
+# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
+cd ./zephyr
 ```
 
 ------
 
-## 3.24\_还需要做一件事\_建立\_Git\_Index
+### 3.5.3\_还需要做一件事\_建立\_Git\_Index
 
 我们现在虽然有：
 
-```
+```text
 .git
 ```
 
 也有：
 
-```
+```text
 源码
 ```
 
@@ -1158,13 +1214,14 @@ cd .\zephyr
 
 执行：
 
-```
+```bash
+# 当前位置：待检查的 Zephyr 源码根目录；终端：UCRT64 Bash。
 git reset --mixed HEAD
 ```
 
 注意：
 
-```
+```text
 --mixed
 ```
 
@@ -1172,7 +1229,7 @@ git reset --mixed HEAD
 
 它会：
 
-```
+```text
 根据 HEAD 建立 Git index
 ```
 
@@ -1180,7 +1237,7 @@ git reset --mixed HEAD
 
 可以粗略理解：
 
-```
+```text
 HEAD 中记录的文件
         │
         ▼
@@ -1197,17 +1254,18 @@ HEAD 中记录的文件
 
 ------
 
-## 3.25\_然后检查
+### 3.5.4\_然后检查
 
 执行：
 
-```
+```bash
+# 当前位置：待检查的 Zephyr 源码根目录；终端：UCRT64 Bash。
 git status
 ```
 
 理想状态应该类似：
 
-```
+```text
 On branch ...
 nothing to commit, working tree clean
 ```
@@ -1216,7 +1274,7 @@ nothing to commit, working tree clean
 
 如果出现：
 
-```
+```text
 几万个 modified
 ```
 
@@ -1224,25 +1282,25 @@ nothing to commit, working tree clean
 
 通常说明：
 
-```
+```text
 ZIP 版本和 Git HEAD 不一致
 ```
 
 或者：
 
-```
+```text
 下载了错误 tag
 ```
 
 或者：
 
-```
+```text
 源码被修改过
 ```
 
 也可能涉及：
 
-```
+```text
 换行符配置
 ```
 
@@ -1250,7 +1308,7 @@ ZIP 版本和 Git HEAD 不一致
 
 ------
 
-## 3.26\_这时候\_git\_diff\_会怎么样
+### 3.5.5\_这时候\_git\_diff\_会怎么样
 
 现在非常有意思。
 
@@ -1258,7 +1316,8 @@ ZIP 版本和 Git HEAD 不一致
 
 所以执行：
 
-```
+```bash
+# 当前位置：待检查的 Zephyr 源码根目录；终端：UCRT64 Bash。
 git status
 ```
 
@@ -1266,19 +1325,19 @@ git status
 
 但如果执行：
 
-```
+```text
 git diff drivers/spi/spi_xxx.c
 ```
 
 Git 要知道：
 
-```
+```text
 原始 spi_xxx.c 是什么
 ```
 
 才能和：
 
-```
+```text
 当前 spi_xxx.c
 ```
 
@@ -1286,7 +1345,7 @@ Git 要知道：
 
 如果那个原始 blob 本地没有，Git 就会：
 
-```
+```text
 访问 GitHub
      │
      ▼
@@ -1302,7 +1361,7 @@ GitHub 也明确说明：在 blobless clone 中，`git diff`、`git blame` 等�
 
 所以你的需求基本可以实现为：
 
-```
+```text
 不使用 Git
     ↓
 0 Git 网络开销
@@ -1325,11 +1384,17 @@ GitHub 也明确说明：在 blobless clone 中，`git diff`、`git blame` 等�
 
 ------
 
-## 3.27\_后面想看最近\_50\_次提交怎么办
+<a id="section-3-6"></a>
+
+## 3.6\_逐步扩展历史
+
+在小请求和初次获取成功后，再根据需求加深历史，并评估完整下载的成本。
+
+### 3.6.1\_后面想看最近\_50\_次提交怎么办
 
 一开始：
 
-```
+```text
 --depth 1
 ```
 
@@ -1337,25 +1402,26 @@ GitHub 也明确说明：在 blobless clone 中，`git diff`、`git blame` 等�
 
 以后想增加：
 
-```
+```text
 最近 50 层
 ```
 
 可以：
 
-```
+```bash
+# 当前位置：待检查的 Zephyr 源码根目录；终端：UCRT64 Bash。
 git fetch --deepen=50 --filter=blob:none
 ```
 
 意思：
 
-```
+```text
 把 commit 历史再向过去扩展 50 层
 ```
 
 但是仍然：
 
-```
+```text
 历史文件 blob 按需获取
 ```
 
@@ -1363,17 +1429,18 @@ git fetch --deepen=50 --filter=blob:none
 
 ------
 
-## 3.28\_如果以后真的想把完整历史补回来
+### 3.6.2\_如果以后真的想把完整历史补回来
 
 可以继续：
 
-```
+```bash
+# 当前位置：待检查的 Zephyr 源码根目录；终端：UCRT64 Bash。
 git fetch --unshallow --filter=blob:none
 ```
 
 这时：
 
-```
+```text
 commit/tree 历史
 ```
 
@@ -1381,7 +1448,7 @@ commit/tree 历史
 
 但是：
 
-```
+```text
 blob
 ```
 
@@ -1393,7 +1460,7 @@ blob
 
 完全可以逐步成长：
 
-```
+```text
 Level 0
 
 ZIP
@@ -1433,11 +1500,11 @@ Level 4
 
 ------
 
-## 3.29\_这比一开始\_git\_clone\_--depth\_1\_更符合国内网络场景
+### 3.6.3\_这比一开始\_git\_clone\_--depth\_1\_更符合国内网络场景
 
 比如一个学生第一天只是要：
 
-```
+```text
 搭环境
 编译 hello_world
 运行 HC32
@@ -1445,7 +1512,7 @@ Level 4
 
 传统路线：
 
-```
+```text
 git clone
     ↓
 GitHub 网络慢
@@ -1465,7 +1532,7 @@ west update
 
 我们的路线：
 
-```
+```text
 浏览器 / 下载工具
 下载固定 ZIP
         ↓
@@ -1484,17 +1551,23 @@ Git 完全不是第一天的阻塞项。
 
 ------
 
-## 3.30\_对\_Zephyr\_教学环境\_我建议最终这样定义
+<a id="section-3-7"></a>
+
+## 3.7\_保存可复用的下载环境
+
+把源码、版本记录和两条下载路线收束为后续可复查的教学环境。
+
+### 3.7.1\_对\_Zephyr\_教学环境\_我建议最终这样定义
 
 例如一个：
 
-```
+```text
 HC32F4A0 Zephyr Learning Kit
 ```
 
 下载目录甚至可以做成：
 
-```
+```text
 downloads/
 │
 ├── source/
@@ -1511,7 +1584,7 @@ downloads/
 
 然后安装之后：
 
-```
+```text
 workspace/
 │
 ├── zephyr/
@@ -1529,7 +1602,7 @@ workspace/
 
 第一天：
 
-```
+```text
 完全没有 .git
 ```
 
@@ -1537,7 +1610,7 @@ workspace/
 
 ------
 
-## 3.31\_还应该保存一个版本清单
+### 3.7.2\_还应该保存一个版本清单
 
 这是这种方案非常重要的一步。
 
@@ -1545,13 +1618,13 @@ workspace/
 
 所以教学包应该提供：
 
-```
+```text
 versions.yml
 ```
 
 例如：
 
-```
+```text
 zephyr:
   version: vX.Y.Z
   source: zephyrproject-rtos/zephyr
@@ -1573,7 +1646,7 @@ toolchain:
 
 最好再保存：
 
-```
+```text
 SHA256
 ```
 
@@ -1581,7 +1654,7 @@ SHA256
 
 这样即使完全没有 Git：
 
-```
+```text
 这个环境到底用了什么
 ```
 
@@ -1589,19 +1662,19 @@ SHA256
 
 ------
 
-## 3.32\_Git\_ZIP\_模式真正的代价是什么
+### 3.7.3\_Git\_ZIP\_模式真正的代价是什么
 
 这个方案也不是没有代价。
 
 最重要的是：
 
-```
+```text
 ZIP 本身没有 Git identity
 ```
 
 所以一定要额外记录：
 
-```
+```text
 Zephyr tag
 CMSIS commit
 HC32 commit
@@ -1610,7 +1683,7 @@ SDK version
 
 另外：
 
-```
+```text
 Download ZIP
 ```
 
@@ -1618,7 +1691,7 @@ Download ZIP
 
 你必须自己根据：
 
-```
+```text
 west.yml
 ```
 
@@ -1630,13 +1703,13 @@ west.yml
 
 ------
 
-## 3.33\_我建议最终教程采用\_双轨制
+### 3.7.4\_我建议最终教程采用\_双轨制
 
 这是我认为非常适合正式教学材料的结构。
 
-### 3.33.1\_快速开发模式
+#### (1)\_快速开发模式
 
-```
+```text
 Download ZIP
         ↓
 固定 Zephyr Version
@@ -1654,18 +1727,18 @@ Download ZIP
 
 特点：
 
-```
+```text
 不依赖 GitHub Git 协议稳定性
 不下载 Git 历史
 不下载无关 MCU 仓库
 最快进入开发
 ```
 
-#### (1)\_Git\_增强模式
+##### 1)\_Git\_增强模式
 
 真正需要 Git 时：
 
-```
+```text
 现有 ZIP 源码
         +
 --filter=blob:none

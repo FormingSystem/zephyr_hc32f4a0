@@ -1,6 +1,6 @@
 ---
 id: zephyr-download-notes-01
-title: Zephyr 指定芯片的最小化下载方案
+title: Zephyr 下载范围与最小化策略
 kind: reference
 status: draft
 domains: [zephyr, tools]
@@ -8,17 +8,36 @@ domains: [zephyr, tools]
 
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 
-# 第1章\_Zephyr\_指定芯片的最小化下载方案
+# 第1章\_Zephyr\_下载范围与最小化策略
+
+本章操作终端统一为 **MSYS2 UCRT64 Bash**，主机仍是 Windows x64。独立下载实验使用 `~/zephyr-download-lab`；路径、工具准备和当前 HC32 集成工程的区别见[环境与目录约定](环境与目录约定.md)。下文保留的版本、模块名和仓库地址示例须结合实际清单核对。
 
 下载前先按[本地代理配置](代理配置.md)核对 v2rayN 的 `10808` 混合端口，配置 Git 并测试连接；浏览器下载 ZIP 还需使用系统代理或浏览器代理。
 
 > 本篇为下载方案的参考草稿，保留原有讨论与示例，尚未完成逐项版本核验和完整安装实测。当前 HC32 工程请按[项目安装流程](../../project-docs/environment.md)操作；已整理的入门主线见[工程准备大纲](../P01_zephyr_make_project/大纲.md)。
 
-## 1.1\_我们真正想解决的问题
+**本章目录**
+
+- [1.1 确定下载范围](#section-1-1)
+- [1.2 控制主仓库历史](#section-1-2)
+- [1.3 用清单选择模块](#section-1-3)
+- [1.4 组织并初始化工作区](#section-1-4)
+- [1.5 精简工具链与基础依赖](#section-1-5)
+- [1.6 按功能扩展环境](#section-1-6)
+
+
+<a id="section-1-1"></a>
+
+## 1.1\_确定下载范围
+
+先分清主源码、外部模块和工具链，下载量的来源才能逐项定位。
+
+### 1.1.1\_我们真正想解决的问题
 
 标准 Zephyr 环境通常这样初始化：
 
-```
+```bash
+# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
 west init zephyrproject
 cd zephyrproject
 west update
@@ -26,13 +45,14 @@ west update
 
 问题在于：
 
-```
+```bash
+# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
 west update
 ```
 
 会根据 Zephyr 自己的 `west.yml` 下载大量外部仓库，例如：
 
-```
+```text
 hal_stm32
 hal_nxp
 hal_nordic
@@ -49,7 +69,7 @@ trusted-firmware-m
 
 对于一个明确的 MCU 项目，例如：
 
-```
+```text
 MCU：HC32F4A0PITB
 CPU：ARM Cortex-M4F
 架构：ARMv7-M
@@ -60,7 +80,7 @@ CPU：ARM Cortex-M4F
 
 我们希望最终得到这样的“小环境”：
 
-```
+```text
 zephyr-workspace/
 │
 ├── .west/
@@ -95,13 +115,13 @@ zephyr-workspace/
 
 ------
 
-## 1.2\_首先理解\_Zephyr\_到底由哪些东西组成
+### 1.1.2\_首先理解\_Zephyr\_到底由哪些东西组成
 
 Zephyr 并不是一个 Git 仓库就包含所有内容。
 
 可以把它分为三层：
 
-```
+```text
                 Zephyr 开发环境
                        │
         ┌──────────────┼───────────────┐
@@ -121,7 +141,7 @@ Zephyr 并不是一个 Git 仓库就包含所有内容。
 
 其中真正值得裁剪的是：
 
-```
+```text
 外部 Modules
 Toolchain
 Git 历史
@@ -133,11 +153,18 @@ Zephyr 主仓库本身包含 kernel、通用驱动框架、DTS、Kconfig、CMake
 
 ------
 
-## 1.3\_第一层裁剪\_Zephyr\_主仓库不要下载全部\_Git\_历史
+<a id="section-1-2"></a>
+
+## 1.2\_控制主仓库历史
+
+源码仍需完整可读，先从版本历史减少首次下载量。
+
+### 1.2.1\_第一层裁剪\_Zephyr\_主仓库不要下载全部\_Git\_历史
 
 首先不要这样：
 
-```
+```bash
+# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
 git clone https://github.com/zephyrproject-rtos/zephyr.git
 ```
 
@@ -147,25 +174,27 @@ git clone https://github.com/zephyrproject-rtos/zephyr.git
 
 例如：
 
-```
+```bash
+# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
 git clone \
     --branch v4.4.0 \
     --depth 1 \
     https://github.com/zephyrproject-rtos/zephyr.git
 ```
 
-Windows PowerShell：
+在 UCRT64 中也使用同样的 Bash 续行写法；以下是同一操作的完整形式，两个代码块任选一个执行：
 
-```
-git clone `
-    --branch v4.4.0 `
-    --depth 1 `
+```bash
+# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
+git clone \
+    --branch v4.4.0 \
+    --depth 1 \
     https://github.com/zephyrproject-rtos/zephyr.git
 ```
 
 这样得到：
 
-```
+```text
 zephyr/
 ├── arch/
 ├── boards/
@@ -187,17 +216,18 @@ zephyr/
 
 这一步非常重要。
 
-### 1.3.1\_不推荐一开始就\_sparse-checkout
+#### (1)\_不推荐一开始就\_sparse-checkout
 
 理论上 Git 可以这样：
 
-```
+```bash
+# 当前位置：待检查的 Zephyr 源码根目录；终端：UCRT64 Bash。
 git sparse-checkout
 ```
 
 只下载：
 
-```
+```text
 arch/arm
 drivers/
 kernel/
@@ -210,7 +240,7 @@ boards/
 
 因为 Zephyr 的构建系统会横跨：
 
-```
+```text
 cmake/
 scripts/
 dts/
@@ -227,7 +257,7 @@ lib/
 
 因此更稳定的策略是：
 
-```
+```text
 Zephyr 主仓库：
 
 保留完整源码目录
@@ -237,7 +267,7 @@ Zephyr 主仓库：
 
 也就是：
 
-```
+```text
 --depth 1
 ```
 
@@ -245,11 +275,18 @@ Zephyr 主仓库：
 
 ------
 
-## 1.4\_第二层裁剪\_外部\_Modules\_才是重点
+<a id="section-1-3"></a>
+
+## 1.3\_用清单选择模块
+
+在主仓库之外，按 MCU 与功能需求选择项目，再理解两种 Mini Manifest 写法。
+
+### 1.3.1\_第二层裁剪\_外部\_Modules\_才是重点
 
 真正造成：
 
-```
+```bash
+# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
 west update
 ```
 
@@ -257,7 +294,7 @@ west update
 
 也就是：
 
-```
+```text
 zephyr/west.yml
 ```
 
@@ -265,7 +302,7 @@ west workspace 中，manifest 决定哪些 Git project 属于这个工作区，�
 
 例如 Zephyr 会定义类似：
 
-```
+```text
 projects:
 
   - name: cmsis
@@ -292,7 +329,8 @@ projects:
 
 如果直接：
 
-```
+```bash
+# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
 west update
 ```
 
@@ -300,7 +338,7 @@ west update
 
 官方 west 支持只更新指定项目：
 
-```
+```text
 west update PROJECT
 ```
 
@@ -312,13 +350,13 @@ west update PROJECT
 
 ------
 
-## 1.5\_推荐方案\_自己维护一个\_Mini\_Manifest
+### 1.3.2\_推荐方案\_自己维护一个\_Mini\_Manifest
 
 这是我认为最适合教学文档和项目工程化的方案。
 
 不要让：
 
-```
+```text
 zephyr/west.yml
 ```
 
@@ -326,14 +364,14 @@ zephyr/west.yml
 
 而是建立自己的：
 
-```
+```text
 manifest/
 └── west.yml
 ```
 
 例如整个目录设计：
 
-```
+```text
 zephyr_hc32_workspace/
 │
 ├── .west/
@@ -348,7 +386,7 @@ zephyr_hc32_workspace/
 
 关系变成：
 
-```
+```text
 我们自己的 manifest
         │
         ├── Zephyr
@@ -360,7 +398,7 @@ zephyr_hc32_workspace/
 
 而不是：
 
-```
+```text
 Zephyr west.yml
         │
         ├── STM32
@@ -375,13 +413,13 @@ Zephyr west.yml
 
 ------
 
-## 1.6\_第一种\_Mini\_Manifest\_写法\_明确列出我们需要的模块
+### 1.3.3\_第一种\_Mini\_Manifest\_写法\_明确列出我们需要的模块
 
 这是最容易理解的方案。
 
 例如：
 
-```
+```yaml
 manifest:
 
   remotes:
@@ -418,7 +456,7 @@ manifest:
 
 这个环境里最终只有：
 
-```
+```text
 zephyr/
 modules/hal/cmsis/
 modules/hal/hc32/
@@ -426,7 +464,7 @@ modules/hal/hc32/
 
 不会出现：
 
-```
+```text
 hal_stm32
 hal_nxp
 hal_nordic
@@ -445,17 +483,17 @@ west manifest 本身原生支持 `clone-depth`，可以限制 project 的 Git �
 
 ------
 
-## 1.7\_为什么\_HC32F4A0\_至少需要\_CMSIS
+### 1.3.4\_为什么\_HC32F4A0\_至少需要\_CMSIS
 
 HC32F4A0 是：
 
-```
+```text
 ARM Cortex-M4F
 ```
 
 所以整个软件栈可以粗略分成：
 
-```
+```text
 Application
     │
 Zephyr API
@@ -473,7 +511,7 @@ ARM Cortex-M4F
 
 这里：
 
-```
+```text
 CMSIS
 ```
 
@@ -481,7 +519,7 @@ CMSIS
 
 例如：
 
-```
+```text
 NVIC
 SCB
 SysTick
@@ -493,7 +531,7 @@ Zephyr 的 ARM Cortex-M 支持会使用 CMSIS。
 
 因此对于 HC32：
 
-```
+```text
 cmsis
 ```
 
@@ -501,15 +539,15 @@ cmsis
 
 ------
 
-## 1.8\_HC32\_自己的代码放在哪里
+### 1.3.5\_HC32\_自己的代码放在哪里
 
 对于 HC32F4A0，我们现在有两种可能。
 
-### 1.8.1\_情况\_A\_HC32\_DDL\_直接放在\_Zephyr\_fork\_中
+#### (1)\_情况\_A\_HC32\_DDL\_直接放在\_Zephyr\_fork\_中
 
 比如：
 
-```
+```text
 zephyr/
 ├── soc/
 │   └── hdsc/
@@ -524,7 +562,7 @@ zephyr/
 
 DDL 可能直接存在：
 
-```
+```text
 soc/hdsc/hc32f4a0/
 ```
 
@@ -532,14 +570,14 @@ soc/hdsc/hc32f4a0/
 
 那么 mini workspace 可能只需要：
 
-```
+```text
 zephyr
 cmsis
 ```
 
 甚至：
 
-```
+```text
 workspace/
 ├── zephyr/
 └── modules/
@@ -549,13 +587,13 @@ workspace/
 
 ------
 
-### 1.8.2\_情况\_B\_把\_HC32\_DDL\_单独做成\_Module
+#### (2)\_情况\_B\_把\_HC32\_DDL\_单独做成\_Module
 
 长期来看我更推荐这种。
 
 例如：
 
-```
+```text
 hal_hc32/
 ├── CMakeLists.txt
 ├── Kconfig
@@ -569,7 +607,7 @@ hal_hc32/
 
 然后：
 
-```
+```text
 zephyr/
 modules/
 └── hal/
@@ -579,7 +617,7 @@ modules/
 
 Zephyr Module 和 west project 是两个概念：
 
-```
+```text
 west project
     =
 Git 仓库管理概念
@@ -593,7 +631,7 @@ west 可以把 repository 下载下来，然后 Zephyr 构建系统通过 module
 
 这种方式更适合以后：
 
-```
+```text
 HC32F4A0
 HC32F460
 HC32F448
@@ -604,7 +642,7 @@ HC32F448
 
 ------
 
-## 1.9\_更漂亮的方案\_Import\_Zephyr\_manifest\_但只允许特定模块
+### 1.3.6\_更漂亮的方案\_Import\_Zephyr\_manifest\_但只允许特定模块
 
 如果不希望自己维护所有外部模块的 commit hash，还有另一种方法。
 
@@ -612,7 +650,7 @@ HC32F448
 
 可以：
 
-```
+```text
 - name: zephyr
   ...
   import:
@@ -620,13 +658,13 @@ HC32F448
 
 让自己的 manifest 导入：
 
-```
+```text
 zephyr/west.yml
 ```
 
 但是增加：
 
-```
+```text
 name-allowlist:
 ```
 
@@ -636,7 +674,7 @@ west 官方明确支持这种 manifest import allowlist。[Zephyr Project Docume
 
 例如：
 
-```
+```yaml
 manifest:
 
   remotes:
@@ -661,7 +699,7 @@ manifest:
 
 它表达的意思是：
 
-```
+```text
 下载 Zephyr
 
 读取：
@@ -674,7 +712,7 @@ cmsis
 
 其它：
 
-```
+```text
 hal_nxp
 hal_stm32
 hal_nordic
@@ -690,20 +728,20 @@ mcuboot
 
 我们不用自己写：
 
-```
+```text
 cmsis:
     revision: 123456789abcdef
 ```
 
 因为 CMSIS 对应的 revision 直接由：
 
-```
+```text
 Zephyr v4.4.0
 ```
 
 自己的：
 
-```
+```text
 west.yml
 ```
 
@@ -711,7 +749,7 @@ west.yml
 
 也就是说：
 
-```
+```text
 Zephyr v4.4.0
         │
         └── 它自己指定兼容的 CMSIS commit
@@ -723,12 +761,18 @@ Zephyr v4.4.0
 
 ------
 
-## 1.10\_对我们这个项目\_我推荐这种结构
+<a id="section-1-4"></a>
+
+## 1.4\_组织并初始化工作区
+
+把清单对应到实际目录，区分整个工作区更新与指定项目更新。
+
+### 1.4.1\_对我们这个项目\_我推荐这种结构
 
 最终可以这样设计：
 
-```
-zephyr_hc32f4a0/
+```text
+zephyr-download-lab/
 │
 ├── manifest/
 │   └── west.yml
@@ -747,7 +791,7 @@ zephyr_hc32f4a0/
 
 manifest：
 
-```
+```yaml
 manifest:
 
   remotes:
@@ -784,7 +828,7 @@ manifest:
 
 最终下载链：
 
-```
+```text
 west
  │
  │ 读取
@@ -803,7 +847,7 @@ manifest/west.yml
 
 最终不会下载：
 
-```
+```text
 STM32 HAL
 NXP HAL
 Nordic HAL
@@ -821,36 +865,39 @@ Trusted Firmware
 
 ------
 
-## 1.11\_Workspace\_初始化
+### 1.4.2\_Workspace\_初始化
 
 建立：
 
-```
-mkdir zephyr_hc32f4a0
-cd zephyr_hc32f4a0
+```bash
+# 当前位置：独立下载实验目录的父目录；不要在现有 HC32 工程中运行。
+mkdir zephyr-download-lab
+cd zephyr-download-lab
+mkdir manifest
 ```
 
 准备：
 
-```
+```text
 manifest/west.yml
 ```
 
 然后：
 
-```
+```bash
+# 当前位置：zephyr-download-lab；先将上面的示意 manifest 换成实际仓库和版本。
 west init -l manifest
 ```
 
 这里：
 
-```
+```text
 -l
 ```
 
 表示：
 
-```
+```text
 local manifest
 ```
 
@@ -860,7 +907,8 @@ local manifest
 
 之后：
 
-```
+```bash
+# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
 west update
 ```
 
@@ -868,8 +916,8 @@ west 就只会按照我们的 manifest 下载项目。
 
 最终：
 
-```
-zephyr_hc32f4a0/
+```text
+zephyr-download-lab/
 │
 ├── .west/
 │
@@ -885,11 +933,12 @@ zephyr_hc32f4a0/
 
 ------
 
-## 1.12\_甚至可以让\_west\_update\_只下载单个模块
+### 1.4.3\_甚至可以让\_west\_update\_只下载单个模块
 
 west 不是一定要：
 
-```
+```bash
+# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
 west update
 ```
 
@@ -897,25 +946,28 @@ west update
 
 它支持：
 
-```
+```text
 west update PROJECT
 ```
 
 例如：
 
-```
+```bash
+# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
 west update zephyr
 ```
 
 或者：
 
-```
+```bash
+# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
 west update cmsis
 ```
 
 甚至：
 
-```
+```bash
+# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
 west update zephyr cmsis
 ```
 
@@ -923,7 +975,7 @@ west update zephyr cmsis
 
 所以教学时可以解释为：
 
-```
+```text
 west update
 
 = 更新 manifest 中所有 active projects
@@ -931,31 +983,33 @@ west update
 
 而：
 
-```
+```bash
+# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
 west update zephyr cmsis
 ```
 
 等于：
 
-```
+```text
 只更新 zephyr 和 cmsis
 ```
 
 ------
 
-## 1.13\_不过\_只执行\_west\_update\_zephyr\_不能替代\_Mini\_Manifest
+### 1.4.4\_不过\_只执行\_west\_update\_zephyr\_不能替代\_Mini\_Manifest
 
 这一点要特别说明。
 
 假设官方 manifest 有：
 
-```
+```text
 100 个 project
 ```
 
 你运行：
 
-```
+```bash
+# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
 west update zephyr cmsis
 ```
 
@@ -963,13 +1017,14 @@ west update zephyr cmsis
 
 但是 workspace 的逻辑定义里：
 
-```
+```text
 那 100 个项目依然存在
 ```
 
 以后别人执行：
 
-```
+```bash
+# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
 west update
 ```
 
@@ -977,25 +1032,26 @@ west update
 
 因此：
 
-```
+```bash
+# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
 west update zephyr cmsis
 ```
 
 更适合：
 
-```
+```text
 临时实验
 ```
 
 而：
 
-```
+```text
 自定义 west.yml
 ```
 
 更适合：
 
-```
+```text
 教学
 公司开发环境
 CI
@@ -1005,13 +1061,19 @@ CI
 
 ------
 
-## 1.14\_第三层裁剪\_工具链也不要全部下载
+<a id="section-1-5"></a>
+
+## 1.5\_精简工具链与基础依赖
+
+主源码与模块确定后，再选择面向 ARM 的工具链和必要主机工具。
+
+### 1.5.1\_第三层裁剪\_工具链也不要全部下载
 
 Zephyr SDK 支持很多架构。
 
 完整 SDK 可能包含：
 
-```
+```text
 ARM
 ARM64
 RISC-V
@@ -1025,7 +1087,7 @@ SPARC
 
 HC32F4A0：
 
-```
+```text
 Cortex-M4F
      ↓
 ARM
@@ -1033,19 +1095,20 @@ ARM
 
 所以实际上只需要：
 
-```
+```text
 arm-zephyr-eabi
 ```
 
 当前 Zephyr 的 SDK 工具支持：
 
-```
+```text
 west sdk install --toolchains ...
 ```
 
 官方示例就是：
 
-```
+```bash
+# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
 west sdk install --toolchains arm-zephyr-eabi riscv64-zephyr-elf
 ```
 
@@ -1053,13 +1116,14 @@ west sdk install --toolchains arm-zephyr-eabi riscv64-zephyr-elf
 
 HC32 就可以：
 
-```
+```bash
+# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
 west sdk install --toolchains arm-zephyr-eabi
 ```
 
 这样：
 
-```
+```text
 不会安装：
 
 riscv64-zephyr-elf
@@ -1073,11 +1137,11 @@ arc-zephyr-elf
 
 ------
 
-## 1.15\_SDK\_还可以进一步理解为两部分
+### 1.5.2\_SDK\_还可以进一步理解为两部分
 
 Zephyr SDK 实际可以理解成：
 
-```
+```text
 Zephyr SDK
 │
 ├── Host Tools
@@ -1087,7 +1151,7 @@ Zephyr SDK
 
 例如：
 
-```
+```text
 Host Tools
 ├── OpenOCD
 ├── QEMU
@@ -1107,7 +1171,7 @@ Target Toolchain
 
 Zephyr SDK 当前也提供：
 
-```
+```text
 gnu
 llvm
 minimal
@@ -1117,7 +1181,7 @@ minimal
 
 对于我们：
 
-```
+```text
 Host Tools
 +
 arm-zephyr-eabi
@@ -1127,11 +1191,11 @@ arm-zephyr-eabi
 
 ------
 
-## 1.16\_HC32F4A0\_最小环境到底应该下载什么
+### 1.5.3\_HC32F4A0\_最小环境到底应该下载什么
 
 如果我们暂时只做：
 
-```
+```text
 UART
 GPIO
 SPI
@@ -1145,7 +1209,7 @@ Zephyr Kernel
 
 没有：
 
-```
+```text
 Bluetooth
 Wi-Fi
 TLS
@@ -1179,7 +1243,7 @@ TF-M
 
 于是整个环境就可以压缩到：
 
-```
+```text
 Zephyr
 +
 CMSIS
@@ -1191,17 +1255,23 @@ ARM Toolchain
 
 ------
 
-## 1.17\_以后需要什么\_再把什么加入\_manifest
+<a id="section-1-6"></a>
+
+## 1.6\_按功能扩展环境
+
+保留基础环境、扩展环境和完整环境的层次，后续按真实需求增加模块。
+
+### 1.6.1\_以后需要什么\_再把什么加入\_manifest
 
 比如以后需要：
 
-```
+```text
 LittleFS
 ```
 
 修改：
 
-```
+```text
 import:
   name-allowlist:
     - cmsis
@@ -1210,43 +1280,44 @@ import:
 
 然后：
 
-```
+```bash
+# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
 west update
 ```
 
 就会多出来：
 
-```
+```text
 modules/fs/littlefs/
 ```
 
 如果需要：
 
-```
+```text
 mbedTLS
 ```
 
 增加：
 
-```
+```text
 - mbedtls
 ```
 
 需要：
 
-```
+```text
 MCUboot
 ```
 
 增加：
 
-```
+```text
 - mcuboot
 ```
 
 所以可以把环境理解成：
 
-```
+```text
               HC32 Base
                   │
        ┌──────────┴──────────┐
@@ -1270,11 +1341,11 @@ MCUboot
 
 ------
 
-## 1.18\_我建议我们的教学文档把\_环境下载\_设计成三种级别
+### 1.6.2\_我建议我们的教学文档把\_环境下载\_设计成三种级别
 
 这个地方非常适合教学。
 
-```
+```text
 Level 1
 官方完整环境
 
@@ -1284,7 +1355,7 @@ west update
 
 用途：
 
-```
+```text
 Zephyr 学习
 研究所有平台
 官方开发
@@ -1292,7 +1363,7 @@ Zephyr 学习
 
 ↓
 
-```
+```text
 Level 2
 指定 Project 更新
 
@@ -1301,14 +1372,14 @@ west update zephyr cmsis
 
 用途：
 
-```
+```text
 快速实验
 临时环境
 ```
 
 ↓
 
-```
+```text
 Level 3
 自定义 Mini Manifest
 
@@ -1325,7 +1396,7 @@ ARM Toolchain
 
 用途：
 
-```
+```text
 正式项目
 公司 SDK
 教学环境
@@ -1339,7 +1410,7 @@ CI
 
 因为这个方案才能真正解释：
 
-```
+```text
 我用什么 MCU
       ↓
 我需要什么架构
@@ -1357,7 +1428,8 @@ west 下载什么
 
 而不是把：
 
-```
+```bash
+# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
 west update
 ```
 
@@ -1365,9 +1437,9 @@ west update
 
 ------
 
-## 1.19\_对\_HC32F4A0\_我们最终可以把下载规则写成一张图
+### 1.6.3\_对\_HC32F4A0\_我们最终可以把下载规则写成一张图
 
-```
+```text
 目标芯片
 HC32F4A0PITB
       │
@@ -1401,7 +1473,7 @@ Zephyr
 
 所以下载集合：
 
-```
+```text
 Download Set
 │
 ├── zephyr
@@ -1412,9 +1484,9 @@ Download Set
 
 **这就是我们后面这份教学文档应该围绕的核心思想。**
 
-我建议下一节就接着写：
+在后续操作中，还需要进一步落实：
 
-```
+```text
 《如何根据一款 MCU 判断到底需要下载哪些 Zephyr 仓库》
 ```
 
