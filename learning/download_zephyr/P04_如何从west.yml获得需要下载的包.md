@@ -10,6 +10,8 @@ domains: [zephyr, tools]
 
 # 4. 从 `west.yml` 判断：一款 MCU 到底需要下载哪些 Zephyr ZIP
 
+下载前先按[本地代理配置](代理配置.md)核对 v2rayN 的 `10808` 混合端口，配置 Git 并测试连接；浏览器下载 ZIP 还需使用系统代理或浏览器代理。
+
 > 本篇为下载方案的参考草稿，保留原有讨论与示例，尚未完成逐项版本核验和完整安装实测。当前 HC32 工程请按[项目安装流程](../../project-docs/environment.md)操作；已整理的入门主线见[工程准备大纲](../P01_zephyr_make_project/大纲.md)。
 
 前面我们已经确定了一个原则：

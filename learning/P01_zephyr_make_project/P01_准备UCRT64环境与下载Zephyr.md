@@ -303,6 +303,21 @@ ls -al
 
 根目录应是刚创建的 `zephyr`，`HEAD` 是当前提交号，工作区应干净。后两条分别查看普通文件和包含隐藏文件的列表。克隆成功的读者可跳过 ZIP 和补历史步骤，直接看 1.9；不要再给已有仓库拼接另一份 `.git`。
 
+**下载前配置本地代理（以 v2rayN 为例）**
+
+以下按“本地混合监听端口为 `10808`、第二个本地监听端口未开启”的配置举例。先确认客户端正在运行，并以自己的实际监听端口为准；本例使用 `http://127.0.0.1:10808`，不用 `10809`、PAC 端口或 API 端口。
+
+```bash
+# 当前位置：任意目录；终端：UCRT64。写入当前用户的 Git 配置。
+git config --global --replace-all http.proxy http://127.0.0.1:10808
+git config --show-origin --get-all http.proxy
+curl -I -x http://127.0.0.1:10808 https://github.com
+```
+
+配置查询应显示 `http://127.0.0.1:10808`。这里的 `http://` 是 **Git 连接本地代理的协议**，访问 GitHub 的地址仍为 HTTPS；不要写成 `https://127.0.0.1:10808`。Git 的 [`http.proxy`](https://git-scm.com/docs/git-config#Documentation/git-config.txt-httpproxy) 同时用于 HTTP 与 HTTPS 请求，不需要另设 `https.proxy`。若此前写过错误的 `https.proxy`，可用 `git config --global --unset-all https.proxy` 清除；该键不存在时无需处理。
+
+curl 测试通常先显示 `200 Connection established`，还应继续看到 GitHub 的 HTTP 响应；仅建立代理隧道不代表整个请求成功。**Git 代理配置不控制浏览器**：下面用浏览器下载 ZIP 时，还需在 v2rayN 开启系统代理，或让浏览器使用同一代理入口。
+
 ### 1.4.2 使用 ZIP 下载
 
 Git 克隆遇到连接问题时，原记录曾出现：

@@ -6,6 +6,8 @@
 
 实际操作先读[UCRT64 与 Zephyr 下载教程](../P01_zephyr_make_project/大纲.md)，安装本仓库使用[当前工程环境说明](../../project-docs/environment.md)。
 
+访问 GitHub 前先读[本地代理配置](代理配置.md)：以 v2rayN 混合端口 `10808` 为例，说明 Git 配置、浏览器下载 ZIP 和小请求测试。
+
 | 顺序 | 参考材料 |
 | --- | --- |
 | 1 | [Zephyr 指定芯片的最小化下载方案](P01_如何下载zephyr.md) |
