@@ -1,0 +1,10 @@
+# Copyright The Zephyr HC32F4A0 Contributors
+# SPDX-License-Identifier: Apache-2.0
+sample:
+  name: HC32F4A0 USB CDC ACM standard input and output
+common:
+  tags: [usb, console, libc]
+  platform_allow: uyup_rpi_a/hc32f4a0pitb
+tests:
+  sample.hc32.usb_stdio:
+    build_only: true
