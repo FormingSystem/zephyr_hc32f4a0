@@ -1,0 +1,8 @@
+# Windows UCRT64；实验源码根；P002 的 .venv 已激活，P005 已准备 west/CMSIS/HAL。
+cd /g/zephyr_practice/zephyr-main
+# 此目录是本次检查的输出目录，由 mkdir 创建；不是 HAL 模块本身。
+mkdir -p build/learning-tools/p002
+python scripts/zephyr_module.py --zephyr-base . \
+  --extra-modules "$(cygpath -m "$PWD/build/learning-tools/deps/hal_xhsc")" \
+  --cmake-out build/learning-tools/p002/zephyr_modules.txt &&
+cat build/learning-tools/p002/zephyr_modules.txt
