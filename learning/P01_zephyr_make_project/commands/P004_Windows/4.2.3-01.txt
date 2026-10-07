@@ -1,0 +1,8 @@
+# 新开的 Windows PowerShell；进入 SDK 根。
+Set-Location -LiteralPath `
+    'G:\zephyr_practice\zephyr-sdk-1.0.1'
+# 检查本窗口 PATH，缺工具时停止。
+Get-Command cmake, 7z -ErrorAction Stop
+Get-Item '.\sdk_version', '.\setup.cmd'
+# 只查帮助，不安装；本版帮助退出码为 1。
+.\setup.cmd /?

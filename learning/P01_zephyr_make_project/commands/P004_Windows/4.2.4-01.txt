@@ -1,0 +1,8 @@
+# P004_Windows / 4.2.4\_亲手调用一次编译器
+# 先核对正文的终端、目录与前提，再执行此完整操作单元。
+# UCRT64；setup.cmd 操作结束后切回本终端，重新进入实际 SDK 根。
+# 双层解压时将下面 cd 改成实际内层的 /g/... 路径。
+cd /g/zephyr_practice/zephyr-sdk-1.0.1
+cat sdk_version
+./gnu/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc.exe --version
+./gnu/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc.exe -dumpmachine

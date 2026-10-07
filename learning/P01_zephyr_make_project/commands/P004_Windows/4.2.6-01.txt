@@ -1,0 +1,6 @@
+# P004_Windows / 4.2.6\_setup.cmd /c 究竟给谁保存了什么
+# 先核对正文的终端、目录与前提，再执行此完整操作单元。
+# Windows PowerShell；仅尚未注册或 SDK 移动后执行，已有效注册则跳过。
+# 在实际 SDK 根执行，双层解压时修改下面的 Windows 路径。
+Set-Location -LiteralPath 'G:\zephyr_practice\zephyr-sdk-1.0.1'
+.\setup.cmd /c

@@ -1,0 +1,5 @@
+# P004_Windows / 4.2.5.1\_临时方式：只给当前 UCRT64 终端
+# 先核对正文的终端、目录与前提，再执行此完整操作单元。
+# Windows UCRT64；源码根；可选：固定 SDK，使用默认 GNU 类型。
+cd /g/zephyr_practice/zephyr-main
+export ZEPHYR_SDK_INSTALL_DIR='G:/zephyr_practice/zephyr-sdk-1.0.1'

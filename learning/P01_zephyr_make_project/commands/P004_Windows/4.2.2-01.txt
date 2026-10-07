@@ -1,0 +1,5 @@
+# P004_Windows / 4.2.2\_解压到独立工具目录
+# 先核对正文的终端、目录与前提，再执行此完整操作单元。
+# 当前位置：/g/zephyr_practice，已保存 SDK 压缩包；终端：UCRT64。
+cd /g/zephyr_practice
+ls -ld zephyr-sdk-1.0.1

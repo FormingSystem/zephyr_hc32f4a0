@@ -1,0 +1,4 @@
+# P004_Windows / 4.2.5.1\_临时方式：只给当前 UCRT64 终端
+# 先核对正文的终端、目录与前提，再执行此完整操作单元。
+# Windows UCRT64；当前终端；只取消进程环境里的 SDK 选择。
+unset ZEPHYR_SDK_INSTALL_DIR ZEPHYR_TOOLCHAIN_VARIANT

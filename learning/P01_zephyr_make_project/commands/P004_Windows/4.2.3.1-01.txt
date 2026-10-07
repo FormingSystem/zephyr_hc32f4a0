@@ -1,0 +1,9 @@
+# P004_Windows / 4.2.3.1\_已经手动下载 ARM 工具链包时怎样补入 Minimal
+# 先核对正文的终端、目录与前提，再执行此完整操作单元。
+# Windows UCRT64；已从 v1.0.1 下载 ARM 包及该发行的 sha256.sum。
+cd /g/zephyr_practice
+# 只核对这一份附件；输出应是对应文件名及 OK。
+grep 'toolchain_gnu_windows-x86_64_arm-zephyr-eabi.7z$' sha256.sum |
+  sha256sum --check -
+# 查看归档布局；检查通过后再进入下一操作单元。
+7z l toolchain_gnu_windows-x86_64_arm-zephyr-eabi.7z

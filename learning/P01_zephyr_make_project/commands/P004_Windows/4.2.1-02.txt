@@ -1,0 +1,5 @@
+# P004_Windows / 4.2.1\_检查文件摘要
+# 先核对正文的终端、目录与前提，再执行此完整操作单元。
+# 当前位置：SDK 下载目录；终端：UCRT64。
+sha256sum zephyr-sdk-1.0.1_windows-x86_64_gnu.7z
+grep -F 'zephyr-sdk-1.0.1_windows-x86_64_gnu.7z' sha256.sum
