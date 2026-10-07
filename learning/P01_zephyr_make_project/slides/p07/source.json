@@ -83,6 +83,11 @@
     },
     {
       "number": 17,
+      "title": "ELF 是链接产物，HEX / BIN 按配置派生",
+      "part": "ppt/slides/firmware_formats.xml"
+    },
+    {
+      "number": 18,
       "title": "并行、详细输出与指定目标",
       "part": "ppt/slides/slide11.xml"
     }
@@ -96,6 +101,7 @@
     "ppt/media/image1.png",
     "ppt/notesMasters/_rels/notesMaster1.xml.rels",
     "ppt/notesMasters/notesMaster1.xml",
+    "ppt/notesSlides/_rels/firmware_formats.xml.rels",
     "ppt/notesSlides/_rels/lesson_7_1.xml.rels",
     "ppt/notesSlides/_rels/lesson_7_10.xml.rels",
     "ppt/notesSlides/_rels/lesson_7_13.xml.rels",
@@ -113,6 +119,7 @@
     "ppt/notesSlides/_rels/notesSlide7.xml.rels",
     "ppt/notesSlides/_rels/notesSlide8.xml.rels",
     "ppt/notesSlides/_rels/notesSlide9.xml.rels",
+    "ppt/notesSlides/firmware_formats.xml",
     "ppt/notesSlides/lesson_7_1.xml",
     "ppt/notesSlides/lesson_7_10.xml",
     "ppt/notesSlides/lesson_7_13.xml",
@@ -262,6 +269,7 @@
     "ppt/slideMasters/slideMaster7.xml",
     "ppt/slideMasters/slideMaster8.xml",
     "ppt/slideMasters/slideMaster9.xml",
+    "ppt/slides/_rels/firmware_formats.xml.rels",
     "ppt/slides/_rels/lesson_7_1.xml.rels",
     "ppt/slides/_rels/lesson_7_10.xml.rels",
     "ppt/slides/_rels/lesson_7_13.xml.rels",
@@ -279,6 +287,7 @@
     "ppt/slides/_rels/slide7.xml.rels",
     "ppt/slides/_rels/slide8.xml.rels",
     "ppt/slides/_rels/slide9.xml.rels",
+    "ppt/slides/firmware_formats.xml",
     "ppt/slides/lesson_7_1.xml",
     "ppt/slides/lesson_7_10.xml",
     "ppt/slides/lesson_7_13.xml",

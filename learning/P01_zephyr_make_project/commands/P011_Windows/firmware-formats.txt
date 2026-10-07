@@ -1,0 +1,6 @@
+# Windows UCRT64；源码根；11.7 的 HC32 构建已成功。
+cd /g/zephyr_practice/zephyr-main
+grep -E '^CONFIG_BUILD_OUTPUT_(HEX|BIN)=' \
+  build/learning-tools/p003/build-hc32-sdk-auto/zephyr/.config
+find build/learning-tools/p003/build-hc32-sdk-auto/zephyr -maxdepth 1 \
+  \( -name 'zephyr.elf' -o -name 'zephyr.hex' -o -name 'zephyr.bin' \) -print

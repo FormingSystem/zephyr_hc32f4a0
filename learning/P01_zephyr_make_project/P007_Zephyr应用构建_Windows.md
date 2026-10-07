@@ -24,7 +24,7 @@ domains: [zephyr, cmake, tools]
 | 2—6 | 官方应用与 app 目标 | [7.1.1](#section-7-1-1) | 从应用原文件解释入口，不自造缺失文件 |
 | 7—10 | 包入口和构建阶段 | [7.1.3](#section-7-1-3) | 包结构、调用链、参与工具及产物 |
 | 11—15 | 准备检查与首次配置 | [7.2.1](#section-7-2-1) | 解压后还缺什么、SDK 错误与发现层处理 |
-| 16—17 | 构建与日常方式 | [7.2.3](#section-7-2-3) | 完整命令、增量、目标、Debug/Release 与后续入口 |
+| 16—18 | 构建与日常方式 | [7.2.3](#section-7-2-3) | 完整命令、增量、目标、Debug/Release 与后续入口 |
 
 <a id="section-7-1"></a>
 
@@ -276,6 +276,41 @@ cmake --build build/learning-tools/p003/cmake-demo --parallel 4
 `cmake --build` 不需要重复 `-S`，因为 `-B` 对应的缓存已经记录源目录和生成器。它也不会自动把当前终端切换到新激活的编译器或另一块板。重新打开 UCRT64 后，仍可进入本节源码根、激活既有 `.venv`，执行同一条 build；不必重新安装 Python、创建 venv 或运行 west init。若工具已搬家、依赖消失或缓存指向另一环境，则先处理这些输入，再按后面的规则决定是否另开构建目录。
 
 `--build` 不会重新下载依赖。若脚本、配置片段等已登记的输入变化触发重新运行 CMake，日志会先出现重新配置，再继续构建；普通修改 C 文件并不要求每次 clean。编译成功仅证明产生了固件，下载和实板运行另行验证。[可复制构建块](commands/P007_Windows/7.2.3-01.txt)。依据：[Zephyr 两个构建阶段](https://docs.zephyrproject.org/latest/build/cmake/index.html#build-and-configuration-phases)，原件 `doc/build/cmake/index.rst`；[CMake Build a Project](https://cmake.org/cmake/help/latest/manual/cmake.1.html#build-a-project)。
+
+<a id="firmware-formats"></a>
+
+### 7.2.3.1\_链接出的 ELF 与派生的 HEX、BIN
+
+日志中的 `Linking C executable zephyr/zephyr.elf` 表示正在链接核心产物；后面的 `Generating files from .../zephyr.elf` 表示继续从 ELF 生成本次配置要求的文件，不代表每个板都必定生成全部格式。
+
+```mermaid
+flowchart LR
+    A["C / 汇编源码"] --> B["目标文件与库"]
+    B --> C["链接：zephyr.elf"]
+    C --> D["CONFIG_BUILD_OUTPUT_HEX=y：zephyr.hex"]
+    C --> E["CONFIG_BUILD_OUTPUT_BIN=y：zephyr.bin"]
+```
+
+| 文件 | 保存的主要内容 | 使用时关注什么 |
+| --- | --- | --- |
+| `zephyr.elf` | 可加载段、地址、符号；启用调试信息时还包含源码调试信息 | 链接与调试的主要产物，不能把整个文件大小等同于 Flash 占用 |
+| `zephyr.hex` | Intel HEX 文本记录，包含地址和数据 | 烧录工具可从记录取得写入地址 |
+| `zephyr.bin` | 裸二进制数据，不携带加载地址 | 写入地址须由板配置、runner 或工具参数提供 |
+
+两项 `CONFIG_BUILD_OUTPUT_*` 是 Zephyr 的 Kconfig 配置，不是 Bash 环境变量。原生定义在源码根 `Kconfig.zephyr`；BIN 默认开启，HEX 是否开启继续看板和应用的最终配置。`CMakeLists.txt` 按这些值安排派生产物。不要直接编辑生成的 `.config`；需要改变格式时，在应用配置中设置后重新配置与构建。
+
+以下只检查本节已成功构建的 MPS2 目录；文件由工具生成，读者不新建它们：
+
+```bash
+# Windows UCRT64；源码根；本节 cmake-demo 构建已成功。
+cd /g/zephyr_practice/zephyr-main
+grep -E 'CONFIG_BUILD_OUTPUT_(HEX|BIN)' \
+  build/learning-tools/p003/cmake-demo/zephyr/.config
+find build/learning-tools/p003/cmake-demo/zephyr -maxdepth 1 \
+  \( -name 'zephyr.elf' -o -name 'zephyr.hex' -o -name 'zephyr.bin' \) -print
+```
+
+将列出的文件与 `.config` 对照；HEX 未启用时缺少 `.hex` 是正常结果。[完整检查命令](commands/P007_Windows/firmware-formats.txt)。烧录格式由具体 runner 选择，调试器通常读取 ELF 的符号与调试信息。MPS2 的构建结果不能据此用于 HC32；HC32 的具体配置见 [P011 11.7.1](P011_编译示例与新增开发板_Windows.md#hc32-firmware-formats)。
 
 ### 7.2.4\_常用构建选项改变的是哪一步
 

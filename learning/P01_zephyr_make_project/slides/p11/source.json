@@ -218,41 +218,46 @@
     },
     {
       "number": 44,
+      "title": "本次 HC32 同时生成 ELF、HEX 和 BIN",
+      "part": "ppt/slides/firmware_formats.xml"
+    },
+    {
+      "number": 45,
       "title": "核对 HC32 配置与实际模块",
       "part": "ppt/slides/cmsiswest_slide10.xml"
     },
     {
-      "number": 45,
+      "number": 46,
       "title": "确认 HC32 和 HAL 实际进入构建",
       "part": "ppt/slides/slide31.xml"
     },
     {
-      "number": 46,
+      "number": 47,
       "title": "三次实验分别证明了什么",
       "part": "ppt/slides/slide32.xml"
     },
     {
-      "number": 47,
+      "number": 48,
       "title": "构建失败按发生阶段定位",
       "part": "ppt/slides/slide33.xml"
     },
     {
-      "number": 48,
+      "number": 49,
       "title": "从练习进入正式维护",
       "part": "ppt/slides/slide34.xml"
     },
     {
-      "number": 49,
+      "number": 50,
       "title": "可选：用用户预设固定工程组合",
       "part": "ppt/slides/sdkscope_slide2.xml"
     },
     {
-      "number": 50,
+      "number": 51,
       "title": "可选：固定 SDK，保留模块自动发现",
       "part": "ppt/slides/cmsiswest_slide11.xml"
     },
     {
-      "number": 51,
+      "number": 52,
       "title": "新终端选择预设并构建",
       "part": "ppt/slides/cmsiswest_slide12.xml"
     }
@@ -377,6 +382,7 @@
     "ppt/notesMasters/_rels/notesMaster1.xml.rels",
     "ppt/notesMasters/notesMaster1.xml",
     "ppt/notesMasters/theme/theme3.xml",
+    "ppt/notesSlides/_rels/firmware_formats.xml.rels",
     "ppt/notesSlides/_rels/notesSlide1.xml.rels",
     "ppt/notesSlides/_rels/notesSlide10.xml.rels",
     "ppt/notesSlides/_rels/notesSlide11.xml.rels",
@@ -414,6 +420,7 @@
     "ppt/notesSlides/_rels/standalone_toolchain_7.xml.rels",
     "ppt/notesSlides/_rels/standalone_toolchain_8.xml.rels",
     "ppt/notesSlides/_rels/standalone_toolchain_9.xml.rels",
+    "ppt/notesSlides/firmware_formats.xml",
     "ppt/notesSlides/notesSlide1.xml",
     "ppt/notesSlides/notesSlide10.xml",
     "ppt/notesSlides/notesSlide11.xml",
@@ -552,6 +559,7 @@
     "ppt/slides/_rels/cmsiswest_slide7.xml.rels",
     "ppt/slides/_rels/cmsiswest_slide8.xml.rels",
     "ppt/slides/_rels/cmsiswest_slide9.xml.rels",
+    "ppt/slides/_rels/firmware_formats.xml.rels",
     "ppt/slides/_rels/sdkscope_slide1.xml.rels",
     "ppt/slides/_rels/sdkscope_slide2.xml.rels",
     "ppt/slides/_rels/sdkscope_slide3.xml.rels",
@@ -632,6 +640,7 @@
     "ppt/slides/cmsiswest_slide7.xml",
     "ppt/slides/cmsiswest_slide8.xml",
     "ppt/slides/cmsiswest_slide9.xml",
+    "ppt/slides/firmware_formats.xml",
     "ppt/slides/sdkscope_slide1.xml",
     "ppt/slides/sdkscope_slide2.xml",
     "ppt/slides/sdkscope_slide3.xml",

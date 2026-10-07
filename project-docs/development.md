@@ -44,6 +44,10 @@ python scripts/project_env.py build
 | 编译数据库 | `build/bringup/compile_commands.json` |
 | 生成的设备树与配置 | `build/bringup/zephyr/zephyr.dts`、`.config` |
 
+当前 HC32 板的 `uyup_rpi_a_hc32f4a0pitb_defconfig` 开启 `CONFIG_BUILD_OUTPUT_HEX=y`，BIN 默认开启；先链接 ELF，再按配置派生 HEX/BIN。ELF 保存加载段与符号，启用的调试信息供 GDB 使用；HEX 带地址记录，BIN 的写入地址由烧录配置提供。芯片型号本身不限定必须使用哪种文件格式。
+
+本仓库 `boards/uyup/uyup_rpi_a/board.cmake` 已接入 pyOCD。当前 runner 的 `flash()` 在未另行指定文件时按 HEX → BIN → ELF 选择，所以三种产物齐全时，普通 `west flash` 使用 HEX；源码调试使用 ELF。构建生成的 `zephyr/runners.yaml` 记录 runner 和产物路径。它与 learning 的分步适配快照不同：后者在构建章节尚未接入 runner，不能提前照搬烧录步骤。
+
 需要重新配置时执行 `python scripts/project_env.py build --pristine`。
 HC32 构建成功后自动运行 `scripts/verify_hc32_image.py`，检查目标、向量表、ICG、
 内存边界和编译源码来源；审计失败会使构建入口失败，也可单独执行该脚本复核现有产物。

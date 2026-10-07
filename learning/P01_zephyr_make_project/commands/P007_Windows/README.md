@@ -14,3 +14,4 @@
 | [step-02.txt](step-02.txt) | 7.2.2 第一次配置，只生成构建规则 | bash |
 | [step-03.txt](step-03.txt) | 7.2.3 执行构建，再观察增量构建 | bash |
 | [step-04.txt](step-04.txt) | 7.2.4 常用构建选项改变的是哪一步 | bash |
+| [firmware-formats.txt](firmware-formats.txt) | 7.2.3.1 链接与派生产物 | bash |

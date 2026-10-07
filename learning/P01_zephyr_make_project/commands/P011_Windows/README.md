@@ -33,3 +33,4 @@
 | [11.9.5-01.txt](11.9.5-01.txt) | 11.9.5 可选：用工程用户预设固定 SDK 选择 | bash |
 | [11.9.5-02.txt](11.9.5-02.txt) | 11.9.5 可选：用工程用户预设固定 SDK 选择 | bash |
 | [11.9.5-03.txt](11.9.5-03.txt) | 11.9.5 可选：用工程用户预设固定 SDK 选择 | bash |
+| [firmware-formats.txt](firmware-formats.txt) | 11.7.1 HC32 产物与烧录阶段 | bash |

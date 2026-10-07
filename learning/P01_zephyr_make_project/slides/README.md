@@ -20,11 +20,11 @@ domains: [zephyr, tools]
 | P004 | [CMSIS与HAL选择下载](../P004_CMSIS与HAL选择下载_Windows.md) | [PPT](P004_CMSIS与HAL选择下载_Windows.pptx) | 22 |
 | P005 | [源码模块接入Zephyr工程](../P005_源码模块接入Zephyr工程_Windows.md) | [PPT](P005_源码模块接入Zephyr工程_Windows.pptx) | 14 |
 | P006 | [原生CMake与目标模型](../P006_原生CMake与目标模型_Windows.md) | [PPT](P006_原生CMake与目标模型_Windows.pptx) | 22 |
-| P007 | [Zephyr应用构建](../P007_Zephyr应用构建_Windows.md) | [PPT](P007_Zephyr应用构建_Windows.pptx) | 17 |
+| P007 | [Zephyr应用构建](../P007_Zephyr应用构建_Windows.md) | [PPT](P007_Zephyr应用构建_Windows.pptx) | 18 |
 | P008 | [west零基础与Zephyr构建](../P008_west零基础与Zephyr构建_Windows.md) | [PPT](P008_west零基础与Zephyr构建_Windows.pptx) | 25 |
 | P009 | [Zephyr的CMake输入与依赖发现](../P009_Zephyr的CMake输入与依赖发现_Windows.md) | [PPT](P009_Zephyr的CMake输入与依赖发现_Windows.pptx) | 24 |
 | P010 | [CMake缓存与构建排错](../P010_CMake缓存与构建排错_Windows.md) | [PPT](P010_CMake缓存与构建排错_Windows.pptx) | 20 |
-| P011 | [编译示例与新增开发板](../P011_编译示例与新增开发板_Windows.md) | [PPT](P011_编译示例与新增开发板_Windows.pptx) | 51 |
+| P011 | [编译示例与新增开发板](../P011_编译示例与新增开发板_Windows.md) | [PPT](P011_编译示例与新增开发板_Windows.pptx) | 52 |
 | Linux-P001 | [Ubuntu 22.04 环境准备](../P001_官方环境安装与源码准备_Linux.md) | [PPT](P001_官方环境安装与源码准备_Linux.pptx) | 21 |
 
 ## 1.1\_阅读顺序与资料位置

@@ -41,8 +41,8 @@ flowchart LR
 | --- | --- | --- |
 | 11.1—11.3 | 第 4—17 页：认识并编译已有板 | 完整配置命令、文件证据、失败定位 |
 | 11.4 | 第 18—27 页：与原板逐文件对照 | YAML/Kconfig/DTS/defconfig 的完整新增步骤 |
-| 11.5—11.7 | 第 28—45 页：为 HC32 新增芯片和板支持 | 五个接入阶段、文件来源、每步可检查结果 |
-| 11.8—11.9 | 第 46—51 页：核验结果与工程用户预设 | 产物反查、缓存优先级、完整 CMakeUserPresets 文件 |
+| 11.5—11.7 | 第 28—46 页：为 HC32 新增芯片和板支持 | 五个接入阶段、文件来源、每步可检查结果 |
+| 11.8—11.9 | 第 47—52 页：核验结果与工程用户预设 | 产物反查、缓存优先级、完整 CMakeUserPresets 文件 |
 
 导航：[认识示例](#section-11-1) · [编译](#section-11-2) · [核验](#section-11-3) · [新增练习板](#section-11-4) · [HC32 对照](#section-11-5) · [逐层接入](#section-11-6) · [HC32 编译](#section-11-7) · [验收](#section-11-8) · [CMake 查阅](#section-11-9)。
 
@@ -192,7 +192,7 @@ ls -l build/learning-tools/p003/build-mps2-sdk-auto/zephyr/zephyr.elf
 
 ### 11.2.3\_替代路线：直接使用独立 ARM 工具链
 
-如果你下载的是 `toolchain_gnu_windows-x86_64_arm-zephyr-eabi.7z`，且想保持其独立目录，不组装 SDK，选本节替代 11.2.1—11.2.2 的 SDK 设置与构建。仍使用 11.1 已介绍的官方 `mps2/an386` 与 `samples/hello_world`，不提前依赖 HC32 新增适配。三种包的准备和工程接入差异见 [P003 3.2.4.2](P003_SDK准备与编译器选型_Windows.md#section-3-2)。已经走通 SDK 主线的读者无需再做一遍。
+如果你下载的是 `toolchain_gnu_windows-x86_64_arm-zephyr-eabi.7z`，且想保持其独立目录，不组装 SDK，选本节替代 11.2.1—11.2.2 的 SDK 设置与构建。仍使用 11.1 已介绍的官方 `mps2/an386` 与 `samples/hello_world`，不提前依赖 HC32 新增适配。三种包的准备和工程接入差异见 [P003 3.4.2](P003_SDK准备与编译器选型_Windows.md#standalone-toolchain)。已经走通 SDK 主线的读者无需再做一遍。
 
 前提是 P002 的 Windows CMake、Ninja、DTC、Python/venv 已就绪，P004 的 west 工作区与 CMSIS 已下载。工具链应保持在本机已解压的 `G:\zephyr_practice\arm-zephyr-eabi`，而非放进源码目录。以下路径适用于该实际位置；其他位置必须同时改编译器前缀和工具链根。源码、板、CMSIS 和 GCC 都是已有输入，下面只生成一个新的构建目录。
 
@@ -571,6 +571,25 @@ ls -l build/learning-tools/p003/build-hc32-sdk-auto/zephyr/zephyr.elf
 ```
 
 如果提示缺 HC32 HAL，先核对 P002—P005 的模块下载路径及 module.yml 名称；如果 SoC 未知，检查新模块的 soc.yml/Kconfig.soc 和搜索根；如果链接/驱动符号缺失，检查 11.6.3—11.6.4 的源文件接入，不用再次改板名“碰运气”。
+
+<a id="hc32-firmware-formats"></a>
+
+### 11.7.1\_本次 HC32 同时生成 ELF、HEX 和 BIN
+
+本章使用的教程适配原件 `learning/board/labs/hc32_port/boards/uyup/uyup_rpi_a/uyup_rpi_a_hc32f4a0pitb_defconfig` 已有 `CONFIG_BUILD_OUTPUT_HEX=y`。11.6 将它复制到工作模块的同名板目录；BIN 使用 Zephyr 的默认开启值。因此，按本章原样完成配置与构建时，会有 **`zephyr.elf`、`zephyr.hex`、`zephyr.bin` 三种产物**。格式由构建配置决定，HC32F4A0 芯片本身不规定只能用 HEX 或 BIN。
+
+```bash
+# Windows UCRT64；源码根；11.7 的 HC32 构建已成功。
+cd /g/zephyr_practice/zephyr-main
+grep -E '^CONFIG_BUILD_OUTPUT_(HEX|BIN)=' \
+  build/learning-tools/p003/build-hc32-sdk-auto/zephyr/.config
+find build/learning-tools/p003/build-hc32-sdk-auto/zephyr -maxdepth 1 \
+  \( -name 'zephyr.elf' -o -name 'zephyr.hex' -o -name 'zephyr.bin' \) -print
+```
+
+预期两项配置均为 `y`，并列出三个文件；不一致时先核对本次构建目录及实际采用的板/应用配置。[完整检查命令](commands/P011_Windows/firmware-formats.txt)。ELF 是链接产物，HEX 包含地址记录，BIN 不携带加载地址，详细区别见 [P007](P007_Zephyr应用构建_Windows.md#firmware-formats)。
+
+**生成 HEX 与具备烧录入口是两个阶段。** 本章适配快照尚未接入 runner，所以本节只核对产物。后续正式接入 pyOCD runner 后，当前 Zephyr 的 `scripts/west_commands/runners/pyocd.py` 中 `flash()` 按 **HEX → BIN → ELF** 选择存在的文件；三者都有时，普通 `west flash` 优先使用 HEX。源码调试则由 GDB 读取 ELF。实际选择还应核对该构建生成的 `zephyr/runners.yaml` 与烧录日志，不能仅凭文件存在推断已经下载或运行。
 
 <a id="section-11-8"></a>
 
