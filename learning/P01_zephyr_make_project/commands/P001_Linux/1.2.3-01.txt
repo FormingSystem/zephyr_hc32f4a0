@@ -1,0 +1,6 @@
+# P001_Linux / 1.2.3\_从 Python 官方源码安装 3.12.10
+# 只执行当前所选操作单元；先阅读正文前提。
+# 终端：Ubuntu 22.04 Bash；任意目录。
+sudo apt-get install build-essential pkg-config libssl-dev zlib1g-dev \
+  libbz2-dev libreadline-dev libsqlite3-dev libffi-dev liblzma-dev \
+  libgdbm-dev libgdbm-compat-dev libncurses-dev tk-dev uuid-dev

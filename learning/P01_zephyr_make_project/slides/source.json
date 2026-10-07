@@ -13,131 +13,196 @@
     },
     {
       "number": 3,
-      "title": "本课的操作顺序",
+      "title": "本期的操作顺序",
       "part": "ppt/slides/slide3.xml"
     },
     {
       "number": 4,
+      "title": "先知道文件从哪里来",
+      "part": "ppt/slides/beginner_slide1.xml"
+    },
+    {
+      "number": 5,
+      "title": "命令怎样复制与执行",
+      "part": "ppt/slides/beginner_slide2.xml"
+    },
+    {
+      "number": 6,
       "title": "终端环境中的三个名称",
       "part": "ppt/slides/slide4.xml"
     },
     {
-      "number": 5,
+      "number": 7,
       "title": "按 Windows 电脑架构选择安装包",
       "part": "ppt/slides/slide5.xml"
     },
     {
-      "number": 6,
+      "number": 8,
       "title": "MSYS2 安装流程（以 x64 为例）",
       "part": "ppt/slides/slide6.xml"
     },
     {
-      "number": 7,
-      "title": "安装后的终端与工具架构",
-      "part": "ppt/slides/slide7.xml"
+      "number": 9,
+      "title": "检查启动的是 UCRT64",
+      "part": "ppt/slides/beginner_slide3.xml"
     },
     {
-      "number": 8,
+      "number": 10,
       "title": "国内源影响哪些下载",
       "part": "ppt/slides/slide8.xml"
     },
     {
-      "number": 9,
-      "title": "换源前先备份原始配置",
-      "part": "ppt/slides/slide9.xml"
-    },
-    {
-      "number": 10,
-      "title": "国内镜像配置：中科大优先",
-      "part": "ppt/slides/slide10.xml"
-    },
-    {
       "number": 11,
+      "title": "先备份 MSYS2 原有配置",
+      "part": "ppt/slides/beginner_slide4.xml"
+    },
+    {
+      "number": 12,
+      "title": "修改通用工具的镜像列表",
+      "part": "ppt/slides/beginner_slide5.xml"
+    },
+    {
+      "number": 13,
+      "title": "修改原生工具的镜像列表",
+      "part": "ppt/slides/beginner_slide6.xml"
+    },
+    {
+      "number": 14,
       "title": "$arch 与 $repo 如何决定目录",
       "part": "ppt/slides/slide11.xml"
     },
     {
-      "number": 12,
-      "title": "更新前检查实际展开的仓库地址",
-      "part": "ppt/slides/slide12.xml"
-    },
-    {
-      "number": 13,
-      "title": "换源后的完整更新",
-      "part": "ppt/slides/slide13.xml"
-    },
-    {
-      "number": 14,
-      "title": "下载与解压工具",
-      "part": "ppt/slides/slide14.xml"
-    },
-    {
       "number": 15,
+      "title": "核对展开后的真实下载地址",
+      "part": "ppt/slides/beginner_slide7.xml"
+    },
+    {
+      "number": 16,
+      "title": "换源后完整升级",
+      "part": "ppt/slides/beginner_slide8.xml"
+    },
+    {
+      "number": 17,
+      "title": "重开终端，继续完成升级",
+      "part": "ppt/slides/beginner_slide9.xml"
+    },
+    {
+      "number": 18,
+      "title": "安装下载与解压工具",
+      "part": "ppt/slides/beginner_slide10.xml"
+    },
+    {
+      "number": 19,
       "title": "后续构建所需的辅助工具",
       "part": "ppt/slides/slide15.xml"
     },
     {
-      "number": 16,
+      "number": 20,
+      "title": "创建实验源码的父目录",
+      "part": "ppt/slides/beginner_slide11.xml"
+    },
+    {
+      "number": 21,
+      "title": "路线 A：克隆官方仓库",
+      "part": "ppt/slides/beginner_slide12.xml"
+    },
+    {
+      "number": 22,
       "title": "Zephyr 官方源码入口",
       "part": "ppt/slides/slide16.xml"
     },
     {
-      "number": 17,
-      "title": "下载前的本地代理配置",
-      "part": "ppt/slides/slide17.xml"
+      "number": 23,
+      "title": "确认克隆的是哪份源码",
+      "part": "ppt/slides/beginner_slide13.xml"
     },
     {
-      "number": 18,
+      "number": 24,
+      "title": "可选：按实际监听端口设置 Git 代理",
+      "part": "ppt/slides/beginner_slide14.xml"
+    },
+    {
+      "number": 25,
+      "title": "路线 B：在网页下载源码快照",
+      "part": "ppt/slides/beginner_slide15.xml"
+    },
+    {
+      "number": 26,
       "title": "ZIP 下载得到源码快照",
       "part": "ppt/slides/slide18.xml"
     },
     {
-      "number": 19,
+      "number": 27,
+      "title": "确认解压层次，别新建假的入口文件",
+      "part": "ppt/slides/beginner_slide16.xml"
+    },
+    {
+      "number": 28,
       "title": "ZIP 源码与 Git 仓库信息",
       "part": "ppt/slides/slide19.xml"
     },
     {
-      "number": 20,
-      "title": "最小 Git 元数据克隆",
-      "part": "ppt/slides/slide20.xml"
+      "number": 29,
+      "title": "补 Git 历史是可选实验",
+      "part": "ppt/slides/beginner_slide17.xml"
     },
     {
-      "number": 21,
-      "title": "元数据与 ZIP 版本核对",
-      "part": "ppt/slides/slide21.xml"
+      "number": 30,
+      "title": "确认临时目录和 .git 都不存在",
+      "part": "ppt/slides/beginner_slide18.xml"
     },
     {
-      "number": 22,
-      "title": "接入元数据并建立索引",
-      "part": "ppt/slides/slide22.xml"
+      "number": 31,
+      "title": "下载最小元数据",
+      "part": "ppt/slides/beginner_slide19.xml"
     },
     {
-      "number": 23,
-      "title": "main 历史的补全与验证",
-      "part": "ppt/slides/slide23.xml"
+      "number": 32,
+      "title": "把 HEAD 与 ZIP 下载记录对照",
+      "part": "ppt/slides/beginner_slide20.xml"
     },
     {
-      "number": 24,
+      "number": 33,
+      "title": "移动元数据，保留现有源码",
+      "part": "ppt/slides/beginner_slide21.xml"
+    },
+    {
+      "number": 34,
+      "title": "建立 Git 索引",
+      "part": "ppt/slides/beginner_slide22.xml"
+    },
+    {
+      "number": 35,
+      "title": "可选：补完整 main 历史",
+      "part": "ppt/slides/beginner_slide23.xml"
+    },
+    {
+      "number": 36,
       "title": "历史深度与文件内容是两个维度",
       "part": "ppt/slides/slide24.xml"
     },
     {
-      "number": 25,
-      "title": "可选的分支与标签获取",
-      "part": "ppt/slides/slide25.xml"
+      "number": 37,
+      "title": "可选：获取其他远程分支",
+      "part": "ppt/slides/beginner_slide24.xml"
     },
     {
-      "number": 26,
-      "title": "仓库内的 Git 提交身份",
-      "part": "ppt/slides/slide26.xml"
+      "number": 38,
+      "title": "可选：取得发布标签",
+      "part": "ppt/slides/beginner_slide25.xml"
     },
     {
-      "number": 27,
-      "title": "GitHub 连接故障的定位",
-      "part": "ppt/slides/slide27.xml"
+      "number": 39,
+      "title": "设置本仓库提交身份",
+      "part": "ppt/slides/beginner_slide26.xml"
     },
     {
-      "number": 28,
+      "number": 40,
+      "title": "连接失败时先查代理来源",
+      "part": "ppt/slides/beginner_slide27.xml"
+    },
+    {
+      "number": 41,
       "title": "完成标志与下一步",
       "part": "ppt/slides/slide28.xml"
     }
@@ -149,6 +214,75 @@
     "docProps/core.xml",
     "docProps/custom.xml",
     "ppt/_rels/presentation.xml.rels",
+    "ppt/beginner/notesSlides/_rels/notesSlide1.xml.rels",
+    "ppt/beginner/notesSlides/_rels/notesSlide10.xml.rels",
+    "ppt/beginner/notesSlides/_rels/notesSlide11.xml.rels",
+    "ppt/beginner/notesSlides/_rels/notesSlide12.xml.rels",
+    "ppt/beginner/notesSlides/_rels/notesSlide13.xml.rels",
+    "ppt/beginner/notesSlides/_rels/notesSlide14.xml.rels",
+    "ppt/beginner/notesSlides/_rels/notesSlide15.xml.rels",
+    "ppt/beginner/notesSlides/_rels/notesSlide16.xml.rels",
+    "ppt/beginner/notesSlides/_rels/notesSlide17.xml.rels",
+    "ppt/beginner/notesSlides/_rels/notesSlide18.xml.rels",
+    "ppt/beginner/notesSlides/_rels/notesSlide19.xml.rels",
+    "ppt/beginner/notesSlides/_rels/notesSlide2.xml.rels",
+    "ppt/beginner/notesSlides/_rels/notesSlide20.xml.rels",
+    "ppt/beginner/notesSlides/_rels/notesSlide21.xml.rels",
+    "ppt/beginner/notesSlides/_rels/notesSlide22.xml.rels",
+    "ppt/beginner/notesSlides/_rels/notesSlide23.xml.rels",
+    "ppt/beginner/notesSlides/_rels/notesSlide24.xml.rels",
+    "ppt/beginner/notesSlides/_rels/notesSlide25.xml.rels",
+    "ppt/beginner/notesSlides/_rels/notesSlide26.xml.rels",
+    "ppt/beginner/notesSlides/_rels/notesSlide27.xml.rels",
+    "ppt/beginner/notesSlides/_rels/notesSlide3.xml.rels",
+    "ppt/beginner/notesSlides/_rels/notesSlide4.xml.rels",
+    "ppt/beginner/notesSlides/_rels/notesSlide5.xml.rels",
+    "ppt/beginner/notesSlides/_rels/notesSlide6.xml.rels",
+    "ppt/beginner/notesSlides/_rels/notesSlide7.xml.rels",
+    "ppt/beginner/notesSlides/_rels/notesSlide8.xml.rels",
+    "ppt/beginner/notesSlides/_rels/notesSlide9.xml.rels",
+    "ppt/beginner/notesSlides/notesSlide1.xml",
+    "ppt/beginner/notesSlides/notesSlide10.xml",
+    "ppt/beginner/notesSlides/notesSlide11.xml",
+    "ppt/beginner/notesSlides/notesSlide12.xml",
+    "ppt/beginner/notesSlides/notesSlide13.xml",
+    "ppt/beginner/notesSlides/notesSlide14.xml",
+    "ppt/beginner/notesSlides/notesSlide15.xml",
+    "ppt/beginner/notesSlides/notesSlide16.xml",
+    "ppt/beginner/notesSlides/notesSlide17.xml",
+    "ppt/beginner/notesSlides/notesSlide18.xml",
+    "ppt/beginner/notesSlides/notesSlide19.xml",
+    "ppt/beginner/notesSlides/notesSlide2.xml",
+    "ppt/beginner/notesSlides/notesSlide20.xml",
+    "ppt/beginner/notesSlides/notesSlide21.xml",
+    "ppt/beginner/notesSlides/notesSlide22.xml",
+    "ppt/beginner/notesSlides/notesSlide23.xml",
+    "ppt/beginner/notesSlides/notesSlide24.xml",
+    "ppt/beginner/notesSlides/notesSlide25.xml",
+    "ppt/beginner/notesSlides/notesSlide26.xml",
+    "ppt/beginner/notesSlides/notesSlide27.xml",
+    "ppt/beginner/notesSlides/notesSlide3.xml",
+    "ppt/beginner/notesSlides/notesSlide4.xml",
+    "ppt/beginner/notesSlides/notesSlide5.xml",
+    "ppt/beginner/notesSlides/notesSlide6.xml",
+    "ppt/beginner/notesSlides/notesSlide7.xml",
+    "ppt/beginner/notesSlides/notesSlide8.xml",
+    "ppt/beginner/notesSlides/notesSlide9.xml",
+    "ppt/beginner/slideLayouts/_rels/slideLayout1.xml.rels",
+    "ppt/beginner/slideLayouts/_rels/slideLayout2.xml.rels",
+    "ppt/beginner/slideLayouts/_rels/slideLayout3.xml.rels",
+    "ppt/beginner/slideLayouts/_rels/slideLayout4.xml.rels",
+    "ppt/beginner/slideLayouts/_rels/slideLayout5.xml.rels",
+    "ppt/beginner/slideLayouts/_rels/slideLayout6.xml.rels",
+    "ppt/beginner/slideLayouts/slideLayout1.xml",
+    "ppt/beginner/slideLayouts/slideLayout2.xml",
+    "ppt/beginner/slideLayouts/slideLayout3.xml",
+    "ppt/beginner/slideLayouts/slideLayout4.xml",
+    "ppt/beginner/slideLayouts/slideLayout5.xml",
+    "ppt/beginner/slideLayouts/slideLayout6.xml",
+    "ppt/beginner/slideMasters/_rels/slideMaster1.xml.rels",
+    "ppt/beginner/slideMasters/slideMaster1.xml",
+    "ppt/beginner/slideMasters/theme/theme2.xml",
     "ppt/media/image1.png",
     "ppt/media/image2.png",
     "ppt/media/image3.png",
@@ -218,20 +352,51 @@
     "ppt/notesSlides/notesSlide9.xml",
     "ppt/presProps.xml",
     "ppt/presentation.xml",
+    "ppt/slideLayouts/_rels/lizhaojunCoverLayout.xml.rels",
     "ppt/slideLayouts/_rels/slideLayout1.xml.rels",
     "ppt/slideLayouts/_rels/slideLayout2.xml.rels",
     "ppt/slideLayouts/_rels/slideLayout3.xml.rels",
     "ppt/slideLayouts/_rels/slideLayout4.xml.rels",
     "ppt/slideLayouts/_rels/slideLayout5.xml.rels",
     "ppt/slideLayouts/_rels/slideLayout6.xml.rels",
+    "ppt/slideLayouts/lizhaojunCoverLayout.xml",
     "ppt/slideLayouts/slideLayout1.xml",
     "ppt/slideLayouts/slideLayout2.xml",
     "ppt/slideLayouts/slideLayout3.xml",
     "ppt/slideLayouts/slideLayout4.xml",
     "ppt/slideLayouts/slideLayout5.xml",
     "ppt/slideLayouts/slideLayout6.xml",
+    "ppt/slideMasters/_rels/lizhaojunCoverMaster.xml.rels",
     "ppt/slideMasters/_rels/slideMaster1.xml.rels",
+    "ppt/slideMasters/lizhaojunCoverMaster.xml",
     "ppt/slideMasters/slideMaster1.xml",
+    "ppt/slides/_rels/beginner_slide1.xml.rels",
+    "ppt/slides/_rels/beginner_slide10.xml.rels",
+    "ppt/slides/_rels/beginner_slide11.xml.rels",
+    "ppt/slides/_rels/beginner_slide12.xml.rels",
+    "ppt/slides/_rels/beginner_slide13.xml.rels",
+    "ppt/slides/_rels/beginner_slide14.xml.rels",
+    "ppt/slides/_rels/beginner_slide15.xml.rels",
+    "ppt/slides/_rels/beginner_slide16.xml.rels",
+    "ppt/slides/_rels/beginner_slide17.xml.rels",
+    "ppt/slides/_rels/beginner_slide18.xml.rels",
+    "ppt/slides/_rels/beginner_slide19.xml.rels",
+    "ppt/slides/_rels/beginner_slide2.xml.rels",
+    "ppt/slides/_rels/beginner_slide20.xml.rels",
+    "ppt/slides/_rels/beginner_slide21.xml.rels",
+    "ppt/slides/_rels/beginner_slide22.xml.rels",
+    "ppt/slides/_rels/beginner_slide23.xml.rels",
+    "ppt/slides/_rels/beginner_slide24.xml.rels",
+    "ppt/slides/_rels/beginner_slide25.xml.rels",
+    "ppt/slides/_rels/beginner_slide26.xml.rels",
+    "ppt/slides/_rels/beginner_slide27.xml.rels",
+    "ppt/slides/_rels/beginner_slide3.xml.rels",
+    "ppt/slides/_rels/beginner_slide4.xml.rels",
+    "ppt/slides/_rels/beginner_slide5.xml.rels",
+    "ppt/slides/_rels/beginner_slide6.xml.rels",
+    "ppt/slides/_rels/beginner_slide7.xml.rels",
+    "ppt/slides/_rels/beginner_slide8.xml.rels",
+    "ppt/slides/_rels/beginner_slide9.xml.rels",
     "ppt/slides/_rels/slide1.xml.rels",
     "ppt/slides/_rels/slide10.xml.rels",
     "ppt/slides/_rels/slide11.xml.rels",
@@ -260,6 +425,33 @@
     "ppt/slides/_rels/slide7.xml.rels",
     "ppt/slides/_rels/slide8.xml.rels",
     "ppt/slides/_rels/slide9.xml.rels",
+    "ppt/slides/beginner_slide1.xml",
+    "ppt/slides/beginner_slide10.xml",
+    "ppt/slides/beginner_slide11.xml",
+    "ppt/slides/beginner_slide12.xml",
+    "ppt/slides/beginner_slide13.xml",
+    "ppt/slides/beginner_slide14.xml",
+    "ppt/slides/beginner_slide15.xml",
+    "ppt/slides/beginner_slide16.xml",
+    "ppt/slides/beginner_slide17.xml",
+    "ppt/slides/beginner_slide18.xml",
+    "ppt/slides/beginner_slide19.xml",
+    "ppt/slides/beginner_slide2.xml",
+    "ppt/slides/beginner_slide20.xml",
+    "ppt/slides/beginner_slide21.xml",
+    "ppt/slides/beginner_slide22.xml",
+    "ppt/slides/beginner_slide23.xml",
+    "ppt/slides/beginner_slide24.xml",
+    "ppt/slides/beginner_slide25.xml",
+    "ppt/slides/beginner_slide26.xml",
+    "ppt/slides/beginner_slide27.xml",
+    "ppt/slides/beginner_slide3.xml",
+    "ppt/slides/beginner_slide4.xml",
+    "ppt/slides/beginner_slide5.xml",
+    "ppt/slides/beginner_slide6.xml",
+    "ppt/slides/beginner_slide7.xml",
+    "ppt/slides/beginner_slide8.xml",
+    "ppt/slides/beginner_slide9.xml",
     "ppt/slides/slide1.xml",
     "ppt/slides/slide10.xml",
     "ppt/slides/slide11.xml",
@@ -289,6 +481,7 @@
     "ppt/slides/slide8.xml",
     "ppt/slides/slide9.xml",
     "ppt/tableStyles.xml",
+    "ppt/theme/lizhaojunCoverTheme.xml",
     "ppt/theme/theme1.xml",
     "ppt/theme/theme2.xml",
     "ppt/viewProps.xml"

@@ -1,0 +1,9 @@
+# P001_Windows / 1.4.1_使用_Git_克隆
+# 仅执行当前操作单元；替代路线二选一。先阅读正文前提与预期结果。
+# 当前位置：源码存放目录；终端：UCRT64。上一条 clone 已成功。
+cd zephyr-main
+git rev-parse --show-toplevel
+git rev-parse HEAD
+git status
+ls
+ls -al

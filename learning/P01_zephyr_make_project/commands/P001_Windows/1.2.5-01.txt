@@ -1,0 +1,6 @@
+# P001_Windows / 1.2.5_根据错误类型排查与恢复
+# 仅执行当前操作单元；替代路线二选一。先阅读正文前提与预期结果。
+# 当前位置：任意目录；终端：UCRT64。恢复本节保存的原始列表。
+cp /etc/pacman.d/mirrorlist.msys.before-cn /etc/pacman.d/mirrorlist.msys
+cp /etc/pacman.d/mirrorlist.mingw.before-cn /etc/pacman.d/mirrorlist.mingw
+pacman -Syyu

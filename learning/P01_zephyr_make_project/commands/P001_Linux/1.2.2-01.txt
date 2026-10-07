@@ -1,0 +1,8 @@
+# P001_Linux / 1.2.2\_从 Kitware 官方 Jammy 源安装 CMake
+# 只执行当前所选操作单元；先阅读正文前提。
+# 终端：Ubuntu 22.04 Bash；任意目录。只适用于 jammy。
+sudo apt-get update
+sudo apt-get install ca-certificates gpg wget
+test -f /usr/share/doc/kitware-archive-keyring/copyright || \
+  wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc | \
+  gpg --dearmor - | sudo tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null

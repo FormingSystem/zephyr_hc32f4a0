@@ -1,0 +1,6 @@
+# P001_Windows / 1.3.3_准备_Windows_Python_并区分主机与目标编译器
+# 仅执行当前操作单元；替代路线二选一。先阅读正文前提与预期结果。
+# 当前位置：任意目录；终端：UCRT64。只做源码下载时可以跳过。
+pacman -S --needed mingw-w64-ucrt-x86_64-gcc mingw-w64-ucrt-x86_64-gdb
+gcc --version
+gdb --version

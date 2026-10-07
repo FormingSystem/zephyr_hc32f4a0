@@ -1,0 +1,7 @@
+# P001_Linux / 1.5\_安装源码要求的 Python 包和 SDK
+# 只执行当前所选操作单元；先阅读正文前提。
+# 终端：Linux Bash；位置：~/zephyrproject/zephyr；.venv 已激活。
+west packages pip --install
+west zephyr-export
+west sdk install --help
+west sdk install --gnu-toolchains arm-zephyr-eabi

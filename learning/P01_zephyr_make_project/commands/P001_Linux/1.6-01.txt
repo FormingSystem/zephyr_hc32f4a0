@@ -1,0 +1,12 @@
+# P001_Linux / 1.6\_验收与恢复
+# 只执行当前所选操作单元；先阅读正文前提。
+# 终端：Linux Bash；重新打开终端后的恢复与只读检查。
+source ~/zephyrproject/.venv/bin/activate
+cd ~/zephyrproject/zephyr
+python -c 'import sys; print(sys.executable); print(sys.platform)'
+python -m pip check
+west --version
+west topdir
+west sdk list
+cmake --version
+dtc --version

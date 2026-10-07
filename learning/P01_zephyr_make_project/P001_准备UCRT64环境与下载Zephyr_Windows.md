@@ -3,6 +3,7 @@ id: zephyr-download-ucrt64
 title: 准备 UCRT64 环境与下载 Zephyr
 kind: engineering
 status: evolving
+slides: slides/P001_准备UCRT64环境与下载Zephyr_Windows.pptx
 domains: [zephyr, tools]
 ---
 
@@ -11,15 +12,78 @@ domains: [zephyr, tools]
 
 # 第1章\_准备\_UCRT64\_环境与下载\_Zephyr
 
+**复制命令：** [按小节打开完整操作单元](commands/P001_Windows/README.md)。PPT 的“完整命令”链接指向同一份纯文本；请连同注释复制，先读本节前提，再执行所选路线。
+
 准备下载 Zephyr 时，Windows 电脑往往还缺少终端和 Git。本章从安装 MSYS2 开始，先让下载工具可用，再选择 Git 克隆或 ZIP 压缩包取得源码，最后按需补回 Git 历史。已有的下载截图和终端记录保留作对照，软件版本、文件大小和提交数量以实际下载结果为准。
 
 本文面向 Windows x64，命令默认在 **MSYS2 UCRT64 的 Bash 终端**执行。MSYS2 是提供类 Unix 命令行工具和软件包管理器的 Windows 工具环境；Bash 是解释并执行命令的 shell。UCRT64 是 MSYS2 中使用 Windows 通用 C 运行库（Universal C Runtime，UCRT）的 64 位环境，它仍运行在 Windows 上。
 
+正文展示的 `G:\zephyr_practice` 是 **Windows 资源管理器路径**；Bash 的文件操作使用 `/g/zephyr_practice`。从资源管理器粘贴的路径通过 `read -r` 接收后，用 `cygpath -u` 转换，不能把未处理的反斜杠路径直接写在 `cd` 后。这套 `/g` 和 `cygpath` 写法属于 Windows/MSYS2，不是 Linux 或 WSL 的通用路径。
+
 阅读顺序：**1.1 安装终端 → 1.2 国内换源 → 1.3 安装工具 → 1.4 下载源码**。选择 ZIP 且需要版本历史时，再继续 1.5～1.8；1.9 配置提交身份，1.10 说明后续构建准备。下载完成只代表取得主仓库源码，完整构建还需要配套模块、Python 依赖和目标工具链。
 
-配套课件：[UCRT64 环境与 Zephyr 下载教学课件](slides/P01_准备UCRT64环境与下载Zephyr.pptx)。其中安装与换源部分包含 x64、ARM64 分支，后续构建工具仍以 UCRT64 为主线。
+配套演示文稿：[UCRT64 环境与 Zephyr 下载演示资料](slides/P001_准备UCRT64环境与下载Zephyr_Windows.pptx)。其中安装与换源部分包含 x64、ARM64 分支，后续构建工具仍以 UCRT64 为主线。
 
-> 本章演示下载 Zephyr 官方上游源码，使用独立的练习目录。HC32 是本项目使用的华大单片机系列名。当前 HC32 工程已经包含源码和板级修改；准备使用本工程的读者应接着看[本工程环境说明](../../project-docs/environment.md)，不要把上游源码解压覆盖到现有工程。
+> 本章从官方上游取得 Zephyr，统一将直接含 `VERSION` 的源码层放在 `G:\zephyr_practice\zephyr-main`。后续 Markdown 与 PPT 都在这份源码上复现。HC32 是后续移植目标；下载原生源码不会自动获得 HC32 板级支持。
+
+```mermaid
+flowchart LR
+    S1["终端安装"]
+    S2["软件源"]
+    S3["下载工具"]
+    S4["官方源码"]
+    S5["按需补充 Git 历史"]
+    S1 --> S2 --> S3 --> S4 --> S5
+```
+
+**动手前的起点：** Windows 主机、可用网络和普通文件编辑器；不要求已经有 Zephyr SDK 或 HC32 支持。
+
+**完成本章后的状态：** 直接含 VERSION 的原生源码位于 /g/zephyr_practice/zephyr-main，终端和下载工具可用；是否补充 Git 历史按实际需要选择。
+
+**复制命令：** [按小节打开完整操作单元](commands/P001_Windows/README.md)。PPT 的“完整命令”链接指向同一份纯文本；请连同注释复制，先读本节前提，再执行所选路线。
+
+**视频与复习对照：** Markdown 提供完整步骤和解释；PPT 按下面的阶段讲解重点，操作时以对应正文为准。
+
+| 阶段 | 正文小节 | PPT 页面 | Markdown 中继续展开的内容 |
+| --- | --- | --- | --- |
+| 终端与镜像 | 1.1—1.2 | 6—17 | 安装、软件源备份、展开后的仓库地址和更新失败处理 |
+| 下载工具与源码 | 1.3—1.4 | 18—27 | 源码来源、路径转换、ZIP 解压层次与网络检查 |
+| 可选 Git 历史 | 1.5—1.6、1.8—1.9 | 28—39 | 提交一致性、元数据接入、索引、身份配置与恢复前提 |
+| 排错与交接 | 1.7、1.10 | 40—41 | 连接问题和进入依赖安装前的检查 |
+
+**本章导航**
+
+- [1.1 安装并打开 UCRT64 终端](#section-1-1)
+- [1.2 将 MSYS2 软件源切换为国内镜像](#section-1-2)
+- [1.3 安装下载与后续构建工具](#section-1-3)
+- [1.4 下载 Zephyr 源码](#section-1-4)
+- [1.5 为 ZIP 源码补充 Git 仓库信息](#section-1-5)
+- [1.6 补全 main 分支的提交历史](#section-1-6)
+- [1.7 排查 GitHub 连接与代理](#section-1-7)
+- [1.8 回顾 ZIP 与 Git 仓库信息的组合流程](#section-1-8)
+- [1.9 在仓库内配置 Git 提交身份](#section-1-9)
+- [1.10 检查结果并进入下一步](#section-1-10)
+
+
+### 1.0.1\_先分清本期会出现的文件
+
+刚安装好终端时，电脑里没有 Zephyr 工程是正常的。`mkdir` 创建的是存放位置，下载/解压才带来源码；不要为了匹配图片，提前新建 `VERSION`、`west.yml` 或 `.git` 空文件。
+
+| 对象 | 谁提供或创建 | 第一次应该何时出现 |
+| --- | --- | --- |
+| `/etc/pacman.d/mirrorlist.*` | MSYS2 安装提供的官方配置 | 终端安装完成后，换源前应已存在 |
+| `mirrorlist.*.before-cn` | 读者按 1.2 的 cp 创建的备份 | 执行备份后；它不是 MSYS2 官方固定文件名 |
+| `/g/zephyr_practice` | 读者按 1.4 的 mkdir 创建的父目录 | 下载之前 |
+| `zephyr-main/VERSION`、`west.yml`、`boards` | Zephyr 官方仓库源码 | clone 或 ZIP 解压成功后 |
+| `zephyr-main/.git` | Git clone 生成的版本元数据 | clone 路线有；ZIP 路线默认没有 |
+| `git-meta` | 读者为可选补历史流程指定的临时目录 | 1.5 的元数据克隆后；不参加编译 |
+| `learning`、`.venv`、外部 CMSIS 与 SDK | 后续教程材料或工具安装结果 | 本期原生源码里没有它们，不是误删 |
+
+命令框内的 `#` 开头行是 Bash 注释，可以一起复制。`$` 提示符、历史终端输出及目录树是观察示例，不属于待执行命令。PPT 的配套命令文本按操作单元拆分，打开相应文件复制；不要把一整章包含替代分支的所有命令一次执行。
+
+<a id="section-1-1"></a>
+
+默认使用 UCRT64 Bash，保持 Linux 命令习惯。只有 Zephyr 官方明确采用 PowerShell 的 Windows 下载/安装步骤，以及 setup.cmd 等 Windows 专用脚本和其 Windows 管理操作，才切换到 PowerShell。普通下载、摘要校验、解压、版本检查、Python/venv 与 CMake 工程操作仍用 UCRT64，不能仅因调用 Windows 可执行程序就整段改成 PowerShell。Ubuntu 22.04 使用原生 Linux Bash。每段标明终端和目录，切换时重新进入目录，临时变量不互相继承。
 
 ## 1.1\_安装并打开\_UCRT64\_终端
 
@@ -35,7 +99,7 @@ domains: [zephyr, tools]
 
 本章后续工具安装以 **Windows x64 + UCRT64** 为主线。ARM64 读者可按本节及 1.2 节理解安装与换源，后续原生包要使用对应的 CLANGARM64 包名。
 
-![MSYS2 官网的安装包下载入口](./assets/image-20261002093927345.png)
+![MSYS2 官网的安装包下载入口](assets/image-20261002093927345.png)
 
 运行安装程序，选择一个不含空格和中文的工具目录，例如空间充足的磁盘上的 `E:\msys64`，按向导完成安装。这里保存终端和工具，源码另放在自己的项目目录。
 
@@ -48,6 +112,8 @@ echo "$MINGW_PREFIX"
 ```
 
 x64 主线预期依次输出 `UCRT64` 和 `/ucrt64`；ARM64 读者在 CLANGARM64 中检查时，应得到 `CLANGARM64` 和 `/clangarm64`。前者确认当前环境，后者确认这套原生工具的安装前缀。UCRT64 默认优先搜索 `/ucrt64/bin`，随后也能使用 `/usr/bin` 中的通用命令；详见 [MSYS2 Environments 的 Overview](https://www.msys2.org/docs/environments/#overview)。
+
+<a id="section-1-2"></a>
 
 ## 1.2\_将\_MSYS2\_软件源切换为国内镜像
 
@@ -190,6 +256,8 @@ pacman -Syyu
 
 恢复后重新同步并完整升级。若报签名错误，先核对系统时间和官方密钥更新说明，不用关闭签名校验来绕过问题。恢复列表不会卸载已安装工具。
 
+<a id="section-1-3"></a>
+
 ## 1.3\_安装下载与后续构建工具
 
 现在进入“安装终端 → 国内换源 → **安装工具** → 下载源码”的第三步。先安装取得源码需要的工具，再按学习进度安装构建工具；包管理器会同时处理它们的依赖。
@@ -220,18 +288,7 @@ command -v git
 
 ### 1.3.2\_按需安装构建辅助工具
 
-准备继续构建 Zephyr 时，再安装下列 UCRT64 软件包；如果只是阅读源码，可以稍后再做。
-
-```bash
-# 当前位置：任意目录；终端：UCRT64。
-pacman -S --needed \
-    mingw-w64-ucrt-x86_64-cmake \
-    mingw-w64-ucrt-x86_64-ninja \
-    mingw-w64-ucrt-x86_64-dtc \
-    mingw-w64-ucrt-x86_64-gperf
-```
-
-反斜杠表示命令在下一行继续，其后不要添加空格或注释。共同前缀 `mingw-w64-ucrt-x86_64-` 选择 UCRT64 包，不能改成其他环境的前缀。
+准备构建时，按[Windows P002—P006](环境与依赖导航.md)在 PowerShell 或 cmd.exe 使用官方 winget 清单，安装后回到 UCRT64。完整依据见[主机工具与官方安装来源](主机工具与官方安装来源.md)。本节先认识工具职责，避免尚未取得源码时把一份软件包清单当作永久要求。
 
 | 工具 | 构建时的职责 | 安装后检查 |
 | --- | --- | --- |
@@ -240,11 +297,11 @@ pacman -S --needed \
 | dtc（Device Tree Compiler，设备树编译器） | 处理描述硬件的设备树数据 | `dtc --version` |
 | gperf | 根据关键字集合生成查找代码 | `gperf --version` |
 
-包名可在官方索引的 [CMake](https://packages.msys2.org/packages/mingw-w64-ucrt-x86_64-cmake)、[Ninja](https://packages.msys2.org/packages/mingw-w64-ucrt-x86_64-ninja)、[dtc](https://packages.msys2.org/packages/mingw-w64-ucrt-x86_64-dtc)、[gperf](https://packages.msys2.org/packages/mingw-w64-ucrt-x86_64-gperf) 页面核对。安装后逐项执行表中的命令，再运行 `type -a cmake ninja dtc gperf` 核对路径；本节安装的原生工具通常在 `/ucrt64/bin`。
+安装后逐项检查表中的命令，再用 `type -a cmake ninja dtc gperf` 核对真正调用的文件。UCRT64 的 `/ucrt64/bin` 可能覆盖 Windows PATH 中的同名工具，不能凭终端名称判断工具来源。
 
 ### 1.3.3\_准备\_Windows\_Python\_并区分主机与目标编译器
 
-Zephyr 的构建脚本和多仓库管理工具 west 由 Python 运行。沿用本仓库的学习环境，选择 **Windows 原生 Python 3.12**，从 [Python Windows 下载页](https://www.python.org/downloads/windows/)选择对应版本的 64 位安装程序，保留 Python Launcher（`py` 启动器）。安装后重开 UCRT64，检查：
+Zephyr 的构建脚本和多仓库管理工具 west 由 Python 运行。本教程选择 **Windows 原生 Python 3.12.10**，从 [Python 3.12.10 发行页](https://www.python.org/downloads/release/python-31210/)选择 Windows installer (64-bit)，保留 Python Launcher（`py` 启动器）。安装后重开 UCRT64，检查：
 
 ```bash
 # 当前位置：任意目录；终端：重新打开的 UCRT64。
@@ -252,7 +309,7 @@ py -3.12 --version
 py -3.12 -m pip --version
 ```
 
-预期显示 Python 3.12.x 和它对应的 pip 包安装器。若找不到 `py`，检查启动器是否安装、终端是否重开。MSYS2 自带的 Python 与 Windows 官方 Python 有包兼容性差异，所以这里明确用 `py -3.12` 选择解释器，后续在项目虚拟环境中安装 west；详见 [MSYS2 Python](https://www.msys2.org/docs/python/)。
+预期显示 Python 3.12.10 和它对应的 pip 包安装器。`py` 能找到解释器，不保证 Bash 的 PATH 中已有 `python`。UCRT64 命令安装、Windows 已装 Python 的 PATH 设置以及源码根 `.venv` 创建，统一见 [P002—P006 的 Python 环境说明](环境与依赖导航.md)。若找不到 `py`，检查启动器是否安装、终端是否重开。MSYS2 自带的 Python 与 Windows 官方 Python 有包兼容性差异，所以这里明确用 `py -3.12` 选择解释器，后续在项目虚拟环境中安装 west；详见 [MSYS2 Python](https://www.msys2.org/docs/python/)。
 
 若后续要做 Windows 主机上的 C/C++ 编译与调试实验，可额外安装 GCC 编译器和 GDB 调试器：
 
@@ -263,37 +320,39 @@ gcc --version
 gdb --version
 ```
 
-这些工具生成、调试 Windows 程序。编译 HC32 的 ARM 固件还需 Zephyr SDK（Software Development Kit，软件开发工具包）内的目标交叉编译器；它生成在开发板上运行的程序。SDK 的版本及安装步骤按[本工程环境说明](../../project-docs/environment.md)选择，安装 UCRT64 GCC 不能替代它。
+这些工具生成、调试 Windows 程序。编译 HC32 的 ARM 固件还需 Zephyr SDK（Software Development Kit，软件开发工具包）内的目标交叉编译器；它生成在开发板上运行的程序。SDK 的版本及安装步骤按[下一章](环境与依赖导航.md)从实际源码推导，安装 UCRT64 GCC 不能替代它。
+
+<a id="section-1-4"></a>
 
 ## 1.4\_下载\_Zephyr\_源码
 
-现在进入“安装终端 → 国内换源 → 安装工具 → **下载源码**”的第四步。先选择独立源码存放目录。例如在 Windows 资源管理器中进入准备存放练习的位置，右键复制路径，再在 UCRT64 中执行。下面用自定变量 `SOURCE_DIR` 保存输入路径：
+现在进入“安装终端 → 国内换源 → 安装工具 → **下载源码**”的第四步。源码父目录固定为 Windows 的 `G:\zephyr_practice`，先在 UCRT64 创建并进入它：
 
 ```bash
-# 当前位置：任意目录；终端：UCRT64。输入已存在的 Windows 目录路径，不带外层引号。
-read -r -p "请输入源码存放目录: " SOURCE_DIR
-cd "$(cygpath -u "$SOURCE_DIR")"
+# 当前位置：任意目录；终端：Windows 的 UCRT64 Bash。
+mkdir -p /g/zephyr_practice
+cd /g/zephyr_practice
 pwd
 ```
 
-`cygpath -u` 将 Windows 路径转换成 Bash 可用的形式；例如 G 盘路径在 MSYS2 中通常以 `/g/` 开头。确认 `pwd` 指向预期位置后再继续。下面选用上游 `main` 分支演示，它会持续变化；正式工程应固定发布标签或提交号。
+若要从资源管理器输入同一个父目录，可用备用方式 `read -r -p 'Windows 父目录（不带引号）: ' SOURCE_DIR`，再执行 `cd "$(cygpath -u "$SOURCE_DIR")"`。`cygpath -u` 将 Windows 地址转换成 Bash 路径。主线 `pwd` 应为 `/g/zephyr_practice`。下面选用上游 `main` 分支演示，它会持续变化；正式工程应固定发布标签或提交号。
 
-![Zephyr 官方仓库地址与下载入口](./assets/image-20261002095521595.png)
+![Zephyr 官方仓库地址与下载入口](assets/image-20261002095521595.png)
 
 ### 1.4.1\_使用\_Git\_克隆
 
 Git 是版本控制工具，clone 表示取得一个远程仓库及其历史。在选好的源码存放目录执行：
 
 ```bash
-# 当前位置：源码存放目录；终端：UCRT64。目标 zephyr 目录应尚不存在。
-git clone https://github.com/zephyrproject-rtos/zephyr.git
+# 当前位置：/g/zephyr_practice；终端：UCRT64。目标 zephyr-main 应尚不存在。
+git clone https://github.com/zephyrproject-rtos/zephyr.git zephyr-main
 ```
 
-成功后得到名为 `zephyr` 的源码目录，其中包含源码和保存版本信息的隐藏目录 `.git/`。HEAD 是 Git 表示当前检出提交的引用名；进入目录后核对它指向的提交号：
+命令末尾显式指定 `zephyr-main`，因此 Git 与 ZIP 两种取得方式最后使用同一个实验路径，而不会默认创建另一个 `zephyr` 目录。目录中包含源码和保存版本信息的 `.git/`。HEAD 是 Git 表示当前检出提交的引用名；进入目录后核对它指向的提交号：
 
 ```bash
 # 当前位置：源码存放目录；终端：UCRT64。上一条 clone 已成功。
-cd zephyr
+cd zephyr-main
 git rev-parse --show-toplevel
 git rev-parse HEAD
 git status
@@ -301,7 +360,7 @@ ls
 ls -al
 ```
 
-根目录应是刚创建的 `zephyr`，`HEAD` 是当前提交号，工作区应干净。后两条分别查看普通文件和包含隐藏文件的列表。克隆成功的读者可跳过 ZIP 和补历史步骤，直接看 1.9；不要再给已有仓库拼接另一份 `.git`。
+根目录应是 `G:/zephyr_practice/zephyr-main`（Git 可能输出 Windows 正斜杠路径），`HEAD` 是当前提交号，工作区应干净。后两条分别查看普通文件和包含隐藏文件的列表。克隆成功的读者可跳过 ZIP 和补历史步骤，直接看 1.9；不要再给已有仓库拼接另一份 `.git`。
 
 **下载前配置本地代理（以 v2rayN 为例）**
 
@@ -319,6 +378,21 @@ curl -I -x http://127.0.0.1:10808 https://github.com
 curl 测试通常先显示 `200 Connection established`，还应继续看到 GitHub 的 HTTP 响应；仅建立代理隧道不代表整个请求成功。**Git 代理配置不控制浏览器**：下面用浏览器下载 ZIP 时，还需在 v2rayN 开启系统代理，或让浏览器使用同一代理入口。
 
 ### 1.4.2\_使用\_ZIP\_下载
+
+
+先在浏览器打开 [Zephyr 官方仓库](https://github.com/zephyrproject-rtos/zephyr)，检查所有者 `zephyrproject-rtos` 和仓库名 `zephyr`。左上分支/标签选择器决定正在看的版本，绿色 **Code → Download ZIP** 下载的是所选版本的源码快照。`main` 会变化；想严格复现时，先从提交页面取得完整 SHA，再打开 `/tree/完整SHA` 的文件树下载，并把 SHA 记在自己的下载笔记里。不要把某天下载的 main ZIP 与另一天的 main 提交当成相同内容。
+
+浏览器下载不负责安装。把 ZIP 保留一份，再解压到 `G:\zephyr_practice`。找到**直接包含 `VERSION`、`west.yml`、`boards`、`samples` 的那层**，将这一层目录命名为 `zephyr-main`。如果外面多套了下载文件名目录，内层才是源码根。目录名 `zephyr-main` 是本教程的统一存放约定，并不固定 Git 分支或提交。
+
+```bash
+# Windows UCRT64；浏览器已解压到指定位置，检查官方源码入口。
+cd /g/zephyr_practice/zephyr-main
+ls VERSION SDK_VERSION west.yml boards samples
+# ZIP 无 .git 是预期结果；clone 路线应存在该目录。
+if [ -d .git ]; then git rev-parse HEAD; else printf 'ZIP snapshot: no Git metadata\n'; fi
+```
+
+这几项存在才能进入 P002—P006。`boards` 里没有 UYUP 不表示下载坏了，新增芯片/板支持属于 P007。ZIP 没有 `.git` 也不妨碍读取或编译源码，只是不具备本地历史查询能力；1.5 是可选的 Git 补充流程。若要补历史，下载笔记里的 SHA 是核对依据，未确认版本一致之前不要移动元数据或重置工作区。
 
 Git 克隆遇到连接问题时，原记录曾出现：
 
@@ -338,9 +412,9 @@ fatal: unable to access 'https://github.com/zephyrproject-rtos/zephyr.git/': Fai
 
 如果浏览器仍能访问 [Zephyr 官方仓库](https://github.com/zephyrproject-rtos/zephyr)，可点击 **Code → Download ZIP** 下载当前分支快照。ZIP 不含 Git 历史，传输内容可能比完整克隆少；是否更快取决于网络，不能保证下载工具一定加速，也不能保证网页打不开时压缩包仍可下载。
 
-![GitHub 的 Download ZIP 入口](./assets/image-20261002100230750.png)
+![GitHub 的 Download ZIP 入口](assets/image-20261002100230750.png)
 
-将压缩包解压到源码存放目录，通常得到 `zephyr-main/`。文件数量较多，解压需要一些时间；包体积随版本变化，不以固定大小判断下载是否完整。若准备后面补回 Git 信息，先记录压缩包对应的提交号，并保留未修改的解压副本；分支名相同不保证下载时刻的提交相同。
+将压缩包解压到 `G:\zephyr_practice`，使直接含 `VERSION` 的目录为 `G:\zephyr_practice\zephyr-main`，避免多套一层同名目录。文件数量较多，解压需要一些时间；包体积随版本变化，不以固定大小判断下载是否完整。若准备后面补回 Git 信息，先记录压缩包对应的提交号，并保留未修改的解压副本；分支名相同不保证下载时刻的提交相同。
 
 原下载记录中的目录内容如下。这是文件名清单，AGENTS.md、REUSE.toml、CODE_OF_CONDUCT.md、MAINTAINERS.yml、CONTRIBUTING.rst、README.rst 等分别是协作说明、许可证配置、行为准则、维护者列表、贡献指南和项目介绍；本节用它们识别源码目录，不展开每个文件：
 
@@ -357,6 +431,8 @@ Kconfig             README.rst         doc          modules  subsys
 ```
 
 到这里已可阅读源码。若还需要提交记录、版本比较和分支操作，再继续补充 Git 数据；这仍需访问 GitHub，不能用来绕过尚未解决的 Git 网络故障。
+
+<a id="section-1-5"></a>
 
 ## 1.5\_为\_ZIP\_源码补充\_Git\_仓库信息
 
@@ -492,9 +568,11 @@ nothing to commit, working tree clean
 
 此时可用 `git log -1 --oneline` 查看当前提交、`git branch` 查看本地分支、`git remote -v` 查看来源、`git diff` 比较改动。但历史仍然很浅；工作区干净不等于历史已经完整。
 
+<a id="section-1-6"></a>
+
 ## 1.6\_补全\_main\_分支的提交历史
 
-已恢复 Git 工作区之后，如果需要追溯 main 的历史，再执行本节。历史深度与文件内容是两个独立维度：commit 记录提交，tree 记录目录和文件关系，blob 保存文件内容。
+本节是可选的历史查询说明。若当前只需要浅克隆并开展适配，跳过本节，不执行 `--unshallow`。已恢复 Git 工作区且确实需要追溯 main 的历史时，再继续；后续自动更新与提交组织规则尚未确定，本节不提供同步策略。历史深度与文件内容是两个独立维度：commit 记录提交，tree 记录目录和文件关系，blob 保存文件内容。
 
 ```text
                    Git 仓库数据
@@ -589,6 +667,8 @@ git tag -l
 
 这样补充标签引用，仍保留文件内容按需下载的方式。可以按需求停在三个层次之一：恢复 Git 工作区、补全 main 历史，或继续获取其他分支与标签。
 
+<a id="section-1-7"></a>
+
 ## 1.7\_排查\_GitHub\_连接与代理
 
 如果 clone 或 fetch 报 `Connection reset by peer`、`Failed to connect to github.com:443`，首先定位 Git 到 GitHub 的网络连接。这些错误本身不能证明 ZIP 损坏、索引建立失败、部分克隆失效或 `.git` 损坏。
@@ -629,6 +709,8 @@ git -c http.proxy= ls-remote https://github.com/zephyrproject-rtos/zephyr.git HE
 
 如果仍有按网址配置的代理，先根据前面的配置来源检查对应项。小请求成功后再回到先前失败的下载步骤；重试补历史前再次确认浅仓库状态，已为 `false` 时不再使用 `--unshallow`。
 
+<a id="section-1-8"></a>
+
 ## 1.8\_回顾\_ZIP\_与\_Git\_仓库信息的组合流程
 
 至此，ZIP 恢复路线可以串成下面的过程。图用于对照已完成的步骤，已经操作成功的目录不需要再重跑一次。
@@ -664,6 +746,8 @@ main 提交历史补全
 
 整个流程不依赖固定安装路径或某个盘符，只要求最初在 `zephyr-main` 的上一级目录操作，进入源码目录后在该仓库内执行后续命令。最终用 `git status` 验证工作区、`git rev-parse --is-shallow-repository` 验证历史深度、`git log` 验证可追溯记录；三个结果回答不同问题。
 
+<a id="section-1-9"></a>
+
 ## 1.9\_在仓库内配置\_Git\_提交身份
 
 只下载源码不要求配置姓名和邮箱；准备提交自己的修改时才需要。请先进入已经克隆的 `zephyr`，或完成 1.5 后的 `zephyr-main`。单纯 ZIP 解压目录还不是 Git 仓库，不能执行局部配置。
@@ -679,8 +763,14 @@ git config --local --get user.name
 
 先核对第一条输出的根目录，再把示例邮箱和姓名替换成自己的信息。`--local` 把配置写入当前仓库的 `.git/config`，不影响其他仓库；在仓库外执行会报错。它记录提交作者身份，不等于配置 GitHub 登录凭据。
 
+<a id="section-1-10"></a>
+
 ## 1.10\_检查结果并进入下一步
 
 完成后，你应能在 UCRT64 中看到正确的环境标识，使用 pacman 更新工具，执行 Git 下载命令，并区分“只有源码快照”“浅 Git 仓库”和“main 历史已经补全但部分文件对象仍按需下载”这几种状态。只选择 ZIP 阅读源码也已经完成本章的下载目标。
 
-后续编译需要依据所选 Zephyr 版本准备 Python 虚拟环境、west 管理的配套模块和 Zephyr SDK。继续学习工具原理可从 [Python 虚拟环境](../python/venv/大纲.md)与 [west 多仓库管理](../west/大纲.md)开始；使用当前 HC32 工程则按[本工程安装流程](../../project-docs/environment.md)继续。不要把主仓库下载成功当成完整构建环境已经验收。
+下一期继续[下载 SDK 与安装依赖包](环境与依赖导航.md)，先让主机工具、ARM 编译器与 Python 包环境可用。后续编译还需要依据所选 Zephyr 版本配套源码模块；工具原理可继续读 [Python 虚拟环境](../python/venv/大纲.md)与 [west 多仓库管理](../west/大纲.md)。所有后续实验继续使用同一份原生源码。不要把主仓库下载成功当成完整构建环境已经验收。
+
+下一篇：[下载 SDK 与安装依赖包](环境与依赖导航.md)。
+
+下一模块：[P002 主机工具与 Python](P002_主机工具与Python环境_Windows.md)。

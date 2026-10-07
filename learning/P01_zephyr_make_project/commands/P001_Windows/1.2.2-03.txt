@@ -1,0 +1,7 @@
+# P001_Windows / 1.2.2_备份并写入中科大源与后备源
+# 仅执行当前操作单元；替代路线二选一。先阅读正文前提与预期结果。
+# 当前位置：任意目录；终端：MSYS2 UCRT64 / CLANGARM64 的 Bash。
+cat > /etc/pacman.d/mirrorlist.mingw <<'EOF'
+Server = https://mirrors.ustc.edu.cn/msys2/mingw/$repo/
+Server = https://mirrors.tuna.tsinghua.edu.cn/msys2/mingw/$repo/
+EOF

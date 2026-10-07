@@ -1,0 +1,4 @@
+# P001_Windows / 1.5.3_接入_Git_元数据并建立索引
+# 仅执行当前操作单元；替代路线二选一。先阅读正文前提与预期结果。
+# 当前位置：zephyr-main 源码根目录；终端：UCRT64。
+git read-tree --reset HEAD

@@ -1,0 +1,7 @@
+# P001_Linux / 1.4\_取得官方源码和模块
+# 只执行当前所选操作单元；先阅读正文前提。
+# Ubuntu 22.04 Bash；1.4 的 west init/update 已完成，venv 已激活。
+cd ~/zephyrproject/zephyr
+west topdir
+west list cmsis_6 -f '{url} {revision} {abspath}'
+cat ../modules/hal/cmsis_6/zephyr/module.yml

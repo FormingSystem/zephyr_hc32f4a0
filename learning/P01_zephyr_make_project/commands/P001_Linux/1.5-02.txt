@@ -1,0 +1,10 @@
+# P001_Linux / 1.5\_安装源码要求的 Python 包和 SDK
+# 只执行当前所选操作单元；先阅读正文前提。
+# Ubuntu 22.04 Bash；手动分支，浏览器已经下载并核对同版 SHA-256。
+cd ~/Downloads
+# SDK 根由解压生成；已有同名安装时先停止并核对。
+tar -xf zephyr-sdk-1.0.1_linux-x86_64_minimal.tar.xz -C "$HOME"
+cd ~/zephyr-sdk-1.0.1
+# 官方 setup.sh：-t 安装 ARM；-c 把 SDK 路径保存到当前 Linux 用户的包索引。
+./setup.sh -t arm-zephyr-eabi -c
+./gnu/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc --version
