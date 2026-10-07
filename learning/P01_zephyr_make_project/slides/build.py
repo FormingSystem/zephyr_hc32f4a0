@@ -4,6 +4,7 @@
 
 import argparse
 import json
+import posixpath
 from pathlib import Path, PurePosixPath
 import tempfile
 import xml.etree.ElementTree as ET
@@ -13,12 +14,80 @@ from zipfile import ZIP_DEFLATED, ZipFile
 HERE = Path(__file__).resolve().parent
 SOURCE = HERE / "src"
 MANIFEST = HERE / "source.json"
-DECK = HERE / "P01_准备UCRT64环境与下载Zephyr.pptx"
+DECK = HERE / "P001_准备UCRT64环境与下载Zephyr_Windows.pptx"
 NS = {
     "p": "http://schemas.openxmlformats.org/presentationml/2006/main",
     "a": "http://schemas.openxmlformats.org/drawingml/2006/main",
     "r": "http://schemas.openxmlformats.org/officeDocument/2006/relationships",
 }
+
+
+def inspect_master_links(parts):
+    """Reject copied slides whose masters are absent from the presentation.
+
+    A renderer can follow a layout's relationship to an unregistered master,
+    while PowerPoint rejects the same package. Check both directions here.
+    """
+    def relationships(owner):
+        folder, name = posixpath.split(owner)
+        rel_part = posixpath.join(folder, "_rels", name + ".rels")
+        if rel_part not in parts:
+            return {}
+        result = {}
+        for rel in ET.fromstring(parts[rel_part]):
+            if rel.get("TargetMode") == "External":
+                continue
+            target = rel.attrib["Target"]
+            target = (target.lstrip("/") if target.startswith("/") else
+                      posixpath.normpath(posixpath.join(folder, target)))
+            result[rel.attrib["Id"]] = (rel.attrib["Type"].rsplit("/", 1)[-1], target)
+        return result
+
+    presentation = ET.fromstring(parts["ppt/presentation.xml"])
+    rels = relationships("ppt/presentation.xml")
+
+    def registered(path, role):
+        targets = set()
+        for ref in presentation.findall(path, NS):
+            rid = ref.attrib[f"{{{NS['r']}}}id"]
+            if rid not in rels or rels[rid][0] != role:
+                raise ValueError(f"Invalid {role} registration: {rid}")
+            targets.add(rels[rid][1])
+        return targets
+
+    masters = registered("p:sldMasterIdLst/p:sldMasterId", "slideMaster")
+    notes_masters = registered("p:notesMasterIdLst/p:notesMasterId", "notesMaster")
+    if len(notes_masters) > 1:
+        raise ValueError("PowerPoint requires a single notes master")
+    layout_ids = set()
+    layouts_by_master = {}
+    for master in masters:
+        refs = relationships(master)
+        layouts_by_master[master] = set()
+        for layout in ET.fromstring(parts[master]).findall("p:sldLayoutIdLst/p:sldLayoutId", NS):
+            identifier = layout.attrib["id"]
+            if identifier in layout_ids:
+                raise ValueError(f"Duplicate presentation-wide layout ID: {identifier}")
+            layout_ids.add(identifier)
+            rid = layout.attrib[f"{{{NS['r']}}}id"]
+            if rid not in refs or refs[rid][0] != "slideLayout":
+                raise ValueError(f"Invalid slideLayout registration in {master}: {rid}")
+            layouts_by_master[master].add(refs[rid][1])
+
+    for slide in registered("p:sldIdLst/p:sldId", "slide"):
+        for role, part in relationships(slide).values():
+            if role == "slideLayout":
+                linked = [target for kind, target in relationships(part).values()
+                          if kind == "slideMaster"]
+                if len(linked) != 1 or linked[0] not in masters:
+                    raise ValueError(f"Unregistered slide master used by {slide}: {linked}")
+                if part not in layouts_by_master[linked[0]]:
+                    raise ValueError(f"Layout not registered by its master: {part}")
+            elif role == "notesSlide":
+                linked = [target for kind, target in relationships(part).values()
+                          if kind == "notesMaster"]
+                if len(linked) != 1 or linked[0] not in notes_masters:
+                    raise ValueError(f"Unregistered notes master used by {part}: {linked}")
 
 
 def source_path(name):
@@ -33,6 +102,7 @@ def source_path(name):
 
 def inspect_package(parts):
     """Read the actual presentation order, which can differ from XML filenames."""
+    inspect_master_links(parts)
     presentation = ET.fromstring(parts["ppt/presentation.xml"])
     relationships = ET.fromstring(parts["ppt/_rels/presentation.xml.rels"])
     targets = {r.attrib["Id"]: r.attrib["Target"] for r in relationships}
@@ -104,18 +174,38 @@ def build(output_path, force):
 
 
 def main():
+    global SOURCE, MANIFEST, DECK
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--deck", choices=["P001", "P002", "P003", "P004", "P005", "P006", "P007", "Linux-P001"], default="P001",
+                        help="Select the formal three-digit deck and its native sources")
     sub = parser.add_subparsers(dest="action", required=True)
     rebuild = sub.add_parser("build", help="Rebuild from src; requires Python 3.10+ only")
-    rebuild.add_argument("--output", type=Path, default=DECK)
+    rebuild.add_argument("--output", type=Path)
     rebuild.add_argument("--force", action="store_true")
     update = sub.add_parser("sync", help="Sync saved PPTX edits back into src")
-    update.add_argument("--input", type=Path, default=DECK)
+    update.add_argument("--input", type=Path)
     args = parser.parse_args()
+    chapters = {
+        "P003": "P003_Zephyr的CMake接口体系_Windows",
+        "P002": "P002_主机工具与Python环境_Windows",
+        "P004": "P004_SDK准备与编译器选型_Windows",
+        "P005": "P005_CMSIS与HAL选择下载_Windows",
+        "P006": "P006_源码模块接入Zephyr工程_Windows",
+        "P007": "P007_编译示例与新增开发板_Windows",
+    }
+    if args.deck in chapters:
+        directory = "p" + args.deck[2:]
+        SOURCE = HERE / directory / "src"
+        MANIFEST = HERE / directory / "source.json"
+        DECK = HERE / (chapters[args.deck] + ".pptx")
+    if args.deck == "Linux-P001":
+        SOURCE = HERE / "p01_linux" / "src"
+        MANIFEST = HERE / "p01_linux" / "source.json"
+        DECK = HERE / "P001_官方环境安装与源码准备_Linux.pptx"
     if args.action == "sync":
-        sync(args.input.resolve())
+        sync((args.input or DECK).resolve())
     else:
-        build(args.output.resolve(), args.force)
+        build((args.output or DECK).resolve(), args.force)
 
 
 if __name__ == "__main__":
