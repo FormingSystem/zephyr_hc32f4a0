@@ -1,0 +1,13 @@
+# P007_Windows / 7.6.5\_检查工作模块与配套材料是否一致
+# 先核对正文的终端、目录与前提，再执行此完整操作单元。
+# UCRT64；源码根；完成前四步后运行，只读比较，不修改文件。
+python - <<'PY'
+from pathlib import Path
+a = Path('learning/board/labs/hc32_port')
+b = Path('build/learning-tools/p003/hc32_port')
+expected = {p.relative_to(a) for p in a.rglob('*') if p.is_file() and p.name != 'README.md'}
+missing = [str(p) for p in sorted(expected) if not (b/p).is_file()]
+changed = [str(p) for p in sorted(expected) if (b/p).is_file() and (a/p).read_bytes() != (b/p).read_bytes()]
+print('missing:', missing, 'changed:', changed)
+assert not missing and not changed
+PY

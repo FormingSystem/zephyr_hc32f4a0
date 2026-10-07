@@ -1,0 +1,14 @@
+# P007_Windows / 7.4.2\_加入硬件描述和默认配置
+# 先核对正文的终端、目录与前提，再执行此完整操作单元。
+# UCRT64；源码根。复制当前同一修订的官方文件，保留 SPDX 和版权。
+cp boards/arm/mps2/mps2_an386.dts \
+  build/learning-tools/p003/new-board/boards/others/practice_mps2/practice_mps2_an386.dts
+cp boards/arm/mps2/mps2_base.dtsi boards/arm/mps2/mps2-pinctrl.dtsi \
+  build/learning-tools/p003/new-board/boards/others/practice_mps2/
+cat > build/learning-tools/p003/new-board/boards/others/practice_mps2/practice_mps2_an386_defconfig <<'EOF'
+# SPDX-License-Identifier: Apache-2.0
+CONFIG_GPIO=y
+CONFIG_SERIAL=y
+CONFIG_CONSOLE=y
+CONFIG_UART_CONSOLE=y
+EOF

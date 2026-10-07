@@ -1,0 +1,15 @@
+# Copyright The zephyr_hc32f4a0 Contributors
+# SPDX-License-Identifier: Apache-2.0
+
+identifier: uyup_rpi_a/hc32f4a0pitb
+name: UYUP-RPI-A-2.5 HC32F4A0PITB
+type: mcu
+arch: arm
+ram: 512
+flash: 2048
+toolchain:
+  - zephyr
+supported:
+  - gpio
+  - uart
+vendor: uyup

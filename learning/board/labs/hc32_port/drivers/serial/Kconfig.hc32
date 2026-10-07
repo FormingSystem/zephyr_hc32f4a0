@@ -1,0 +1,12 @@
+# SPDX-FileCopyrightText: Copyright The Zephyr Project Contributors
+# SPDX-License-Identifier: Apache-2.0
+
+config UART_HC32
+	bool "HC32F4A0 polling UART driver"
+	default y
+	depends on SOC_HC32F4A0PITB
+	depends on DT_HAS_XHSC_HC32_UART_ENABLED
+	select SERIAL_HAS_DRIVER
+	help
+	  Enable polling USART1 on PA9 and PA10. Interrupt-driven, asynchronous
+	  and runtime configuration APIs are not implemented.

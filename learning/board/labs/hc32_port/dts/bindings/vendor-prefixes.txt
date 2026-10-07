@@ -1,0 +1,5 @@
+# SPDX-License-Identifier: Apache-2.0
+# Vendor namespaces supplied by this out-of-tree hardware support module.
+# Keep entries consistent with the integrated Zephyr tree.
+uyup	UYUP
+xhsc	Xiaohua Semiconductor Co., Ltd.

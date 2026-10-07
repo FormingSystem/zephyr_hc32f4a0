@@ -1,0 +1,7 @@
+# P007_Windows / 7.8\_按阶段验收，留下可以解释的结果
+# 先核对正文的终端、目录与前提，再执行此完整操作单元。
+# UCRT64；源码根；HC32 构建已成功。
+grep -E '^CONFIG_(BOARD|SOC|CPU_CORTEX_M4|CPU_HAS_FPU|HAS_CMSIS|SYS_CLOCK_HW_CYCLES_PER_SEC)' \
+  build/learning-tools/p003/build-hc32-sdk-auto/zephyr/.config
+cat build/learning-tools/p003/build-hc32-sdk-auto/zephyr_modules.txt
+grep -F 'hc32f4a0' build/learning-tools/p003/build-hc32-sdk-auto/compile_commands.json

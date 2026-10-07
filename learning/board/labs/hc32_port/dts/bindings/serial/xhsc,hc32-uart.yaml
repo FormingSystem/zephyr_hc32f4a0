@@ -1,0 +1,50 @@
+# Copyright The zephyr_hc32f4a0 Contributors
+# SPDX-License-Identifier: Apache-2.0
+
+description: |
+  Xiaohua HC32 UART in asynchronous mode. The initial implementation supports
+  USART1 polling with the TX/RX pin functions selected by the SoC driver.
+
+compatible: "xhsc,hc32-uart"
+
+include: uart-controller.yaml
+
+properties:
+  reg:
+    required: true
+
+  current-speed:
+    required: true
+
+  tx-port:
+    type: phandle
+    required: true
+    description: HC32 GPIO controller providing the transmit pin.
+
+  rx-port:
+    type: phandle
+    required: true
+    description: HC32 GPIO controller providing the receive pin.
+
+  tx-pin:
+    type: int
+    required: true
+    enum: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+    description: Transmit pin number within tx-port.
+
+  rx-pin:
+    type: int
+    required: true
+    enum: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+    description: Receive pin number within rx-port.
+
+  parity:
+    const: "none"
+
+  stop-bits:
+    default: "1"
+    const: "1"
+
+  data-bits:
+    default: 8
+    const: 8

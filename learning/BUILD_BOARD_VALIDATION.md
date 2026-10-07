@@ -1,6 +1,24 @@
+---
+id: learning.build-board-validation
+title: 构建、板级配置与环境发布验收
+kind: reference
+status: maintained
+domains: [documentation]
+---
+
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 
 # 构建、板级配置与环境发布验收
+
+## 2026-10-06 准备专题 P003 在 G 盘实跑
+
+Windows UCRT64 下，当前 G 盘 Zephyr 4.5.0-rc1、SDK 1.0.1、Python 3.12.10 环境中，官方 mps2/an386、新建 practice_mps2/an386 和逐层接入的 uyup_rpi_a/hc32f4a0pitb 三个 hello_world 均编译链接成功。前两项配置为 25 MHz，HC32 教学模块为 12 MHz；未烧录开发板。
+
+实跑修正新增练习板缺 CONFIG_GPIO=y 的问题：复用 MPS2 pinctrl 时需要 GPIO 设备。源码依赖改由 P002 统一下载与核验，构建目录为 build/learning-tools/p003。下载恢复、文件对照和 PPT 检查详情见[本轮完整记录](P01_zephyr_make_project/VALIDATION.md)。下方旧记录只描述对应日期。
+
+## 2026-10-04 实验路径修订的验证边界
+
+CMake、VS Code 和板级正文改以 G 盘实验源码为工作位置。模块材料明确读取实验源码与 CMSIS 路径；HC32 配置章节明确要求先在该源码树完成移植；Twister 直接使用原生入口。此轮完成静态核对，没有重跑构建、模拟或硬件实验，下方原有成功记录保留其历史适用范围。
 
 ## 2026-09-29 逐步教学重构后的正文重放
 
@@ -20,7 +38,7 @@
 | 文档与图 | check_docs.py：42 文档、16 章节、22 ID、0 错误；7 章的 106 个 Bash 操作单元通过语法、顺序与位置注释检查，41 个小节步骤保持同一路线；61 张 Mermaid（含三份大纲）实际渲染，并抽看路线、构建关系与调试时序 |
 | 材料一致性 | 18 个变动的 labs 文件去除注释后与基线语义一致；C、CMake、YAML、JSONC、GDB 注释与正文同步，保留原许可证。蓝色 overlay 的配置命令额外带上原有 debug.conf，以隔离本次比较变量 |
 
-环境为 Windows、UCRT64 Bash、Python 3.12.10、west 1.5.0、CMake 4.4.3、SDK 1.0.1、ARM GCC 14.3.0。源码版本与硬件事实仍以项目记录为准。先在 PowerShell 启动的工程检查因测试调用 sh 而失败，未通过修改测试规避；改用教材约定的 UCRT64 环境后完整通过。蓝灯最终检查最初仅匹配解析后的节点路径，实际工具保留标签引用；已同时核对别名引用及节点身份，未把文本表现差异误判为构建失败。
+环境为 Windows、UCRT64 Bash、Python 3.12.10、west 1.5.0、CMake 4.4.3、SDK 1.0.1、ARM GCC 14.3.0。源码版本与硬件事实仍以项目记录为准。先在 PowerShell 启动的工程检查因测试调用 sh 而失败，未通过修改测试规避；改用学习资料约定的 UCRT64 环境后完整通过。蓝灯最终检查最初仅匹配解析后的节点路径，实际工具保留标签引用；已同时核对别名引用及节点身份，未把文本表现差异误判为构建失败。
 
 本轮未操作 VS Code 图形界面、menuconfig 交互菜单、探针枚举、烧录或实板调试；准备章的网络安装和已有 west 配置没有为文档重写重复执行。Linux/macOS 仍是路径替换说明，没有本轮实机结果。命令行 GDB、离线配置检查和模拟器结果分别记录，不互相冒充。
 

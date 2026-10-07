@@ -1,0 +1,5 @@
+# P007_Windows / 7.7\_编译所选 HC32 板的同一个应用
+# 先核对正文的终端、目录与前提，再执行此完整操作单元。
+# UCRT64；源码根；配置成功后。
+cmake --build build/learning-tools/p003/build-hc32-sdk-auto
+ls -l build/learning-tools/p003/build-hc32-sdk-auto/zephyr/zephyr.elf

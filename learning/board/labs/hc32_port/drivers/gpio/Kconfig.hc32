@@ -1,0 +1,11 @@
+# SPDX-FileCopyrightText: Copyright The Zephyr Project Contributors
+# SPDX-License-Identifier: Apache-2.0
+
+config GPIO_HC32
+	bool "HC32F4A0 GPIO driver"
+	default y
+	depends on SOC_HC32F4A0PITB
+	depends on DT_HAS_XHSC_HC32_GPIO_ENABLED
+	help
+	  Enable digital input, push-pull and open-drain output on the package's
+	  available GPIO pins. Pull-down and GPIO interrupts are not supported.

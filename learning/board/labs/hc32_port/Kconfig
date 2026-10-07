@@ -1,0 +1,7 @@
+# SPDX-License-Identifier: Apache-2.0
+if GPIO
+rsource "drivers/gpio/Kconfig.hc32"
+endif
+if SERIAL
+rsource "drivers/serial/Kconfig.hc32"
+endif

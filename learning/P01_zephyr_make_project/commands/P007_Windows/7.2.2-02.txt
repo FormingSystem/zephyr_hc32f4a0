@@ -1,0 +1,5 @@
+# P007_Windows / 7.2.2\_配置，再执行构建
+# 先核对正文的终端、目录与前提，再执行此完整操作单元。
+# UCRT64；源码根；上一条配置已成功。
+cmake --build build/learning-tools/p003/build-mps2-sdk-auto
+ls -l build/learning-tools/p003/build-mps2-sdk-auto/zephyr/zephyr.elf

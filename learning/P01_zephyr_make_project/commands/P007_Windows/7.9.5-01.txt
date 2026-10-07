@@ -1,0 +1,40 @@
+# P007_Windows / 7.9.5\_用工程用户预设长期保存 SDK 选择
+# 先核对正文的终端、目录与前提，再执行此完整操作单元。
+# Windows UCRT64；源码根；已完成 P002—P006 并能按 7.2 配置官方 hello_world。
+cd /g/zephyr_practice/zephyr-main
+# 文件已存在时停止，不覆盖个人预设；请在已有文件中合并一个预设。
+test ! -e samples/hello_world/CMakeUserPresets.json && \
+cat > samples/hello_world/CMakeUserPresets.json <<'JSON'
+{
+  "version": 3,
+  "configurePresets": [
+    {
+      "name": "mps2-west-local",
+      "displayName": "MPS2 AN386 - local SDK",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/../../build/learning-tools/p003/build-mps2-preset-west",
+      "cacheVariables": {
+        "BOARD": "mps2/an386",
+        "Zephyr_DIR": "${sourceDir}/../../share/zephyr-package/cmake",
+        "ZEPHYR_TOOLCHAIN_VARIANT": "zephyr",
+        "ZEPHYR_SDK_INSTALL_DIR": "G:/zephyr_practice/zephyr-sdk-1.0.1",
+        "EXTRA_ZEPHYR_MODULES": "",
+        "ZEPHYR_EXTRA_MODULES": "",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+      },
+      "environment": {
+        "ZEPHYR_MODULES": null,
+        "EXTRA_ZEPHYR_MODULES": null,
+        "ZEPHYR_EXTRA_MODULES": null,
+        "ZEPHYR_BASE": null
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "mps2-west-local",
+      "configurePreset": "mps2-west-local"
+    }
+  ]
+}
+JSON

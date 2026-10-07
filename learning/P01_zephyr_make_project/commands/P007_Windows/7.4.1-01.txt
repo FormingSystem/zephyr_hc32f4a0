@@ -1,0 +1,19 @@
+# P007_Windows / 7.4.1\_先登记新板身份
+# 先核对正文的终端、目录与前提，再执行此完整操作单元。
+# UCRT64；源码根。首次创建；已存在则先检查，勿覆盖已有练习。
+mkdir -p build/learning-tools/p003/new-board/boards/others
+mkdir build/learning-tools/p003/new-board/boards/others/practice_mps2
+cat > build/learning-tools/p003/new-board/boards/others/practice_mps2/board.yml <<'EOF'
+# SPDX-License-Identifier: Apache-2.0
+board:
+  name: practice_mps2
+  full_name: AN386 board registration exercise
+  vendor: others
+  socs:
+    - name: an386
+EOF
+cat > build/learning-tools/p003/new-board/boards/others/practice_mps2/Kconfig.practice_mps2 <<'EOF'
+# SPDX-License-Identifier: Apache-2.0
+config BOARD_PRACTICE_MPS2
+    select SOC_AN386
+EOF

@@ -1,0 +1,9 @@
+# SPDX-FileCopyrightText: Copyright The Zephyr HC32F4A0 Contributors
+# SPDX-License-Identifier: Apache-2.0
+
+family:
+  - name: xhsc
+    series:
+      - name: hc32f4a0
+        socs:
+          - name: hc32f4a0pitb
