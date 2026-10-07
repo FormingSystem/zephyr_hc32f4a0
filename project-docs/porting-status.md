@@ -742,3 +742,17 @@ python scripts/project.py test
 MPU 暂不启用：主 SRAM 起点不满足单个 512 KiB MPU 区域对齐，需要分区设计。
 PLL 提频需要单独核对 12 MHz 输入、VCO、总线、Flash/SRAM 等待与实测，不复制旧 24 MHz 模板。
 硬件事实与板载 DAP 操作持续以 [hardware.md](hardware.md) 为准。
+
+## 2026-10-07：先准备依赖，再分册讲 CMake 与 west
+
+- 按 P001—P011 重排 Windows 主线，保留 Linux P001；CMake 分为 P006/P007/P009/P010，west 独立为 P008（25 页），新增板顺延 P011。
+- MD、PPT、封面、命令目录、页内跳转、配套练习、原生重建入口与 AGENTS.md 同步；保留用户当前保存稿中的包结构页、截图、封面、主讲人和母版署名。
+- 12 份最终 PPT 通过包完整性、Artifact Tool 导入及版面检查；PowerPoint 原生只读打开并导出，正文文本框未发现大于 3 pt 的溢出。正式文件与重建包逐部件一致。
+- 16 张 Mermaid 在 default/dark 与两种标签模式下完成 64 次渲染，对比度检查通过，最低 7.42:1；本轮新增/拆分正文的 28 个 Bash 块通过 bash -n 静态语法检查。
+- 本次没有在 G 盘安装工具、更新模块或运行构建；普通 CMake 练习、west 构建和预设操作是提供给读者的材料，没有把静态/排版检查写成实验通过。此前构建、Ubuntu 与硬件结论仍以各自历史记录为准。
+
+## 2026-10-07：learning Markdown 全量同步与发布检查
+
+本次核对 learning 全部 Markdown 与 12 组正式分册，补齐 PPT 阶段对应的正文入口，修复旧章号、误指向 SDK 的 CMSIS 下载链接和滞后命令副本。主线 P008 明确为 west 零基础、Zephyr 扩展及 CMake 配合使用，独立工具专题保留为后续练习。SDK 默认发现不再在公共准备中被强制路径覆盖。
+
+95 份文档的结构/链接检查、12 组文稿与原生源一致性检查、145 个 Bash 和 7 个 PowerShell 块的静态语法检查通过；4 项 PPT 结构回归、58 项项目工具测试与 pyOCD 离线检查通过。检查进程使用 UTF-8 与 Git for Windows 的 sh，未修改全局环境。正式 PPT 与上一轮原生验收版本摘要一致；未在 G 盘执行下载、构建、烧录或硬件操作。完整范围与环境问题记录在 learning 主线的 VALIDATION.md。
