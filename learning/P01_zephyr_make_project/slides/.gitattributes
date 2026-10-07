@@ -1,2 +1,3 @@
 # Preserve Open XML package bytes when rebuilding the author's presentation.
 src/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+p*/src/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
