@@ -4,7 +4,7 @@
 
 每个克隆使用根目录 `.venv`。不跟随共享工程的虚拟环境，也不把环境目录放进 Git；跟随仓库的是依赖描述和创建脚本。专题机制与单元实验见 [venv 大纲](../../../learning/python/venv/大纲.md)。
 
-第一次接触环境隔离，从 [venv 第一章](../../../learning/python/venv/P01_创建并认识虚拟环境.md)顺序阅读。实验与解释都在对应章节内，材料原件集中保存；练习使用 build/learning-tools/venv-textbook，不修改本项目根 .venv。
+第一次接触环境隔离，从 [venv 第一章](../../../learning/python/venv/P001_创建并认识虚拟环境.md)顺序阅读。实验与解释都在对应章节内，材料原件集中保存；练习使用 build/learning-tools/venv-textbook，不修改本项目根 .venv。
 
 ## 安装入口与依赖来源
 

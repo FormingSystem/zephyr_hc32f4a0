@@ -1,3 +1,11 @@
+---
+id: learning.vscode.labs.readme
+title: 调试配套材料
+kind: reference
+status: maintained
+domains: [documentation]
+---
+
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 
 # 调试配套材料

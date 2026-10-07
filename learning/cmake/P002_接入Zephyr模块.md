@@ -1,13 +1,13 @@
 ---
 id: learning-cmake-2
 title: 接入 Zephyr 模块
-kind: tutorial
-status: ready
+kind: engineering
+status: maintained
 domains: [embedded, tools]
 ---
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 
-# 2. 接入 Zephyr 模块
+# 第2章\_接入 Zephyr 模块
 
 上一章把一个普通 C 库链接到主机程序。现在想让同一组功能在 Zephyr 应用中可选择地启用：开启时编译库，关闭时应用仍能构建。仅把目录复制进仓库，还缺“从哪里读规则”和“是否启用”两件事。
 
@@ -26,7 +26,18 @@ flowchart LR
     S1 --> S2 --> S3 --> S4 --> S5 --> S6
 ```
 
-## 2.1 三个叫“模块”的东西，先按职责区分
+**本章导航**
+
+- [2.1 三个叫“模块”的东西，先按职责区分](#section-2-1)
+- [2.2 先让一个目录被发现](#section-2-2)
+- [2.3 再决定是否编译它](#section-3-1)
+- [2.4 分别配置开启与关闭的构建](#section-3-2)
+- [2.5 改一个条件，看看调用端会怎样](#section-4-1)
+- [2.6 将这个模式用于项目](#section-4-2)
+
+<a id="section-2-1"></a>
+
+## 2.1\_三个叫“模块”的东西，先按职责区分
 
 当前位置：步骤 2.1，准备模块副本。
 
@@ -39,7 +50,7 @@ flowchart LR
     S5["2.5<br/>制造并修复缺项"]
     S6["2.6<br/>迁移与恢复"]
     S1 --> S2 --> S3 --> S4 --> S5 --> S6
-    classDef current fill:#fff0c2,stroke:#a44700,stroke-width:3px,color:#332000
+    classDef current stroke:#a44700,stroke-width:3px
     class S1 current
 ```
 
@@ -65,46 +76,50 @@ build/learning-tools/module-textbook/
 
 两份源码必须保持并列位置；应用规则稍后会用 ../zephyr_module 找它的邻居。这里的名字是本例自定的目录名，真正的连接来自规则中的路径。
 
-本章用仓库自带原件，不添加网络依赖。需要已安装 SDK 和项目 Python 环境；在仓库根目录打开 UCRT64 Bash，执行：
+本章用仓库自带原件，不添加网络依赖。需要已安装 SDK 和项目 Python 环境；在实验源码根目录打开 UCRT64 Bash，执行：
 
 ```bash
-# 当前位置：仓库根目录；使用 UCRT64 Bash。
+# 当前位置：实验源码根目录；使用 UCRT64 Bash。
 source .venv/Scripts/activate
 ```
 
 让当前 Bash 的 python 优先使用仓库根 .venv。source 修改的是这个终端的环境，通常没有独立输出；它不创建环境，也不替其他已打开窗口切换解释器。
 
 ```bash
-# 当前位置：仓库根目录；使用 UCRT64 Bash。
-python scripts/project_env.py doctor
+# 当前位置：实验源码根目录；使用 UCRT64 Bash。
+python -m pip check
+cmake --version
+ninja --version
 ```
 
-由项目环境检查入口核对 Python、SDK、主机工具和源码位置。缺项时先按报告处理；doctor 通过后再运行依赖这些工具的实验。
+核对 Python 依赖和主机工具；SDK 与模块路径按准备章在当前终端设置。检查失败时先修复相应输入，再继续实验。
 
 ```bash
-# 当前位置：仓库根目录；使用 UCRT64 Bash。
+# 当前位置：实验源码根目录；使用 UCRT64 Bash。
 mkdir build/learning-tools/module-textbook
 ```
 
 建立这次练习专用目录，成功时通常没有输出。若提示目录已存在，先查看旧内容，另选名字并同步替换本章后续路径；不要在未知旧副本上继续覆盖。
 
 ```bash
-# 当前位置：仓库根目录；使用 UCRT64 Bash。
+# 当前位置：实验源码根目录；使用 UCRT64 Bash。
 cp -R learning/cmake/labs/zephyr_app build/learning-tools/module-textbook/zephyr_app
 ```
 
 -R 连同子目录复制材料。复制后可以在编辑器中检查目标目录；此步仍只是准备源文件，没有配置、编译或运行它们。
 
 ```bash
-# 当前位置：仓库根目录；使用 UCRT64 Bash。
+# 当前位置：实验源码根目录；使用 UCRT64 Bash。
 cp -R learning/cmake/labs/zephyr_module build/learning-tools/module-textbook/zephyr_module
 ```
 
 -R 连同子目录复制材料。复制后可以在编辑器中检查目标目录；此步仍只是准备源文件，没有配置、编译或运行它们。
 
-若尚无 .venv，先按准备章的工程工具准备建立它；doctor 检查工具而不替你创建模块。module-textbook 必须是新目录。以下始终从仓库根目录执行，只编辑这份复制品。
+若尚无 .venv，先按准备章完成原生工具与 CMSIS_6 准备；版本检查不会替你创建模块。module-textbook 必须是新目录。以下始终从实验源码根目录执行，只编辑这份复制品。
 
-## 2.2 先让一个目录被发现
+<a id="section-2-2"></a>
+
+## 2.2\_先让一个目录被发现
 
 当前位置：步骤 2.2，登记发现入口。
 
@@ -117,7 +132,7 @@ flowchart LR
     S5["2.5<br/>制造并修复缺项"]
     S6["2.6<br/>迁移与恢复"]
     S1 --> S2 --> S3 --> S4 --> S5 --> S6
-    classDef current fill:#fff0c2,stroke:#a44700,stroke-width:3px,color:#332000
+    classDef current stroke:#a44700,stroke-width:3px
     class S2 current
 ```
 
@@ -149,27 +164,28 @@ name 是模块名；cmake 指模块根目录下的 CMake 入口所在目录，�
 
 应用 zephyr_app/CMakeLists.txt 完整如下：
 
+其中 `$ENV{...}` 读取终端环境，`CMAKE_CURRENT_LIST_DIR` 是当前配置文件所在目录；`ZEPHYR_MODULES` 是 Zephyr 原生模块列表输入，沿用准备章 0.4 节为本实验设置的单个 CMSIS 路径。条件中的 `EXISTS` 检查路径存在，`NOT` 取反，`OR` 连接任一缺失条件，`FATAL_ERROR` 让配置停止并显示原因。包查找的 `CONFIG` 选择配置文件模式，`PATHS` 给出查找位置，`NO_DEFAULT_PATH` 禁用其他默认搜索位置。这些都是 CMake 的语法或参数，不是需要另行安装的模块。
+
 ```cmake
-cmake_minimum_required(VERSION 3.28.0) # 此应用要求的 CMake 最低版本。
-# 从当前文件位置寻找仓库，不依赖终端的当前目录。
-get_filename_component(lesson_root "${CMAKE_CURRENT_LIST_DIR}/../../../.." ABSOLUTE) # 计算绝对路径。
-set(ZEPHYR_BASE "${lesson_root}") # 当前使用的 Zephyr 源码根。
-set(Zephyr_DIR "${lesson_root}/share/zephyr-package/cmake") # find_package 的入口位置。
-# 显式选择仓库内已纳管的基础模块。
-set(ZEPHYR_MODULES
-  "${lesson_root}/modules/hal/cmsis_6"
-  "${lesson_root}/modules/hal/xhsc"
-)
-# 必须在 find_package 之前交给 Zephyr，否则错过本轮模块发现。
-list(APPEND EXTRA_ZEPHYR_MODULES "${CMAKE_CURRENT_LIST_DIR}/../zephyr_module") # APPEND 追加列表项。
-find_package(Zephyr REQUIRED) # REQUIRED 表示找不到就报错停止。
+cmake_minimum_required(VERSION 3.28.0)
+# 由准备章 0.4 节当前终端提供 Zephyr 原生的源码与模块输入。
+# 此单模块实验只接受一个 CMSIS 路径；ZEPHYR_MODULES 通用接口可以是列表。
+set(ZEPHYR_BASE "$ENV{ZEPHYR_BASE}")
+set(ZEPHYR_MODULES "$ENV{ZEPHYR_MODULES}")
+if(NOT EXISTS "${ZEPHYR_BASE}/VERSION" OR NOT EXISTS "${ZEPHYR_MODULES}/zephyr/module.yml")
+  message(FATAL_ERROR "Follow P000: set ZEPHYR_BASE and ZEPHYR_MODULES")
+endif()
+# 当前实验模块与应用相邻；它不是另一个 Zephyr 源码根。
+list(APPEND EXTRA_ZEPHYR_MODULES "${CMAKE_CURRENT_LIST_DIR}/../zephyr_module")
+find_package(Zephyr REQUIRED CONFIG
+  PATHS "${ZEPHYR_BASE}/share/zephyr-package/cmake" NO_DEFAULT_PATH)
 project(learning_module)
 target_sources(app PRIVATE src/main.c)
 ```
 
-CMAKE_CURRENT_LIST_DIR 是当前 CMake 文件所在目录，与终端位置无关。${...} 取出变量值，get_filename_component 用 ABSOLUTE 模式把包含 ../ 的路径计算成绝对路径，保存到作者自定的 lesson_root 变量。向上四层取得本仓库根：原件与本章复制品都保持这个深度，所以相对位置仍成立。
+`CMAKE_CURRENT_LIST_DIR` 是当前 CMake 文件所在目录；`${...}` 读取 CMake 变量，`$ENV{...}` 读取启动它的终端环境。准备章将 `ZEPHYR_BASE` 指向 G 盘实验源码，将 `ZEPHYR_MODULES` 指向工程准备 P002 的 2.6.2 节下载的 CMSIS_6。这里检查文件存在后才配置，缺少输入会停止，而不会从电脑上另一份源码补齐。
 
-ZEPHYR_BASE 表明源码根，Zephyr_DIR 告诉 find_package 到哪里寻找接入文件，ZEPHYR_MODULES 显式列出本仓库的基础模块。CMSIS 提供 Arm 处理器相关基础接口，厂商 HAL 提供芯片底层访问代码；本章只使用仓库已纳管的两份源码，不需要阅读其内部实现。这样构建不会回退到电脑旁边另一份 Zephyr。
+`ZEPHYR_MODULES` 显式选择基础模块，`PATHS ... NO_DEFAULT_PATH` 将 Zephyr 包查找限定在指定源码的接入目录。应用复制到不同深度时，仍由同一组明确输入选择源码，不再依赖“向上四层”的目录巧合。
 
 EXTRA_ZEPHYR_MODULES 追加我们的目录，find_package(Zephyr REQUIRED) 才开始 Zephyr 的配置过程，并要求找不到时停止。追加必须发生在 find_package 之前，因为模块发现就在这个过程中完成。应用最终仍通过 target_sources 给 app 目标增加自己的 main.c。
 
@@ -184,9 +200,11 @@ flowchart TD
     E --> G["参与固件链接的模块库"]
 ```
 
-图中先发现模块，再计算软件选择，最后由选择控制实现是否编入。模块即使被发现，也可以处于关闭状态。可以在本仓库的 [模块说明](../../doc/develop/modules.rst)中对照 module.yml、EXTRA_ZEPHYR_MODULES 的入口规则；这里固定的源码位置是本教学应用的约定，不能把“向上四层”照搬到任意深度的新工程。
+图中先发现模块，再计算软件选择，最后由选择控制实现是否编入。模块即使被发现，也可以处于关闭状态。可以在实验源码的 `doc/develop/modules.rst` 中对照 `module.yml` 与 `EXTRA_ZEPHYR_MODULES` 的入口规则；源码位置与实验模块的位置分别提供。
 
-## 2.3 再决定是否编译它
+<a id="section-3-1"></a>
+
+## 2.3\_再决定是否编译它
 
 当前位置：步骤 2.3，连接软件开关。
 
@@ -199,7 +217,7 @@ flowchart LR
     S5["2.5<br/>制造并修复缺项"]
     S6["2.6<br/>迁移与恢复"]
     S1 --> S2 --> S3 --> S4 --> S5 --> S6
-    classDef current fill:#fff0c2,stroke:#a44700,stroke-width:3px,color:#332000
+    classDef current stroke:#a44700,stroke-width:3px
     class S3 current
 ```
 
@@ -274,7 +292,9 @@ printk 是 Zephyr 的输出函数。开启时，main 把 21 传入 scale_sample�
 
 Kconfig 的布尔 n 通常表现为生成头文件中没有定义该 CONFIG_ 宏，因此用 #ifdef 判断。应用与模块使用同一开关，关闭时既不编译库，也不留下调用，程序才仍然完整。若只关闭一侧，下一节的链接就可能失败。
 
-## 2.4 分别配置开启与关闭的构建
+<a id="section-3-2"></a>
+
+## 2.4\_分别配置开启与关闭的构建
 
 当前位置：步骤 2.4，对比两种构建。
 
@@ -287,7 +307,7 @@ flowchart LR
     S5["2.5<br/>制造并修复缺项"]
     S6["2.6<br/>迁移与恢复"]
     S1 --> S2 --> S3 --> S4 --> S5 --> S6
-    classDef current fill:#fff0c2,stroke:#a44700,stroke-width:3px,color:#332000
+    classDef current stroke:#a44700,stroke-width:3px
     class S4 current
 ```
 
@@ -296,28 +316,28 @@ flowchart LR
 先构建默认开启状态：
 
 ```bash
-# 当前位置：仓库根目录；使用 UCRT64 Bash。
-python scripts/project_env.py exec cmake -S build/learning-tools/module-textbook/zephyr_app -B build/learning-tools/module-textbook/enabled -G Ninja -DBOARD=mps2/an386
+# 当前位置：实验源码根目录；使用 UCRT64 Bash。
+cmake -S build/learning-tools/module-textbook/zephyr_app -B build/learning-tools/module-textbook/enabled -G Ninja -DBOARD=mps2/an386
 ```
 
 -S 选择源码目录，-B 选择生成物目录，-G Ninja 选择构建规则格式；-D 将本次选择交给 CMake。此步成功通常以 Configuring done、Generating done 和生成位置结束，还没有生成可运行程序。
 
 ```bash
-# 当前位置：仓库根目录；使用 UCRT64 Bash。
-python scripts/project_env.py exec cmake --build build/learning-tools/module-textbook/enabled
+# 当前位置：实验源码根目录；使用 UCRT64 Bash。
+cmake --build build/learning-tools/module-textbook/enabled
 ```
 
 读取 --build 后那个目录中已生成的规则，完成需要的编译与链接。出现错误就停在此处看第一条具体错误；成功后才继续检查配置、运行程序或测试。没有改动时提示 no work to do 是正常的。
 
 ```bash
-# 当前位置：仓库根目录；使用 UCRT64 Bash。
+# 当前位置：实验源码根目录；使用 UCRT64 Bash。
 rg -n "CONFIG_LEARNING_SCALE" build/learning-tools/module-textbook/enabled/zephyr/.config
 ```
 
 查看构建系统合并后的模块选择。enabled 应显示 CONFIG_LEARNING_SCALE=y，disabled 应显示该选项未设置；以当前命令指定的目录为准。
 
 ```bash
-# 当前位置：仓库根目录；使用 UCRT64 Bash。
+# 当前位置：实验源码根目录；使用 UCRT64 Bash。
 rg -n "zephyr_module.*scale.c" build/learning-tools/module-textbook/enabled/compile_commands.json
 ```
 
@@ -328,28 +348,28 @@ rg -n "zephyr_module.*scale.c" build/learning-tools/module-textbook/enabled/comp
 再使用独立目录关闭：
 
 ```bash
-# 当前位置：仓库根目录；使用 UCRT64 Bash。
-python scripts/project_env.py exec cmake -S build/learning-tools/module-textbook/zephyr_app -B build/learning-tools/module-textbook/disabled -G Ninja -DBOARD=mps2/an386 -DEXTRA_CONF_FILE=no_module.conf
+# 当前位置：实验源码根目录；使用 UCRT64 Bash。
+cmake -S build/learning-tools/module-textbook/zephyr_app -B build/learning-tools/module-textbook/disabled -G Ninja -DBOARD=mps2/an386 -DEXTRA_CONF_FILE=no_module.conf
 ```
 
 -S 选择源码目录，-B 选择生成物目录，-G Ninja 选择构建规则格式；-D 将本次选择交给 CMake。此步成功通常以 Configuring done、Generating done 和生成位置结束，还没有生成可运行程序。 EXTRA_CONF_FILE 指向附加的软件配置；它按应用源码目录解析，并在默认应用配置之后合并。
 
 ```bash
-# 当前位置：仓库根目录；使用 UCRT64 Bash。
-python scripts/project_env.py exec cmake --build build/learning-tools/module-textbook/disabled
+# 当前位置：实验源码根目录；使用 UCRT64 Bash。
+cmake --build build/learning-tools/module-textbook/disabled
 ```
 
 继续构建 disabled 目录中的这组规则。应完成编译链接；若没有需要重做的输入，no work to do 也表示这一步成功。先处理构建错误，再继续使用本次产物。
 
 ```bash
-# 当前位置：仓库根目录；使用 UCRT64 Bash。
+# 当前位置：实验源码根目录；使用 UCRT64 Bash。
 rg -n "CONFIG_LEARNING_SCALE" build/learning-tools/module-textbook/disabled/zephyr/.config
 ```
 
 查看构建系统合并后的模块选择。enabled 应显示 CONFIG_LEARNING_SCALE=y，disabled 应显示该选项未设置；以当前命令指定的目录为准。
 
 ```bash
-# 当前位置：仓库根目录；使用 UCRT64 Bash。
+# 当前位置：实验源码根目录；使用 UCRT64 Bash。
 rg -n "zephyr_module.*scale.c" build/learning-tools/module-textbook/disabled/compile_commands.json
 echo $?
 ```
@@ -358,7 +378,9 @@ echo $?
 
 对照两组结果：同一个模块目录都被发现了，只有 enabled 将 scale.c 登记为编译输入；disabled 的应用则走不调用该函数的分支。模块被发现与源码被编入，从这里就能分别观察。
 
-## 2.5 改一个条件，看看调用端会怎样
+<a id="section-4-1"></a>
+
+## 2.5\_改一个条件，看看调用端会怎样
 
 当前位置：步骤 2.5，制造并修复缺项。
 
@@ -371,14 +393,14 @@ flowchart LR
     S5["2.5<br/>制造并修复缺项"]
     S6["2.6<br/>迁移与恢复"]
     S1 --> S2 --> S3 --> S4 --> S5 --> S6
-    classDef current fill:#fff0c2,stroke:#a44700,stroke-width:3px,color:#332000
+    classDef current stroke:#a44700,stroke-width:3px
     class S5 current
 ```
 
 两种配置都能构建，还不足以解释条件编译为什么必要。现在保持模块关闭，单独让调用端忘记这个条件：main 无论开关如何都调用 scale_sample。先备份复制品 main.c，失败后能原样恢复：
 
 ```bash
-# 当前位置：仓库根目录；使用 UCRT64 Bash。
+# 当前位置：实验源码根目录；使用 UCRT64 Bash。
 cp build/learning-tools/module-textbook/zephyr_app/src/main.c build/learning-tools/module-textbook/main-before.c
 ```
 
@@ -401,8 +423,8 @@ int main(void)
 此处直接给出函数声明，故意排除头文件找不到的干扰，让我们观察链接阶段。构建关闭状态：
 
 ```bash
-# 当前位置：仓库根目录；使用 UCRT64 Bash。
-python scripts/project_env.py exec cmake --build build/learning-tools/module-textbook/disabled
+# 当前位置：实验源码根目录；使用 UCRT64 Bash。
+cmake --build build/learning-tools/module-textbook/disabled
 echo $?
 ```
 
@@ -411,29 +433,31 @@ echo $?
 应报告 scale_sample 未定义：应用仍调用，模块却没有提供实现。恢复备份，再重建两种状态：
 
 ```bash
-# 当前位置：仓库根目录；使用 UCRT64 Bash。
+# 当前位置：实验源码根目录；使用 UCRT64 Bash。
 cp build/learning-tools/module-textbook/main-before.c build/learning-tools/module-textbook/zephyr_app/src/main.c
 ```
 
 把备份内容覆盖回练习副本，撤销刚才的故意修改。复制成功没有输出；是否恢复到可用状态，还要由紧随其后的构建或测试确认。
 
 ```bash
-# 当前位置：仓库根目录；使用 UCRT64 Bash。
-python scripts/project_env.py exec cmake --build build/learning-tools/module-textbook/disabled
+# 当前位置：实验源码根目录；使用 UCRT64 Bash。
+cmake --build build/learning-tools/module-textbook/disabled
 ```
 
 继续构建 disabled 目录中的这组规则。应完成编译链接；若没有需要重做的输入，no work to do 也表示这一步成功。先处理构建错误，再继续使用本次产物。
 
 ```bash
-# 当前位置：仓库根目录；使用 UCRT64 Bash。
-python scripts/project_env.py exec cmake --build build/learning-tools/module-textbook/enabled
+# 当前位置：实验源码根目录；使用 UCRT64 Bash。
+cmake --build build/learning-tools/module-textbook/enabled
 ```
 
 继续构建 enabled 目录中的这组规则。应完成编译链接；若没有需要重做的输入，no work to do 也表示这一步成功。先处理构建错误，再继续使用本次产物。
 
 都应通过。找不到选项定义时查模块发现与 Kconfig 入口；找不到头文件查模块开关与 include；链接缺实现查源文件是否编入及调用条件。每种错误都有一个可以检查的连接点。
 
-## 2.6 将这个模式用于项目
+<a id="section-4-2"></a>
+
+## 2.6\_将这个模式用于项目
 
 当前位置：步骤 2.6，迁移与恢复。
 
@@ -446,14 +470,14 @@ flowchart LR
     S5["2.5<br/>制造并修复缺项"]
     S6["2.6<br/>迁移与恢复"]
     S1 --> S2 --> S3 --> S4 --> S5 --> S6
-    classDef current fill:#fff0c2,stroke:#a44700,stroke-width:3px,color:#332000
+    classDef current stroke:#a44700,stroke-width:3px
     class S6 current
 ```
 
 恢复后，enabled 与 disabled 又分别拥有完整的调用关系。将这个办法带回自己的工程时，先看复用需求：新增普通业务文件可直接加入 app；多个应用共用并需要独立开关时，再给它模块入口。模块化增加了发现和配置环节，它的价值在于明确这些接入关系。
 
-接入外部模块还要管理版本、许可证与来源。对于本仓库的长期基础依赖，需同步受控源码、dependencies.lock.json 及模块选择规则，不能把本机邻居目录偷偷当成构建输入。
+接入外部模块还要管理版本、许可证与来源。对于长期基础依赖，应记录来源与版本，并同步清单及模块选择规则，让其他读者也能取得同一份输入。
 
 练习把复制品 scale.c 的倍数改成 3，再构建 enabled。编译数据库仍包含同一文件，构建日志应重新编译它；disabled 不受这个实现的业务变化影响。按源码推算，开启后的输出会是 63，但本章尚未运行它，不把推算写成实测。练习后恢复倍数 2，给后面运行测试留下统一起点。
 
-[Zephyr 模块元数据说明](https://docs.zephyrproject.org/latest/develop/modules.html)用于核对入口关系。[上一章](P01_把源文件和库加入构建.md) · [大纲](大纲.md)
+[Zephyr 模块元数据说明](https://docs.zephyrproject.org/latest/develop/modules.html)用于核对入口关系。[上一章](P001_把源文件和库加入构建.md) · [大纲](大纲.md)
