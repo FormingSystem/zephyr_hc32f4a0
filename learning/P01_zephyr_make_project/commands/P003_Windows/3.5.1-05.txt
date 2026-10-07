@@ -1,0 +1,10 @@
+# Windows UCRT64；源码根；前提：cmake-demo 已成功构建。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+# 本操作清理本节构建产物；不对源码目录执行。
+cmake --build build/learning-tools/p003/cmake-demo --target clean
+# 缓存与规则仍在。clean 不会撤销原来的板和工具链选择。
+ls build/learning-tools/p003/cmake-demo/CMakeCache.txt
+ls build/learning-tools/p003/cmake-demo/build.ninja
+# 复用原配置重新编译。
+cmake --build build/learning-tools/p003/cmake-demo --parallel 4

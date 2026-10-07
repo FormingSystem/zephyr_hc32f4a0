@@ -1,0 +1,9 @@
+# Windows UCRT64；前提：已按 P007 7.9.5 创建或合并 mps2-west-local 预设。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+# 预设位于官方应用旁，由读者在 P007 创建；本节不覆盖或新建它。
+cd samples/hello_world
+cmake --list-presets
+# 列表中存在该预设，且其源码、SDK、模块路径有效，才执行下面两条。
+cmake --preset mps2-west-local
+cmake --build --preset mps2-west-local

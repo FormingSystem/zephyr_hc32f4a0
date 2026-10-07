@@ -1,0 +1,19 @@
+# Windows UCRT64；源码根；前提：3.1.2 的 cmake-demo 已成功配置。
+cd /g/zephyr_practice/zephyr-main
+# 只读工具生成文件；不存在时返回配置步骤，不创建空文件。
+if test -f build/learning-tools/p003/cmake-demo/CMakeCache.txt; then
+  # 源码、应用、板、生成器和 Python 的保存值。
+  grep -E '^(CMAKE_HOME_DIRECTORY|CMAKE_GENERATOR|BOARD|BOARD_QUALIFIERS|ZEPHYR_BASE|Zephyr_DIR|Python3_EXECUTABLE):' \
+    build/learning-tools/p003/cmake-demo/CMakeCache.txt
+  # SDK 选择与配置阶段确定的 C 编译器。
+  grep -E '^(ZEPHYR_TOOLCHAIN_VARIANT|ZEPHYR_SDK_INSTALL_DIR|CMAKE_C_COMPILER):' \
+    build/learning-tools/p003/cmake-demo/CMakeCache.txt
+else
+  printf '%s\n' '尚无本章缓存，请先完成 3.1.2.2 的配置。'
+fi
+# CMSIS 记录是模块发现结果；这里不下载、不添加模块。
+if test -f build/learning-tools/p003/cmake-demo/zephyr_modules.txt; then
+  grep '"cmsis_6"' build/learning-tools/p003/cmake-demo/zephyr_modules.txt
+else
+  printf '%s\n' '尚无模块记录，请检查配置日志并返回 P005—P006。'
+fi

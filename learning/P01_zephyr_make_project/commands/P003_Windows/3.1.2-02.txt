@@ -1,0 +1,8 @@
+# Windows UCRT64；源码根；前提：3.1.2 的 cmake-demo 配置成功。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+# 构建同一个目录，不重新选择 BOARD；4 表示最多四个并行任务。
+cmake --build build/learning-tools/p003/cmake-demo --parallel 4
+ls -l build/learning-tools/p003/cmake-demo/zephyr/zephyr.elf
+# 没改输入时，再次构建通常没有需要重做的编译任务。
+cmake --build build/learning-tools/p003/cmake-demo --parallel 4

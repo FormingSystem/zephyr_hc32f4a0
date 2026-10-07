@@ -1,0 +1,7 @@
+# Windows UCRT64；源码根；前提：3.5.1.3 已把日志缓存项设为 VERBOSE。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+# 特意省略 -D，仍配置同一目录。
+cmake -S samples/hello_world -B build/learning-tools/p003/cmake-demo
+# 应仍看到 VERBOSE，说明省略输入不会撤销缓存。
+cmake -N -LAH build/learning-tools/p003/cmake-demo | grep CMAKE_MESSAGE_LOG_LEVEL

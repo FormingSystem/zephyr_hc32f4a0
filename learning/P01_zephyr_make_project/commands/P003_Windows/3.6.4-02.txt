@@ -1,0 +1,27 @@
+# Windows UCRT64；源码根；前提：cmake-demo 配置、生成成功。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+# 只读编译命令数据库；-X utf8 是 Python 的 UTF-8 模式，适配 UCRT64 输出。
+# 不执行数据库中的命令，不修改源码或构建状态。
+python -X utf8 - <<'PY'
+import json
+from pathlib import Path
+
+database = Path('build/learning-tools/p003/cmake-demo/compile_commands.json')
+if not database.is_file():
+    raise SystemExit('尚无编译命令数据库，请先检查 3.1.2.2 的配置与生成结果。')
+
+target = Path('samples/hello_world/src/main.c').resolve()
+for entry in json.loads(database.read_text(encoding='utf-8')):
+    source = Path(entry['file'])
+    if not source.is_absolute():
+        source = Path(entry['directory']) / source
+    if source.resolve() == target:
+        print('源文件：', source)
+        print('命令工作目录：', entry['directory'])
+        print('生成阶段安排的编译命令：')
+        print(entry.get('command') or json.dumps(entry['arguments'], ensure_ascii=False))
+        break
+else:
+    raise SystemExit('未找到 hello_world 的 main.c，请核对当前应用与构建目录。')
+PY
