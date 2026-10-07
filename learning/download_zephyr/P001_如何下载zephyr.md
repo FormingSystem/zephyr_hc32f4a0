@@ -14,7 +14,7 @@ domains: [zephyr, tools]
 
 下载前先按[本地代理配置](代理配置.md)核对 v2rayN 的 `10808` 混合端口，配置 Git 并测试连接；浏览器下载 ZIP 还需使用系统代理或浏览器代理。
 
-> 本篇为下载方案的参考草稿，保留原有讨论与示例，尚未完成逐项版本核验和完整安装实测。当前 HC32 工程请按[项目安装流程](../../project-docs/environment.md)操作；已整理的入门主线见[工程准备大纲](../P01_zephyr_make_project/大纲.md)。
+> 本篇为下载方案的参考草稿，保留原有讨论与示例，尚未完成逐项版本核验和完整安装实测。从零操作请按[工程准备大纲](../P01_zephyr_make_project/大纲.md)，使用 `G:\zephyr_practice\zephyr-main`；下文的其他目录布局是方案说明，不能直接当作主线已存在的文件。
 
 **本章目录**
 
@@ -24,7 +24,6 @@ domains: [zephyr, tools]
 - [1.4 组织并初始化工作区](#section-1-4)
 - [1.5 精简工具链与基础依赖](#section-1-5)
 - [1.6 按功能扩展环境](#section-1-6)
-
 
 <a id="section-1-1"></a>
 
@@ -113,8 +112,6 @@ zephyr-workspace/
 
 这才是比较适合公司内部环境、教学环境和固定 MCU 开发环境的方案。
 
-------
-
 ### 1.1.2\_首先理解\_Zephyr\_到底由哪些东西组成
 
 Zephyr 并不是一个 Git 仓库就包含所有内容。
@@ -150,8 +147,6 @@ Git 历史
 而不是首先去裁 Zephyr 主仓库。
 
 Zephyr 主仓库本身包含 kernel、通用驱动框架、DTS、Kconfig、CMake、架构代码等，是整个构建系统的核心。官方仓库本身就是 Zephyr 的主要源码仓库。[GitHub](https://github.com/zephyrproject-rtos/zephyr?utm_source=chatgpt.com)
-
-------
 
 <a id="section-1-2"></a>
 
@@ -273,8 +268,6 @@ Zephyr 主仓库：
 
 而不是裁源码目录。
 
-------
-
 <a id="section-1-3"></a>
 
 ## 1.3\_用清单选择模块
@@ -348,8 +341,6 @@ west update PROJECT
 
 > **自己建立一个最小 manifest。**
 
-------
-
 ### 1.3.2\_推荐方案\_自己维护一个\_Mini\_Manifest
 
 这是我认为最适合教学文档和项目工程化的方案。
@@ -410,8 +401,6 @@ Zephyr west.yml
         ├── ...
         └── 几十个模块
 ```
-
-------
 
 ### 1.3.3\_第一种\_Mini\_Manifest\_写法\_明确列出我们需要的模块
 
@@ -481,8 +470,6 @@ west manifest 本身原生支持 `clone-depth`，可以限制 project 的 Git �
 
 > **按芯片建立 Zephyr 小环境。**
 
-------
-
 ### 1.3.4\_为什么\_HC32F4A0\_至少需要\_CMSIS
 
 HC32F4A0 是：
@@ -537,8 +524,6 @@ cmsis
 
 通常属于基础模块。
 
-------
-
 ### 1.3.5\_HC32\_自己的代码放在哪里
 
 对于 HC32F4A0，我们现在有两种可能。
@@ -584,8 +569,6 @@ workspace/
     └── hal/
         └── cmsis/
 ```
-
-------
 
 #### (2)\_情况\_B\_把\_HC32\_DDL\_单独做成\_Module
 
@@ -639,8 +622,6 @@ HC32F448
 ```
 
 共用同一套 HAL。
-
-------
 
 ### 1.3.6\_更漂亮的方案\_Import\_Zephyr\_manifest\_但只允许特定模块
 
@@ -759,8 +740,6 @@ Zephyr v4.4.0
 
 这实际上就是 west manifest imports 设计的重要使用场景：下游工程可以引用一个 Zephyr release，再选择性导入它的 projects。[Zephyr Project Documentation](https://docs.zephyrproject.org/latest/develop/west/workspaces.html?utm_source=chatgpt.com)
 
-------
-
 <a id="section-1-4"></a>
 
 ## 1.4\_组织并初始化工作区
@@ -863,8 +842,6 @@ Trusted Firmware
 ...
 ```
 
-------
-
 ### 1.4.2\_Workspace\_初始化
 
 建立：
@@ -931,8 +908,6 @@ zephyr-download-lab/
         └── hc32/
 ```
 
-------
-
 ### 1.4.3\_甚至可以让\_west\_update\_只下载单个模块
 
 west 不是一定要：
@@ -993,8 +968,6 @@ west update zephyr cmsis
 ```text
 只更新 zephyr 和 cmsis
 ```
-
-------
 
 ### 1.4.4\_不过\_只执行\_west\_update\_zephyr\_不能替代\_Mini\_Manifest
 
@@ -1058,8 +1031,6 @@ CI
 量产工程
 固定 SDK
 ```
-
-------
 
 <a id="section-1-5"></a>
 
@@ -1135,8 +1106,6 @@ arc-zephyr-elf
 
 只安装 ARM 工具链。
 
-------
-
 ### 1.5.2\_SDK\_还可以进一步理解为两部分
 
 Zephyr SDK 实际可以理解成：
@@ -1188,8 +1157,6 @@ arm-zephyr-eabi
 ```
 
 就够了。
-
-------
 
 ### 1.5.3\_HC32F4A0\_最小环境到底应该下载什么
 
@@ -1252,8 +1219,6 @@ HC32 DDL
 +
 ARM Toolchain
 ```
-
-------
 
 <a id="section-1-6"></a>
 
@@ -1338,8 +1303,6 @@ MCUboot
 不是：
 
 > 第一天就把 Zephyr 所有东西全下载下来。
-
-------
 
 ### 1.6.2\_我建议我们的教学文档把\_环境下载\_设计成三种级别
 
@@ -1435,8 +1398,6 @@ west update
 
 当作一个黑盒。
 
-------
-
 ### 1.6.3\_对\_HC32F4A0\_我们最终可以把下载规则写成一张图
 
 ```text
@@ -1490,6 +1451,6 @@ Download Set
 《如何根据一款 MCU 判断到底需要下载哪些 Zephyr 仓库》
 ```
 
-重点把 **MCU → CPU 架构 → SoC → Vendor HAL → Zephyr Module → Toolchain → west.yml** 这条依赖链完整讲明白。这样学生以后换成 STM32、NXP、Nordic，也能自己判断该下载哪些仓库，而不是死记 HC32 的命令。
+重点把 **MCU → CPU 架构 → SoC → Vendor HAL → Zephyr Module → Toolchain → west.yml** 这条依赖链完整讲明白。这样读者以后换成 STM32、NXP、Nordic，也能自己判断该下载哪些仓库，而不是死记 HC32 的命令。
 
-[参考资料目录](README.md) · [下一篇](P02_零基础获得zephyr.md)
+[参考资料目录](README.md) · [下一篇](P002_零基础获得zephyr.md)

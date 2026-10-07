@@ -14,18 +14,17 @@ domains: [zephyr, tools]
 
 下载前先按[本地代理配置](代理配置.md)核对 v2rayN 的 `10808` 混合端口，配置 Git 并测试连接；浏览器下载 ZIP 还需使用系统代理或浏览器代理。
 
-> 本篇为下载方案的参考草稿，保留原有讨论与示例，尚未完成逐项版本核验和完整安装实测。当前 HC32 工程请按[项目安装流程](../../project-docs/environment.md)操作；已整理的入门主线见[工程准备大纲](../P01_zephyr_make_project/大纲.md)。
+> 本篇为下载方案的参考草稿，保留原有讨论与示例，尚未完成逐项版本核验和完整安装实测。从零操作请按[工程准备大纲](../P01_zephyr_make_project/大纲.md)，使用 `G:\zephyr_practice\zephyr-main`；下文的其他目录布局是方案说明，不能直接当作主线已存在的文件。
 
 **本章目录**
 
-- [3.1 先用固定版本的 ZIP 取得源码](#section-3-1)
-- [3.2 按清单补齐模块](#section-3-2)
-- [3.3 准备工具链与构建入口](#section-3-3)
-- [3.4 按需补充 Git 元数据](#section-3-4)
-- [3.5 把元数据接回源码目录](#section-3-5)
-- [3.6 逐步扩展历史](#section-3-6)
-- [3.7 保存可复用的下载环境](#section-3-7)
-
+- [3.1 先用固定版本的 ZIP 取得源码](#section-6-1)
+- [3.2 按清单补齐模块](#section-6-2)
+- [3.3 准备工具链与构建入口](#section-6-3)
+- [3.4 按需补充 Git 元数据](#section-6-4)
+- [3.5 把元数据接回源码目录](#section-6-5)
+- [3.6 逐步扩展历史](#section-6-6)
+- [3.7 保存可复用的下载环境](#section-6-7)
 
 对于国内访问 GitHub 不稳定的场景，本专题把 Zephyr 环境搭建明确设计成：
 
@@ -33,7 +32,7 @@ domains: [zephyr, tools]
 
 这和传统的“先 `git clone`，再 `west update`”思路完全不同。
 
-<a id="section-3-1"></a>
+<a id="section-6-1"></a>
 
 ## 3.1\_先用固定版本的\_ZIP\_取得源码
 
@@ -116,8 +115,6 @@ C/C++ 源代码无法编译。
 
 Git 是源码管理工具，不是 C 编译器。
 
-------
-
 ### 3.1.2\_GitHub\_的\_Download\_ZIP\_得到的是什么
 
 在 GitHub 页面：
@@ -183,8 +180,6 @@ git pull
 
 Zephyr 官方也明确支持**不使用 west/Git 进行构建**；这种情况下外部 module 需要自己提供，并通过 `ZEPHYR_MODULES` 等方式告诉构建系统它们的位置。[Zephyr Project Documentation](https://docs.zephyrproject.org/latest/develop/west/without-west.html?utm_source=chatgpt.com)
 
-------
-
 ### 3.1.3\_我们推荐的下载模型
 
 教学环境可以设计成四个阶段：
@@ -222,8 +217,6 @@ git clone zephyr
 west update 全仓库
 完整 Git 历史
 ```
-
-------
 
 ### 3.1.4\_第一步\_不要直接下载\_main\_的\_ZIP
 
@@ -293,8 +286,6 @@ Download ZIP
 不断变化的 main
 ```
 
-------
-
 ### 3.1.5\_下载之后\_可以先完全不管\_Git
 
 假设下载：
@@ -343,315 +334,62 @@ git status 能不能执行
 能否编译目标 MCU
 ```
 
-------
-
-<a id="section-3-2"></a>
+<a id="section-6-2"></a>
 
 ## 3.2\_按清单补齐模块
 
-主源码就位后，依照匹配版本的清单补充 CMSIS 与厂商 HAL。
+### 3.2.1\_从完整料号判断需要哪一类源码
 
-### 3.2.1\_第二步\_根据\_MCU\_决定还要下载什么
+先核对芯片丝印、板厂 BOM 和厂商数据手册的订货/封装表。本系列实板是 UYUP-RPI-A-4.1、HC32F4A0PITB、LQFP100；通用原理图里的 STM32 兼容符号不能替代实装料号。完整判断过程见[工程准备 P002 的型号与依赖依据](../P01_zephyr_make_project/环境与依赖导航.md#chip-selection)。
 
-例如目标芯片型号：
-
-```text
-HC32F4A0PITB
+```mermaid
+flowchart LR
+    A["实装型号与封装"] --> B["board / SoC 配置"]
+    B --> C["架构与驱动需要的模块"] --> D["仓库 URL + 固定修订"]
+    D --> E["下载核验"] --> F["构建路径反查"]
 ```
 
-CPU：
+CMSIS-Core 提供 Cortex-M 内核接口；HC32 的设备头提供芯片中断号与寄存器，DDL 提供厂商外设底层实现。Zephyr 的板与 SoC 移植再把这些连接起来。芯片内核相同不代表 HAL 相同。官方 `mps2/an386` 是编译教学目标，只用其配套 CMSIS；P003 新增的 HC32 目标才需要 hal_xhsc。
 
-```text
-ARM Cortex-M4F
+### 3.2.2\_由当前 Zephyr 确定 CMSIS 版本
+
+当前核对源码通过 `arch/arm/core/Kconfig`、`modules/cmsis_6/Kconfig` 与 CMakeLists 接入 Cortex-M 的 CMSIS_6；再从同一源码根 `west.yml` 查 `cmsis_6`。不能仅由 Cortex-M4 选 CMSIS 5 或 6。2026-10-05 核对修订 25c8f4a23988dd3b2cfb463613622738298c2d6c 的条目是：
+
+```yaml
+- name: cmsis_6
+  repo-path: CMSIS_6
+  revision: 1c1840af7a7e757d6e2fec3ddb0e5ce0dfcc93c8
+  path: modules/hal/cmsis_6
 ```
 
-那么先推导：
+URL 由默认 upstream 的 `https://github.com/zephyrproject-rtos` 与 repo-path 拼成；若项目直接写 url 则使用它。`path` 相对 west 工作区根，不能当成源码根相对路径。升级源码后重读清单，提交号示例不用于长期硬编码。
 
-```text
-HC32F4A0
-    │
-    ▼
-ARM Cortex-M4F
-    │
-    ├── Zephyr ARM 架构代码
-    │
-    ├── CMSIS
-    │
-    ├── HC32 SoC 支持
-    │
-    ├── HC32 DDL/HAL
-    │
-    └── ARM Toolchain
-```
+### 3.2.3\_选择 west 或固定提交 ZIP 下载
 
-这里：
-
-```text
-Zephyr ARM 架构代码
-```
-
-已经包含在刚才的：
-
-```text
-zephyr.zip
-```
-
-里面。
-
-接下来主要找：
-
-```text
-CMSIS
-HC32 HAL/DDL
-```
-
-------
-
-> 批注：
->
-> 1. 怎么知道是CMSIS？有什么说法吗？是怎么把CMSIS和芯片型号绑定的？这里解释清楚
-> 2. HC32 HAL/DDL 为什么是这个？也解释清楚，无论是行业传统还是说芯片公司自己的出产物啥的，你都要这里解释清楚，完成逻辑闭环
-
-### 3.2.2\_怎么知道\_Zephyr\_需要哪个版本的\_CMSIS
-
-不要凭感觉下载最新版 CMSIS。
-
-打开：
-
-```text
-zephyr/west.yml
-```
-
-这个文件很重要。
-
-它本质上是在告诉 west：
-
-> 当前 Zephyr 版本还依赖哪些其他 Git 仓库，以及这些仓库应该处于什么版本。
-
-里面会看到类似：
-
-```text
-- name: cmsis
-  revision: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-  path: modules/hal/cmsis
-```
-
-这里：
-
-```text
-name: cmsis
-```
-
-表示项目名字。
-
-```text
-revision:
-```
-
-表示：
-
-> Zephyr 要求的 CMSIS 精确版本。
-
-可能是：
-
-```text
-tag
-branch
-commit SHA
-```
-
-而：
-
-```text
-path: modules/hal/cmsis
-```
-
-告诉我们：
-
-> CMSIS 最终应该放在哪里。
-
-所以即使完全不用 west，也可以人工按照这份表下载。
-
-------
-
-### 3.2.3\_手工下载\_CMSIS\_ZIP
-
-假设 `west.yml` 指定：
-
-```text
-cmsis
-revision = ABCDEF123456...
-```
-
-那么进入 CMSIS 对应 GitHub 仓库。
-
-切换到：
-
-```text
-ABCDEF123456...
-```
-
-对应 commit。
-
-然后：
-
-```text
-Code
-→
-Download ZIP
-```
-
-解压。
-
-最后整理目录：
-
-```text
-~/zephyr-download-lab/
-│
-├── zephyr/
-│
-└── modules/
-    └── hal/
-        └── cmsis/
-```
-
-这里目录最好与：
-
-```text
-path: modules/hal/cmsis
-```
-
-保持一致。
-
-这样以后即使重新引入 west，也比较容易迁移。
-
-------
-
-### 3.2.4\_HC32\_HAL\_也是同样处理
-
-假设我们的 HC32 支持单独存在：
-
-```text
-hal_hc32
-```
-
-同样：
-
-```text
-GitHub
-→
-固定 commit/tag
-→
-Download ZIP
-```
-
-然后：
-
-```text
-~/zephyr-download-lab/
-│
-├── zephyr/
-│
-└── modules/
-    └── hal/
-        ├── cmsis/
-        └── hc32/
-```
-
-最终我们只下载：
-
-```text
-Zephyr
-CMSIS
-HC32 HAL
-```
-
-完全没有：
-
-```text
-STM32 HAL
-NXP HAL
-Nordic HAL
-Espressif HAL
-Renesas HAL
-...
-```
-
-------
-
-### 3.2.5\_这实际上已经实现\_人工\_west\_update
-
-官方：
+已有官方 west 工作区时，在该工作区的 Zephyr 源码根、激活其 venv 后执行：
 
 ```bash
-# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
-west update
+# Windows UCRT64；已有官方 west 工作区，不适用于尚未初始化的 ZIP 源码。
+west topdir
+west config manifest.path
+west list cmsis_6 -f '{name} {url} {revision} {path}'
+west update cmsis_6
+west forall cmsis_6 -c 'git rev-parse HEAD'
 ```
 
-做的事情可以粗略理解为：
+确认实际工作区并比较 HEAD 与清单提交。完整官方环境通常用 `west update` 获取全部清单模块；按项目名只取 CMSIS 不适用于任意应用。本系列 G 盘已有源码也按[工程准备 P004 的 4.2 节](../P01_zephyr_make_project/环境与依赖导航.md#section-4-2)用 west init -l 接入工作区，再由 west update cmsis_6 下载清单版本；不因主源码由 ZIP 取得就另行手工下载模块。该节同时说明 Git for Windows、失败恢复及目录来源。
 
-```text
-读取 west.yml
-     │
-     ▼
-找到项目
-     │
-     ▼
-找到 revision
-     │
-     ▼
-下载 Git 仓库
-     │
-     ▼
-放到指定 path
-```
+### 3.2.4\_HC32 HAL 是移植单独指定的依赖
 
-我们现在人工做的是：
+本次原生 west.yml 没有 hal_xhsc，不能照 CMSIS 的方式执行 `west update hal_xhsc`。配套 `learning/board/labs/hc32_port/soc/xhsc/hc32f4a0/CMakeLists.txt` 实际引用 `hc32_ddl/hc32f4a0` 下的 system 文件和 hc32_ll_* 接口，因而选择含 HC32F4A0 DDL 的 [hal_xhsc 模块](https://github.com/zephyrproject-rtos/hal_xhsc/tree/a84e04900616f68097d80cda2e89eaa8af3afadd)，移植基线提交为 `a84e04900616f68097d80cda2e89eaa8af3afadd`。
 
-```text
-读取 west.yml
-     │
-     ▼
-找到需要的项目
-     │
-     ▼
-找到 revision
-     │
-     ▼
-浏览器 Download ZIP
-     │
-     ▼
-解压到指定 path
-```
+[下载固定提交 ZIP](https://github.com/zephyrproject-rtos/hal_xhsc/archive/a84e04900616f68097d80cda2e89eaa8af3afadd.zip)，按工程准备 P002 2.6.3 解压、检查 module.yml、hc32f4a0.h、system_hc32f4a0.c 和 hc32_ll_usart.h。厂商手册及原始软件资料从[HC32F4A0 产品页](https://www.xhsc.com.cn/product/1220.html)取得；厂商包的附带 CMSIS/startup 与 Zephyr 接入可能不同，不能直接整体替换本章模块。
 
-结果对于：
+### 3.2.5\_保存依据并验证真正使用的文件
 
-```text
-编译器
-```
+记录源码修订、依赖 URL、完整提交、解压目录和下载包 SHA-256。没有可信的期望摘要时，本地 sha256sum 只记录收到的文件，不证明官方真实性。ZIP 没有 Git 历史，不能在它内部用 git rev-parse 验证模块修订。构建后检查 .config 的芯片选择、zephyr_modules.txt 和 compile_commands.json 的模块/头文件路径，再独立验收实板。
 
-而言没有本质区别。
-
-编译器关心的是：
-
-```text
-文件在不在
-路径对不对
-版本兼不兼容
-```
-
-它不关心这些文件是不是通过：
-
-```bash
-# 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
-git clone
-```
-
-得到的。
-
-------
-
-<a id="section-3-3"></a>
+<a id="section-6-3"></a>
 
 ## 3.3\_准备工具链与构建入口
 
@@ -701,8 +439,6 @@ arm-zephyr-eabi
 ```
 
 即可。官方 SDK Release 确实提供独立的 `arm-zephyr-eabi` Windows/Linux/macOS 工具链包。[GitHub](https://github.com/zephyrproject-rtos/sdk-ng/releases?utm_source=chatgpt.com)
-
-------
 
 ### 3.3.2\_为什么还需要\_Minimal\_SDK
 
@@ -761,8 +497,6 @@ Zephyr 开发环境
 
 > HC32F4A0 专用 Zephyr 小环境。
 
-------
-
 ### 3.3.3\_这时候完全可以开始编译
 
 这时候目录可能是：
@@ -806,8 +540,7 @@ cmake -B build -GNinja "-DZEPHYR_MODULES=module1;module2" app
 ninja -C build
 ```
 
-
-以下仍是独立教学目录的构建示例：从 `~/zephyr-download-lab` 执行，先按 P06 设置 Python 和 SDK。只有 `zephyr/` 已包含 HC32 移植、两个模块及 `app/` 已准备好时才适用；官方原版 ZIP 不会自动包含本项目的板级支持。当前集成工程直接使用 `python scripts/project_env.py build`。
+以下仍是独立教学目录的构建示例：从 `~/zephyr-download-lab` 执行，先按 P006 设置 Python 和 SDK。只有 `zephyr/` 已包含 HC32 移植、两个模块及 `app/` 已准备好时才适用；官方原版 ZIP 不会自动包含 HC32 板级支持。后续移植和构建仍在统一实验源码目录进行。
 
 Bash 中必须给带分号的整个 `-D` 参数加引号；`cygpath -m` 将目录换成 Windows CMake 能读取的盘符加正斜杠形式。
 
@@ -828,9 +561,7 @@ cmake --build build
 
 > **Git 可以完全延后。**
 
-------
-
-<a id="section-3-4"></a>
+<a id="section-6-4"></a>
 
 ## 3.4\_按需补充\_Git\_元数据
 
@@ -869,8 +600,6 @@ partial clone
 ```
 
 。
-
-------
 
 ### 3.4.2\_最重要的方案\_ZIP\_源码\_+\_Blobless\_Git\_Metadata
 
@@ -915,8 +644,6 @@ blobless partial clone
 ```
 
 GitHub 也支持这种方式。GitHub 的说明是：`--filter=blob:none` 会先获取 commit/tree，而文件内容 blob 在真正需要时再获取。[Git](https://git-scm.com/docs/git-clone.html?utm_source=chatgpt.com)
-
-------
 
 ### 3.4.3\_什么叫\_blob
 
@@ -964,8 +691,6 @@ blob
 
 Git 真正需要某个文件内容时，再从服务器拿。
 
-------
-
 ### 3.4.4\_已经有\_ZIP\_后\_推荐使用临时\_Metadata\_仓库
 
 假设我们已经有：
@@ -997,8 +722,6 @@ git clone \
 
 这条命令值得逐项解释。
 
-------
-
 ### 3.4.5\_filter=blob:none
 
 ```text
@@ -1008,8 +731,6 @@ git clone \
 我们已经有 ZIP 源码了。
 
 所以没必要再通过 Git 下载一遍相同源码。
-
-------
 
 ### 3.4.6\_no-checkout
 
@@ -1048,8 +769,6 @@ checkout
 
 GitHub 也专门展示过 `--filter=blob:none --no-checkout` 的组合用法。[The GitHub Blog](https://github.blog/open-source/git/bring-your-monorepo-down-to-size-with-sparse-checkout/?utm_source=chatgpt.com)
 
-------
-
 ### 3.4.7\_depth\_1
 
 这里进一步限制：
@@ -1067,8 +786,6 @@ commit 历史
 都不要。
 
 只拿当前版本附近最少的信息。
-
-------
 
 ### 3.4.8\_整条命令的中文含义
 
@@ -1098,9 +815,7 @@ git clone
 
 少很多。
 
-------
-
-<a id="section-3-5"></a>
+<a id="section-6-5"></a>
 
 ## 3.5\_把元数据接回源码目录
 
@@ -1160,8 +875,6 @@ git-meta
 
 即可。
 
-------
-
 ### 3.5.2\_UCRT64\_Bash\_接入示例
 
 假设：
@@ -1193,8 +906,6 @@ rmdir -- ./git-meta
 # 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
 cd ./zephyr
 ```
-
-------
 
 ### 3.5.3\_还需要做一件事\_建立\_Git\_Index
 
@@ -1252,8 +963,6 @@ HEAD 中记录的文件
 
 这正符合我们的目的。
 
-------
-
 ### 3.5.4\_然后检查
 
 执行：
@@ -1305,8 +1014,6 @@ ZIP 版本和 Git HEAD 不一致
 ```
 
 。
-
-------
 
 ### 3.5.5\_这时候\_git\_diff\_会怎么样
 
@@ -1382,9 +1089,7 @@ GitHub 也明确说明：在 blobless clone 中，`git diff`、`git blame` 等�
 再继续 fetch
 ```
 
-------
-
-<a id="section-3-6"></a>
+<a id="section-6-6"></a>
 
 ## 3.6\_逐步扩展历史
 
@@ -1426,8 +1131,6 @@ git fetch --deepen=50 --filter=blob:none
 ```
 
 。
-
-------
 
 ### 3.6.2\_如果以后真的想把完整历史补回来
 
@@ -1498,11 +1201,9 @@ Level 4
 完整 Git 仓库
 ```
 
-------
-
 ### 3.6.3\_这比一开始\_git\_clone\_--depth\_1\_更符合国内网络场景
 
-比如一个学生第一天只是要：
+比如一个读者第一天只是要：
 
 ```text
 搭环境
@@ -1549,9 +1250,7 @@ west update
 
 Git 完全不是第一天的阻塞项。
 
-------
-
-<a id="section-3-7"></a>
+<a id="section-6-7"></a>
 
 ## 3.7\_保存可复用的下载环境
 
@@ -1608,8 +1307,6 @@ workspace/
 
 。
 
-------
-
 ### 3.7.2\_还应该保存一个版本清单
 
 这是这种方案非常重要的一步。
@@ -1660,8 +1357,6 @@ SHA256
 
 仍然是明确可追溯的。
 
-------
-
 ### 3.7.3\_Git\_ZIP\_模式真正的代价是什么
 
 这个方案也不是没有代价。
@@ -1700,8 +1395,6 @@ west.yml
 这恰恰又符合我们这个教程的目的：
 
 > 教会开发者理解依赖，而不是让 `west update` 把所有东西黑盒式拉下来。
-
-------
 
 ### 3.7.4\_我建议最终教程采用\_双轨制
 
@@ -1760,4 +1453,4 @@ git diff 时按需取 blob
 
 而且我建议我们下一节直接继续写成 **《从 `west.yml` 判断 HC32F4A0 到底需要下载哪些 ZIP》**。这一节会真正解决“小环境如何自动/人工筛选依赖”的核心问题。
 
-[参考资料目录](README.md) · [上一篇](P02_零基础获得zephyr.md) · [下一篇](P04_如何从west.yml获得需要下载的包.md)
+[参考资料目录](README.md) · [上一篇](P002_零基础获得zephyr.md) · [下一篇](P004_如何从west.yml获得需要下载的包.md)

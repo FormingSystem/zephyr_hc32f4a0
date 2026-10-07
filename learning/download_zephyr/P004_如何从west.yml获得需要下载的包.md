@@ -14,7 +14,7 @@ domains: [zephyr, tools]
 
 下载前先按[本地代理配置](代理配置.md)核对 v2rayN 的 `10808` 混合端口，配置 Git 并测试连接；浏览器下载 ZIP 还需使用系统代理或浏览器代理。
 
-> 本篇为下载方案的参考草稿，保留原有讨论与示例，尚未完成逐项版本核验和完整安装实测。当前 HC32 工程请按[项目安装流程](../../project-docs/environment.md)操作；已整理的入门主线见[工程准备大纲](../P01_zephyr_make_project/大纲.md)。
+> 本篇为下载方案的参考草稿，保留原有讨论与示例，尚未完成逐项版本核验和完整安装实测。从零操作请按[工程准备大纲](../P01_zephyr_make_project/大纲.md)，使用 `G:\zephyr_practice\zephyr-main`；下文的其他目录布局是方案说明，不能直接当作主线已存在的文件。
 
 **本章目录**
 
@@ -24,7 +24,6 @@ domains: [zephyr, tools]
 - [4.4 在 UCRT64 中搜索实际源码](#section-4-4)
 - [4.5 按功能验证模块集合](#section-4-5)
 - [4.6 记录并复用下载结果](#section-4-6)
-
 
 前面我们已经确定了一个原则：
 
@@ -52,8 +51,6 @@ Zephyr 官方本身支持“不使用 west”的工作方式，只是这时额�
 ```text
 zephyr/west.yml
 ```
-
-------
 
 <a id="section-4-1"></a>
 
@@ -127,8 +124,6 @@ OpenAMP
 
 west 官方也把 manifest 定义为管理 workspace 中多个 Git repository 的 YAML 文件。[GitHub](https://github.com/zephyrproject-rtos/zephyr/blob/main/doc/develop/west/basics.rst?utm_source=chatgpt.com)
 
-------
-
 ### 4.1.2\_先看一个最简单的项目描述
 
 实际 `west.yml` 中会看到类似内容：
@@ -145,8 +140,6 @@ projects:
 初学者不要直接跳过去。
 
 我们逐行解释。
-
-------
 
 #### (1)\_name\_这个项目叫什么
 
@@ -188,8 +181,6 @@ cmsis_6
 ```text
 name:
 ```
-
-------
 
 ### 4.1.3\_revision\_到底下载哪个版本
 
@@ -267,8 +258,6 @@ revision:
 
 指定的版本下载。
 
-------
-
 ### 4.1.4\_为什么\_commit\_ID\_特别适合我们的\_ZIP\_方案
 
 GitHub 不仅可以下载：
@@ -322,8 +311,6 @@ Zephyr 明确要求的 CMSIS commit
 ```
 
 对于教学环境和公司 SDK，这种方式比下载 `main.zip` 更可靠。
-
-------
 
 ### 4.1.5\_path\_解压以后放在哪里
 
@@ -381,8 +368,6 @@ workspace/
     └── hal/
         └── cmsis_6/
 ```
-
-------
 
 ### 4.1.6\_ZIP\_解压后为什么经常多一层目录
 
@@ -453,8 +438,6 @@ modules/hal/cmsis_6/
 
 这是以后非常常见的环境搭建错误。
 
-------
-
 <a id="section-4-2"></a>
 
 ## 4.2\_拼出真实仓库地址
@@ -520,8 +503,6 @@ repo-path: CMSIS_6
 
 > 真正去远程服务器找 `CMSIS_6` 这个 repository。
 
-------
-
 ### 4.2.2\_那么\_GitHub\_前面的地址从哪里来
 
 继续往 `west.yml` 上面看，会看到：
@@ -565,8 +546,6 @@ upstream
 
 这样后面就不用反复写完整 GitHub URL。
 
-------
-
 ### 4.2.3\_url-base\_是仓库地址的公共部分
 
 例如：
@@ -604,8 +583,6 @@ https://github.com/zephyrproject-rtos/CMSIS_6
 ```
 
 这就是实际 GitHub repository。
-
-------
 
 ### 4.2.4\_如果没有\_repo-path\_怎么办
 
@@ -652,8 +629,6 @@ https://github.com/zephyrproject-rtos/fatfs
 如果 repo-path 不存在：
     使用 name
 ```
-
-------
 
 ### 4.2.5\_defaults.remote\_又是什么
 
@@ -705,8 +680,6 @@ https://github.com/zephyrproject-rtos
 ```
 
 下载。
-
-------
 
 ### 4.2.6\_到这里我们已经可以手工解析一个\_project
 
@@ -762,327 +735,39 @@ west update cmsis_6
 
 所做的事情。
 
-------
-
 <a id="section-4-3"></a>
 
 ## 4.3\_按架构与厂商筛选依赖
 
-先核对 CPU 架构和 CMSIS，再判断厂商 HAL 是内置还是独立仓库。
+### 4.3.1\_先确认实装型号和构建目标
 
-### 4.3.1\_但是\_west.yml\_中有几十个项目\_我们难道一个个下载
+本系列实板是 HC32F4A0PITB / LQFP100；完整丝印、BOM 和数据手册决定型号，通用 STM32 原理图符号不能作为选 HAL 的依据。目标 `uyup_rpi_a/hc32f4a0pitb` 由配套 board.yml 和 SoC Kconfig 对应，原生源码没有该板。官方 `mps2/an386` 与新增 `practice_mps2/an386` 则使用 AN386 SoC。具体证据和资料下载入口见[准备专题 P004 的 4.1 节](../P01_zephyr_make_project/环境与依赖导航.md#chip-selection)。
 
-不是。
-
-这是这一章最重要的地方。
-
-`west.yml` 表示的是：
-
-> **Zephyr 能够使用的完整外部项目集合。**
-
-不是：
-
-> **你的 HC32F4A0 工程必须使用的全部项目。**
-
-例如当前 upstream Zephyr manifest 中包含：
-
-```text
-CMSIS
-FatFS
-LittleFS
-mbedTLS
-MCUboot
-各种厂商 HAL
-测试工具
-BabbleSim
-……
+```mermaid
+flowchart LR
+    A["完整料号"] --> B["board 与 SoC"] --> C["Kconfig / CMake 接入"]
+    C --> D["清单模块或移植依赖"] --> E["下载与构建反查"]
 ```
 
-当前 upstream manifest 本身还通过 `group-filter` 默认禁用了 babblesim、optional、testing 等组。[GitHub](https://github.com/zephyrproject-rtos/zephyr/blob/main/west.yml?utm_source=chatgpt.com)
+### 4.3.2\_CMSIS 选择由架构接入代码决定
 
-所以看到：
+本次 Zephyr 修订 25c8f4a23988dd3b2cfb463613622738298c2d6c 的 Cortex-M 接入位于 `modules/cmsis_6`，然后才按 west.yml 的 cmsis_6 条目获取配套版本。CMSIS-Core 负责内核接口，hc32f4a0.h 负责芯片寄存器；不能因为都是 Cortex-M4 就任意混用 CMSIS 5/6 或其他厂商 HAL。CMSIS-DSP/NN 是否需要取决于应用功能，CMSIS-DAP 则是调试协议。
 
-```text
-projects:
-    一大堆项目
-```
+### 4.3.3\_CMSIS 的来源、修订与路径分别核对
 
-不能得出：
+当前条目的 name 为 cmsis_6，repo-path 为 CMSIS_6，revision 为 1c1840af7a7e757d6e2fec3ddb0e5ce0dfcc93c8，path 为 modules/hal/cmsis_6；默认远端为 https://github.com/zephyrproject-rtos。前文例子用于理解字段；实际执行应读取所选源码自己的清单。west 路线的 path 相对工作区根；ZIP 路线允许放到独立实验目录，但须显式把真正模块根传给 ZEPHYR_MODULES。可执行流程见[准备专题 P004 的 4.2.2 节](../P01_zephyr_make_project/环境与依赖导航.md#section-4-2)。
 
-```text
-这些都要下载。
-```
+### 4.3.4\_HC32 HAL 的真实来源
 
-我们的真正目标是：
+本次原生清单没有 hal_xhsc。配套移植代码需要 `hc32_ddl/hc32f4a0` 中的 system 与 hc32_ll_* 文件，使用 Zephyr 组织托管的 hal_xhsc，固定提交 a84e04900616f68097d80cda2e89eaa8af3afadd。它是新增移植的 API 基线，不是上游清单已经选择的模块。模块来源为 [hal_xhsc 固定提交](https://github.com/zephyrproject-rtos/hal_xhsc/tree/a84e04900616f68097d80cda2e89eaa8af3afadd)，主线用 Git 获取并检出该基线，下载与核验见准备专题 P002 2.6.3；已有完整 ZIP 经来源核对后可以复用。
 
-> **从这张“大菜单”里找出当前板卡和当前功能真正要吃的东西。**
+### 4.3.5\_包里有什么与本次编译用了什么分开核对
 
-------
+保留完整模块，检查 zephyr/module.yml 的名称、hc32f4a0.h、system_hc32f4a0.c、hc32_ll_usart.h。厂商设备头引用 core_cm4.h，应由当前 CMSIS_6 提供，不能引入厂商包附带的另一套 Core 与向量表。配置后再看 .config、zephyr_modules.txt 和 compile_commands.json；只有同一套依赖真正进入构建，才具备继续验收的依据。
 
-### 4.3.2\_第一层筛选\_先看\_CPU\_架构
+### 4.3.6\_其他厂商或布局只能作为例子
 
-对于我们的目标：
-
-```text
-HC32F4A0PITB
-```
-
-首先不要考虑 SPI、UART、I2C。
-
-先看 CPU：
-
-```text
-HC32F4A0
-    ↓
-ARM Cortex-M4F
-```
-
-于是已经可以推导出：
-
-```text
-需要 ARM Cortex-M 架构支持
-```
-
-Zephyr 从 4.2 开始，Cortex-M board/SoC 构建正式要求 `CMSIS_6`；CMSIS 5 仍主要用于旧 HAL 兼容，而 Cortex-M 新架构代码应使用 CMSIS 6。[Zephyr Project Documentation](https://docs.zephyrproject.org/latest/hardware/arch/arm_cortex_m.html?utm_source=chatgpt.com)
-
-因此，如果我们的 Zephyr 基线是：
-
-```text
-Zephyr >= 4.2
-```
-
-对于 Cortex-M4F：
-
-```text
-cmsis_6
-```
-
-基本可以直接进入“基础下载集合”。
-
-于是第一个依赖出现：
-
-```text
-HC32F4A0
-    ↓
-Cortex-M4F
-    ↓
-CMSIS_6
-```
-
-------
-
-### 4.3.3\_注意\_CMSIS\_和\_CMSIS\_6\_不是一回事
-
-现在 upstream manifest 中同时存在：
-
-```text
-cmsis
-```
-
-以及：
-
-```text
-cmsis_6
-```
-
-例如：
-
-```text
-- name: cmsis
-  path: modules/hal/cmsis
-
-- name: cmsis_6
-  repo-path: CMSIS_6
-  path: modules/hal/cmsis_6
-```
-
-Zephyr 官方 Cortex-M 文档解释得很清楚：
-
-```text
-CMSIS 5
-    ↓
-主要保留给旧 Vendor HAL 兼容
-
-CMSIS 6
-    ↓
-新的 Cortex-M architecture headers
-```
-
-
-所以对我们的 HC32 环境不能简单写：
-
-```text
-Cortex-M → 下载 cmsis
-```
-
-应该写：
-
-```text
-Zephyr 4.2+
-Cortex-M
-    ↓
-优先确定 cmsis_6
-
-如果 HC32 DDL/HAL 本身还引用 CMSIS 5
-    ↓
-可能还要额外保留 cmsis
-```
-
-这就体现出：
-
-> **依赖不仅由 CPU 决定，还要继续看 Vendor HAL。**
-
-------
-
-### 4.3.4\_第二层筛选\_HC32\_HAL\_到底在哪里
-
-现在进入真正和芯片厂商相关的部分。
-
-对于一个 MCU，Zephyr 通常需要：
-
-```text
-Zephyr 通用驱动
-        │
-        ▼
-SoC 支持层
-        │
-        ▼
-Vendor HAL / LL / DDL
-        │
-        ▼
-MCU 寄存器
-```
-
-例如 STM32 会有：
-
-```text
-hal_stm32
-```
-
-Nordic 会有：
-
-```text
-hal_nordic
-```
-
-NXP 会有：
-
-```text
-hal_nxp
-```
-
-对于我们的 HC32F4A0，需要检查：
-
-```text
-HC32 DDL 到底放在哪里？
-```
-
-这里存在两种情况。
-
-------
-
-### 4.3.5\_情况一\_HC32\_DDL\_已经放在\_Zephyr\_主\_ZIP\_中
-
-例如我们自己的 Zephyr fork：
-
-```text
-zephyr/
-├── soc/
-│   └── hdsc/
-│       └── hc32f4a0/
-│
-├── boards/
-│   └── ...
-│
-└── drivers/
-```
-
-同时 DDL 也直接被我们纳入：
-
-```text
-zephyr/soc/...
-```
-
-或者：
-
-```text
-zephyr/drivers/...
-```
-
-那么：
-
-```text
-HC32 DDL
-```
-
-就已经随着：
-
-```text
-zephyr.zip
-```
-
-下载完成。
-
-这种情况下不需要另外寻找：
-
-```text
-hal_hc32.zip
-```
-
-。
-
-------
-
-### 4.3.6\_情况二\_HC32\_DDL\_是独立仓库
-
-另外一种更标准的模块化方式可能是：
-
-```text
-workspace/
-├── zephyr/
-│
-└── modules/
-    └── hal/
-        └── hc32/
-```
-
-那么在 manifest 中应该存在类似：
-
-```text
-- name: hal_hc32
-  revision: xxxxxxxxx
-  path: modules/hal/hc32
-```
-
-这时：
-
-```text
-hal_hc32
-```
-
-就是第二个必须下载的外部模块。
-
-因此不能因为：
-
-```text
-芯片叫 HC32
-```
-
-就主观假设一定存在：
-
-```text
-hal_hc32
-```
-
-。
-
-应该先检查：
-
-```text
-我们的 Zephyr port 是怎样组织的。
-```
-
-------
+后文用 hal_hc32、modules/hal/hc32 等名字解释模块机制时，它们是示意名称与布局，**不是当前实验已经存在的包**。本系列真实模块名为 hal_xhsc，目录按准备专题 P002 下载产生。已有集成工程可能把 HAL 放在树内，但从零原生 ZIP 实验不能假设已经包含它；也不能用虚构仓库地址下载。
 
 <a id="section-4-4"></a>
 
@@ -1092,7 +777,7 @@ hal_hc32
 
 ### 4.4.1\_怎么快速搜索\_west.yml\_有没有\_HC32
 
-在 UCRT64 Bash 中进入下载实验的 Zephyr 目录。若检查的是当前集成工程，则从该工程根目录运行搜索；本工程的活动清单为 `project-west.yml`，上游 `west.yml` 只作对照。
+在 UCRT64 Bash 中进入 `/g/zephyr_practice/zephyr-main`，查询这份原生源码自己的 `west.yml`；源码模块与版本均从该清单推导。
 
 ```bash
 # 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
@@ -1156,8 +841,6 @@ path: modules/hal/hc32
 那么说明 manifest 中确实存在 HC32 独立仓库。
 
 如果完全没有输出，则继续检查我们自己的 HC32 port 是否直接包含 HAL。
-
-------
 
 ### 4.4.2\_搜索整个\_Zephyr\_源码中的\_HC32
 
@@ -1239,8 +922,6 @@ HC32F4A0
 
 > 递归找到 Zephyr 目录中的所有文件，然后搜索其中哪些文件包含 `HC32F4A0`。
 
-------
-
 ### 4.4.3\_为什么这个搜索很有价值
 
 假设找到：
@@ -1287,8 +968,6 @@ xxx
 ```
 
 对应哪个 `west.yml project`。
-
-------
 
 ### 4.4.4\_什么叫\_ZEPHYR\_<MODULE>\_MODULE\_DIR
 
@@ -1347,8 +1026,6 @@ zephyr/module.yml
 就很明确：
 
 > 这是一个 Zephyr Module。
-
-------
 
 <a id="section-4-5"></a>
 
@@ -1462,8 +1139,6 @@ mcuboot
 最终下载集合
 ```
 
-------
-
 ### 4.5.2\_我们应该建立一个\_最小基础环境
 
 对于目前 HC32F4A0 教学环境，第一阶段不要启用复杂功能。
@@ -1514,7 +1189,7 @@ mbedTLS
 
 。
 
-这种方式非常适合教学，因为学生会清楚看到：
+这种方式非常适合教学，因为读者会清楚看到：
 
 ```text
 我增加了什么功能
@@ -1532,8 +1207,6 @@ west update
 ```
 
 就把几十个 repository 全部拉下来。
-
-------
 
 ### 4.5.3\_一个非常重要的技巧\_先让配置阶段告诉我们缺什么
 
@@ -1582,8 +1255,6 @@ HC32 HAL
 
 > **利用 Zephyr 构建系统验证我们的依赖分析是否完整。**
 
-------
-
 ### 4.5.4\_不使用\_west\_时\_Zephyr\_怎么知道\_Modules\_在哪里
 
 官方支持手动指定：
@@ -1630,8 +1301,6 @@ Windows 上建议这里统一使用：
 ```
 
 避免某些 CMake 转义问题。
-
-------
 
 ### 4.5.5\_ZEPHYR\_MODULES\_每一段是什么意思
 
@@ -1685,8 +1354,6 @@ module 2 = hc32
 
 Zephyr 官方说明，在不使用 west 时，`ZEPHYR_MODULES` 中每个目录都需要满足 Module 的目录要求，例如包含 `zephyr/module.yml`，或者对应的 Zephyr CMake/Kconfig 文件。[Zephyr Project Documentation](https://docs.zephyrproject.org/latest/develop/modules.html?utm_source=chatgpt.com)
 
-------
-
 ### 4.5.6\_不过\_CMSIS\_6\_是否一定要手工放进\_ZEPHYR\_MODULES
 
 这里教学文档应该稍微严谨一点。
@@ -1714,8 +1381,6 @@ west project
 Zephyr module
 ```
 
-。
-
 比如某些项目可能只是：
 
 ```text
@@ -1724,8 +1389,6 @@ Zephyr module
 脚本
 模拟器
 ```
-
-。
 
 所以判断一个下载仓库是否应该进入：
 
@@ -1742,8 +1405,6 @@ ZEPHYR_MODULES
 ```
 
 。
-
-------
 
 <a id="section-4-6"></a>
 
@@ -1817,73 +1478,19 @@ CMake 配置验证
 
 这才是“小环境下载”的核心算法。
 
-------
+### 4.6.2\_记录当前实验的实际依赖
 
-### 4.6.2\_给教学环境建立\_download-manifest.yml
+可以在实验产物目录保存普通 Markdown 记录，无需创造一个看似原生、实际没有加载器的 download-manifest.yml。至少写明：
 
-我强烈建议不要只靠教学文档记录这些东西。
+| 记录项 | 本系列依据 |
+| --- | --- |
+| Zephyr | 下载 URL 与实际完整修订；有 Git 时记录 HEAD |
+| CMSIS_6 | 当前 west.yml 解析出的 URL、revision、path |
+| hal_xhsc | 配套移植指定的 URL 与提交 a84e04900616f68097d80cda2e89eaa8af3afadd，注明不在本次原生清单中 |
+| 下载包与本地目录 | 原文件名、sha256sum、完整解压目录 |
+| 构建结果 | 构建目录、目标、实际模块路径与验证状态 |
 
-我们自己再创建一个非常简单的：
-
-```text
-download-manifest.yml
-```
-
-它不是 west 必需文件。
-
-它是：
-
-> **我们这套教学环境自己的下载锁定文件。**
-
-例如：
-
-```yaml
-environment:
-  name: hc32f4a0-zephyr-learning
-  zephyr_version: vX.Y.Z
-
-sources:
-
-  zephyr:
-    repository: zephyrproject-rtos/zephyr
-    revision: vX.Y.Z
-    type: zip
-    path: zephyr
-
-  cmsis_6:
-    repository: zephyrproject-rtos/CMSIS_6
-    revision: 1c1840af7a7e757d6e2fec3ddb0e5ce0dfcc93c8
-    type: zip
-    path: modules/hal/cmsis_6
-
-  hal_hc32:
-    repository: our-company/hal_hc32
-    revision: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-    type: zip
-    path: modules/hal/hc32
-
-toolchain:
-
-  architecture: arm
-  toolchain: arm-zephyr-eabi
-  sdk_version: 1.0.1
-```
-
-这样学生根本不用第一次就理解整个 upstream `west.yml`。
-
-他们只需要理解：
-
-```text
-west.yml
-    ↓
-官方完整依赖数据库
-
-download-manifest.yml
-    ↓
-我们从里面筛选出来的教学环境依赖
-```
-
-------
+它只是复现记录，不是 Zephyr 自动读取的清单，也不实现 Git 同步。后文所称 download-manifest.yml 同样只能当作自定记录格式，不能替代上游 west.yml 或声称这些依赖全由上游选出。
 
 ### 4.6.3\_为什么最好记录\_commit\_而不是只记录\_ZIP\_文件名
 
@@ -1932,8 +1539,6 @@ CI
 
 都很重要。
 
-------
-
 ### 4.6.4\_还可以进一步保存\_SHA256
 
 这里要区分两种东西：
@@ -1976,7 +1581,7 @@ sha256
 
 用于表示：
 
-> 我实际拿到的压缩文件有没有损坏或者被替换。
+> 标识实际收到的压缩文件；只有与可信的预期摘要比较，才能检验它是否变化。
 
 不过需要注意，GitHub 官方说明：源码 archive 的**文件内容**在固定 commit 下具有稳定性，但压缩参数本身未来可能变化，因此同一 commit 后来重新生成的 ZIP 字节级内容不一定永远完全相同。[GitHub Docs](https://docs.github.com/en/enterprise-cloud@latest/repositories/working-with-files/using-files/downloading-source-code-archives?utm_source=chatgpt.com)
 
@@ -1994,11 +1599,9 @@ SHA256 更多适合：
 验证我们公司内部保存的这一份下载包。
 ```
 
-------
-
 ### 4.6.5\_最后再回来看\_west\_官方是怎么做的
 
-到这里学生就不会觉得：
+到这里读者就不会觉得：
 
 ```bash
 # 当前位置：~/zephyr-download-lab；终端：UCRT64 Bash。
@@ -2086,53 +1689,10 @@ Git 延后
 目标芯片专用
 ```
 
-------
+### 4.6.6\_本系列采用的依赖关系
 
-### 4.6.6\_对\_HC32F4A0\_当前可以先得到这样的结论
+本系列从 G 盘原生 Zephyr 开始，按实际架构接入选择 CMSIS_6，再取当前 west.yml 要求的修订。不要按“Zephyr 4.x”范围推定所有源码的 CMSIS 版本。HC32F4A0PITB 的板、SoC 与驱动由配套材料接入；HAL 使用移植指定的 hal_xhsc 固定快照，当前原生清单不提供它。
 
-如果我们的 Zephyr 基线是现代 4.x，尤其 4.2 及以后，那么 Cortex-M4F 基础层首先应该考虑 `CMSIS_6`。[Zephyr Project Documentation](https://docs.zephyrproject.org/latest/hardware/arch/arm_cortex_m.html?utm_source=chatgpt.com)
+因此先完成官方 mps2/an386 的 CMSIS + SDK 编译实验，再下载 HC32 HAL、接入配套移植模块，编译 uyup_rpi_a/hc32f4a0pitb。所有可执行命令和实际目录统一见[工程准备 P003](../P01_zephyr_make_project/P007_编译示例与新增开发板_Windows.md)，不要求先下载一个已集成 HC32 的 fork。
 
-因此第一版教学环境可以先设计成：
-
-```text
-HC32F4A0 Zephyr Mini Environment
-│
-├── zephyr/
-│       Zephyr 固定版本 ZIP
-│
-├── modules/
-│   └── hal/
-│       ├── cmsis_6/
-│       │       Cortex-M 必需
-│       │
-│       └── hc32/
-│               如果 HC32 HAL 是独立 module
-│
-├── sdk/
-│       Zephyr SDK Minimal
-│
-└── toolchain/
-        arm-zephyr-eabi
-```
-
-如果你的 HC32 DDL 已经直接包含在自己的：
-
-```text
-zephyr_hc32f4a0
-```
-
-源码树中，则进一步简化为：
-
-```text
-Zephyr HC32 fork ZIP
-+
-CMSIS_6 ZIP
-+
-Minimal SDK
-+
-arm-zephyr-eabi
-```
-
-**下一节我们正好可以继续往下写《Zephyr SDK 和 ARM 交叉编译器到底是什么，以及为什么 HC32F4A0 只需要下载 `arm-zephyr-eabi`》**。这样源码依赖讲完之后，自然进入工具链下载，而且同样可以完全按“零基础但不是 C 小白”的方式，把 GCC、binutils、sysroot、host tools、Zephyr SDK 之间的关系一次讲清楚。
-
-[参考资料目录](README.md) · [上一篇](P03_国内如何更快下载zephyr.md) · [下一篇](P05_SDK和交叉编译器下载说明.md)
+[参考资料目录](README.md) · [上一篇](P003_国内如何更快下载zephyr.md) · [下一篇](P005_SDK和交叉编译器下载说明.md)
