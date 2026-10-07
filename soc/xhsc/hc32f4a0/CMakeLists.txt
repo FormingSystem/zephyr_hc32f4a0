@@ -1,7 +1,10 @@
 # SPDX-FileCopyrightText: Copyright The Zephyr HC32F4A0 Contributors
 # SPDX-License-Identifier: Apache-2.0
 
-set(HC32_DDL_DIR ${ZEPHYR_BASE}/modules/hal/xhsc/hc32_ddl/hc32f4a0)
+set(HC32_DDL_DIR ${ZEPHYR_HAL_XHSC_MODULE_DIR}/hc32_ddl/hc32f4a0)
+if(NOT EXISTS "${HC32_DDL_DIR}/soc/hc32f4a0.h")
+  message(FATAL_ERROR "HC32F4A0 requires the hal_xhsc module with its hc32f4a0 DDL")
+endif()
 
 zephyr_include_directories(
   .
