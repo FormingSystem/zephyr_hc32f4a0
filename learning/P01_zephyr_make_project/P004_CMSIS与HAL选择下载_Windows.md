@@ -27,8 +27,8 @@ domains: [zephyr, tools]
 | --- | --- | --- | --- |
 | 2—11 | 芯片身份、清单和 HAL 来源 | [4.1](#section-4-1) | 官方文件、仓库查找路线和清单收录状态 |
 | 12—17 | CMSIS 来源与 west 下载 | [4.2.1](#section-4-2-1) | 复用工作区、版本和文件核验，不替换官方清单 |
-| 18—21 | 清单外 HAL 下载与失败恢复 | [4.2.3](#section-4-2-3) | 固定修订、Git 选择、错误判断和终端恢复 |
-| 22 | 只有厂商 CMSIS 包时 | [4.2.5](#section-4-2-5) | 分清 Core、设备头、启动代码与需要新增的适配 |
+| 18—19 | 清单外 HAL 下载与文件核验 | [4.2.3](#section-4-2-3) | 固定修订、Git 选择、错误判断和终端恢复 |
+| 正文补充 | 只有厂商 CMSIS 包时 | [4.2.5](#section-4-2-5) | 分清 Core、设备头、启动代码与需要新增的适配 |
 
 <a id="chip-selection"></a>
 
@@ -290,8 +290,12 @@ git -C build/learning-tools/deps/hal_xhsc rev-parse HEAD
 ```bash
 # Windows UCRT64；源码根；Git 或已有完整 ZIP 模块都要核对这些原有文件。
 cat build/learning-tools/deps/hal_xhsc/zephyr/module.yml
-test -f build/learning-tools/deps/hal_xhsc/hc32_ddl/hc32f4a0/soc/hc32f4a0.h && printf 'HC32F4A0 OK\n'
-test -f build/learning-tools/deps/hal_xhsc/hc32_ddl/hc32f4a0/drivers/inc/hc32_ll_usart.h && printf 'USART DDL OK\n'
+test -f \
+build/learning-tools/deps/hal_xhsc/hc32_ddl/hc32f4a0/soc/hc32f4a0.h \
+  && printf 'HC32F4A0 OK\n'
+test -f \
+build/learning-tools/deps/hal_xhsc/hc32_ddl/hc32f4a0/drivers/inc/hc32_ll_usart.h \
+  && printf 'USART DDL OK\n'
 ```
 
 下载和关键文件核对到这里完成。工程如何接收这个路径、发现模块和生成构建变量，单独见 [P005 源码模块接入](P005_源码模块接入Zephyr工程_Windows.md)。
