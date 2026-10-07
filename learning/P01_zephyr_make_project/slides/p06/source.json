@@ -9,107 +9,107 @@
     {
       "number": 2,
       "title": "从一个普通 C 程序开始",
-      "part": "ppt/slides/lesson_6_1.xml"
+      "part": "ppt/slides/slide2.xml"
     },
     {
       "number": 3,
       "title": "谁描述关系，谁执行编译",
-      "part": "ppt/slides/lesson_6_2.xml"
+      "part": "ppt/slides/slide3.xml"
     },
     {
       "number": 4,
       "title": "configure 和 generate 不是同一步",
-      "part": "ppt/slides/lesson_6_3.xml"
+      "part": "ppt/slides/slide4.xml"
     },
     {
       "number": 5,
       "title": "源码目录与构建目录分开",
-      "part": "ppt/slides/lesson_6_4.xml"
+      "part": "ppt/slides/slide5.xml"
     },
     {
       "number": 6,
       "title": "本例需要主机编译器",
-      "part": "ppt/slides/lesson_6_5.xml"
+      "part": "ppt/slides/slide6.xml"
     },
     {
       "number": 7,
       "title": "先放入十行左右的 C 程序",
-      "part": "ppt/slides/lesson_6_6.xml"
+      "part": "ppt/slides/slide7.xml"
     },
     {
       "number": 8,
       "title": "三行入口各自声明什么",
-      "part": "ppt/slides/lesson_6_7.xml"
+      "part": "ppt/slides/slide8.xml"
     },
     {
       "number": 9,
       "title": "第一次：配置并生成 Ninja 规则",
-      "part": "ppt/slides/lesson_6_8.xml"
+      "part": "ppt/slides/slide9.xml"
     },
     {
       "number": 10,
       "title": "第二次：构建成功后才运行",
-      "part": "ppt/slides/lesson_6_9.xml"
+      "part": "ppt/slides/slide10.xml"
     },
     {
       "number": 11,
       "title": "现代 CMake 围绕 target 组织",
-      "part": "ppt/slides/lesson_6_10.xml"
+      "part": "ppt/slides/slide11.xml"
     },
     {
       "number": 12,
       "title": "先创建目标，再添加属性",
-      "part": "ppt/slides/lesson_6_11.xml"
+      "part": "ppt/slides/slide12.xml"
     },
     {
       "number": 13,
       "title": "加入一个库，让关系可以观察",
-      "part": "ppt/slides/lesson_6_12.xml"
+      "part": "ppt/slides/slide13.xml"
     },
     {
       "number": 14,
       "title": "两个目标怎样连接",
-      "part": "ppt/slides/lesson_6_13.xml"
+      "part": "ppt/slides/slide14.xml"
     },
     {
       "number": 15,
       "title": "PRIVATE / PUBLIC / INTERFACE 传给谁",
-      "part": "ppt/slides/lesson_6_14.xml"
+      "part": "ppt/slides/slide15.xml"
     },
     {
       "number": 16,
       "title": "改了文件，再配置和构建",
-      "part": "ppt/slides/lesson_6_15.xml"
+      "part": "ppt/slides/slide16.xml"
     },
     {
       "number": 17,
       "title": "add_subdirectory 拆的是脚本组织",
-      "part": "ppt/slides/lesson_6_16.xml"
+      "part": "ppt/slides/slide17.xml"
     },
     {
       "number": 18,
       "title": "find_package 查找并执行已有入口",
-      "part": "ppt/slides/lesson_6_17.xml"
+      "part": "ppt/slides/slide18.xml"
     },
     {
       "number": 19,
       "title": "Zephyr 源码包与 SDK 包不同",
-      "part": "ppt/slides/lesson_6_18.xml"
+      "part": "ppt/slides/slide19.xml"
     },
     {
       "number": 20,
       "title": "变量、缓存、目标属性不要混用",
-      "part": "ppt/slides/lesson_6_19.xml"
+      "part": "ppt/slides/slide20.xml"
     },
     {
       "number": 21,
       "title": "一项输入怎样真正影响编译器",
-      "part": "ppt/slides/lesson_6_20.xml"
+      "part": "ppt/slides/slide21.xml"
     },
     {
       "number": 22,
       "title": "把已理解的模型带入 Zephyr",
-      "part": "ppt/slides/lesson_6_21.xml"
+      "part": "ppt/slides/slide22.xml"
     }
   ],
   "parts": [
@@ -121,50 +121,50 @@
     "ppt/media/image1.png",
     "ppt/notesMasters/_rels/notesMaster1.xml.rels",
     "ppt/notesMasters/notesMaster1.xml",
-    "ppt/notesSlides/_rels/lesson_6_1.xml.rels",
-    "ppt/notesSlides/_rels/lesson_6_10.xml.rels",
-    "ppt/notesSlides/_rels/lesson_6_11.xml.rels",
-    "ppt/notesSlides/_rels/lesson_6_12.xml.rels",
-    "ppt/notesSlides/_rels/lesson_6_13.xml.rels",
-    "ppt/notesSlides/_rels/lesson_6_14.xml.rels",
-    "ppt/notesSlides/_rels/lesson_6_15.xml.rels",
-    "ppt/notesSlides/_rels/lesson_6_16.xml.rels",
-    "ppt/notesSlides/_rels/lesson_6_17.xml.rels",
-    "ppt/notesSlides/_rels/lesson_6_18.xml.rels",
-    "ppt/notesSlides/_rels/lesson_6_19.xml.rels",
-    "ppt/notesSlides/_rels/lesson_6_2.xml.rels",
-    "ppt/notesSlides/_rels/lesson_6_20.xml.rels",
-    "ppt/notesSlides/_rels/lesson_6_21.xml.rels",
-    "ppt/notesSlides/_rels/lesson_6_3.xml.rels",
-    "ppt/notesSlides/_rels/lesson_6_4.xml.rels",
-    "ppt/notesSlides/_rels/lesson_6_5.xml.rels",
-    "ppt/notesSlides/_rels/lesson_6_6.xml.rels",
-    "ppt/notesSlides/_rels/lesson_6_7.xml.rels",
-    "ppt/notesSlides/_rels/lesson_6_8.xml.rels",
-    "ppt/notesSlides/_rels/lesson_6_9.xml.rels",
     "ppt/notesSlides/_rels/notesSlide1.xml.rels",
-    "ppt/notesSlides/lesson_6_1.xml",
-    "ppt/notesSlides/lesson_6_10.xml",
-    "ppt/notesSlides/lesson_6_11.xml",
-    "ppt/notesSlides/lesson_6_12.xml",
-    "ppt/notesSlides/lesson_6_13.xml",
-    "ppt/notesSlides/lesson_6_14.xml",
-    "ppt/notesSlides/lesson_6_15.xml",
-    "ppt/notesSlides/lesson_6_16.xml",
-    "ppt/notesSlides/lesson_6_17.xml",
-    "ppt/notesSlides/lesson_6_18.xml",
-    "ppt/notesSlides/lesson_6_19.xml",
-    "ppt/notesSlides/lesson_6_2.xml",
-    "ppt/notesSlides/lesson_6_20.xml",
-    "ppt/notesSlides/lesson_6_21.xml",
-    "ppt/notesSlides/lesson_6_3.xml",
-    "ppt/notesSlides/lesson_6_4.xml",
-    "ppt/notesSlides/lesson_6_5.xml",
-    "ppt/notesSlides/lesson_6_6.xml",
-    "ppt/notesSlides/lesson_6_7.xml",
-    "ppt/notesSlides/lesson_6_8.xml",
-    "ppt/notesSlides/lesson_6_9.xml",
+    "ppt/notesSlides/_rels/notesSlide10.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide11.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide12.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide13.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide14.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide15.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide16.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide17.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide18.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide19.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide2.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide20.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide21.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide22.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide3.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide4.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide5.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide6.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide7.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide8.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide9.xml.rels",
     "ppt/notesSlides/notesSlide1.xml",
+    "ppt/notesSlides/notesSlide10.xml",
+    "ppt/notesSlides/notesSlide11.xml",
+    "ppt/notesSlides/notesSlide12.xml",
+    "ppt/notesSlides/notesSlide13.xml",
+    "ppt/notesSlides/notesSlide14.xml",
+    "ppt/notesSlides/notesSlide15.xml",
+    "ppt/notesSlides/notesSlide16.xml",
+    "ppt/notesSlides/notesSlide17.xml",
+    "ppt/notesSlides/notesSlide18.xml",
+    "ppt/notesSlides/notesSlide19.xml",
+    "ppt/notesSlides/notesSlide2.xml",
+    "ppt/notesSlides/notesSlide20.xml",
+    "ppt/notesSlides/notesSlide21.xml",
+    "ppt/notesSlides/notesSlide22.xml",
+    "ppt/notesSlides/notesSlide3.xml",
+    "ppt/notesSlides/notesSlide4.xml",
+    "ppt/notesSlides/notesSlide5.xml",
+    "ppt/notesSlides/notesSlide6.xml",
+    "ppt/notesSlides/notesSlide7.xml",
+    "ppt/notesSlides/notesSlide8.xml",
+    "ppt/notesSlides/notesSlide9.xml",
     "ppt/presProps.xml",
     "ppt/presentation.xml",
     "ppt/slideLayouts/_rels/slideLayout1.xml.rels",
@@ -297,50 +297,50 @@
     "ppt/slideMasters/slideMaster7.xml",
     "ppt/slideMasters/slideMaster8.xml",
     "ppt/slideMasters/slideMaster9.xml",
-    "ppt/slides/_rels/lesson_6_1.xml.rels",
-    "ppt/slides/_rels/lesson_6_10.xml.rels",
-    "ppt/slides/_rels/lesson_6_11.xml.rels",
-    "ppt/slides/_rels/lesson_6_12.xml.rels",
-    "ppt/slides/_rels/lesson_6_13.xml.rels",
-    "ppt/slides/_rels/lesson_6_14.xml.rels",
-    "ppt/slides/_rels/lesson_6_15.xml.rels",
-    "ppt/slides/_rels/lesson_6_16.xml.rels",
-    "ppt/slides/_rels/lesson_6_17.xml.rels",
-    "ppt/slides/_rels/lesson_6_18.xml.rels",
-    "ppt/slides/_rels/lesson_6_19.xml.rels",
-    "ppt/slides/_rels/lesson_6_2.xml.rels",
-    "ppt/slides/_rels/lesson_6_20.xml.rels",
-    "ppt/slides/_rels/lesson_6_21.xml.rels",
-    "ppt/slides/_rels/lesson_6_3.xml.rels",
-    "ppt/slides/_rels/lesson_6_4.xml.rels",
-    "ppt/slides/_rels/lesson_6_5.xml.rels",
-    "ppt/slides/_rels/lesson_6_6.xml.rels",
-    "ppt/slides/_rels/lesson_6_7.xml.rels",
-    "ppt/slides/_rels/lesson_6_8.xml.rels",
-    "ppt/slides/_rels/lesson_6_9.xml.rels",
     "ppt/slides/_rels/slide1.xml.rels",
-    "ppt/slides/lesson_6_1.xml",
-    "ppt/slides/lesson_6_10.xml",
-    "ppt/slides/lesson_6_11.xml",
-    "ppt/slides/lesson_6_12.xml",
-    "ppt/slides/lesson_6_13.xml",
-    "ppt/slides/lesson_6_14.xml",
-    "ppt/slides/lesson_6_15.xml",
-    "ppt/slides/lesson_6_16.xml",
-    "ppt/slides/lesson_6_17.xml",
-    "ppt/slides/lesson_6_18.xml",
-    "ppt/slides/lesson_6_19.xml",
-    "ppt/slides/lesson_6_2.xml",
-    "ppt/slides/lesson_6_20.xml",
-    "ppt/slides/lesson_6_21.xml",
-    "ppt/slides/lesson_6_3.xml",
-    "ppt/slides/lesson_6_4.xml",
-    "ppt/slides/lesson_6_5.xml",
-    "ppt/slides/lesson_6_6.xml",
-    "ppt/slides/lesson_6_7.xml",
-    "ppt/slides/lesson_6_8.xml",
-    "ppt/slides/lesson_6_9.xml",
+    "ppt/slides/_rels/slide10.xml.rels",
+    "ppt/slides/_rels/slide11.xml.rels",
+    "ppt/slides/_rels/slide12.xml.rels",
+    "ppt/slides/_rels/slide13.xml.rels",
+    "ppt/slides/_rels/slide14.xml.rels",
+    "ppt/slides/_rels/slide15.xml.rels",
+    "ppt/slides/_rels/slide16.xml.rels",
+    "ppt/slides/_rels/slide17.xml.rels",
+    "ppt/slides/_rels/slide18.xml.rels",
+    "ppt/slides/_rels/slide19.xml.rels",
+    "ppt/slides/_rels/slide2.xml.rels",
+    "ppt/slides/_rels/slide20.xml.rels",
+    "ppt/slides/_rels/slide21.xml.rels",
+    "ppt/slides/_rels/slide22.xml.rels",
+    "ppt/slides/_rels/slide3.xml.rels",
+    "ppt/slides/_rels/slide4.xml.rels",
+    "ppt/slides/_rels/slide5.xml.rels",
+    "ppt/slides/_rels/slide6.xml.rels",
+    "ppt/slides/_rels/slide7.xml.rels",
+    "ppt/slides/_rels/slide8.xml.rels",
+    "ppt/slides/_rels/slide9.xml.rels",
     "ppt/slides/slide1.xml",
+    "ppt/slides/slide10.xml",
+    "ppt/slides/slide11.xml",
+    "ppt/slides/slide12.xml",
+    "ppt/slides/slide13.xml",
+    "ppt/slides/slide14.xml",
+    "ppt/slides/slide15.xml",
+    "ppt/slides/slide16.xml",
+    "ppt/slides/slide17.xml",
+    "ppt/slides/slide18.xml",
+    "ppt/slides/slide19.xml",
+    "ppt/slides/slide2.xml",
+    "ppt/slides/slide20.xml",
+    "ppt/slides/slide21.xml",
+    "ppt/slides/slide22.xml",
+    "ppt/slides/slide3.xml",
+    "ppt/slides/slide4.xml",
+    "ppt/slides/slide5.xml",
+    "ppt/slides/slide6.xml",
+    "ppt/slides/slide7.xml",
+    "ppt/slides/slide8.xml",
+    "ppt/slides/slide9.xml",
     "ppt/tableStyles.xml",
     "ppt/theme/theme1.xml",
     "ppt/theme/theme10.xml",
