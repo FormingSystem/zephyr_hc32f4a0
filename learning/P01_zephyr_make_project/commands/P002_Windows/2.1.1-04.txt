@@ -1,0 +1,5 @@
+# P002_Windows / 2.1.1\_按官方 Windows 步骤安装主机工具
+# 先核对正文的终端、目录与前提，再执行此完整操作单元。
+# Windows UCRT64；任意目录；查看 UCRT64 将找到哪个 Git。
+type -a git
+command -v git

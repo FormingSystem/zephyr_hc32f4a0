@@ -1,0 +1,6 @@
+# P002_Windows / 2.2.1\_上一期下载的是上游\_Zephyr\_源码
+# 先核对正文的终端、目录与前提，再执行此完整操作单元。
+# 当前位置：上游 Zephyr 源码根目录；终端：UCRT64，已激活 .venv。
+python -m pip install -r scripts/requirements-base.txt "west==1.5.0"
+python -m pip check
+python -m west --version

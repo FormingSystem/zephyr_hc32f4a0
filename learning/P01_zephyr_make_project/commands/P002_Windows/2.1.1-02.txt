@@ -1,0 +1,5 @@
+# P002_Windows / 2.1.1\_按官方 Windows 步骤安装主机工具
+# 先核对正文的终端、目录与前提，再执行此完整操作单元。
+# Windows PowerShell 或 cmd.exe；本教程固定 Python 时使用。
+winget --version
+winget install Kitware.CMake Ninja-build.Ninja oss-winget.gperf Git.Git oss-winget.dtc wget 7zip.7zip

@@ -1,0 +1,10 @@
+# P002_Windows / 2.1.1\_按官方 Windows 步骤安装主机工具
+# 先核对正文的终端、目录与前提，再执行此完整操作单元。
+# Windows UCRT64；仅在需要调整 Git 优先级时执行；粘贴自己的 Windows 路径，不加引号。
+read -r -p 'Git for Windows 的 cmd 目录：' GIT_CMD_DIR
+if test -f "$(cygpath -u "$GIT_CMD_DIR")/git.exe"; then
+  export PATH="$(cygpath -u "$GIT_CMD_DIR"):$PATH"
+  hash -r
+fi
+unset GIT_CMD_DIR
+command -v git
