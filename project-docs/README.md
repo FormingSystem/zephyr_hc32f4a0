@@ -5,6 +5,8 @@ SPDX-License-Identifier: Apache-2.0
 
 # 工程文档与 Zephyr 学习资料
 
+先区分[文档仓库与实验工程的职责](workspace-roles.md)：本目录解释已有移植参照与环境资料；根目录 `learning/` 服务于 G 盘从原生源码逐步建立完整工程的实验。
+
 首次学习请先看[从哪里开始学习 Zephyr](learning/开始学习.md)：选择第一篇、完成首次实验，再按问题进入后续专题。
 
 如果你刚打开工程，先从下面四篇介绍开始。它们围绕现有的心跳和指示灯示例，解释工程由什么组成、
@@ -52,6 +54,7 @@ T07—T88 尚待逐篇实现，实板验证仍单独登记。
 | [组件架构](architecture.md) | 工程组织、启动过程、驱动与调试边界 |
 | [开发与调试](development.md) | 环境准备、构建、VS Code 和板卡调试 |
 | [下载、安装与工具环境](environment.md) | 源码克隆、Windows/Ubuntu 主机工具、SDK 下载校验、根 .venv 与首次验收 |
+| [Windows 一键环境](windows-bootstrap.md) | 中英文安装、自选盘符、镜像、环境变量回退与教学前 MSYS2 快照 |
 | [项目 west](west/README.md) | 专用清单、父目录工作区初始化及更新边界 |
 | [发布与重建](distribution.md) | 新 GitHub 仓库的分发范围与接收者安装流程 |
 | [硬件依据](hardware.md) | 芯片资源、引脚、时钟与板载 DAP 操作 |

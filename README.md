@@ -5,17 +5,24 @@ SPDX-License-Identifier: Apache-2.0
 
 # zephyr_hc32f4a0
 
-这是包含完整 Zephyr 源码的 HC32F4A0PITB / UYUP-RPI-A-2.5 开发仓库。
+文档仓库与从零实验的分工、逐步形成完整工程的目标，以及尚未确定的更新需求，见[两个目录的职责](project-docs/workspace-roles.md)。
+
+本仓库用于维护和推送 Zephyr 学习文档、PPT、环境资料与移植记录。`learning/` 面向读者从零复现，实验统一在 `G:\zephyr_practice\zephyr-main` 中进行；文档保存目录不是实验执行目录。
+
+仓库保留完整 Zephyr 源码及已经完成的 HC32F4A0 移植实现，作为早期移植参考和对照组：从零复现出现问题时可对照定位，也可比较新增、修改的文件来理解移植范围。G 盘实验工程将随着实验逐步形成与本仓库一致的目录、板级适配、工具和文档组织，支持两边对照和适配。对照的目标是工程形态和功能逐步一致，不预设两边源码版本或 Git 历史已经相同。具体构建和实板验证证据仍按下述状态记录区分。
 内核、架构、驱动框架、设备树、构建系统，以及 CMSIS_6 和华大 HAL 源码都在本仓库内；
 工程使用自己的 Git 历史。源码来源和版本见 [源码基线](project-docs/source-baseline.md)。
 
-当前已实现 HC32 SoC、板级设备树、GPIO 与轮询 USART1 控制台，默认构建目标为
-`uyup_rpi_a/hc32f4a0pitb`。首版使用板载 12 MHz 晶振直接驱动系统时钟，不启用 PLL。
+当前已实现 HC32 SoC、板级设备树、GPIO、轮询 USART1 与 USBFS CDC ACM，默认构建目标为
+`uyup_rpi_a/hc32f4a0pitb`。实装晶振仍为 12 MHz，当前板级使用 PLLH 生成 48 MHz 系统及 USB 时钟；
+12 MHz 直驱是早期 GPIO/UART 教学阶段。USB1 日志构建和 COM 使用见 [USB 控制台示例](samples/usb_console/README.md)；`printf` / `scanf` 交互见 [USB 标准输入输出示例](samples/usb_stdio/README.md)。
 编译结果与实板验证状态分别记录在 [移植状态](project-docs/porting-status.md)。
 
-## 开始开发
+## 阅读文档与使用移植参照
 
-如果还不知道怎样入手 Zephyr，先读[从哪里开始学习](project-docs/learning/开始学习.md)，按阅读顺序完成第一次软件实验。
+从零实验先读[学习中心](learning/README.md)和[实验准备](learning/P000_实验准备.md)。以下入口介绍保留的移植实现与环境资料，供维护和故障对照使用。
+
+了解这份参照工程时，先读[从哪里开始学习](project-docs/learning/开始学习.md)，按阅读顺序完成第一次软件实验。
 
 第一次接触本工程，可以先按[四篇入门介绍](project-docs/README.md)的顺序认识工程、运行过程、构建和芯片移植。
 随后沿[Zephyr 学习与实验路线](project-docs/learning/README.md)逐篇深入；完整蓝图规划了 14 组、88 个专题，
@@ -32,6 +39,8 @@ Python 环境隔离与 west 的专题入门、常用命令及本地实验见 [�
 从 Windows 终端安装、国内换源和源码下载开始，可读[Zephyr 下载与工程准备](learning/P01_zephyr_make_project/大纲.md)，配有可编辑教学课件。
 
 新机器先按[下载与安装说明](project-docs/environment.md)取得本工程、安装主机工具和 SDK，再建立根目录 `.venv`。
+Windows 读者可在工程根运行 `setup-windows.cmd`，选择中英文、安装目录与镜像后自动准备工具；
+教学前的完整 MSYS2 备份、教学后恢复及环境变量回退见[Windows 一键环境](project-docs/windows-bootstrap.md)。
 已有开发环境时，在仓库根目录的 UCRT64 Bash 执行：
 
 ```bash

@@ -1,9 +1,43 @@
+---
+id: learning.validation
+title: 教学验证记录
+kind: reference
+status: maintained
+domains: [documentation]
+---
+
 <!-- SPDX-FileCopyrightText: Copyright The zephyr_hc32f4a0 Contributors -->
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 
 # 教学验证记录
 
-最新补充：2026-09-29。本轮根据读者全局批注重构 venv 四章与 west 五章的工程背景、操作单元、配置定位和步骤图，并修订个人教学 skill；下方旧轮次保留历史，早期独立实训入口已退休。工程环境、构建和板级实验另见[补充验收](BUILD_BOARD_VALIDATION.md)。
+## 2026-10-06 环境准备与编译教学的章节边界
+
+准备专题 P002 统一讲主机工具、Python/venv、SDK、CMSIS/HAL 依据及下载；P003 按认识并编译官方板、逐文件新增板、分阶段新增 HC32 芯片支持推进。MD 保留详细命令和判断，PPT 为 45/34 页，并同步原生源码、页码和导航。
+
+G 盘实验源码上的三次 hello_world 构建均通过，新增板 GPIO 依赖已按实跑结果修正。文档检查 0 错误；PPT 结构与重建一致性检查通过。具体环境、失败恢复和未实测范围见[准备专题验证记录](P01_zephyr_make_project/VALIDATION.md)。下方为早期交付记录。
+
+早期补充：2026-10-01，本轮补齐 west 五章的配置解释、Git 执行与命令实验。下方旧轮次保留历史；此前 venv/west 教学重构和个人技能修改仍仅属于对应日期。工程环境、构建和板级实验另见[补充验收](BUILD_BOARD_VALIDATION.md)。
+
+## 2026-10-01：west 字段、Git 执行与自定义管理方案
+
+实际目标路径及 Git 根为 `F:\git_storage\zephyr_hc32f4a0`；发现应用保存路径与会话默认目录仍为 C 盘旧副本后，先说明冲突，本轮全部读写与验证显式选择 F 盘工程。保留修改前工作树快照与后续证据在 `.local/west-mechanism-20261001/`，不把机器路径写入教学运行脚本。
+
+| 验证 | 结果与实际覆盖 |
+| --- | --- |
+| 原有 west 综合回归 | `learning.check_labs.check_west` 通过：init 两种模式、update、版本切换、开发分支、freeze/replay、配置、两种导入、inventory/count、禁用扩展和带中文空格路径搬移 |
+| 新策略回归 | `learning/west/labs/test_policy.py` 的 12 项测试全部通过（含多个子用例）：解析默认值、未知标准键、userdata 类型与拼写、路径边界、缺失文件与仓库、工作树/暂存区修改、项目选择、空策略、登记/禁用、Git 日志和内建查询 |
+| 当前正文新增实验 | 从正文提取新增 Bash 块，在新建 reader-policy 工作区用本机 UCRT64 Bash 实跑；按正文编辑 YAML，覆盖原始/有效属性、结构失败、注册 repo-audit、Git 查询、业务失败、两个项目检查、流水线冻结及撤销登记恢复。工具复用现有 west 1.5.0，未重做联网安装 |
+| 静态与源码同步 | 五章及大纲的 183 个 Bash 块语法通过，9 个 Python 围栏语法通过；inventory、repo_audit、verify_release 的完整正文源码与配套文件逐字一致；原 H1/H2 均保留，全部路线节点与当前步骤一致 |
+| Mermaid | 47 张图全部用本机 VS Code 所带 Mermaid 在无界面 Edge 中解析并渲染；新增数据时序图与策略执行图已目视检查。首次渲染器引用了过期 VS Code 安装目录，改为当前实际路径后成功 |
+| 文档与差异 | 排除本轮未改动的 `learning/download_zephyr` 后，现有检查覆盖 42 篇文档、15 份 Python 源文件，0 错误；`git diff --check` 通过。全量检查在该新目录报告 20 项已有标题/元信息/导航问题，未修改该目录，也未宣称全量文档检查通过 |
+| 教学质量检查 | 运行结构、连续阅读、术语审计；本项目格式差异、三个长实验模块及有限窗口术语候选逐项说明在 REVIEW，不用自动计数替代真人阅读验收 |
+
+内容盘点（五章加大纲）：2872→3427 行，39→56 个正文标题，10→15 张表，227→250 个代码围栏，43→47 张 Mermaid 图。计数去除代码中的注释标题；各文件明细保存在 content-inventory.json。原命令实验未删除；新 P04 4.6 的完整源码与四阶段练习是主要增量。P03 原有 cat 输入块的语言标签从 yml 修正为 bash。
+
+实测修正了两处容易误导读者的结果预期：west 1.5.0 对非法字段可能只显示 manifest unavailable，即使加 -vv 也不展示字段原因，因此增加直接调用 Manifest 的异常观察；west grep 会将底层“无匹配”的退出码 1 作为普通结果处理，整体成功不能断言有匹配。新测试最初对应断言不符合实际输出，已据实现和黑盒结果修正，并重跑全部 12 项通过。
+
+本轮没有重做全部旧章节的逐字终端重放：旧流程由已有综合回归覆盖，新增正文另行在 Bash 中重放。没有进行新机器安装、其他操作系统、固件构建、QEMU 或实板验证；未暂存、提交、推送，也未修改 west 安装包或全局环境。
 
 ## 2026-09-29：批注驱动的操作与工程模型复核
 
@@ -77,7 +111,7 @@
 
 项目级 `scripts/project.py check` 最终通过：49 项工具测试、pyOCD 离线配置检查和本地差异检查完成。首次 PowerShell 验证进程缺少 sh 且默认编码为 GBK；补入 MSYS2 工具目录后又暴露 Git 来源混用，最终显式优先使用 Git for Windows、保留 sh 并开启 Python UTF-8 后通过。环境调整只作用于验证进程，没有修改项目配置或系统设置，日志保存在忽略的 `.local/python-continuity-20260927/project-check.log`。
 
-## 2026-09-21：连续教材与单元内实验复核
+## 2026-09-21：连续学习资料与单元内实验复核
 
 修订公共准备章及十五篇专题正文。每章就地展示本次所需源码、命令、观察与恢复，labs 仅保存配套材料；venv/west 原综合手册改为材料索引。保持原章节 ID 与相邻导航，项目事实入口同步到新阅读路线。
 
@@ -87,7 +121,7 @@ west 正文原有 36 个 Bash 块按新的两仓库起点顺序执行；完成�
 
 独立材料回归 learning/check_labs.py 仍全部通过，包括工作区整体移动到含空格、中文目录后的相对来源测试。它是维护检查，没有重新成为读者必须先运行的综合实验。
 
-工具基线：UCRT64 Bash、Windows Python 3.12.10、pip 25.0.1、west 1.5.0、setuptools 80.9.0、Git for Windows 2.55.0.windows.3。执行日志与等价编辑保存在忽略目录 .local/textbook-validation；这些本机验证程序不属于教材前提。构建、GDB、板级与 QEMU 结果另见补充验收。
+工具基线：UCRT64 Bash、Windows Python 3.12.10、pip 25.0.1、west 1.5.0、setuptools 80.9.0、Git for Windows 2.55.0.windows.3。执行日志与等价编辑保存在忽略目录 .local/textbook-validation；这些本机验证程序不属于学习资料前提。构建、GDB、板级与 QEMU 结果另见补充验收。
 
 42 份文档、16 章、13 份 Python 材料的结构检查通过，章节编号、相邻链接和代码语法无错误。文字按已声明前置知识进行作者冷读，不能据此声称真实初学者试读已经通过。Linux/macOS、VS Code 图形操作和真实硬件未执行；不把命令行 GDB 或 QEMU 成功扩展为这些层次的验收。
 
@@ -139,7 +173,7 @@ venv 和 west 正文路线均完成；独立 learning/check_labs.py 回归也以
 
 实测使用 UCRT64 Bash、Windows Python 3.12.10、pip 25.0.1、west 1.5.0、setuptools 80.9.0、Git for Windows 2.55.0.windows.3；额外用 MSYS2 Git 2.55.0 加 noglob 运行工作区四项验收，通过。教学工具装在 west-practice-tools，不安装进工程根 .venv。首次误用工程环境跑教学回归时缺少 setuptools 后端；切回手册规定的教学工具环境后完成回归，未为此改工程依赖。
 
-两套实训终端记录、提取命令与审核结果保留在本机忽略的 `.local/hands-on-20260921/`；练习产物在 `build/learning-tools/venv-practice/` 和 `build/learning-tools/west/practice-01/`。它们不是教材依赖，不随 Git 交付。
+两套实训终端记录、提取命令与审核结果保留在本机忽略的 `.local/hands-on-20260921/`；练习产物在 `build/learning-tools/venv-practice/` 和 `build/learning-tools/west/practice-01/`。它们不是学习资料依赖，不随 Git 交付。
 
 维护者回归覆盖旧教程行为及新增读者测试，结果为 ALL CHECKS PASSED。工程 check 的 49 项工具测试、pyOCD 离线检查通过；文档检查覆盖 39 份文档、16 篇章节、12 份 Python 源码，错误为 0。没有改动固件源码，也没有在本轮重跑固件构建或声称新增实板验证。
 
@@ -204,3 +238,48 @@ build/learning-tools/tools/Scripts/python.exe learning/check_docs.py
 UCRT64 Bash 在 Windows 本机实测；Linux/macOS 系统本身未实测，跨平台替换规则作静态核对。没有安装/验证 Zephyr SDK、硬件构建、烧录、远程 Git 认证、不同 Python 大版本或第三方带本地扩展包。主线以小型纯 Python 包验证环境隔离，不能据此推导所有平台的二进制包兼容性。
 
 在线官方文档会更新；新特性须以安装版本帮助为准。来源与下载材料采用范围见 [REFERENCES.md](REFERENCES.md)。
+# 2026-10-04 实验目录与资料职责修订
+
+本轮修改文档和配套材料的目录约定：G 盘从原生源码逐步建立完整工程，F 盘维护资料与既有移植参照。正文已修正预先依赖参照工程脚本、模块和板级支持的说明，历史记录中的执行位置和结果保持原样。
+
+本轮执行了文档链接、元信息、围栏和章节导航检查；未重新下载安装依赖，未在 G 盘重跑全套工具实验、固件构建、QEMU 或 HC32 实板流程。下方过去轮次的通过结果不能直接视为修订后路线的实测。Git 更新原则尚未确定，没有实现同步脚本或迁移历史。
+
+## 2026-10-05 三位命名、正文分工与 Ubuntu 22.04
+
+26 篇章节已统一为 P000/P001 等三位编号，四篇配套正文与 PPT 使用同名主干，平台继续用文件名后缀区分。学习中心、大纲、章内导航、实验材料和 PPT 正文/备注中的引用同步。工程准备四篇 Markdown 增加实验起点、完成状态和页面对照，完整步骤与排错保留在正文；PPT 服务重点讲解和视频复习。新增《资料编写约定》，文档检查器增加三位编号及同名 PPT 检查。
+
+Linux 目标按用户确认固定 Ubuntu 22.04 LTS。正文补齐 Kitware 官方 Jammy 源安装 CMake、Python 官方 3.12.10 源码安装到用户目录、模块检查、venv 创建与旧环境恢复。上游快速开始的 24.04 示例与本教程 22.04 适配明确区分。Linux PPT 由 8 页增至 11 页；当前四份 PPT 分别为 28/40/31/11 页。
+
+验证结果：
+
+- `python learning/check_docs.py`：66 篇文档、26 篇章节、17 份 Python 源码，0 错误。
+- 26 篇章节中 605 段 Bash 通过 `bash -n`，10 段内嵌 Python 通过语法检查；learning 内 162 个 Mermaid 块通过解析。
+- 与本轮备份逐块比较：21 篇章节原代码块完整保留；另 4 篇只改章节编号引用；Linux 的命令和阶段图按 22.04 路线有意更新。未删减旧实验信息或将参考草稿改称已验收主线。
+- 四份 PPT 包结构、自动页码、重新导入检查通过，全部 110 页完成渲染，检查整稿及改动页。P001/P002 各保留原图两项连接线几何警告，P003/Linux 无布局警告。
+- 写回前核对正式 PPT 的备份哈希，原媒体和批注部件逐项字节一致。正式 PPT 同步到原生包源码后重建，四份文件的全部 ZIP 部件逐项一致。
+
+这是资料与版面的核对，没有在 Ubuntu 22.04 安装 Python/CMake/SDK，没有重新运行 Windows 全套实验、固件构建、QEMU 或实板流程，也未执行 PowerPoint 原生应用验收。未修改 G 盘源码或驱动，Git 更新/同步策略继续等待用户确定。备份、候选稿、渲染与检查结果保存在忽略目录 `.local/learning-normalize-20261005/`。
+
+## 2026-10-06 Mermaid 明暗主题可读性
+
+截图中的阶段节点固定了浅青底色，文字却继承暗色阅读器的浅色文字。修复 learning 内 18 篇 Markdown 的 103 处阶段样式：移除固定 fill 和 color，节点背景与文字交给阅读器主题，保留原来的边框颜色、3px 粗细、节点文字和连线。仅调整图表样式，不改实验内容。编写约定补充明暗主题规则；PPT 固定画布图保持独立配色。
+
+验证使用 Mermaid 11 与无头 Chrome，将全部 103 个受影响图按 default/dark 主题、HTML 标签/SVG 文字四种组合渲染，共 412 次。逐节点检查计算后的文字/背景颜色，最低对比度分别为 10.83:1 和 10.17:1；均超过本次采用的 4.5:1 检查线，解析与渲染无错误。目检截图中的芯片阶段图及 classDef current 阶段图，暗色下已无浅亮色块与浅字混搭。66 篇文档结构与本地链接检查通过。
+
+验证是在独立 Mermaid 渲染器进行，未操作读者编辑器或检查其内部 CSS。正文保存后需由编辑器刷新图表；若外部编辑器仍使用旧渲染缓存，重新打开文件。备份、明暗截图和逐图结果位于忽略目录 `.local/mermaid-themes-20261006/`。本轮未改变 PPT、驱动、实验源码或 Git 同步规则。
+
+## 2026-10-06 硬件目录与 HC32 正式登记
+
+P002 2.1.2 补充硬件模型 v2 从 Zephyr 3.7 起采用的厂商目录、异构硬件原因和 UYUP→HC32→Cortex-M4→Arm 配置关系；说明 `boards/arm/mps2` 的 arm 是板厂。P003 3.6—3.7 解释搜索根，并增加正式移植文件职责、厂商前缀与迁入树内时的合并规则。HC32 按正式适配维护；AN386 新板仍为登记练习。未将现有目录搬到 `boards/arm/cortex-m4/xhsc/uyup`。
+
+主仓库与配套 HC32 模块的 Kconfig 同步整改：HEX 输出从 SoC 的强制 select 移到板级 defconfig；SoC CMake 使用 Zephyr 原生 `ZEPHYR_HAL_XHSC_MODULE_DIR` 并检查设备头。模块名规范为 `hc32_port`，补齐模块自己的 uyup/xhsc 厂商前缀。已有 board.yml、soc.yml、平台 YAML 和 Kconfig.soc 的身份匹配且符合 schema，保留其有效内容。烧录 runner 与未实现的外设功能不虚报支持。
+
+验证结果：
+
+- `scripts/project.py check` 通过 58 项测试及 pyOCD 离线检查、差异检查；新增 3 项测试覆盖官方 YAML schema、独立厂商前缀和两个搜索根下的官方板发现。首次检查因本机 PATH 缺少 sh 失败；仅调整验证进程 PATH 后重跑通过，未改用户全局环境。
+- 主仓库 `samples/bringup` 全新构建及镜像/来源审计通过，Flash 25552 B、RAM 4224 B，117 个编译单元均在主仓库，零编译警告。Twister MPS2/AN386 QEMU 运行 1/1 通过，HC32 场景按平台过滤。
+- 另以 G 盘 Zephyr `25c8f4a23988dd3b2cfb463613622738298c2d6c` 的 `samples/hello_world` 构建独立 `hc32_port`：CMSIS 使用已有缓存中与该清单匹配的 `1c1840af7a7e757d6e2fec3ddb0e5ce0dfcc93c8`，HAL 使用主仓库已收录的固定 `a84e04900616f68097d80cda2e89eaa8af3afadd` 快照。构建输出放在 F 盘忽略目录；未向 G 盘受控源码写入板、SoC 或驱动。119 个编译单元的来源范围、模块列表、配置及 ELF/ICG/向量核验通过；Flash 24664 B、RAM 4224 B，零编译警告。此项验证独立接入，不声称重新执行了下载和全套从零安装步骤。
+- P002 为 42 页，新增第 13—14 页；P003 为 33 页，新增第 21—22 页。全部 75 页重新导入、渲染，新增页逐页目检。包结构检查通过；P002 原手工截图连接线仍有两项既有几何警告，P003 无警告。原媒体与批注部件保持字节一致，正式 PPT 同步原生源码后重建，全部 ZIP 部件一致。
+- 两个新 Mermaid 图按明暗主题及 HTML/SVG 标签共渲染 8 次，最低节点文字对比度 10.83:1 / 10.17:1，无问题。66 篇文档结构和链接检查通过。
+
+工具与源码均使用本次实际存在的位置，SDK 为 G 盘 `zephyr-sdk-1.0.1_windows-x86_64_gnu/zephyr-sdk-1.0.1`。教程仍要求读者自行确认含 sdk_version 的 SDK 根，未将本机额外解压层硬编码成通用流程。构建日志与审计在忽略目录 `build/board-layout-20261006/`；PPT 备份、渲染、发布哈希在 `.local/board-layout-20261006/`。本轮未连接探针、烧录、测试实板，也未执行完整上游合规或远端 CI；未实现 Git 同步策略。

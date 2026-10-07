@@ -1,3 +1,11 @@
+---
+id: learning.references
+title: 资料来源与采用范围
+kind: reference
+status: maintained
+domains: [documentation]
+---
+
 <!-- SPDX-FileCopyrightText: Copyright The zephyr_hc32f4a0 Contributors -->
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 
@@ -6,6 +14,18 @@
 核对日期：2026-09-19。正文在关键规则附近链接官方依据；本页记录材料来源、版本与使用边界，便于后续维护。
 
 ## 用户提供的参考材料
+
+本次 2026-10-01 的 west 机制补写以已安装 west 1.5.0 实现交叉核对：
+
+| 固定版本源码 | 学习资料采用的证据 |
+| --- | --- |
+| [manifest-schema.yml](https://github.com/zephyrproject-rtos/west/blob/v1.5.0/src/west/manifest-schema.yml) | 标准字段的结构约束、userdata 的开放数据类型；格式需求 1.2 与工具版本分开 |
+| [manifest.py](https://github.com/zephyrproject-rtos/west/blob/v1.5.0/src/west/manifest.py) | Manifest 解析与导入、_load_project 取默认值、Project.userdata、Project.git 的 cwd/参数/结果 |
+| [app/project.py](https://github.com/zephyrproject-rtos/west/blob/v1.5.0/src/west/app/project.py) | Update 分阶段 Git 调用、manifest-rev、ForAll 的 shell=True 与 Diff 参数传递 |
+| [app/main.py](https://github.com/zephyrproject-rtos/west/blob/v1.5.0/src/west/app/main.py)、[commands.py](https://github.com/zephyrproject-rtos/west/blob/v1.5.0/src/west/commands.py) | 内建与扩展调度、描述发现、延迟模块加载、WestCommand.run 传入上下文 |
+| [west-commands-schema.yml](https://github.com/zephyrproject-rtos/west/blob/v1.5.0/src/west/west-commands-schema.yml)、[configuration.py](https://github.com/zephyrproject-rtos/west/blob/v1.5.0/src/west/configuration.py) | 命令描述与项目清单使用不同 schema；INI 配置的读取接口 |
+
+team-policy、repo-audit 和实验辅助器是学习资料自有约定，不属于 west 标准字段或官方命令。源码路径用于说明实现责任；迁移到其他 west 版本时应重查接口与回归结果。
 
 已读取用户提供的 `zephyr_west_book` 下载资料，其中 README 标注面向已有 C/C++ 与嵌入式经验的读者，教学 Zephyr 基线为 v4.2.0。资料仅用于参考，不是本教程的运行依赖。
 
