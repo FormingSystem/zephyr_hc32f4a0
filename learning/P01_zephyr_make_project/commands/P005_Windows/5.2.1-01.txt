@@ -1,7 +1,0 @@
-# P005_Windows / 5.2.1\_下载前只检查工具与已有清单
-# 先核对正文的终端、目录与前提，再执行此完整操作单元。
-# Windows UCRT64；进入实验源码根并激活已有 .venv。
-cd /g/zephyr_practice/zephyr-main
-source .venv/Scripts/activate
-python -c "import shutil; print(shutil.which('git'))"
-git --version

@@ -1,4 +1,5 @@
-# P004_Windows / 4.2.2\_解压到独立工具目录
+# P004_Windows / 4.2.2\_下载 CMSIS，看到哪些文件才算完成
 # 先核对正文的终端、目录与前提，再执行此完整操作单元。
-# 当前位置：/g/zephyr_practice，含 SDK 归档；终端：UCRT64。
-7z x zephyr-sdk-1.0.1_windows-x86_64_gnu.7z "-o$(cygpath -m "$PWD")"
+# Windows UCRT64；源码根；模块已经由 west 下载，Git for Windows 已选对。
+git -C ../modules/hal/cmsis_6 rev-parse HEAD
+git -C ../modules/hal/cmsis_6 rev-parse manifest-rev

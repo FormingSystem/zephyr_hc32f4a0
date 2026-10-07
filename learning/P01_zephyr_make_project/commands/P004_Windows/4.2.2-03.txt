@@ -1,0 +1,3 @@
+# Windows UCRT64；源码根；模块已经由 west 下载，Git for Windows 已选对。
+git -C ../modules/hal/cmsis_6 rev-parse HEAD
+git -C ../modules/hal/cmsis_6 rev-parse manifest-rev

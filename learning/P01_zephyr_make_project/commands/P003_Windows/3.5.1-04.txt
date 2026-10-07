@@ -1,8 +1,0 @@
-# Windows UCRT64；源码根；前提：3.5.1.3 已设置日志缓存项。
-cd /g/zephyr_practice/zephyr-main
-source .venv/Scripts/activate
-# 仅撤销本例的一项显式输入，再按默认规则配置。
-cmake -S samples/hello_world -B build/learning-tools/p003/cmake-demo \
-  -U CMAKE_MESSAGE_LOG_LEVEL
-# 无其他来源重建该项时，无输出且返回 1 是本检查的预期结果。
-grep '^CMAKE_MESSAGE_LOG_LEVEL:' build/learning-tools/p003/cmake-demo/CMakeCache.txt

@@ -1,2 +1,2 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version='1.0' encoding='utf-8' standalone='yes'?>
 <Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/slide" Target="../../slides/beginner_slide20.xml" Id="Rac4b301a47174a69"/><Relationship Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/notesMaster" Target="../../notesMasters/notesMaster1.xml" Id="Ra40f86a1926f48ed"/></Relationships>

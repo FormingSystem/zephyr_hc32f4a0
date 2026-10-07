@@ -1,0 +1,9 @@
+# P003_Windows / 3.2.3\_给 Minimal 安装 HC32 所需的 ARM 工具链
+# 先核对正文的终端、目录与前提，再执行此完整操作单元。
+# Windows PowerShell；当前位置：含 setup.cmd 的 SDK 根。
+# 仅 Minimal 缺少 ARM 时需要安装；已有 GCC 时不重复安装。
+if (Test-Path ".\gnu\arm-zephyr-eabi\bin\arm-zephyr-eabi-gcc.exe") {
+    Write-Host "ARM GCC 已存在，转到 2.4.4 检查版本。"
+} else {
+    .\setup.cmd /t arm-zephyr-eabi
+}

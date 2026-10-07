@@ -1,5 +1,5 @@
 ---
-id: zephyr-p006-slides-source
+id: learning.slides.source-006
 title: P006 原生源码
 kind: reference
 status: maintained
@@ -10,4 +10,4 @@ domains: [zephyr, tools]
 
 # 第1章\_原生源码维护
 
-[正式 PPT](../P006_源码模块接入Zephyr工程_Windows.pptx)，14 页；[正文](../../P006_源码模块接入Zephyr工程_Windows.md)。保存 PPT 后，在上一级 slides 目录运行 `python build.py --deck P006 sync`。重建用 `python build.py --deck P006 build --output P006-review.pptx`。保留母版、图片、批注与备注；详见 [维护说明](../README.md)。
+[正式 PPT](../P006_原生CMake与目标模型_Windows.pptx)，22 页；[正文](../../P006_原生CMake与目标模型_Windows.md)。保存 PPT 后，在上一级 slides 目录运行 `python build.py --deck P006 sync`。重建用 `python build.py --deck P006 build --output P006-review.pptx`。保留母版、图片、批注与备注，详见 [维护说明](../README.md)。

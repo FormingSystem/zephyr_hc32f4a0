@@ -15,6 +15,17 @@ domains: [zephyr, tools]
 
 实验源码根为 Windows 的 `G:\zephyr_practice\zephyr-main`，UCRT64 中为 `/g/zephyr_practice/zephyr-main`。默认 UCRT64；Windows 专用 setup.cmd 等步骤按正文切换 PowerShell。各模块不重复安装已经完成的前置工具。
 
+**复制命令：** [本章完整操作单元](commands/P002_Windows/README.md)。按正文选择分支，不把整个目录的命令依次执行。
+
+**视频与复习对照：** 页码按当前正式 PPT；以阶段名称和正文链接定位，操作前提、完整命令、输出判断与恢复以 Markdown 为准。
+
+| PPT 页面 | 阶段 | 完整正文 | 正文进一步展开 |
+| --- | --- | --- | --- |
+| 2—5 | 终端、对象和官方安装依据 | [2.1](#section-2-1) | 区分工具、源码与接入规则 |
+| 6—7 | 安装和检查主机工具 | [2.1.1](#section-2-1-1) | 终端切换、Git for Windows 与 PATH 检查 |
+| 8—13 | 按已有状态选择 Python | [2.1.2](#section-2-1-2) | 已有安装、官方安装器、Launcher 与 PATH 分支 |
+| 14—16 | 创建或恢复 venv 并安装依赖 | [2.2](#section-2-2) | 完整命令、环境来源和新终端恢复 |
+
 <a id="section-2-1"></a>
 
 ## 2.1\_安装官方工具并回到\_UCRT64
@@ -40,6 +51,8 @@ echo "$MINGW_PREFIX"
 ```
 
 应分别看到 `UCRT64` 和 `/ucrt64`。如果不是，重新打开 MSYS2 UCRT64，再回到本节。上一期没有完成系统更新的读者，先执行 `pacman -Syu`，按提示关闭并重开终端后继续更新；不要只同步软件包数据库而长期不升级系统。
+
+<a id="section-2-1-1"></a>
 
 ### 2.1.1\_按官方 Windows 步骤安装主机工具
 
@@ -100,6 +113,8 @@ command -v git
 ```
 
 PATH 调整只影响当前 UCRT64 及其子进程；重开终端后重新检查，或把核对后的实际目录写入自己的 Bash 启动配置。前面的官方安装仍在 PowerShell 中，接下来 Git/west 命令继续在 UCRT64 执行。
+
+<a id="section-2-1-2"></a>
 
 ### 2.1.2\_固定 Windows Python 3.12.10
 
@@ -250,7 +265,7 @@ python -m west --version
 
 下载慢时可以仅对这次安装指定索引，例如把安装命令替换为 `python -m pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r scripts/requirements-base.txt "west==1.5.0"`。这只影响 pip，不影响 SDK；镜像缺包或同步延迟时恢复默认索引重试，先保留原始错误信息。不要通过关闭证书校验来处理普通的超时。
 
-west 可以运行，只表示管理工具已安装。上游 Zephyr 的 `west.yml` 还会声明其他源码仓库及版本，下载那些模块是另一件事；本章 5.2 节按原生 west.yml 取得 CMSIS_6；P007 再通过 CMake 接入这些已下载的源码；更完整的模块管理继续见 [west 大纲](../west/大纲.md)。
+west 可以运行，只表示管理工具已安装。上游 Zephyr 的 `west.yml` 还会声明其他源码仓库及版本，下载那些模块是另一件事；本章 5.2 节按原生 west.yml 取得 CMSIS_6；P011 再通过 CMake 接入这些已下载的源码；更完整的模块管理继续见 [west 大纲](../west/大纲.md)。
 
 ### 2.2.2\_重新打开终端后恢复环境
 
@@ -266,17 +281,20 @@ python -m pip check
 python -m west --version
 ```
 
-Python 应为 3.12.10，pip 应属于当前项目 `.venv`，包依赖检查通过，west 返回 1.5.0。这里只恢复 Python 工具环境；SDK 在后续按包记录自动发现；只有需要追加的模块才提供路径，接口分工先读 P003。虚拟环境不会替你选择板卡，也不会自动下载清单中的源码。
+Python 应为 3.12.10，pip 应属于当前项目 `.venv`，包依赖检查通过，west 返回 1.5.0。这里只恢复 Python 工具环境；接着在 P003 准备 SDK，P004 下载源码依赖，P005 说明模块接入。工程怎样发现这些输入在后续 P009 展开，不是当前安装的前提。虚拟环境不会替你选择板卡，也不会自动下载清单中的源码。
 
 基础 Python 依赖来自当前源码，下面截图仅用于定位，实际内容以当前 checkout 为准。
 
 ![requirements-base.txt 源码位置](assets/p002-requirements-base-source.png)
 
-继续准备 SDK 与源码依赖，全部完成后再进入 P007。
+继续准备 SDK 与源码依赖，准备齐全后从 P006 进入构建基础。
 
 
 
 
 上一篇：[P001 源码准备](P001_准备UCRT64环境与下载Zephyr_Windows.md)。
 
-下一模块：[P003 Zephyr 的 CMake 接口体系](P003_Zephyr的CMake接口体系_Windows.md)。
+下一模块是 P003 SDK 准备；完成 P003—P005 后，再进入 P006—P010 的构建体系。
+
+
+上一篇：[P001](P001_准备UCRT64环境与下载Zephyr_Windows.md)；下一篇：[P003](P003_SDK准备与编译器选型_Windows.md)。

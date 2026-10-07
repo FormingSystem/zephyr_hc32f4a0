@@ -40,7 +40,6 @@ flowchart LR
 
 **完成本章后的状态：** 直接含 VERSION 的原生源码位于 /g/zephyr_practice/zephyr-main，终端和下载工具可用；是否补充 Git 历史按实际需要选择。
 
-**复制命令：** [按小节打开完整操作单元](commands/P001_Windows/README.md)。PPT 的“完整命令”链接指向同一份纯文本；请连同注释复制，先读本节前提，再执行所选路线。
 
 **视频与复习对照：** Markdown 提供完整步骤和解释；PPT 按下面的阶段讲解重点，操作时以对应正文为准。
 
@@ -288,7 +287,7 @@ command -v git
 
 ### 1.3.2\_按需安装构建辅助工具
 
-准备构建时，按[Windows P002—P006](环境与依赖导航.md)在 PowerShell 或 cmd.exe 使用官方 winget 清单，安装后回到 UCRT64。完整依据见[主机工具与官方安装来源](主机工具与官方安装来源.md)。本节先认识工具职责，避免尚未取得源码时把一份软件包清单当作永久要求。
+准备构建时，按[Windows P002—P005](环境与依赖导航.md)在 PowerShell 或 cmd.exe 使用官方 winget 清单，安装后回到 UCRT64。完整依据见[主机工具与官方安装来源](主机工具与官方安装来源.md)。本节先认识工具职责，避免尚未取得源码时把一份软件包清单当作永久要求。
 
 | 工具 | 构建时的职责 | 安装后检查 |
 | --- | --- | --- |
@@ -309,7 +308,7 @@ py -3.12 --version
 py -3.12 -m pip --version
 ```
 
-预期显示 Python 3.12.10 和它对应的 pip 包安装器。`py` 能找到解释器，不保证 Bash 的 PATH 中已有 `python`。UCRT64 命令安装、Windows 已装 Python 的 PATH 设置以及源码根 `.venv` 创建，统一见 [P002—P006 的 Python 环境说明](环境与依赖导航.md)。若找不到 `py`，检查启动器是否安装、终端是否重开。MSYS2 自带的 Python 与 Windows 官方 Python 有包兼容性差异，所以这里明确用 `py -3.12` 选择解释器，后续在项目虚拟环境中安装 west；详见 [MSYS2 Python](https://www.msys2.org/docs/python/)。
+预期显示 Python 3.12.10 和它对应的 pip 包安装器。`py` 能找到解释器，不保证 Bash 的 PATH 中已有 `python`。UCRT64 命令安装、Windows 已装 Python 的 PATH 设置以及源码根 `.venv` 创建，统一见 [P002—P005 的 Python 环境说明](环境与依赖导航.md)。若找不到 `py`，检查启动器是否安装、终端是否重开。MSYS2 自带的 Python 与 Windows 官方 Python 有包兼容性差异，所以这里明确用 `py -3.12` 选择解释器，后续在项目虚拟环境中安装 west；详见 [MSYS2 Python](https://www.msys2.org/docs/python/)。
 
 若后续要做 Windows 主机上的 C/C++ 编译与调试实验，可额外安装 GCC 编译器和 GDB 调试器：
 
@@ -392,7 +391,7 @@ ls VERSION SDK_VERSION west.yml boards samples
 if [ -d .git ]; then git rev-parse HEAD; else printf 'ZIP snapshot: no Git metadata\n'; fi
 ```
 
-这几项存在才能进入 P002—P006。`boards` 里没有 UYUP 不表示下载坏了，新增芯片/板支持属于 P007。ZIP 没有 `.git` 也不妨碍读取或编译源码，只是不具备本地历史查询能力；1.5 是可选的 Git 补充流程。若要补历史，下载笔记里的 SHA 是核对依据，未确认版本一致之前不要移动元数据或重置工作区。
+这几项存在才能进入 P002—P005。`boards` 里没有 UYUP 不表示下载坏了，新增芯片/板支持属于 P011。ZIP 没有 `.git` 也不妨碍读取或编译源码，只是不具备本地历史查询能力；1.5 是可选的 Git 补充流程。若要补历史，下载笔记里的 SHA 是核对依据，未确认版本一致之前不要移动元数据或重置工作区。
 
 Git 克隆遇到连接问题时，原记录曾出现：
 
@@ -774,3 +773,6 @@ git config --local --get user.name
 下一篇：[下载 SDK 与安装依赖包](环境与依赖导航.md)。
 
 下一模块：[P002 主机工具与 Python](P002_主机工具与Python环境_Windows.md)。
+
+
+下一篇：[P002](P002_主机工具与Python环境_Windows.md)。

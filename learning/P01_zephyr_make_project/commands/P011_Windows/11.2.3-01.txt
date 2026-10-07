@@ -1,0 +1,20 @@
+# Windows UCRT64；源码根；已完成 P002 主机工具/Python 与 P004 CMSIS 下载。
+cd /g/zephyr_practice/zephyr-main &&
+source .venv/Scripts/activate &&
+# 清理当前 UCRT64 的旧 SDK/模块输入；回到 SDK 主线时重新执行 11.2.1。
+unset ZEPHYR_SDK_INSTALL_DIR ZEPHYR_TOOLCHAIN_VARIANT
+unset CROSS_COMPILE CROSS_COMPILE_TOOLCHAIN_PATH
+unset ZEPHYR_MODULES EXTRA_ZEPHYR_MODULES ZEPHYR_EXTRA_MODULES
+test -f ../modules/hal/cmsis_6/zephyr/module.yml &&
+test -f ../modules/hal/cmsis_6/CMSIS/Core/Include/core_cm4.h &&
+../arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc.exe --version &&
+# 新构建目录不得混用之前 SDK 路线的 CMakeCache。
+cmake -S samples/hello_world -B build/learning-tools/p003/build-mps2-cross-compile-layout2 -G Ninja \
+  -DBOARD=mps2/an386 \
+  "-DZephyr_DIR=$(cygpath -m "$PWD/share/zephyr-package/cmake")" \
+  "-DZEPHYR_BASE=$(cygpath -m "$PWD")" \
+  -DZEPHYR_TOOLCHAIN_VARIANT=cross-compile \
+  -DCROSS_COMPILE=G:/zephyr_practice/arm-zephyr-eabi/bin/arm-zephyr-eabi- \
+  -DCROSS_COMPILE_TOOLCHAIN_PATH=G:/zephyr_practice/arm-zephyr-eabi \
+  "-DPython3_EXECUTABLE=$(cygpath -m "$(command -v python)")" \
+  -DCMAKE_EXPORT_COMPILE_COMMANDS=ON

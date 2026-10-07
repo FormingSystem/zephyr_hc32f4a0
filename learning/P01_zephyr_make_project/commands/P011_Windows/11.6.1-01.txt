@@ -1,0 +1,11 @@
+# P011_Windows / 11.6.1\_登记模块和 SoC 身份
+# 先核对正文的终端、目录与前提，再执行此完整操作单元。
+# Windows UCRT64；源码根；随附 learning 已放入源码根。
+test -f learning/board/labs/hc32_port/zephyr/module.yml
+mkdir build/learning-tools/p003/hc32_port
+mkdir -p build/learning-tools/p003/hc32_port/soc/xhsc/hc32f4a0
+cp -R learning/board/labs/hc32_port/zephyr build/learning-tools/p003/hc32_port/
+cp learning/board/labs/hc32_port/Kconfig learning/board/labs/hc32_port/CMakeLists.txt \
+  build/learning-tools/p003/hc32_port/
+cp learning/board/labs/hc32_port/soc/xhsc/hc32f4a0/{soc.yml,Kconfig.soc,Kconfig,Kconfig.defconfig} \
+  build/learning-tools/p003/hc32_port/soc/xhsc/hc32f4a0/

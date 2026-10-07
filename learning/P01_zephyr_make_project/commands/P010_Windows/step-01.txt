@@ -1,0 +1,8 @@
+# Windows UCRT64；源码根；前提：7.2 的 cmake-demo 配置成功。
+cd /g/zephyr_practice/zephyr-main
+# 只读缓存；不存在时停止并返回 7.2，不创建空文件。
+test -f build/learning-tools/p003/cmake-demo/CMakeCache.txt && \
+cmake -N -LAH build/learning-tools/p003/cmake-demo
+# -LAH 不显示全部 INTERNAL 项，以下直接读取原生成文件。
+grep -E '^(CMAKE_HOME_DIRECTORY|CMAKE_GENERATOR|BOARD|BOARD_QUALIFIERS|Zephyr_DIR):' \
+  build/learning-tools/p003/cmake-demo/CMakeCache.txt

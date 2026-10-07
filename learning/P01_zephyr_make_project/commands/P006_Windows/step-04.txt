@@ -1,0 +1,4 @@
+# Windows UCRT64；源码根；前提：6.2.1 的两个练习文件已经创建。
+cd /g/zephyr_practice/zephyr-main
+cmake -S build/learning-tools/cmake-native/source \
+  -B build/learning-tools/cmake-native/out -G Ninja

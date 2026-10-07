@@ -8,108 +8,68 @@
     },
     {
       "number": 2,
-      "title": "03 · CMSIS 与 HAL 选择下载",
-      "part": "ppt/slides/module_entry_7.xml"
+      "title": "04 · 工程接收源码模块的路径",
+      "part": "ppt/slides/module_entry_9.xml"
     },
     {
       "number": 3,
-      "title": "CMSIS、HAL 与 SDK 的职责",
-      "part": "ppt/slides/slide52.xml"
+      "title": "清单内与清单外模块的工程入口",
+      "part": "ppt/slides/module_entry_10.xml"
     },
     {
       "number": 4,
-      "title": "已有目标的依赖从哪里查",
-      "part": "ppt/slides/slide53.xml"
+      "title": "路径交给哪一次工程配置",
+      "part": "ppt/slides/module_entry_11.xml"
     },
     {
       "number": 5,
-      "title": "HC32 依赖先从完整型号确认",
-      "part": "ppt/slides/slide54.xml"
+      "title": "从应用入口追踪 Zephyr 的模块发现",
+      "part": "ppt/slides/module_entry_12.xml"
     },
     {
       "number": 6,
-      "title": "这是官方清单原文，不是新建文件",
-      "part": "ppt/slides/slide55.xml"
+      "title": "候选目录明确之后，才读取模块声明",
+      "part": "ppt/slides/module_entry_13.xml"
     },
     {
       "number": 7,
-      "title": "“有 HAL”需要分三个层次核对",
-      "part": "ppt/slides/slide56.xml"
+      "title": "模块路径变量由 Zephyr CMake 设置",
+      "part": "ppt/slides/module_entry_14.xml"
     },
     {
       "number": 8,
-      "title": "在 GitHub 的 Zephyr 组织内查找 HAL",
-      "part": "ppt/slides/module_entry_8.xml"
+      "title": "变量生成之后，构建代码才使用它",
+      "part": "ppt/slides/module_entry_15.xml"
     },
     {
       "number": 9,
-      "title": "hal_xhsc 的地址从哪里来",
-      "part": "ppt/slides/slide70.xml"
+      "title": "被发现以后，由谁选择 DDL 源文件",
+      "part": "ppt/slides/slide74.xml"
     },
     {
       "number": 10,
-      "title": "建库、清单收录与芯片支持是不同阶段",
-      "part": "ppt/slides/slide71.xml"
+      "title": "下载完成后，先验证 HAL 路径能被识别",
+      "part": "ppt/slides/module_entry_16.xml"
     },
     {
       "number": 11,
-      "title": "本期使用原清单，west 实验另有专题",
-      "part": "ppt/slides/slide58.xml"
+      "title": "厂商设备头接 SoC，通用 Core 仍由 Zephyr 提供",
+      "part": "ppt/slides/slide66.xml"
     },
     {
       "number": 12,
-      "title": "同名 CMSIS，来源未必相同",
-      "part": "ppt/slides/slide57.xml"
+      "title": "只有设备头，没有 HAL，仍需要实现驱动",
+      "part": "ppt/slides/slide67.xml"
     },
     {
       "number": 13,
-      "title": "通用 Core 与芯片设备头分别从哪里来",
-      "part": "ppt/slides/slide59.xml"
+      "title": "哪些下载得到，哪些在 P011 新增",
+      "part": "ppt/slides/slide68.xml"
     },
     {
       "number": 14,
-      "title": "已有工作区直接复用，不重复 init",
-      "part": "ppt/slides/slide60.xml"
-    },
-    {
-      "number": 15,
-      "title": "按原清单下载 CMSIS，并检查关键文件",
-      "part": "ppt/slides/slide61.xml"
-    },
-    {
-      "number": 16,
-      "title": "下载物在源码旁，接入规则在源码内",
-      "part": "ppt/slides/slide62.xml"
-    },
-    {
-      "number": 17,
-      "title": "“安装 CMSIS”就是准备源码依赖",
-      "part": "ppt/slides/slide63.xml"
-    },
-    {
-      "number": 18,
-      "title": "清单外的 HC32 HAL 单独处理",
-      "part": "ppt/slides/slide75.xml"
-    },
-    {
-      "number": 19,
-      "title": "核对 HAL 模块与芯片文件",
-      "part": "ppt/slides/slide76.xml"
-    },
-    {
-      "number": 20,
-      "title": "三种报错，分别回到对应的操作",
-      "part": "ppt/slides/slide77.xml"
-    },
-    {
-      "number": 21,
-      "title": "重新开 UCRT64 后，先恢复环境再继续",
-      "part": "ppt/slides/slide78.xml"
-    },
-    {
-      "number": 22,
-      "title": "只有厂商 CMSIS 包，先确认它装了什么",
-      "part": "ppt/slides/slide65.xml"
+      "title": "模块接入完成后的三层检查",
+      "part": "ppt/slides/module_entry_17.xml"
     }
   ],
   "parts": [
@@ -119,55 +79,36 @@
     "docProps/core.xml",
     "ppt/_rels/presentation.xml.rels",
     "ppt/media/image1.png",
-    "ppt/media/image24.png",
-    "ppt/media/image26.png",
-    "ppt/media/image27.png",
     "ppt/notesMasters/_rels/notesMaster1.xml.rels",
     "ppt/notesMasters/notesMaster1.xml",
-    "ppt/notesSlides/_rels/module_entry_7.xml.rels",
-    "ppt/notesSlides/_rels/module_entry_8.xml.rels",
+    "ppt/notesSlides/_rels/module_entry_10.xml.rels",
+    "ppt/notesSlides/_rels/module_entry_11.xml.rels",
+    "ppt/notesSlides/_rels/module_entry_12.xml.rels",
+    "ppt/notesSlides/_rels/module_entry_13.xml.rels",
+    "ppt/notesSlides/_rels/module_entry_14.xml.rels",
+    "ppt/notesSlides/_rels/module_entry_15.xml.rels",
+    "ppt/notesSlides/_rels/module_entry_16.xml.rels",
+    "ppt/notesSlides/_rels/module_entry_17.xml.rels",
+    "ppt/notesSlides/_rels/module_entry_9.xml.rels",
     "ppt/notesSlides/_rels/notesSlide1.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide52.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide53.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide54.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide55.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide56.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide57.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide58.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide59.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide60.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide61.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide62.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide63.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide65.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide70.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide71.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide75.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide76.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide77.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide78.xml.rels",
-    "ppt/notesSlides/module_entry_7.xml",
-    "ppt/notesSlides/module_entry_8.xml",
+    "ppt/notesSlides/_rels/notesSlide66.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide67.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide68.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide74.xml.rels",
+    "ppt/notesSlides/module_entry_10.xml",
+    "ppt/notesSlides/module_entry_11.xml",
+    "ppt/notesSlides/module_entry_12.xml",
+    "ppt/notesSlides/module_entry_13.xml",
+    "ppt/notesSlides/module_entry_14.xml",
+    "ppt/notesSlides/module_entry_15.xml",
+    "ppt/notesSlides/module_entry_16.xml",
+    "ppt/notesSlides/module_entry_17.xml",
+    "ppt/notesSlides/module_entry_9.xml",
     "ppt/notesSlides/notesSlide1.xml",
-    "ppt/notesSlides/notesSlide52.xml",
-    "ppt/notesSlides/notesSlide53.xml",
-    "ppt/notesSlides/notesSlide54.xml",
-    "ppt/notesSlides/notesSlide55.xml",
-    "ppt/notesSlides/notesSlide56.xml",
-    "ppt/notesSlides/notesSlide57.xml",
-    "ppt/notesSlides/notesSlide58.xml",
-    "ppt/notesSlides/notesSlide59.xml",
-    "ppt/notesSlides/notesSlide60.xml",
-    "ppt/notesSlides/notesSlide61.xml",
-    "ppt/notesSlides/notesSlide62.xml",
-    "ppt/notesSlides/notesSlide63.xml",
-    "ppt/notesSlides/notesSlide65.xml",
-    "ppt/notesSlides/notesSlide70.xml",
-    "ppt/notesSlides/notesSlide71.xml",
-    "ppt/notesSlides/notesSlide75.xml",
-    "ppt/notesSlides/notesSlide76.xml",
-    "ppt/notesSlides/notesSlide77.xml",
-    "ppt/notesSlides/notesSlide78.xml",
+    "ppt/notesSlides/notesSlide66.xml",
+    "ppt/notesSlides/notesSlide67.xml",
+    "ppt/notesSlides/notesSlide68.xml",
+    "ppt/notesSlides/notesSlide74.xml",
     "ppt/presProps.xml",
     "ppt/presentation.xml",
     "ppt/slideLayouts/_rels/slideLayout1.xml.rels",
@@ -300,50 +241,34 @@
     "ppt/slideMasters/slideMaster7.xml",
     "ppt/slideMasters/slideMaster8.xml",
     "ppt/slideMasters/slideMaster9.xml",
-    "ppt/slides/_rels/module_entry_7.xml.rels",
-    "ppt/slides/_rels/module_entry_8.xml.rels",
+    "ppt/slides/_rels/module_entry_10.xml.rels",
+    "ppt/slides/_rels/module_entry_11.xml.rels",
+    "ppt/slides/_rels/module_entry_12.xml.rels",
+    "ppt/slides/_rels/module_entry_13.xml.rels",
+    "ppt/slides/_rels/module_entry_14.xml.rels",
+    "ppt/slides/_rels/module_entry_15.xml.rels",
+    "ppt/slides/_rels/module_entry_16.xml.rels",
+    "ppt/slides/_rels/module_entry_17.xml.rels",
+    "ppt/slides/_rels/module_entry_9.xml.rels",
     "ppt/slides/_rels/slide1.xml.rels",
-    "ppt/slides/_rels/slide52.xml.rels",
-    "ppt/slides/_rels/slide53.xml.rels",
-    "ppt/slides/_rels/slide54.xml.rels",
-    "ppt/slides/_rels/slide55.xml.rels",
-    "ppt/slides/_rels/slide56.xml.rels",
-    "ppt/slides/_rels/slide57.xml.rels",
-    "ppt/slides/_rels/slide58.xml.rels",
-    "ppt/slides/_rels/slide59.xml.rels",
-    "ppt/slides/_rels/slide60.xml.rels",
-    "ppt/slides/_rels/slide61.xml.rels",
-    "ppt/slides/_rels/slide62.xml.rels",
-    "ppt/slides/_rels/slide63.xml.rels",
-    "ppt/slides/_rels/slide65.xml.rels",
-    "ppt/slides/_rels/slide70.xml.rels",
-    "ppt/slides/_rels/slide71.xml.rels",
-    "ppt/slides/_rels/slide75.xml.rels",
-    "ppt/slides/_rels/slide76.xml.rels",
-    "ppt/slides/_rels/slide77.xml.rels",
-    "ppt/slides/_rels/slide78.xml.rels",
-    "ppt/slides/module_entry_7.xml",
-    "ppt/slides/module_entry_8.xml",
+    "ppt/slides/_rels/slide66.xml.rels",
+    "ppt/slides/_rels/slide67.xml.rels",
+    "ppt/slides/_rels/slide68.xml.rels",
+    "ppt/slides/_rels/slide74.xml.rels",
+    "ppt/slides/module_entry_10.xml",
+    "ppt/slides/module_entry_11.xml",
+    "ppt/slides/module_entry_12.xml",
+    "ppt/slides/module_entry_13.xml",
+    "ppt/slides/module_entry_14.xml",
+    "ppt/slides/module_entry_15.xml",
+    "ppt/slides/module_entry_16.xml",
+    "ppt/slides/module_entry_17.xml",
+    "ppt/slides/module_entry_9.xml",
     "ppt/slides/slide1.xml",
-    "ppt/slides/slide52.xml",
-    "ppt/slides/slide53.xml",
-    "ppt/slides/slide54.xml",
-    "ppt/slides/slide55.xml",
-    "ppt/slides/slide56.xml",
-    "ppt/slides/slide57.xml",
-    "ppt/slides/slide58.xml",
-    "ppt/slides/slide59.xml",
-    "ppt/slides/slide60.xml",
-    "ppt/slides/slide61.xml",
-    "ppt/slides/slide62.xml",
-    "ppt/slides/slide63.xml",
-    "ppt/slides/slide65.xml",
-    "ppt/slides/slide70.xml",
-    "ppt/slides/slide71.xml",
-    "ppt/slides/slide75.xml",
-    "ppt/slides/slide76.xml",
-    "ppt/slides/slide77.xml",
-    "ppt/slides/slide78.xml",
+    "ppt/slides/slide66.xml",
+    "ppt/slides/slide67.xml",
+    "ppt/slides/slide68.xml",
+    "ppt/slides/slide74.xml",
     "ppt/tableStyles.xml",
     "ppt/theme/theme1.xml",
     "ppt/theme/theme10.xml",

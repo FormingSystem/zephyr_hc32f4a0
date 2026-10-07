@@ -24,14 +24,13 @@ flowchart LR
     C --> D[④ 官方源码与模块]
     D --> E[⑤ Python 依赖与 SDK]
     E --> F[⑥ 环境验收]
-    F --> G[后续 P007 编译知识]
+    F --> G[后续 CMake 与 west 原理]
 ```
 
 **动手前的起点：** Linux Bash、可用网络和有 sudo 权限的账户；系统为 Ubuntu 22.04 LTS，以下完整命令以 x86_64 主机为例。
 
 **完成本章后的状态：** 官方 west 工作区、Linux venv 与 SDK 可检查并恢复；本章只完成环境准备，编译与实板操作另行验收。
 
-**复制命令：** [按小节打开完整操作单元](commands/P001_Linux/README.md)。PPT 的“完整命令”链接指向同一份纯文本；请连同注释复制，先读本节前提，再执行所选路线。
 
 **视频与复习对照：** Markdown 提供完整步骤和解释；PPT 按下面的阶段讲解重点，操作时以对应正文为准。
 
@@ -239,7 +238,7 @@ west list cmsis_6 -f '{url} {revision} {abspath}'
 cat ../modules/hal/cmsis_6/zephyr/module.yml
 ```
 
-顶层应为 `~/zephyrproject`，模块路径来自该工作区。Zephyr 配置时通过 west 查询模块并读取 module.yml，不需要把头文件复制到应用。若不存在这个项目，先检查所选修订的清单及 import；不能照旧截图新建一个假的模块。Windows 的 P002/P007 主线同样由 west 管理 CMSIS，直接调用 CMake 也可自动发现；只有无 west 的特殊环境才显式设置 ZEPHYR_MODULES。
+顶层应为 `~/zephyrproject`，模块路径来自该工作区。Zephyr 配置时通过 west 查询模块并读取 module.yml，不需要把头文件复制到应用。若不存在这个项目，先检查所选修订的清单及 import；不能照旧截图新建一个假的模块。Windows 的 P004 下载与 P007/P011 构建主线同样由 west 管理 CMSIS，直接调用 CMake 也可自动发现；只有无 west 的特殊环境才显式设置 ZEPHYR_MODULES。
 
 下载完成后打开 `doc/develop/getting_started/index.rst`，重新核对本章的主机清单和下限。若与当前源码不同，以当前源码官方指南修订安装步骤后再继续。
 
@@ -280,7 +279,7 @@ cd ~/zephyr-sdk-1.0.1
 
 `-c` 调用 SDK 包内的导出脚本，在当前 Linux 用户的 `~/.cmake/packages/Zephyr-sdk/` 下写入地址记录，内容指向 SDK 的 cmake 目录。它跨终端和重启保存，供同一 Linux 用户的多个 CMake 工程自动查找，不绑定当前工程或 .venv，也不写 Windows 注册表。可查看该目录中文件核对；取消某条记录时只移除内容指向对应 SDK 的文件，不删除其他 SDK 项。
 
-临时 export、-D 保存到构建目录缓存、应用旁的 CMakeUserPresets.json 是另外三种范围；激活 .venv 默认不设置 SDK。预设与缓存的概念见 P004 4.2.5，Linux 实际值用本机 Linux SDK 路径，不复制 Windows 盘符。`-c` 不等于把 GCC 放进所有终端的 PATH。需要显式路径的项目可在 Linux Bash 设置 `export ZEPHYR_SDK_INSTALL_DIR="$HOME/zephyr-sdk-1.0.1"` 和 `export ZEPHYR_TOOLCHAIN_VARIANT=zephyr`；这两个是 Zephyr 原生环境接口，指安装根和工具链类型。换目录后更新值，重开终端后重新设置；已配置的构建目录会保留 SDK 缓存，换 SDK 时使用新的构建目录。`west zephyr-export` 登记的是 Zephyr 源码包，不是 SDK，也不负责下载 CMSIS。
+临时 export、-D 保存到构建目录缓存、应用旁的 CMakeUserPresets.json 是另外三种范围；激活 .venv 默认不设置 SDK。预设与缓存的概念见 P003 3.2.5，Linux 实际值用本机 Linux SDK 路径，不复制 Windows 盘符。`-c` 不等于把 GCC 放进所有终端的 PATH。需要显式路径的项目可在 Linux Bash 设置 `export ZEPHYR_SDK_INSTALL_DIR="$HOME/zephyr-sdk-1.0.1"`；这是 Zephyr 原生环境接口，指 SDK 安装根。使用默认 SDK 类型时不必再设置 `ZEPHYR_TOOLCHAIN_VARIANT=zephyr`。换目录后更新值，重开终端后重新设置；已配置的构建目录会保留 SDK 缓存，换 SDK 时使用新的构建目录。`west zephyr-export` 登记的是 Zephyr 源码包，不是 SDK，也不负责下载 CMSIS。
 
 离线或需要其他手动下载方式时，从[官方 SDK 安装说明](https://docs.zephyrproject.org/latest/develop/toolchains/zephyr_sdk.html)与 [SDK Releases](https://github.com/zephyrproject-rtos/sdk-ng/releases)选择与源码、Linux 主机架构匹配的归档，检查官方校验值，按该版本 Linux `setup.sh` 说明安装。不要在 Linux 上运行 Windows SDK 的 `.exe`。
 
@@ -289,7 +288,7 @@ cd ~/zephyr-sdk-1.0.1
 
 在 Ubuntu 22.04 上，GNU 包预带多种目标工具链，Minimal 包保留 SDK 基础文件和主机工具、再由 `setup.sh -t arm-zephyr-eabi` 安装 ARM。两种路线最终都以含 `sdk_version`、`cmake` 和 `gnu` 的 SDK 根接到 Zephyr。单独的工具链压缩包只含目标工具与库，不能代替 SDK 基础包。主机包要选 Linux，对应脚本是 setup.sh，不能复制 Windows 的 setup.cmd 命令。
 
-工程先通过路径或当前 Linux 用户的 CMake 包记录找到 SDK，再由板与 SoC 的架构配置选择 ARM 工具链。新增 Cortex-M4 芯片一般复用 ARM 工具链，新增工作落在 SoC、板和驱动；CMSIS/HAL 属于源码模块。详细概念与官方文件位置见 [P004 4.1.2、4.2.4.1 与 4.2.8](环境与依赖导航.md)，其中 Windows 下载和注册表命令只适用于 Windows。
+工程先通过路径或当前 Linux 用户的 CMake 包记录找到 SDK，再由板与 SoC 的架构配置选择 ARM 工具链。新增 Cortex-M4 芯片一般复用 ARM 工具链，新增工作落在 SoC、板和驱动；CMSIS/HAL 属于源码模块。详细概念与官方文件位置见 [P003 的三种归档与接入说明](P003_SDK准备与编译器选型_Windows.md#section-3-2)和 [P009 的工具链发现机制](P009_Zephyr的CMake输入与依赖发现_Windows.md#toolchain-contract)，其中 Windows 下载和注册表命令只适用于 Windows。
 
 ```mermaid
 flowchart LR
@@ -316,7 +315,7 @@ cmake --version
 dtc --version
 ```
 
-确认解释器来自本工作区、依赖无冲突、SDK 能被当前 west 查询，再进入 [P007 编译示例与新增开发板](P007_编译示例与新增开发板_Windows.md)了解输入与目标。P007 现有详细命令是 Windows UCRT64 实验；Linux 环境使用本机路径、`.venv/bin/activate` 与原生 Linux SDK，不直接复制 `cygpath`、盘符和 `.exe`。
+确认解释器来自本工作区、依赖无冲突、SDK 能被当前 west 查询，再进入 [P011 编译示例与新增开发板](P011_编译示例与新增开发板_Windows.md)了解输入与目标。P011 现有详细命令是 Windows UCRT64 实验；Linux 环境使用本机路径、`.venv/bin/activate` 与原生 Linux SDK，不直接复制 `cygpath`、盘符和 `.exe`。
 
 **中断后的检查顺序。** 先激活已有 venv，再进入原 workspace 的 zephyr 目录；不要为了恢复终端而重新 west init。工具版本低于 1.1 的要求时，先升级并重查版本，不靠重新创建 venv 修复 CMake。
 

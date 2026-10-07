@@ -1,9 +1,0 @@
-# P007_Windows / 7.9.5\_用工程用户预设长期保存 SDK 选择
-# 先核对正文的终端、目录与前提，再执行此完整操作单元。
-# Windows UCRT64；重新开终端也使用同一组命令。
-cd /g/zephyr_practice/zephyr-main
-source .venv/Scripts/activate
-cd samples/hello_world
-cmake --list-presets
-cmake --preset mps2-west-local
-cmake --build --preset mps2-west-local

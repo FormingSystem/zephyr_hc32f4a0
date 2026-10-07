@@ -1,7 +1,7 @@
-# P004_Windows / 4.2.1\_检查文件摘要
+# P004_Windows / 4.2.1\_下载前只检查工具与已有清单
 # 先核对正文的终端、目录与前提，再执行此完整操作单元。
-# 当前位置：任意目录；终端：Windows 的 UCRT64 Bash。
-cd /g/zephyr_practice
-# 当前位置：保存 SDK 压缩包和 sha256.sum 的下载目录。
-pwd
-ls zephyr-sdk-1.0.1_windows-x86_64_gnu.7z sha256.sum
+# Windows UCRT64；进入实验源码根并激活已有 .venv。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+python -c "import shutil; print(shutil.which('git'))"
+git --version

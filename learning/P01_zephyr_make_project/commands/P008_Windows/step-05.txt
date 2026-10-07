@@ -1,0 +1,11 @@
+# Windows UCRT64；源码根；工作区正确，模块本地修改已保存。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+# P004 已说明 Windows Python/west 应调用 Git for Windows。
+python -c "import shutil; print(shutil.which('git'))"
+git --version | grep -q '\.windows\.' &&
+  west update cmsis_6 &&
+  test -f ../modules/hal/cmsis_6/zephyr/module.yml &&
+  test -f ../modules/hal/cmsis_6/CMSIS/Core/Include/core_cm4.h &&
+  git -C ../modules/hal/cmsis_6 rev-parse HEAD &&
+  git -C ../modules/hal/cmsis_6 rev-parse manifest-rev

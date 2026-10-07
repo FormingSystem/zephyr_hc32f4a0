@@ -183,7 +183,7 @@ project(learning_module)
 target_sources(app PRIVATE src/main.c)
 ```
 
-`CMAKE_CURRENT_LIST_DIR` 是当前 CMake 文件所在目录；`${...}` 读取 CMake 变量，`$ENV{...}` 读取启动它的终端环境。准备章将 `ZEPHYR_BASE` 指向 G 盘实验源码，将 `ZEPHYR_MODULES` 指向工程准备 P002 的 2.6.2 节下载的 CMSIS_6。这里检查文件存在后才配置，缺少输入会停止，而不会从电脑上另一份源码补齐。
+`CMAKE_CURRENT_LIST_DIR` 是当前 CMake 文件所在目录；`${...}` 读取 CMake 变量，`$ENV{...}` 读取启动它的终端环境。准备章将 `ZEPHYR_BASE` 指向 G 盘实验源码，将 `ZEPHYR_MODULES` 指向[主线 P004 的 4.2.2 节](../P01_zephyr_make_project/P004_CMSIS与HAL选择下载_Windows.md#section-4-2)下载的 CMSIS_6。这里检查文件存在后才配置，缺少输入会停止，而不会从电脑上另一份源码补齐。
 
 `ZEPHYR_MODULES` 显式选择基础模块，`PATHS ... NO_DEFAULT_PATH` 将 Zephyr 包查找限定在指定源码的接入目录。应用复制到不同深度时，仍由同一组明确输入选择源码，不再依赖“向上四层”的目录巧合。
 

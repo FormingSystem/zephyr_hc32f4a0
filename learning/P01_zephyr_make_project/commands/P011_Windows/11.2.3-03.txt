@@ -1,0 +1,9 @@
+# Windows UCRT64；源码根；11.2.3 已完成配置和构建。
+cd /g/zephyr_practice/zephyr-main &&
+grep -E '^(ZEPHYR_TOOLCHAIN_VARIANT|CROSS_COMPILE|CROSS_COMPILE_TOOLCHAIN_PATH|CMAKE_C_COMPILER|SYSROOT_DIR):' \
+  build/learning-tools/p003/build-mps2-cross-compile-layout2/CMakeCache.txt
+# 此独立路线不应出现 SDK 根记录；无匹配时 grep 返回 1 是这里的预期。
+grep '^ZEPHYR_SDK_INSTALL_DIR:' build/learning-tools/p003/build-mps2-cross-compile-layout2/CMakeCache.txt
+# 继续核验板与 CPU，实际参数在 compile_commands.json。
+grep -E '^CONFIG_(BOARD|SOC|CPU_CORTEX_M4|FPU|PICOLIBC)' \
+  build/learning-tools/p003/build-mps2-cross-compile-layout2/zephyr/.config

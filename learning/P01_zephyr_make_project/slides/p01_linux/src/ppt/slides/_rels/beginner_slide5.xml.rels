@@ -1,2 +1,2 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version='1.0' encoding='utf-8' standalone='yes'?>
 <Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/slideLayout" Target="../beginner/slideLayouts/slideLayout6.xml" Id="Rd7f3225594c8444b"/><Relationship Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/notesSlide" Target="../beginner/notesSlides/notesSlide5.xml" Id="Ra16f91c434ed4c7c"/><Relationship Id="rIdCommandText" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink" Target="../commands/P001_Linux/1.2.2-01.txt" TargetMode="External"/></Relationships>

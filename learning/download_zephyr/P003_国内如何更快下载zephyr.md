@@ -377,13 +377,13 @@ west update cmsis_6
 west forall cmsis_6 -c 'git rev-parse HEAD'
 ```
 
-确认实际工作区并比较 HEAD 与清单提交。完整官方环境通常用 `west update` 获取全部清单模块；按项目名只取 CMSIS 不适用于任意应用。本系列 G 盘已有源码也按[工程准备 P004 的 4.2 节](../P01_zephyr_make_project/环境与依赖导航.md#section-4-2)用 west init -l 接入工作区，再由 west update cmsis_6 下载清单版本；不因主源码由 ZIP 取得就另行手工下载模块。该节同时说明 Git for Windows、失败恢复及目录来源。
+确认实际工作区并比较 HEAD 与清单提交。完整官方环境通常用 `west update` 获取全部清单模块；按项目名只取 CMSIS 不适用于任意应用。本系列 G 盘已有源码也按[工程准备 P004 的 4.2 节](../P01_zephyr_make_project/P004_CMSIS与HAL选择下载_Windows.md#section-4-2)用 west init -l 接入工作区，再由 west update cmsis_6 下载清单版本；不因主源码由 ZIP 取得就另行手工下载模块。该节同时说明 Git for Windows、失败恢复及目录来源。
 
 ### 3.2.4\_HC32 HAL 是移植单独指定的依赖
 
 本次原生 west.yml 没有 hal_xhsc，不能照 CMSIS 的方式执行 `west update hal_xhsc`。配套 `learning/board/labs/hc32_port/soc/xhsc/hc32f4a0/CMakeLists.txt` 实际引用 `hc32_ddl/hc32f4a0` 下的 system 文件和 hc32_ll_* 接口，因而选择含 HC32F4A0 DDL 的 [hal_xhsc 模块](https://github.com/zephyrproject-rtos/hal_xhsc/tree/a84e04900616f68097d80cda2e89eaa8af3afadd)，移植基线提交为 `a84e04900616f68097d80cda2e89eaa8af3afadd`。
 
-[下载固定提交 ZIP](https://github.com/zephyrproject-rtos/hal_xhsc/archive/a84e04900616f68097d80cda2e89eaa8af3afadd.zip)，按工程准备 P002 2.6.3 解压、检查 module.yml、hc32f4a0.h、system_hc32f4a0.c 和 hc32_ll_usart.h。厂商手册及原始软件资料从[HC32F4A0 产品页](https://www.xhsc.com.cn/product/1220.html)取得；厂商包的附带 CMSIS/startup 与 Zephyr 接入可能不同，不能直接整体替换本章模块。
+[下载固定提交 ZIP](https://github.com/zephyrproject-rtos/hal_xhsc/archive/a84e04900616f68097d80cda2e89eaa8af3afadd.zip)，按[主线 P004 的 HAL 下载与核验说明](../P01_zephyr_make_project/P004_CMSIS与HAL选择下载_Windows.md#section-4-2)选择工具下载或已有 ZIP 分支，解压、检查 module.yml、hc32f4a0.h、system_hc32f4a0.c 和 hc32_ll_usart.h。厂商手册及原始软件资料从[HC32F4A0 产品页](https://www.xhsc.com.cn/product/1220.html)取得；厂商包的附带 CMSIS/startup 与 Zephyr 接入可能不同，不能直接整体替换本章模块。
 
 ### 3.2.5\_保存依据并验证真正使用的文件
 

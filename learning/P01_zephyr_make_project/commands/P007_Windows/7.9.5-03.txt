@@ -1,6 +1,0 @@
-# P007_Windows / 7.9.5\_用工程用户预设长期保存 SDK 选择
-# 先核对正文的终端、目录与前提，再执行此完整操作单元。
-# Windows UCRT64；回到源码根；预设已经配置成功。
-cd /g/zephyr_practice/zephyr-main
-grep -E 'ZEPHYR_SDK_INSTALL_DIR:|Python3_EXECUTABLE:|CMAKE_C_COMPILER:' \
-  build/learning-tools/p003/build-mps2-preset-west/CMakeCache.txt

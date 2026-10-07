@@ -755,11 +755,11 @@ flowchart LR
 
 ### 4.3.3\_CMSIS 的来源、修订与路径分别核对
 
-当前条目的 name 为 cmsis_6，repo-path 为 CMSIS_6，revision 为 1c1840af7a7e757d6e2fec3ddb0e5ce0dfcc93c8，path 为 modules/hal/cmsis_6；默认远端为 https://github.com/zephyrproject-rtos。前文例子用于理解字段；实际执行应读取所选源码自己的清单。west 路线的 path 相对工作区根；ZIP 路线允许放到独立实验目录，但须显式把真正模块根传给 ZEPHYR_MODULES。可执行流程见[准备专题 P004 的 4.2.2 节](../P01_zephyr_make_project/环境与依赖导航.md#section-4-2)。
+当前条目的 name 为 cmsis_6，repo-path 为 CMSIS_6，revision 为 1c1840af7a7e757d6e2fec3ddb0e5ce0dfcc93c8，path 为 modules/hal/cmsis_6；默认远端为 https://github.com/zephyrproject-rtos。前文例子用于理解字段；实际执行应读取所选源码自己的清单。west 路线的 path 相对工作区根；ZIP 路线允许放到独立实验目录，但须显式把真正模块根传给 ZEPHYR_MODULES。可执行流程见[准备专题 P004 的 4.2.2 节](../P01_zephyr_make_project/P004_CMSIS与HAL选择下载_Windows.md#section-4-2)。
 
 ### 4.3.4\_HC32 HAL 的真实来源
 
-本次原生清单没有 hal_xhsc。配套移植代码需要 `hc32_ddl/hc32f4a0` 中的 system 与 hc32_ll_* 文件，使用 Zephyr 组织托管的 hal_xhsc，固定提交 a84e04900616f68097d80cda2e89eaa8af3afadd。它是新增移植的 API 基线，不是上游清单已经选择的模块。模块来源为 [hal_xhsc 固定提交](https://github.com/zephyrproject-rtos/hal_xhsc/tree/a84e04900616f68097d80cda2e89eaa8af3afadd)，主线用 Git 获取并检出该基线，下载与核验见准备专题 P002 2.6.3；已有完整 ZIP 经来源核对后可以复用。
+本次原生清单没有 hal_xhsc。配套移植代码需要 `hc32_ddl/hc32f4a0` 中的 system 与 hc32_ll_* 文件，使用 Zephyr 组织托管的 hal_xhsc，固定提交 a84e04900616f68097d80cda2e89eaa8af3afadd。它是新增移植的 API 基线，不是上游清单已经选择的模块。模块来源为 [hal_xhsc 固定提交](https://github.com/zephyrproject-rtos/hal_xhsc/tree/a84e04900616f68097d80cda2e89eaa8af3afadd)，主线用 Git 获取并检出该基线，下载与核验见[主线 P004 4.2.3](../P01_zephyr_make_project/P004_CMSIS与HAL选择下载_Windows.md#section-4-2)；已有完整 ZIP 经来源核对后可以复用。
 
 ### 4.3.5\_包里有什么与本次编译用了什么分开核对
 
@@ -767,7 +767,7 @@ flowchart LR
 
 ### 4.3.6\_其他厂商或布局只能作为例子
 
-后文用 hal_hc32、modules/hal/hc32 等名字解释模块机制时，它们是示意名称与布局，**不是当前实验已经存在的包**。本系列真实模块名为 hal_xhsc，目录按准备专题 P002 下载产生。已有集成工程可能把 HAL 放在树内，但从零原生 ZIP 实验不能假设已经包含它；也不能用虚构仓库地址下载。
+后文用 hal_hc32、modules/hal/hc32 等名字解释模块机制时，它们是示意名称与布局，**不是当前实验已经存在的包**。本系列真实模块名为 hal_xhsc，目录按主线 P004 下载产生。已有集成工程可能把 HAL 放在树内，但从零原生 ZIP 实验不能假设已经包含它；也不能用虚构仓库地址下载。
 
 <a id="section-4-4"></a>
 
@@ -1693,6 +1693,6 @@ Git 延后
 
 本系列从 G 盘原生 Zephyr 开始，按实际架构接入选择 CMSIS_6，再取当前 west.yml 要求的修订。不要按“Zephyr 4.x”范围推定所有源码的 CMSIS 版本。HC32F4A0PITB 的板、SoC 与驱动由配套材料接入；HAL 使用移植指定的 hal_xhsc 固定快照，当前原生清单不提供它。
 
-因此先完成官方 mps2/an386 的 CMSIS + SDK 编译实验，再下载 HC32 HAL、接入配套移植模块，编译 uyup_rpi_a/hc32f4a0pitb。所有可执行命令和实际目录统一见[工程准备 P003](../P01_zephyr_make_project/P007_编译示例与新增开发板_Windows.md)，不要求先下载一个已集成 HC32 的 fork。
+因此先完成官方 mps2/an386 的 CMSIS + SDK 编译实验，再下载 HC32 HAL、接入配套移植模块，编译 uyup_rpi_a/hc32f4a0pitb。所有可执行命令和实际目录统一见[主线 P011 编译示例与新增开发板](../P01_zephyr_make_project/P011_编译示例与新增开发板_Windows.md)，不要求先下载一个已集成 HC32 的 fork。
 
 [参考资料目录](README.md) · [上一篇](P003_国内如何更快下载zephyr.md) · [下一篇](P005_SDK和交叉编译器下载说明.md)

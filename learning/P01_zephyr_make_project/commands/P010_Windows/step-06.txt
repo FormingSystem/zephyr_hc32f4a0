@@ -1,0 +1,8 @@
+# Windows UCRT64；源码根；已按本节创建或合并 learning-mps2 预设。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+# 在预设所属的官方应用目录调用；不改写它的 CMakeLists.txt。
+cd samples/hello_world
+cmake --list-presets
+# 确认列表包含 learning-mps2 后，配置成功才构建。
+cmake --preset learning-mps2 && cmake --build --preset learning-mps2

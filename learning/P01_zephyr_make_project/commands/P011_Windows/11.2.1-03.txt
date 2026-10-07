@@ -1,0 +1,7 @@
+# P011_Windows / 11.2.1\_恢复环境并检查输入
+# 先核对正文的终端、目录与前提，再执行此完整操作单元。
+# UCRT64；源码根；检查已安装文件；实际选中的 SDK 要在配置后核验。
+cat ../zephyr-sdk-1.0.1/sdk_version
+test -f ../modules/hal/cmsis_6/CMSIS/Core/Include/core_cm4.h
+test -f ../modules/hal/cmsis_6/zephyr/module.yml
+python -c 'import sys; print(sys.executable)'

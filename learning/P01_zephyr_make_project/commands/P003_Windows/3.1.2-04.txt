@@ -1,7 +1,0 @@
-# Windows UCRT64；源码根；前提：cmake-demo 已配置成功。
-cd /g/zephyr_practice/zephyr-main
-source .venv/Scripts/activate
-# 日常构建：复用现有配置，不做 west init。
-west build -d build/learning-tools/p003/cmake-demo
-# 需要强制重新执行 CMake 时才使用这一条，不是每次必做。
-west build -d build/learning-tools/p003/cmake-demo -c

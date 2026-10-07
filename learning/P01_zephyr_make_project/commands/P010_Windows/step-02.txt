@@ -1,0 +1,8 @@
+# Windows UCRT64；源码根；前提：cmake-demo 已配置成功。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+# CMake 原生日志输入：保存为缓存项并重新配置，未执行固件编译。
+cmake -S samples/hello_world -B build/learning-tools/p003/cmake-demo \
+  -DCMAKE_MESSAGE_LOG_LEVEL:STRING=VERBOSE
+# 应看到 CMAKE_MESSAGE_LOG_LEVEL:STRING=VERBOSE。
+cmake -N -LAH build/learning-tools/p003/cmake-demo | grep CMAKE_MESSAGE_LOG_LEVEL

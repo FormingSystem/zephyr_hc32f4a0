@@ -1,0 +1,8 @@
+# P011_Windows / 11.1\_先认识已有的 MPS2 与 AN386
+# 先核对正文的终端、目录与前提，再执行此完整操作单元。
+# UCRT64；源码根；尚未配置构建。
+cd /g/zephyr_practice/zephyr-main
+cat boards/arm/mps2/board.yml
+cat boards/arm/mps2/mps2_an386.dts
+cat boards/arm/mps2/mps2_an386_defconfig
+cat samples/hello_world/src/main.c

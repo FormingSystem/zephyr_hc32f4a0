@@ -40,9 +40,11 @@ flowchart LR
 | --- | --- | --- |
 | Windows 上怎样安装终端、国内换源并下载源码 | [Zephyr 下载与工程准备](P01_zephyr_make_project/大纲.md) | 工具可用、源码取得成功，能区分源码快照与 Git 历史 |
 | 源码下载后，怎样选 SDK 包并安装构建依赖 | [下载 SDK 与安装依赖包](P01_zephyr_make_project/环境与依赖导航.md) | 主机工具与 Python/venv、SDK、CMSIS/HAL 按依据取得并逐项核验 |
-| Zephyr 怎样读取 SDK、模块和板的 CMake 配置 | [P003 CMake 接口体系](P01_zephyr_make_project/P003_Zephyr的CMake接口体系_Windows.md) | 从 hello_world 和图示理解构建架构，再看输入、SDK、模块、保存范围与官方依据 |
+| CMake 怎样描述和构建一个程序 | [P006 原生 CMake](P01_zephyr_make_project/P006_原生CMake与目标模型_Windows.md) → [P007 Zephyr 应用](P01_zephyr_make_project/P007_Zephyr应用构建_Windows.md) | 先理解 target、配置/生成和后端，再完成官方应用的首次构建 |
+| west 怎样管理工作区，又怎样与 CMake 配合 | [P008 west 零基础与 Zephyr 构建](P01_zephyr_make_project/P008_west零基础与Zephyr构建_Windows.md) | 分清核心命令与 Zephyr 扩展，展开 west build 的调用和参数传递 |
+| Zephyr 怎样发现 SDK、模块并保存配置 | [P009 输入与依赖发现](P01_zephyr_make_project/P009_Zephyr的CMake输入与依赖发现_Windows.md) → [P010 缓存与排错](P01_zephyr_make_project/P010_CMake缓存与构建排错_Windows.md) | 沿输入、读取者和产物理解接口，按失败阶段定位问题 |
 | 怎样确认芯片型号及 CMSIS/HAL 下载依据 | [型号与依赖选择](P01_zephyr_make_project/环境与依赖导航.md#chip-selection) | 丝印/BOM/手册对应 board/SoC，区分官方清单依赖与新增移植依赖 |
-| 环境准备之后，怎样编译并新增开发板 | [编译示例与新增开发板](P01_zephyr_make_project/P007_编译示例与新增开发板_Windows.md) | 先认识并编译官方 MPS2，再逐文件新增 AN386 练习板、逐层接入 UYUP HC32 并核验 |
+| 环境准备之后，怎样编译并新增开发板 | [编译示例与新增开发板](P01_zephyr_make_project/P011_编译示例与新增开发板_Windows.md) | 先认识并编译官方 MPS2，再逐文件新增 AN386 练习板、逐层接入 UYUP HC32 并核验 |
 | 不同项目需要不同 Python 包版本 | [venv 大纲](python/venv/大纲.md) | 两个环境同时运行不同版本，第三个环境可重建 |
 | 多个代码仓库必须使用配套版本 | [west 大纲](west/大纲.md) | 自建多仓库清单并写一个可运行的新命令 |
 | 新增 C 文件或可复用模块怎样参与编译 | [CMake 大纲](cmake/大纲.md) | 定位漏实现链接错误，验证模块开关 |
@@ -73,7 +75,7 @@ learning/
 
 配套材料按[实验准备](P000_实验准备.md)放入实验源码目录下的 `learning/`。练习副本与运行证据放在 `G:\zephyr_practice\zephyr-main\build\learning-tools\`；SDK 保存在源码外的工具目录。资料保存位置不决定实验命令的执行位置。
 
-新主题使用英文目录名，正文用 `PXX_中文主题.md`，大纲说明先后顺序；可执行源文件放到主题的 `labs/`。需要分析特定版本的第三方源码时，再创建该主题的 `source_reading/`，注明版本、出处和修改边界。不要把实验产物、环境目录、个人凭据混进学习资料。
+新主题使用英文目录名，正文用 `P001_中文主题.md`，大纲说明先后顺序；可执行源文件放到主题的 `labs/`。需要分析特定版本的第三方源码时，再创建该主题的 `source_reading/`，注明版本、出处和修改边界。不要把实验产物、环境目录、个人凭据混进学习资料。
 
 每个实验至少给出：目的、前提、当前位置、命令、预期输出、失败原因、修改挑战和清理范围。脚本辅助建立重复数据，关键工具命令仍由读者亲手执行。
 

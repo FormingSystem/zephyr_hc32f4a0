@@ -1,4 +1,0 @@
-# P005_Windows / 5.2.3\_为清单外的 HC32 HAL 准备固定版本
-# 先核对正文的终端、目录与前提，再执行此完整操作单元。
-# Windows UCRT64；源码根。仅 Git 下载的 HAL 执行这一项提交核验。
-git -C build/learning-tools/deps/hal_xhsc rev-parse HEAD

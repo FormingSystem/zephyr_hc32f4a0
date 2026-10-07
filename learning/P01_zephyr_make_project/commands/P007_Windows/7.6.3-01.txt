@@ -1,5 +1,0 @@
-# P007_Windows / 7.6.3\_接入复位、时钟和链接布局
-# 先核对正文的终端、目录与前提，再执行此完整操作单元。
-# UCRT64；源码根；保留原 SPDX 和版权。
-cp learning/board/labs/hc32_port/soc/xhsc/hc32f4a0/{CMakeLists.txt,soc.c,soc.h,reset_hook.S,icg.ld,hc32_ll_conf.h,hc32f4xx_conf.h} \
-  build/learning-tools/p003/hc32_port/soc/xhsc/hc32f4a0/

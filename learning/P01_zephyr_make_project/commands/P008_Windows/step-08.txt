@@ -1,0 +1,8 @@
+# Windows UCRT64；源码根；上一块 west-demo 已配置、生成成功。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+if west build -d build/learning-tools/west-demo; then
+  ls -l build/learning-tools/west-demo/zephyr/zephyr.elf
+else
+  printf '%s\n' '本次构建失败，不把已有 ELF 当成本次成功。'
+fi

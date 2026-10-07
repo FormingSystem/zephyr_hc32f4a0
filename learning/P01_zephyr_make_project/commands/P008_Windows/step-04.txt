@@ -1,0 +1,5 @@
+# Windows UCRT64；源码根；8.2 已确认正确工作区。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+# 只读解析结果，不下载、不修改清单。
+west list cmsis_6 -f '{name} {url} {revision} {abspath}'

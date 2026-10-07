@@ -1,9 +1,0 @@
-# P005_Windows / 5.2.3\_为清单外的 HC32 HAL 准备固定版本
-# 先核对正文的终端、目录与前提，再执行此完整操作单元。
-# Windows UCRT64；实验源码根。仅在 hal_xhsc 目录尚不存在时执行此下载块。
-mkdir -p build/learning-tools/deps
-test ! -e build/learning-tools/deps/hal_xhsc && \
-  git clone --no-checkout https://github.com/zephyrproject-rtos/hal_xhsc \
-    build/learning-tools/deps/hal_xhsc && \
-  git -C build/learning-tools/deps/hal_xhsc checkout --detach \
-    a84e04900616f68097d80cda2e89eaa8af3afadd

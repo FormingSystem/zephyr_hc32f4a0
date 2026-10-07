@@ -1,9 +1,0 @@
-# P005_Windows / 5.1.2\_CMSIS 版本不是按 Cortex-M4 随便选
-# 先核对正文的终端、目录与前提，再执行此完整操作单元。
-# Windows UCRT64；在本小节指定目录执行，按上一段核对前提。
-cd /g/zephyr_practice/zephyr-main
-source .venv/Scripts/activate
-cat boards/arm/mps2/board.yml
-cat soc/arm/mps2/Kconfig
-cat modules/cmsis_6/Kconfig
-cat modules/cmsis_6/CMakeLists.txt

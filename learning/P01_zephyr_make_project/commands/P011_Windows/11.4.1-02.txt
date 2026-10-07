@@ -1,0 +1,5 @@
+# P011_Windows / 11.4.1\_先登记新板身份
+# 先核对正文的终端、目录与前提，再执行此完整操作单元。
+# UCRT64；源码根。BOARD_ROOT 指包含 boards 的父目录。
+python scripts/list_boards.py --board-root build/learning-tools/p003/new-board \
+  --soc-root . --board practice_mps2 --cmakeformat '{NAME};{DIR};{QUALIFIERS}'

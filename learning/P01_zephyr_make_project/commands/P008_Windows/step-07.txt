@@ -1,0 +1,9 @@
+# Windows UCRT64；源码根；P007 已确认工具、SDK 和 CMSIS 可用。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+# Zephyr 原生变量，在本块定义为当前源码根。
+export ZEPHYR_BASE="$(cygpath -m "$PWD")"
+west -v build --cmake-only -b mps2/an386 \
+  -d build/learning-tools/west-demo samples/hello_world -- \
+  "-DZephyr_DIR=$ZEPHYR_BASE/share/zephyr-package/cmake" \
+  "-DPython3_EXECUTABLE=$(cygpath -m "$(command -v python)")"

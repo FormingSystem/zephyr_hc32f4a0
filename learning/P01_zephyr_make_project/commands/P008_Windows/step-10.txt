@@ -1,0 +1,9 @@
+# Windows UCRT64；源码根；west-demo 已配置成功。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+# 仅重新配置；这次没有要求清空缓存。
+west build -d build/learning-tools/west-demo -c --cmake-only
+# 只列出当前 Ninja 工程提供的 target；不会烧录开发板。
+west build -d build/learning-tools/west-demo -t help
+# 日常构建，-o 的参数交给 Ninja。
+west build -d build/learning-tools/west-demo -o=-j4

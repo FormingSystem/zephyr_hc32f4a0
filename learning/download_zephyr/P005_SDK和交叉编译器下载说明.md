@@ -10,7 +10,7 @@ domains: [zephyr, tools]
 
 # 第5章\_从\_Zephyr\_源码版本选择\_SDK、下载\_ARM\_工具链并完成编译
 
-当前型号与依赖依据统一见[准备专题 P004 的 4.1 节](../P01_zephyr_make_project/环境与依赖导航.md#chip-selection)，完整下载和核验见[准备专题 P004 的 4.2.2、4.2.3 节](../P01_zephyr_make_project/环境与依赖导航.md#section-4-2)。实装芯片先用丝印/BOM/手册确认；CMSIS_6 版本来自当前 Zephyr 清单，HC32 HAL 来自配套移植指定的 hal_xhsc 快照。当前官方清单没有 hal_xhsc，AN386 编译示例也不需要它。下文其他模块名称与布局示例不能替代这条实际操作路线。
+当前型号与依赖依据统一见[准备专题 P004 的 4.1 节](../P01_zephyr_make_project/环境与依赖导航.md#chip-selection)，完整下载和核验见[准备专题 P004 的 4.2.2、4.2.3 节](../P01_zephyr_make_project/P004_CMSIS与HAL选择下载_Windows.md#section-4-2)。实装芯片先用丝印/BOM/手册确认；CMSIS_6 版本来自当前 Zephyr 清单，HC32 HAL 来自配套移植指定的 hal_xhsc 快照。当前官方清单没有 hal_xhsc，AN386 编译示例也不需要它。下文其他模块名称与布局示例不能替代这条实际操作路线。
 
 上一章已经取得 Zephyr 源码和配套模块。现在先用原生 MPS2 目标把 C 程序编译成 ARM 固件，为后续 HC32 适配验证工具环境，读者还需要建立三条联系：**源码版本决定采用哪版 SDK；SDK 发布决定其中的编译器版本；芯片架构决定选用其中哪一套工具链。** 三条联系成立后，还要把路径和板级目标交给构建系统，不能以“下载完了”作为开发环境准备完成的标志。
 
@@ -340,11 +340,11 @@ python -m pip check
 
 ### 5.4.2\_复用 west 管理的 CMSIS
 
-本章使用官方 mps2/an386。CMSIS 的仓库、修订和目录由当前源码 west.yml 决定；按 [P004 的 4.2 节](../P01_zephyr_make_project/环境与依赖导航.md#section-4-2) 在同一源码上建立工作区并取得模块。无需在 SDK 实验目录再下载一份 ZIP。Git for Windows 的选择也沿用 P002 的 2.1.1。
+本章使用官方 mps2/an386。CMSIS 的仓库、修订和目录由当前源码 west.yml 决定；按 [P004 的 4.2 节](../P01_zephyr_make_project/P004_CMSIS与HAL选择下载_Windows.md#section-4-2) 在同一源码上建立工作区并取得模块。无需在 SDK 实验目录再下载一份 ZIP。Git for Windows 的选择也沿用 P002 的 2.1.1。
 
 ```bash
 # Windows UCRT64；当前位置：源码根/build/learning-tools/sdk-p05；.venv 已激活。
-# 此目录位于 P002 建立的同一个 west 工作区内。
+# 此目录位于 主线 P004 已核对的同一个 west 工作区内。
 west topdir
 west list cmsis_6 -f '{url} {revision} {abspath}'
 west update cmsis_6
@@ -634,7 +634,7 @@ python -m pip install -r "$(cygpath -m "$ZIP_SOURCE/scripts/requirements-base.tx
 python -m pip check
 ```
 
-复用 5.4.2 与 P002 已准备的 west 模块。在本实验目录执行下列查询即可，不需要再下载和重命名另一份 CMSIS：
+复用 5.4.2 与主线 P004 已准备的 west 模块。在本实验目录执行下列查询即可，不需要再下载和重命名另一份 CMSIS：
 
 ```bash
 # Windows UCRT64；源码根/build/learning-tools/zephyr-zip-sdk-lab；.venv 已激活。

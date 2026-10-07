@@ -176,7 +176,7 @@ def build(output_path, force):
 def main():
     global SOURCE, MANIFEST, DECK
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--deck", choices=["P001", "P002", "P003", "P004", "P005", "P006", "P007", "Linux-P001"], default="P001",
+    parser.add_argument("--deck", choices=['P001', 'P002', 'P003', 'P004', 'P005', 'P006', 'P007', 'P008', 'P009', 'P010', 'P011', 'Linux-P001'], default="P001",
                         help="Select the formal three-digit deck and its native sources")
     sub = parser.add_subparsers(dest="action", required=True)
     rebuild = sub.add_parser("build", help="Rebuild from src; requires Python 3.10+ only")
@@ -186,13 +186,17 @@ def main():
     update.add_argument("--input", type=Path)
     args = parser.parse_args()
     chapters = {
-        "P003": "P003_Zephyr的CMake接口体系_Windows",
         "P002": "P002_主机工具与Python环境_Windows",
-        "P004": "P004_SDK准备与编译器选型_Windows",
-        "P005": "P005_CMSIS与HAL选择下载_Windows",
-        "P006": "P006_源码模块接入Zephyr工程_Windows",
-        "P007": "P007_编译示例与新增开发板_Windows",
-    }
+        "P003": "P003_SDK准备与编译器选型_Windows",
+        "P004": "P004_CMSIS与HAL选择下载_Windows",
+        "P005": "P005_源码模块接入Zephyr工程_Windows",
+        "P006": "P006_原生CMake与目标模型_Windows",
+        "P007": "P007_Zephyr应用构建_Windows",
+        "P008": "P008_west零基础与Zephyr构建_Windows",
+        "P009": "P009_Zephyr的CMake输入与依赖发现_Windows",
+        "P010": "P010_CMake缓存与构建排错_Windows",
+        "P011": "P011_编译示例与新增开发板_Windows"
+}
     if args.deck in chapters:
         directory = "p" + args.deck[2:]
         SOURCE = HERE / directory / "src"

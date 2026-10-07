@@ -1,0 +1,7 @@
+# P011_Windows / 11.6.4\_把 HAL 能力接成 Zephyr 驱动
+# 先核对正文的终端、目录与前提，再执行此完整操作单元。
+# UCRT64；源码根。
+cp -R learning/board/labs/hc32_port/drivers build/learning-tools/p003/hc32_port/
+cat build/learning-tools/p003/hc32_port/Kconfig
+cat build/learning-tools/p003/hc32_port/CMakeLists.txt
+cat build/learning-tools/p003/hc32_port/drivers/serial/Kconfig.hc32

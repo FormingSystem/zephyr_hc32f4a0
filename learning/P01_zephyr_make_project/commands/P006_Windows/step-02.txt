@@ -1,0 +1,4 @@
+# Windows UCRT64；任意目录；仅上一块确认缺少主机 GCC 时执行。
+# 这是 Windows 主机练习编译器，不是 Zephyr ARM SDK。
+pacman -S --needed mingw-w64-ucrt-x86_64-gcc
+gcc -dumpmachine

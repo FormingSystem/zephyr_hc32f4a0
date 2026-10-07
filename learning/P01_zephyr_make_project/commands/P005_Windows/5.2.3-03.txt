@@ -1,6 +1,0 @@
-# P005_Windows / 5.2.3\_为清单外的 HC32 HAL 准备固定版本
-# 先核对正文的终端、目录与前提，再执行此完整操作单元。
-# Windows UCRT64；源码根；Git 或已有完整 ZIP 模块都要核对这些原有文件。
-cat build/learning-tools/deps/hal_xhsc/zephyr/module.yml
-test -f build/learning-tools/deps/hal_xhsc/hc32_ddl/hc32f4a0/soc/hc32f4a0.h && printf 'HC32F4A0 OK\n'
-test -f build/learning-tools/deps/hal_xhsc/hc32_ddl/hc32f4a0/drivers/inc/hc32_ll_usart.h && printf 'USART DDL OK\n'

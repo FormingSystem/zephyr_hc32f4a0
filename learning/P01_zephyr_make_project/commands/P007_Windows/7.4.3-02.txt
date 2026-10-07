@@ -1,7 +1,0 @@
-# P007_Windows / 7.4.3\_用同一应用验证最小增量
-# 先核对正文的终端、目录与前提，再执行此完整操作单元。
-# Windows UCRT64；源码根 /g/zephyr_practice/zephyr-main；根 .venv 已激活。
-cmake --build build/learning-tools/p003/build-practice-sdk-auto
-grep -E '^CONFIG_(BOARD|SOC|CPU_CORTEX_M4)' \
-  build/learning-tools/p003/build-practice-sdk-auto/zephyr/.config
-ls -l build/learning-tools/p003/build-practice-sdk-auto/zephyr/zephyr.elf

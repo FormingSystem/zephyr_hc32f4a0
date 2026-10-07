@@ -10,26 +10,30 @@ domains: [zephyr, tools]
 
 # 第1章\_演示资料维护
 
-每个独立主题占用一个连续的三位章号。Windows 主线为 P001—P007，Linux 分支保留平台后缀。MD 与 PPT 同名对应，正文按所在章号从 x.1 开始，PPT 页码在每份文稿内独立计数。
+每个核心问题占一个连续三位章号；Windows 主线 P001—P011，另有 Linux P001，共 12 份正式 PPT。MD 与 PPT 同名配对，页码在各册内独立计数。
 
-| 章号 | 正式 PPT | 页数 | 完整正文 |
+| 章号 | 完整正文 | 正式 PPT | 页数 |
 | --- | --- | --- | --- |
-| P001 | [准备UCRT64环境与下载Zephyr_Windows](P001_准备UCRT64环境与下载Zephyr_Windows.pptx) | 41 | [MD](../P001_准备UCRT64环境与下载Zephyr_Windows.md) |
-| P002 | [主机工具与Python环境_Windows](P002_主机工具与Python环境_Windows.pptx) | 16 | [MD](../P002_主机工具与Python环境_Windows.md) |
-| P003 | [Zephyr的CMake接口体系_Windows](P003_Zephyr的CMake接口体系_Windows.pptx) | 56 | [MD](../P003_Zephyr的CMake接口体系_Windows.md) |
-| P004 | [SDK准备与编译器选型_Windows](P004_SDK准备与编译器选型_Windows.pptx) | 45 | [MD](../P004_SDK准备与编译器选型_Windows.md) |
-| P005 | [CMSIS与HAL选择下载_Windows](P005_CMSIS与HAL选择下载_Windows.pptx) | 22 | [MD](../P005_CMSIS与HAL选择下载_Windows.md) |
-| P006 | [源码模块接入Zephyr工程_Windows](P006_源码模块接入Zephyr工程_Windows.pptx) | 14 | [MD](../P006_源码模块接入Zephyr工程_Windows.md) |
-| P007 | [编译示例与新增开发板_Windows](P007_编译示例与新增开发板_Windows.pptx) | 51 | [MD](../P007_编译示例与新增开发板_Windows.md) |
-| Linux-P001 | [官方环境安装与源码准备_Linux](P001_官方环境安装与源码准备_Linux.pptx) | 21 | [MD](../P001_官方环境安装与源码准备_Linux.md) |
+| P001 | [准备UCRT64环境与下载Zephyr](../P001_准备UCRT64环境与下载Zephyr_Windows.md) | [PPT](P001_准备UCRT64环境与下载Zephyr_Windows.pptx) | 41 |
+| P002 | [主机工具与Python环境](../P002_主机工具与Python环境_Windows.md) | [PPT](P002_主机工具与Python环境_Windows.pptx) | 16 |
+| P003 | [SDK准备与编译器选型](../P003_SDK准备与编译器选型_Windows.md) | [PPT](P003_SDK准备与编译器选型_Windows.pptx) | 45 |
+| P004 | [CMSIS与HAL选择下载](../P004_CMSIS与HAL选择下载_Windows.md) | [PPT](P004_CMSIS与HAL选择下载_Windows.pptx) | 22 |
+| P005 | [源码模块接入Zephyr工程](../P005_源码模块接入Zephyr工程_Windows.md) | [PPT](P005_源码模块接入Zephyr工程_Windows.pptx) | 14 |
+| P006 | [原生CMake与目标模型](../P006_原生CMake与目标模型_Windows.md) | [PPT](P006_原生CMake与目标模型_Windows.pptx) | 22 |
+| P007 | [Zephyr应用构建](../P007_Zephyr应用构建_Windows.md) | [PPT](P007_Zephyr应用构建_Windows.pptx) | 17 |
+| P008 | [west零基础与Zephyr构建](../P008_west零基础与Zephyr构建_Windows.md) | [PPT](P008_west零基础与Zephyr构建_Windows.pptx) | 25 |
+| P009 | [Zephyr的CMake输入与依赖发现](../P009_Zephyr的CMake输入与依赖发现_Windows.md) | [PPT](P009_Zephyr的CMake输入与依赖发现_Windows.pptx) | 24 |
+| P010 | [CMake缓存与构建排错](../P010_CMake缓存与构建排错_Windows.md) | [PPT](P010_CMake缓存与构建排错_Windows.pptx) | 20 |
+| P011 | [编译示例与新增开发板](../P011_编译示例与新增开发板_Windows.md) | [PPT](P011_编译示例与新增开发板_Windows.pptx) | 51 |
+| Linux-P001 | [Ubuntu 22.04 环境准备](../P001_官方环境安装与源码准备_Linux.md) | [PPT](P001_官方环境安装与源码准备_Linux.pptx) | 21 |
 
-## 1.1\_文件与命令位置
+## 1.1\_阅读顺序与资料位置
 
-正式 PPT 放在 slides，正文放在其上一级。同名文件配对阅读，学习顺序见 [专题大纲](../大纲.md)。主机与 Python 是 P002，通用 CMake 接口是 P003，SDK 是 P004，源码依赖下载是 P005，模块接入是 P006，编译与新增板是 P007。
+下载准备 P001—P005 → 原生 CMake P006 → Zephyr 应用 P007 → west 入门与 CMake 搭配 P008 → 输入发现 P009 → 缓存排错 P010 → 新增板 P011。
 
-命令分别在 commands/P001_Windows 至 commands/P007_Windows，Linux 使用 commands/P001_Linux。每个 PPT 的“完整命令”相对链接指向对应目录；分发时保留 slides 与 commands 的相邻位置。实验仍在 G:/zephyr_practice/zephyr-main，资料目录不作为实验源码根。
+正式 PPT 放在 slides，正文放在上一级；各章完整命令放在 commands/Pxxx_Windows，Linux 使用 commands/P001_Linux。分发时保持 slides、commands 和正文的相邻位置。配套 labs/cmake_native 提供 P006 的普通主机 C 程序文件；它们由教程提供，不是官方 Zephyr 应用。
 
-P007 中原有 build/learning-tools/p003 和 labs/p003 是实验目录标识，不随资料章号迁移；正文已注明用途，读者继续复用。
+P007/P011 沿用的 build/learning-tools/p003 与 labs/p003 是实验标识，改号不迁移已有产物。
 
 ## 1.2\_封面、页脚署名与页码
 
@@ -47,7 +51,7 @@ P007 中原有 build/learning-tools/p003 和 labs/p003 是实验目录标识，�
 
 ### 1.2.1\_变量、文件、接口和命令的颜色
 
-沿用已有手工标注的分类，浅色页面采用深橙色 `#B84E00` 表示变量、参数及配置字段，蓝色 `#0070C0` 表示文件和路径，深绿色 `#087B3D` 表示接口函数，紫色 `#A02B93` 表示终端命令。普通说明保持深色 `#29263B`，链接保留原有下划线样式。P003 的第 2、18 页提供颜色图例；颜色只辅助辨认，文字仍须明确对象类型。
+沿用已有手工标注的分类，浅色页面采用深橙色 `#B84E00` 表示变量、参数及配置字段，蓝色 `#0070C0` 表示文件和路径，深绿色 `#087B3D` 表示接口函数，紫色 `#A02B93` 表示终端命令。普通说明保持深色 `#29263B`，链接保留原有下划线样式。P006—P010 沿用同一语义配色；颜色只辅助辨认，文字仍须明确对象类型。
 
 按上下文区分目录、工具与函数；文件中的 `cmake-ext` 是配置字段，不能把其中的 cmake 当命令着色。完整路径作为一个对象处理。正文、代码及图示中的同类对象使用一致颜色。代码着色使用原文本框内的富文本片段，保留完整可复制的操作单元；不得拆散文本框或改变代码内容。
 
@@ -57,7 +61,7 @@ P007 中原有 build/learning-tools/p003 和 labs/p003 是实验目录标识，�
 
 正文、代码、表格和图内多行文字采用多倍行距 1.2。段间留白独立设置，正文逻辑段落间可从 12 pt 段后距起按页校准；代码空行与换行保持原样。调整后保留字号与配色，检查文字框、图节点和页脚的间隔，不缩字或恢复单倍来强行塞入内容。封面、标题和单行页脚沿用现有版式。
 
-Windows P001—P007 与 Linux P001 的 8 份正式 PPT 已按此规则整理。规则适用于可编辑文字，现有截图和图片内的文字保留原样。维护时核对保存后的段落属性与原生渲染；不能只把视觉上多出的空白当作 1.2 倍行距已生效。配套 MD 不强制写入行距样式。
+Windows P001—P011 与 Linux P001 的 12 份正式 PPT 已按此规则整理。规则适用于可编辑文字，现有截图和图片内的文字保留原样。维护时核对保存后的段落属性与原生渲染；不能只把视觉上多出的空白当作 1.2 倍行距已生效。配套 MD 不强制写入行距样式。
 
 ## 1.3\_保存、同步与重建
 
@@ -65,11 +69,11 @@ Windows P001—P007 与 Linux P001 的 8 份正式 PPT 已按此规则整理。�
 
 ```powershell
 # 当前位置：learning/P01_zephyr_make_project/slides；资料维护，不是实验命令。
-python build.py --deck P004 sync
-python build.py --deck P004 build --output P004-review.pptx
+python build.py --deck P003 sync
+python build.py --deck P003 build --output P003-review.pptx
 ```
 
-可选 --deck 为 P001、P002、P003、P004、P005、P006、P007、Linux-P001。P001 原生源在 src；P002—P007 分别在 p02—p07 的 src，Linux P001 在 p01_linux/src。每个目录同级的 source.json 保存页序。它们只承担 PPT 重建，不是实验目录。
+可选 --deck 为 P001 至 P011，以及 Linux-P001。P001 原生源在 src；P002—P011 分别在 p02—p11/src，Linux P001 在 p01_linux/src。各目录的 source.json 保存页序。它们用于文稿重建，不是实验目录。
 
 先同步再重建；默认拒绝覆盖候选输出，明确使用 --force 才覆盖。--input 可同步另存文件，须先核对是否包含最新手工修改。旧分册编号和生成入口已退出正式使用。
 

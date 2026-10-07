@@ -8,278 +8,223 @@
     },
     {
       "number": 2,
-      "title": "本章沿着一个应用理解构建体系",
+      "title": "P003 · SDK 准备与编译器选型",
       "part": "ppt/slides/slide2.xml"
     },
     {
       "number": 3,
-      "title": "少量应用文件怎样组成一份固件",
+      "title": "确定原生源码所需要的SDK包版本",
       "part": "ppt/slides/slide3.xml"
     },
     {
       "number": 4,
-      "title": "应用构建体系的思维导图",
+      "title": "推荐版本与兼容检查",
       "part": "ppt/slides/slide4.xml"
     },
     {
       "number": 5,
-      "title": "CMake、west 和 Ninja 的职责",
+      "title": "SDK 发行与 GCC 版本",
       "part": "ppt/slides/slide5.xml"
     },
     {
       "number": 6,
-      "title": "配置阶段与构建阶段",
+      "title": "电脑架构与开发板架构",
       "part": "ppt/slides/slide6.xml"
     },
     {
       "number": 7,
-      "title": "构建实例的输入与执行前提",
-      "part": "ppt/slides/build_methods_1.xml"
-    },
-    {
-      "number": 8,
-      "title": "首次配置与规则生成",
-      "part": "ppt/slides/build_methods_2.xml"
-    },
-    {
-      "number": 9,
-      "title": "编译与增量构建",
-      "part": "ppt/slides/build_methods_3.xml"
-    },
-    {
-      "number": 10,
-      "title": "并行、详细输出与指定目标",
-      "part": "ppt/slides/build_methods_4.xml"
-    },
-    {
-      "number": 11,
-      "title": "west build 复用同一个构建目录",
-      "part": "ppt/slides/build_methods_5.xml"
-    },
-    {
-      "number": 12,
-      "title": "Debug 与 Release 在 Zephyr 中的边界",
-      "part": "ppt/slides/build_methods_6.xml"
-    },
-    {
-      "number": 13,
-      "title": "官方应用入口中的文件",
+      "title": "SDK 1.0.1 官方下载入口",
       "part": "ppt/slides/slide7.xml"
     },
     {
-      "number": 14,
-      "title": "五行入口怎样让应用使用 Zephyr",
+      "number": 8,
+      "title": "GNU 与 Minimal：不同打包方式",
       "part": "ppt/slides/slide8.xml"
     },
     {
-      "number": 15,
-      "title": "app 是构建目标，不是开发板",
+      "number": 9,
+      "title": "同一发行，多个目标架构",
       "part": "ppt/slides/slide9.xml"
     },
     {
-      "number": 16,
-      "title": "find_package 进入的实际调用链",
+      "number": 10,
+      "title": "三种归档，不能混称为 SDK",
       "part": "ppt/slides/slide10.xml"
     },
     {
-      "number": 17,
-      "title": "初始化顺序来自数据依赖",
+      "number": 11,
+      "title": "先认出手上下载的这一包",
       "part": "ppt/slides/slide11.xml"
     },
     {
-      "number": 18,
-      "title": "哪些是 CMake，哪些是 Zephyr 接口",
+      "number": 12,
+      "title": "CMake 程序和接入脚本分属两层",
       "part": "ppt/slides/slide12.xml"
     },
     {
-      "number": 19,
-      "title": "应用目录、源码包和 SDK 各在哪里",
+      "number": 13,
+      "title": "SDK 目录各层负责什么",
       "part": "ppt/slides/slide13.xml"
     },
     {
-      "number": 20,
-      "title": "BOARD 把应用对应到硬件",
+      "number": 14,
+      "title": "两条准备路线，汇入同一工程接口",
       "part": "ppt/slides/slide14.xml"
     },
     {
-      "number": 21,
-      "title": "CONF_FILE 选文件，Kconfig 计算功能",
+      "number": 15,
+      "title": "下载通道与网络配置",
       "part": "ppt/slides/slide15.xml"
     },
     {
-      "number": 22,
-      "title": "硬件描述怎样变成编译信息",
+      "number": 16,
+      "title": "在 UCRT64 核对 SDK 文件摘要",
       "part": "ppt/slides/slide16.xml"
     },
     {
-      "number": 23,
-      "title": "BOARD 的文档直接告诉我们读取者",
+      "number": 17,
+      "title": "SDK 与项目源码的目录关系",
       "part": "ppt/slides/slide17.xml"
     },
     {
-      "number": 24,
-      "title": "Zephyr 源码包与 SDK 工具包",
+      "number": 18,
+      "title": "SDK 文件与工程配置来自哪里",
       "part": "ppt/slides/slide18.xml"
     },
     {
-      "number": 25,
-      "title": "SDK 已注册时的默认发现",
+      "number": 19,
+      "title": "在 UCRT64 解压 SDK 归档",
       "part": "ppt/slides/slide19.xml"
     },
     {
-      "number": 26,
-      "title": "工具链类型选择一组适配规则",
+      "number": 20,
+      "title": "先另开 PowerShell，再查看 setup 帮助",
       "part": "ppt/slides/slide20.xml"
     },
     {
-      "number": 27,
-      "title": "板和 SDK 共同确定 ARM 编译",
+      "number": 21,
+      "title": "只有缺少 ARM 的 Minimal 才需要补装",
       "part": "ppt/slides/slide21.xml"
     },
     {
-      "number": 28,
-      "title": "三种包形态对应两类接入路线",
+      "number": 22,
+      "title": "手动补入 ARM 包：回到 UCRT64",
       "part": "ppt/slides/slide22.xml"
     },
     {
-      "number": 29,
-      "title": "三个路径接口寻找不同的对象",
+      "number": 23,
+      "title": "在 UCRT64 核对独立 ARM 附件",
       "part": "ppt/slides/slide23.xml"
     },
     {
-      "number": 30,
-      "title": "下载项目和接入工程是两个阶段",
+      "number": 24,
+      "title": "在 UCRT64 把工具链包放入 gnu",
       "part": "ppt/slides/slide24.xml"
     },
     {
-      "number": 31,
-      "title": "默认列表、追加列表与替换列表",
+      "number": 25,
+      "title": "setup.cmd 单独使用 PowerShell",
       "part": "ppt/slides/slide25.xml"
     },
     {
-      "number": 32,
-      "title": "CMSIS 元数据说明接入文件在外部",
+      "number": 26,
+      "title": "回到 UCRT64，检查 SDK 与 ARM GCC",
       "part": "ppt/slides/slide26.xml"
     },
     {
-      "number": 33,
-      "title": "CMSIS 库和接入脚本怎样连起来",
+      "number": 27,
+      "title": "路线①：完整 GNU SDK 交给工程",
       "part": "ppt/slides/slide27.xml"
     },
     {
-      "number": 34,
-      "title": "模块目录变量在发现链中产生",
+      "number": 28,
+      "title": "路线②：Minimal 和 ARM 组件先组装",
       "part": "ppt/slides/slide28.xml"
     },
     {
-      "number": 35,
-      "title": "模块发现与接入的调用时序",
+      "number": 29,
+      "title": "路线③：独立目录直接交给 Zephyr",
       "part": "ppt/slides/slide29.xml"
     },
     {
-      "number": 36,
-      "title": "模块入口执行后，源码怎样加入目标",
+      "number": 30,
+      "title": "独立工具链的 CMake 规则来自哪里",
       "part": "ppt/slides/slide30.xml"
     },
     {
-      "number": 37,
-      "title": "头文件目录也有作用范围",
+      "number": 31,
+      "title": "SDK 接口：默认与按需覆盖",
       "part": "ppt/slides/slide31.xml"
     },
     {
-      "number": 38,
-      "title": "输入值保存在哪一层",
+      "number": 32,
+      "title": "应用加载 Zephyr，Zephyr 再查找 SDK",
       "part": "ppt/slides/slide32.xml"
     },
     {
-      "number": 39,
-      "title": "配置缓存、任务规则与编译产物",
-      "part": "ppt/slides/build_methods_7.xml"
-    },
-    {
-      "number": 40,
-      "title": "只读查看构建缓存",
-      "part": "ppt/slides/build_methods_8.xml"
-    },
-    {
-      "number": 41,
-      "title": "用 -D 修改，再省略同一个输入",
-      "part": "ppt/slides/build_methods_9.xml"
-    },
-    {
-      "number": 42,
-      "title": "撤销一项缓存输入",
-      "part": "ppt/slides/build_methods_10.xml"
-    },
-    {
-      "number": 43,
-      "title": "项目脚本也能写回缓存",
-      "part": "ppt/slides/build_methods_11.xml"
-    },
-    {
-      "number": 44,
-      "title": "clean 保留配置，build 再生成产物",
-      "part": "ppt/slides/build_methods_12.xml"
-    },
-    {
-      "number": 45,
-      "title": "重新配置、fresh 与 pristine 的范围",
-      "part": "ppt/slides/build_methods_13.xml"
-    },
-    {
-      "number": 46,
-      "title": "预设是输入方案，缓存是配置状态",
-      "part": "ppt/slides/build_methods_14.xml"
-    },
-    {
-      "number": 47,
-      "title": "旧缓存为什么会挡住新 export",
+      "number": 33,
+      "title": "芯片配置如何对应 ARM 编译器",
       "part": "ppt/slides/slide33.xml"
     },
     {
-      "number": 48,
-      "title": "模块列表的合并行为需要单独看",
+      "number": 34,
+      "title": "工程选中 SDK 的检查依据",
       "part": "ppt/slides/slide34.xml"
     },
     {
-      "number": 49,
-      "title": "改变哪个对象，就选择哪类接口",
+      "number": 35,
+      "title": "后续 P009 详解：SDK 选择的保存范围",
       "part": "ppt/slides/slide35.xml"
     },
     {
-      "number": 50,
-      "title": "更大工程的扩展仍有明确边界",
+      "number": 36,
+      "title": "可选：在 UCRT64 固定 SDK 根",
       "part": "ppt/slides/slide36.xml"
     },
     {
-      "number": 51,
-      "title": "从生成文件观察配置结果",
+      "number": 37,
+      "title": "可选：为一个构建目录固定 SDK",
       "part": "ppt/slides/slide37.xml"
     },
     {
-      "number": 52,
-      "title": "用 hello_world 的产物闭合整条链",
+      "number": 38,
+      "title": "可选：用户预设固定工程组合",
       "part": "ppt/slides/slide38.xml"
     },
     {
-      "number": 53,
-      "title": "按发现、配置和构建分别排错",
+      "number": 39,
+      "title": "setup /c 写入当前 Windows 用户账户",
       "part": "ppt/slides/slide39.xml"
     },
     {
-      "number": 54,
-      "title": "官方文档的定向阅读路线",
+      "number": 40,
+      "title": "PowerShell：保存用户级 SDK 包地址",
       "part": "ppt/slides/slide40.xml"
     },
     {
-      "number": 55,
-      "title": "短 rst 文件怎样生成完整接口文档",
+      "number": 41,
+      "title": "PowerShell：只读查询 SDK 包地址",
       "part": "ppt/slides/slide41.xml"
     },
     {
-      "number": 56,
-      "title": "后续各章回到自己的接口与模型",
+      "number": 42,
+      "title": ".venv 与 SDK 各自负责什么",
       "part": "ppt/slides/slide42.xml"
+    },
+    {
+      "number": 43,
+      "title": "新增对象不同，接入位置也不同",
+      "part": "ppt/slides/slide43.xml"
+    },
+    {
+      "number": 44,
+      "title": "PowerShell：补装另一套官方工具链",
+      "part": "ppt/slides/slide44.xml"
+    },
+    {
+      "number": 45,
+      "title": "外部编译器与自建 SDK 的入口",
+      "part": "ppt/slides/slide45.xml"
     }
   ],
   "parts": [
@@ -289,22 +234,20 @@
     "docProps/core.xml",
     "ppt/_rels/presentation.xml.rels",
     "ppt/media/image1.png",
+    "ppt/media/image10.png",
+    "ppt/media/image11.png",
+    "ppt/media/image12.png",
+    "ppt/media/image13.png",
+    "ppt/media/image2.png",
+    "ppt/media/image3.png",
+    "ppt/media/image4.png",
+    "ppt/media/image5.png",
+    "ppt/media/image6.png",
+    "ppt/media/image7.png",
+    "ppt/media/image8.png",
+    "ppt/media/image9.png",
     "ppt/notesMasters/_rels/notesMaster1.xml.rels",
     "ppt/notesMasters/notesMaster1.xml",
-    "ppt/notesSlides/_rels/build_methods_1.xml.rels",
-    "ppt/notesSlides/_rels/build_methods_10.xml.rels",
-    "ppt/notesSlides/_rels/build_methods_11.xml.rels",
-    "ppt/notesSlides/_rels/build_methods_12.xml.rels",
-    "ppt/notesSlides/_rels/build_methods_13.xml.rels",
-    "ppt/notesSlides/_rels/build_methods_14.xml.rels",
-    "ppt/notesSlides/_rels/build_methods_2.xml.rels",
-    "ppt/notesSlides/_rels/build_methods_3.xml.rels",
-    "ppt/notesSlides/_rels/build_methods_4.xml.rels",
-    "ppt/notesSlides/_rels/build_methods_5.xml.rels",
-    "ppt/notesSlides/_rels/build_methods_6.xml.rels",
-    "ppt/notesSlides/_rels/build_methods_7.xml.rels",
-    "ppt/notesSlides/_rels/build_methods_8.xml.rels",
-    "ppt/notesSlides/_rels/build_methods_9.xml.rels",
     "ppt/notesSlides/_rels/notesSlide1.xml.rels",
     "ppt/notesSlides/_rels/notesSlide10.xml.rels",
     "ppt/notesSlides/_rels/notesSlide11.xml.rels",
@@ -342,25 +285,14 @@
     "ppt/notesSlides/_rels/notesSlide40.xml.rels",
     "ppt/notesSlides/_rels/notesSlide41.xml.rels",
     "ppt/notesSlides/_rels/notesSlide42.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide43.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide44.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide45.xml.rels",
     "ppt/notesSlides/_rels/notesSlide5.xml.rels",
     "ppt/notesSlides/_rels/notesSlide6.xml.rels",
     "ppt/notesSlides/_rels/notesSlide7.xml.rels",
     "ppt/notesSlides/_rels/notesSlide8.xml.rels",
     "ppt/notesSlides/_rels/notesSlide9.xml.rels",
-    "ppt/notesSlides/build_methods_1.xml",
-    "ppt/notesSlides/build_methods_10.xml",
-    "ppt/notesSlides/build_methods_11.xml",
-    "ppt/notesSlides/build_methods_12.xml",
-    "ppt/notesSlides/build_methods_13.xml",
-    "ppt/notesSlides/build_methods_14.xml",
-    "ppt/notesSlides/build_methods_2.xml",
-    "ppt/notesSlides/build_methods_3.xml",
-    "ppt/notesSlides/build_methods_4.xml",
-    "ppt/notesSlides/build_methods_5.xml",
-    "ppt/notesSlides/build_methods_6.xml",
-    "ppt/notesSlides/build_methods_7.xml",
-    "ppt/notesSlides/build_methods_8.xml",
-    "ppt/notesSlides/build_methods_9.xml",
     "ppt/notesSlides/notesSlide1.xml",
     "ppt/notesSlides/notesSlide10.xml",
     "ppt/notesSlides/notesSlide11.xml",
@@ -398,6 +330,9 @@
     "ppt/notesSlides/notesSlide40.xml",
     "ppt/notesSlides/notesSlide41.xml",
     "ppt/notesSlides/notesSlide42.xml",
+    "ppt/notesSlides/notesSlide43.xml",
+    "ppt/notesSlides/notesSlide44.xml",
+    "ppt/notesSlides/notesSlide45.xml",
     "ppt/notesSlides/notesSlide5.xml",
     "ppt/notesSlides/notesSlide6.xml",
     "ppt/notesSlides/notesSlide7.xml",
@@ -535,20 +470,6 @@
     "ppt/slideMasters/slideMaster7.xml",
     "ppt/slideMasters/slideMaster8.xml",
     "ppt/slideMasters/slideMaster9.xml",
-    "ppt/slides/_rels/build_methods_1.xml.rels",
-    "ppt/slides/_rels/build_methods_10.xml.rels",
-    "ppt/slides/_rels/build_methods_11.xml.rels",
-    "ppt/slides/_rels/build_methods_12.xml.rels",
-    "ppt/slides/_rels/build_methods_13.xml.rels",
-    "ppt/slides/_rels/build_methods_14.xml.rels",
-    "ppt/slides/_rels/build_methods_2.xml.rels",
-    "ppt/slides/_rels/build_methods_3.xml.rels",
-    "ppt/slides/_rels/build_methods_4.xml.rels",
-    "ppt/slides/_rels/build_methods_5.xml.rels",
-    "ppt/slides/_rels/build_methods_6.xml.rels",
-    "ppt/slides/_rels/build_methods_7.xml.rels",
-    "ppt/slides/_rels/build_methods_8.xml.rels",
-    "ppt/slides/_rels/build_methods_9.xml.rels",
     "ppt/slides/_rels/slide1.xml.rels",
     "ppt/slides/_rels/slide10.xml.rels",
     "ppt/slides/_rels/slide11.xml.rels",
@@ -586,25 +507,14 @@
     "ppt/slides/_rels/slide40.xml.rels",
     "ppt/slides/_rels/slide41.xml.rels",
     "ppt/slides/_rels/slide42.xml.rels",
+    "ppt/slides/_rels/slide43.xml.rels",
+    "ppt/slides/_rels/slide44.xml.rels",
+    "ppt/slides/_rels/slide45.xml.rels",
     "ppt/slides/_rels/slide5.xml.rels",
     "ppt/slides/_rels/slide6.xml.rels",
     "ppt/slides/_rels/slide7.xml.rels",
     "ppt/slides/_rels/slide8.xml.rels",
     "ppt/slides/_rels/slide9.xml.rels",
-    "ppt/slides/build_methods_1.xml",
-    "ppt/slides/build_methods_10.xml",
-    "ppt/slides/build_methods_11.xml",
-    "ppt/slides/build_methods_12.xml",
-    "ppt/slides/build_methods_13.xml",
-    "ppt/slides/build_methods_14.xml",
-    "ppt/slides/build_methods_2.xml",
-    "ppt/slides/build_methods_3.xml",
-    "ppt/slides/build_methods_4.xml",
-    "ppt/slides/build_methods_5.xml",
-    "ppt/slides/build_methods_6.xml",
-    "ppt/slides/build_methods_7.xml",
-    "ppt/slides/build_methods_8.xml",
-    "ppt/slides/build_methods_9.xml",
     "ppt/slides/slide1.xml",
     "ppt/slides/slide10.xml",
     "ppt/slides/slide11.xml",
@@ -642,6 +552,9 @@
     "ppt/slides/slide40.xml",
     "ppt/slides/slide41.xml",
     "ppt/slides/slide42.xml",
+    "ppt/slides/slide43.xml",
+    "ppt/slides/slide44.xml",
+    "ppt/slides/slide45.xml",
     "ppt/slides/slide5.xml",
     "ppt/slides/slide6.xml",
     "ppt/slides/slide7.xml",

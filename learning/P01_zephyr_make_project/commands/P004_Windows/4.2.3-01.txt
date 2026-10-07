@@ -1,8 +1,9 @@
-# 新开的 Windows PowerShell；进入 SDK 根。
-Set-Location -LiteralPath `
-    'G:\zephyr_practice\zephyr-sdk-1.0.1'
-# 检查本窗口 PATH，缺工具时停止。
-Get-Command cmake, 7z -ErrorAction Stop
-Get-Item '.\sdk_version', '.\setup.cmd'
-# 只查帮助，不安装；本版帮助退出码为 1。
-.\setup.cmd /?
+# P004_Windows / 4.2.3\_为清单外的 HC32 HAL 准备固定版本
+# 先核对正文的终端、目录与前提，再执行此完整操作单元。
+# Windows UCRT64；实验源码根。仅在 hal_xhsc 目录尚不存在时执行此下载块。
+mkdir -p build/learning-tools/deps
+test ! -e build/learning-tools/deps/hal_xhsc && \
+  git clone --no-checkout https://github.com/zephyrproject-rtos/hal_xhsc \
+    build/learning-tools/deps/hal_xhsc && \
+  git -C build/learning-tools/deps/hal_xhsc checkout --detach \
+    a84e04900616f68097d80cda2e89eaa8af3afadd

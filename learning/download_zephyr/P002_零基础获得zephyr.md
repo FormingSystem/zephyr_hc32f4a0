@@ -10,7 +10,7 @@ domains: [zephyr, tools]
 
 # 第2章\_Git\_下载基础与减量方法
 
-当前型号与依赖依据统一见[准备专题 P004 的 4.1 节](../P01_zephyr_make_project/环境与依赖导航.md#chip-selection)，完整下载和核验见[准备专题 P004 的 4.2.2、4.2.3 节](../P01_zephyr_make_project/环境与依赖导航.md#section-4-2)。实装芯片先用丝印/BOM/手册确认；CMSIS_6 版本来自当前 Zephyr 清单，HC32 HAL 来自配套移植指定的 hal_xhsc 快照。当前官方清单没有 hal_xhsc，AN386 编译示例也不需要它。下文其他模块名称与布局示例不能替代这条实际操作路线。
+当前型号与依赖依据统一见[准备专题 P004 的 4.1 节](../P01_zephyr_make_project/环境与依赖导航.md#chip-selection)，完整下载和核验见[准备专题 P004 的 4.2.2、4.2.3 节](../P01_zephyr_make_project/P004_CMSIS与HAL选择下载_Windows.md#section-4-2)。实装芯片先用丝印/BOM/手册确认；CMSIS_6 版本来自当前 Zephyr 清单，HC32 HAL 来自配套移植指定的 hal_xhsc 快照。当前官方清单没有 hal_xhsc，AN386 编译示例也不需要它。下文其他模块名称与布局示例不能替代这条实际操作路线。
 
 本章操作终端统一为 **MSYS2 UCRT64 Bash**，主机仍是 Windows x64。独立下载实验使用 `~/zephyr-download-lab`；路径、工具准备和当前 HC32 集成工程的区别见[环境与目录约定](环境与目录约定.md)。下文保留的版本、模块名和仓库地址示例须结合实际清单核对。
 

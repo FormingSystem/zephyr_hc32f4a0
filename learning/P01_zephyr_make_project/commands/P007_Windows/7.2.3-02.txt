@@ -1,4 +1,0 @@
-# Windows UCRT64；源码根；7.2.3 上一块配置成功后执行。
-cd /g/zephyr_practice/zephyr-main &&
-cmake --build build/learning-tools/p003/build-mps2-cross-compile-layout2 &&
-ls -l build/learning-tools/p003/build-mps2-cross-compile-layout2/zephyr/zephyr.elf
