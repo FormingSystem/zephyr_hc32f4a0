@@ -1,9 +1,0 @@
-# P003_Windows / 3.2.8\_以后增加芯片、工具链或源码包，分别改哪里
-# 先核对正文的终端、目录与前提，再执行此完整操作单元。
-# 可选分支：Windows PowerShell；只有开发 RISC-V 时才执行。
-# SDK 根按实际位置修改，本条会下载缺少的目标工具链。
-Set-Location -LiteralPath 'G:\zephyr_practice\zephyr-sdk-1.0.1'
-if ('riscv64-zephyr-elf' -notin (Get-Content '.\sdk_gnu_toolchains')) {
-    throw '当前 SDK 清单不支持该目标'
-}
-.\setup.cmd /t riscv64-zephyr-elf

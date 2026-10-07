@@ -1,0 +1,4 @@
+# Windows UCRT64；源码根；可选：把 SDK 根交给本窗口启动的 CMake。
+cd /g/zephyr_practice/zephyr-main
+export ZEPHYR_SDK_INSTALL_DIR='G:/zephyr_practice/zephyr-sdk-1.0.1'
+printf '%s\n' "$ZEPHYR_SDK_INSTALL_DIR"

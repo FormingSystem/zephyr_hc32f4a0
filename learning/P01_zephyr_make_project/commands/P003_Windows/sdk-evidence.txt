@@ -1,0 +1,5 @@
+# Windows UCRT64；先完成第 19 页的 CMake 配置，才有这些产物。
+cd /g/zephyr_practice/zephyr-main/build/learning-tools/p003/sdk-explicit
+grep -E 'ZEPHYR_SDK_INSTALL_DIR|CMAKE_C_COMPILER' CMakeCache.txt
+grep -m1 'arm-zephyr-eabi-gcc' compile_commands.json
+grep -E '^CONFIG_(ARCH|CPU_CORTEX_M4|FPU|ARM)' zephyr/.config

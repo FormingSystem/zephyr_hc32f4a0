@@ -1,4 +1,0 @@
-# P003_Windows / 3.2.6\_setup.cmd /c 究竟给谁保存了什么
-# 先核对正文的终端、目录与前提，再执行此完整操作单元。
-# Windows PowerShell；任意目录；只读查询当前 Windows 用户的包记录。
-reg.exe query 'HKCU\Software\Kitware\CMake\Packages\Zephyr-sdk'

@@ -1,0 +1,12 @@
+# Windows UCRT64；完成 P002—P005；已解压同版独立 ARM 包。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+unset ZEPHYR_SDK_INSTALL_DIR
+cmake -S samples/hello_world -B build/learning-tools/p003/arm-standalone \
+  -G Ninja -DBOARD=mps2/an386 \
+  "-DZephyr_DIR=$(cygpath -m "$PWD")/share/zephyr-package/cmake" \
+  "-DPython3_EXECUTABLE=$(cygpath -m "$(command -v python)")" \
+  -DZEPHYR_TOOLCHAIN_VARIANT=cross-compile \
+  -DCROSS_COMPILE=G:/zephyr_practice/arm-zephyr-eabi/bin/arm-zephyr-eabi- \
+  -DCROSS_COMPILE_TOOLCHAIN_PATH=G:/zephyr_practice/arm-zephyr-eabi \
+  -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
