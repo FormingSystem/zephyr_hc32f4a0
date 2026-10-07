@@ -4,7 +4,7 @@
 
 west 是 Python 命令行程序；工作区清单描述源码仓库组合，扩展命令负责构建、测试等操作。先区分“安装 west”与“告诉 west 当前工程在哪里”。通用原理和无需联网的小实验见 [west 大纲](../../learning/west/大纲.md)。
 
-首次学习从 [west 第一章](../../learning/west/P01_建立第一个多仓库工作区.md)开始，按单元学习初始化、版本、配置、扩展和团队交付。工具首次安装需要网络，源码练习使用本地材料；实验 .west 与工程父目录 .west 分开，不把教学清单覆盖到当前工程。
+首次学习从 [west 第一章](../../learning/west/P001_建立第一个多仓库工作区.md)开始，按单元学习初始化、版本、配置、扩展和团队交付。工具首次安装需要网络，源码练习使用本地材料；实验 .west 与工程父目录 .west 分开，不把教学清单覆盖到当前工程。
 
 ## 本工程采用的布局
 
@@ -59,6 +59,10 @@ west 官方不支持工作区根同时作为 Git 仓库；即使某个版本暂�
 现有本机克隆保留原源码目录，仅在父目录登记 .west。新机器建议先建专门的 workspace 再 clone，以免多个无关仓库共用父目录；本工作区只有当前 manifest，没有额外项目获取。若父目录已有别的 west 工作区，应另外选择空工作区克隆，不覆盖它。
 
 ## 平时如何使用
+
+理解自定义方案时，先读[west 五章路线](../../learning/west/大纲.md)：第三章解释字段怎样变成 Project 属性，第二章跟踪 Git 子进程，第四章完整实现 userdata 驱动的 repo-audit，第五章区分内建与仓库扩展。这些实验在独立教学工作区进行。
+
+在本工程，`.west/config` 选择 `project-west.yml`，其中 `self.west-commands` 指向 `scripts/west-commands.yml`；该文件把 build 登记到 `scripts/west_commands/build.py`。west 负责发现与调度扩展，build 的 Python 代码再调用 CMake 与构建工具。`project_env.py` 是本项目另一个显式脚本入口，不会因为保存清单而自动执行；Kconfig、设备树和 CMake 也各有自己的规则与读取阶段，不能把它们的属性任意加入 west 项目字段。
 
 ```bash
 python scripts/project_env.py exec west boards

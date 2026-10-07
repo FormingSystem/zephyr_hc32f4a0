@@ -14,6 +14,7 @@ LAB_ROOT = Path(__file__).resolve().parents[3] / "build" / "learning-tools" / "w
 
 
 def local_path(value):
+    """用户相对路径按启动目录求绝对值，再限制为本教材实验范围。"""
     path = Path(value).resolve()
     if not path.is_relative_to(LAB_ROOT.resolve()):
         raise ValueError("初始化目标与源仓库必须在 build/learning-tools/west 内")
@@ -29,6 +30,7 @@ def main():
     parser.add_argument("directory")
     args = parser.parse_args()
     destination = local_path(args.directory)
+    # 使用当前解释器安装的 west；下面只组装参数，不复刻 west 初始化逻辑。
     command = [sys.executable, "-m", "west", "init"]
     if args.local:
         if args.mr:
@@ -50,6 +52,7 @@ def main():
         command.append(str(destination))
     if (workspace / ".west").exists():
         parser.error("目标工作区已经初始化；不覆盖 .west")
+    # 只改子进程的环境副本，避免外层工作区配置覆盖本实验定位。
     env = os.environ.copy()
     for key in list(env):
         if key == "ZEPHYR_BASE" or key.startswith("WEST_CONFIG_"):
@@ -65,6 +68,7 @@ def main():
         if not args.local:
             command[-1] = str(staged)
         print("Running west init outside the enclosing workspace", flush=True)
+        # 启动真正的 west 并等待；失败时停止，不能继续搬移半成品。
         subprocess.run(command, cwd=temporary, env=env, check=True)
         if not args.local:
             if (not staged.resolve().is_relative_to(temporary)
@@ -72,6 +76,7 @@ def main():
                     or workspace.exists()):
                 raise RuntimeError("拒绝转移：源或目标超出实验边界，或目标已存在")
             workspace.parent.mkdir(parents=True, exist_ok=True)
+            # 成功后将本次新建工作区移到用户给定的实验目录；-l 分支不搬移。
             shutil.move(str(staged), str(workspace))
 
 
