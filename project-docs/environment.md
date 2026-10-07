@@ -14,7 +14,7 @@
 | CMSIS_6、华大 HAL | modules/hal 下受控快照 | lock 记录来源；应用与入口限定模块集合 |
 | Python 构建/测试包 | 本仓库 .venv | requirements-dev.txt 汇总依赖；pip check |
 | west / pyOCD | .venv 中安装 | requirements-tools.txt 固定 1.5.0 / 0.45.1 |
-| ARM 编译器、SDK QEMU | 外部 Zephyr SDK 1.0.1 | .local/environment.json 登记；doctor 核对 |
+| ARM 编译器 | 外部 Zephyr SDK 1.0.1 | .local/environment.json 登记；doctor 核对 |
 | Git、CMake、Ninja、dtc、gperf | 主机安装 | doctor 查可执行文件与版本 |
 | 主机 C 实验的 GCC/GDB | MSYS2 UCRT64 | gcc --version、gdb --version |
 | VS Code 插件 | 编辑器安装 | 工作区推荐扩展；不代替编译器 |
@@ -22,6 +22,10 @@
 `requirements-dev.txt` 引入 Zephyr 的 base、build-test、run-test 依赖以及项目工具依赖。上游若声明版本范围，安装结果可能随时间变化；它不是所有平台通用的完整传递依赖锁。
 
 ## 1. 安装 Windows 主机工具
+
+需要快速准备环境时，在工程根运行 `setup-windows.cmd`。它支持中英文、可选安装盘符、国内/全球镜像、
+用户或系统环境变量及回退记录；使用方法和教学备份恢复见[Windows 一键环境](windows-bootstrap.md)。
+下文保留逐步手工安装路线，适合环境搭建教学。
 
 在 PowerShell 中检查 `winget --version`。若没有 WinGet，按 [Microsoft 安装说明](https://learn.microsoft.com/windows/package-manager/winget/)准备；已有工具先检查版本，只安装缺少的部分：
 
@@ -105,13 +109,14 @@ Select-String -LiteralPath .\sha256.sum -Pattern 'zephyr-sdk-1\.0\.1_windows-x86
 用 7-Zip 将安装包解压到自选工具目录，SDK 放在源码仓库外。然后在解压出的 `zephyr-sdk-1.0.1` 目录打开 PowerShell，执行：
 
 ```powershell
-.\setup.cmd /t arm-zephyr-eabi /h /c
+.\setup.cmd /t arm-zephyr-eabi /c
 Get-Content .\sdk_version
 Test-Path .\gnu\arm-zephyr-eabi\bin\arm-zephyr-eabi-gcc.exe
-Test-Path .\hosttools\qemu\qemu-system-arm.exe
 ```
 
-`/t` 选择 ARM GNU 工具链，`/h` 安装主机工具，`/c` 注册 SDK 的 CMake 包。安装可能仍需联网；不能将只解压 minimal 包视为完成安装。预期版本为 `1.0.1`，两项路径检查均为 `True`。SDK 目录移动后应重新运行 setup 并重新登记项目 SDK 路径。安装布局参见[仓库内 SDK 说明](../doc/develop/toolchains/zephyr_sdk.rst)。
+`/t` 选择 ARM GNU 工具链，`/c` 注册 SDK 的 CMake 包。安装可能仍需联网；不能将只解压 minimal 包视为完成安装。预期版本为 `1.0.1`，ARM 编译器路径检查为 `True`。SDK 目录移动后应重新运行 setup 并重新登记项目 SDK 路径。安装布局参见[仓库内 SDK 说明](../doc/develop/toolchains/zephyr_sdk.rst)。
+
+2026-10-03 核对 [SDK 1.0.1 Windows 安装脚本](https://github.com/zephyrproject-rtos/sdk-ng/blob/v1.0.1/scripts/template_setup_win)：其 `/h` 分支只打印主机工具不可用的跳过提示，不会安装 QEMU。全新 Windows 安装不能仅凭 SDK setup 成功就执行下文模拟验收；需要另外准备工程可识别的 QEMU，现有本机模拟结果也不能证明官方 Windows SDK 包自带 QEMU。UCRT64 中的逐步安装讲解见[下载 SDK 与安装依赖包](../learning/P01_zephyr_make_project/环境与依赖导航.md)。
 
 SDK 安装需要先完成，是因为项目的 `setup_environment.py` 会检查 SDK 版本及 ARM 编译器后才创建 `.venv`。不用先建立一个临时上游 Zephyr 工作区来安装 SDK。
 
@@ -209,7 +214,7 @@ Linux 使用其本机路径和 `.venv/bin`，不能复用 Windows 虚拟环境�
 
 project_env.py 总是定位当前克隆的 .venv，SDK 优先读 .local 配置，再读 ZEPHYR_SDK_INSTALL_DIR。它设置 ZEPHYR_BASE、ZEPHYR_MODULES、ZEPHYR_TOOLCHAIN_VARIANT，清除会串入其他工程的 PYTHONPATH 和额外模块环境变量。Windows 下补充已安装的用户/系统 PATH，并优先使用 Git for Windows，避免 MSYS Git 路径输出与 Windows Python 混用。
 
-应用 [samples/bringup/CMakeLists.txt](../samples/bringup/CMakeLists.txt) 也明确绑定当前源码与模块。新增模块按 [CMake P02](../learning/cmake/P02_接入Zephyr模块.md) 在应用声明，不依赖终端里遗留的环境变量。
+应用 [samples/bringup/CMakeLists.txt](../samples/bringup/CMakeLists.txt) 也明确绑定当前源码与模块。新增模块按 [CMake P02](../learning/cmake/P002_接入Zephyr模块.md) 在应用声明，不依赖终端里遗留的环境变量。
 
 ## 迁移、重建和故障
 

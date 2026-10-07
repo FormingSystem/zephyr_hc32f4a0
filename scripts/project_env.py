@@ -52,7 +52,10 @@ def environment(root=ROOT, base=None):
     lock = json.loads((root / "dependencies.lock.json").read_text(encoding="utf-8"))
     if not (sdk / "sdk_version").is_file() or (sdk / "sdk_version").read_text().strip() != lock["sdk"]["version"]:
         raise RuntimeError("SDK missing or version differs from dependencies.lock.json")
-    paths = windows_paths() + env.get("PATH", "").split(os.pathsep)
+    host_paths = local.get("host_paths", [])
+    if not isinstance(host_paths, list) or not all(isinstance(p, str) for p in host_paths):
+        raise RuntimeError("host_paths must be a list of host tool directories")
+    paths = host_paths + windows_paths() + env.get("PATH", "").split(os.pathsep)
     # Existing Windows repository checks expect native Git path output.
     git_dirs = [p for p in paths if (Path(p) / "git.exe").is_file()
                 and Path(p).name.lower() == "cmd"] if os.name == "nt" else []

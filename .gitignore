@@ -5,6 +5,7 @@
 *.a
 *.d
 *.cmd
+!/setup-windows.cmd
 *.log
 *.pyc
 *.swp
@@ -22,6 +23,7 @@ build*/
 !scripts/pylib/build_helpers
 cscope.*
 .dir
+.assert/
 
 /*.patch
 

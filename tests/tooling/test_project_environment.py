@@ -58,6 +58,23 @@ class ProjectEnvironmentTest(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, ".venv"):
             envtool.environment(self.root, {"VIRTUAL_ENV": "shared"})
 
+    def test_bootstrap_host_tools_precede_old_system_tools(self):
+        selected = str(self.root / "selected-tools")
+        old = str(self.root / "old-tools")
+        (self.root / ".local/environment.json").write_text(json.dumps({
+            "sdk_root": str(self.sdk), "host_paths": [selected]}))
+        with patch.object(envtool, "windows_paths", return_value=[old]):
+            env = envtool.environment(self.root, {"PATH": old})
+        paths = env["PATH"].split(os.pathsep)
+        self.assertLess(paths.index(selected), paths.index(old))
+        self.assertEqual(paths[0], str(envtool.python_path(self.root).parent))
+
+    def test_invalid_host_paths_are_rejected(self):
+        (self.root / ".local/environment.json").write_text(json.dumps({
+            "sdk_root": str(self.sdk), "host_paths": "not-a-list"}))
+        with self.assertRaisesRegex(RuntimeError, "host_paths"):
+            envtool.environment(self.root, {})
+
     def test_wrong_sdk_version_fails(self):
         (self.sdk / "sdk_version").write_text("wrong")
         with self.assertRaisesRegex(RuntimeError, "SDK"):
