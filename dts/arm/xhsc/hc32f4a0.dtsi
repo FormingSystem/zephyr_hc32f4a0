@@ -132,6 +132,21 @@
 			reg = <0x4001cc00 0x400>;
 			status = "disabled";
 		};
+
+		usbfs: usb@40080000 {
+			compatible = "xhsc,hc32f4a0-fsotg", "snps,dwc2";
+			reg = <0x40080000 0x40000>;
+			/* INTC source 399 routed to freely selectable NVIC slot 30. */
+			interrupts = <30 2>;
+			interrupt-source = <399>;
+			num-in-eps = <16>;
+			num-out-eps = <16>;
+			/* Read from HC32F4A0 USBFS configuration registers. */
+			ghwcfg1 = <0x00000000>;
+			ghwcfg2 = <0x228ffd10>;
+			ghwcfg4 = <0x3ff0a230>;
+			status = "disabled";
+		};
 	};
 };
 

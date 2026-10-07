@@ -54,8 +54,10 @@ SDK 与 Python 环境是本机工具，源码工程不将它们纳入版本控�
 `soc_early_init_hook` 先使用 MRC 作为低频过渡，配置所有总线 DIV1 与 Flash/SRAM 0 等待，
 然后将 PH0/PH1 设为晶振模拟引脚，以适合 12 MHz 的低驱动档启动 XTAL。稳定计数选择最长的
 8163 周期档（约 31 ms），软件使用独立的有限轮询预算等待硬件稳定标志，再切换到
-**12 MHz XTAL 直驱系统时钟**；PLLH/PLLA 均关闭。稳定失败进入 panic，不以 MRC 静默代替晶振。
-8 MHz 过渡和 12 MHz 工作频率均满足 Flash、所有 SRAM 的 0 等待条件。晶振实际起振裕量仍需实板验证。
+12 MHz XTAL 作为过渡时钟。当前板级 DTS 指定 48 MHz：先将 Flash/SRAM 设置为 1 等待，
+以 XTAL / 1 × 64 / 16 得到 PLLH P/Q/R 的 48 MHz，P 用于系统时钟，Q 用于 USB；
+PLLA 保持关闭。SoC 同时保留 12 MHz 直驱配置，系统时基从 CPU 节点读取，不能将晶振频率当作当前 HCLK。
+稳定失败进入 panic，不以 MRC 静默代替晶振；实际晶振起振裕量仍未测量。
 MRC 规格容差为 ±10%，只用于启动过渡，不作为串口和系统定时器的最终时基。
 
 Zephyr 负责向量表重定位、FPU 与内核初始化。适配只调用 `SystemCoreClockUpdate()`，
@@ -68,6 +70,8 @@ reset/vector 回调实现，也不修改厂商源文件。整个编译统一预�
 GPIO 支持基础输入输出；轮询 USART1 使用 PA9/PA10 提供 115200 8N1 控制台。
 内核时基使用 Cortex-M SysTick。轮询外设无需 INTC 外设源路由；后续中断驱动需分别配置
 HC32 INTC 源选择和 Zephyr/NVIC 中断连接，不能把外设源编号直接当作 NVIC IRQ 号。
+USBFS 已路由源 399 到 NVIC 30，复用原生 DWC2 UDC 与 CDC ACM；USB1 日志应用见
+[`samples/usb_console`](../samples/usb_console/README.md)。
 
 `build/bringup` 保存 HC32 镜像；显式 `--board mps2/an386` 使用 `build/mps2`。
 `test` 在 QEMU 上执行软件回归，产物位于 `build/twister`。两种目标的镜像与结果分别解释。

@@ -7,16 +7,17 @@
 #include <zephyr/sys/util.h>
 #include <hc32_ll.h>
 
-#define HC32_BOOT_CLOCK_HZ 12000000U
+#define HC32_XTAL_HZ 12000000U
+#define HC32_BOOT_CLOCK_HZ CONFIG_SYS_CLOCK_HW_CYCLES_PER_SEC
 /* At the MRC maximum of 8.8 MHz, even one cycle per poll allows over 200 ms. */
 #define HC32_CLOCK_STABLE_POLLS 2000000U
 #define HC32_INIT_PERIPHERALS \
 	(LL_PERIPH_PWC_CLK_RMU | LL_PERIPH_FCG | LL_PERIPH_EFM | LL_PERIPH_SRAM | \
 	 LL_PERIPH_GPIO)
 
-BUILD_ASSERT(CONFIG_SYS_CLOCK_HW_CYCLES_PER_SEC == HC32_BOOT_CLOCK_HZ,
-	     "HC32 initial port uses the board's 12 MHz XTAL directly");
-BUILD_ASSERT(XTAL_VALUE == HC32_BOOT_CLOCK_HZ, "DDL and kernel XTAL frequencies must match");
+BUILD_ASSERT(HC32_BOOT_CLOCK_HZ == 12000000U || HC32_BOOT_CLOCK_HZ == 48000000U,
+	     "HC32 supports 12 MHz XTAL or 48 MHz PLLH");
+BUILD_ASSERT(XTAL_VALUE == HC32_XTAL_HZ, "DDL must match the fitted 12 MHz crystal");
 BUILD_ASSERT(!IS_ENABLED(CONFIG_ARM_MPU), "HC32 MPU region configuration is not implemented");
 
 static void clock_wait_stable(uint8_t flag, en_flag_status_t expected)
@@ -90,6 +91,31 @@ void soc_early_init_hook(void)
 	/* The DDL's short loop timeout is insufficient for the 31 ms stable counter. */
 	clock_wait_stable(CLK_STB_FLAG_XTAL, SET);
 	CLK_SetSysClockSrc(CLK_SYSCLK_SRC_XTAL);
+	if (HC32_BOOT_CLOCK_HZ == 48000000U) {
+		/* DS Rev1.60: PLLH input 8..25 MHz, VCO 600..1200 MHz.
+		 * 12 MHz / 1 * 64 = 768 MHz; P/Q/R divide by 16 = 48 MHz.
+		 */
+		const stc_clock_pll_init_t pll = {
+			.u8PLLState = CLK_PLL_ON,
+			.PLLCFGR_f = {
+				.PLLM = 0U, .PLLN = 63U, .PLLP = 15U,
+				.PLLQ = 15U, .PLLR = 15U, .PLLSRC = CLK_PLL_SRC_XTAL,
+			},
+		};
+
+		/* Set conservative memory wait cycles before increasing HCLK. */
+		if (EFM_SetWaitCycle(EFM_WAIT_CYCLE1) != LL_OK) {
+			k_panic();
+		}
+		SRAM_SetWaitCycle(SRAM_SRAM_ALL, SRAM_WAIT_CYCLE1, SRAM_WAIT_CYCLE1);
+		status = CLK_PLLInit(&pll);
+		if (status != LL_OK && status != LL_ERR_TIMEOUT) {
+			k_panic();
+		}
+		clock_wait_stable(CLK_STB_FLAG_PLL, SET);
+		CLK_SetSysClockSrc(CLK_SYSCLK_SRC_PLL);
+		CLK_SetUSBClockSrc(CLK_USBCLK_PLLQ);
+	}
 	if (CLK_GetBusClockFreq(CLK_BUS_HCLK) != HC32_BOOT_CLOCK_HZ) {
 		k_panic();
 	}

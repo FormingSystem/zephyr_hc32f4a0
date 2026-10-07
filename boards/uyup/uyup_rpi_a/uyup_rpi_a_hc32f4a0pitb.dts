@@ -19,7 +19,7 @@
 		zephyr,shell-uart = &usart1;
 	};
 
-	/* The fitted 12 MHz crystal directly clocks the CPU; no PLL is used. */
+	/* The fitted crystal remains 12 MHz; PLLH provides the 48 MHz clocks. */
 	xtal: xtal-clock {
 		compatible = "fixed-clock";
 		#clock-cells = <0>;
@@ -93,4 +93,14 @@
 	tx-pin = <9>;
 	rx-port = <&gpioa>;
 	rx-pin = <10>;
+};
+
+&cpu0 {
+	clock-frequency = <DT_FREQ_M(48)>;
+};
+
+zephyr_udc0: &usbfs {
+	status = "okay";
+	/* PA9 is USART1 TX on this board, not USB VBUS sensing. */
+	disable-vbus-sensing;
 };

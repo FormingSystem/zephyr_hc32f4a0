@@ -175,6 +175,9 @@ static inline struct usb_dwc2_reg *dwc2_get_base(const struct device *dev)
 #if DT_HAS_COMPAT_STATUS_OKAY(syna_sr100_usb)
 #include "udc_dwc2_syna_sr100_usb.h"
 #endif
+#if DT_HAS_COMPAT_STATUS_OKAY(xhsc_hc32f4a0_fsotg)
+#include "udc_dwc2_hc32f4a0.h"
+#endif
 
 #define UDC_DWC2_VENDOR_QUIRK_GET(n)						\
 	COND_CODE_1(DT_NODE_VENDOR_HAS_IDX(DT_DRV_INST(n), 1),			\

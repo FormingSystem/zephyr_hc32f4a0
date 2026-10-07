@@ -90,7 +90,7 @@ QEMU 测试与 pyOCD 服务从“终端 → 运行任务”选择。
 C/C++ 补全读取 `build/bringup/compile_commands.json`，首次使用前构建一次。
 构建统一通过项目任务发起，避免 CMake 扩展另建一套配置。
 工作区另有连接现有 pyOCD 服务的 Cortex-Debug 附加配置，不自动烧录。
-插件安装、主机断点与 HC32 附加步骤见[VS Code 教程](../learning/vscode/P01_搭建编译与单步调试环境.md)。
+插件安装、主机断点与 HC32 附加步骤见[VS Code 教程](../learning/vscode/P001_搭建编译与单步调试环境.md)。
 Python 使用工程配置的虚拟环境；VS Code 已记住其他解释器时，通过“Python: Select Interpreter”切换。
 
 ## 调试器与实板操作
@@ -131,8 +131,13 @@ python scripts/project_env.py exec pyocd gdbserver --project . --config debug/py
 python debug/verify_pyocd.py
 ```
 
-使用外部 JLINK/STLINK 前先停用板载 DAP：关电、按住复位、开电、松开复位，
-完整步骤两次，橙灯不闪表示停用。H2 不是标准 ARM 10-pin 接线顺序，按硬件文档信号名连接。
+本板本次已验证 2.x 模式能正常下载和单步；若 1.x 下发现探针但下载报 RESET/无法停机，先按
+[模式切换与故障提示](hardware.md#板载-dap-模式切换与下载故障提示)逐档核对。切换会改变探针编号和串口号。
+使用外部 JLINK/STLINK 前需停用板载 DAP；仅从已确认的 2.x 开始才是两轮，不按固定次数盲切。
+H2 不是标准 ARM 10-pin 接线顺序，按硬件文档信号名连接。
+
+USB1 已支持原生 CDC ACM 日志；完整构建、下载和 COM/DTR 设置见
+[USB1 控制台示例](../samples/usb_console/README.md)。它与 USB2/DAP 的串口独立，端口号按实际枚举查询。
 
 ## 记录与提交
 

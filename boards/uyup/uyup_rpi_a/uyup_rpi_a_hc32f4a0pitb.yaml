@@ -12,4 +12,6 @@ toolchain:
 supported:
   - gpio
   - uart
+  - usb_device
+  - hwinfo
 vendor: uyup
