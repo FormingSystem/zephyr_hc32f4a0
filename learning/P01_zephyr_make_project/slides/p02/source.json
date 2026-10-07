@@ -38,48 +38,43 @@
     },
     {
       "number": 8,
-      "title": "Python：按已有状态继续",
+      "title": "Windows Python 安装包",
       "part": "ppt/slides/slide8.xml"
     },
     {
       "number": 9,
-      "title": "Windows Python 安装包",
+      "title": "缺少安装器时才用 UCRT64 下载",
       "part": "ppt/slides/slide9.xml"
     },
     {
       "number": 10,
-      "title": "缺少安装器时才用 UCRT64 下载",
+      "title": "从 UCRT64 启动官方 Python 安装器",
       "part": "ppt/slides/slide10.xml"
     },
     {
       "number": 11,
-      "title": "从 UCRT64 启动官方 Python 安装器",
+      "title": "未安装 Launcher 时的分支",
       "part": "ppt/slides/slide11.xml"
     },
     {
       "number": 12,
-      "title": "未安装 Launcher 时的分支",
+      "title": "py 与 python 的使用阶段",
       "part": "ppt/slides/slide12.xml"
     },
     {
       "number": 13,
-      "title": "py 与 python 的使用阶段",
+      "title": "Python 依赖的安装位置",
       "part": "ppt/slides/slide13.xml"
     },
     {
       "number": 14,
-      "title": "Python 依赖的安装位置",
+      "title": "首次创建项目 .venv",
       "part": "ppt/slides/slide14.xml"
     },
     {
       "number": 15,
-      "title": "首次创建项目 .venv",
-      "part": "ppt/slides/slide15.xml"
-    },
-    {
-      "number": 16,
       "title": "把依赖装进刚确认的 venv，按清单安装 Python 包",
-      "part": "ppt/slides/slide16.xml"
+      "part": "ppt/slides/slide15.xml"
     }
   ],
   "parts": [
@@ -108,7 +103,6 @@
     "ppt/notesSlides/_rels/notesSlide13.xml.rels",
     "ppt/notesSlides/_rels/notesSlide14.xml.rels",
     "ppt/notesSlides/_rels/notesSlide15.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide16.xml.rels",
     "ppt/notesSlides/_rels/notesSlide2.xml.rels",
     "ppt/notesSlides/_rels/notesSlide3.xml.rels",
     "ppt/notesSlides/_rels/notesSlide4.xml.rels",
@@ -124,7 +118,6 @@
     "ppt/notesSlides/notesSlide13.xml",
     "ppt/notesSlides/notesSlide14.xml",
     "ppt/notesSlides/notesSlide15.xml",
-    "ppt/notesSlides/notesSlide16.xml",
     "ppt/notesSlides/notesSlide2.xml",
     "ppt/notesSlides/notesSlide3.xml",
     "ppt/notesSlides/notesSlide4.xml",
@@ -272,7 +265,6 @@
     "ppt/slides/_rels/slide13.xml.rels",
     "ppt/slides/_rels/slide14.xml.rels",
     "ppt/slides/_rels/slide15.xml.rels",
-    "ppt/slides/_rels/slide16.xml.rels",
     "ppt/slides/_rels/slide2.xml.rels",
     "ppt/slides/_rels/slide3.xml.rels",
     "ppt/slides/_rels/slide4.xml.rels",
@@ -288,7 +280,6 @@
     "ppt/slides/slide13.xml",
     "ppt/slides/slide14.xml",
     "ppt/slides/slide15.xml",
-    "ppt/slides/slide16.xml",
     "ppt/slides/slide2.xml",
     "ppt/slides/slide3.xml",
     "ppt/slides/slide4.xml",

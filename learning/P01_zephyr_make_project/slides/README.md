@@ -15,7 +15,7 @@ domains: [zephyr, tools]
 | 章号 | 完整正文 | 正式 PPT | 页数 |
 | --- | --- | --- | --- |
 | P001 | [准备UCRT64环境与下载Zephyr](../P001_准备UCRT64环境与下载Zephyr_Windows.md) | [PPT](P001_准备UCRT64环境与下载Zephyr_Windows.pptx) | 41 |
-| P002 | [主机工具与Python环境](../P002_主机工具与Python环境_Windows.md) | [PPT](P002_主机工具与Python环境_Windows.pptx) | 16 |
+| P002 | [主机工具与Python环境](../P002_主机工具与Python环境_Windows.md) | [PPT](P002_主机工具与Python环境_Windows.pptx) | 15 |
 | P003 | [SDK准备与编译器选型](../P003_SDK准备与编译器选型_Windows.md) | [PPT](P003_SDK准备与编译器选型_Windows.pptx) | 26 |
 | P004 | [CMSIS与HAL选择下载](../P004_CMSIS与HAL选择下载_Windows.md) | [PPT](P004_CMSIS与HAL选择下载_Windows.pptx) | 22 |
 | P005 | [源码模块接入Zephyr工程](../P005_源码模块接入Zephyr工程_Windows.md) | [PPT](P005_源码模块接入Zephyr工程_Windows.pptx) | 14 |
