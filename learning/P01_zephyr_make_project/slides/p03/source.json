@@ -9,22 +9,22 @@
     {
       "number": 2,
       "title": "SDK 下载、安装与工程发现",
-      "part": "ppt/slides/sdk_2.xml"
+      "part": "ppt/slides/slide2.xml"
     },
     {
       "number": 3,
       "title": "GNU SDK、Minimal 与独立工具链",
-      "part": "ppt/slides/sdk_3.xml"
+      "part": "ppt/slides/slide3.xml"
     },
     {
       "number": 4,
       "title": "补齐 Minimal 后，SDK 的结构相同",
-      "part": "ppt/slides/sdk_4.xml"
+      "part": "ppt/slides/slide4.xml"
     },
     {
       "number": 5,
       "title": "确定原生源码所需要的SDK包版本",
-      "part": "ppt/slides/slide3.xml"
+      "part": "ppt/slides/slide5.xml"
     },
     {
       "number": 6,
@@ -34,102 +34,102 @@
     {
       "number": 7,
       "title": "在官方发行页选择下载项",
-      "part": "ppt/slides/sdk_7.xml"
+      "part": "ppt/slides/slide7.xml"
     },
     {
       "number": 8,
       "title": "下载目录、SDK 根与源码根",
-      "part": "ppt/slides/sdk_8.xml"
+      "part": "ppt/slides/slide8.xml"
     },
     {
       "number": 9,
       "title": "GNU 路线：核验摘要并解压",
-      "part": "ppt/slides/sdk_9.xml"
+      "part": "ppt/slides/slide9.xml"
     },
     {
       "number": 10,
       "title": "Minimal 路线：先解压 SDK 框架",
-      "part": "ppt/slides/sdk_10.xml"
+      "part": "ppt/slides/slide10.xml"
     },
     {
       "number": 11,
       "title": "Minimal 在线补装 ARM",
-      "part": "ppt/slides/sdk_11.xml"
+      "part": "ppt/slides/slide11.xml"
     },
     {
       "number": 12,
       "title": "已有 ARM 包：直接补到 SDK/gnu",
-      "part": "ppt/slides/sdk_12.xml"
+      "part": "ppt/slides/slide12.xml"
     },
     {
       "number": 13,
       "title": "安装完成：核验 SDK 与 ARM GCC",
-      "part": "ppt/slides/sdk_13.xml"
+      "part": "ppt/slides/slide13.xml"
     },
     {
       "number": 14,
       "title": "工程先找 SDK，再找目标编译器",
-      "part": "ppt/slides/sdk_14.xml"
+      "part": "ppt/slides/slide14.xml"
     },
     {
       "number": 15,
       "title": "Zephyr 源码包与 SDK 包分别定位",
-      "part": "ppt/slides/sdk_15.xml"
+      "part": "ppt/slides/slide15.xml"
     },
     {
       "number": 16,
       "title": "SDK 发现方式：选一种入口即可",
-      "part": "ppt/slides/sdk_16.xml"
+      "part": "ppt/slides/slide16.xml"
     },
     {
       "number": 17,
       "title": "可选：让当前用户的工程自动发现 SDK",
-      "part": "ppt/slides/sdk_17.xml"
+      "part": "ppt/slides/slide17.xml"
     },
     {
       "number": 18,
       "title": "不注册：从当前终端传入 SDK 根",
-      "part": "ppt/slides/sdk_18.xml"
+      "part": "ppt/slides/slide18.xml"
     },
     {
       "number": 19,
       "title": "不注册：给应用配置命令传入 SDK 根",
-      "part": "ppt/slides/sdk_19.xml"
+      "part": "ppt/slides/slide19.xml"
     },
     {
       "number": 20,
       "title": "路径由 Zephyr 查找脚本读取",
-      "part": "ppt/slides/sdk_20.xml"
+      "part": "ppt/slides/slide20.xml"
     },
     {
       "number": 21,
       "title": "BOARD 的架构如何对应 SDK 中的工具",
-      "part": "ppt/slides/sdk_21.xml"
+      "part": "ppt/slides/slide21.xml"
     },
     {
       "number": 22,
       "title": "可选：独立 ARM 工具链直接接入",
-      "part": "ppt/slides/sdk_22.xml"
+      "part": "ppt/slides/slide22.xml"
     },
     {
       "number": 23,
       "title": "独立工具链：完整配置示例",
-      "part": "ppt/slides/sdk_23.xml"
+      "part": "ppt/slides/slide23.xml"
     },
     {
       "number": 24,
       "title": "配置后核对工程实际选中的工具",
-      "part": "ppt/slides/sdk_24.xml"
+      "part": "ppt/slides/slide24.xml"
     },
     {
       "number": 25,
       "title": "按失败阶段返回检查",
-      "part": "ppt/slides/sdk_25.xml"
+      "part": "ppt/slides/slide25.xml"
     },
     {
       "number": 26,
       "title": "准备完成后的工程入口",
-      "part": "ppt/slides/sdk_26.xml"
+      "part": "ppt/slides/slide26.xml"
     }
   ],
   "parts": [
@@ -140,61 +140,61 @@
     "ppt/_rels/presentation.xml.rels",
     "ppt/media/image1.png",
     "ppt/media/image2.png",
-    "ppt/media/image5.png",
+    "ppt/media/image3.png",
     "ppt/notesMasters/_rels/notesMaster1.xml.rels",
     "ppt/notesMasters/notesMaster1.xml",
     "ppt/notesSlides/_rels/notesSlide1.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide10.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide11.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide12.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide13.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide14.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide15.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide16.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide17.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide18.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide19.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide2.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide20.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide21.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide22.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide23.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide24.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide25.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide26.xml.rels",
     "ppt/notesSlides/_rels/notesSlide3.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide4.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide5.xml.rels",
     "ppt/notesSlides/_rels/notesSlide6.xml.rels",
-    "ppt/notesSlides/_rels/sdk_10.xml.rels",
-    "ppt/notesSlides/_rels/sdk_11.xml.rels",
-    "ppt/notesSlides/_rels/sdk_12.xml.rels",
-    "ppt/notesSlides/_rels/sdk_13.xml.rels",
-    "ppt/notesSlides/_rels/sdk_14.xml.rels",
-    "ppt/notesSlides/_rels/sdk_15.xml.rels",
-    "ppt/notesSlides/_rels/sdk_16.xml.rels",
-    "ppt/notesSlides/_rels/sdk_17.xml.rels",
-    "ppt/notesSlides/_rels/sdk_18.xml.rels",
-    "ppt/notesSlides/_rels/sdk_19.xml.rels",
-    "ppt/notesSlides/_rels/sdk_2.xml.rels",
-    "ppt/notesSlides/_rels/sdk_20.xml.rels",
-    "ppt/notesSlides/_rels/sdk_21.xml.rels",
-    "ppt/notesSlides/_rels/sdk_22.xml.rels",
-    "ppt/notesSlides/_rels/sdk_23.xml.rels",
-    "ppt/notesSlides/_rels/sdk_24.xml.rels",
-    "ppt/notesSlides/_rels/sdk_25.xml.rels",
-    "ppt/notesSlides/_rels/sdk_26.xml.rels",
-    "ppt/notesSlides/_rels/sdk_3.xml.rels",
-    "ppt/notesSlides/_rels/sdk_4.xml.rels",
-    "ppt/notesSlides/_rels/sdk_7.xml.rels",
-    "ppt/notesSlides/_rels/sdk_8.xml.rels",
-    "ppt/notesSlides/_rels/sdk_9.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide7.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide8.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide9.xml.rels",
     "ppt/notesSlides/notesSlide1.xml",
+    "ppt/notesSlides/notesSlide10.xml",
+    "ppt/notesSlides/notesSlide11.xml",
+    "ppt/notesSlides/notesSlide12.xml",
+    "ppt/notesSlides/notesSlide13.xml",
+    "ppt/notesSlides/notesSlide14.xml",
+    "ppt/notesSlides/notesSlide15.xml",
+    "ppt/notesSlides/notesSlide16.xml",
+    "ppt/notesSlides/notesSlide17.xml",
+    "ppt/notesSlides/notesSlide18.xml",
+    "ppt/notesSlides/notesSlide19.xml",
+    "ppt/notesSlides/notesSlide2.xml",
+    "ppt/notesSlides/notesSlide20.xml",
+    "ppt/notesSlides/notesSlide21.xml",
+    "ppt/notesSlides/notesSlide22.xml",
+    "ppt/notesSlides/notesSlide23.xml",
+    "ppt/notesSlides/notesSlide24.xml",
+    "ppt/notesSlides/notesSlide25.xml",
+    "ppt/notesSlides/notesSlide26.xml",
     "ppt/notesSlides/notesSlide3.xml",
+    "ppt/notesSlides/notesSlide4.xml",
+    "ppt/notesSlides/notesSlide5.xml",
     "ppt/notesSlides/notesSlide6.xml",
-    "ppt/notesSlides/sdk_10.xml",
-    "ppt/notesSlides/sdk_11.xml",
-    "ppt/notesSlides/sdk_12.xml",
-    "ppt/notesSlides/sdk_13.xml",
-    "ppt/notesSlides/sdk_14.xml",
-    "ppt/notesSlides/sdk_15.xml",
-    "ppt/notesSlides/sdk_16.xml",
-    "ppt/notesSlides/sdk_17.xml",
-    "ppt/notesSlides/sdk_18.xml",
-    "ppt/notesSlides/sdk_19.xml",
-    "ppt/notesSlides/sdk_2.xml",
-    "ppt/notesSlides/sdk_20.xml",
-    "ppt/notesSlides/sdk_21.xml",
-    "ppt/notesSlides/sdk_22.xml",
-    "ppt/notesSlides/sdk_23.xml",
-    "ppt/notesSlides/sdk_24.xml",
-    "ppt/notesSlides/sdk_25.xml",
-    "ppt/notesSlides/sdk_26.xml",
-    "ppt/notesSlides/sdk_3.xml",
-    "ppt/notesSlides/sdk_4.xml",
-    "ppt/notesSlides/sdk_7.xml",
-    "ppt/notesSlides/sdk_8.xml",
-    "ppt/notesSlides/sdk_9.xml",
+    "ppt/notesSlides/notesSlide7.xml",
+    "ppt/notesSlides/notesSlide8.xml",
+    "ppt/notesSlides/notesSlide9.xml",
     "ppt/presProps.xml",
     "ppt/presentation.xml",
     "ppt/slideLayouts/_rels/slideLayout1.xml.rels",
@@ -327,58 +327,58 @@
     "ppt/slideMasters/slideMaster7.xml",
     "ppt/slideMasters/slideMaster8.xml",
     "ppt/slideMasters/slideMaster9.xml",
-    "ppt/slides/_rels/sdk_10.xml.rels",
-    "ppt/slides/_rels/sdk_11.xml.rels",
-    "ppt/slides/_rels/sdk_12.xml.rels",
-    "ppt/slides/_rels/sdk_13.xml.rels",
-    "ppt/slides/_rels/sdk_14.xml.rels",
-    "ppt/slides/_rels/sdk_15.xml.rels",
-    "ppt/slides/_rels/sdk_16.xml.rels",
-    "ppt/slides/_rels/sdk_17.xml.rels",
-    "ppt/slides/_rels/sdk_18.xml.rels",
-    "ppt/slides/_rels/sdk_19.xml.rels",
-    "ppt/slides/_rels/sdk_2.xml.rels",
-    "ppt/slides/_rels/sdk_20.xml.rels",
-    "ppt/slides/_rels/sdk_21.xml.rels",
-    "ppt/slides/_rels/sdk_22.xml.rels",
-    "ppt/slides/_rels/sdk_23.xml.rels",
-    "ppt/slides/_rels/sdk_24.xml.rels",
-    "ppt/slides/_rels/sdk_25.xml.rels",
-    "ppt/slides/_rels/sdk_26.xml.rels",
-    "ppt/slides/_rels/sdk_3.xml.rels",
-    "ppt/slides/_rels/sdk_4.xml.rels",
-    "ppt/slides/_rels/sdk_7.xml.rels",
-    "ppt/slides/_rels/sdk_8.xml.rels",
-    "ppt/slides/_rels/sdk_9.xml.rels",
     "ppt/slides/_rels/slide1.xml.rels",
+    "ppt/slides/_rels/slide10.xml.rels",
+    "ppt/slides/_rels/slide11.xml.rels",
+    "ppt/slides/_rels/slide12.xml.rels",
+    "ppt/slides/_rels/slide13.xml.rels",
+    "ppt/slides/_rels/slide14.xml.rels",
+    "ppt/slides/_rels/slide15.xml.rels",
+    "ppt/slides/_rels/slide16.xml.rels",
+    "ppt/slides/_rels/slide17.xml.rels",
+    "ppt/slides/_rels/slide18.xml.rels",
+    "ppt/slides/_rels/slide19.xml.rels",
+    "ppt/slides/_rels/slide2.xml.rels",
+    "ppt/slides/_rels/slide20.xml.rels",
+    "ppt/slides/_rels/slide21.xml.rels",
+    "ppt/slides/_rels/slide22.xml.rels",
+    "ppt/slides/_rels/slide23.xml.rels",
+    "ppt/slides/_rels/slide24.xml.rels",
+    "ppt/slides/_rels/slide25.xml.rels",
+    "ppt/slides/_rels/slide26.xml.rels",
     "ppt/slides/_rels/slide3.xml.rels",
+    "ppt/slides/_rels/slide4.xml.rels",
+    "ppt/slides/_rels/slide5.xml.rels",
     "ppt/slides/_rels/slide6.xml.rels",
-    "ppt/slides/sdk_10.xml",
-    "ppt/slides/sdk_11.xml",
-    "ppt/slides/sdk_12.xml",
-    "ppt/slides/sdk_13.xml",
-    "ppt/slides/sdk_14.xml",
-    "ppt/slides/sdk_15.xml",
-    "ppt/slides/sdk_16.xml",
-    "ppt/slides/sdk_17.xml",
-    "ppt/slides/sdk_18.xml",
-    "ppt/slides/sdk_19.xml",
-    "ppt/slides/sdk_2.xml",
-    "ppt/slides/sdk_20.xml",
-    "ppt/slides/sdk_21.xml",
-    "ppt/slides/sdk_22.xml",
-    "ppt/slides/sdk_23.xml",
-    "ppt/slides/sdk_24.xml",
-    "ppt/slides/sdk_25.xml",
-    "ppt/slides/sdk_26.xml",
-    "ppt/slides/sdk_3.xml",
-    "ppt/slides/sdk_4.xml",
-    "ppt/slides/sdk_7.xml",
-    "ppt/slides/sdk_8.xml",
-    "ppt/slides/sdk_9.xml",
+    "ppt/slides/_rels/slide7.xml.rels",
+    "ppt/slides/_rels/slide8.xml.rels",
+    "ppt/slides/_rels/slide9.xml.rels",
     "ppt/slides/slide1.xml",
+    "ppt/slides/slide10.xml",
+    "ppt/slides/slide11.xml",
+    "ppt/slides/slide12.xml",
+    "ppt/slides/slide13.xml",
+    "ppt/slides/slide14.xml",
+    "ppt/slides/slide15.xml",
+    "ppt/slides/slide16.xml",
+    "ppt/slides/slide17.xml",
+    "ppt/slides/slide18.xml",
+    "ppt/slides/slide19.xml",
+    "ppt/slides/slide2.xml",
+    "ppt/slides/slide20.xml",
+    "ppt/slides/slide21.xml",
+    "ppt/slides/slide22.xml",
+    "ppt/slides/slide23.xml",
+    "ppt/slides/slide24.xml",
+    "ppt/slides/slide25.xml",
+    "ppt/slides/slide26.xml",
     "ppt/slides/slide3.xml",
+    "ppt/slides/slide4.xml",
+    "ppt/slides/slide5.xml",
     "ppt/slides/slide6.xml",
+    "ppt/slides/slide7.xml",
+    "ppt/slides/slide8.xml",
+    "ppt/slides/slide9.xml",
     "ppt/tableStyles.xml",
     "ppt/theme/theme1.xml",
     "ppt/theme/theme10.xml",
