@@ -17,11 +17,11 @@ domains: [repository, documentation]
 
 适用于本项目自有的学习材料、项目说明和治理文档。**不得为了统一格式修改 Zephyr 原生 Markdown 或其他第三方文档。** 文件是否属于自有内容以来源记录和 Git 历史为准，不能仅凭扩展名或所在目录判断。
 
-本次格式整理限定于 `learning/P01_zephyr_make_project/`、`learning/download_zephyr/` 及本规范和来源记录。其他自有文档后续编辑时逐步采用；不执行全仓批量格式化。
+2026-10-05 用户将资料规范化范围扩展到 `learning/`：统一章节命名、导航与 Markdown/PPT 职责，具体约定见 [learning 资料编写约定](../../learning/资料编写约定.md)。此范围不包含 Zephyr 原生文档；其他自有文档只同步受影响的链接，不执行全仓批量格式化。
 
 ## 1.2\_文件与元数据
 
-- 章节文件使用 `PXX_NAME.md`；非章节文件使用稳定语义名称，现有有效路径无需仅因排版重命名。
+- `learning/` 章节按用户 2026-10-05 的资料规范统一使用 `P001_主题.md`，公共准备为 `P000`；配套 PPT 同编号同题名，平台流程用 `_Windows` / `_Linux` 后缀。其他自有文档保留既有 `PXX_NAME.md` 规则，非章节文件使用稳定语义名称。
 - 目录使用稳定英文 `snake_case` 名称；路径避免空格、中文标点、全角符号、连续下划线和首尾下划线。`C++`、`u-boot`、版本号中的 `.` 等有语义的半角符号可以保留。
 - 正式文档在文件首部提供 YAML Front Matter，包含稳定的 `id`、中文 `title`、`kind`、`status` 和 `domains`。已有 `id` 不因标题或阅读顺序变化重算。
 - `kind` 按内容职责选择：`concept`、`mechanism`、`subsystem`、`interface`、`engineering`、`platform`、`lab`、`project`、`source`、`investigation`、`reference`、`track`、`publication`。专题大纲使用 `track`，操作教程使用 `engineering`。

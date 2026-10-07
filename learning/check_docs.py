@@ -49,21 +49,36 @@ def main():
         chapter = re.match(r"P(\d+)_", path.name) if path.is_relative_to(ROOT / "learning") else None
         if chapter:
             chapters += 1
+            if not re.match(r"P\d{3}_", path.name):
+                errors.append(f"{path.name}: 章节文件使用三位编号 P000/P001")
             number = int(chapter.group(1))
             if not re.search(rf"^# (?:{number}\. |第{number}章\\_)\S", body, re.M):
                 errors.append(f"{path.name}: 章编号与文件名不一致")
             sections = re.findall(rf"^## {number}\.(\d+)(?: |\\_)", body, re.M)
+            if re.match(r"P\d{3}_\d{2}_", path.name):
+                errors.append(f"{path.name}: 独立主题须递增三位章号，不使用二级文件序号")
             if list(map(int, sections)) != list(range(1, len(sections) + 1)):
                 errors.append(f"{path.name}: 小节编号不连续")
             for key in ("id", "title", "kind", "status", "domains"):
                 if not re.search(rf"^{key}: .+", body, re.M):
                     errors.append(f"{path.name}: 缺少 {key}")
             if number > 0:
-                siblings = sorted(path.parent.glob("P[0-9][0-9]_*.md"))
+                # Platform suffixes share one directory but have independent reading order.
+                def platform(document):
+                    match = re.search(r"_(Windows|Linux)$", document.stem)
+                    return match.group(1) if match else ""
+
+                siblings = sorted(document for document in path.parent.glob("P[0-9][0-9][0-9]_*.md")
+                                  if platform(document) == platform(path))
                 position = siblings.index(path)
                 for neighbor in (position - 1, position + 1):
                     if 0 <= neighbor < len(siblings) and f"]({siblings[neighbor].name})" not in body:
                         errors.append(f"{path.name}: 缺少相邻章节链接 {siblings[neighbor].name}")
+            slides = re.search(r"^slides: (.+)$", body, re.M)
+            if slides:
+                deck = path.parent / slides.group(1).strip()
+                if not deck.is_file() or deck.stem != path.stem:
+                    errors.append(f"{path.name}: 配套 PPT 必须存在且与正文同名")
         match = re.search(r"^id: (.+)$", body, re.M)
         if match:
             identifier = match.group(1)
