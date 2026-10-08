@@ -1,0 +1,20 @@
+[
+  {
+    "file": "main_build.png",
+    "source": "https://raw.githubusercontent.com/mylonics/zephyr-ide/develop/docs/media/main_build.png",
+    "role": "官方界面示意，develop 文档快照，非本机操作截图",
+    "sha256": "cb4104e6f7058effa139118c34ed55228372c08f42e297be3d83a19d674fbe13"
+  },
+  {
+    "file": "workspace_setup.png",
+    "source": "https://raw.githubusercontent.com/mylonics/zephyr-ide/develop/docs/media/workspace_setup.png",
+    "role": "官方界面示意，develop 文档快照，非本机操作截图",
+    "sha256": "da4e1628190caa1181d396d4727420b60155bb17acf91e0e61e70329fa632b23"
+  },
+  {
+    "file": "sdk_install.png",
+    "source": "https://raw.githubusercontent.com/mylonics/zephyr-ide/develop/docs/media/sdk_install.png",
+    "role": "官方界面示意，develop 文档快照，非本机操作截图",
+    "sha256": "87d36edbb2164cb72ed17591cdfdd23415ad2b0a2ae11b85577cf555d1733032"
+  }
+]

@@ -1,0 +1,31 @@
+{
+  "projects": {
+    "hello_world": {
+      "relPath": "samples/hello_world",
+      "name": "hello_world",
+      "buildConfigs": {
+        "build/ide-reset-mps2": {
+          "relBoardSubDir": "arm/mps2",
+          "board": "mps2/an386",
+          "name": "build/ide-reset-mps2",
+          "westBuildArgs": [],
+          "westBuildCMakeArgs": [
+            "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+            "'-DZEPHYR_MODULES=G:/zephyr_practice/modules/hal/cmsis_6'"
+          ],
+          "confFiles": {
+            "config": [],
+            "overlay": []
+          },
+          "relPath": "build/learning-tools/zephyr-vscode/ide-reset-demo"
+        }
+      },
+      "twisterConfigs": {},
+      "confFiles": {
+        "config": [],
+        "overlay": []
+      }
+    }
+  },
+  "runnerProfiles": []
+}

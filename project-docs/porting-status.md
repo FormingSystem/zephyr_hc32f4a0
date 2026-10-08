@@ -15,11 +15,33 @@ LQFP100、2 MiB Flash、512 KiB 主 SRAM。已实现首轮移植，DAP 2.x 下�
 
 ## 历次交付记录
 
+### 2026-10-08：Zephyr IDE 实机重置与全部配置截图
+
+新增 [鼠标操作实录](../learning/zephyr_vscode/RESET_WALKTHROUGH.md) 和 [全部配置参考](../learning/zephyr_vscode/CONFIGURATION_REFERENCE.md)，72 张实际截图覆盖已有环境接入和各配置入口，逐项核对 35 个现行设置与 8 个废弃兼容键。备份后重置 G 盘插件登记/项目配置，复用既有 venv、SDK 1.0.1 和 CMSIS 6，实际点击 IDE Build 完成 hello_world + mps2/an386 的 136 步构建；ELF 382892 字节，输出在源码根 build/learning-tools 下。没有运行 west update、安装或下载；临时 Runner 已清理。配置副本通过当前插件 Schema，未执行 QEMU、烧录、实板调试。既有 PPT 保留，本次交付为实机 MD 附录与配置参考。
+
+### 2026-10-07：已有环境行动指南与插件状态恢复
+
+新增 [行动指南](../learning/zephyr_vscode/ACTION_GUIDE.md)，按真实 G 盘配置解释空 buildConfigs、新建本地 CMSIS Build、JSON 字段与磁盘路径、扫描/Skip 状态和下载过滤职责。同步修正既有 MD、PPT、备注与原生重建源。普通 PowerShell 复用现有 SDK/venv/CMSIS 6 完成 136 步构建，无安装或更新；48 页原生渲染、231 部件重建、Schema 和 102 篇资料检查通过。未实际点击 IDE Build，未修改用户 G 盘 JSON/preset/过滤设置，未操作硬件。初次参数未加引号造成的 PowerShell 拆词失败及修正已写入验证记录。
+
+### 2026-10-07：Zephyr IDE 从第一次导入开始的详细教程
+
+[Zephyr IDE 教程](../learning/zephyr_vscode/README.md) 扩为 48 页 PPT，配套 MD 补齐逐项点击、目录选择、JSON 合并与字段层级、向导输入、每步预期结果和日常重新打开方式。新增两份完整 settings 示例，总计 9 份可复制材料；保留复用已有环境的主线。48 页原生渲染、包检查、231 部件原生重建一致性、JSON Schema 和资料检查通过。本轮未重复构建，未实际操作 VS Code 导入界面，未更改 G 盘配置或硬件，范围见专题 VALIDATION。
+
+### 2026-10-07：Zephyr IDE 复用已有环境流程修正
+
+按用户反馈将教程主线改为正常打开 VS Code、JSON 指向已有 venv/SDK、登记 west 根并跳过安装，然后扫描已有环境。核对当前本机 4.1.1 的 Configure Existing Environment 实现，补齐此前遗漏的扫描动作，终端启动降为可选诊断。普通 PowerShell 下按插件环境传递方式完成独立 hello_world 构建，未下载或重建环境；36 页 PPT、MD 和配套资料同步。未实际点击 VS Code 登记/扫描按钮，未改写用户 G 盘 JSON，未操作硬件，详见 [本轮验证](../learning/zephyr_vscode/VALIDATION.md)。
+
 ### 2026-10-07：其余十一份 PPT 按现行技能统一样式
 
 完成 Windows P001—P003、P005—P011 与 Linux P001 的样式修复，共 278 页；P004 沿用上一轮已交付版本。统一语义配色、连续可编辑代码区和 1.2 倍行距，补齐图例，校正旧命令链接显示章号，保持封面、图片、批注与母版页脚。原生重建源、受影响备注以及 Markdown 阅读导航同步，按环境、SDK、模块接入、CMake、west 和新增板等主题分类提交。
 
 11 份文稿通过 PowerPoint 原生打开与全部页面渲染、包完整性和重建一致性检查；103 个代码区文本保持原样，231 个本地链接有效。完整验证范围见环境专题 VALIDATION.md 的本次记录。本轮未运行安装、固件编译、烧录或调试。
+
+### 2026-10-07：Zephyr IDE 接入已有工程教程
+
+新增 [zephyr_vscode 专题](../learning/zephyr_vscode/README.md)，交付 36 页 PPT、同名 Markdown、7 份命令/配置材料及可重建原生源。围绕 G 盘已有 SDK/venv，说明外部环境启动、添加应用和 Build、输出目录、源码浏览与可选托管分支；按本机 IDE for Zephyr 4.1.0 核对行为。
+
+官方 hello_world 的 mps2/an386 命令行构建通过，生成 109 条编译数据库记录。正式 PPT 原生打开渲染、逐页目检、零文本框溢出、包结构/字体、184 个部件重建一致性、命令语法、项目 JSON Schema 和 Mermaid 明暗主题检查通过。VS Code 按钮、F12 和硬件未实测；未运行插件托管更新或改写用户 G 盘编辑器配置。详细范围见 [验证记录](../learning/zephyr_vscode/VALIDATION.md)。
 
 ### 2026-10-07：P004 样式修复与配套资料分类提交
 

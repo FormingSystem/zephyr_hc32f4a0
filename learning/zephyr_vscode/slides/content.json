@@ -1,0 +1,764 @@
+[
+  {
+    "title": "VS Code Zephyr IDE\n接入已有工程",
+    "stage": "cover",
+    "body": [
+      "Windows · 复用 G 盘源码、SDK 与 Python 环境",
+      "主讲人：lizhaojun"
+    ],
+    "code": null,
+    "side": null,
+    "image": null,
+    "diagram": null,
+    "source": "local",
+    "section": "1.1"
+  },
+  {
+    "title": "本章完成的开发闭环",
+    "stage": "①—⑤ 操作路线",
+    "body": [
+      "已有命令行环境是起点。插件需要识别环境，再记录应用与构建配置。",
+      "贯穿实例：hello_world 应用，mps2/an386 官方 ARM 目标。",
+      "完成结果：构建得到 ELF，源码跳转使用本次编译参数。"
+    ],
+    "code": null,
+    "side": null,
+    "image": null,
+    "diagram": [
+      "① 核对环境",
+      "② 登记并扫描",
+      "③ 应用与 Build",
+      "④ 构建产物",
+      "⑤ 源码浏览"
+    ],
+    "source": "local",
+    "section": "1.1"
+  },
+  {
+    "title": "四个目录各有使用方",
+    "stage": "① 核对已有环境",
+    "body": [
+      "编辑器根可以是 zephyr-main；west 会向上发现父目录的 .west。"
+    ],
+    "code": "G:/zephyr_practice/\n├── .west/                  west 工作区\n├── modules/                清单管理的源码模块\n├── zephyr-sdk-1.0.1/        SDK 根\n└── zephyr-main/            VS Code 打开这里\n    ├── .venv/              Python 环境\n    └── samples/hello_world/  应用根",
+    "side": null,
+    "image": null,
+    "diagram": null,
+    "source": "local",
+    "section": "1.2"
+  },
+  {
+    "title": "Python 与 SDK 的职责",
+    "stage": "① 核对已有环境",
+    "body": [
+      "Python 虚拟环境提供 west 与构建脚本依赖。\nSDK 提供目标 GCC、链接器等工具。",
+      "激活 .venv 决定当前终端使用哪一份 Python。指定 SDK 决定构建从哪里取得工具链。",
+      "官方教程的用户目录只是示例。已有 G 盘环境可以继续使用。"
+    ],
+    "code": null,
+    "side": null,
+    "image": null,
+    "diagram": null,
+    "source": "getting",
+    "section": "1.2"
+  },
+  {
+    "title": "先在资源管理器核对文件",
+    "stage": "① 核对已有环境",
+    "body": [
+      "Win+E 打开资源管理器，在地址栏进入 G:/zephyr_practice。",
+      ".west/config 应存在，manifest 的 path 应指向 zephyr-main。",
+      "zephyr-main/.venv/Scripts/python.exe 应存在。\nSDK 内应有 sdk_version 和 gnu 目录。",
+      "文件存在只是第一步；之后的扫描和构建确认它们能否工作。"
+    ],
+    "code": null,
+    "side": null,
+    "image": null,
+    "diagram": null,
+    "source": "local",
+    "section": "1.2"
+  },
+  {
+    "title": "主机工具仍由 Windows 提供",
+    "stage": "① 核对已有环境",
+    "body": [
+      "插件使用已有 Python 环境，构建还需要 Windows 能找到 CMake、Ninja 和 DTC。",
+      "本机已在普通 PowerShell 环境完成等价构建，无需先启动 UCRT64。",
+      "可选检查命令见 MD 1.2 与 commands/01；\n仅在核对或排错时执行。",
+      "插件扫描不检查每一个 Python 包。依赖是否齐全，以实际构建结果为准。"
+    ],
+    "code": null,
+    "side": null,
+    "image": null,
+    "diagram": null,
+    "source": "local",
+    "section": "1.2"
+  },
+  {
+    "title": "已有环境可以直接复用",
+    "stage": "① 选择管理方式",
+    "body": [
+      "不需要每次从 UCRT64 启动 VS Code，也不需要重新下载源码、SDK 或 venv",
+      "主线：正常打开 VS Code，填写路径，登记并扫描已有环境",
+      "settings.json 保存路径；插件安装记录保存 west 根、源码和环境状态",
+      "Add Project 添加应用，Add Build 选择板与参数"
+    ],
+    "code": null,
+    "side": null,
+    "image": null,
+    "diagram": null,
+    "source": "external",
+    "section": "1.3"
+  },
+  {
+    "title": "直接从桌面打开 VS Code",
+    "stage": "② 登记已有环境",
+    "body": [
+      "正常打开 VS Code，不用先打开 UCRT64 或手动 activate",
+      "文件 → 打开文件夹：G:/zephyr_practice/zephyr-main",
+      "先保存工作区 settings.json，再登记父目录 G:/zephyr_practice",
+      "编辑器根与 west 根允许不同；本章固定使用源码根布局"
+    ],
+    "code": null,
+    "side": null,
+    "image": null,
+    "diagram": null,
+    "source": "external",
+    "section": "1.4"
+  },
+  {
+    "title": "安装准确的扩展",
+    "stage": "② 编辑器准备",
+    "body": [
+      "Ctrl+Shift+X 打开扩展，搜索 @id:mylonics.zephyr-ide，确认发布者为 Mylonics。",
+      "本章按已安装的 IDE for Zephyr 4.1.1 讲解。\n已有插件时记录版本，无需重复安装。",
+      "源码浏览使用 Microsoft C/C++：ms-vscode.cpptools。Cortex-Debug 留给后续调试。",
+      "名称相近的 Workbench for Zephyr 和 nRF Connect 使用不同的配置入口。"
+    ],
+    "code": null,
+    "side": null,
+    "image": null,
+    "diagram": null,
+    "source": "local",
+    "section": "1.5"
+  },
+  {
+    "title": "工作区设置的打开位置",
+    "stage": "② 编辑器准备",
+    "body": [
+      "Ctrl+Shift+P，运行 Preferences: Open Workspace Settings (JSON)。",
+      "确认文件是 G:/zephyr_practice/zephyr-main/.vscode/settings.json。",
+      "已有文件也可 Ctrl+P 输入 .vscode/settings.json 打开；应编辑工作区设置。",
+      "文件不存在时新建 .vscode 文件夹及 settings.json；名称末尾不能多出 .txt。"
+    ],
+    "code": null,
+    "side": null,
+    "image": null,
+    "diagram": null,
+    "source": "local",
+    "section": "1.5"
+  },
+  {
+    "title": "三种配置各管一件事",
+    "stage": "② 编辑器准备",
+    "body": [
+      "settings.json：本机环境路径与编辑器行为，例如已有 venv 和 SDK 搜索目录。",
+      "插件安装记录：登记 west 工作区、扫描源码和版本，由插件保存。",
+      "zephyr-ide.json：应用在哪里、为哪个板构建、输出存在哪里。",
+      "因此只改 settings.json 还不够：后面仍需登记环境、添加应用与 Build。"
+    ],
+    "code": null,
+    "side": null,
+    "image": null,
+    "diagram": null,
+    "source": "implementation",
+    "section": "1.5"
+  },
+  {
+    "title": "复用已有 venv 和 SDK",
+    "stage": "② 编辑器准备",
+    "body": [
+      "这是 settings.json 内容，不是终端命令。合并时不要重复外层花括号。",
+      "venvFolder 填 .venv 根；toolchainDirectory 填包含 SDK 的父目录。"
+    ],
+    "code": "{\n  \"zephyr-ide.venvFolder\": \"G:/zephyr_practice/zephyr-main/.venv\",\n  \"zephyr-ide.toolchainDirectory\": \"G:/zephyr_practice\",\n  \"zephyr-ide.useClangd\": false,\n  \"C_Cpp.intelliSenseEngine\": \"default\",\n  \"cmake.configureOnOpen\": false\n}",
+    "side": null,
+    "image": null,
+    "diagram": null,
+    "source": "configuration",
+    "section": "1.5"
+  },
+  {
+    "title": "SDK 父目录与 SDK 根",
+    "stage": "② 解决 SDK 识别问题",
+    "body": [
+      "插件设置 zephyr-ide.toolchainDirectory = G:/zephyr_practice，用于查找 SDK 安装。",
+      "进程变量 ZEPHYR_SDK_INSTALL_DIR = G:/zephyr_practice/zephyr-sdk-1.0.1，指定具体 SDK 根。",
+      "把同名 ZEPHYR_SDK_INSTALL_DIR 直接写在 settings.json 顶层，不会创建环境变量。应移除这个无效设置。"
+    ],
+    "code": null,
+    "side": null,
+    "image": null,
+    "diagram": null,
+    "source": "configuration",
+    "section": "1.5"
+  },
+  {
+    "title": "你现有的设置该怎样改",
+    "stage": "② 解决 SDK 识别问题",
+    "body": [
+      "移除顶层 ZEPHYR_SDK_INSTALL_DIR；它不是这个扩展注册的 VS Code 设置。",
+      "保留已有 terminal.integrated.defaultProfile.windows、C_Cpp.default.compileCommands 和 cmake.configureOnOpen。",
+      "再加入前页的 venvFolder、toolchainDirectory、useClangd 与 IntelliSense 设置。",
+      "下一页提供合并后的完整示例；对应 commands/08-settings-existing.json。"
+    ],
+    "code": null,
+    "side": null,
+    "image": null,
+    "diagram": null,
+    "source": "implementation",
+    "section": "1.5"
+  },
+  {
+    "title": "合并后的 settings.json",
+    "stage": "② 解决 SDK 识别问题",
+    "body": [
+      "本例保留现有终端与编译数据库设置；构建成功后再调整数据库路径。"
+    ],
+    "code": "{\n  \"zephyr-ide.venvFolder\": \"G:/zephyr_practice/zephyr-main/.venv\",\n  \"zephyr-ide.toolchainDirectory\": \"G:/zephyr_practice\",\n  \"zephyr-ide.useClangd\": false,\n  \"C_Cpp.intelliSenseEngine\": \"default\",\n  \"terminal.integrated.defaultProfile.windows\": \"Zephyr IDE Terminal\",\n  \"C_Cpp.default.compileCommands\":\n    \"${workspaceFolder}/.vscode/compile_commands.json\",\n  \"cmake.configureOnOpen\": false\n}",
+    "side": null,
+    "image": null,
+    "diagram": null,
+    "source": "configuration",
+    "section": "1.5",
+    "codeSize": 23
+  },
+  {
+    "title": "保存 JSON 后再继续",
+    "stage": "② 解决 SDK 识别问题",
+    "body": [
+      "同一个对象只有一对外层花括号；新增字段放进原对象，不能在末尾再粘一份对象。",
+      "字段名与路径都用英文双引号。路径使用 /，无需写 Windows 反斜杠转义。",
+      "同名字段只保留一次；相邻字段之间有逗号。Ctrl+S 保存。",
+      "检查“问题”面板中的 JSON 语法错误。语法通过后，继续登记已有环境。"
+    ],
+    "code": null,
+    "side": null,
+    "image": null,
+    "diagram": null,
+    "source": "implementation",
+    "section": "1.5"
+  },
+  {
+    "title": "跳过安装后，还要扫描已有环境",
+    "stage": "② 登记已有环境",
+    "body": [
+      "登记命令选择父目录 G:/zephyr_practice，而编辑器打开源码根 zephyr-main。",
+      "Mark workspace as already set up 跳过安装；\n它不代表已经发现了源码与 venv。",
+      "接着运行 Configure Existing Environment (Scan Zephyr Dir/Version)。",
+      "这里的扫描读取已有 venv、执行 west list 并读取版本；不调用安装和更新。"
+    ],
+    "code": null,
+    "side": null,
+    "image": null,
+    "diagram": null,
+    "source": "implementation",
+    "section": "1.6"
+  },
+  {
+    "title": "插件怎样接入已有环境",
+    "stage": "② 登记已有环境",
+    "body": [
+      "登记和扫描完成后，插件向构建任务提供已有环境；重开窗口可复用登记",
+      "普通 Windows 主机工具还需可找到。缺某个工具时针对该项处理"
+    ],
+    "code": null,
+    "side": null,
+    "image": null,
+    "diagram": [
+      "工作区设置\n已有 venv 与 SDK",
+      "登记 west 根\n跳过安装",
+      "扫描已有环境\n源码、版本与 venv",
+      "Add Project\n选择应用并构建"
+    ],
+    "source": "external",
+    "section": "1.6"
+  },
+  {
+    "title": "目录选择框应该选哪一层",
+    "stage": "② 登记已有环境",
+    "body": [
+      "Ctrl+Shift+P → Zephyr IDE: Setup Workspace from External Directory。",
+      "目录选择框地址栏输入 G:/zephyr_practice，选择这个包含 .west 的目录。",
+      "此处登记 west 工作区根；VS Code 继续打开 zephyr-main，无需切换编辑器目录。",
+      "选择 Mark workspace as already set up，然后按 MD 1.6 执行已有环境扫描。"
+    ],
+    "code": null,
+    "side": null,
+    "image": null,
+    "diagram": null,
+    "source": "implementation",
+    "section": "1.6"
+  },
+  {
+    "title": "插件界面的对象位置",
+    "stage": "② 确认环境",
+    "body": [],
+    "code": null,
+    "side": [
+      "上部是环境入口。",
+      "Projects 列出应用与 Build。",
+      "活动构建区域决定按钮作用于谁。",
+      "官方界面示意；图中 blinky 和板名不是本章输入。"
+    ],
+    "image": "main_build.png",
+    "diagram": null,
+    "source": "readme",
+    "section": "1.6"
+  },
+  {
+    "title": "核对登记与扫描结果",
+    "stage": "② 确认环境",
+    "body": [
+      "Ctrl+Shift+P → Zephyr IDE: Configure Existing Environment (Scan Zephyr Dir/Version)。",
+      "成功提示包含 Zephyr environment configured，路径应为 G:/zephyr_practice/zephyr-main。",
+      "扫描同时核对已有 venv；只完成一部分时会出现对应警告，不能当成全部成功。",
+      "扫描成功仍为 Not Updated：执行 Skip West Setup。\n状态不刷新时保存文件后 Reload Window。"
+    ],
+    "code": null,
+    "side": null,
+    "image": null,
+    "diagram": null,
+    "source": "external",
+    "section": "1.6"
+  },
+  {
+    "title": "扫描没有完全成功时怎么办",
+    "stage": "② 确认环境",
+    "body": [
+      "提示找不到 Python 环境：回 settings.json 检查 venvFolder 下是否有 Scripts/python.exe。",
+      "提示找不到 Zephyr：检查登记目录的 .west/config，再看 west 是否能列出 zephyr-main。",
+      "Ctrl+Shift+U 打开“输出”，选择 Zephyr IDE 相关通道查看具体提示。",
+      "此时 Projects 为空可以正常：环境扫描成功之后，还要手动 Add Project。"
+    ],
+    "code": null,
+    "side": null,
+    "image": null,
+    "diagram": null,
+    "source": "implementation",
+    "section": "1.6"
+  },
+  {
+    "title": "添加 hello_world 应用",
+    "stage": "③ 添加 Project",
+    "body": [
+      "Ctrl+Shift+P，执行 Zephyr IDE: Add Project。",
+      "在 Select Project Folder 中选择 G:/zephyr_practice/zephyr-main/samples/hello_world。",
+      "项目列表出现 hello_world 后，打开其 CMakeLists.txt、prj.conf 和 src/main.c。",
+      "应选择包含应用 CMakeLists.txt 的目录。选择 src 子目录会缺少入口。"
+    ],
+    "code": null,
+    "side": null,
+    "image": null,
+    "diagram": null,
+    "source": "project",
+    "section": "1.7"
+  },
+  {
+    "title": "Add Project 实际保存了什么",
+    "stage": "③ 添加 Project",
+    "body": [
+      "在插件 Projects 中应出现 hello_world。Add Project 登记应用目录，不会复制或下载整个源码树。",
+      "插件把应用记录写入 .vscode/zephyr-ide.json；Project 的 relPath 是 samples/hello_world。",
+      "kernel、drivers、include 是 Zephyr 源码目录；无需把每个目录都添加为 Project。",
+      "接下来给 hello_world 添加 Build，决定板、参数和输出目录。"
+    ],
+    "code": null,
+    "side": null,
+    "image": null,
+    "diagram": null,
+    "source": "implementation",
+    "section": "1.7"
+  },
+  {
+    "title": "应用怎样引入 Zephyr 源码",
+    "stage": "③ 添加 Project",
+    "body": [
+      "只读摘录：samples/hello_world/CMakeLists.txt 已在官方源码中，无需重新创建。",
+      "find_package 加载 Zephyr 构建配置，target_sources 把应用源文件加入目标。",
+      "内核与驱动由 Zephyr 按板和配置选择，不需要在 IDE 中逐个导入。"
+    ],
+    "code": "cmake_minimum_required(VERSION 3.28.0)\nfind_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})\nproject(hello_world)\ntarget_sources(app PRIVATE src/main.c)",
+    "side": null,
+    "image": null,
+    "diagram": null,
+    "source": "application",
+    "section": "1.7"
+  },
+  {
+    "title": "添加板目标与 Build",
+    "stage": "③ 添加 Build",
+    "body": [
+      "Ctrl+Shift+P → Zephyr IDE: Set Active Project，选择 hello_world。",
+      "再运行 Zephyr IDE: Add Build Configuration，进入该应用的构建向导。",
+      "本例选择官方 mps2/an386 ARM 目标，先验证整条构建流程。",
+      "Build 名称 ide-mps2 是本地配置名。首次实验只编译，无需连接开发板。"
+    ],
+    "code": null,
+    "side": null,
+    "image": null,
+    "diagram": null,
+    "source": "project",
+    "section": "1.8"
+  },
+  {
+    "title": "Build 向导：先选板，再命名",
+    "stage": "③ 添加 Build",
+    "body": [
+      "Pick Additional Board Directory：选择 Zephyr Directory Only，使用当前源码自带的板定义。",
+      "Pick Board：搜索 mps2 并选择 an386 对应项，最终 board 为 mps2/an386。",
+      "如果板有修订版本，才会出现 Pick Revision；本例没有就继续。",
+      "Enter build configuration name：输入 ide-mps2，按 Enter。随后填写下一页参数。"
+    ],
+    "code": null,
+    "side": null,
+    "image": null,
+    "diagram": null,
+    "source": "implementation",
+    "section": "1.8"
+  },
+  {
+    "title": "Build 向导中的参数位置",
+    "stage": "③ 添加 Build",
+    "body": [
+      "优化选择 Not set (configured in KConfig)，让应用配置决定优化。",
+      "Additional Build Arguments 留空。它对应 west 自身的参数。",
+      "Modify CMake Arguments 填入以下 CMake 参数：\n-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+      "完成后 Set Active Build 选择 ide-mps2。首次构建不需要 Runner Profile。"
+    ],
+    "code": null,
+    "side": null,
+    "image": null,
+    "diagram": null,
+    "source": "implementation",
+    "section": "1.8"
+  },
+  {
+    "title": "构建输出集中到 build 目录",
+    "stage": "③ 保存 Build",
+    "body": [
+      "Ctrl+P 打开 G:/zephyr_practice/zephyr-main/.vscode/zephyr-ide.json。",
+      "projects / hello_world / buildConfigs 是 JSON 字段层级。\nide-mps2 是完成 Add Build 后才有的配置名。",
+      "buildConfigs 为空时先创建 Build。完整替换示例见 ACTION_GUIDE.md 1.4。"
+    ],
+    "code": "\"relPath\": \"build/learning-tools/zephyr-vscode/hello_world\"",
+    "side": null,
+    "image": null,
+    "diagram": null,
+    "source": "project",
+    "section": "1.9"
+  },
+  {
+    "title": "两个 relPath 不要改错层级",
+    "stage": "③ 保存 Build",
+    "body": [
+      "Project 的 relPath 指向应用源文件；Build 的 relPath 指向生成文件。",
+      "这是 JSON 结构示意，不是磁盘文件夹。相对路径都从源码根计算。"
+    ],
+    "code": "projects\n└── hello_world\n    ├── relPath: samples/hello_world\n    └── buildConfigs\n        └── ide-mps2\n            └── relPath: build/learning-tools/zephyr-vscode/hello_world",
+    "side": null,
+    "image": null,
+    "diagram": null,
+    "source": "implementation",
+    "section": "1.9"
+  },
+  {
+    "title": "两份 JSON 分别由谁读取",
+    "stage": "③ 保存配置",
+    "body": [
+      "settings.json：VS Code 与扩展读取。本机的 venv、SDK 查找目录和语言服务设置放这里。",
+      "zephyr-ide.json：Zephyr IDE 读取。Project、Build、应用相对路径、板和构建参数放这里。",
+      "本章 Project 的 relPath 是 samples/hello_world；Build 的 relPath 是根 build 下的独立输出目录。",
+      "toolchains 声明需要的架构。本章只需 arm-zephyr-eabi，声明全部架构可能引出补装需求。"
+    ],
+    "code": null,
+    "side": null,
+    "image": null,
+    "diagram": null,
+    "source": "configuration",
+    "section": "1.9"
+  },
+  {
+    "title": "只声明本例需要的工具链",
+    "stage": "③ 保存配置",
+    "body": [
+      "在 zephyr-ide.json 的最外层对象中，找到 toolchains 数组并调整为上面内容。",
+      "本例只编译 ARM。若其他项目确实需要别的架构，保留那些实际需要的条目。",
+      "保留已有 runnerProfiles 和其他项目；commands/04 是结构参考，不应整份覆盖已有文件。"
+    ],
+    "code": "\"toolchains\": [\"arm-zephyr-eabi\"]",
+    "side": null,
+    "image": null,
+    "diagram": null,
+    "source": "implementation",
+    "section": "1.9"
+  },
+  {
+    "title": "第一次点击 Build",
+    "stage": "④ 构建与观察",
+    "body": [
+      "确认活动 Project 为 hello_world，活动 Build 为 ide-mps2。",
+      "在全新的输出目录运行 Zephyr IDE: Build。终端开头应出现正确的应用、板与输出目录。",
+      "继续检查 Python、SDK 和 GCC 路径。等待构建成功退出，再检查 ELF。",
+      "第一次只点击 Build。Build and Flash 会继续触发烧录，属于后续实验。"
+    ],
+    "code": null,
+    "side": null,
+    "image": null,
+    "diagram": null,
+    "source": "build",
+    "section": "1.10"
+  },
+  {
+    "title": "从日志确认没有用错环境",
+    "stage": "④ 构建与观察",
+    "body": [
+      "应用：samples/hello_world；板：mps2/an386；输出：build/learning-tools/zephyr-vscode/hello_world。",
+      "Python 应指向 zephyr-main/.venv；SDK 应定位到已有 zephyr-sdk-1.0.1。",
+      "ARM GCC 应位于该 SDK 的 gnu/arm-zephyr-eabi/bin 中。",
+      "遇错从日志中第一条具体错误查起；末尾非零退出码只说明任务失败。"
+    ],
+    "code": null,
+    "side": null,
+    "image": null,
+    "diagram": null,
+    "source": "implementation",
+    "section": "1.10"
+  },
+  {
+    "title": "构建按钮调用的工具链路",
+    "stage": "④ 构建与观察",
+    "body": [
+      "CMake 配置后生成 build.ninja 与 compile_commands.json；链接成功后才得到 zephyr.elf。",
+      "Zephyr 的 CMake 脚本在 CMake 进程内运行，不是独立的后台服务。"
+    ],
+    "code": null,
+    "side": null,
+    "image": null,
+    "diagram": [
+      "Zephyr IDE\n读取 Project/Build",
+      "west\n组织构建调用",
+      "CMake\n加载 Zephyr 脚本",
+      "Ninja + GCC\n编译和链接"
+    ],
+    "source": "build",
+    "section": "1.10"
+  },
+  {
+    "title": "用等价命令定位 IDE 差异",
+    "stage": "④ 构建排错",
+    "body": [
+      "Windows UCRT64，源码根；IDE 失败时用于比较。IDE 已成功则无需重复执行。",
+      "命令参数顺序可以不同，应用、板、SDK、Python 与输出目录必须一致。"
+    ],
+    "code": "cd /g/zephyr_practice/zephyr-main\nsource .venv/Scripts/activate\nexport ZEPHYR_BASE='G:/zephyr_practice/zephyr-main'\nexport ZEPHYR_SDK_INSTALL_DIR='G:/zephyr_practice/zephyr-sdk-1.0.1'\nwest build -b mps2/an386 samples/hello_world \\\n  -d build/learning-tools/zephyr-vscode/hello_world \\\n  -- -DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+    "side": null,
+    "image": null,
+    "diagram": null,
+    "source": "build",
+    "section": "1.10"
+  },
+  {
+    "title": "构建产物分别说明什么",
+    "stage": "④ 核对结果",
+    "body": [
+      "CMakeCache.txt：核对这次构建选择的应用、板、Python、SDK 和编译器。",
+      "compile_commands.json：配置生成的编译指令；它出现时不代表链接已经成功。",
+      "zephyr/.config 与 zephyr/zephyr.dts：最终配置和合成设备树。",
+      "zephyr/zephyr.elf：链接结果。结合本次退出码和更新时间判断，避免误读旧产物。"
+    ],
+    "code": null,
+    "side": null,
+    "image": null,
+    "diagram": null,
+    "source": "build",
+    "section": "1.10"
+  },
+  {
+    "title": "Build 与 Build Pristine",
+    "stage": "④ 后续修改",
+    "body": [
+      "修改普通 .c 文件后运行 Build，沿用当前配置进行增量构建。",
+      "更换板、SDK 或 Python 时先核对缓存，再考虑 Build Pristine 重新配置。",
+      "Pristine 会清理所选构建目录。操作前确认指向本章 build/learning-tools/zephyr-vscode/hello_world。",
+      "构建目录应与源码、SDK、.venv 分离，便于排错和重新生成。"
+    ],
+    "code": null,
+    "side": null,
+    "image": null,
+    "diagram": null,
+    "source": "build",
+    "section": "1.10"
+  },
+  {
+    "title": "C/C++ 使用当前编译数据库",
+    "stage": "⑤ 源码浏览",
+    "body": [
+      "构建成功后，在 settings.json 找到已有 C_Cpp.default.compileCommands，替换它的值。",
+      "不要重复增加同名字段；完整构建后示例见 commands/09-settings-after-build.json。",
+      "数据库提供宏与 include 路径。切换 Build 后，也要检查这个固定路径。"
+    ],
+    "code": "\"C_Cpp.default.compileCommands\":\n  \"${workspaceFolder}/build/learning-tools/zephyr-vscode/hello_world/compile_commands.json\"",
+    "side": null,
+    "image": null,
+    "diagram": null,
+    "source": "cpp",
+    "section": "1.11",
+    "codeSize": 23
+  },
+  {
+    "title": "源码跳转的自查步骤",
+    "stage": "⑤ 源码浏览",
+    "body": [
+      "Ctrl+P 打开 samples/hello_world/src/main.c，核对绝对路径在 G 盘。",
+      "在 #include <zephyr/kernel.h> 上 Ctrl+单击或按 F12，应进入当前源码的 include/zephyr/kernel.h。",
+      "运行 C/C++: Log Diagnostics，核对它读取的编译数据库。",
+      "当前配置未编译的驱动可能没有数据库条目；能打开文件不等于能正确解析符号"
+    ],
+    "code": null,
+    "side": null,
+    "image": null,
+    "diagram": null,
+    "source": "cpp",
+    "section": "1.11"
+  },
+  {
+    "title": "第二天继续工作怎么打开",
+    "stage": "日常使用 · 继续已有工程",
+    "body": [
+      "正常启动 VS Code，重新打开 G:/zephyr_practice/zephyr-main。",
+      "若没有活动环境，Select Existing West Workspace 选择已登记的 G:/zephyr_practice。",
+      "核对活动 Project 为 hello_world、Build 为 ide-mps2，然后 Build。",
+      "已有记录正常时无需再 setup、创建 venv 或重新下载 SDK；改普通源文件后直接增量构建。"
+    ],
+    "code": null,
+    "side": null,
+    "image": null,
+    "diagram": null,
+    "source": "implementation",
+    "section": "1.12"
+  },
+  {
+    "title": "可选：从终端继承环境",
+    "stage": "可选 · 排查环境差异",
+    "body": [
+      "只在排查环境差异时使用；日常主线正常打开 VS Code 即可",
+      "先保存并退出旧窗口，再按 commands/02-launch-vscode.txt 激活 venv、设置变量并启动",
+      "变量沿父进程传给新进程；给已有集成终端 export 不会更新扩展宿主",
+      "已有活动安装会影响选择。先核对记录，必要时 Deactivate Workspace"
+    ],
+    "code": null,
+    "side": null,
+    "image": null,
+    "diagram": null,
+    "source": "workspace",
+    "section": "1.12"
+  },
+  {
+    "title": "依赖更新与添加应用是两件事",
+    "stage": "可选 · 插件管理后续更新",
+    "body": [
+      "需要插件更新依赖时才进入 Re-run West Setup 或普通 setup",
+      "Use .west folder 仍可能继续 west update；Use Existing 仍可能安装 Python 包",
+      "Reinitialize 会重建 venv，不应为了消除提示随意选择",
+      "已有环境的日常使用：登记和扫描一次，以后 Add Project / Build"
+    ],
+    "code": null,
+    "side": null,
+    "image": null,
+    "diagram": null,
+    "source": "implementation",
+    "section": "1.12"
+  },
+  {
+    "title": "加入自己的应用与源文件",
+    "stage": "扩展 · 复用同一开发环境",
+    "body": [
+      "已有 Zephyr 应用：Add Project 选择其应用根，保留已有 CMakeLists.txt、prj.conf 与 overlay。",
+      "新练习可把官方 hello_world 复制到 apps/hello_ide，确认目标不存在后再复制。",
+      "新增 helper.c 后，还要在应用 target_sources(app PRIVATE ...) 中加入该文件。",
+      "源码可见不等于参与构建。重新 Build 后检查编译数据库是否包含新文件。"
+    ],
+    "code": null,
+    "side": null,
+    "image": null,
+    "diagram": null,
+    "source": "application",
+    "section": "1.13"
+  },
+  {
+    "title": "切换到 HC32 的前提",
+    "stage": "扩展 · 对接后续板级实验",
+    "body": [
+      "G 盘必须已经具备真实的 HC32 SoC 与板级支持，并能列出对应板目标。",
+      "F 盘参照实现存在 uyup_rpi_a/hc32f4a0pitb，不代表 G 盘源码已经完成同样移植。",
+      "完成板级接入后，为自己的应用再建一条 HC32 Build。",
+      "Flash、Debug 还需要 runner、探针及板级配置；本章的 ARM 构建不替代实板验证"
+    ],
+    "code": null,
+    "side": null,
+    "image": null,
+    "diagram": null,
+    "source": "local",
+    "section": "1.13"
+  },
+  {
+    "title": "故障定位沿输入向下检查",
+    "stage": "自查 · 选择正确返回点",
+    "body": [
+      "SDK 不可见：先核对字段名、父目录与具体 SDK 根，再看所需架构。",
+      "IDE 失败而终端成功：核对登记和扫描结果、主机工具以及实际构建命令",
+      "Board 不可见：检查 Zephyr 路径与板定义。构建缺模块：回前置依赖步骤。",
+      "F12 异常：检查编译数据库、语言服务诊断和当前文件的构建配置。"
+    ],
+    "code": null,
+    "side": null,
+    "image": null,
+    "diagram": null,
+    "source": "local",
+    "section": "1.14"
+  },
+  {
+    "title": "五个结果确认接入完成",
+    "stage": "①—⑤ 自查",
+    "body": [
+      "① Python、west、SDK 的检查结果都指向预期 G 盘路径。",
+      "② 插件取得当前 Zephyr 环境，项目列表中有 hello_world。",
+      "③ 活动 Build 的板是 mps2/an386，输出位于根 build 下。",
+      "④ 本次构建成功，ELF 与配置产物对应这次输入。",
+      "⑤ 语言服务使用本次编译数据库，能打开当前 Zephyr 头文件。"
+    ],
+    "code": null,
+    "side": null,
+    "image": null,
+    "diagram": null,
+    "source": "local",
+    "section": "1.14"
+  },
+  {
+    "title": "文档与可复制材料",
+    "stage": "阅读入口",
+    "body": [
+      "ACTION_GUIDE.md：环境已备好时，从真实配置文件开始恢复并构建。",
+      "commands/：启动、环境检查、JSON 配置与等价构建命令。",
+      "菜单依据：本机 IDE for Zephyr 4.1.1；在线文档供进一步查阅",
+      "升级后重新核对设置与路径。每个按钮都应能追溯到它读取的输入与产生的结果。"
+    ],
+    "code": null,
+    "side": null,
+    "image": null,
+    "diagram": null,
+    "source": "references",
+    "section": "1.15"
+  }
+]

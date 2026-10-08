@@ -1,0 +1,32 @@
+{
+  "projects": {
+    "hello_world": {
+      "name": "hello_world",
+      "relPath": "samples/hello_world",
+      "confFiles": {
+        "config": [],
+        "overlay": []
+      },
+      "twisterConfigs": {},
+      "buildConfigs": {
+        "ide-local-cmsis": {
+          "name": "ide-local-cmsis",
+          "relPath": "build/learning-tools/zephyr-vscode/ide-local-cmsis",
+          "board": "mps2/an386",
+          "westBuildArgs": [],
+          "westBuildCMakeArgs": [
+            "-DZEPHYR_MODULES=G:/zephyr_practice/modules/hal/cmsis_6",
+            "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
+          ],
+          "confFiles": {
+            "config": [],
+            "overlay": []
+          }
+        }
+      }
+    }
+  },
+  "toolchains": [
+    "arm-zephyr-eabi"
+  ]
+}

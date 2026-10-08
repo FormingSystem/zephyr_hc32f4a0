@@ -1,0 +1,10 @@
+# 终端：Windows UCRT64 Bash；前提：已有 venv、SDK、CMSIS 6。
+# 用于 IDE 失败时对照；无需用这个终端启动 VS Code。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+export ZEPHYR_BASE='G:/zephyr_practice/zephyr-main'
+export ZEPHYR_SDK_INSTALL_DIR='G:/zephyr_practice/zephyr-sdk-1.0.1'
+west build -b mps2/an386 samples/hello_world \
+  -d build/learning-tools/zephyr-vscode/action-guide-cli \
+  -- '-DZEPHYR_MODULES=G:/zephyr_practice/modules/hal/cmsis_6' \
+  '-DCMAKE_EXPORT_COMPILE_COMMANDS=ON'

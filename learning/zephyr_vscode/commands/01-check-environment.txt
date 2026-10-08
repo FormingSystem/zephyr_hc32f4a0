@@ -1,0 +1,11 @@
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+python --version
+python -c 'import sys; print(sys.executable)'
+west --version
+west topdir
+west config manifest.path
+west config manifest.file
+command -v cmake ninja dtc
+cat ../zephyr-sdk-1.0.1/sdk_version
+../zephyr-sdk-1.0.1/gnu/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc.exe --version

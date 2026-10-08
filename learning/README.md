@@ -49,6 +49,7 @@ flowchart LR
 | 多个代码仓库必须使用配套版本 | [west 大纲](west/大纲.md) | 自建多仓库清单并写一个可运行的新命令 |
 | 新增 C 文件或可复用模块怎样参与编译 | [CMake 大纲](cmake/大纲.md) | 定位漏实现链接错误，验证模块开关 |
 | VS Code 怎样构建、打断点和单步 | [编辑器与调试大纲](vscode/大纲.md) | 用 GDB 观察变量变化，理解实板调试链路 |
+| 已有 G 盘环境怎样接入 Zephyr IDE 插件 | [Zephyr IDE 手把手教程](zephyr_vscode/README.md) | 复用 SDK/venv、添加应用与 Build、构建并配置源码浏览，附 48 页 PPT |
 | 怎样选芯片、适配 PCB 接线并验证 | [板级配置大纲](board/大纲.md) | 找到 Kconfig/DTS 输入，区分编译、模拟与实板证据 |
 
 west 安装承接 venv 前两章的环境与 pip 知识；已经掌握这些方法的读者可直接读 west。
@@ -65,6 +66,7 @@ learning/
   west/                教程、大纲、labs 实验源码
   cmake/               源文件、普通库与 Zephyr 模块实验
   vscode/              主机调试工作区与 GDB 命令文件
+  zephyr_vscode/       IDE for Zephyr 接入已有工程的 PPT、MD、命令和图源
   board/               Kconfig、设备树、Twister/QEMU 教程与配置片段
   requirements-tools.txt  已验证的工具直接依赖版本
   check_labs.py        自动验收主线及关键失败场景

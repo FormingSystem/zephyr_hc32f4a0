@@ -1,0 +1,21 @@
+{
+  "projects": {
+    "hello_world": {
+      "name": "hello_world",
+      "relPath": "samples/hello_world",
+      "confFiles": { "config": [], "overlay": [] },
+      "twisterConfigs": {},
+      "buildConfigs": {
+        "ide-mps2": {
+          "name": "ide-mps2",
+          "relPath": "build/learning-tools/zephyr-vscode/hello_world",
+          "board": "mps2/an386",
+          "westBuildArgs": [],
+          "westBuildCMakeArgs": ["-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"],
+          "confFiles": { "config": [], "overlay": [] }
+        }
+      }
+    }
+  },
+  "toolchains": ["arm-zephyr-eabi"]
+}
