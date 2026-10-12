@@ -1,0 +1,9 @@
+# Windows UCRT64 Bash；只读列出当前解析清单，不下载。
+# 前提：已确认 west 工作区根是 G:/zephyr_practice。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+west topdir
+west list -f '{name}: {path} @ {revision}'
+west list cmsis_6 -f '{name} {revision} {path} {url}'
+west list -f '{name}' | grep -E '^(cmsis|cmsis_6|hal_)'
+# 列表不是当前固件的模块清单；构建后的实际模块看 zephyr_modules.txt。

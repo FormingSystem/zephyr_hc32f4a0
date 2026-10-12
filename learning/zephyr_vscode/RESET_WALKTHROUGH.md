@@ -1,6 +1,6 @@
 ---
 id: zephyr-ide-reset-gui-walkthrough
-title: Zephyr IDE 清空配置后复用现有环境的实机截图
+title: Zephyr IDE 入口与配置地图
 kind: tutorial
 status: maintained
 domains: [zephyr, vscode, tools]
@@ -8,224 +8,95 @@ domains: [zephyr, vscode, tools]
 
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 
-# 第1章\_清空插件配置，从已有环境重新导入
+# 第1章\_先按任务找到正确入口
 
-本章截图来自 **2026-10-08 本机实际鼠标操作**，插件为 **Mylonics IDE for Zephyr 4.1.1**。实际点击 Build 完成 `hello_world + mps2/an386` 编译；没有执行 west update、pip 安装或 SDK 下载。其余选项逐项解释见 [全部配置参考](CONFIGURATION_REFERENCE.md)。已有 [48 页 PPT](P001_VSCode_Zephyr_IDE接入已有工程_Windows.pptx) 保留，本篇补充真实操作截图。
+**设置页只放扩展偏好和环境路径。添加应用、选板、执行构建、修改 Kconfig 属于另外的入口。** 在设置页搜索 Add Build 或 BOARD 找不到，并不能说明读者操作错了：原教程没有先交代它们分别在哪里。
 
-本次已经把 G 盘环境恢复到可编译状态。**读者现在不必再次清空；需要重演时才从 1.2 开始。** Windows 直接打开 VS Code 即可，本机不需要从 UCRT64 启动。插件能够给自己的任务提供 venv 和 SDK 环境，但必须先登记、扫描正确的源码安装。
+本文保留原文件名以兼容已有链接，内容已改为入口地图。旧版“清空后逐屏实录”引用的图片不能证明所述操作，已撤回；现在无需为阅读教程清空插件、删除配置或重建工作区。完整顺序见 [主教程](P001_VSCode_Zephyr_IDE接入已有工程_Windows.md)。
 
-## 1.1\_先认清四个路径
+## 1.1\_先确认是哪一个扩展
 
-| 对象 | 本次实际路径 | 来源及用途 |
+在 VS Code 按 `Ctrl+Shift+X`，搜索 `@id:mylonics.zephyr-ide`，确认发布者 **Mylonics** 和版本。本教程核对的是 4.1.1。Zephyr 项目自身提供 west、构建脚本、Kconfig、Devicetree 和源码；这个扩展负责调用工具、保存选项并展示结果。不同厂商的同类扩展没有统一的设置界面。
+
+## 1.2\_两个设置页面如何进入
+
+| 想打开哪一页 | 具体操作 | 能在这里改什么 |
 | --- | --- | --- |
-| VS Code 打开的文件夹 | `G:/zephyr_practice/zephyr-main` | 已有源码 Git 根；下文 `.vscode` 相对此处 |
-| west 工作区根 | `G:/zephyr_practice` | 已有 `.west/config` 所在目录；不是应用目录 |
-| Python venv | `G:/zephyr_practice/zephyr-main/.venv` | 已有环境；插件复用其中 Python、west 与 Python 包 |
-| SDK 安装根 | `G:/zephyr_practice/zephyr-sdk-1.0.1` | 已有 SDK；插件的 `toolchainDirectory` 填它的父目录 |
-| CMSIS 6 模块 | `G:/zephyr_practice/modules/hal/cmsis_6` | 已有 Zephyr 模块源码，不是编译器 |
-| 官方应用 | `G:/zephyr_practice/zephyr-main/samples/hello_world` | 源码已有；包含 CMakeLists.txt、prj.conf、src |
-| 本次构建输出 | `G:/zephyr_practice/zephyr-main/build/learning-tools/zephyr-vscode/ide-reset-demo` | Build 生成；不与源码、配置文件混放 |
-| 本文资料 | `F:/git_storage/zephyr_hc32f4a0/learning/zephyr_vscode` | 文档仓库；不在这里执行实验编译 |
+| 插件自己的设置页 | `Ctrl+Shift+P` → `Zephyr IDE: Open Settings` | 页面名 Zephyr IDE Settings；Directory Settings 中有 Toolchain Directory、Virtual Environment Folder、ZEPHYR_BASE Override |
+| VS Code 原生设置页 | `Ctrl+,`，在搜索框输入 `@ext:mylonics.zephyr-ide` | 扩展注册的设置；选择 Workspace 范围后作用于当前工程 |
+| 工作区设置 JSON | `Ctrl+Shift+P` → `Preferences: Open Workspace Settings (JSON)` | 当前单文件夹工程保存到 `G:/zephyr_practice/zephyr-main/.vscode/settings.json` |
 
-后续截图中的盘符可能显示为小写，Windows 下是同一目录。示例以打开源码根为前提；如果改为打开 west 根，JSON 中相对路径也要随之改变，不能原封不动套用。
+插件设置页的 **Open in VS Code Settings** 按钮会进入第二条路线。两页的显示名称可能不同：自有页 **Virtual Environment Folder** 对应原生页 **Venv Folder**，它们读写同一个键 `zephyr-ide.venvFolder`。SDK 的查找目录对应 `zephyr-ide.toolchainDirectory`。原生页可按完整键搜索，避免只凭译名寻找。
 
-## 1.2\_清空的是插件登记和项目配置
+![命令面板中的Zephyr IDE Open Settings入口](assets/verified_20261010/02-open-settings-command.jpg)
 
-本次清理前备份到 `G:/zephyr_practice/zephyr-main/.local/zephyr-ide-reset-20261008`，包括原 `.vscode`、用户设置和插件状态数据库快照。SDK、venv、modules、`.west` 均保留。
+图中高亮项才是本章打开的命令；下面相似的 Preferences 和 Set Workspace Settings 是其他动作。本图只示范命令入口，背后的旧设置内容不作为待复制配置。
 
-Windows / VS Code 中，打开 Workspace Setup，点击 Unregister，确认对象为 `G:/zephyr_practice`。这一步取消插件登记，不是删除 west 工作区磁盘目录。
+![插件Settings页面的Directory Settings与每项Workspace范围](assets/verified_20261010/03-plugin-settings.jpg)
 
-![取消插件的旧工作区登记](assets/reset_demo/02-unregister-confirm.jpg)
+这是2026-10-10本机4.1.1页面。Toolchain Directory与Virtual Environment Folder右侧各有一个范围选择器，图中两项均为Workspace；页面自动保存。图中同时显示User和Workspace值时，以标注workspace wins的工作区值为准。
 
-本次另外通过文件工具清理工作区与用户设置中的 Zephyr IDE 设置，以及 `.vscode/zephyr-ide.json`，随后执行 `Developer: Reload Window`。这部分是文件操作，不能把它说成全部通过鼠标完成。其他扩展设置保留。仅删除 JSON 后，插件缓存仍显示旧项目，因此还实际执行了下面的 Clear Projects。
+只为当前 G 盘工程填写的路径放 Workspace 范围。原生页 User 与 Workspace 同名键都存在时，工作区值会覆盖用户值；改了 User 却没影响当前工程，先检查这一层。
 
-按 `Ctrl+Shift+P`，查找 `Zephyr IDE: Clear Projects`，确认清空项目列表。这里只清插件项目配置；不要去删除 `samples/hello_world`。
+## 1.3\_六件工作，各有一个入口
 
-![清空缓存中的项目列表](assets/reset_demo/03-clear-projects-command.jpg)
+| 你真正要做的事 | 使用入口 | 实际读取或保存的位置 | 完成后看什么 |
+| --- | --- | --- | --- |
+| 告诉插件已有 Python/SDK 在哪 | 上述设置页 | `.vscode/settings.json` 的 venvFolder/toolchainDirectory | 扫描结果和构建日志中的路径 |
+| 登记已有 west 工作区 | 命令面板 `Zephyr IDE: Setup Workspace from External Directory` | 插件安装登记；选择 `G:/zephyr_practice` | 活动环境对应含 `.west` 的父目录 |
+| 扫描这套已有环境 | 命令面板 `Zephyr IDE: Configure Existing Environment (Scan Zephyr Dir/Version)` | 插件记录实际源码、版本和 venv | 源码为 G 盘 zephyr-main，venv 正确 |
+| 把应用加入工程列表 | 命令面板 `Zephyr IDE: Add Project` | `.vscode/zephyr-ide.json` 的 projects | 项目中出现 hello_world |
+| 为应用选择板子和构建参数 | `Zephyr IDE: Add Build Configuration` | 同文件的 buildConfigs | 板为 mps2/an386，活动 Build 为 ide-mps2 |
+| 编译当前应用和板子 | `Zephyr IDE: Build` | 读取 Project/Build，调用 west build | 本次成功退出；输出目录产生新的 ELF |
 
-![Clear Projects 的确认窗口](assets/reset_demo/04-clear-projects-confirm.jpg)
+命令面板输入 `Zephyr IDE:` 后再搜索动作名。JSON 中的 `projects → hello_world → buildConfigs → ide-mps2` 是对象层级；磁盘上没有要求创建这些同名目录。Build 尚未添加时，先完成向导，再打开保存结果。
 
-清空后的可观察结果是没有活动项目，工作区需要设置，West Update 显示 Not Updated。**这里的 Not Updated 是插件状态，不能据此推断磁盘上的 modules 不存在。**
+## 1.4\_两个“已完成”名称为何不同
 
-![从零开始的插件概览](assets/reset_demo/07-overview-start.jpg)
+**主教程固定使用命令面板的外部目录路线。** 该路线的选择项叫 **Mark workspace as already set up**。Workspace 配置网页中的另一条路线有 **Mark as Complete** 按钮。它们属于不同界面，不能把其中一个名称套到另一个页面上。
 
-若要撤销本次重新接入，先关闭 VS Code，再从备份恢复需要的 JSON 文件；正常重新登记、扫描即可。数据库快照只供故障恢复，不建议在 VS Code 运行时直接覆盖数据库。
+两个入口都不足以证明源码、依赖和编译已经验证。接入已有环境后继续执行 **Configure Existing Environment (Scan Zephyr Dir/Version)** 并检查结果。`Skip West Setup` 只改变插件的准备标记；`West Update` 会运行仓库同步。它们不是同一个“刷新”动作。
 
-## 1.3\_让插件使用已有 venv 和 SDK
+核对字段的入口是侧栏 **Workspace Setup**，或命令 **Zephyr IDE: Open Workspace Config**。查看Workspace Information中的Current Folder、West Workspace Path、West.yml Location、Python .venv Location、Zephyr Version：前者是编辑器打开目录，west路径是含`.west`的父目录，两者应按本章关系对应。
 
-在 VS Code 资源管理器打开源码根下的 `.vscode/settings.json`；没有文件时创建 `.vscode` 目录及 `settings.json` 文件。合并下面键，不覆盖其他扩展已有设置，保存：
+![工作区信息页面的目录与版本字段](assets/verified_20261010/05-workspace-information.jpg)
 
-```json
-{
-  "zephyr-ide.venvFolder": "G:/zephyr_practice/zephyr-main/.venv",
-  "zephyr-ide.toolchainDirectory": "G:/zephyr_practice",
-  "terminal.integrated.defaultProfile.windows": "Zephyr IDE Terminal",
-  "C_Cpp.default.compileCommands": "${workspaceFolder}/.vscode/compile_commands.json",
-  "cmake.configureOnOpen": false
-}
-```
+这张图记录当前已登记环境的字段位置；Ready和Updated是插件状态，不能独自证明本轮编译成功。本次为查看入口打开页面，未重新初始化或下载。
 
-![保存已有环境路径](assets/reset_demo/10-settings-saved.jpg)
+普通 setup 中的 **Use .west folder** 仍可能进入 Python 安装及 west update 流程。已有环境应按主教程的跳过安装与扫描路线操作，不因 `.west` 已存在便认定该选项只做只读导入。
 
-前两个键由 Zephyr IDE 读取。`venvFolder` 指向环境根，不能填 `Scripts/python.exe`；`toolchainDirectory` 是包含 `zephyr-sdk-*` 的目录，不能把它当成 CMake 的 `ZEPHYR_SDK_INSTALL_DIR`。后面三个键分别属于 VS Code 终端、C/C++ 扩展、CMake Tools：终端使用插件环境，代码浏览读取构建数据库，关闭 CMake Tools 打开文件夹时的另一套自动配置流程。
+## 1.5\_原生配置在哪里，插件怎样引用
 
-这里没有创建 C 盘 venv，也没有在系统 PATH 添加永久内容。若设置保存后插件环境未刷新，重载窗口，再执行下一节的扫描。不要只打开普通旧终端就判断设置失效，已经启动的进程不会自动换环境。
+| Zephyr 原生输入/结果 | 日常编辑或查看 | IDE 如何对应 |
+| --- | --- | --- |
+| `west.yml`、`.west/config` | 核对仓库、revision、清单路径和活动项目 | Workspace 登记/West Update 调用 west；设置页不会列出可下载包的完整清单 |
+| 应用 `CMakeLists.txt` | 声明应用源文件与构建逻辑 | Add Project 选择包含它的应用根 |
+| `BOARD` | 选择实际板目标 | Add Build 的板选择写入 Build 的 board |
+| `prj.conf`、额外 `.conf` | 配置软件功能 | 默认应用配置由 Zephyr 加载；额外片段通过 Project/Build 配置传入 |
+| 板 DTS、应用 `.overlay` | 描述硬件及应用覆盖 | 基础 DTS 由板目标决定；额外 overlay 通过 Project/Build 配置传入 |
+| `EXTRA_ZEPHYR_MODULES` | 为构建追加自有模块 | Build 的 CMake Args；不是插件 Settings 中的专用 HAL 开关 |
+| `compile_commands.json` | 查看本次编译参数 | Microsoft C/C++ 的 compileCommands 设置读取它 |
 
-## 1.4\_登记已有 west 根，并完成真正的源码扫描
+更完整的键与字段对应见 [配置参考](CONFIGURATION_REFERENCE.md)。所有输入修改都应回到其源文件或插件设置；`build/.../zephyr/.config`、`zephyr.dts`、`CMakeCache.txt` 是生成结果，不作为长期手工配置入口。
 
-点击左侧 Workspace Setup。本次 VS Code 打开的是 `zephyr-main`，因此选 **Create New Workspace in External Directory**，选现有父目录 `G:/zephyr_practice`。这个入口名字虽然含 New，下一页仍可以接入现有目录；不要点初始化或下载分支。
+## 1.6\_点CMake Args以后，为什么先出现West参数
 
-![选择外部工作区入口](assets/reset_demo/11-workspace-setup.jpg)
+在左侧Zephyr IDE的 **Projects** 中选中要修改的Build，再在 **Project Details** 展开该Build，找到 **CMake Args**。这是构建参数入口，不在Settings页。
 
-![选择已经有 .west 的父目录](assets/reset_demo/13-existing-west-root.jpg)
+![Project Details中的CMake Args位置](assets/verified_20261010/04-sidebar.jpg)
 
-下一页选 **Mark as Complete**。它告诉插件现有安装由读者自行准备，不再从这里安装。
+截图使用本机已有的`build/ide-reset-mps2`定位入口，**它是历史Build名，不是现行教程要求新建的ide-mps2**。图中旧参数也不作为主线模板；读者应选择自己的目标Build。
 
-![已有环境选择 Mark as Complete](assets/reset_demo/14-workspace-actions.jpg)
+点击CMake Args会打开一个两步向导，标题显示 **Modify Build Arguments (1/2)**。第一步说明为 **West build arguments**，只修改west层参数。已有需要保留的参数不动；本章新建hello_world的West参数为空，保持空并按Enter。
 
-完成后 Initialized、Updated 出现，但截图中 Zephyr Version 仍是 **Not available**。这正是“看起来配置完成、选板却对不上”的一个实际原因：标记完成不等于扫描了源码。
+![修改Build参数第一步是West参数](assets/verified_20261010/06-build-args-west.jpg)
 
-![仅标记完成时还没有源码版本](assets/reset_demo/15-mark-complete-options.jpg)
+灰色`--sysbuild`是提示示例，不是本章要求输入的值。第一框不能放HAL的`-D`参数。
 
-按 `Ctrl+Shift+P`，执行 **Zephyr IDE: Configure Existing Environment (Scan Zephyr Dir/Version)**。
+接着标题变为 **Modify Build Arguments (2/2)**，说明为 **CMake arguments**。现在才编辑`-DCMAKE_EXPORT_COMPILE_COMMANDS=ON`、SDK或模块等CMake输入。新建本章hello_world保留编译数据库参数；为已具备HC32完整适配的应用追加HAL时，按主教程1.9加入`-DEXTRA_ZEPHYR_MODULES=G:/zephyr_practice/hal_xhsc-zephyr`。
 
-![执行现有环境扫描命令](assets/reset_demo/16-scan-existing-command.jpg)
+![修改Build参数第二步才是CMake参数](assets/verified_20261010/07-build-args-cmake.jpg)
 
-扫描完成后，核对 Current Folder、West Workspace Path、West.yml Location、Python .venv Location、Zephyr Version；本次版本显示 **4.5.0**。这一步扫描现有目录并更新插件状态，不是 west update。
+**图中显示的是旧Build已有的ZEPHYR_MODULES参数，只说明第二个输入框的位置，不能照抄为新主线。** 主线使用west自动发现CMSIS，追加HAL用EXTRA_ZEPHYR_MODULES。第二框确认后，打开`.vscode/zephyr-ide.json`核对所选Build的westBuildArgs与westBuildCMakeArgs；修改构建输入后按需要Pristine重新配置。
 
-![扫描后路径与版本均已识别](assets/reset_demo/18-scan-complete.jpg)
-
-失败时先回到 1.1 核对 `.west/config` 指向的 manifest 仓库和文件、venv 中是否已有 west，以及是否登记错父目录。仅设置 `zephyrBaseOverride` 不能代替这一步：它只覆盖子进程环境，不改变插件扫描板子所用的源码树。
-
-## 1.5\_确认 SDK 页面是在发现安装，不是在要求重装
-
-点击 Zephyr SDK。截图实际识别到 **1.0.1、35/35 工具链**。本次没有点击 Install。
-
-![识别已有 SDK 和工具链](assets/reset_demo/19-sdk-page.jpg)
-
-如果找不到版本，先核对 `toolchainDirectory` 父目录；如果版本存在但 ARM 工具链缺失，才需要补目标组件。界面能发现 SDK 不等于应用一定选用了它，后面还要看构建日志中的编译器路径。
-
-## 1.6\_添加的是应用目录
-
-按 `Ctrl+Shift+P` 执行 **Zephyr IDE: Add Project**，选择 `G:/zephyr_practice/zephyr-main/samples/hello_world`。
-
-![Add Project 命令](assets/reset_demo/20-add-project-command.jpg)
-
-![选择官方 hello_world 应用目录](assets/reset_demo/21-application-folder.jpg)
-
-项目列表出现 hello_world。插件没有复制源码，也没有把它搬到所谓 projects 文件夹中。出现 Add Build 说明应用已登记，但尚未创建“板子 + 输出目录 + 参数”这一组构建配置。
-
-![应用已经加入，等待增加构建配置](assets/reset_demo/22-project-name.jpg)
-
-## 1.7\_Add Build 的每一步填什么
-
-点击 hello_world 下的 **Add Build**。第一步选择 **Zephyr Directory Only**：本次板子是 Zephyr 自带的，不需要额外板目录。Additional Board Directory 是搜索范围，不是 BOARD 的字符串输入框。
-
-![内置板选择 Zephyr Directory Only](assets/reset_demo/23-board-root.jpg)
-
-下一步输入 `mps2`，选择 **mps2/an386**。截图同时给出真实目录 `boards/arm/mps2`。`mps2/an386` 是板目标，**不存在必须叫 `boards/arm/mps2/an386` 的文件夹**。
-
-![选择板目标，不把目标名称当目录](assets/reset_demo/24-board-target.jpg)
-
-向导标为 7 步，其中修订号步骤对这块板自动跳过；这不是漏操作。到 Build Name 输入 `build/ide-reset-mps2`，这是本次创建的名字，不是之前应该存在的文件。
-
-![输入新的 Build 名称](assets/reset_demo/26-build-name.jpg)
-
-优化选 **Not set (configured in KConfig)**，让 Zephyr 的 Kconfig 决定。本次不是通过下拉框强制选择编译优化。
-
-![本次保留 Kconfig 的优化选择](assets/reset_demo/27-optimization.jpg)
-
-West Args 留空直接回车。输入框里的 `--sysbuild` 是提示例子，本次不填。
-
-![West Args 与 CMake Args 分开](assets/reset_demo/28-west-args.jpg)
-
-CMake Args 输入下面两个定义。本次为了避免未准备好的无关模块进入配置，显式限定现有 CMSIS 6：
-
-```text
--DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DZEPHYR_MODULES=G:/zephyr_practice/modules/hal/cmsis_6
-```
-
-![向导中输入 CMake 参数](assets/reset_demo/30-cmake-module-input.jpg)
-
-这个单模块列表只适用于本次 `hello_world + mps2/an386` 验证。换板或启用功能后要重新核对 HAL、库等依赖，不能把 CMSIS 6 当作所有 Zephyr 应用唯一模块。`ZEPHYR_MODULES` 会替换自动发现的模块集合；需要追加自有模块时是另一种接口 `EXTRA_ZEPHYR_MODULES`。
-
-## 1.8\_真实 JSON 文件在哪里，以及本次必须修正的两处
-
-向导保存后，按 `Ctrl+P` 输入 **`.vscode/zephyr-ide.json`** 打开。完整路径是：
-
-```text
-G:/zephyr_practice/zephyr-main/.vscode/zephyr-ide.json
-```
-
-不是应用目录里的 `CMakeUserPresets.json`。`projects → hello_world → buildConfigs → build/ide-reset-mps2` 是这个 JSON 内的对象层级，**不是文件资源管理器中的目录路径**。
-
-本次用编辑器修改两处：新增构建 `relPath`，让输出统一进入源码根的 build；给含 Windows 盘符的整个 CMSIS CMake 参数加单引号，防止本机插件 PowerShell 任务拆词。下面是本次实测的完整最小配置，可与文件对照；有其他项目时只合并对应对象。
-
-```json
-{
-  "projects": {
-    "hello_world": {
-      "relPath": "samples/hello_world",
-      "name": "hello_world",
-      "buildConfigs": {
-        "build/ide-reset-mps2": {
-          "relBoardSubDir": "arm/mps2",
-          "board": "mps2/an386",
-          "name": "build/ide-reset-mps2",
-          "westBuildArgs": [],
-          "westBuildCMakeArgs": [
-            "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
-            "'-DZEPHYR_MODULES=G:/zephyr_practice/modules/hal/cmsis_6'"
-          ],
-          "confFiles": { "config": [], "overlay": [] },
-          "relPath": "build/learning-tools/zephyr-vscode/ide-reset-demo"
-        }
-      },
-      "twisterConfigs": {},
-      "confFiles": { "config": [], "overlay": [] }
-    }
-  }
-}
-```
-
-![保存后的完整项目配置](assets/reset_demo/34-config-saved.jpg)
-
-双引号属于 JSON；其中的单引号是交给本次 PowerShell 命令行的实际字符，不能随意删掉。它是本机 4.1.1 的实测写法，不意味着所有操作系统都要同样处理。若参数修改后仍沿用旧缓存，选 **Build Pristine** 重新配置；普通增量 Build 不负责重放所有 CMake 参数。
-
-## 1.9\_真正点击 Build，并确认使用了原来的工具
-
-选中刚创建的 Build，在左下活动项目面板点 **Build**。首次没有输出目录，会进入配置和编译。本次任务调用 west build，终端实际找到既有 SDK 的 ARM 编译器。
-
-![首次构建实际开始](assets/reset_demo/35-build-running.jpg)
-
-最终出现 **136/136、Linking C executable zephyr/zephyr.elf**；内存报告 FLASH 18488 B、RAM 6440 B。没有出现 west update 任务。
-
-![实际编译成功，生成 ELF](assets/reset_demo/36-build-success.jpg)
-
-进一步检查生成文件：`zephyr/zephyr.elf` 为 382892 字节；`zephyr_modules.txt` 只有 cmsis_6；CMakeCache 的 BOARD 为 mps2/an386，C 编译器为 `G:/zephyr_practice/zephyr-sdk-1.0.1/gnu/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc.exe`。这些证明本次构建实际用了现有模块和工具链，SDK 页面“Installed”单独不足以证明这一点。
-
-左下点击 Build Dashboard，可直接查看同一输出目录、板目标、Zephyr 版本及工具链。
-
-![构建仪表板核对输入和产物](assets/reset_demo/81-dashboard.jpg)
-
-Kconfig 页的 Configuration Sources 展示板子 `mps2_an386_defconfig` 与应用 `prj.conf` 已被加载。因此 Project Details 中的 `0 kconfig / 0 overlay` 只说明没有额外登记文件，不意味着没有板配置、设备树或默认应用配置。
-
-![默认板配置与应用配置由构建系统加载](assets/reset_demo/83-kconfig-sources.jpg)
-
-本次没有运行 QEMU、烧录、连接探针或验证 F12 跳转；不要把 ELF 生成称作实板通过。
-
-## 1.10\_为什么之前被 West Update 卡住
-
-结论分三层：
-
-1. **插件限制真实存在。** 本机 4.1.1 的 Build 入口检查内部 `westUpdated` 标记；为 false 时在调用 CMake 之前拦截并提示先 West Update。这不是 CMake 根据源码得出的依赖缺失结论。
-2. **现有环境有复用入口。** 本次 Mark as Complete 后执行 Configure Existing Environment，扫描成功并写入状态，随后直接构建。因此不是每次编译必然要更新，也不是必须让插件重新下载。
-3. **点击 West Update 的范围与板子无关。** 本机实现调用 `west update`，只按设置增加 `--narrow`、`--keep-descendants`，没有按当前板子生成项目列表。默认会处理清单里所有活动项目；已有匹配 revision 的仓库不等于全部重新下载，但不相关项目仍可能被拉取。
-
-West Update 失败还会留下未完成状态；此前 cmsis-dsp 的网络中断与 hello_world 的编译需求是两个问题。`--narrow` 缩减 Git 历史，不会让 west 只下载当前板子的模块。
-
-当前环境已够用时按本章扫描并构建。将来确实缺某个清单模块时，先确认它的清单项目名与 revision，再做定向更新或维护项目自己的清单/过滤；不要为了把插件灯变绿反复点击全量更新。本章没有更改 `.west/config` 或上游 west.yml。
-
-机制依据：[插件现有环境接入说明](https://zephyr-ide.mylonics.com/getting-started/external-environments/)、[west update 官方说明](https://docs.zephyrproject.org/latest/develop/west/built-in.html)、本机 4.1.1 `dist/extension.js` 中 Build 门禁、West Update 和现有环境扫描处理逻辑。网页是在线说明，本章具体界面以安装的 4.1.1 为准。
-
-接下来按 [全部配置参考](CONFIGURATION_REFERENCE.md) 查找其他入口；其中会明确哪些是界面偏好、哪些改变构建输入、哪些会下载或操作硬件。
+本次截图查看到第二框后按Esc退出，没有保存输入或修改G盘配置；图片证明入口顺序和字段可见，不是新参数构建成功的证据。

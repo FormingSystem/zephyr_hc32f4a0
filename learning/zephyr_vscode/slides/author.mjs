@@ -1,101 +1,55 @@
 // SPDX-License-Identifier: Apache-2.0
-// Initial authoring source. Preserve later PowerPoint edits using build.py sync.
+// 2026-10-10 rewrite. First preserve saved PowerPoint changes using build.py sync.
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { createRequire } from 'node:module';
-const require = createRequire(path.join(process.env.RUNTIME_NODE_MODULES, '__artifact_entry__.cjs'));
-const { Presentation, PresentationFile } = require('@oai/artifact-tool');
-const topic = path.resolve(process.env.TOPIC_DIR);
-const build = path.resolve(process.env.TMP_DIR);
-const content = JSON.parse(await fs.readFile(path.join(topic,'slides/content.json'),'utf8'));
-const ppt = Presentation.create({slideSize:{width:1280,height:720}});
-const C={text:'#29263B',gray:'#646173',path:'#0070C0',variable:'#B84E00',func:'#087B3D',cmd:'#A02B93',purple:'#7350BC'};
-const sources={
- local:'本章 Markdown；本机 Zephyr 4.5.0-rc1 与 IDE for Zephyr 4.1.1',
- getting:'https://docs.zephyrproject.org/latest/develop/getting_started/index.html',
- external:'https://zephyr-ide.mylonics.com/getting-started/external-environments/',
- configuration:'https://zephyr-ide.mylonics.com/reference/configuration/',
- implementation:'本机 mylonics.zephyr-ide-4.1.1/package.json 与 dist/extension.js；configure-existing-environment、Ps、Ts、cl 等实现定位见同名 MD 1.15',
- readme:'https://github.com/mylonics/zephyr-ide；图片：https://raw.githubusercontent.com/mylonics/zephyr-ide/develop/docs/media/main_build.png',
- project:'https://zephyr-ide.mylonics.com/user-guide/project-setup/；本机扩展资源 schema 与 Build 向导',
- application:'https://docs.zephyrproject.org/latest/develop/application/index.html；G:/zephyr_practice/zephyr-main/samples/hello_world/CMakeLists.txt',
- build:'https://docs.zephyrproject.org/latest/develop/west/build-flash-debug.html；scripts/west_commands/build.py',
- cpp:'https://code.visualstudio.com/docs/cpp/customize-cpp-settings#_compilecommands',
- workspace:'https://zephyr-ide.mylonics.com/getting-started/workspace-configuration/；图片：https://raw.githubusercontent.com/mylonics/zephyr-ide/develop/docs/media/workspace_setup.png',
- references:'同名 Markdown 1.15：官方文档与当前安装包实现定位'
-};
-function rich(str,code=false){
- const rx=/(G:\/[^\s，。；、）：<>"]+|(?:\$\{workspaceFolder\}\/|\.\.\/|\/g\/|build\/|samples\/|include\/|apps\/|\.vscode\/|zephyr\/|commands\/|src\/)[^\s，。；、）：<>"]+|(?:\.venv|\.west|modules|zephyr-main|zephyr-sdk-1\.0\.1)\/[^\s，。；、）：<>"]*|(?:CMakeLists\.txt|CMakeCache\.txt|settings\.json|zephyr-ide\.json|compile_commands\.json|prj\.conf|west\.yml|helper\.c)|(?:relPath|toolchains|venvFolder|toolchainDirectory|zephyr-ide\.[\w.]+|C_Cpp\.[\w.]+|cmake\.configureOnOpen|ZEPHYR_[A-Z_]+|CMAKE_[A-Z_]+|-D[A-Z_]+=\w+)|(?:find_package|target_sources|project|cmake_minimum_required)(?=\()|\b(?:west|python|source|export|code|cd|cmake|ninja|cat)\b)/g;
- let cursor=0,runs=[];
- for(const m of str.matchAll(rx)){
-   if(m.index>cursor) runs.push({run:str.slice(cursor,m.index)});
-   let t=m[0],color=C.text;
-   if(/^(?:G:|\$\{|\.\.\/|\/g\/|build\/|samples\/|include\/|apps\/|\.vscode\/|zephyr\/|commands\/|src\/|\.venv\/|\.west\/|modules\/|zephyr-main\/|zephyr-sdk-1\.0\.1\/)/.test(t)||/\.(txt|json|conf|yml|c)$/.test(t)) color=C.path;
-   else if(/^(?:relPath|toolchains|venvFolder|toolchainDirectory|zephyr-ide\.|C_Cpp\.|cmake\.|ZEPHYR_|CMAKE_|-D)/.test(t)) color=C.variable;
-   else if(/^(find_package|target_sources|project|cmake_minimum_required)$/.test(t)) color=C.func;
-   else if(code && !/[├└│]/.test(str)) color=C.cmd;
-   runs.push({run:t,textStyle:{color}});cursor=m.index+t.length;
- }
- if(cursor<str.length) runs.push({run:str.slice(cursor)});
- return runs.length?runs:[{run:str}];
+import {createRequire} from 'node:module';
+for (const key of ['RUNTIME_NODE_MODULES','TOPIC_DIR','TMP_DIR']) {
+ if (!process.env[key]) throw new Error('Set '+key+' before authoring a private candidate');
 }
-function text(slide,name,value,x,y,w,h,size=28,color=C.text,opts={}){
- const s=slide.shapes.add({geometry:'textbox',name,position:{left:x,top:y,width:w,height:h},fill:'none',line:{fill:'none',width:0}});
- s.text.style={typeface:opts.code?'Consolas':'Microsoft YaHei',fontSize:size,color,bold:opts.bold||false,autoFit:'none',verticalAlignment:'top',wrap:opts.code?'none':'square',insets:{left:0,right:0,top:0,bottom:0},...opts.style};
- s.text=Array.isArray(value)?value:String(value).split('\n').map(l=>({runs:rich(l,opts.code),spaceAfter:0}));
- return s;
+const require=createRequire(path.join(process.env.RUNTIME_NODE_MODULES,'__artifact_entry__.cjs'));
+const {Presentation,PresentationFile}=require('@oai/artifact-tool');
+const w=path.resolve(process.env.TMP_DIR);
+const topic=path.resolve(process.env.TOPIC_DIR);
+await fs.mkdir(w,{recursive:true});
+const ds=JSON.parse(await fs.readFile(path.join(topic,'slides/content.json'),'utf8'));
+const p=Presentation.create({slideSize:{width:1280,height:720}});
+const C={text:'#29263B',path:'#0070C0',arg:'#B84E00',cmd:'#A02B93',fun:'#087B3D',muted:'#646173',purple:'#7350BC'};
+function rich(t){
+ const rx=/(hal_xhsc-zephyr\/?|zephyr-sdk-1\.0\.1\/?|zephyr-main\/|\.venv\/|hc32_port\/boards|zephyr-vscode\/[\w/-]+|python\.exe|boards\b|CMAKE_EXPORT_COMPILE_COMMANDS|G:\/[^\s，；。]+|\/g\/[^\s，；。]+|\$\{workspaceFolder\}\/[^\s"]+|(?:\.vscode\/|modules\/|samples\/|build\/|zephyr\/|boards\/|\.venv\/|\.west\/)[^\s，。；：]+|(?:settings\.json|zephyr-ide\.json|west\.yml|module\.yml|zephyr_modules\.txt|CMakeLists\.txt|CMakeCache\.txt|compile_commands\.json|prj\.conf|zephyr\.elf|zephyr\.dts)|(?:zephyr-ide\.[\w.]+|C_Cpp\.[\w.]+|EXTRA_ZEPHYR_MODULES|ZEPHYR_MODULES|ZEPHYR_SDK_INSTALL_DIR|CMAKE_C_COMPILER|BOARD|CONFIG_[A-Z0-9_]+|ZEPHYR_BASE|westBuildCMakeArgs|relPath|board|relBoardSubDir)|(?:find_package|target_sources|project|cmake_minimum_required)(?=\()|\b(?:west|python|source|cd|cmake|ninja)\b)/g;
+ let last=0,r=[];for(const m of t.matchAll(rx)){if(m.index>last)r.push(t.slice(last,m.index));let v=m[0];let col=/^(?:hal_xhsc-zephyr|zephyr-sdk-1\.0\.1|zephyr-main\/|\.venv\/|hc32_port\/boards|zephyr-vscode\/|python\.exe|boards$)/.test(v)?C.path:/^(?:G:|\/g|\$\{|\.vscode\/|modules\/|samples\/|build\/|zephyr\/|boards\/|\.venv\/|\.west\/)/.test(v)||/\.(?:json|yml|txt|conf|elf|dts)$/.test(v)?C.path:/^(?:find_package|target_sources|project|cmake_minimum_required)$/.test(v)?C.fun:/^(west|python|source|cd|cmake|ninja)$/.test(v)?C.cmd:C.arg;r.push({run:v,textStyle:{color:col}});last=m.index+v.length;}if(last<t.length)r.push(t.slice(last));return r.length?r:[''];
 }
-function paragraphs(s,items,x,y,w,size=30,gap=26){
- let top=y;
- for(let i=0;i<items.length;i++){
-   const item=items[i].replace(/。$/,'');
-   const lines=item.split('\n').reduce((sum,line)=>sum+Math.max(1,Math.ceil(Array.from(line).reduce((a,c)=>a+(/[\x00-\x7F]/.test(c)?0.55:1),0)/(w/size))),0);
-   const h=lines*size*1.28+8;
-   text(s,`Body ${i+1}`,item,x,top,w,h,size);top+=h+gap;
- }
+function tx(s,name,text,x,y,width,height,size=28,opts={}){
+ const t=s.shapes.add({name,geometry:'textbox',position:{left:x,top:y,width,height},fill:'none',line:{fill:'none',width:0}});
+ t.text.style={fontSize:size,typeface:opts.code?'Consolas':'Microsoft YaHei',color:opts.color||C.text,bold:opts.bold||false,autoFit:'none',wrap:true,verticalAlignment:'top',insets:{left:0,right:0,top:0,bottom:0},lineSpacing:1.2};
+ t.text=text.split('\n').map(l=>({spaceAfter:opts.code?0:5,runs:opts.color?[{run:l,textStyle:{color:opts.color}}]:opts.code&&l.startsWith('#')?[{run:l,textStyle:{color:C.muted}}]:rich(l)}));return t;
 }
-function diagram(s,labels,y){
- const gap=34,w=(1152-gap*(labels.length-1))/labels.length;
- labels.forEach((l,i)=>{
-   const x=64+i*(w+gap);
-   const n=s.shapes.add({geometry:'rect',name:`Diagram node ${i+1}`,position:{left:x,top:y,width:w,height:112},fill:'#F5F2FA',line:{fill:'#7350BC',width:1.5}});
-   n.text=l;n.text.style={typeface:'Microsoft YaHei',fontSize:25,color:C.text,alignment:'center',verticalAlignment:'middle',autoFit:'none',insets:{left:8,right:8,top:6,bottom:6}};
-   if(i<labels.length-1) s.shapes.add({geometry:'rightArrow',name:`Dependency ${i+1}`,position:{left:x+w+7,top:y+49,width:20,height:14},fill:C.purple,line:{fill:'none',width:0}});
- });
+function para(s,arr,x,y,width,size=28,gap=19){let top=y;arr.forEach((t,i)=>{const line=t.split('\n').reduce((a,l)=>a+Math.max(1,Math.ceil([...l].reduce((b,c)=>b+(/[\x00-\x7F]/.test(c)?0.54:1),0)/(width/size))),0);let h=line*size*1.35+10;tx(s,'Body '+i,t,x,top,width,h,size);top+=h+gap;});}
+const master=p.masters.add('Temporary body');const layout=p.layouts.add('Temporary body layout');layout.setParentLayoutId(master.id);
+for(let i=0;i<ds.length;i++){
+ const d=ds[i],s=p.slides.add();s.setLayout(layout);s.background.fill='#FFFFFF';
+ tx(s,'Title',d.title,64,42,1152,70,42,{bold:true});
+ tx(s,'Stage',d.section+' · '+(Number(d.section.slice(2))<5?'① 工程与依赖':Number(d.section.slice(2))<8?'② 工作区与设置':Number(d.section.slice(2))<10?'③ 应用与 Build':'④ 产物与日常操作'),64,126,1152,34,22,{color:C.purple});
+ if(i===0)continue;
+ if(d.table){
+  const count=d.table.length;const heights=d.title==='设置显示名称与 JSON 键对应'?84:count===7?57:count===6?68:count===5?78:90;
+  const table=s.tables.add({rows:count,columns:3,left:64,top:184,width:1152,height:heights*count,columnWidths:[310,421,421],values:d.table});
+  for(let r=0;r<count;r++){table.rows[r].height=heights;for(let c=0;c<3;c++){let cell=table.getCell(r,c);cell.fill=r===0?'#EEE8F6':r%2?'#FFFFFF':'#F8F6FB';cell.text.style={typeface:'Microsoft YaHei',fontSize:r===0?26:25,color:C.text,bold:r===0,autoFit:'none',wrap:true,verticalAlignment:'middle',insets:{left:12,right:10,top:9,bottom:8},lineSpacing:1.2};cell.value=d.table[r][c].split('\n').map(l=>({runs:rich(l),spaceAfter:0}));}}
+  para(s,d.body,64,d.title==='可下载仓库、可用模块、受支持板子'?594:184+heights*count+20,1152,26,12);
+ }else if(d.image){
+  const raw=await fs.readFile(topic+'/assets/'+d.image);
+  s.images.add({blob:new Uint8Array(raw),contentType:'image/jpeg',position:{left:64,top:187,width:775,height:386},fit:'contain',alt:d.caption});
+  para(s,d.body,880,194,334,27,25);
+  tx(s,'Image caption',d.caption,64,583,1152,37,19,{color:C.muted});
+ }else if(d.diagram){
+  const gap=27,bw=(1152-gap*(d.diagram.length-1))/d.diagram.length;
+  d.diagram.forEach((v,j)=>{const x=64+j*(bw+gap);const n=s.shapes.add({name:'Flow '+j,geometry:'rect',position:{left:x,top:184,width:bw,height:100},fill:'#F5F2FA',line:{fill:C.purple,width:1.4}});n.text=v;n.text.style={typeface:'Microsoft YaHei',fontSize:25,color:C.text,alignment:'center',verticalAlignment:'middle',autoFit:'none',wrap:true,insets:{left:10,right:10,top:8,bottom:8},lineSpacing:1.2};if(j<d.diagram.length-1)s.shapes.add({name:'Flow connector '+j,geometry:'rightArrow',position:{left:x+bw+5,top:227,width:17,height:14},fill:C.purple,line:{fill:'none',width:0}});});
+  para(s,d.body,64,323,1152,28,18);
+ }else if(d.code){
+  const size=d.code.split('\n').length>8?25:26;const effective=d.code.split('\n').reduce((a,l)=>a+Math.max(1,Math.ceil([...l].reduce((b,c)=>b+(/[\x00-\x7F]/.test(c)?0.61:1),0)*size/1152)),0);const ch=effective*size*1.48+14;
+  tx(s,'Continuous code',d.code,64,183,1152,ch,size,{code:true});para(s,d.body,64,183+ch+25,1152,27,17);
+ }else para(s,d.body,64,186,1152,30,25);
+ tx(s,'Reading link','完整操作与来源：同名 Markdown '+d.section,64,637,1152,27,17,{color:'#347D95'});
+ s.speakerNotes.textFrame.setText('对应同名 Markdown '+d.section+'。本章依据 Mylonics IDE for Zephyr 4.1.1。'+d.body.join('\n'));
 }
-const coverMaster=ppt.masters.add('Zephyr cover');
-const coverLayout=ppt.layouts.add('Zephyr cover layout');coverLayout.setParentLayoutId(coverMaster.id);
-const bodyMaster=ppt.masters.add('Zephyr body');
-const bodyLayout=ppt.layouts.add('Zephyr body layout');bodyLayout.setParentLayoutId(bodyMaster.id);
-for(let index=0;index<content.length;index++){
- const d=content[index],s=ppt.slides.add();s.setLayout(index===0?coverLayout:bodyLayout);s.background.fill=index===0?'#161127':'#FFFFFF';
- if(index===0){
-   s.images.add({blob:new Uint8Array(await fs.readFile(path.join(topic,'assets/series-cover.png'))),contentType:'image/png',position:{left:0,top:0,width:1280,height:720},fit:'cover',alt:'既有 Zephyr 技术教程系列芯片封面背景'});
-   text(s,'Title',d.title,64,209,725,182,58,'#FFFFFF',{bold:true});
-   text(s,'Chapter','P001',68,95,550,45,25,'#C3B4E2');
-   text(s,'Subtitle','Windows · 已有环境接入教程',68,445,700,55,31,'#C3B4E2');
-   text(s,'Presenter lizhaojun',d.body[1],68,533,700,55,29,'#C3B4E2');
- }else{
-   text(s,'Title',d.title,64,45,1152,66,42,C.text,{bold:true});
-   text(s,'Stage',d.stage,64,124,1152,36,23,C.purple);
-   if(d.image){
-     s.images.add({blob:new Uint8Array(await fs.readFile(path.join(topic,'assets',d.image))),contentType:'image/png',position:{left:64,top:180,width:780,height:440},fit:'contain',alt:'官方文档界面示意，非本机操作截图'});
-     paragraphs(s,d.side,880,192,335,27,22);
-   }else if(d.diagram){
-     diagram(s,d.diagram,190);paragraphs(s,d.body,64,356,1152,30,23);
-   }else if(d.code){
-     const lines=d.code.split('\n').length;
-     const size=d.codeSize||25;
-     const height=lines*size*1.48+14;
-     text(s,'Code',d.code,64,185,d.side?755:(d.codeSize===23?1170:1152),height,size,C.text,{code:true});
-     if(d.side) paragraphs(s,d.side,840,187,375,25,24);
-     else paragraphs(s,d.body,64,185+height+24,1152,28,19);
-   }else paragraphs(s,d.body,64,188,1152,31,27);
-   const foot=text(s,'Reading link',[{runs:[{run:'详细步骤与完整命令：配套 MD '+d.section,textStyle:{color:'#347D95',underline:'sng'},link:{uri:'../'+encodeURIComponent('x'),isExternal:true}}]}],64,639,1152,26,17,C.gray);
-   // The final XML patch replaces this placeholder URI with the exact sibling document.
- }
- s.speakerNotes.textFrame.setText(`对应 Markdown ${d.section}。${(d.body||d.side||[]).join('\n')}\n依据：${sources[d.source]||sources.local}\n本机插件版本 4.1.1。官方界面图片为文档示意，工程名按正文选择。`);
-}
-await fs.mkdir(build,{recursive:true});
-await (await PresentationFile.exportPptx(ppt)).save(path.join(build,'draft.pptx'));
-console.log(`Exported ${content.length} slides`);
+await (await PresentationFile.exportPptx(p)).save(w+'/authored.pptx');
+console.log('Exported '+ds.length+' slides');

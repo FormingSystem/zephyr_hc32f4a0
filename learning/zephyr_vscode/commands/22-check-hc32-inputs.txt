@@ -1,0 +1,36 @@
+# Windows UCRT64；仅在完成 P012 材料建立后；只读，不创建或编译 HC32。
+(
+set -e
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+python - <<'PY'
+from pathlib import Path
+roots = {
+    'CMSIS': Path('../modules/hal/cmsis_6'),
+    'HAL': Path('../hal_xhsc-zephyr'),
+    'PORT': Path('build/learning-tools/p003/hc32_port'),
+}
+checks = {
+    'CMSIS Core': roots['CMSIS'] / 'CMSIS/Core/Include/core_cm4.h',
+    'HAL 元数据': roots['HAL'] / 'zephyr/module.yml',
+    'HC32 设备头': roots['HAL'] / 'hc32_ddl/hc32f4a0/soc/hc32f4a0.h',
+    '适配模块元数据': roots['PORT'] / 'zephyr/module.yml',
+    '板身份': roots['PORT'] / 'boards/uyup/uyup_rpi_a/board.yml',
+    'SoC 身份': roots['PORT'] / 'soc/xhsc/hc32f4a0/soc.yml',
+    'SoC 源码选择': roots['PORT'] / 'soc/xhsc/hc32f4a0/CMakeLists.txt',
+    'UART 适配': roots['PORT'] / 'drivers/serial/uart_hc32.c',
+}
+missing = []
+for label, candidate in checks.items():
+    print('OK' if candidate.is_file() else 'MISSING', label, candidate.resolve())
+    if not candidate.is_file():
+        missing.append(label)
+if not (roots['HAL'] / '.git').exists():
+    print('HAL 无 .git：仅核对文件，不能把本检查称为 Git SHA 验证。')
+if missing:
+    raise SystemExit('返回 P012/P004 补材料：' + '、'.join(missing))
+PY
+west boards --board-root build/learning-tools/p003/hc32_port \
+  --soc-root build/learning-tools/p003/hc32_port \
+  -n '^uyup_rpi_a$' -f '{name}/{qualifiers}'
+)

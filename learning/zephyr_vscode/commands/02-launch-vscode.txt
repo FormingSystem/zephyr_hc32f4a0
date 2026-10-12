@@ -1,5 +1,5 @@
+# 可选：Windows UCRT64 Bash；前提：code 命令已在 PATH。
+# 也可从桌面打开 VS Code，选择 文件 → 打开文件夹，效果相同。
 cd /g/zephyr_practice/zephyr-main
-source .venv/Scripts/activate
-export ZEPHYR_BASE='G:/zephyr_practice/zephyr-main'
-export ZEPHYR_SDK_INSTALL_DIR='G:/zephyr_practice/zephyr-sdk-1.0.1'
 code .
+# 插件环境由 1.6 的路径设置与 1.7 扫描建立，不依赖此次终端激活。

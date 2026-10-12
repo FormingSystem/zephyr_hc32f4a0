@@ -1,7 +1,10 @@
+# 可选分支：Windows UCRT64 Bash；前提：官方 samples/hello_world 存在。
+# 主线直接 Add Project 导入官方应用，不必复制。
 cd /g/zephyr_practice/zephyr-main
 if [ -e apps/hello_ide ]; then
-  printf '%s\n' 'apps/hello_ide 已存在，请使用现有工程或换一个名字。'
+  printf '%s\n' 'apps/hello_ide 已存在；保留现有内容，使用现有应用或换名。'
 else
   mkdir -p apps
   cp -a samples/hello_world apps/hello_ide
 fi
+# 随后在 IDE Add Project 选择 apps/hello_ide，Project 名/路径不同于主线模板。

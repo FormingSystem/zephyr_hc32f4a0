@@ -1,3 +1,4 @@
+# Windows UCRT64 Bash；只读核对。前提：源码根已建立 .venv。
 cd /g/zephyr_practice/zephyr-main
 source .venv/Scripts/activate
 python --version
@@ -6,6 +7,8 @@ west --version
 west topdir
 west config manifest.path
 west config manifest.file
-command -v cmake ninja dtc
+command -v cmake ninja dtc git
 cat ../zephyr-sdk-1.0.1/sdk_version
 ../zephyr-sdk-1.0.1/gnu/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc.exe --version
+# 预期：west 根 G:/zephyr_practice，manifest.path 为 zephyr-main，file 为 west.yml。
+# 不符合时停止下载/初始化，按正文 1.2 查目录，不删除已有 .west。

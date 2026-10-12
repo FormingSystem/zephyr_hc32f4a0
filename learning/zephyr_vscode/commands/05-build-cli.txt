@@ -1,7 +1,10 @@
+# Windows UCRT64 Bash；与 IDE 主线对照，不是点击 Build 前的必做步骤。
+# 前提：正确 west 工作区、cmsis_6 已下载、SDK 已可自动发现、Python 构建依赖齐全。
 cd /g/zephyr_practice/zephyr-main
 source .venv/Scripts/activate
 export ZEPHYR_BASE='G:/zephyr_practice/zephyr-main'
-export ZEPHYR_SDK_INSTALL_DIR='G:/zephyr_practice/zephyr-sdk-1.0.1'
 west build -b mps2/an386 samples/hello_world \
   -d build/learning-tools/zephyr-vscode/hello_world \
   -- -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+# SDK 未被自动发现时，按正文 1.4/1.9.2 明确传 SDK 根，勿改成编译器 bin 目录。
+# 已换板/SDK/模块输入且旧缓存仍在时，对此 Build 使用 Pristine 后重配。

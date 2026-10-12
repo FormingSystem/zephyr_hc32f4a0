@@ -16,5 +16,47 @@
     "source": "https://raw.githubusercontent.com/mylonics/zephyr-ide/develop/docs/media/sdk_install.png",
     "role": "官方界面示意，develop 文档快照，非本机操作截图",
     "sha256": "87d36edbb2164cb72ed17591cdfdd23415ad2b0a2ae11b85577cf555d1733032"
+  },
+  {
+    "file": "verified_20261010/01-native-settings.jpg",
+    "source": "2026-10-10 本机 VS Code 原生设置界面，mylonics.zephyr-ide 4.1.1",
+    "role": "实际打开扩展过滤，35项可见；截图为用户范围，正文提示切到工作区",
+    "sha256": "fad6b7d4e8b7f8921ae8b92e3f373165097234c3782c70f1b2eb05bc37394c7b"
+  },
+  {
+    "file": "verified_20261010/02-open-settings-command.jpg",
+    "source": "2026-10-10 本机 VS Code 命令面板，mylonics.zephyr-ide 4.1.1",
+    "role": "实际查找Zephyr IDE: Open Settings；只证明命令入口，不作为背后旧JSON的推荐",
+    "sha256": "a3ef1afdb305e9c4a94f662893c833e4f98143ea26ecc783a779f64ff088fbb6"
+  },
+  {
+    "file": "verified_20261010/03-plugin-settings.jpg",
+    "source": "2026-10-10 本机 Zephyr IDE Settings 页面，mylonics.zephyr-ide 4.1.1",
+    "role": "实际查看Directory Settings、Toolchain Directory、Virtual Environment Folder和逐项Workspace范围",
+    "sha256": "a4926e77cc7298350ee734506324b482498bffce44311dfc212a531d398cb441"
+  },
+  {
+    "file": "verified_20261010/04-sidebar.jpg",
+    "source": "2026-10-10 本机 Zephyr IDE 侧栏，mylonics.zephyr-ide 4.1.1",
+    "role": "实际查看Project Details中的CMake Args；历史build/ide-reset-mps2仅作入口定位，不是现行Build模板",
+    "sha256": "942907b0fee6d9da5fc4a50738b81a6332aae2f4f9be997920edcc687aaec50b"
+  },
+  {
+    "file": "verified_20261010/05-workspace-information.jpg",
+    "source": "2026-10-10 本机 Workspace Setup 页面，mylonics.zephyr-ide 4.1.1",
+    "role": "实际查看Workspace Information路径与版本字段；Ready状态不作为编译成功证据",
+    "sha256": "7347d80959fe1dfbb3849277ecca0fe7f7ea7aa59882fff42951412d25583894"
+  },
+  {
+    "file": "verified_20261010/06-build-args-west.jpg",
+    "source": "2026-10-10 本机Modify Build Arguments (1/2)，mylonics.zephyr-ide 4.1.1",
+    "role": "从CMake Args进入仍先显示West build arguments；--sysbuild是提示。本轮未改参数",
+    "sha256": "b0903a82a5cb2218e9a15f2f7827cbe67f63071d2586ae3d77075be341113b0a"
+  },
+  {
+    "file": "verified_20261010/07-build-args-cmake.jpg",
+    "source": "2026-10-10 本机Modify Build Arguments (2/2)，mylonics.zephyr-ide 4.1.1",
+    "role": "第二步才是CMake arguments；旧ZEPHYR_MODULES内容不供复制。本轮按Esc退出未保存",
+    "sha256": "3a8466e4b84ed75c2aa0fee144ac440de81d2d2dc652ac1f3bb089b07357b061"
   }
 ]

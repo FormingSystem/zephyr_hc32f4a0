@@ -1,0 +1,11 @@
+# Windows UCRT64 Bash；只读检查 IDE 主线产物，前提：该 Build 已成功完成。
+cd /g/zephyr_practice/zephyr-main
+test -f build/learning-tools/zephyr-vscode/hello_world/zephyr/zephyr.elf
+test -f build/learning-tools/zephyr-vscode/hello_world/compile_commands.json
+cat build/learning-tools/zephyr-vscode/hello_world/zephyr_modules.txt
+grep -E '^(BOARD|APPLICATION_SOURCE_DIR|ZEPHYR_SDK_INSTALL_DIR|ZEPHYR_MODULES|EXTRA_ZEPHYR_MODULES)' \
+  build/learning-tools/zephyr-vscode/hello_world/CMakeCache.txt
+# 未显式设置的模块列表不一定出现在缓存；实际发现结果看 zephyr_modules.txt。
+# 本次构建是否成功须看退出状态与编译/链接日志；旧 ELF 可能是上一次产物。
+# compile_commands.json 证明已生成编译任务，不证明任务执行或程序运行。
+# ELF 存在不等于已运行、烧录或通过 HC32 实板验证。

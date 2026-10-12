@@ -10,36 +10,23 @@ domains: [zephyr, vscode, tools]
 
 # VS Code Zephyr IDE 教程
 
-已经有源码、SDK 和 Python 环境时，从这里把应用接入 **Mylonics IDE for Zephyr**。教程按本机插件 4.1.1 核对，以 G 盘现有环境为实验对象，先完成官方 hello_world 编译，再配置源码跳转。
+先读 [PPT](P001_VSCode_Zephyr_IDE接入已有工程_Windows.pptx) 或 [同名正文](P001_VSCode_Zephyr_IDE接入已有工程_Windows.md)。二者沿同一条路线讲解：Zephyr 自己提供哪些构建输入，Mylonics 的 IDE for Zephyr 怎样把这些输入变成可点击的工程和 Build，以及每一步保存到哪里。
 
-**需要看实际鼠标操作：先读 [清空后重新导入的实机截图](RESET_WALKTHROUGH.md)。需要查每个选项：读 [全部配置入口逐项截图说明](CONFIGURATION_REFERENCE.md)。** 两篇合计引用 72 张本机截图，覆盖 35 个现行设置、8 个旧兼容键及工程/构建/Runner/Manager 配置。2026-10-08 已实际点击 IDE Build 成功，未运行 west update、pip 或 SDK 安装。
+资料目录为 `F:/git_storage/zephyr_hc32f4a0/learning/zephyr_vscode`。主线工作区为 `G:/zephyr_practice`，VS Code 打开其下 `zephyr-main`。已有 SDK、venv 和模块继续复用。插件按本机 `mylonics.zephyr-ide` **4.1.1** 的设置声明和实现核对；界面版本变化时按扩展 ID 和完整设置键定位。
 
-[行动指南](ACTION_GUIDE.md) 保留命令诊断与机制说明；其中“空 buildConfigs”描述此前状态。本次清空后已新增并验证 `build/ide-reset-mps2`，当前状态以实机截图篇为准。
+| 当前要做的事 | 阅读位置 |
+| --- | --- |
+| 从头认识职责、找到入口、完成已有工程接入 | [主教程](P001_VSCode_Zephyr_IDE接入已有工程_Windows.md) |
+| 在“设置”里找不到文章所说的按钮 | [入口与配置地图](RESET_WALKTHROUGH.md) |
+| 已接入，但环境、Build 或代码跳转不对 | [按结果定位的行动指南](ACTION_GUIDE.md) |
+| 查完整设置键、默认值、Build/Runner 字段 | [配置参考](CONFIGURATION_REFERENCE.md) |
+| 复制命令或配置 | [命令索引](commands/README.md)；先区分主线示例和历史诊断副本 |
+| 查哪些步骤有证据、哪些尚未实测 | [验证记录](VALIDATION.md) |
 
-首次接入可读 [完整 Markdown](P001_VSCode_Zephyr_IDE接入已有工程_Windows.md)，按步骤操作；[48 页 PPT](P001_VSCode_Zephyr_IDE接入已有工程_Windows.pptx) 用来讲解与复习。完整命令和配置在 [commands](commands/README.md)，实际验证范围见 [VALIDATION](VALIDATION.md)。
+原生工程的准备顺序是 [P004 CMSIS 选择与下载](../P01_zephyr_make_project/P004_CMSIS选择与下载_Windows.md) → [P005 工程组织与驱动模型](../P01_zephyr_make_project/P005_Zephyr工程组织与驱动模型_Windows.md) → [P006 HC32 / DDL 与外部模块](../P01_zephyr_make_project/P006_HC32与外部源码模块接入_Windows.md)。先理解输入与驱动责任，再在本教程中对应到插件操作。
 
-| 你要完成的事情 | Markdown | PPT 页码 |
-| --- | --- | --- |
-| 分清源码、应用、west 根与工具 | 1.1—1.3 | 2—7 |
-| 正常打开、配置路径并登记环境 | 1.4—1.6 | 8—22 |
-| 添加应用、板目标和输出目录 | 1.7—1.9 | 23—32 |
-| 构建并核对产物 | 1.10 | 33—38 |
-| 配置 C/C++ 源码浏览 | 1.11 | 39—40 |
-| 日常重开、可选维护与自己的应用 | 1.12—1.13 | 41—45 |
-| 排错与完成检查 | 1.14—1.15 | 46—48 |
+本教程只采用一组构建标识：应用 `samples/hello_world`、板 `mps2/an386`、Build 名 `ide-mps2`、输出 `build/learning-tools/zephyr-vscode/hello_world`。CMSIS 由已有 west 清单与模块发现接入；自有 HAL 放在 `G:/zephyr_practice/hal_xhsc-zephyr`，通过独立的模块接入示例说明。hello_world 的构建结果不代表 HC32 板级支持已经完成。
 
-主线直接从桌面打开 VS Code，配置 JSON 后登记并扫描已有环境，不要求 UCRT64 启动或重装环境。终端继承与依赖更新作为可选分支。
+2026-10-10 已撤回旧版“72 张实机截图、完整 GUI 编译实测”的证据声明：旧截图多数内容重复，不能支持逐步操作结论。现行教程不再引用这批图片。具体核验与保留范围见 [验证记录](VALIDATION.md)。
 
-## 文件说明
-
-```text
-zephyr_vscode/
-  P001_...Windows.md     手把手正文
-  P001_...Windows.pptx   48 页可编辑演示文稿
-  commands/             Bash 命令与 JSON 配置片段
-  assets/               官方界面示意、来源和 Mermaid 图源
-  slides/               初始作者源与正式 PPT 原生重建源
-  VALIDATION.md         实测结果与未覆盖范围
-```
-
-资料目录是 `F:/git_storage/zephyr_hc32f4a0/learning/zephyr_vscode`，实验源码目录是 `G:/zephyr_practice/zephyr-main`。不要在资料目录执行本章构建命令。
+本轮重新核对并保留7张真实入口截图，展示两类Settings、Workspace信息，以及**点CMake Args后先West参数、再CMake参数**的两步向导。[入口地图](RESET_WALKTHROUGH.md)配有连续操作说明；画面中的历史Build名和旧模块参数仅用于定位，不作为现行模板。图片来源和摘要见[图片记录](assets/README.md)。

@@ -3,243 +3,308 @@
   "slides": [
     {
       "number": 1,
-      "title": "VS Code Zephyr IDE接入已有工程",
+      "title": "Zephyr IDE从零理解与使用",
       "part": "ppt/slides/slide1.xml"
     },
     {
       "number": 2,
-      "title": "本章完成的开发闭环",
-      "part": "ppt/slides/slide2.xml"
+      "title": "一个应用怎样变成固件",
+      "part": "ppt/slides/ide2.xml"
     },
     {
       "number": 3,
-      "title": "四个目录各有使用方",
-      "part": "ppt/slides/slide3.xml"
+      "title": "先认识 MPS2、AN386 与本章应用",
+      "part": "ppt/slides/guide32.xml"
     },
     {
       "number": 4,
-      "title": "Python 与 SDK 的职责",
-      "part": "ppt/slides/slide4.xml"
+      "title": "官方示例用 AN385，本章明确选 AN386",
+      "part": "ppt/slides/guide33.xml"
     },
     {
       "number": 5,
-      "title": "先在资源管理器核对文件",
-      "part": "ppt/slides/slide5.xml"
+      "title": "Zephyr 原生对象与 IDE 中的对应项",
+      "part": "ppt/slides/ide3.xml"
     },
     {
       "number": 6,
-      "title": "主机工具仍由 Windows 提供",
-      "part": "ppt/slides/slide6.xml"
+      "title": "Build 按钮下面的原生构建过程",
+      "part": "ppt/slides/ide4.xml"
     },
     {
       "number": 7,
-      "title": "已有环境可以直接复用",
-      "part": "ppt/slides/slide7.xml"
+      "title": "应用目录怎样真正进入构建",
+      "part": "ppt/slides/guide20.xml"
     },
     {
       "number": 8,
-      "title": "直接从桌面打开 VS Code",
-      "part": "ppt/slides/slide8.xml"
+      "title": "CMSIS、厂商 HAL、SDK 的职责",
+      "part": "ppt/slides/ide5.xml"
     },
     {
       "number": 9,
-      "title": "安装准确的扩展",
-      "part": "ppt/slides/slide9.xml"
+      "title": "MPS2 有自己的厂商支持包",
+      "part": "ppt/slides/guide21.xml"
     },
     {
       "number": 10,
-      "title": "工作区设置的打开位置",
-      "part": "ppt/slides/slide10.xml"
+      "title": "MPS2 的硬件支持由哪些部分组成",
+      "part": "ppt/slides/guide22.xml"
     },
     {
       "number": 11,
-      "title": "三种配置各管一件事",
-      "part": "ppt/slides/slide11.xml"
+      "title": "用串口实例追踪一次源码选择",
+      "part": "ppt/slides/guide23.xml"
     },
     {
       "number": 12,
-      "title": "复用已有 venv 和 SDK",
-      "part": "ppt/slides/slide12.xml"
+      "title": "本章使用的目录",
+      "part": "ppt/slides/ide6.xml"
     },
     {
       "number": 13,
-      "title": "SDK 父目录与 SDK 根",
-      "part": "ppt/slides/slide13.xml"
+      "title": "west 程序、工作区与清单",
+      "part": "ppt/slides/ide7.xml"
     },
     {
       "number": 14,
-      "title": "你现有的设置该怎样改",
-      "part": "ppt/slides/slide14.xml"
+      "title": "根据手里的工程选择路线",
+      "part": "ppt/slides/ide8.xml"
     },
     {
       "number": 15,
-      "title": "合并后的 settings.json",
-      "part": "ppt/slides/slide15.xml"
+      "title": "有 west 与没有 west，谁负责找模块",
+      "part": "ppt/slides/guide24.xml"
     },
     {
       "number": 16,
-      "title": "保存 JSON 后再继续",
-      "part": "ppt/slides/slide16.xml"
+      "title": "下载前先判断，再把结果交给 IDE",
+      "part": "ppt/slides/guide25.xml"
     },
     {
       "number": 17,
-      "title": "跳过安装后，还要扫描已有环境",
-      "part": "ppt/slides/slide17.xml"
+      "title": "路线 A：检查已有 west 工作区",
+      "part": "ppt/slides/ide9.xml"
     },
     {
       "number": 18,
-      "title": "插件怎样接入已有环境",
-      "part": "ppt/slides/slide18.xml"
+      "title": "路线 B：只有源码时建立工作区",
+      "part": "ppt/slides/ide10.xml"
     },
     {
       "number": 19,
-      "title": "目录选择框应该选哪一层",
-      "part": "ppt/slides/slide19.xml"
+      "title": "完全不用 west 时的原生路线",
+      "part": "ppt/slides/ide11.xml"
     },
     {
       "number": 20,
-      "title": "插件界面的对象位置",
-      "part": "ppt/slides/slide20.xml"
+      "title": "查询当前版本能由 west 下载哪些仓库",
+      "part": "ppt/slides/ide12.xml"
     },
     {
       "number": 21,
-      "title": "核对登记与扫描结果",
-      "part": "ppt/slides/slide21.xml"
+      "title": "可下载仓库、可用模块、受支持板子",
+      "part": "ppt/slides/ide13.xml"
     },
     {
       "number": 22,
-      "title": "扫描没有完全成功时怎么办",
-      "part": "ppt/slides/slide22.xml"
+      "title": "CMSIS 6：下载后交给模块发现",
+      "part": "ppt/slides/ide14.xml"
     },
     {
       "number": 23,
-      "title": "添加 hello_world 应用",
-      "part": "ppt/slides/slide23.xml"
+      "title": "厂商 HAL：清单外的源码怎样进入工程",
+      "part": "ppt/slides/ide15.xml"
     },
     {
       "number": 24,
-      "title": "Add Project 实际保存了什么",
-      "part": "ppt/slides/slide24.xml"
+      "title": "SDK：插件搜索路径与构建选用路径",
+      "part": "ppt/slides/ide16.xml"
     },
     {
       "number": 25,
-      "title": "应用怎样引入 Zephyr 源码",
-      "part": "ppt/slides/slide25.xml"
+      "title": "打开工程并确认扩展身份",
+      "part": "ppt/slides/ide17.xml"
     },
     {
       "number": 26,
-      "title": "添加板目标与 Build",
-      "part": "ppt/slides/slide26.xml"
+      "title": "四个入口分别配置什么",
+      "part": "ppt/slides/ide18.xml"
     },
     {
       "number": 27,
-      "title": "Build 向导：先选板，再命名",
-      "part": "ppt/slides/slide27.xml"
+      "title": "打开插件自己的 Settings 页面",
+      "part": "ppt/slides/ide19.xml"
     },
     {
       "number": 28,
-      "title": "Build 向导中的参数位置",
-      "part": "ppt/slides/slide28.xml"
+      "title": "在界面中设置 venv 与 SDK 搜索目录",
+      "part": "ppt/slides/ide20.xml"
     },
     {
       "number": 29,
-      "title": "构建输出集中到 build 目录",
-      "part": "ppt/slides/slide29.xml"
+      "title": "设置显示名称与 JSON 键对应",
+      "part": "ppt/slides/ide21.xml"
     },
     {
       "number": 30,
-      "title": "两个 relPath 不要改错层级",
-      "part": "ppt/slides/slide30.xml"
+      "title": "Workspace 设置实际保存在哪里",
+      "part": "ppt/slides/ide22.xml"
     },
     {
       "number": 31,
-      "title": "两份 JSON 分别由谁读取",
-      "part": "ppt/slides/slide31.xml"
+      "title": "路线 A / B 汇合：登记已有环境",
+      "part": "ppt/slides/ide23.xml"
     },
     {
       "number": 32,
-      "title": "只声明本例需要的工具链",
-      "part": "ppt/slides/slide32.xml"
+      "title": "扫描并核对 Zephyr 源码位置",
+      "part": "ppt/slides/ide24.xml"
     },
     {
       "number": 33,
-      "title": "第一次点击 Build",
-      "part": "ppt/slides/slide33.xml"
+      "title": "插件初始化向导各选项会做什么",
+      "part": "ppt/slides/ide25.xml"
     },
     {
       "number": 34,
-      "title": "从日志确认没有用错环境",
-      "part": "ppt/slides/slide34.xml"
+      "title": "全新环境与已有源码不要混用",
+      "part": "ppt/slides/ide26.xml"
     },
     {
       "number": 35,
-      "title": "构建按钮调用的工具链路",
-      "part": "ppt/slides/slide35.xml"
+      "title": "应用原本怎样加载 Zephyr",
+      "part": "ppt/slides/ide27.xml"
     },
     {
       "number": 36,
-      "title": "用等价命令定位 IDE 差异",
-      "part": "ppt/slides/slide36.xml"
+      "title": "应用自己的三个文件怎样对应到 IDE",
+      "part": "ppt/slides/guide34.xml"
     },
     {
       "number": 37,
-      "title": "构建产物分别说明什么",
-      "part": "ppt/slides/slide37.xml"
+      "title": "Add Project：选择要编译的应用",
+      "part": "ppt/slides/ide28.xml"
     },
     {
       "number": 38,
-      "title": "Build 与 Build Pristine",
-      "part": "ppt/slides/slide38.xml"
+      "title": "Add Build Configuration 的填写顺序",
+      "part": "ppt/slides/ide29.xml"
     },
     {
       "number": 39,
-      "title": "C/C++ 使用当前编译数据库",
-      "part": "ppt/slides/slide39.xml"
+      "title": "板目标、板目录与输出目录",
+      "part": "ppt/slides/ide30.xml"
     },
     {
       "number": 40,
-      "title": "源码跳转的自查步骤",
-      "part": "ppt/slides/slide40.xml"
+      "title": "向导的 West Args 与 CMake Args",
+      "part": "ppt/slides/ide31.xml"
     },
     {
       "number": 41,
-      "title": "第二天继续工作怎么打开",
-      "part": "ppt/slides/slide41.xml"
+      "title": "Build 配置保存后的文件",
+      "part": "ppt/slides/ide32.xml"
     },
     {
       "number": 42,
-      "title": "可选：从终端继承环境",
-      "part": "ppt/slides/slide42.xml"
+      "title": "引入 HAL 的实际操作位置",
+      "part": "ppt/slides/ide33.xml"
     },
     {
       "number": 43,
-      "title": "依赖更新与添加应用是两件事",
-      "part": "ppt/slides/slide43.xml"
+      "title": "板适配已在源码树内：追加 HAL",
+      "part": "ppt/slides/ide34.xml"
     },
     {
       "number": 44,
-      "title": "加入自己的应用与源文件",
-      "part": "ppt/slides/slide44.xml"
+      "title": "CMake 参数在 JSON 里是什么样",
+      "part": "ppt/slides/ide35.xml"
     },
     {
       "number": 45,
-      "title": "切换到 HC32 的前提",
-      "part": "ppt/slides/slide45.xml"
+      "title": "模块参数进入 Zephyr 后怎样生效",
+      "part": "ppt/slides/ide36.xml"
     },
     {
       "number": 46,
-      "title": "故障定位沿输入向下检查",
-      "part": "ppt/slides/slide46.xml"
+      "title": "HC32 沿用同样的问题，换一组硬件输入",
+      "part": "ppt/slides/guide35.xml"
     },
     {
       "number": 47,
-      "title": "五个结果确认接入完成",
-      "part": "ppt/slides/slide47.xml"
+      "title": "本系列 HC32：合并独立 Build 配置",
+      "part": "ppt/slides/ide37.xml"
     },
     {
       "number": 48,
-      "title": "文档与可复制材料",
-      "part": "ppt/slides/slide48.xml"
+      "title": "树外新 SoC：不要卡在选板向导",
+      "part": "ppt/slides/guide36.xml"
+    },
+    {
+      "number": 49,
+      "title": "HC32：HAL 与移植模块同时追加",
+      "part": "ppt/slides/ide38.xml"
+    },
+    {
+      "number": 50,
+      "title": "从两个模块路径追到 HC32 源文件",
+      "part": "ppt/slides/guide37.xml"
+    },
+    {
+      "number": 51,
+      "title": "SDK 版本怎样进入同一个 Build",
+      "part": "ppt/slides/ide39.xml"
+    },
+    {
+      "number": 52,
+      "title": "源码配置与插件配置的分工",
+      "part": "ppt/slides/ide40.xml"
+    },
+    {
+      "number": 53,
+      "title": "第一次 Build：先看它用的输入",
+      "part": "ppt/slides/ide41.xml"
+    },
+    {
+      "number": 54,
+      "title": "IDE Build 与原生命令的对应",
+      "part": "ppt/slides/ide42.xml"
+    },
+    {
+      "number": 55,
+      "title": "从产物确认 CMSIS、HAL 与 SDK",
+      "part": "ppt/slides/ide43.xml"
+    },
+    {
+      "number": 56,
+      "title": "源码浏览使用本次编译数据库",
+      "part": "ppt/slides/ide44.xml"
+    },
+    {
+      "number": 57,
+      "title": "日常修改后用哪个动作",
+      "part": "ppt/slides/ide45.xml"
+    },
+    {
+      "number": 58,
+      "title": "找不到选项时先确认入口",
+      "part": "ppt/slides/ide46.xml"
+    },
+    {
+      "number": 59,
+      "title": "west 更新失败时检查 Git 调用链",
+      "part": "ppt/slides/ide47.xml"
+    },
+    {
+      "number": 60,
+      "title": "完成后你应能独立回答的事情",
+      "part": "ppt/slides/ide48.xml"
+    },
+    {
+      "number": 61,
+      "title": "配套材料与来源入口",
+      "part": "ppt/slides/ide49.xml"
     }
   ],
   "parts": [
@@ -248,107 +313,136 @@
     "docProps/app.xml",
     "docProps/core.xml",
     "ppt/_rels/presentation.xml.rels",
+    "ppt/media/ide19-1.jpg",
+    "ppt/media/ide20-1.jpg",
+    "ppt/media/ide33-1.jpg",
     "ppt/media/image.png",
     "ppt/media/image2.png",
     "ppt/notesMasters/_rels/notesMaster1.xml.rels",
     "ppt/notesMasters/notesMaster1.xml",
     "ppt/notesMasters/theme/theme5.xml",
+    "ppt/notesSlides/_rels/guide20.xml.rels",
+    "ppt/notesSlides/_rels/guide21.xml.rels",
+    "ppt/notesSlides/_rels/guide22.xml.rels",
+    "ppt/notesSlides/_rels/guide23.xml.rels",
+    "ppt/notesSlides/_rels/guide24.xml.rels",
+    "ppt/notesSlides/_rels/guide25.xml.rels",
+    "ppt/notesSlides/_rels/guide32.xml.rels",
+    "ppt/notesSlides/_rels/guide33.xml.rels",
+    "ppt/notesSlides/_rels/guide34.xml.rels",
+    "ppt/notesSlides/_rels/guide35.xml.rels",
+    "ppt/notesSlides/_rels/guide36.xml.rels",
+    "ppt/notesSlides/_rels/guide37.xml.rels",
+    "ppt/notesSlides/_rels/ide10.xml.rels",
+    "ppt/notesSlides/_rels/ide11.xml.rels",
+    "ppt/notesSlides/_rels/ide12.xml.rels",
+    "ppt/notesSlides/_rels/ide13.xml.rels",
+    "ppt/notesSlides/_rels/ide14.xml.rels",
+    "ppt/notesSlides/_rels/ide15.xml.rels",
+    "ppt/notesSlides/_rels/ide16.xml.rels",
+    "ppt/notesSlides/_rels/ide17.xml.rels",
+    "ppt/notesSlides/_rels/ide18.xml.rels",
+    "ppt/notesSlides/_rels/ide19.xml.rels",
+    "ppt/notesSlides/_rels/ide2.xml.rels",
+    "ppt/notesSlides/_rels/ide20.xml.rels",
+    "ppt/notesSlides/_rels/ide21.xml.rels",
+    "ppt/notesSlides/_rels/ide22.xml.rels",
+    "ppt/notesSlides/_rels/ide23.xml.rels",
+    "ppt/notesSlides/_rels/ide24.xml.rels",
+    "ppt/notesSlides/_rels/ide25.xml.rels",
+    "ppt/notesSlides/_rels/ide26.xml.rels",
+    "ppt/notesSlides/_rels/ide27.xml.rels",
+    "ppt/notesSlides/_rels/ide28.xml.rels",
+    "ppt/notesSlides/_rels/ide29.xml.rels",
+    "ppt/notesSlides/_rels/ide3.xml.rels",
+    "ppt/notesSlides/_rels/ide30.xml.rels",
+    "ppt/notesSlides/_rels/ide31.xml.rels",
+    "ppt/notesSlides/_rels/ide32.xml.rels",
+    "ppt/notesSlides/_rels/ide33.xml.rels",
+    "ppt/notesSlides/_rels/ide34.xml.rels",
+    "ppt/notesSlides/_rels/ide35.xml.rels",
+    "ppt/notesSlides/_rels/ide36.xml.rels",
+    "ppt/notesSlides/_rels/ide37.xml.rels",
+    "ppt/notesSlides/_rels/ide38.xml.rels",
+    "ppt/notesSlides/_rels/ide39.xml.rels",
+    "ppt/notesSlides/_rels/ide4.xml.rels",
+    "ppt/notesSlides/_rels/ide40.xml.rels",
+    "ppt/notesSlides/_rels/ide41.xml.rels",
+    "ppt/notesSlides/_rels/ide42.xml.rels",
+    "ppt/notesSlides/_rels/ide43.xml.rels",
+    "ppt/notesSlides/_rels/ide44.xml.rels",
+    "ppt/notesSlides/_rels/ide45.xml.rels",
+    "ppt/notesSlides/_rels/ide46.xml.rels",
+    "ppt/notesSlides/_rels/ide47.xml.rels",
+    "ppt/notesSlides/_rels/ide48.xml.rels",
+    "ppt/notesSlides/_rels/ide49.xml.rels",
+    "ppt/notesSlides/_rels/ide5.xml.rels",
+    "ppt/notesSlides/_rels/ide6.xml.rels",
+    "ppt/notesSlides/_rels/ide7.xml.rels",
+    "ppt/notesSlides/_rels/ide8.xml.rels",
+    "ppt/notesSlides/_rels/ide9.xml.rels",
     "ppt/notesSlides/_rels/notesSlide1.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide10.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide11.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide12.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide13.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide14.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide15.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide16.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide17.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide18.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide19.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide2.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide20.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide21.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide22.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide23.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide24.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide25.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide26.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide27.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide28.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide29.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide3.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide30.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide31.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide32.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide33.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide34.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide35.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide36.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide37.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide38.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide39.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide4.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide40.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide41.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide42.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide43.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide44.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide45.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide46.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide47.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide48.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide5.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide6.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide7.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide8.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide9.xml.rels",
+    "ppt/notesSlides/guide20.xml",
+    "ppt/notesSlides/guide21.xml",
+    "ppt/notesSlides/guide22.xml",
+    "ppt/notesSlides/guide23.xml",
+    "ppt/notesSlides/guide24.xml",
+    "ppt/notesSlides/guide25.xml",
+    "ppt/notesSlides/guide32.xml",
+    "ppt/notesSlides/guide33.xml",
+    "ppt/notesSlides/guide34.xml",
+    "ppt/notesSlides/guide35.xml",
+    "ppt/notesSlides/guide36.xml",
+    "ppt/notesSlides/guide37.xml",
+    "ppt/notesSlides/ide10.xml",
+    "ppt/notesSlides/ide11.xml",
+    "ppt/notesSlides/ide12.xml",
+    "ppt/notesSlides/ide13.xml",
+    "ppt/notesSlides/ide14.xml",
+    "ppt/notesSlides/ide15.xml",
+    "ppt/notesSlides/ide16.xml",
+    "ppt/notesSlides/ide17.xml",
+    "ppt/notesSlides/ide18.xml",
+    "ppt/notesSlides/ide19.xml",
+    "ppt/notesSlides/ide2.xml",
+    "ppt/notesSlides/ide20.xml",
+    "ppt/notesSlides/ide21.xml",
+    "ppt/notesSlides/ide22.xml",
+    "ppt/notesSlides/ide23.xml",
+    "ppt/notesSlides/ide24.xml",
+    "ppt/notesSlides/ide25.xml",
+    "ppt/notesSlides/ide26.xml",
+    "ppt/notesSlides/ide27.xml",
+    "ppt/notesSlides/ide28.xml",
+    "ppt/notesSlides/ide29.xml",
+    "ppt/notesSlides/ide3.xml",
+    "ppt/notesSlides/ide30.xml",
+    "ppt/notesSlides/ide31.xml",
+    "ppt/notesSlides/ide32.xml",
+    "ppt/notesSlides/ide33.xml",
+    "ppt/notesSlides/ide34.xml",
+    "ppt/notesSlides/ide35.xml",
+    "ppt/notesSlides/ide36.xml",
+    "ppt/notesSlides/ide37.xml",
+    "ppt/notesSlides/ide38.xml",
+    "ppt/notesSlides/ide39.xml",
+    "ppt/notesSlides/ide4.xml",
+    "ppt/notesSlides/ide40.xml",
+    "ppt/notesSlides/ide41.xml",
+    "ppt/notesSlides/ide42.xml",
+    "ppt/notesSlides/ide43.xml",
+    "ppt/notesSlides/ide44.xml",
+    "ppt/notesSlides/ide45.xml",
+    "ppt/notesSlides/ide46.xml",
+    "ppt/notesSlides/ide47.xml",
+    "ppt/notesSlides/ide48.xml",
+    "ppt/notesSlides/ide49.xml",
+    "ppt/notesSlides/ide5.xml",
+    "ppt/notesSlides/ide6.xml",
+    "ppt/notesSlides/ide7.xml",
+    "ppt/notesSlides/ide8.xml",
+    "ppt/notesSlides/ide9.xml",
     "ppt/notesSlides/notesSlide1.xml",
-    "ppt/notesSlides/notesSlide10.xml",
-    "ppt/notesSlides/notesSlide11.xml",
-    "ppt/notesSlides/notesSlide12.xml",
-    "ppt/notesSlides/notesSlide13.xml",
-    "ppt/notesSlides/notesSlide14.xml",
-    "ppt/notesSlides/notesSlide15.xml",
-    "ppt/notesSlides/notesSlide16.xml",
-    "ppt/notesSlides/notesSlide17.xml",
-    "ppt/notesSlides/notesSlide18.xml",
-    "ppt/notesSlides/notesSlide19.xml",
-    "ppt/notesSlides/notesSlide2.xml",
-    "ppt/notesSlides/notesSlide20.xml",
-    "ppt/notesSlides/notesSlide21.xml",
-    "ppt/notesSlides/notesSlide22.xml",
-    "ppt/notesSlides/notesSlide23.xml",
-    "ppt/notesSlides/notesSlide24.xml",
-    "ppt/notesSlides/notesSlide25.xml",
-    "ppt/notesSlides/notesSlide26.xml",
-    "ppt/notesSlides/notesSlide27.xml",
-    "ppt/notesSlides/notesSlide28.xml",
-    "ppt/notesSlides/notesSlide29.xml",
-    "ppt/notesSlides/notesSlide3.xml",
-    "ppt/notesSlides/notesSlide30.xml",
-    "ppt/notesSlides/notesSlide31.xml",
-    "ppt/notesSlides/notesSlide32.xml",
-    "ppt/notesSlides/notesSlide33.xml",
-    "ppt/notesSlides/notesSlide34.xml",
-    "ppt/notesSlides/notesSlide35.xml",
-    "ppt/notesSlides/notesSlide36.xml",
-    "ppt/notesSlides/notesSlide37.xml",
-    "ppt/notesSlides/notesSlide38.xml",
-    "ppt/notesSlides/notesSlide39.xml",
-    "ppt/notesSlides/notesSlide4.xml",
-    "ppt/notesSlides/notesSlide40.xml",
-    "ppt/notesSlides/notesSlide41.xml",
-    "ppt/notesSlides/notesSlide42.xml",
-    "ppt/notesSlides/notesSlide43.xml",
-    "ppt/notesSlides/notesSlide44.xml",
-    "ppt/notesSlides/notesSlide45.xml",
-    "ppt/notesSlides/notesSlide46.xml",
-    "ppt/notesSlides/notesSlide47.xml",
-    "ppt/notesSlides/notesSlide48.xml",
-    "ppt/notesSlides/notesSlide5.xml",
-    "ppt/notesSlides/notesSlide6.xml",
-    "ppt/notesSlides/notesSlide7.xml",
-    "ppt/notesSlides/notesSlide8.xml",
-    "ppt/notesSlides/notesSlide9.xml",
     "ppt/presProps.xml",
     "ppt/presentation.xml",
     "ppt/slideLayouts/_rels/slideLayout1.xml.rels",
@@ -376,102 +470,128 @@
     "ppt/slideMasters/theme/theme2.xml",
     "ppt/slideMasters/theme/theme3.xml",
     "ppt/slideMasters/theme/theme4.xml",
+    "ppt/slides/_rels/guide20.xml.rels",
+    "ppt/slides/_rels/guide21.xml.rels",
+    "ppt/slides/_rels/guide22.xml.rels",
+    "ppt/slides/_rels/guide23.xml.rels",
+    "ppt/slides/_rels/guide24.xml.rels",
+    "ppt/slides/_rels/guide25.xml.rels",
+    "ppt/slides/_rels/guide32.xml.rels",
+    "ppt/slides/_rels/guide33.xml.rels",
+    "ppt/slides/_rels/guide34.xml.rels",
+    "ppt/slides/_rels/guide35.xml.rels",
+    "ppt/slides/_rels/guide36.xml.rels",
+    "ppt/slides/_rels/guide37.xml.rels",
+    "ppt/slides/_rels/ide10.xml.rels",
+    "ppt/slides/_rels/ide11.xml.rels",
+    "ppt/slides/_rels/ide12.xml.rels",
+    "ppt/slides/_rels/ide13.xml.rels",
+    "ppt/slides/_rels/ide14.xml.rels",
+    "ppt/slides/_rels/ide15.xml.rels",
+    "ppt/slides/_rels/ide16.xml.rels",
+    "ppt/slides/_rels/ide17.xml.rels",
+    "ppt/slides/_rels/ide18.xml.rels",
+    "ppt/slides/_rels/ide19.xml.rels",
+    "ppt/slides/_rels/ide2.xml.rels",
+    "ppt/slides/_rels/ide20.xml.rels",
+    "ppt/slides/_rels/ide21.xml.rels",
+    "ppt/slides/_rels/ide22.xml.rels",
+    "ppt/slides/_rels/ide23.xml.rels",
+    "ppt/slides/_rels/ide24.xml.rels",
+    "ppt/slides/_rels/ide25.xml.rels",
+    "ppt/slides/_rels/ide26.xml.rels",
+    "ppt/slides/_rels/ide27.xml.rels",
+    "ppt/slides/_rels/ide28.xml.rels",
+    "ppt/slides/_rels/ide29.xml.rels",
+    "ppt/slides/_rels/ide3.xml.rels",
+    "ppt/slides/_rels/ide30.xml.rels",
+    "ppt/slides/_rels/ide31.xml.rels",
+    "ppt/slides/_rels/ide32.xml.rels",
+    "ppt/slides/_rels/ide33.xml.rels",
+    "ppt/slides/_rels/ide34.xml.rels",
+    "ppt/slides/_rels/ide35.xml.rels",
+    "ppt/slides/_rels/ide36.xml.rels",
+    "ppt/slides/_rels/ide37.xml.rels",
+    "ppt/slides/_rels/ide38.xml.rels",
+    "ppt/slides/_rels/ide39.xml.rels",
+    "ppt/slides/_rels/ide4.xml.rels",
+    "ppt/slides/_rels/ide40.xml.rels",
+    "ppt/slides/_rels/ide41.xml.rels",
+    "ppt/slides/_rels/ide42.xml.rels",
+    "ppt/slides/_rels/ide43.xml.rels",
+    "ppt/slides/_rels/ide44.xml.rels",
+    "ppt/slides/_rels/ide45.xml.rels",
+    "ppt/slides/_rels/ide46.xml.rels",
+    "ppt/slides/_rels/ide47.xml.rels",
+    "ppt/slides/_rels/ide48.xml.rels",
+    "ppt/slides/_rels/ide49.xml.rels",
+    "ppt/slides/_rels/ide5.xml.rels",
+    "ppt/slides/_rels/ide6.xml.rels",
+    "ppt/slides/_rels/ide7.xml.rels",
+    "ppt/slides/_rels/ide8.xml.rels",
+    "ppt/slides/_rels/ide9.xml.rels",
     "ppt/slides/_rels/slide1.xml.rels",
-    "ppt/slides/_rels/slide10.xml.rels",
-    "ppt/slides/_rels/slide11.xml.rels",
-    "ppt/slides/_rels/slide12.xml.rels",
-    "ppt/slides/_rels/slide13.xml.rels",
-    "ppt/slides/_rels/slide14.xml.rels",
-    "ppt/slides/_rels/slide15.xml.rels",
-    "ppt/slides/_rels/slide16.xml.rels",
-    "ppt/slides/_rels/slide17.xml.rels",
-    "ppt/slides/_rels/slide18.xml.rels",
-    "ppt/slides/_rels/slide19.xml.rels",
-    "ppt/slides/_rels/slide2.xml.rels",
-    "ppt/slides/_rels/slide20.xml.rels",
-    "ppt/slides/_rels/slide21.xml.rels",
-    "ppt/slides/_rels/slide22.xml.rels",
-    "ppt/slides/_rels/slide23.xml.rels",
-    "ppt/slides/_rels/slide24.xml.rels",
-    "ppt/slides/_rels/slide25.xml.rels",
-    "ppt/slides/_rels/slide26.xml.rels",
-    "ppt/slides/_rels/slide27.xml.rels",
-    "ppt/slides/_rels/slide28.xml.rels",
-    "ppt/slides/_rels/slide29.xml.rels",
-    "ppt/slides/_rels/slide3.xml.rels",
-    "ppt/slides/_rels/slide30.xml.rels",
-    "ppt/slides/_rels/slide31.xml.rels",
-    "ppt/slides/_rels/slide32.xml.rels",
-    "ppt/slides/_rels/slide33.xml.rels",
-    "ppt/slides/_rels/slide34.xml.rels",
-    "ppt/slides/_rels/slide35.xml.rels",
-    "ppt/slides/_rels/slide36.xml.rels",
-    "ppt/slides/_rels/slide37.xml.rels",
-    "ppt/slides/_rels/slide38.xml.rels",
-    "ppt/slides/_rels/slide39.xml.rels",
-    "ppt/slides/_rels/slide4.xml.rels",
-    "ppt/slides/_rels/slide40.xml.rels",
-    "ppt/slides/_rels/slide41.xml.rels",
-    "ppt/slides/_rels/slide42.xml.rels",
-    "ppt/slides/_rels/slide43.xml.rels",
-    "ppt/slides/_rels/slide44.xml.rels",
-    "ppt/slides/_rels/slide45.xml.rels",
-    "ppt/slides/_rels/slide46.xml.rels",
-    "ppt/slides/_rels/slide47.xml.rels",
-    "ppt/slides/_rels/slide48.xml.rels",
-    "ppt/slides/_rels/slide5.xml.rels",
-    "ppt/slides/_rels/slide6.xml.rels",
-    "ppt/slides/_rels/slide7.xml.rels",
-    "ppt/slides/_rels/slide8.xml.rels",
-    "ppt/slides/_rels/slide9.xml.rels",
+    "ppt/slides/guide20.xml",
+    "ppt/slides/guide21.xml",
+    "ppt/slides/guide22.xml",
+    "ppt/slides/guide23.xml",
+    "ppt/slides/guide24.xml",
+    "ppt/slides/guide25.xml",
+    "ppt/slides/guide32.xml",
+    "ppt/slides/guide33.xml",
+    "ppt/slides/guide34.xml",
+    "ppt/slides/guide35.xml",
+    "ppt/slides/guide36.xml",
+    "ppt/slides/guide37.xml",
+    "ppt/slides/ide10.xml",
+    "ppt/slides/ide11.xml",
+    "ppt/slides/ide12.xml",
+    "ppt/slides/ide13.xml",
+    "ppt/slides/ide14.xml",
+    "ppt/slides/ide15.xml",
+    "ppt/slides/ide16.xml",
+    "ppt/slides/ide17.xml",
+    "ppt/slides/ide18.xml",
+    "ppt/slides/ide19.xml",
+    "ppt/slides/ide2.xml",
+    "ppt/slides/ide20.xml",
+    "ppt/slides/ide21.xml",
+    "ppt/slides/ide22.xml",
+    "ppt/slides/ide23.xml",
+    "ppt/slides/ide24.xml",
+    "ppt/slides/ide25.xml",
+    "ppt/slides/ide26.xml",
+    "ppt/slides/ide27.xml",
+    "ppt/slides/ide28.xml",
+    "ppt/slides/ide29.xml",
+    "ppt/slides/ide3.xml",
+    "ppt/slides/ide30.xml",
+    "ppt/slides/ide31.xml",
+    "ppt/slides/ide32.xml",
+    "ppt/slides/ide33.xml",
+    "ppt/slides/ide34.xml",
+    "ppt/slides/ide35.xml",
+    "ppt/slides/ide36.xml",
+    "ppt/slides/ide37.xml",
+    "ppt/slides/ide38.xml",
+    "ppt/slides/ide39.xml",
+    "ppt/slides/ide4.xml",
+    "ppt/slides/ide40.xml",
+    "ppt/slides/ide41.xml",
+    "ppt/slides/ide42.xml",
+    "ppt/slides/ide43.xml",
+    "ppt/slides/ide44.xml",
+    "ppt/slides/ide45.xml",
+    "ppt/slides/ide46.xml",
+    "ppt/slides/ide47.xml",
+    "ppt/slides/ide48.xml",
+    "ppt/slides/ide49.xml",
+    "ppt/slides/ide5.xml",
+    "ppt/slides/ide6.xml",
+    "ppt/slides/ide7.xml",
+    "ppt/slides/ide8.xml",
+    "ppt/slides/ide9.xml",
     "ppt/slides/slide1.xml",
-    "ppt/slides/slide10.xml",
-    "ppt/slides/slide11.xml",
-    "ppt/slides/slide12.xml",
-    "ppt/slides/slide13.xml",
-    "ppt/slides/slide14.xml",
-    "ppt/slides/slide15.xml",
-    "ppt/slides/slide16.xml",
-    "ppt/slides/slide17.xml",
-    "ppt/slides/slide18.xml",
-    "ppt/slides/slide19.xml",
-    "ppt/slides/slide2.xml",
-    "ppt/slides/slide20.xml",
-    "ppt/slides/slide21.xml",
-    "ppt/slides/slide22.xml",
-    "ppt/slides/slide23.xml",
-    "ppt/slides/slide24.xml",
-    "ppt/slides/slide25.xml",
-    "ppt/slides/slide26.xml",
-    "ppt/slides/slide27.xml",
-    "ppt/slides/slide28.xml",
-    "ppt/slides/slide29.xml",
-    "ppt/slides/slide3.xml",
-    "ppt/slides/slide30.xml",
-    "ppt/slides/slide31.xml",
-    "ppt/slides/slide32.xml",
-    "ppt/slides/slide33.xml",
-    "ppt/slides/slide34.xml",
-    "ppt/slides/slide35.xml",
-    "ppt/slides/slide36.xml",
-    "ppt/slides/slide37.xml",
-    "ppt/slides/slide38.xml",
-    "ppt/slides/slide39.xml",
-    "ppt/slides/slide4.xml",
-    "ppt/slides/slide40.xml",
-    "ppt/slides/slide41.xml",
-    "ppt/slides/slide42.xml",
-    "ppt/slides/slide43.xml",
-    "ppt/slides/slide44.xml",
-    "ppt/slides/slide45.xml",
-    "ppt/slides/slide46.xml",
-    "ppt/slides/slide47.xml",
-    "ppt/slides/slide48.xml",
-    "ppt/slides/slide5.xml",
-    "ppt/slides/slide6.xml",
-    "ppt/slides/slide7.xml",
-    "ppt/slides/slide8.xml",
-    "ppt/slides/slide9.xml",
     "ppt/tableStyles.xml",
     "ppt/theme/theme1.xml"
   ]
