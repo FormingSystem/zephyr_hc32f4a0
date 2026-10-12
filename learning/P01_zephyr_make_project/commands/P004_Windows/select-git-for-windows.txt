@@ -1,0 +1,16 @@
+# P004 4.2：使用已安装 Git for Windows 的备选分支
+# 按正文前提选择本操作，不批量执行整个目录。
+# Windows UCRT64；备选：已有 Git for Windows 时选其 cmd 目录。
+# GIT_CMD_DIR 是本块临时变量；输入安装目录的 Windows 路径，不加引号。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+read -r -p '已安装的 Git for Windows 的 cmd 目录：' GIT_CMD_DIR
+if test -f "$(cygpath -u "$GIT_CMD_DIR")/git.exe"; then
+  export PATH="$(cygpath -u "$GIT_CMD_DIR"):$PATH"
+  hash -r
+else
+  printf '该目录没有 git.exe，停止下载并核对安装位置。\n'
+fi
+unset GIT_CMD_DIR
+python -c "import shutil; print(shutil.which('git'))"
+git --version

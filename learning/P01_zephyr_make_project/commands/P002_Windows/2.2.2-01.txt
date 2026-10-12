@@ -1,9 +1,12 @@
-# P002_Windows / 2.2.2\_重新打开终端后恢复环境
-# 先核对正文的终端、目录与前提，再执行此完整操作单元。
-# 当前位置：任意目录；终端：UCRT64。
+# P002 2.2.2：新开 UCRT64 后恢复同一项目环境。
+# Windows UCRT64；任意目录；项目 .venv 已存在。
 cd /g/zephyr_practice/zephyr-main
 source .venv/Scripts/activate
 python --version
 python -m pip --version
 python -m pip check
 python -m west --version
+python -c "import sys; print(sys.executable)"
+python -c "import shutil; print(shutil.which('git'))"
+# Python 应属于本项目 .venv；Git 为 ucrt64/bin/git.exe 或已核对的 cmd/git.exe。
+# None 或 usr/bin/git.exe：停止 west 模块下载，回到 2.1.1 修复本窗口 PATH。

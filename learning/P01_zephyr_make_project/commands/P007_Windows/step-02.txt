@@ -1,11 +1,4 @@
-# Windows UCRT64；前提：7.2.1 的工具、SDK、CMSIS 检查均通过。
-cd /g/zephyr_practice/zephyr-main
-source .venv/Scripts/activate
-# Zephyr 原生源码根变量，供本次 CMake 查找这份源码。
-export ZEPHYR_BASE="$(cygpath -m "$PWD")"
-# -S 是官方应用；-B 是本节单独使用、由 CMake 创建的构建目录。
-cmake -S samples/hello_world \
-  -B build/learning-tools/p003/cmake-demo -G Ninja \
-  -DBOARD=mps2/an386 \
-  "-DZephyr_DIR=$ZEPHYR_BASE/share/zephyr-package/cmake" \
-  "-DPython3_EXECUTABLE=$(cygpath -m "$(command -v python)")"
+# Windows UCRT64；任意目录；仅上一块确认缺少主机 GCC 时执行。
+# 这是 Windows 主机练习编译器，不是 Zephyr ARM SDK。
+pacman -S --needed mingw-w64-ucrt-x86_64-gcc
+gcc -dumpmachine

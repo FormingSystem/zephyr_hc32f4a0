@@ -13,68 +13,88 @@
     },
     {
       "number": 3,
+      "title": "源码已经在磁盘上，为什么还不能构建",
+      "part": "ppt/slides/guide5.xml"
+    },
+    {
+      "number": 4,
       "title": "默认使用 UCRT64，特定步骤切换终端",
       "part": "ppt/slides/slide3.xml"
     },
     {
-      "number": 4,
+      "number": 5,
       "title": "先区分程序、源码和接入规则",
       "part": "ppt/slides/slide4.xml"
     },
     {
-      "number": 5,
+      "number": 6,
       "title": "安装依据：当前源码的 Windows 指南",
       "part": "ppt/slides/slide5.xml"
     },
     {
-      "number": 6,
-      "title": "先安装官方主机工具",
+      "number": 7,
+      "title": "安装本阶段还缺少的 Windows 主机工具",
       "part": "ppt/slides/slide6.xml"
     },
     {
-      "number": 7,
+      "number": 8,
       "title": "工具安装后的检查",
       "part": "ppt/slides/slide7.xml"
     },
     {
-      "number": 8,
+      "number": 9,
+      "title": "回到 UCRT64，再核对原生 Git 的优先级",
+      "part": "ppt/slides/git_env4.xml"
+    },
+    {
+      "number": 10,
       "title": "Windows Python 安装包",
       "part": "ppt/slides/slide8.xml"
     },
     {
-      "number": 9,
+      "number": 11,
       "title": "缺少安装器时才用 UCRT64 下载",
       "part": "ppt/slides/slide9.xml"
     },
     {
-      "number": 10,
+      "number": 12,
       "title": "从 UCRT64 启动官方 Python 安装器",
       "part": "ppt/slides/slide10.xml"
     },
     {
-      "number": 11,
+      "number": 13,
       "title": "未安装 Launcher 时的分支",
       "part": "ppt/slides/slide11.xml"
     },
     {
-      "number": 12,
+      "number": 14,
       "title": "py 与 python 的使用阶段",
       "part": "ppt/slides/slide12.xml"
     },
     {
-      "number": 13,
+      "number": 15,
       "title": "Python 依赖的安装位置",
       "part": "ppt/slides/slide13.xml"
     },
     {
-      "number": 14,
+      "number": 16,
       "title": "首次创建项目 .venv",
       "part": "ppt/slides/slide14.xml"
     },
     {
-      "number": 15,
+      "number": 17,
+      "title": "让 Windows Python 报出它将使用的 Git",
+      "part": "ppt/slides/git_env5.xml"
+    },
+    {
+      "number": 18,
       "title": "把依赖装进刚确认的 venv，按清单安装 Python 包",
       "part": "ppt/slides/slide15.xml"
+    },
+    {
+      "number": 19,
+      "title": "新终端中能恢复，才算把环境交给下一步",
+      "part": "ppt/slides/guide6.xml"
     }
   ],
   "parts": [
@@ -96,6 +116,10 @@
     "ppt/media/image9.png",
     "ppt/notesMasters/_rels/notesMaster1.xml.rels",
     "ppt/notesMasters/notesMaster1.xml",
+    "ppt/notesSlides/_rels/git_env4.xml.rels",
+    "ppt/notesSlides/_rels/git_env5.xml.rels",
+    "ppt/notesSlides/_rels/guide5.xml.rels",
+    "ppt/notesSlides/_rels/guide6.xml.rels",
     "ppt/notesSlides/_rels/notesSlide1.xml.rels",
     "ppt/notesSlides/_rels/notesSlide10.xml.rels",
     "ppt/notesSlides/_rels/notesSlide11.xml.rels",
@@ -111,6 +135,10 @@
     "ppt/notesSlides/_rels/notesSlide7.xml.rels",
     "ppt/notesSlides/_rels/notesSlide8.xml.rels",
     "ppt/notesSlides/_rels/notesSlide9.xml.rels",
+    "ppt/notesSlides/git_env4.xml",
+    "ppt/notesSlides/git_env5.xml",
+    "ppt/notesSlides/guide5.xml",
+    "ppt/notesSlides/guide6.xml",
     "ppt/notesSlides/notesSlide1.xml",
     "ppt/notesSlides/notesSlide10.xml",
     "ppt/notesSlides/notesSlide11.xml",
@@ -258,6 +286,10 @@
     "ppt/slideMasters/slideMaster7.xml",
     "ppt/slideMasters/slideMaster8.xml",
     "ppt/slideMasters/slideMaster9.xml",
+    "ppt/slides/_rels/git_env4.xml.rels",
+    "ppt/slides/_rels/git_env5.xml.rels",
+    "ppt/slides/_rels/guide5.xml.rels",
+    "ppt/slides/_rels/guide6.xml.rels",
     "ppt/slides/_rels/slide1.xml.rels",
     "ppt/slides/_rels/slide10.xml.rels",
     "ppt/slides/_rels/slide11.xml.rels",
@@ -273,6 +305,10 @@
     "ppt/slides/_rels/slide7.xml.rels",
     "ppt/slides/_rels/slide8.xml.rels",
     "ppt/slides/_rels/slide9.xml.rels",
+    "ppt/slides/git_env4.xml",
+    "ppt/slides/git_env5.xml",
+    "ppt/slides/guide5.xml",
+    "ppt/slides/guide6.xml",
     "ppt/slides/slide1.xml",
     "ppt/slides/slide10.xml",
     "ppt/slides/slide11.xml",

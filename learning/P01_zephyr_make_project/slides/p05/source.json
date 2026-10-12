@@ -4,72 +4,212 @@
     {
       "number": 1,
       "title": "P005",
-      "part": "ppt/slides/slide1.xml"
+      "part": "ppt/slides/model1.xml"
     },
     {
       "number": 2,
-      "title": "P005 · 工程接收源码模块的路径",
-      "part": "ppt/slides/module_entry_9.xml"
+      "title": "从官方工程理解驱动怎样连接具体硬件",
+      "part": "ppt/slides/model2.xml"
     },
     {
       "number": 3,
-      "title": "清单内与清单外模块的工程入口",
-      "part": "ppt/slides/module_entry_10.xml"
+      "title": "MPS2 是平台，AN386 是系统目标",
+      "part": "ppt/slides/model3.xml"
     },
     {
       "number": 4,
-      "title": "路径交给哪一次工程配置",
-      "part": "ppt/slides/module_entry_11.xml"
+      "title": "通用接口、具体驱动和板配置各管什么",
+      "part": "ppt/slides/model4.xml"
     },
     {
       "number": 5,
-      "title": "从应用入口追踪 Zephyr 的模块发现",
-      "part": "ppt/slides/module_entry_12.xml"
+      "title": "理解顺序与构建输入要接起来",
+      "part": "ppt/slides/model5.xml"
     },
     {
       "number": 6,
-      "title": "候选目录明确之后，才读取模块声明",
-      "part": "ppt/slides/module_entry_13.xml"
+      "title": "为什么用 MPS2 / AN386 作对照",
+      "part": "ppt/slides/model6.xml"
     },
     {
       "number": 7,
-      "title": "模块路径变量由 Zephyr CMake 设置",
-      "part": "ppt/slides/module_entry_14.xml"
+      "title": "固件还需要源码组件与工具",
+      "part": "ppt/slides/model7.xml"
     },
     {
       "number": 8,
-      "title": "变量生成之后，构建代码才使用它",
-      "part": "ppt/slides/module_entry_15.xml"
+      "title": "CMSIS、CMSDK、SDK 分别是什么",
+      "part": "ppt/slides/model8.xml"
     },
     {
       "number": 9,
-      "title": "被发现以后，由谁选择 DDL 源文件",
-      "part": "ppt/slides/slide74.xml"
+      "title": "模块是源码接入契约",
+      "part": "ppt/slides/model9.xml"
     },
     {
       "number": 10,
-      "title": "下载完成后，先验证 HAL 路径能被识别",
-      "part": "ppt/slides/module_entry_16.xml"
+      "title": "目录按职责组织，驱动按硬件实现区分",
+      "part": "ppt/slides/model10.xml"
     },
     {
       "number": 11,
-      "title": "厂商设备头接 SoC，通用 Core 仍由 Zephyr 提供",
-      "part": "ppt/slides/slide66.xml"
+      "title": "共享范围与源码位置是两个维度",
+      "part": "ppt/slides/model11.xml"
     },
     {
       "number": 12,
-      "title": "只有设备头，没有 HAL，仍需要实现驱动",
-      "part": "ppt/slides/slide67.xml"
+      "title": "应用与 BOARD 是两项输入",
+      "part": "ppt/slides/model12.xml"
     },
     {
       "number": 13,
-      "title": "哪些下载得到，哪些在 P011 新增",
-      "part": "ppt/slides/slide68.xml"
+      "title": "应用入口决定本次业务源码",
+      "part": "ppt/slides/model13.xml"
     },
     {
       "number": 14,
-      "title": "模块接入完成后的三层检查",
-      "part": "ppt/slides/module_entry_17.xml"
+      "title": "命令里分别选应用、板和输出",
+      "part": "ppt/slides/model14.xml"
+    },
+    {
+      "number": 15,
+      "title": "应用与板的组合需要独立目录",
+      "part": "ppt/slides/model15.xml"
+    },
+    {
+      "number": 16,
+      "title": "官网示例用 AN385，本教程选 AN386",
+      "part": "ppt/slides/model16.xml"
+    },
+    {
+      "number": 17,
+      "title": "先建立官方应用的对照构建",
+      "part": "ppt/slides/model17.xml"
+    },
+    {
+      "number": 18,
+      "title": "MPS2 的硬件支持由哪些层组成",
+      "part": "ppt/slides/model18.xml"
+    },
+    {
+      "number": 19,
+      "title": "Arm 确实提供独立 BSP / Pack",
+      "part": "ppt/slides/model19.xml"
+    },
+    {
+      "number": 20,
+      "title": "从 BOARD 进入 CPU 架构支持",
+      "part": "ppt/slides/model20.xml"
+    },
+    {
+      "number": 21,
+      "title": "NVIC、节拍、内存和时钟也有来源",
+      "part": "ppt/slides/model21.xml"
+    },
+    {
+      "number": 22,
+      "title": "设备树说明 UART 在哪里",
+      "part": "ppt/slides/model22.xml"
+    },
+    {
+      "number": 23,
+      "title": "同一种 UART，用不同配置服务不同平台",
+      "part": "ppt/slides/model23.xml"
+    },
+    {
+      "number": 24,
+      "title": "Kconfig 文件沿入口读取，不按目录自动生效",
+      "part": "ppt/slides/model24.xml"
+    },
+    {
+      "number": 25,
+      "title": "一个 Kconfig 符号怎样成为可选实现",
+      "part": "ppt/slides/model25.xml"
+    },
+    {
+      "number": 26,
+      "title": "default、depends on 与 select 不做同一件事",
+      "part": "ppt/slides/model26.xml"
+    },
+    {
+      "number": 27,
+      "title": "板 defconfig、应用配置与默认规则如何合并",
+      "part": "ppt/slides/model27.xml"
+    },
+    {
+      "number": 28,
+      "title": "同一个开关在三个文件中的写法",
+      "part": "ppt/slides/model28.xml"
+    },
+    {
+      "number": 29,
+      "title": "最终配置分别交给 CMake 和 C 编译器",
+      "part": "ppt/slides/model29.xml"
+    },
+    {
+      "number": 30,
+      "title": "父目录决定是否进入串口的 CMake",
+      "part": "ppt/slides/model30.xml"
+    },
+    {
+      "number": 31,
+      "title": "从硬件描述选到真正的源文件",
+      "part": "ppt/slides/model31.xml"
+    },
+    {
+      "number": 32,
+      "title": "选源、裁剪函数、创建设备实例分别判断",
+      "part": "ppt/slides/model32.xml"
+    },
+    {
+      "number": 33,
+      "title": "CONFIG 宏与 DT 宏从不同规则进入源码",
+      "part": "ppt/slides/model33.xml"
+    },
+    {
+      "number": 34,
+      "title": "设备实例把板配置交给共享驱动",
+      "part": "ppt/slides/model34.xml"
+    },
+    {
+      "number": 35,
+      "title": "注册设备时同时连接配置、初始化和操作表",
+      "part": "ppt/slides/model35.xml"
+    },
+    {
+      "number": 36,
+      "title": "运行时按设备对象找到具体外设实现",
+      "part": "ppt/slides/model36.xml"
+    },
+    {
+      "number": 37,
+      "title": "硬件访问已在 Zephyr 驱动中实现",
+      "part": "ppt/slides/model37.xml"
+    },
+    {
+      "number": 38,
+      "title": "共享驱动中的 SoC 特例仍需单独审查",
+      "part": "ppt/slides/model38.xml"
+    },
+    {
+      "number": 39,
+      "title": "板支持、编译进入、实际使用要分清",
+      "part": "ppt/slides/model39.xml"
+    },
+    {
+      "number": 40,
+      "title": "用同一次产物反查代码来源",
+      "part": "ppt/slides/model40.xml"
+    },
+    {
+      "number": 41,
+      "title": "主仓接入规则不是外部源码包",
+      "part": "ppt/slides/model41.xml"
+    },
+    {
+      "number": 42,
+      "title": "按当前清单获取 CMSIS_6",
+      "part": "ppt/slides/model42.xml"
     }
   ],
   "parts": [
@@ -81,34 +221,90 @@
     "ppt/media/image1.png",
     "ppt/notesMasters/_rels/notesMaster1.xml.rels",
     "ppt/notesMasters/notesMaster1.xml",
-    "ppt/notesSlides/_rels/module_entry_10.xml.rels",
-    "ppt/notesSlides/_rels/module_entry_11.xml.rels",
-    "ppt/notesSlides/_rels/module_entry_12.xml.rels",
-    "ppt/notesSlides/_rels/module_entry_13.xml.rels",
-    "ppt/notesSlides/_rels/module_entry_14.xml.rels",
-    "ppt/notesSlides/_rels/module_entry_15.xml.rels",
-    "ppt/notesSlides/_rels/module_entry_16.xml.rels",
-    "ppt/notesSlides/_rels/module_entry_17.xml.rels",
-    "ppt/notesSlides/_rels/module_entry_9.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide1.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide66.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide67.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide68.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide74.xml.rels",
-    "ppt/notesSlides/module_entry_10.xml",
-    "ppt/notesSlides/module_entry_11.xml",
-    "ppt/notesSlides/module_entry_12.xml",
-    "ppt/notesSlides/module_entry_13.xml",
-    "ppt/notesSlides/module_entry_14.xml",
-    "ppt/notesSlides/module_entry_15.xml",
-    "ppt/notesSlides/module_entry_16.xml",
-    "ppt/notesSlides/module_entry_17.xml",
-    "ppt/notesSlides/module_entry_9.xml",
-    "ppt/notesSlides/notesSlide1.xml",
-    "ppt/notesSlides/notesSlide66.xml",
-    "ppt/notesSlides/notesSlide67.xml",
-    "ppt/notesSlides/notesSlide68.xml",
-    "ppt/notesSlides/notesSlide74.xml",
+    "ppt/notesSlides/_rels/model1.xml.rels",
+    "ppt/notesSlides/_rels/model10.xml.rels",
+    "ppt/notesSlides/_rels/model11.xml.rels",
+    "ppt/notesSlides/_rels/model12.xml.rels",
+    "ppt/notesSlides/_rels/model13.xml.rels",
+    "ppt/notesSlides/_rels/model14.xml.rels",
+    "ppt/notesSlides/_rels/model15.xml.rels",
+    "ppt/notesSlides/_rels/model16.xml.rels",
+    "ppt/notesSlides/_rels/model17.xml.rels",
+    "ppt/notesSlides/_rels/model18.xml.rels",
+    "ppt/notesSlides/_rels/model19.xml.rels",
+    "ppt/notesSlides/_rels/model2.xml.rels",
+    "ppt/notesSlides/_rels/model20.xml.rels",
+    "ppt/notesSlides/_rels/model21.xml.rels",
+    "ppt/notesSlides/_rels/model22.xml.rels",
+    "ppt/notesSlides/_rels/model23.xml.rels",
+    "ppt/notesSlides/_rels/model24.xml.rels",
+    "ppt/notesSlides/_rels/model25.xml.rels",
+    "ppt/notesSlides/_rels/model26.xml.rels",
+    "ppt/notesSlides/_rels/model27.xml.rels",
+    "ppt/notesSlides/_rels/model28.xml.rels",
+    "ppt/notesSlides/_rels/model29.xml.rels",
+    "ppt/notesSlides/_rels/model3.xml.rels",
+    "ppt/notesSlides/_rels/model30.xml.rels",
+    "ppt/notesSlides/_rels/model31.xml.rels",
+    "ppt/notesSlides/_rels/model32.xml.rels",
+    "ppt/notesSlides/_rels/model33.xml.rels",
+    "ppt/notesSlides/_rels/model34.xml.rels",
+    "ppt/notesSlides/_rels/model35.xml.rels",
+    "ppt/notesSlides/_rels/model36.xml.rels",
+    "ppt/notesSlides/_rels/model37.xml.rels",
+    "ppt/notesSlides/_rels/model38.xml.rels",
+    "ppt/notesSlides/_rels/model39.xml.rels",
+    "ppt/notesSlides/_rels/model4.xml.rels",
+    "ppt/notesSlides/_rels/model40.xml.rels",
+    "ppt/notesSlides/_rels/model41.xml.rels",
+    "ppt/notesSlides/_rels/model42.xml.rels",
+    "ppt/notesSlides/_rels/model5.xml.rels",
+    "ppt/notesSlides/_rels/model6.xml.rels",
+    "ppt/notesSlides/_rels/model7.xml.rels",
+    "ppt/notesSlides/_rels/model8.xml.rels",
+    "ppt/notesSlides/_rels/model9.xml.rels",
+    "ppt/notesSlides/model1.xml",
+    "ppt/notesSlides/model10.xml",
+    "ppt/notesSlides/model11.xml",
+    "ppt/notesSlides/model12.xml",
+    "ppt/notesSlides/model13.xml",
+    "ppt/notesSlides/model14.xml",
+    "ppt/notesSlides/model15.xml",
+    "ppt/notesSlides/model16.xml",
+    "ppt/notesSlides/model17.xml",
+    "ppt/notesSlides/model18.xml",
+    "ppt/notesSlides/model19.xml",
+    "ppt/notesSlides/model2.xml",
+    "ppt/notesSlides/model20.xml",
+    "ppt/notesSlides/model21.xml",
+    "ppt/notesSlides/model22.xml",
+    "ppt/notesSlides/model23.xml",
+    "ppt/notesSlides/model24.xml",
+    "ppt/notesSlides/model25.xml",
+    "ppt/notesSlides/model26.xml",
+    "ppt/notesSlides/model27.xml",
+    "ppt/notesSlides/model28.xml",
+    "ppt/notesSlides/model29.xml",
+    "ppt/notesSlides/model3.xml",
+    "ppt/notesSlides/model30.xml",
+    "ppt/notesSlides/model31.xml",
+    "ppt/notesSlides/model32.xml",
+    "ppt/notesSlides/model33.xml",
+    "ppt/notesSlides/model34.xml",
+    "ppt/notesSlides/model35.xml",
+    "ppt/notesSlides/model36.xml",
+    "ppt/notesSlides/model37.xml",
+    "ppt/notesSlides/model38.xml",
+    "ppt/notesSlides/model39.xml",
+    "ppt/notesSlides/model4.xml",
+    "ppt/notesSlides/model40.xml",
+    "ppt/notesSlides/model41.xml",
+    "ppt/notesSlides/model42.xml",
+    "ppt/notesSlides/model5.xml",
+    "ppt/notesSlides/model6.xml",
+    "ppt/notesSlides/model7.xml",
+    "ppt/notesSlides/model8.xml",
+    "ppt/notesSlides/model9.xml",
     "ppt/presProps.xml",
     "ppt/presentation.xml",
     "ppt/slideLayouts/_rels/slideLayout1.xml.rels",
@@ -241,34 +437,90 @@
     "ppt/slideMasters/slideMaster7.xml",
     "ppt/slideMasters/slideMaster8.xml",
     "ppt/slideMasters/slideMaster9.xml",
-    "ppt/slides/_rels/module_entry_10.xml.rels",
-    "ppt/slides/_rels/module_entry_11.xml.rels",
-    "ppt/slides/_rels/module_entry_12.xml.rels",
-    "ppt/slides/_rels/module_entry_13.xml.rels",
-    "ppt/slides/_rels/module_entry_14.xml.rels",
-    "ppt/slides/_rels/module_entry_15.xml.rels",
-    "ppt/slides/_rels/module_entry_16.xml.rels",
-    "ppt/slides/_rels/module_entry_17.xml.rels",
-    "ppt/slides/_rels/module_entry_9.xml.rels",
-    "ppt/slides/_rels/slide1.xml.rels",
-    "ppt/slides/_rels/slide66.xml.rels",
-    "ppt/slides/_rels/slide67.xml.rels",
-    "ppt/slides/_rels/slide68.xml.rels",
-    "ppt/slides/_rels/slide74.xml.rels",
-    "ppt/slides/module_entry_10.xml",
-    "ppt/slides/module_entry_11.xml",
-    "ppt/slides/module_entry_12.xml",
-    "ppt/slides/module_entry_13.xml",
-    "ppt/slides/module_entry_14.xml",
-    "ppt/slides/module_entry_15.xml",
-    "ppt/slides/module_entry_16.xml",
-    "ppt/slides/module_entry_17.xml",
-    "ppt/slides/module_entry_9.xml",
-    "ppt/slides/slide1.xml",
-    "ppt/slides/slide66.xml",
-    "ppt/slides/slide67.xml",
-    "ppt/slides/slide68.xml",
-    "ppt/slides/slide74.xml",
+    "ppt/slides/_rels/model1.xml.rels",
+    "ppt/slides/_rels/model10.xml.rels",
+    "ppt/slides/_rels/model11.xml.rels",
+    "ppt/slides/_rels/model12.xml.rels",
+    "ppt/slides/_rels/model13.xml.rels",
+    "ppt/slides/_rels/model14.xml.rels",
+    "ppt/slides/_rels/model15.xml.rels",
+    "ppt/slides/_rels/model16.xml.rels",
+    "ppt/slides/_rels/model17.xml.rels",
+    "ppt/slides/_rels/model18.xml.rels",
+    "ppt/slides/_rels/model19.xml.rels",
+    "ppt/slides/_rels/model2.xml.rels",
+    "ppt/slides/_rels/model20.xml.rels",
+    "ppt/slides/_rels/model21.xml.rels",
+    "ppt/slides/_rels/model22.xml.rels",
+    "ppt/slides/_rels/model23.xml.rels",
+    "ppt/slides/_rels/model24.xml.rels",
+    "ppt/slides/_rels/model25.xml.rels",
+    "ppt/slides/_rels/model26.xml.rels",
+    "ppt/slides/_rels/model27.xml.rels",
+    "ppt/slides/_rels/model28.xml.rels",
+    "ppt/slides/_rels/model29.xml.rels",
+    "ppt/slides/_rels/model3.xml.rels",
+    "ppt/slides/_rels/model30.xml.rels",
+    "ppt/slides/_rels/model31.xml.rels",
+    "ppt/slides/_rels/model32.xml.rels",
+    "ppt/slides/_rels/model33.xml.rels",
+    "ppt/slides/_rels/model34.xml.rels",
+    "ppt/slides/_rels/model35.xml.rels",
+    "ppt/slides/_rels/model36.xml.rels",
+    "ppt/slides/_rels/model37.xml.rels",
+    "ppt/slides/_rels/model38.xml.rels",
+    "ppt/slides/_rels/model39.xml.rels",
+    "ppt/slides/_rels/model4.xml.rels",
+    "ppt/slides/_rels/model40.xml.rels",
+    "ppt/slides/_rels/model41.xml.rels",
+    "ppt/slides/_rels/model42.xml.rels",
+    "ppt/slides/_rels/model5.xml.rels",
+    "ppt/slides/_rels/model6.xml.rels",
+    "ppt/slides/_rels/model7.xml.rels",
+    "ppt/slides/_rels/model8.xml.rels",
+    "ppt/slides/_rels/model9.xml.rels",
+    "ppt/slides/model1.xml",
+    "ppt/slides/model10.xml",
+    "ppt/slides/model11.xml",
+    "ppt/slides/model12.xml",
+    "ppt/slides/model13.xml",
+    "ppt/slides/model14.xml",
+    "ppt/slides/model15.xml",
+    "ppt/slides/model16.xml",
+    "ppt/slides/model17.xml",
+    "ppt/slides/model18.xml",
+    "ppt/slides/model19.xml",
+    "ppt/slides/model2.xml",
+    "ppt/slides/model20.xml",
+    "ppt/slides/model21.xml",
+    "ppt/slides/model22.xml",
+    "ppt/slides/model23.xml",
+    "ppt/slides/model24.xml",
+    "ppt/slides/model25.xml",
+    "ppt/slides/model26.xml",
+    "ppt/slides/model27.xml",
+    "ppt/slides/model28.xml",
+    "ppt/slides/model29.xml",
+    "ppt/slides/model3.xml",
+    "ppt/slides/model30.xml",
+    "ppt/slides/model31.xml",
+    "ppt/slides/model32.xml",
+    "ppt/slides/model33.xml",
+    "ppt/slides/model34.xml",
+    "ppt/slides/model35.xml",
+    "ppt/slides/model36.xml",
+    "ppt/slides/model37.xml",
+    "ppt/slides/model38.xml",
+    "ppt/slides/model39.xml",
+    "ppt/slides/model4.xml",
+    "ppt/slides/model40.xml",
+    "ppt/slides/model41.xml",
+    "ppt/slides/model42.xml",
+    "ppt/slides/model5.xml",
+    "ppt/slides/model6.xml",
+    "ppt/slides/model7.xml",
+    "ppt/slides/model8.xml",
+    "ppt/slides/model9.xml",
     "ppt/tableStyles.xml",
     "ppt/theme/theme1.xml",
     "ppt/theme/theme10.xml",

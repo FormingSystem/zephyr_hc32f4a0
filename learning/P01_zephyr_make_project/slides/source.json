@@ -13,198 +13,213 @@
     },
     {
       "number": 3,
+      "title": "从自己的板出发，先得到一个可比较的工程",
+      "part": "ppt/slides/guide1.xml"
+    },
+    {
+      "number": 4,
       "title": "本期的操作顺序",
       "part": "ppt/slides/slide3.xml"
     },
     {
-      "number": 4,
+      "number": 5,
       "title": "先知道文件从哪里来",
       "part": "ppt/slides/beginner_slide1.xml"
     },
     {
-      "number": 5,
+      "number": 6,
       "title": "命令怎样复制与执行",
       "part": "ppt/slides/beginner_slide2.xml"
     },
     {
-      "number": 6,
+      "number": 7,
       "title": "终端环境中的三个名称",
       "part": "ppt/slides/slide4.xml"
     },
     {
-      "number": 7,
+      "number": 8,
       "title": "按 Windows 电脑架构选择安装包",
       "part": "ppt/slides/slide5.xml"
     },
     {
-      "number": 8,
+      "number": 9,
       "title": "MSYS2 安装流程（以 x64 为例）",
       "part": "ppt/slides/slide6.xml"
     },
     {
-      "number": 9,
+      "number": 10,
       "title": "检查启动的是 UCRT64",
       "part": "ppt/slides/beginner_slide3.xml"
     },
     {
-      "number": 10,
+      "number": 11,
       "title": "国内源影响哪些下载",
       "part": "ppt/slides/slide8.xml"
     },
     {
-      "number": 11,
+      "number": 12,
       "title": "先备份 MSYS2 原有配置",
       "part": "ppt/slides/beginner_slide4.xml"
     },
     {
-      "number": 12,
+      "number": 13,
       "title": "修改通用工具的镜像列表",
       "part": "ppt/slides/beginner_slide5.xml"
     },
     {
-      "number": 13,
+      "number": 14,
       "title": "修改原生工具的镜像列表",
       "part": "ppt/slides/beginner_slide6.xml"
     },
     {
-      "number": 14,
+      "number": 15,
       "title": "$arch 与 $repo 如何决定目录",
       "part": "ppt/slides/slide11.xml"
     },
     {
-      "number": 15,
+      "number": 16,
       "title": "核对展开后的真实下载地址",
       "part": "ppt/slides/beginner_slide7.xml"
     },
     {
-      "number": 16,
+      "number": 17,
       "title": "换源后完整升级",
       "part": "ppt/slides/beginner_slide8.xml"
     },
     {
-      "number": 17,
+      "number": 18,
       "title": "重开终端，继续完成升级",
       "part": "ppt/slides/beginner_slide9.xml"
     },
     {
-      "number": 18,
-      "title": "安装下载与解压工具",
+      "number": 19,
+      "title": "先准备 UCRT64 原生 Git 与下载工具",
       "part": "ppt/slides/beginner_slide10.xml"
     },
     {
-      "number": 19,
+      "number": 20,
+      "title": "安装后，确认 Bash 真正选中了哪套 Git",
+      "part": "ppt/slides/git_env2.xml"
+    },
+    {
+      "number": 21,
       "title": "后续构建所需的辅助工具",
       "part": "ppt/slides/slide15.xml"
     },
     {
-      "number": 20,
+      "number": 22,
       "title": "创建实验源码的父目录",
       "part": "ppt/slides/beginner_slide11.xml"
     },
     {
-      "number": 21,
+      "number": 23,
       "title": "路线 A：克隆官方仓库",
       "part": "ppt/slides/beginner_slide12.xml"
     },
     {
-      "number": 22,
+      "number": 24,
       "title": "Zephyr 官方源码入口",
       "part": "ppt/slides/slide16.xml"
     },
     {
-      "number": 23,
+      "number": 25,
       "title": "确认克隆的是哪份源码",
       "part": "ppt/slides/beginner_slide13.xml"
     },
     {
-      "number": 24,
+      "number": 26,
       "title": "可选：按实际监听端口设置 Git 代理",
       "part": "ppt/slides/beginner_slide14.xml"
     },
     {
-      "number": 25,
+      "number": 27,
       "title": "路线 B：在网页下载源码快照",
       "part": "ppt/slides/beginner_slide15.xml"
     },
     {
-      "number": 26,
+      "number": 28,
       "title": "ZIP 下载得到源码快照",
       "part": "ppt/slides/slide18.xml"
     },
     {
-      "number": 27,
+      "number": 29,
       "title": "确认解压层次，别新建假的入口文件",
       "part": "ppt/slides/beginner_slide16.xml"
     },
     {
-      "number": 28,
+      "number": 30,
       "title": "ZIP 源码与 Git 仓库信息",
       "part": "ppt/slides/slide19.xml"
     },
     {
-      "number": 29,
+      "number": 31,
       "title": "补 Git 历史是可选实验",
       "part": "ppt/slides/beginner_slide17.xml"
     },
     {
-      "number": 30,
+      "number": 32,
       "title": "确认临时目录和 .git 都不存在",
       "part": "ppt/slides/beginner_slide18.xml"
     },
     {
-      "number": 31,
+      "number": 33,
       "title": "下载最小元数据",
       "part": "ppt/slides/beginner_slide19.xml"
     },
     {
-      "number": 32,
+      "number": 34,
       "title": "把 HEAD 与 ZIP 下载记录对照",
       "part": "ppt/slides/beginner_slide20.xml"
     },
     {
-      "number": 33,
+      "number": 35,
       "title": "移动元数据，保留现有源码",
       "part": "ppt/slides/beginner_slide21.xml"
     },
     {
-      "number": 34,
+      "number": 36,
       "title": "建立 Git 索引",
       "part": "ppt/slides/beginner_slide22.xml"
     },
     {
-      "number": 35,
+      "number": 37,
       "title": "可选：补完整 main 历史",
       "part": "ppt/slides/beginner_slide23.xml"
     },
     {
-      "number": 36,
+      "number": 38,
       "title": "历史深度与文件内容是两个维度",
       "part": "ppt/slides/slide24.xml"
     },
     {
-      "number": 37,
+      "number": 39,
       "title": "可选：获取其他远程分支",
       "part": "ppt/slides/beginner_slide24.xml"
     },
     {
-      "number": 38,
+      "number": 40,
       "title": "可选：取得发布标签",
       "part": "ppt/slides/beginner_slide25.xml"
     },
     {
-      "number": 39,
+      "number": 41,
       "title": "设置本仓库提交身份",
       "part": "ppt/slides/beginner_slide26.xml"
     },
     {
-      "number": 40,
+      "number": 42,
       "title": "连接失败时先查代理来源",
       "part": "ppt/slides/beginner_slide27.xml"
     },
     {
-      "number": 41,
+      "number": 43,
       "title": "完成标志与下一步",
       "part": "ppt/slides/slide28.xml"
+    },
+    {
+      "number": 44,
+      "title": "下载成功后，下一章究竟接收什么",
+      "part": "ppt/slides/guide2.xml"
     }
   ],
   "parts": [
@@ -294,6 +309,9 @@
     "ppt/media/image9.png",
     "ppt/notesMasters/_rels/notesMaster1.xml.rels",
     "ppt/notesMasters/notesMaster1.xml",
+    "ppt/notesSlides/_rels/git_env2.xml.rels",
+    "ppt/notesSlides/_rels/guide1.xml.rels",
+    "ppt/notesSlides/_rels/guide2.xml.rels",
     "ppt/notesSlides/_rels/notesSlide1.xml.rels",
     "ppt/notesSlides/_rels/notesSlide10.xml.rels",
     "ppt/notesSlides/_rels/notesSlide11.xml.rels",
@@ -322,6 +340,9 @@
     "ppt/notesSlides/_rels/notesSlide7.xml.rels",
     "ppt/notesSlides/_rels/notesSlide8.xml.rels",
     "ppt/notesSlides/_rels/notesSlide9.xml.rels",
+    "ppt/notesSlides/git_env2.xml",
+    "ppt/notesSlides/guide1.xml",
+    "ppt/notesSlides/guide2.xml",
     "ppt/notesSlides/notesSlide1.xml",
     "ppt/notesSlides/notesSlide10.xml",
     "ppt/notesSlides/notesSlide11.xml",
@@ -397,6 +418,9 @@
     "ppt/slides/_rels/beginner_slide7.xml.rels",
     "ppt/slides/_rels/beginner_slide8.xml.rels",
     "ppt/slides/_rels/beginner_slide9.xml.rels",
+    "ppt/slides/_rels/git_env2.xml.rels",
+    "ppt/slides/_rels/guide1.xml.rels",
+    "ppt/slides/_rels/guide2.xml.rels",
     "ppt/slides/_rels/slide1.xml.rels",
     "ppt/slides/_rels/slide10.xml.rels",
     "ppt/slides/_rels/slide11.xml.rels",
@@ -452,6 +476,9 @@
     "ppt/slides/beginner_slide7.xml",
     "ppt/slides/beginner_slide8.xml",
     "ppt/slides/beginner_slide9.xml",
+    "ppt/slides/git_env2.xml",
+    "ppt/slides/guide1.xml",
+    "ppt/slides/guide2.xml",
     "ppt/slides/slide1.xml",
     "ppt/slides/slide10.xml",
     "ppt/slides/slide11.xml",

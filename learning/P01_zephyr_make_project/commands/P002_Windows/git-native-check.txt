@@ -1,0 +1,15 @@
+# P002 2.1.1：缺失时补装 UCRT64 原生 Git，并修复当前窗口 PATH。
+# Windows UCRT64；任意目录；P001 完整系统更新已完成。
+# 仅原生 Git 缺失或当前窗口选错路径时执行；已有正确选择则跳过。
+if ! test -x /ucrt64/bin/git.exe; then
+  pacman -S --needed mingw-w64-ucrt-x86_64-git
+fi
+if test -x /ucrt64/bin/git.exe; then
+  export PATH="/ucrt64/bin:$PATH"
+  hash -r
+else
+  printf '原生 Git 尚未可用，停止模块下载并检查安装错误。\n' >&2
+fi
+type -a git
+command -v git
+# 主线应为 /ucrt64/bin/git；优先命中别名/函数或仍为 /usr/bin/git 时先修复。

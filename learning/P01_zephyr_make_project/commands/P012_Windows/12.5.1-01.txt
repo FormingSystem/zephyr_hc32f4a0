@@ -1,0 +1,16 @@
+# Windows UCRT64；仅 HC32 路线；选择已存在的实际模块根，不下载或改名。
+cd /g/zephyr_practice/zephyr-main
+if test -f ../hal_xhsc/zephyr/module.yml; then
+  HAL_XHSC_DIR="$(cygpath -m "$PWD/../hal_xhsc")"
+elif test -f ../hal_xhsc-zephyr/zephyr/module.yml; then
+  HAL_XHSC_DIR="$(cygpath -m "$PWD/../hal_xhsc-zephyr")"
+else
+  HAL_XHSC_DIR=
+  printf '%s\n' '没有找到现有 HAL：返回 P004 外部 HAL 路线确认真实位置。'
+fi
+if test -n "$HAL_XHSC_DIR"; then
+  printf '本次 HAL 根：%s\n' "$HAL_XHSC_DIR"
+  cat "$HAL_XHSC_DIR/zephyr/module.yml"
+  test -f "$HAL_XHSC_DIR/hc32_ddl/hc32f4a0/soc/hc32f4a0.h" &&
+    printf '%s\n' 'HC32F4A0 设备头存在；继续核对 P004 的固定修订。'
+fi

@@ -2,17 +2,17 @@
 
 # P008_Windows 可复制操作
 
-对应 [正文](../../P008_west零基础与Zephyr构建_Windows.md)。按正文的前提、分支和预期结果选择操作，不批量执行所有文件。`step` 文件按正文操作块排列；小节编号文件保留 PPT 直接跳转入口，同一操作可能有两个入口。Bash、PowerShell 分别在正文指定的终端执行，不能把全部文件视为同一终端脚本。
+对应 [正文](../../P008_Zephyr应用构建_Windows.md)。按正文的前提、分支和预期结果选择操作，不批量执行所有文件。`step` 文件按正文操作块排列；小节编号文件保留 PPT 直接跳转入口，同一操作可能有两个入口。Bash、PowerShell 分别在正文指定的终端执行，不能把全部文件视为同一终端脚本。
 
 | 完整操作单元 | 对应正文小节 | 代码语言 |
 | --- | --- | --- |
-| [step-01.txt](step-01.txt) | 8.1 先把 west 程序与 Zephyr 分开 | bash |
-| [step-02.txt](step-02.txt) | 8.2 工作区怎样找到正确的清单 | bash |
-| [step-03.txt](step-03.txt) | 8.2 工作区怎样找到正确的清单 | bash |
-| [step-04.txt](step-04.txt) | 8.3 清单怎样决定下载什么 | bash |
-| [step-05.txt](step-05.txt) | 8.3 清单怎样决定下载什么 | bash |
-| [step-06.txt](step-06.txt) | 8.4 Zephyr 怎样把 build 命令交给 west | bash |
-| [step-07.txt](step-07.txt) | 8.5.1 先只配置，观察 west 传给 CMake 的参数 | bash |
-| [step-08.txt](step-08.txt) | 8.5.2 构建，以及与直接 CMake 共用目录 | bash |
-| [step-09.txt](step-09.txt) | 8.5.2 构建，以及与直接 CMake 共用目录 | bash |
-| [step-10.txt](step-10.txt) | 8.6 常用方式要分清参数交给谁 | bash |
+| [8.1.2-01.txt](8.1.2-01.txt) | 8.1.2 从官方应用入口逐行理解 | bash |
+| [8.2.2-01.txt](8.2.2-01.txt) | 8.2.2 第一次配置，只生成构建规则 | bash |
+| [8.2.3-01.txt](8.2.3-01.txt) | 8.2.3 执行构建，再观察增量构建 | bash |
+| [8.2.4-01.txt](8.2.4-01.txt) | 8.2.4 常用构建选项改变的是哪一步 | bash |
+| [step-01.txt](step-01.txt) | 8.1.2 从官方应用入口逐行理解 | bash |
+| [step-02.txt](step-02.txt) | 8.2.2 第一次配置，只生成构建规则 | bash |
+| [step-03.txt](step-03.txt) | 8.2.3 执行构建，再观察增量构建 | bash |
+| [step-04.txt](step-04.txt) | 8.2.4 常用构建选项改变的是哪一步 | bash |
+| [firmware-formats.txt](firmware-formats.txt) | 8.2.3.1 链接与派生产物 | bash |
+| [preflight.txt](preflight.txt) | 8.2.1 官方目标所需输入的只读检查 | bash |

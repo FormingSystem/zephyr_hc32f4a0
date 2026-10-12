@@ -1,0 +1,51 @@
+# P006 6.7.5：创建调用组件的独立应用，已有目标不覆盖
+# 按正文前提选择本操作，不批量执行整个目录。
+# Windows UCRT64；创建调用组件的应用，不修改官方hello_world。
+# 本块在子shell中运行，任何失败立即停止；不会覆盖已存在的目标目录。
+(
+set -eu
+cd /g/zephyr_practice/zephyr-main
+if [ -e ../applications/component_hello ]; then
+  printf '%s\n' '../applications/component_hello 已存在，请先阅读现有文件，不覆盖。' >&2
+  exit 1
+fi
+mkdir -p ../applications/component_hello
+mkdir -p ../applications/component_hello/src
+cat > ../applications/component_hello/CMakeLists.txt <<'P006_FILE_0'
+# SPDX-License-Identifier: Apache-2.0
+cmake_minimum_required(VERSION 3.28.0)
+
+find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
+project(component_hello)
+
+target_sources(app PRIVATE src/main.c)
+P006_FILE_0
+cat > ../applications/component_hello/prj.conf <<'P006_FILE_1'
+# SPDX-License-Identifier: Apache-2.0
+CONFIG_APP_GREETING=y
+P006_FILE_1
+cat > ../applications/component_hello/off.conf <<'P006_FILE_2'
+# SPDX-License-Identifier: Apache-2.0
+CONFIG_APP_GREETING=n
+P006_FILE_2
+cat > ../applications/component_hello/src/main.c <<'P006_FILE_3'
+/* SPDX-License-Identifier: Apache-2.0 */
+#include <zephyr/kernel.h>
+#include <zephyr/sys/printk.h>
+
+#if defined(CONFIG_APP_GREETING)
+#include <app_greeting/greeting.h>
+#endif
+
+int main(void)
+{
+#if defined(CONFIG_APP_GREETING)
+	printk("%s\n", app_greeting_message());
+#else
+	printk("Greeting component is disabled\n");
+#endif
+
+	return 0;
+}
+P006_FILE_3
+)

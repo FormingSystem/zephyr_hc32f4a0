@@ -1,0 +1,7 @@
+# P006 6.3：只读确认当前清单是否声明 hal_xhsc
+# 按正文前提选择本操作，不批量执行整个目录。
+# Windows UCRT64；P004 工作区与 .venv 已就绪；只读、不下载。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+west list --all -f '{name}' | grep -x 'hal_xhsc'
+west list hal_xhsc

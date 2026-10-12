@@ -1,0 +1,16 @@
+# P006 6.3.1：检查两个常用目录后才下载 HAL 的分支
+# 按正文前提选择本操作，不批量执行整个目录。
+# 仅HC32分支；尚无本系列配套HAL目录时执行；Windows UCRT64；有网络访问。
+# 已有目录保留原位，版本按原下载记录核对；本块不会覆盖或改名。
+(
+set -eu
+cd /g/zephyr_practice
+if test -e hal_xhsc || test -e hal_xhsc-zephyr; then
+  printf '%s\n' '发现已有HAL目录；先核对来源、版本和内容，直接复用真实根。'
+  exit 0
+fi
+git clone --no-checkout https://github.com/zephyrproject-rtos/hal_xhsc hal_xhsc
+git -C hal_xhsc checkout --detach a84e04900616f68097d80cda2e89eaa8af3afadd
+test -f hal_xhsc/zephyr/module.yml
+test -f hal_xhsc/hc32_ddl/hc32f4a0/soc/hc32f4a0.h
+)

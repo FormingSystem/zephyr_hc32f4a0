@@ -4,97 +4,152 @@
     {
       "number": 1,
       "title": "P004",
-      "part": "ppt/slides/slide1.xml"
+      "part": "ppt/slides/model1.xml"
     },
     {
       "number": 2,
-      "title": "04 · CMSIS 与 HAL 选择下载",
-      "part": "ppt/slides/slide2.xml"
+      "title": "先确定 CMSIS-Core 需求，再取得配套源码",
+      "part": "ppt/slides/model2.xml"
     },
     {
       "number": 3,
       "title": "CMSIS、HAL 与 SDK 的职责",
-      "part": "ppt/slides/slide3.xml"
+      "part": "ppt/slides/model3.xml"
     },
     {
       "number": 4,
-      "title": "已有目标的依赖从哪里查",
-      "part": "ppt/slides/slide4.xml"
+      "title": "官方明确要求 Cortex-M 构建准备 CMSIS6",
+      "part": "ppt/slides/proof8.xml"
     },
     {
       "number": 5,
-      "title": "HC32 依赖先从完整型号确认",
-      "part": "ppt/slides/slide5.xml"
+      "title": "已有目标的依赖从哪里查",
+      "part": "ppt/slides/model4.xml"
     },
     {
       "number": 6,
-      "title": "这是官方清单原文，不是新建文件",
-      "part": "ppt/slides/slide6.xml"
+      "title": "拿到芯片型号，先查仓库有没有对应支持",
+      "part": "ppt/slides/model5.xml"
     },
     {
       "number": 7,
-      "title": "“有 HAL”需要分三个层次核对",
-      "part": "ppt/slides/slide7.xml"
+      "title": "CPU 配置证明需求，还没有指定 CMSIS 版本",
+      "part": "ppt/slides/proof2.xml"
     },
     {
       "number": 8,
-      "title": "在 GitHub 的 Zephyr 组织内查找 HAL",
-      "part": "ppt/slides/slide8.xml"
+      "title": "未知包名时，搜索谁读取 CPU 配置",
+      "part": "ppt/slides/proof3.xml"
     },
     {
       "number": 9,
-      "title": "hal_xhsc 的地址从哪里来",
-      "part": "ppt/slides/slide9.xml"
+      "title": "两套 CMake 条件明确区分当前使用者",
+      "part": "ppt/slides/proof4.xml"
     },
     {
       "number": 10,
-      "title": "建库、清单收录与芯片支持是不同阶段",
-      "part": "ppt/slides/slide10.xml"
+      "title": "最终由 core_cm4.h 提供 Cortex-M4 接口",
+      "part": "ppt/slides/model8.xml"
     },
     {
       "number": 11,
-      "title": "本期使用原清单，west 实验另有专题",
-      "part": "ppt/slides/slide11.xml"
+      "title": "只取得主仓，还缺少本目标必需的 Core 头",
+      "part": "ppt/slides/proof9.xml"
     },
     {
       "number": 12,
-      "title": "同名 CMSIS，来源未必相同",
-      "part": "ppt/slides/slide12.xml"
+      "title": "这是官方清单原文，不是新建文件",
+      "part": "ppt/slides/model10.xml"
     },
     {
       "number": 13,
-      "title": "通用 Core 与芯片设备头分别从哪里来",
-      "part": "ppt/slides/slide13.xml"
+      "title": "HC32 的 CPU、指令架构与 CMSIS 版本",
+      "part": "ppt/slides/proof1.xml"
     },
     {
       "number": 14,
-      "title": "已有工作区直接复用，不重复 init",
-      "part": "ppt/slides/slide14.xml"
+      "title": "HC32 按硬件事实补 SoC，再复用既有接入",
+      "part": "ppt/slides/proof6.xml"
     },
     {
       "number": 15,
-      "title": "按原清单下载 CMSIS，并检查关键文件",
-      "part": "ppt/slides/slide15.xml"
+      "title": "迁移记录明确说明了 CMSIS6 的使用范围",
+      "part": "ppt/slides/proof7.xml"
     },
     {
       "number": 16,
-      "title": "下载物在源码旁，接入规则在源码内",
-      "part": "ppt/slides/slide16.xml"
+      "title": "本期使用原清单，west 实验另有专题",
+      "part": "ppt/slides/model11.xml"
     },
     {
       "number": 17,
-      "title": "“安装 CMSIS”就是准备源码依赖",
-      "part": "ppt/slides/slide17.xml"
+      "title": "同名 CMSIS，来源未必相同",
+      "part": "ppt/slides/model12.xml"
     },
     {
       "number": 18,
-      "title": "清单外的 HC32 HAL 单独处理",
-      "part": "ppt/slides/slide18.xml"
+      "title": "通用 Core 与芯片设备头分别从哪里来",
+      "part": "ppt/slides/model13.xml"
     },
     {
       "number": 19,
-      "title": "核对 HAL 模块与芯片文件",
-      "part": "ppt/slides/slide19.xml"
+      "title": "已有工作区直接复用，不重复 init",
+      "part": "ppt/slides/model14.xml"
+    },
+    {
+      "number": 20,
+      "title": "当前 west 工作区能下载哪些源码包",
+      "part": "ppt/slides/model15.xml"
+    },
+    {
+      "number": 21,
+      "title": "当前 CMSIS 项目名由清单确定",
+      "part": "ppt/slides/model16.xml"
+    },
+    {
+      "number": 22,
+      "title": "仓库、下载清单与芯片支持分别在哪里查",
+      "part": "ppt/slides/model17.xml"
+    },
+    {
+      "number": 23,
+      "title": "按原清单下载 CMSIS，并检查关键文件",
+      "part": "ppt/slides/model18.xml"
+    },
+    {
+      "number": 24,
+      "title": "下载物在源码旁，接入规则在源码内",
+      "part": "ppt/slides/model19.xml"
+    },
+    {
+      "number": 25,
+      "title": "模块声明把外部源码绑定到主仓接入",
+      "part": "ppt/slides/proof5.xml"
+    },
+    {
+      "number": 26,
+      "title": "“安装 CMSIS”就是准备源码依赖",
+      "part": "ppt/slides/model20.xml"
+    },
+    {
+      "number": 27,
+      "title": "west 更新失败时的花括号线索",
+      "part": "ppt/slides/model21.xml"
+    },
+    {
+      "number": 28,
+      "title": "对象检查通过，仍可能在引用更新时失败",
+      "part": "ppt/slides/model22.xml"
+    },
+    {
+      "number": 29,
+      "title": "UCRT64 中选择 Windows 原生 Git",
+      "part": "ppt/slides/model23.xml"
+    },
+    {
+      "number": 30,
+      "title": "重试同一清单并核对实际提交",
+      "part": "ppt/slides/model24.xml"
     }
   ],
   "parts": [
@@ -103,50 +158,73 @@
     "docProps/app.xml",
     "docProps/core.xml",
     "ppt/_rels/presentation.xml.rels",
+    "ppt/media/P004_image4.png",
     "ppt/media/image1.png",
     "ppt/media/image2.png",
     "ppt/media/image3.png",
     "ppt/media/image4.png",
     "ppt/notesMasters/_rels/notesMaster1.xml.rels",
     "ppt/notesMasters/notesMaster1.xml",
-    "ppt/notesSlides/_rels/notesSlide1.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide10.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide11.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide12.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide13.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide14.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide15.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide16.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide17.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide18.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide19.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide2.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide3.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide4.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide5.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide6.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide7.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide8.xml.rels",
-    "ppt/notesSlides/_rels/notesSlide9.xml.rels",
-    "ppt/notesSlides/notesSlide1.xml",
-    "ppt/notesSlides/notesSlide10.xml",
-    "ppt/notesSlides/notesSlide11.xml",
-    "ppt/notesSlides/notesSlide12.xml",
-    "ppt/notesSlides/notesSlide13.xml",
-    "ppt/notesSlides/notesSlide14.xml",
-    "ppt/notesSlides/notesSlide15.xml",
-    "ppt/notesSlides/notesSlide16.xml",
-    "ppt/notesSlides/notesSlide17.xml",
-    "ppt/notesSlides/notesSlide18.xml",
-    "ppt/notesSlides/notesSlide19.xml",
-    "ppt/notesSlides/notesSlide2.xml",
-    "ppt/notesSlides/notesSlide3.xml",
-    "ppt/notesSlides/notesSlide4.xml",
-    "ppt/notesSlides/notesSlide5.xml",
-    "ppt/notesSlides/notesSlide6.xml",
-    "ppt/notesSlides/notesSlide7.xml",
-    "ppt/notesSlides/notesSlide8.xml",
-    "ppt/notesSlides/notesSlide9.xml",
+    "ppt/notesSlides/_rels/model1.xml.rels",
+    "ppt/notesSlides/_rels/model10.xml.rels",
+    "ppt/notesSlides/_rels/model11.xml.rels",
+    "ppt/notesSlides/_rels/model12.xml.rels",
+    "ppt/notesSlides/_rels/model13.xml.rels",
+    "ppt/notesSlides/_rels/model14.xml.rels",
+    "ppt/notesSlides/_rels/model15.xml.rels",
+    "ppt/notesSlides/_rels/model16.xml.rels",
+    "ppt/notesSlides/_rels/model17.xml.rels",
+    "ppt/notesSlides/_rels/model18.xml.rels",
+    "ppt/notesSlides/_rels/model19.xml.rels",
+    "ppt/notesSlides/_rels/model2.xml.rels",
+    "ppt/notesSlides/_rels/model20.xml.rels",
+    "ppt/notesSlides/_rels/model21.xml.rels",
+    "ppt/notesSlides/_rels/model22.xml.rels",
+    "ppt/notesSlides/_rels/model23.xml.rels",
+    "ppt/notesSlides/_rels/model24.xml.rels",
+    "ppt/notesSlides/_rels/model3.xml.rels",
+    "ppt/notesSlides/_rels/model4.xml.rels",
+    "ppt/notesSlides/_rels/model5.xml.rels",
+    "ppt/notesSlides/_rels/model8.xml.rels",
+    "ppt/notesSlides/_rels/proof1.xml.rels",
+    "ppt/notesSlides/_rels/proof2.xml.rels",
+    "ppt/notesSlides/_rels/proof3.xml.rels",
+    "ppt/notesSlides/_rels/proof4.xml.rels",
+    "ppt/notesSlides/_rels/proof5.xml.rels",
+    "ppt/notesSlides/_rels/proof6.xml.rels",
+    "ppt/notesSlides/_rels/proof7.xml.rels",
+    "ppt/notesSlides/_rels/proof8.xml.rels",
+    "ppt/notesSlides/_rels/proof9.xml.rels",
+    "ppt/notesSlides/model1.xml",
+    "ppt/notesSlides/model10.xml",
+    "ppt/notesSlides/model11.xml",
+    "ppt/notesSlides/model12.xml",
+    "ppt/notesSlides/model13.xml",
+    "ppt/notesSlides/model14.xml",
+    "ppt/notesSlides/model15.xml",
+    "ppt/notesSlides/model16.xml",
+    "ppt/notesSlides/model17.xml",
+    "ppt/notesSlides/model18.xml",
+    "ppt/notesSlides/model19.xml",
+    "ppt/notesSlides/model2.xml",
+    "ppt/notesSlides/model20.xml",
+    "ppt/notesSlides/model21.xml",
+    "ppt/notesSlides/model22.xml",
+    "ppt/notesSlides/model23.xml",
+    "ppt/notesSlides/model24.xml",
+    "ppt/notesSlides/model3.xml",
+    "ppt/notesSlides/model4.xml",
+    "ppt/notesSlides/model5.xml",
+    "ppt/notesSlides/model8.xml",
+    "ppt/notesSlides/proof1.xml",
+    "ppt/notesSlides/proof2.xml",
+    "ppt/notesSlides/proof3.xml",
+    "ppt/notesSlides/proof4.xml",
+    "ppt/notesSlides/proof5.xml",
+    "ppt/notesSlides/proof6.xml",
+    "ppt/notesSlides/proof7.xml",
+    "ppt/notesSlides/proof8.xml",
+    "ppt/notesSlides/proof9.xml",
     "ppt/presProps.xml",
     "ppt/presentation.xml",
     "ppt/slideLayouts/_rels/slideLayout1.xml.rels",
@@ -265,44 +343,66 @@
     "ppt/slideMasters/slideMaster7.xml",
     "ppt/slideMasters/slideMaster8.xml",
     "ppt/slideMasters/slideMaster9.xml",
-    "ppt/slides/_rels/slide1.xml.rels",
-    "ppt/slides/_rels/slide10.xml.rels",
-    "ppt/slides/_rels/slide11.xml.rels",
-    "ppt/slides/_rels/slide12.xml.rels",
-    "ppt/slides/_rels/slide13.xml.rels",
-    "ppt/slides/_rels/slide14.xml.rels",
-    "ppt/slides/_rels/slide15.xml.rels",
-    "ppt/slides/_rels/slide16.xml.rels",
-    "ppt/slides/_rels/slide17.xml.rels",
-    "ppt/slides/_rels/slide18.xml.rels",
-    "ppt/slides/_rels/slide19.xml.rels",
-    "ppt/slides/_rels/slide2.xml.rels",
-    "ppt/slides/_rels/slide3.xml.rels",
-    "ppt/slides/_rels/slide4.xml.rels",
-    "ppt/slides/_rels/slide5.xml.rels",
-    "ppt/slides/_rels/slide6.xml.rels",
-    "ppt/slides/_rels/slide7.xml.rels",
-    "ppt/slides/_rels/slide8.xml.rels",
-    "ppt/slides/_rels/slide9.xml.rels",
-    "ppt/slides/slide1.xml",
-    "ppt/slides/slide10.xml",
-    "ppt/slides/slide11.xml",
-    "ppt/slides/slide12.xml",
-    "ppt/slides/slide13.xml",
-    "ppt/slides/slide14.xml",
-    "ppt/slides/slide15.xml",
-    "ppt/slides/slide16.xml",
-    "ppt/slides/slide17.xml",
-    "ppt/slides/slide18.xml",
-    "ppt/slides/slide19.xml",
-    "ppt/slides/slide2.xml",
-    "ppt/slides/slide3.xml",
-    "ppt/slides/slide4.xml",
-    "ppt/slides/slide5.xml",
-    "ppt/slides/slide6.xml",
-    "ppt/slides/slide7.xml",
-    "ppt/slides/slide8.xml",
-    "ppt/slides/slide9.xml",
+    "ppt/slides/_rels/model1.xml.rels",
+    "ppt/slides/_rels/model10.xml.rels",
+    "ppt/slides/_rels/model11.xml.rels",
+    "ppt/slides/_rels/model12.xml.rels",
+    "ppt/slides/_rels/model13.xml.rels",
+    "ppt/slides/_rels/model14.xml.rels",
+    "ppt/slides/_rels/model15.xml.rels",
+    "ppt/slides/_rels/model16.xml.rels",
+    "ppt/slides/_rels/model17.xml.rels",
+    "ppt/slides/_rels/model18.xml.rels",
+    "ppt/slides/_rels/model19.xml.rels",
+    "ppt/slides/_rels/model2.xml.rels",
+    "ppt/slides/_rels/model20.xml.rels",
+    "ppt/slides/_rels/model21.xml.rels",
+    "ppt/slides/_rels/model22.xml.rels",
+    "ppt/slides/_rels/model23.xml.rels",
+    "ppt/slides/_rels/model24.xml.rels",
+    "ppt/slides/_rels/model3.xml.rels",
+    "ppt/slides/_rels/model4.xml.rels",
+    "ppt/slides/_rels/model5.xml.rels",
+    "ppt/slides/_rels/model8.xml.rels",
+    "ppt/slides/_rels/proof1.xml.rels",
+    "ppt/slides/_rels/proof2.xml.rels",
+    "ppt/slides/_rels/proof3.xml.rels",
+    "ppt/slides/_rels/proof4.xml.rels",
+    "ppt/slides/_rels/proof5.xml.rels",
+    "ppt/slides/_rels/proof6.xml.rels",
+    "ppt/slides/_rels/proof7.xml.rels",
+    "ppt/slides/_rels/proof8.xml.rels",
+    "ppt/slides/_rels/proof9.xml.rels",
+    "ppt/slides/model1.xml",
+    "ppt/slides/model10.xml",
+    "ppt/slides/model11.xml",
+    "ppt/slides/model12.xml",
+    "ppt/slides/model13.xml",
+    "ppt/slides/model14.xml",
+    "ppt/slides/model15.xml",
+    "ppt/slides/model16.xml",
+    "ppt/slides/model17.xml",
+    "ppt/slides/model18.xml",
+    "ppt/slides/model19.xml",
+    "ppt/slides/model2.xml",
+    "ppt/slides/model20.xml",
+    "ppt/slides/model21.xml",
+    "ppt/slides/model22.xml",
+    "ppt/slides/model23.xml",
+    "ppt/slides/model24.xml",
+    "ppt/slides/model3.xml",
+    "ppt/slides/model4.xml",
+    "ppt/slides/model5.xml",
+    "ppt/slides/model8.xml",
+    "ppt/slides/proof1.xml",
+    "ppt/slides/proof2.xml",
+    "ppt/slides/proof3.xml",
+    "ppt/slides/proof4.xml",
+    "ppt/slides/proof5.xml",
+    "ppt/slides/proof6.xml",
+    "ppt/slides/proof7.xml",
+    "ppt/slides/proof8.xml",
+    "ppt/slides/proof9.xml",
     "ppt/tableStyles.xml",
     "ppt/theme/theme1.xml",
     "ppt/theme/theme10.xml",

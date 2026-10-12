@@ -1,0 +1,11 @@
+# P004 4.3：按当前清单下载并检查 CMSIS 关键文件
+# 按正文前提选择本操作，不批量执行整个目录。
+# Windows UCRT64；源码根；4.2 已确认原生 Git、工作区和 .venv。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+git --version &&
+west list cmsis_6 -f '{url} {revision} {abspath}' &&
+west update cmsis_6 &&
+test -f ../modules/hal/cmsis_6/zephyr/module.yml &&
+test -f ../modules/hal/cmsis_6/CMSIS/Core/Include/core_cm4.h &&
+printf 'CMSIS 下载完成，模块入口与 Cortex-M4 Core 头文件均存在。\n'

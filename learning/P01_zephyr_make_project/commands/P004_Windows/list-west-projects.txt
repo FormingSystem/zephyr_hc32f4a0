@@ -1,0 +1,9 @@
+# P004 4.2：查看当前清单、活动项目和全部项目
+# 按正文前提选择本操作，不批量执行整个目录。
+# Windows UCRT64；4.2 已选好原生 Git，并核对/建立当前 west 工作区。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+west topdir
+west manifest --path
+west list -f '{name} | {path}'
+west list --all -f '{name} | {active} | {groups}'

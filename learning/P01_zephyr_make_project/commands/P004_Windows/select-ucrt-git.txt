@@ -1,0 +1,9 @@
+# P004 4.2：当前窗口选错 Git 时切换到 UCRT64 原生 Git
+# 按正文前提选择本操作，不批量执行整个目录。
+# Windows UCRT64；仅当前窗口选错 Git 时执行；先确认 /ucrt64/bin/git.exe 已存在。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+test -x /ucrt64/bin/git.exe && export PATH="/ucrt64/bin:$PATH"
+hash -r
+python -c "import shutil; print(shutil.which('git'))"
+git --version

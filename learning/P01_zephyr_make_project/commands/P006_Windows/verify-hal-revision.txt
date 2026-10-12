@@ -1,0 +1,13 @@
+# P006 6.3：选择实际 HAL 根并核对 Git 或原归档版本依据
+# 按正文前提选择本操作，不批量执行整个目录。
+# Windows UCRT64；先选择已有实际 HAL 根，再判断是否有 Git 版本证据。
+cd /g/zephyr_practice/zephyr-main
+HAL_DIR=../hal_xhsc
+if [ ! -d "$HAL_DIR" ]; then
+  HAL_DIR=../hal_xhsc-zephyr
+fi
+if [ -e "$HAL_DIR/.git" ]; then
+  git -C "$HAL_DIR" rev-parse HEAD
+else
+  printf '当前目录无 .git；请依据原归档/导入记录核对版本。\n'
+fi

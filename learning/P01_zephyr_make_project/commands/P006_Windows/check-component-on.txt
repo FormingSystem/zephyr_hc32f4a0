@@ -1,0 +1,9 @@
+# P006 6.7.9：检查组件开启时的发现、配置、源码和 ELF
+# 按正文前提选择本操作，不批量执行整个目录。
+# Windows UCRT64；只读检查组件开启构建成功后的实际输入与产物。
+cd /g/zephyr_practice/zephyr-main
+grep -F 'app_greeting' build/learning-tools/p006/component_hello/zephyr_modules.txt
+grep -F 'CONFIG_APP_GREETING=y' build/learning-tools/p006/component_hello/zephyr/.config
+grep -F 'greeting.c' build/learning-tools/p006/component_hello/compile_commands.json
+test -f build/learning-tools/p006/component_hello/zephyr/zephyr.elf
+# 三项记录分别证明：发现模块、开关开启、源文件参与编译；ELF证明链接完成。

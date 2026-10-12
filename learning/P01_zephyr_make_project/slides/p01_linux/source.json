@@ -13,96 +13,106 @@
     },
     {
       "number": 3,
+      "title": "Linux 路线仍围绕同一个应用与目标",
+      "part": "ppt/slides/guide3.xml"
+    },
+    {
+      "number": 4,
       "title": "文件出现的先后顺序",
       "part": "ppt/slides/pythonentry_slide1.xml"
     },
     {
-      "number": 4,
+      "number": 5,
       "title": "先确认系统和电脑架构",
       "part": "ppt/slides/beginner_slide3.xml"
     },
     {
-      "number": 5,
+      "number": 6,
       "title": "安装主机基础依赖",
       "part": "ppt/slides/beginner_slide4.xml"
     },
     {
-      "number": 6,
+      "number": 7,
       "title": "CMake 不足时：取得 Kitware 密钥",
       "part": "ppt/slides/beginner_slide5.xml"
     },
     {
-      "number": 7,
+      "number": 8,
       "title": "添加 Jammy 源并安装 CMake",
       "part": "ppt/slides/beginner_slide6.xml"
     },
     {
-      "number": 8,
+      "number": 9,
       "title": "先检查已安装的 Python",
       "part": "ppt/slides/pythonentry_slide2.xml"
     },
     {
-      "number": 9,
+      "number": 10,
       "title": "安装构建 Python 所需的开发库",
       "part": "ppt/slides/beginner_slide8.xml"
     },
     {
-      "number": 10,
+      "number": 11,
       "title": "缺少时从官方源码安装",
       "part": "ppt/slides/pythonentry_slide3.xml"
     },
     {
-      "number": 11,
+      "number": 12,
       "title": "按版本检查安装结果",
       "part": "ppt/slides/pythonentry_slide4.xml"
     },
     {
-      "number": 12,
+      "number": 13,
       "title": "用 python3.12 创建项目环境",
       "part": "ppt/slides/pythonentry_slide5.xml"
     },
     {
-      "number": 13,
+      "number": 14,
       "title": "west 工作区和源码根不是一层",
       "part": "ppt/slides/beginner_slide12.xml"
     },
     {
-      "number": 14,
-      "title": "取得官方源码及其配套模块",
+      "number": 15,
+      "title": "先取得主仓库，确认要使用的清单",
       "part": "ppt/slides/beginner_slide13.xml"
     },
     {
-      "number": 15,
-      "title": "检查 CMSIS 是从哪里来的",
+      "number": 16,
+      "title": "按当前清单下载并核对 CMSIS_6",
       "part": "ppt/slides/beginner_slide14.xml"
     },
     {
-      "number": 16,
+      "number": 17,
+      "title": "看到外部项目清单，还要判断当前目标用什么",
+      "part": "ppt/slides/guide4.xml"
+    },
+    {
+      "number": 18,
       "title": "Linux 的 SDK 地址保存给哪个用户",
       "part": "ppt/slides/sdkscope_slide1.xml"
     },
     {
-      "number": 17,
+      "number": 19,
       "title": "GNU 与 Minimal 最终使用同一工程接口",
       "part": "ppt/slides/sdkscope_slide3.xml"
     },
     {
-      "number": 18,
+      "number": 20,
       "title": "使用当前源码提供的 SDK 安装命令",
       "part": "ppt/slides/beginner_slide16.xml"
     },
     {
-      "number": 19,
+      "number": 21,
       "title": "手动路线：在 SDK 发行页选择 Linux",
       "part": "ppt/slides/beginner_slide17.xml"
     },
     {
-      "number": 20,
+      "number": 22,
       "title": "手动路线：安装 ARM 并保存用户包地址",
       "part": "ppt/slides/sdkscope_slide2.xml"
     },
     {
-      "number": 21,
+      "number": 23,
       "title": "新终端恢复与验收",
       "part": "ppt/slides/beginner_slide19.xml"
     }
@@ -172,6 +182,8 @@
     "ppt/notesMasters/_rels/notesMaster1.xml.rels",
     "ppt/notesMasters/notesMaster1.xml",
     "ppt/notesMasters/theme/theme3.xml",
+    "ppt/notesSlides/_rels/guide3.xml.rels",
+    "ppt/notesSlides/_rels/guide4.xml.rels",
     "ppt/notesSlides/_rels/notesSlide1.xml.rels",
     "ppt/notesSlides/_rels/notesSlide10.xml.rels",
     "ppt/notesSlides/_rels/notesSlide11.xml.rels",
@@ -183,6 +195,8 @@
     "ppt/notesSlides/_rels/notesSlide7.xml.rels",
     "ppt/notesSlides/_rels/notesSlide8.xml.rels",
     "ppt/notesSlides/_rels/notesSlide9.xml.rels",
+    "ppt/notesSlides/guide3.xml",
+    "ppt/notesSlides/guide4.xml",
     "ppt/notesSlides/notesSlide1.xml",
     "ppt/notesSlides/notesSlide10.xml",
     "ppt/notesSlides/notesSlide11.xml",
@@ -281,6 +295,8 @@
     "ppt/slides/_rels/beginner_slide7.xml.rels",
     "ppt/slides/_rels/beginner_slide8.xml.rels",
     "ppt/slides/_rels/beginner_slide9.xml.rels",
+    "ppt/slides/_rels/guide3.xml.rels",
+    "ppt/slides/_rels/guide4.xml.rels",
     "ppt/slides/_rels/pythonentry_slide1.xml.rels",
     "ppt/slides/_rels/pythonentry_slide2.xml.rels",
     "ppt/slides/_rels/pythonentry_slide3.xml.rels",
@@ -319,6 +335,8 @@
     "ppt/slides/beginner_slide7.xml",
     "ppt/slides/beginner_slide8.xml",
     "ppt/slides/beginner_slide9.xml",
+    "ppt/slides/guide3.xml",
+    "ppt/slides/guide4.xml",
     "ppt/slides/pythonentry_slide1.xml",
     "ppt/slides/pythonentry_slide2.xml",
     "ppt/slides/pythonentry_slide3.xml",

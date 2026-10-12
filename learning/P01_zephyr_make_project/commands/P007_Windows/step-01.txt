@@ -1,4 +1,6 @@
-# 终端：Windows UCRT64；从任意目录进入实验源码根。
+# Windows UCRT64；源码根；只检查，不安装或编译。
 cd /g/zephyr_practice/zephyr-main
-# 读取官方原有的应用入口，应该看到上面五行核心语句。
-sed -n '1,30p' samples/hello_world/CMakeLists.txt
+cmake --version
+ninja --version
+command -v gcc
+gcc -dumpmachine

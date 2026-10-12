@@ -1,0 +1,5 @@
+# Windows UCRT64；仅“尚无工作区”分支。已有工作区跳过整块。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+test -f west.yml && west init -l . &&
+  west topdir && west config manifest.path && west config manifest.file

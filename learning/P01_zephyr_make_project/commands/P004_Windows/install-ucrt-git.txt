@@ -1,0 +1,4 @@
+# P004 4.2：仅缺少 UCRT64 原生 Git 时安装
+# 按正文前提选择本操作，不批量执行整个目录。
+# Windows UCRT64；仅未安装 UCRT64 原生 Git 时执行。
+pacman -S --needed mingw-w64-ucrt-x86_64-git

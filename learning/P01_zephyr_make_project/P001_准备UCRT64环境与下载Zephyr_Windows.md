@@ -14,7 +14,11 @@ domains: [zephyr, tools]
 
 **复制命令：** [按小节打开完整操作单元](commands/P001_Windows/README.md)。PPT 的“完整命令”链接指向同一份纯文本；请连同注释复制，先读本节前提，再执行所选路线。
 
-准备下载 Zephyr 时，Windows 电脑往往还缺少终端和 Git。本章从安装 MSYS2 开始，先让下载工具可用，再选择 Git 克隆或 ZIP 压缩包取得源码，最后按需补回 Git 历史。已有的下载截图和终端记录保留作对照，软件版本、文件大小和提交数量以实际下载结果为准。
+这套教程要完成的是：在自己的芯片和开发板上运行一个 Zephyr 应用。我们先保持应用为官方 `samples/hello_world`，选已有支持的 `mps2/an386` 建立可比较的构建结果，再把目标换成 HC32F4A0 的 UYUP 板。这样，后面换板时才能分清应用代码、构建环境和新增板级支持各自造成的变化。MPS2 是 Arm 的参考平台，不是华大芯片；当前对照示例需要清单指定的 CMSIS-Core，不需要华大 HAL/DDL，依赖依据在 P004 沿板、SoC 和源码逐项查证。
+
+这里先认识两个之后要分别选择的对象：`samples/hello_world` 是应用目录，`CMakeLists.txt`、`prj.conf` 和 `src/main.c` 说明应用怎样构建、需要什么功能、执行什么逻辑；`mps2/an386` 是硬件目标，指 Arm MPS2 FPGA 平台的 Cortex-M4F 系统配置。选应用不是选板，同一个应用可以换目标板，同一块板也可以构建不同应用；不同组合的产物以后各放一个构建目录。
+
+眼下还没有可以交给构建系统的源码。准备下载 Zephyr 时，Windows 电脑往往还缺少终端和 Git。本章从安装 MSYS2 开始，先让下载工具可用，再选择 Git 克隆或 ZIP 压缩包取得源码，最后按需补回 Git 历史。已有的下载截图和终端记录保留作对照，软件版本、文件大小和提交数量以实际下载结果为准。
 
 本文面向 Windows x64，命令默认在 **MSYS2 UCRT64 的 Bash 终端**执行。MSYS2 是提供类 Unix 命令行工具和软件包管理器的 Windows 工具环境；Bash 是解释并执行命令的 shell。UCRT64 是 MSYS2 中使用 Windows 通用 C 运行库（Universal C Runtime，UCRT）的 64 位环境，它仍运行在 Windows 上。
 
@@ -45,10 +49,12 @@ flowchart LR
 
 | 阶段 | 正文小节 | PPT 页面 | Markdown 中继续展开的内容 |
 | --- | --- | --- | --- |
-| 终端与镜像 | 1.1—1.2 | 6—17 | 安装、软件源备份、展开后的仓库地址和更新失败处理 |
-| 下载工具与源码 | 1.3—1.4 | 18—27 | 源码来源、路径转换、ZIP 解压层次与网络检查 |
-| 可选 Git 历史 | 1.5—1.6、1.8—1.9 | 28—39 | 提交一致性、元数据接入、索引、身份配置与恢复前提 |
-| 排错与交接 | 1.7、1.10 | 40—41 | 连接问题和进入依赖安装前的检查 |
+| 从自己的板出发，先得到一个可比较的工程 | 开篇 | 3 | 最终要让自己的芯片和板运行 Zephyr。第一轮保持官方 hello_world 不变，选择已有支持的 mps2/an386，把工具、源码和依赖连成可复现的构建。 |
+| 终端与镜像 | 1.1—1.2 | 7—18 | 安装、软件源备份、展开后的仓库地址和更新失败处理 |
+| 下载工具与源码 | 1.3—1.4 | 19—29 | 原生 Git 安装与路径验收、源码来源、路径转换、ZIP 解压与网络检查 |
+| 可选 Git 历史 | 1.5—1.6、1.8—1.9 | 30—41 | 提交一致性、元数据接入、索引、身份配置与恢复前提 |
+| 排错与交接 | 1.7、1.10 | 42—43 | 连接问题和进入依赖安装前的检查 |
+| 下载成功后，下一章究竟接收什么 | 1.10 | 44 | 交接的是 G:/zephyr_practice/zephyr-main，不是另一个同名副本。VERSION 说明源码版本，samples/hello_world 是将要构建的应用。 |
 
 **本章导航**
 
@@ -263,14 +269,21 @@ pacman -Syyu
 
 ### 1.3.1\_安装\_Git\_与下载解压工具
 
+先准备下载和解压工具，再为后续 Windows Python/west 选择 **UCRT64 原生 Git**。本系列优先使用 `/ucrt64/bin/git`，对应包名为 `mingw-w64-ucrt-x86_64-git`；普通 `git` 包提供的 `/usr/bin/git` 依赖 MSYS2 运行时，不作为本主线交给 Windows Python 的 Git。依据见 [MSYS2 Git 说明](https://www.msys2.org/docs/git/)与[UCRT64 Git 包](https://packages.msys2.org/packages/mingw-w64-ucrt-x86_64-git)。
+
+下面先安装通用工具，成功后仅在原生 Git 不存在时补装。**前提是 1.2.4 的完整系统更新已结束**；若包数据库过旧，返回更新步骤，不单独执行 `pacman -Sy` 后混装软件。完整操作：[安装工具 TXT](commands/P001_Windows/1.3.1-01.txt)。
+
 ```bash
 # 当前位置：任意目录；终端：UCRT64。此前已完成系统更新。
-pacman -S --needed git curl wget unzip tar xz
+pacman -S --needed curl wget unzip tar xz &&
+if ! test -x /ucrt64/bin/git.exe; then
+  pacman -S --needed mingw-w64-ucrt-x86_64-git
+fi
 ```
 
 Git 管理源码和版本历史；curl、wget 用于从网址下载文件；unzip 解压 ZIP，tar 与 xz 处理常见归档。下载本章的 ZIP 也可以用浏览器和 Windows 解压功能。Bash、ls、cp、sed 等基础命令由 MSYS2 基础环境提供，不用另找安装包。
 
-`--needed` 会跳过已是最新版本的包。出现安装确认时检查包列表并确认，结束后检查：
+`--needed` 会跳过已是最新版本的包；`test -x` 检查原生 Git 是否已存在，已有时不重复安装。出现安装确认时检查包列表并确认，安装成功后检查命令及路径。完整操作：[检查工具 TXT](commands/P001_Windows/1.3.1-02.txt)。
 
 ```bash
 # 当前位置：任意目录；终端：UCRT64。
@@ -280,14 +293,31 @@ wget --version
 unzip -v
 tar --version
 xz --version
+type -a git
 command -v git
 ```
 
-前六条应显示版本，最后一条通常指向 `/usr/bin/git`。若提示 `command not found`，先确认安装没有失败、当前确实是 UCRT64；使用 `type -a git` 可以查看是否同时存在多套 Git。
+前六条应显示版本。`type -a git` 列出别名、函数和可执行文件；如果优先匹配的是别名或函数，先检查自己的 Bash 配置，消除遮蔽后再继续。主线 `command -v git` 应指向 `/ucrt64/bin/git`（也可能显示 `.exe` 后缀）。**若仍指向 `/usr/bin/git`，停止后续 Git/west 操作，先修复当前窗口的 PATH。** 包已经安装不等于命令已经选对。
+
+仅在 `/ucrt64/bin/git.exe` 已存在、但当前窗口选错路径时执行以下块。它把已安装的原生 Git 放在 PATH 前面，`hash -r` 清除 Bash 缓存的旧命令位置；不会删除另一套 Git，也不会永久改写系统 PATH。完整操作：[修复 Git 路径 TXT](commands/P001_Windows/select-native-git.txt)。
+
+```bash
+# Windows UCRT64；任意目录；原生 Git 已安装但当前窗口选错时使用。
+if test -x /ucrt64/bin/git.exe; then
+  export PATH="/ucrt64/bin:$PATH"
+  hash -r
+else
+  printf '未找到 UCRT64 原生 Git，返回本节安装步骤。\n' >&2
+fi
+type -a git
+command -v git
+```
+
+输出仍不符合预期时不继续：检查是否打开了 UCRT64、安装是否成功，以及别名或函数是否仍遮蔽程序。重开终端后需再次核对。已安装 Git for Windows 的备用入口在 P002 说明；P002 准备好 Windows Python 后，还会检查 Python 实际调用的是哪一个 Git。这里尚未准备 Python，不提前要求执行 Python 命令。
 
 ### 1.3.2\_按需安装构建辅助工具
 
-准备构建时，按[Windows P002—P005](环境与依赖导航.md)在 PowerShell 或 cmd.exe 使用官方 winget 清单，安装后回到 UCRT64。完整依据见[主机工具与官方安装来源](主机工具与官方安装来源.md)。本节先认识工具职责，避免尚未取得源码时把一份软件包清单当作永久要求。
+准备构建时，按[Windows P002](P002_主机工具与Python环境_Windows.md)在 PowerShell 或 cmd.exe 使用官方 winget 清单，安装后回到 UCRT64。完整依据见[主机工具与官方安装来源](主机工具与官方安装来源.md)。本节先认识工具职责，避免尚未取得源码时把一份软件包清单当作永久要求。
 
 | 工具 | 构建时的职责 | 安装后检查 |
 | --- | --- | --- |
@@ -308,7 +338,7 @@ py -3.12 --version
 py -3.12 -m pip --version
 ```
 
-预期显示 Python 3.12.10 和它对应的 pip 包安装器。`py` 能找到解释器，不保证 Bash 的 PATH 中已有 `python`。UCRT64 命令安装、Windows 已装 Python 的 PATH 设置以及源码根 `.venv` 创建，统一见 [P002—P005 的 Python 环境说明](环境与依赖导航.md)。若找不到 `py`，检查启动器是否安装、终端是否重开。MSYS2 自带的 Python 与 Windows 官方 Python 有包兼容性差异，所以这里明确用 `py -3.12` 选择解释器，后续在项目虚拟环境中安装 west；详见 [MSYS2 Python](https://www.msys2.org/docs/python/)。
+预期显示 Python 3.12.10 和它对应的 pip 包安装器。`py` 能找到解释器，不保证 Bash 的 PATH 中已有 `python`。UCRT64 命令安装、Windows 已装 Python 的 PATH 设置以及源码根 `.venv` 创建，统一见 [P002 的 Python 环境说明](P002_主机工具与Python环境_Windows.md)。若找不到 `py`，检查启动器是否安装、终端是否重开。MSYS2 自带的 Python 与 Windows 官方 Python 有包兼容性差异，所以这里明确用 `py -3.12` 选择解释器，后续在项目虚拟环境中安装 west；详见 [MSYS2 Python](https://www.msys2.org/docs/python/)。
 
 若后续要做 Windows 主机上的 C/C++ 编译与调试实验，可额外安装 GCC 编译器和 GDB 调试器：
 
@@ -391,7 +421,7 @@ ls VERSION SDK_VERSION west.yml boards samples
 if [ -d .git ]; then git rev-parse HEAD; else printf 'ZIP snapshot: no Git metadata\n'; fi
 ```
 
-这几项存在才能进入 P002—P005。`boards` 里没有 UYUP 不表示下载坏了，新增芯片/板支持属于 P011。ZIP 没有 `.git` 也不妨碍读取或编译源码，只是不具备本地历史查询能力；1.5 是可选的 Git 补充流程。若要补历史，下载笔记里的 SHA 是核对依据，未确认版本一致之前不要移动元数据或重置工作区。
+确认这几项存在后，从 P002 继续准备主机工具、SDK 与 CMSIS，再学习 P005 的工程模型和 P006 的 HC32 接入。`boards` 里没有 UYUP 不表示下载坏了，新增芯片/板支持属于 P012。ZIP 没有 `.git` 也不妨碍读取或编译源码，只是不具备本地历史查询能力；1.5 是可选的 Git 补充流程。若要补历史，下载笔记里的 SHA 是核对依据，未确认版本一致之前不要移动元数据或重置工作区。
 
 Git 克隆遇到连接问题时，原记录曾出现：
 
@@ -766,13 +796,8 @@ git config --local --get user.name
 
 ## 1.10\_检查结果并进入下一步
 
-完成后，你应能在 UCRT64 中看到正确的环境标识，使用 pacman 更新工具，执行 Git 下载命令，并区分“只有源码快照”“浅 Git 仓库”和“main 历史已经补全但部分文件对象仍按需下载”这几种状态。只选择 ZIP 阅读源码也已经完成本章的下载目标。
+现在交给下一章的是 `G:\zephyr_practice\zephyr-main` 这一份官方源码，以及能够再次打开的 UCRT64 终端。若只选择 ZIP，源码仍可阅读；浅克隆、完整历史与源码快照的差异影响 Git 操作，不改变应用源码需要另行配置和编译这一事实。不要为了继续学习而重新下载第二份同名源码。
 
-下一期继续[下载 SDK 与安装依赖包](环境与依赖导航.md)，先让主机工具、ARM 编译器与 Python 包环境可用。后续编译还需要依据所选 Zephyr 版本配套源码模块；工具原理可继续读 [Python 虚拟环境](../python/venv/大纲.md)与 [west 多仓库管理](../west/大纲.md)。所有后续实验继续使用同一份原生源码。不要把主仓库下载成功当成完整构建环境已经验收。
+在编辑器中打开这份源码，先确认三个已有入口：`samples/hello_world/CMakeLists.txt` 和 `src/main.c` 是将要构建的应用，`boards/arm/mps2/board.yml` 列出参考板目标，`west.yml` 声明配套外部仓库。此时只阅读，不创建这些文件，也不因为看到 `modules/cmsis_6` 目录就认定外部 CMSIS 已下载；P004 会解释树内接入规则与树外源码的区别。
 
-下一篇：[下载 SDK 与安装依赖包](环境与依赖导航.md)。
-
-下一模块：[P002 主机工具与 Python](P002_主机工具与Python环境_Windows.md)。
-
-
-下一篇：[P002](P002_主机工具与Python环境_Windows.md)。
+下一章 [P002 主机工具与 Python 环境](P002_主机工具与Python环境_Windows.md) 要解决的是：电脑上的哪些程序会读取这份源码，如何让它们使用同一个 Python 环境。P003 再提供生成 ARM 指令的编译器，P004 取得当前目标所需的源码依赖。此处还没有构建目录和固件；后面的步骤继续使用刚刚确认的源码根。

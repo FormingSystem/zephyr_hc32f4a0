@@ -11,7 +11,9 @@ domains: [zephyr, tools]
 
 # 第2章\_主机工具与Python环境
 
-本模块目标：**得到可用的主机命令与工程 .venv。** 返回 [环境与依赖导航](环境与依赖导航.md)；配套 [PPT](slides/P002_主机工具与Python环境_Windows.pptx)。各章独立编号，完整复制单元按当前小节编号放在 [命令索引](commands/P002_Windows/README.md)。
+上一章留下了 `zephyr-main` 源码，里面已经有 `hello_world` 应用和 `mps2/an386` 的板支持。可是文件放在磁盘上不会自行变成固件：CMake 要读取构建规则，Ninja 要执行编译任务，Python 要运行 Zephyr 的配置和模块工具。本章先让这些**在 Windows 主机上执行的程序**可用，并把项目需要的 Python 包放到同一份 `.venv`；下一章才准备生成 ARM 指令的目标编译器。
+
+对照板与后续 HC32 板共用这套主机环境，因此不因换芯片而重装一份 Python。我们要能在任意一个新开的 UCRT64 窗口里，回到同一源码根并恢复它。 返回 [环境与依赖导航](环境与依赖导航.md)；配套 [PPT](slides/P002_主机工具与Python环境_Windows.pptx)。各章独立编号，完整复制单元按当前小节编号放在 [命令索引](commands/P002_Windows/README.md)。
 
 实验源码根为 Windows 的 `G:\zephyr_practice\zephyr-main`，UCRT64 中为 `/g/zephyr_practice/zephyr-main`。默认 UCRT64；Windows 专用 setup.cmd 等步骤按正文切换 PowerShell。各模块不重复安装已经完成的前置工具。
 
@@ -21,10 +23,12 @@ domains: [zephyr, tools]
 
 | PPT 页面 | 阶段 | 完整正文 | 正文进一步展开 |
 | --- | --- | --- | --- |
-| 2—5 | 终端、对象和官方安装依据 | [2.1](#section-2-1) | 区分工具、源码与接入规则 |
-| 6—7 | 安装和检查主机工具 | [2.1.1](#section-2-1-1) | 终端切换、Git for Windows 与 PATH 检查 |
-| 8—12 | 按已有状态选择 Python | [2.1.2](#section-2-1-2) | 已有安装、官方安装器、Launcher 与 PATH 分支 |
-| 13—15 | 创建或恢复 venv 并安装依赖 | [2.2](#section-2-2) | 完整命令、环境来源和新终端恢复 |
+| 2、4—6 | 终端、对象和官方安装依据 | [2.1](#section-2-1) | 区分工具、源码与接入规则 |
+| 3 | 源码已经在磁盘上，为什么还不能构建 | 开篇与 2.2 | 上一册提供了 hello_world 与 MPS2 的已有支持。CMake 要读工程规则，Ninja 要执行任务，Python 要运行配置和模块工具；这些程序都运行在 Windows 主机上。 |
+| 7—9 | 安装和检查主机工具 | [2.1.1](#section-2-1-1) | 终端切换、UCRT64 原生 Git 与 PATH 检查 |
+| 10—14 | 按已有状态选择 Python | [2.1.2](#section-2-1-2) | 已有安装、官方安装器、Launcher 与 PATH 分支 |
+| 15—18 | 创建或恢复 venv 并安装依赖 | [2.2](#section-2-2) | 完整命令、环境来源和新终端恢复 |
+| 19 | 新终端中能恢复，才算把环境交给下一步 | 2.2.2 | 回到同一 zephyr-main，激活 .venv，检查 Python、pip、west 和 Python 找到的 Git；若 Git 为 usr/bin 入口或 None，先修正再下载模块。 |
 
 <a id="section-2-1"></a>
 
@@ -36,7 +40,7 @@ flowchart LR
     S2["2 Python 与 venv"]
     S3["3 SDK"]
     S4["4 依赖选择依据"]
-    S5["5 CMSIS 与 HAL 下载"]
+    S5["5 CMSIS；HC32 再备 HAL"]
     S6["6 交接检查"]
     S1 --> S2 --> S3 --> S4 --> S5 --> S6
     style S1 stroke:#007F8A,stroke-width:3px
@@ -65,12 +69,12 @@ echo "$MINGW_PREFIX"
 winget install Kitware.CMake Ninja-build.Ninja oss-winget.gperf Python.Python.3.12 Git.Git oss-winget.dtc wget 7zip.7zip
 ```
 
-本教程后续仍固定 Windows CPython **3.12.10**。`Python.Python.3.12` 只标识系列，不承诺安装这个补丁号。因此本教程实际执行下面这一条，**与上面的完整命令二选一**，只省去 Python 项，其余保持官方包清单；随后在 2.1.2 或 2.1.3 使用 Python 官方安装器，已有 3.12.10 时直接复用：
+本教程后续仍固定 Windows CPython **3.12.10**。`Python.Python.3.12` 只标识系列，不承诺安装这个补丁号；Git 已在 P001 准备为 UCRT64 原生版本。因此本教程实际执行下面这一条，**不再执行上面的官方原命令**，省去 Python 与 `Git.Git` 两项，保留其他官方工具。随后在 2.1.2 或 2.1.3 使用 Python 官方安装器，已有 3.12.10 时直接复用；Git 在本节另行检查，不重复安装 Git for Windows。
 
 ```powershell
-# Windows PowerShell 或 cmd.exe；本教程固定 Python 时使用。
+# Windows PowerShell 或 cmd.exe；P001 已准备原生 Git，Python 稍后单独准备。
 winget --version
-winget install Kitware.CMake Ninja-build.Ninja oss-winget.gperf Git.Git oss-winget.dtc wget 7zip.7zip
+winget install Kitware.CMake Ninja-build.Ninja oss-winget.gperf oss-winget.dtc wget 7zip.7zip
 ```
 
 若没有 winget，先用[微软安装入口](https://aka.ms/getwinget)准备它。官方也允许从各工具自己的官网安装并配置 PATH，不能因缺少 winget 就悄悄切换工具来源。安装结束关闭旧终端，**重新打开 UCRT64；执行 SDK 的 setup.cmd 前也重新打开 PowerShell**，让新进程取得更新后的 Windows PATH。
@@ -91,24 +95,49 @@ gperf --version
 
 本次指南下限为 CMake 3.28.0、Python 3.12、dtc 1.4.6。换源码后重新查表；若上游要求与教程固定版本冲突，应更新教程基线和验证记录，不忽略安装错误。
 
-Windows CPython/west 调用 Git for Windows；不要只看 `git --version` 就以为已选对 Git。UCRT64 的 `/usr/bin/git` 属于 MSYS2，两套程序的参数处理可能不同。本机复核中 Windows west 调 MSYS2 Git 时，`^{commit}` 被解析成 `^commit`，导致 update 失败；改用 Git for Windows 后正常。
+Windows CPython/west 应配合 Windows 原生 Git。本系列优先使用 P001 准备的 `/ucrt64/bin/git`，已安装的 Git for Windows 也可复用。`/usr/bin/git` 依赖 MSYS2 运行时，与 Windows Python 的调用边界不同；只看 `git --version` 无法确认选中哪一种。本次故障记录是在 Windows west 调用 `/usr/bin/git` 时看到 `^{commit}` 变成 `^commit`，保持清单和提交不变、改用 `/ucrt64/bin/git` 后恢复；花括号具体在哪一层改变尚未跟踪定位。原生版本的区分见 [MSYS2 Git 说明](https://www.msys2.org/docs/git/)，完整故障证据见 [P004 4.4](P004_CMSIS选择与下载_Windows.md#west-git-compat)。
 
 ```bash
-# Windows UCRT64；任意目录；查看 UCRT64 将找到哪个 Git。
+# Windows UCRT64；任意目录；先查看别名、函数和多个 Git 候选。
 type -a git
 command -v git
 ```
 
-若输出落在 MSYS2 的 usr/bin，先在资源管理器找到前面安装的 Git for Windows 的 `cmd` 目录（含 git.exe，默认常为 `C:\Program Files\Git\cmd`），再运行下块。`GIT_CMD_DIR` 只是本块接收粘贴路径的临时 Bash 变量，不是 Zephyr 设置；它立即用于 PATH，随后删除。不要填写作者电脑的安装位置，也不要重新安装一份 Git。
+若 `type -a` 的优先项是别名或函数，先检查自己的 Bash 配置，消除遮蔽。主线 `command -v git` 应为 `/ucrt64/bin/git`（可带 `.exe` 后缀）；**仍为 `/usr/bin/git` 时，停止 west 模块下载，先按下面的同章步骤修复**。已有正确路径时跳过补装和 PATH 调整。
+
+若原生 Git 缺失，下面仅补装 `mingw-w64-ucrt-x86_64-git`；若已经安装但路径选错，则只调整当前终端。运行前必须已完成 P001 的完整系统更新；遇到旧包数据库错误先返回 P001 更新，不使用 `pacman -Sy` 单独刷新后继续。完整操作：[原生 Git 安装与路径检查 TXT](commands/P002_Windows/git-native-check.txt)。
 
 ```bash
-# Windows UCRT64；仅在需要调整 Git 优先级时执行；粘贴自己的 Windows 路径，不加引号。
+# Windows UCRT64；任意目录；P001 完整系统更新已完成。
+# 仅原生 Git 缺失或当前窗口选错路径时执行；已有正确选择则跳过。
+if ! test -x /ucrt64/bin/git.exe; then
+  pacman -S --needed mingw-w64-ucrt-x86_64-git
+fi
+if test -x /ucrt64/bin/git.exe; then
+  export PATH="/ucrt64/bin:$PATH"
+  hash -r
+else
+  printf '原生 Git 尚未可用，停止模块下载并检查安装错误。\n' >&2
+fi
+type -a git
+command -v git
+```
+
+两项查询应确认原生路径且没有别名或函数遮蔽。此处核对的是 Bash 命令入口；2.2 创建或激活 Windows Python 环境后，还要核对 Python 实际找到的 Git，两步不能互相替代。
+
+**备用：复用已安装的 Git for Windows。** 只有决定使用这条路线时才运行下块，无需再安装一份 Git。在资源管理器找到该安装的 `cmd` 目录（含 git.exe，默认常为 `C:\Program Files\Git\cmd`）。`GIT_CMD_DIR` 只是本块接收粘贴路径的临时 Bash 变量，不是 Zephyr 设置；它用于 PATH，随后删除。不要填写作者电脑的安装位置。
+
+```bash
+# Windows UCRT64；备用路线：复用已有 Git for Windows；粘贴真实 cmd 目录，不加引号。
 read -r -p 'Git for Windows 的 cmd 目录：' GIT_CMD_DIR
 if test -f "$(cygpath -u "$GIT_CMD_DIR")/git.exe"; then
   export PATH="$(cygpath -u "$GIT_CMD_DIR"):$PATH"
   hash -r
+else
+  printf '该目录没有 git.exe，停止模块下载并核对安装位置。\n' >&2
 fi
 unset GIT_CMD_DIR
+type -a git
 command -v git
 ```
 
@@ -219,7 +248,7 @@ flowchart LR
     S2["2 Python 与 venv"]
     S3["3 SDK"]
     S4["4 依赖选择依据"]
-    S5["5 CMSIS 与 HAL 下载"]
+    S5["5 CMSIS；HC32 再备 HAL"]
     S6["6 交接检查"]
     S1 --> S2 --> S3 --> S4 --> S5 --> S6
     style S2 stroke:#007F8A,stroke-width:3px
@@ -248,9 +277,15 @@ py -3.12 -m venv .venv
 source .venv/Scripts/activate
 python --version
 python -m pip --version
+python -c "import sys; print(sys.executable)"
+python -c "import shutil; print(shutil.which('git'))"
 ```
 
-先确认 2.1 节选定的基础解释器为 3.12.10，再创建环境；`source` 让当前 Bash 优先使用它，最后确认选择结果。pip 输出应包含当前工程的 `.venv`，它用于确认项目包的归属，盘符不必与截图一致。即使终端是 Bash，Windows Python 的激活脚本仍在 `Scripts/activate`，不是 Linux 教程里的 `bin/activate`。
+先确认 2.1 节选定的基础解释器为 3.12.10，再创建环境；`source` 让当前 Bash 优先使用它，最后确认选择结果。pip 输出应包含当前工程的 `.venv`，`sys.executable` 应指向这份 `.venv/Scripts/python.exe`。它们用于确认项目包的归属，盘符不必与截图一致。即使终端是 Bash，Windows Python 的激活脚本仍在 `Scripts/activate`，不是 Linux 教程里的 `bin/activate`。
+
+最后一行用 `shutil.which('git')` 查看**这一个 Windows Python 按 PATH 找到的 Git**。主线应输出 MSYS2 安装目录下的 `ucrt64/bin/git.exe`；备用路线应输出前面已核对来源的 Git for Windows `cmd/git.exe`。Windows 的反斜杠和扩展名大小写不影响判断。**若为 `None` 或落在 `usr/bin/git.exe`，停止后续 west 模块下载，返回 2.1.1 修复，再重新执行这两行；不要以 Bash 能运行 Git 或版本号能打印作为通过条件。**
+
+已有 `.venv` 时，只需激活并核对，不再创建。独立复核操作见 [Python 与 Git 路径 TXT](commands/P002_Windows/git-python-check.txt)。
 
 现在才开始安装包，避免把“装了哪个包”和“给哪个 Python 装包”混在一起：
 
@@ -265,7 +300,7 @@ python -m west --version
 
 下载慢时可以仅对这次安装指定索引，例如把安装命令替换为 `python -m pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r scripts/requirements-base.txt "west==1.5.0"`。这只影响 pip，不影响 SDK；镜像缺包或同步延迟时恢复默认索引重试，先保留原始错误信息。不要通过关闭证书校验来处理普通的超时。
 
-west 可以运行，只表示管理工具已安装。上游 Zephyr 的 `west.yml` 还会声明其他源码仓库及版本，下载那些模块是另一件事；本章 5.2 节按原生 west.yml 取得 CMSIS_6；P011 再通过 CMake 接入这些已下载的源码；更完整的模块管理继续见 [west 大纲](../west/大纲.md)。
+west 可以运行，只表示管理工具已安装。P004 才会检查或建立 `.west` 工作区，读取当前 `west.yml` 并取得 MPS2 对照示例需要的 CMSIS_6；P005 先解释官方工程的驱动模型，P006 再展开构建系统的模块发现。`pip install west` 不会下载 CMSIS，也不会令当前目录自动变成 west 工作区。按 P006 准备 HC32 时再增加它所需的 HAL，不能把华大 DDL 当成所有 ARM 应用的公共前提；更完整的模块管理见 [west 大纲](../west/大纲.md)。
 
 ### 2.2.2\_重新打开终端后恢复环境
 
@@ -279,22 +314,20 @@ python --version
 python -m pip --version
 python -m pip check
 python -m west --version
+python -c "import sys; print(sys.executable)"
+python -c "import shutil; print(shutil.which('git'))"
 ```
 
-Python 应为 3.12.10，pip 应属于当前项目 `.venv`，包依赖检查通过，west 返回 1.5.0。这里只恢复 Python 工具环境；接着在 P003 准备 SDK，P004 下载源码依赖，P005 说明模块接入。工程怎样发现这些输入在后续 P009 展开，不是当前安装的前提。虚拟环境不会替你选择板卡，也不会自动下载清单中的源码。
+Python 应为 3.12.10，pip 与 `sys.executable` 应属于当前项目 `.venv`，包依赖检查通过，west 返回 1.5.0。Python 找到的 Git 应仍为 `ucrt64/bin/git.exe`，或已核对的 Git for Windows `cmd/git.exe`。**若重开窗口后变成 `usr/bin/git.exe` 或 `None`，先停止 west 模块下载，回到 2.1.1 修复当前窗口的 PATH，再复核。** 前一次终端中的 `export PATH` 不会自动传到这次新终端。
+
+这里只恢复 Python 工具环境；接着在 P003 准备 SDK，P004 确定并下载 CMSIS，P005 解释工程与驱动模型，P006 再接入 HC32 DDL 和外部模块。工程怎样发现这些输入在后续 P010 展开，不是当前安装的前提。虚拟环境不会替你选择板卡，也不会自动下载清单中的源码。
 
 基础 Python 依赖来自当前源码，下面截图仅用于定位，实际内容以当前 checkout 为准。
 
 ![requirements-base.txt 源码位置](assets/p002-requirements-base-source.png)
 
-继续准备 SDK 与源码依赖，准备齐全后从 P006 进入构建基础。
+本章的实际产物是源码根内的 `.venv` 和能从新终端再次找到的主机命令。把最后一组恢复命令留好：后续每次进入同一源码根、激活这份环境，就可以继续工作，不必重新安装。此时 `python`、`west` 可运行仍不能证明 ARM 固件可生成，因为目标编译器还没有准备。
 
-
-
-
-上一篇：[P001 源码准备](P001_准备UCRT64环境与下载Zephyr_Windows.md)。
-
-下一模块是 P003 SDK 准备；完成 P003—P005 后，再进入 P006—P010 的构建体系。
-
+下一章 [P003 SDK 准备与编译器选型](P003_SDK准备与编译器选型_Windows.md) 沿同一 `hello_world + mps2/an386` 任务选 Windows 主机可运行的 ARM 工具链，并核对它的安装根。之后 P004 才处理源码依赖。
 
 上一篇：[P001](P001_准备UCRT64环境与下载Zephyr_Windows.md)；下一篇：[P003](P003_SDK准备与编译器选型_Windows.md)。

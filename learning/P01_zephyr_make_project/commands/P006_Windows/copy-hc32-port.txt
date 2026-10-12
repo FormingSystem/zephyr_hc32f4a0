@@ -1,0 +1,17 @@
+# P006 6.6.1：复制教材适配为工作副本，不覆盖现有目录
+# 按正文前提选择本操作，不批量执行整个目录。
+# Windows UCRT64；教材位于F盘指定仓库；不覆盖已有工作副本。
+(
+set -eu
+cd /g/zephyr_practice/zephyr-main
+HC32_PORT_SOURCE='/f/git_storage/zephyr_hc32f4a0/learning/board/labs/hc32_port'
+HC32_PORT_WORK='build/learning-tools/p003/hc32_port'
+test -f "$HC32_PORT_SOURCE/zephyr/module.yml"
+if test -e "$HC32_PORT_WORK"; then
+  printf '%s\n' 'hc32_port已存在；先核对现有内容，不覆盖。' >&2
+  exit 1
+fi
+mkdir -p build/learning-tools/p003
+cp -R "$HC32_PORT_SOURCE" "$HC32_PORT_WORK"
+test -f "$HC32_PORT_WORK/boards/uyup/uyup_rpi_a/board.yml"
+)

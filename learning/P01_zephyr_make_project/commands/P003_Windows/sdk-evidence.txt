@@ -1,4 +1,4 @@
-# Windows UCRT64；先完成第 19 页的 CMake 配置，才有这些产物。
+# Windows UCRT64；源码依赖齐全且 3.3.4 的 CMake 配置成功后，才有这些产物。
 cd /g/zephyr_practice/zephyr-main/build/learning-tools/p003/sdk-explicit
 grep -E 'ZEPHYR_SDK_INSTALL_DIR|CMAKE_C_COMPILER' CMakeCache.txt
 grep -m1 'arm-zephyr-eabi-gcc' compile_commands.json

@@ -1,0 +1,37 @@
+# Windows UCRT64；P008 的 cmake-demo 已配置成功；只读生成结果。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+python - <<'PY'
+from pathlib import Path
+import json
+build = Path('build/learning-tools/p003/cmake-demo')
+required = ['CMakeCache.txt', 'zephyr/.config', 'zephyr_modules.txt', 'compile_commands.json']
+missing = [name for name in required if not (build / name).is_file()]
+if missing:
+    raise SystemExit('先完成 P008 配置，或核对构建目录：' + ', '.join(missing))
+print('BUILD:', build.resolve())
+for line in (build / 'CMakeCache.txt').read_text(encoding='utf-8').splitlines():
+    if line.startswith(('BOARD:', 'BOARD_DIR:', 'CMAKE_C_COMPILER:', 'ZEPHYR_SDK_INSTALL_DIR:')):
+        print(line)
+for line in (build / 'zephyr/.config').read_text(encoding='utf-8').splitlines():
+    if line.startswith(('CONFIG_BOARD=', 'CONFIG_BOARD_TARGET=', 'CONFIG_SOC=',
+                        'CONFIG_CPU_CORTEX_M4=', 'CONFIG_UART_CMSDK_APB=',
+                        'CONFIG_HAS_CMSIS_CORE=', 'CONFIG_ZEPHYR_CMSIS_6_MODULE=')):
+        print(line)
+print('MODULE RECORDS:\n' + (build / 'zephyr_modules.txt').read_text(encoding='utf-8'))
+rows = json.loads((build / 'compile_commands.json').read_text(encoding='utf-8'))
+wanted = [
+    'samples/hello_world/src/main.c', 'soc/arm/mps2/soc.c',
+    'arch/arm/core/cortex_m/reset.S', 'arch/arm/core/cortex_m/thread.c',
+    'drivers/console/uart_console.c', 'drivers/serial/uart_cmsdk_apb.c',
+    'drivers/timer/cortex_m_systick.c', 'kernel/init.c',
+]
+for suffix in wanted:
+    matches = [r for r in rows if r['file'].replace('\\', '/').endswith('/' + suffix)]
+    print('SELECTED' if matches else 'NOT SELECTED', suffix)
+main = next((r for r in rows if r['file'].replace('\\', '/').endswith('/hello_world/src/main.c')), None)
+if main:
+    print('MAIN COMPILE:', main.get('command', main.get('arguments')))
+print('HC32/DDL translation units:', [r['file'] for r in rows
+      if any(word in r['file'].lower() for word in ('hal_xhsc', 'hc32_ddl'))])
+PY

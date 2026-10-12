@@ -1,0 +1,14 @@
+# P006 6.3：选择已有 HAL 根并核对模块入口及器件文件
+# 按正文前提选择本操作，不批量执行整个目录。
+# Windows UCRT64；从主线源码根选择实际 HAL 根，不创建或移动目录。
+cd /g/zephyr_practice/zephyr-main
+HAL_DIR=../hal_xhsc
+if [ ! -d "$HAL_DIR" ]; then
+  HAL_DIR=../hal_xhsc-zephyr
+fi
+printf '检查实际 HAL 根：%s\n' "$HAL_DIR"
+test -f "$HAL_DIR/zephyr/module.yml" &&
+cat "$HAL_DIR/zephyr/module.yml" &&
+test -f "$HAL_DIR/hc32_ddl/hc32f4a0/soc/hc32f4a0.h" &&
+test -f "$HAL_DIR/hc32_ddl/hc32f4a0/drivers/inc/hc32_ll_usart.h" &&
+printf 'HAL file checks OK\n'

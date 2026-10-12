@@ -1,0 +1,10 @@
+# P005 5.3.3：官方 MPS2 baseline 的直接 CMake 分支
+# 按正文前提选择本操作，不批量执行整个目录。
+# 可选；Windows UCRT64；SDK/CMSIS/venv已准备，使用当前west默认模块发现。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+export ZEPHYR_BASE='G:/zephyr_practice/zephyr-main'
+cmake -S samples/hello_world \
+  -B build/learning-tools/p006/hello_world-cmake -G Ninja \
+  -DBOARD=mps2/an386 -DCMAKE_EXPORT_COMPILE_COMMANDS=ON && \
+cmake --build build/learning-tools/p006/hello_world-cmake

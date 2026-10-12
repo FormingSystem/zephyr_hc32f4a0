@@ -17,6 +17,7 @@
 | [1.2.5-01.txt](1.2.5-01.txt) | 1.2.5 根据错误类型排查与恢复 | bash |
 | [1.3.1-01.txt](1.3.1-01.txt) | 1.3.1 安装 Git 与下载解压工具 | bash |
 | [1.3.1-02.txt](1.3.1-02.txt) | 1.3.1 安装 Git 与下载解压工具 | bash |
+| [select-native-git.txt](select-native-git.txt) | 1.3.1 修复当前窗口的原生 Git 路径 | bash |
 | [1.3.3-01.txt](1.3.3-01.txt) | 1.3.3 准备 Windows Python 并区分主机与目标编译器 | bash |
 | [1.3.3-02.txt](1.3.3-02.txt) | 1.3.3 准备 Windows Python 并区分主机与目标编译器 | bash |
 | [1.4-01.txt](1.4-01.txt) | 1.4 下载 Zephyr 源码 | bash |

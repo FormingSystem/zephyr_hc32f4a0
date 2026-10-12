@@ -11,7 +11,9 @@ domains: [zephyr, tools]
 
 # 第3章\_SDK准备与编译器选型
 
-本章只解决 **SDK 下载、安装，以及 zephyr-main 如何发现 SDK 和交叉编译器**。PPT 用 26 页精讲主线，本文补齐分支、命令前提与结果判断。配套 [PPT](slides/P003_SDK准备与编译器选型_Windows.pptx)、[命令索引](commands/P003_Windows/README.md)、[环境与依赖导航](环境与依赖导航.md)。
+P002 之后，CMake、Python 和 Ninja 能在电脑上运行了，但它们还不能替 Cortex-M4 生成指令。现在继续同一个任务：把官方 `hello_world` 交给 `mps2/an386`。我们需要一套运行于 Windows、面向 ARM 目标的编译器；后续 HC32F4A0 同样使用 Cortex-M4 系列内核，可以复用它，芯片外设支持另在源码中准备。
+
+本章只解决 **SDK 下载、安装，以及 zephyr-main 如何发现 SDK 和交叉编译器**。先选择一条安装路线，得到可运行的 ARM 工具链；涉及完整应用的命令留到 CMSIS 准备完成后复现。本文补齐分支、命令前提与结果判断。配套 [PPT](slides/P003_SDK准备与编译器选型_Windows.pptx)、[命令索引](commands/P003_Windows/README.md)、[环境与依赖导航](环境与依赖导航.md)。
 
 前置：[P002](P002_主机工具与Python环境_Windows.md) 已准备 CMake、7-Zip、Python 与 `.venv`。实验源码在 `G:\zephyr_practice\zephyr-main`；普通命令使用 **Windows UCRT64 Bash**，`setup.cmd` 和注册表操作切换 **Windows PowerShell**。两个终端的当前目录和临时环境变量不互相继承。Linux 的安装操作见 [Ubuntu 22.04 分支](P001_官方环境安装与源码准备_Linux.md)，不要照抄本章 `.cmd` 和 Windows 注册表命令。
 
@@ -24,15 +26,20 @@ flowchart LR
 
 | PPT 页 | 本文位置 | 读完可以做什么 |
 | --- | --- | --- |
-| 2—4 | [3.1 包的关系](#section-3-1) | 区分 SDK 框架与目标工具链 |
-| 5—13 | [3.2 下载与安装](#section-3-2) | 选包、解压、补齐 ARM 并核验 |
-| 14—20 | [3.3 工程发现](#sdk-discovery) | 选择自动发现或显式路径入口 |
-| 21—23 | [3.4 编译器选择](#compiler-selection) | 理解板配置与工具链前缀的对应 |
-| 24—26 | [3.5 验证与交接](#sdk-evidence) | 判断安装成功与工程选用的区别 |
+| 2、4—5 | [3.1 包的关系](#section-3-1) | 区分 SDK 框架与目标工具链 |
+| 3 | 开篇与 3.1 同一任务中，SDK 负责哪一部分 | 主机程序已经可用，现在要为 hello_world + mps2/an386 生成 ARM 指令。电脑是 Windows x64，目标是 Cortex-M4，两种架构分别决定主机包与目标工具链。 |
+| 6—14 | [3.2 下载与安装](#section-3-2) | 选包、解压、补齐 ARM 并核验 |
+| 15—21 | [3.3 工程发现](#sdk-discovery) | 选择自动发现或显式路径入口 |
+| 22—24 | [3.4 编译器选择](#compiler-selection) | 理解板配置与工具链前缀的对应 |
+| 25—27 | [3.5 验证与交接](#sdk-evidence) | 判断安装成功与工程选用的区别 |
+| 28 | 3.5 工具可运行之后，下一步找源码的缺口 | 本册应留下含 sdk_version 的 SDK 根、可运行的 ARM GCC，以及自己选定的发现入口；GNU 与补齐 ARM 的 Minimal 共享这个接口。 |
+| 29 | [3.5.2 west 下载前的 Git 检查](#west-git-handoff) | 识别 Git 调用问题并转到 P004 恢复 |
 
 <a id="section-3-1"></a>
 
 ## 3.1\_三种下载包的关系
+
+先把下载时的两个选择分开：`windows-x86_64` 对应运行工具的电脑，`arm-zephyr-eabi` 对应接收固件的目标架构。开发板是 ARM，不代表要下载 ARM 主机的 SDK；MPS2 与 HC32 外设不同，也不意味着需要两套按芯片品牌命名的编译器。
 
 SDK 是一套可被 Zephyr 构建系统使用的工具包。它既包含程序，也包含告诉 CMake 如何使用这些程序的 `.cmake` 文件。**GNU SDK 与 Minimal SDK 的区别在预装内容，不在工程接入机制。**
 
@@ -45,6 +52,8 @@ SDK 是一套可被 Zephyr 构建系统使用的工具包。它既包含程序�
 Minimal 自带 `cmake/Zephyr-sdkConfig.cmake`，因此可以被定位；但还没有 ARM 工具链时不能编译 ARM。独立 ARM 包不能当作 SDK 根。它的文件名没有 SDK 版本号，所属版本由下载的 Release 页面与同版 `sha256.sum` 确定。
 
 “多种工具链”指 ARM、RISC-V 等不同目标架构，不是同一个 GCC 的多个版本。`1.0.1` 是 SDK 发行版本，`14.3.0` 是该发行内 GCC 的版本。LLVM 是另一种编译器体系，本系列使用 GNU；不要为了本章把 GNU、Minimal 和 LLVM 都下载一遍。[官方发行表](https://github.com/zephyrproject-rtos/sdk-ng/releases/tag/v1.0.1)
+
+先给后面的源码依赖留一个清晰边界：SDK 不提供 MPS2 板描述和 UART 驱动。它们已经位于 Zephyr 主仓的 `boards/arm/mps2`、`soc/arm/mps2` 与 `drivers/serial/uart_cmsdk_apb.c`；这个驱动直接实现 CMSDK 寄存器访问。外部 CMSIS Core 头文件才由当前 `west.yml` 的 `cmsis_6` 项目取得。换自己的板时，先沿板/SoC、DTS 的兼容串及驱动 Kconfig/CMake 查实现与依赖，再查 manifest 是否管理所需仓库，不能先假设每块板都要另外下载一份 HAL/DDL。P004 从芯片和当前架构规则确认 CMSIS 后下载；P005 再用 MPS2 展开设备树、配置与驱动模型，P006 才讲 HC32 DDL 的获取与接入；本章只选择负责把那些源码编译成指令的工具。
 
 ### 3.1.1\_安装后的目录与文件来源
 
@@ -94,7 +103,7 @@ cat SDK_VERSION
 
 本期源码为 Zephyr `4.5.0-rc1`，`SDK_VERSION` 为 `1.0.1`。这个文件供原生文档和 `west sdk install` 的默认版本选择使用。构建时 `cmake/modules/FindHostTools.cmake` 请求 `find_package(Zephyr-sdk 1.0)`，再由 SDK 包版本规则判断兼容性；推荐版本不等于只有这一版本能用。这里固定 1.0.1 便于复现，升级后重新读取所用源码。
 
-主机平台按电脑选：Windows x64 → `windows-x86_64`。目标工具链按生成固件所面向的架构选：官方参考目标 **MPS2 / AN386（Cortex-M4）** 与后续实板 **HC32F4A0（Cortex-M4F）** 都使用 `arm-zephyr-eabi`。HC32 的板和 SoC 适配在 P011 新增，SDK 装好不等于原生源码已经支持 HC32。
+主机平台按电脑选：Windows x64 → `windows-x86_64`。目标工具链按生成固件所面向的架构选：官方参考目标 **MPS2 / AN386（Cortex-M4）** 与后续实板 **HC32F4A0（Cortex-M4F）** 都使用 `arm-zephyr-eabi`。HC32 的板和 SoC 适配在 P012 新增，SDK 装好不等于原生源码已经支持 HC32。
 
 ![UCRT64 读取 VERSION 与 SDK_VERSION](assets/p002-source-version.png)
 
@@ -284,15 +293,15 @@ printf '%s\n' "$ZEPHYR_SDK_INSTALL_DIR"
 unset ZEPHYR_SDK_INSTALL_DIR
 ```
 
-不要把设置写进 Python 生成的 `.venv/Scripts/activate`：重建虚拟环境会丢失，`deactivate` 也不会自动恢复你手工添加的 SDK 设置。需要长期保存应用的配置组合时，用 P010 讲解的 `CMakeUserPresets.json`；它在应用源码目录创建，由 `cmake --preset` 读取，不是 SDK 提供的文件。
+不要把设置写进 Python 生成的 `.venv/Scripts/activate`：重建虚拟环境会丢失，`deactivate` 也不会自动恢复你手工添加的 SDK 设置。需要长期保存应用的配置组合时，用 P011 讲解的 `CMakeUserPresets.json`；它在应用源码目录创建，由 `cmake --preset` 读取，不是 SDK 提供的文件。
 
 <a id="sdk-configure"></a>
 
 ### 3.3.4\_不注册：在完整应用配置命令中传入 SDK 根
 
-本节展示“把路径交给哪一次 CMake 配置”。**首次按顺序阅读时，先继续 P004—P005 下载并接入源码依赖，再到 P007 执行配置与编译。** 下面的示例已经完整给出入口，不要求自行拼接参数，也不在准备阶段提前编译。
+本节展示“把路径交给哪一次 CMake 配置”。**首次按顺序阅读时，先在 P004 准备 CMSIS，再在 P005 理解官方工程并建立构建对照，P008 进一步展开配置与编译。** 下面的示例已经完整给出入口，不要求自行拼接参数，也不在准备阶段提前编译。
 
-示例使用当前官方源码已有的 `samples/hello_world` 与 `mps2/an386`：MPS2 的 AN386 目标，Cortex-M4，适合后续 QEMU 演示。它不是 HC32 实板；HC32 的适配在 P011 完成。执行前确认源码中有 `samples/hello_world/CMakeLists.txt`、`boards/arm/mps2`，P002 的 `.venv` 及依赖可用，P004—P005 的 CMSIS 等模块齐全，并使用尚未配置的新 `-B` 目录。
+示例使用当前官方源码已有的 `samples/hello_world` 与 `mps2/an386`：MPS2 的 AN386 目标，Cortex-M4，适合后续 QEMU 演示。它不是 HC32 实板；HC32 的适配在 P012 完成。执行前确认源码中有 `samples/hello_world/CMakeLists.txt`、`boards/arm/mps2`，P002 的 `.venv` 及依赖可用，P004 中清单指定的 CMSIS_6 已取得，P005 已说明官方目标怎样使用它；MPS2 的外设底层由树内 CMSDK 驱动提供，并使用尚未配置的新 `-B` 目录。
 
 ```bash
 # Windows UCRT64；完成 P002—P005 后执行；新构建目录。
@@ -310,7 +319,7 @@ cmake -S samples/hello_world -B build/learning-tools/p003/sdk-explicit \
 
 成功应输出包含当前安装根的 `Found toolchain: zephyr 1.0.1 (...)`，完成 `Configuring done` / `Generating done`，并在 `-B` 目录生成缓存与构建规则。若 SDK 已找到但报 CMSIS、模块或其他工具缺失，回到 P002 / P004 / P005，不把模块下载错误当成 SDK 错误。这里没有要求重复设置默认的工具链类型。
 
-`-D` 的值保存在这个构建目录的 `CMakeCache.txt`，跨终端保留，不是“只对本条命令有效”。另一个新 `-B` 目录不会自动继承它。更换 SDK / 工具链时先用新目录验证；重配与清理策略在 [P010](P010_CMake缓存与构建排错_Windows.md)，不为了本章演示删除已有构建或改官方 `CMakeLists.txt`。
+`-D` 的值保存在这个构建目录的 `CMakeCache.txt`，跨终端保留，不是“只对本条命令有效”。另一个新 `-B` 目录不会自动继承它。更换 SDK / 工具链时先用新目录验证；重配与清理策略在 [P011](P011_CMake缓存与构建排错_Windows.md)，不为了本章演示删除已有构建或改官方 `CMakeLists.txt`。
 
 <a id="compiler-selection"></a>
 
@@ -331,7 +340,7 @@ flowchart TD
     F --> G
 ```
 
-调用入口在官方源码 `cmake/toolchain/zephyr/target.cmake`，它加载 SDK 的目标规则；参数来源在 `cmake/compiler/gcc/target_arm.cmake`。对于 HC32F4A0 的 Cortex-M4F，需要 ARM 工具链与正确的 CPU/FPU 选择，而非下载一个叫 HC32 的专用 SDK。新增芯片的存储器、时钟、引脚与驱动属于 P011 的板 / SoC 适配工作。其他架构的映射应看本版 SDK 文件，不能把 ARM 前缀套给 RISC-V。
+调用入口在官方源码 `cmake/toolchain/zephyr/target.cmake`，它加载 SDK 的目标规则；参数来源在 `cmake/compiler/gcc/target_arm.cmake`。对于 HC32F4A0 的 Cortex-M4F，需要 ARM 工具链与正确的 CPU/FPU 选择，而非下载一个叫 HC32 的专用 SDK。新增芯片的存储器、时钟、引脚与驱动属于 P012 的板 / SoC 适配工作。其他架构的映射应看本版 SDK 文件，不能把 ARM 前缀套给 RISC-V。
 
 <a id="standalone-toolchain"></a>
 
@@ -358,7 +367,7 @@ grep -F ' toolchain_gnu_windows-x86_64_arm-zephyr-eabi.7z' sha256.sum |
 | `CROSS_COMPILE` | 目录加程序共同前缀；末尾必须保留 `arm-zephyr-eabi-` 的横线 |
 | `CROSS_COMPILE_TOOLCHAIN_PATH` | 独立根，供当前源码检查配套 Newlib/Picolibc 头文件等 C 库能力 |
 
-主机 CMake、Ninja、Python、DTC 等仍是前提。完成 P002—P005 后，可以用同一官方应用、同一 `BOARD` 配置新的构建目录：
+主机 CMake、Ninja、Python、DTC 等仍是前提。P004 的 CMSIS_6 准备完成并按 P005 核对工程输入后，可以用同一官方应用、同一 `BOARD` 配置新的构建目录；这一工具链对照仍不需要 HC32 HAL：
 
 ```bash
 # Windows UCRT64；完成 P002—P005；已解压同版独立 ARM 包。
@@ -377,7 +386,7 @@ cmake -S samples/hello_world -B build/learning-tools/p003/arm-standalone \
 
 前面的 `unset` 只取消当前终端 SDK 根，不删除 SDK 或用户包记录。选择新 `-B` 防止沿用另一条路线的缓存。输出应为 `Found toolchain: cross-compile (...)`，编译器指向独立 ARM 目录；若仍加载旧 SDK，核对当前环境和新目录选择。
 
-`CROSS_COMPILE` 不是 `bin`，也不是完整的 `gcc.exe`。Zephyr 将 `gcc`、`g++`、`objcopy` 等程序名接到共同前缀后；目标库也必须与工具链一起保留。独立路线由读者选定工具链，改 `BOARD` 不会自动换成另一种架构的工具。实际编译替代实验见 [P011](P011_编译示例与新增开发板_Windows.md#standalone-toolchain)；原生机制见 [Other Cross Compilers](https://docs.zephyrproject.org/latest/develop/toolchains/other_x_compilers.html)。
+`CROSS_COMPILE` 不是 `bin`，也不是完整的 `gcc.exe`。Zephyr 将 `gcc`、`g++`、`objcopy` 等程序名接到共同前缀后；目标库也必须与工具链一起保留。独立路线由读者选定工具链，改 `BOARD` 不会自动换成另一种架构的工具。实际编译替代实验见 [P012](P012_编译示例与新增开发板_Windows.md#standalone-toolchain)；原生机制见 [Other Cross Compilers](https://docs.zephyrproject.org/latest/develop/toolchains/other_x_compilers.html)。
 
 <a id="sdk-evidence"></a>
 <a id="section-3-2-8"></a>
@@ -387,26 +396,30 @@ cmake -S samples/hello_world -B build/learning-tools/p003/arm-standalone \
 前面的 GCC 版本检查只证明程序可运行。执行 3.3.4 的 CMake 配置成功后，才会有下面的生成文件；不要在尚未配置时去源码里找这些产物：
 
 ```bash
-# Windows UCRT64；先完成第 19 页的 CMake 配置，才有这些产物。
+# Windows UCRT64；源码依赖齐全且 3.3.4 的 CMake 配置成功后，才有这些产物。
 cd /g/zephyr_practice/zephyr-main/build/learning-tools/p003/sdk-explicit
 grep -E 'ZEPHYR_SDK_INSTALL_DIR|CMAKE_C_COMPILER' CMakeCache.txt
 grep -m1 'arm-zephyr-eabi-gcc' compile_commands.json
 grep -E '^CONFIG_(ARCH|CPU_CORTEX_M4|FPU|ARM)' zephyr/.config
 ```
 
-缓存应指向本次 SDK 根及其 `gnu/arm-zephyr-eabi` 下的 GCC；`compile_commands.json` 包含计划执行的编译命令和目标参数；`zephyr/.config` 记录板 / SoC 配置。独立路线则查看 `arm-standalone` 目录，对照独立工具链前缀。`compile_commands.json` 可以在生成阶段产生，不证明命令已经执行；实际构建、固件和 QEMU 运行继续在 P007 / P011 验证。
+缓存应指向本次 SDK 根及其 `gnu/arm-zephyr-eabi` 下的 GCC；`compile_commands.json` 包含计划执行的编译命令和目标参数；`zephyr/.config` 记录板 / SoC 配置。独立路线则查看 `arm-standalone` 目录，对照独立工具链前缀。`compile_commands.json` 可以在生成阶段产生，不证明命令已经执行；实际构建、固件和 QEMU 运行继续在 P008 / P012 验证。
 
 | 现象 | 先检查 | 返回位置 |
 | --- | --- | --- |
 | `7z` 找不到或 `.\setup.cmd` 无法执行 | 终端是否是 PowerShell，是否安装后重开终端 | P002、3.2.3 |
 | 找不到 `Zephyr-sdk` 包 | 根是否含 `cmake/Zephyr-sdkConfig.cmake`，路径层级和注册记录是否有效 | 3.3 |
 | 找到 SDK，缺 ARM 编译器 | Minimal 是否补齐 `gnu/arm-zephyr-eabi`，是否多套一层目录 | 3.2.3—3.2.4 |
-| SDK 路径仍为旧值 | 当前 shell、CMake 缓存；换路线先用新 `-B` | P010 |
-| SDK 已找到，随后缺 CMSIS / HAL | 源码模块尚未下载或未进入构建 | P004—P005 |
+| SDK 路径仍为旧值 | 当前 shell、CMake 缓存；换路线先用新 `-B` | P011 |
+| `west update` 报 `^commit: not a valid SHA1` | Windows Python 实际选择的 Git，`^{commit}` 是否变形 | [P004 故障案例](P004_CMSIS选择与下载_Windows.md#west-git-compat) |
+| SDK 已找到，MPS2 随后缺 CMSIS | 检查当前清单指定的 CMSIS_6 是否取得并被发现 | P004—P005 |
+| HC32 配置缺 HAL / 设备头 | 检查 HC32 分支的源码根和模块输入；与 SDK 安装分开判断 | P006、P012 |
 
-本期完成的结果是可用的 SDK / ARM 工具链，以及明确的工程发现入口。下一步进入 [P004 下载 CMSIS 与 HAL](P004_CMSIS与HAL选择下载_Windows.md)、[P005 接入源码模块](P005_源码模块接入Zephyr工程_Windows.md)。CMSIS/HAL 放入源码模块体系，不放 SDK/gnu。
+按准备顺序读到这里，应交付一个含 `sdk_version` 的 SDK 根、能运行的 `arm-zephyr-eabi-gcc`，以及自己选定的 SDK 发现方式。首次阅读还没有执行完整应用配置时，缓存和编译数据库不存在是正常状态；等源码依赖齐全后，再回本节用产物确认工程确实选用了这套工具。
 
-以后补装 SDK 已发布的其他目标工具链，先核对 SDK 的 `sdk_gnu_toolchains` 与同版发行附件；SDK 根和发现机制不变。若是外部 GNU 编译器，按对应原生 variant 的官方接口使用；如果要制作 SDK 自己未发布的架构 / 编译器发行，则属于 sdk-ng 构建和兼容验证工作，不是编辑清单或复制一个 exe 就能完成。本章到此为止，接口体系见 P009，新增板与芯片见 P011。
+下一章 [P004](P004_CMSIS选择与下载_Windows.md) 从已知芯片与当前架构规则确定 CMSIS-Core 需求，再按清单取得配套版本。[P005](P005_Zephyr工程组织与驱动模型_Windows.md) 解释官方工程的设备树、配置、驱动和实例如何连接；[P006](P006_HC32与外部源码模块接入_Windows.md) 再取得 HC32 DDL 并接入适配模块。源码依赖不放入 SDK/gnu；SDK 安装成功也不会自动生成它们。
+
+以后补装 SDK 已发布的其他目标工具链，先核对 SDK 的 `sdk_gnu_toolchains` 与同版发行附件；SDK 根和发现机制不变。若是外部 GNU 编译器，按对应原生 variant 的官方接口使用；如果要制作 SDK 自己未发布的架构 / 编译器发行，则属于 sdk-ng 构建和兼容验证工作，不是编辑清单或复制一个 exe 就能完成。本章到此为止，接口体系见 P010，新增板与芯片见 P012。
 
 ### 3.5.1\_源码与操作截图补充
 
@@ -427,3 +440,25 @@ grep -E '^CONFIG_(ARCH|CPU_CORTEX_M4|FPU|ARM)' zephyr/.config
 ![SDK 操作界面参考 38-1；保留原截图中的历史目录，当前路径以正文为准](assets/p003-sdk-saved-38-1.png)
 
 ![SDK 操作界面参考 40-1；保留原截图中的历史目录，当前路径以正文为准](assets/p003-sdk-saved-40-1.png)
+
+
+<a id="west-git-handoff"></a>
+
+### 3.5.2\_转入 west 下载前的 Git 检查
+
+SDK 和交叉编译器核验成功后，下一章还要用 Windows Python 中的 west 获取 CMSIS。若此时出现 `^commit: not a valid SHA1`，先对照原本的 `^{commit}`：这是 Git 修订表达式的字符差异，应进入 Git 调用排错。
+
+本次记录中，Windows Python 调用 `/usr/bin/git` 更新失败；保持 Zephyr、清单和 CMSIS 提交不变，改用 `/ucrt64/bin/git` 后恢复。这个对照强烈支持跨运行时调用兼容性问题，但尚未定位花括号消失的具体层级。Bash 直接执行 `cat-file` / `rev-parse` 成功，只证明对应检查通过，不能覆盖 west 的 `update-ref` 阶段。
+
+在 UCRT64 激活 P002 创建的 `.venv` 后，先查看 Python 实际发现的 Git：
+
+```bash
+# Windows UCRT64；实验源码根；先激活 P002 创建的 Windows Python 环境。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+type -a git
+python -c "import sys, shutil; print(sys.executable); print(shutil.which('git'))"
+git --version
+```
+
+优先选择 `/ucrt64/bin/git`，已安装的 Git for Windows 也可使用；若输出仍在 `usr/bin`，先停止下载，按 [P004 4.2](P004_CMSIS选择与下载_Windows.md#section-4-2) 修正。MSYS2 官方区分了 [Windows 原生与 MSYS2 两种 Git](https://www.msys2.org/docs/git/)。完整报错、对照证据、恢复命令及结果判断见 [P004 4.4](P004_CMSIS选择与下载_Windows.md#west-git-compat)。无需因此重装 SDK 或修改清单。

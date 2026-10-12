@@ -1,10 +1,12 @@
-# P001_Windows / 1.3.1_安装_Git_与下载解压工具
-# 仅执行当前操作单元；替代路线二选一。先阅读正文前提与预期结果。
-# 当前位置：任意目录；终端：UCRT64。
+# P001 1.3.1：安装成功后检查版本、别名、函数与 Git 路径。
+# Windows UCRT64；任意目录。
 git --version
 curl --version
 wget --version
 unzip -v
 tar --version
 xz --version
+type -a git
 command -v git
+# 主线应为 /ucrt64/bin/git（可带 .exe）；若为 /usr/bin/git，停止并修复 PATH。
+# 若 type -a 显示优先命中别名或函数，先检查自己的 Bash 配置，消除遮蔽。

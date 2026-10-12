@@ -1,0 +1,8 @@
+# P004 4.1.2：只读确认 SoC、CPU 与 Core 接口需求
+# Windows UCRT64；当前官方源码根；不下载、不配置构建。
+cd /g/zephyr_practice/zephyr-main
+cat boards/arm/mps2/board.yml
+cat boards/arm/mps2/Kconfig.mps2
+git grep -n -A 5 -e 'config SOC_AN386' -- soc/arm/mps2/Kconfig
+git grep -n -A 5 -e 'config CPU_CORTEX_M4' -- arch/arm/core/cortex_m/Kconfig
+git grep -n -A 5 -e 'config CPU_CORTEX_M' -- arch/arm/core/Kconfig

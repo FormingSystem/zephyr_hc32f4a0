@@ -1,0 +1,15 @@
+# P004 4.4：只读复现 Windows Python 调用 Git 的解析检查
+# 按正文前提选择本操作，不批量执行整个目录。
+# Windows UCRT64；模块对象已下载时的只读检查；.venv 已激活。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+python - <<'PY'
+import subprocess
+from west.manifest import Manifest
+project = Manifest.from_file().get_projects(['cmsis_6'])[0]
+print(project.abspath, project.revision)
+for args in (['cat-file', '-t', project.revision],
+             ['rev-parse', '--verify', project.revision + '^{commit}']):
+    result = subprocess.run(['git', '-C', project.abspath, *args], check=False)
+    print('exit:', result.returncode)
+PY

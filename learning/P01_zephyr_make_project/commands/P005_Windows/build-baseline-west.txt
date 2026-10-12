@@ -1,0 +1,11 @@
+# P005 5.3.3：用 west 构建官方 hello_world 与 MPS2/AN386
+# 按正文前提选择本操作，不批量执行整个目录。
+# Windows UCRT64；官方hello_world + mps2/an386，先建立可解释的基线。
+# 前提：check-baseline-inputs.txt 核对通过，SDK已可自动发现。仅构建，不烧录。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+export ZEPHYR_BASE='G:/zephyr_practice/zephyr-main'
+west build -b mps2/an386 samples/hello_world \
+  -d build/learning-tools/p006/hello_world \
+  -- -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+# SDK查找失败时，按P003补发现或在--后增加具体SDK根参数；不继续创建组件掩盖错误。

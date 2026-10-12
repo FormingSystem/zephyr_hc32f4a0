@@ -1,5 +1,6 @@
-# P002_Windows / 2.1.1\_按官方 Windows 步骤安装主机工具
-# 先核对正文的终端、目录与前提，再执行此完整操作单元。
-# Windows UCRT64；任意目录；查看 UCRT64 将找到哪个 Git。
+# P002 2.1.1：先查看 Bash 对 Git 的选择。
+# Windows UCRT64；任意目录；留意别名、函数和多套可执行文件。
 type -a git
 command -v git
+# 主线应为 /ucrt64/bin/git（可带 .exe）。
+# 若为 /usr/bin/git，停止 west 模块下载，按正文或 git-native-check.txt 修复。

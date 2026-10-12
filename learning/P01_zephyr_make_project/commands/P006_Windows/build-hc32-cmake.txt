@@ -1,0 +1,26 @@
+# P006 6.6.4：相同 HC32 输入的直接 CMake 构建
+# 按正文前提选择本操作，不批量执行整个目录。
+# Windows UCRT64；前提：copy-hc32-port.txt 已建立 hc32_port 副本，匹配HAL、CMSIS_6、SDK与venv已准备。
+(
+set -eu
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+export ZEPHYR_BASE='G:/zephyr_practice/zephyr-main'
+if test -f ../hal_xhsc/zephyr/module.yml; then
+  HAL_XHSC_DIR='G:/zephyr_practice/hal_xhsc'
+elif test -f ../hal_xhsc-zephyr/zephyr/module.yml; then
+  HAL_XHSC_DIR='G:/zephyr_practice/hal_xhsc-zephyr'
+else
+  printf '%s\n' 'HAL未准备：按P006 6.2和6.3确认来源和实际目录。' >&2
+  exit 1
+fi
+HC32_PORT_DIR='G:/zephyr_practice/zephyr-main/build/learning-tools/p003/hc32_port'
+test -f "$HC32_PORT_DIR/zephyr/module.yml"
+test -f "$HAL_XHSC_DIR/hc32_ddl/hc32f4a0/soc/hc32f4a0.h"
+cmake -S samples/hello_world -G Ninja \
+  -B build/learning-tools/p006/hello_world-hc32-cmake \
+  -DBOARD=uyup_rpi_a/hc32f4a0pitb \
+  "-DEXTRA_ZEPHYR_MODULES=$HAL_XHSC_DIR;$HC32_PORT_DIR" \
+  -DCMAKE_EXPORT_COMPILE_COMMANDS=ON && \
+cmake --build build/learning-tools/p006/hello_world-hc32-cmake
+)

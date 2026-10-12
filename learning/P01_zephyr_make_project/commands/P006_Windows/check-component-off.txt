@@ -1,0 +1,12 @@
+# P006 6.7.10：检查组件仍被发现而源文件已关闭
+# 按正文前提选择本操作，不批量执行整个目录。
+# Windows UCRT64；只读检查组件关闭构建成功后的结果。
+cd /g/zephyr_practice/zephyr-main
+grep -F 'app_greeting' build/learning-tools/p006/component_hello-off/zephyr_modules.txt
+grep -F '# CONFIG_APP_GREETING is not set' build/learning-tools/p006/component_hello-off/zephyr/.config
+if grep -F 'greeting.c' build/learning-tools/p006/component_hello-off/compile_commands.json; then
+  printf '%s\n' '仍有 greeting.c 编译记录，请核对 off.conf 与当前构建目录。'
+else
+  printf '%s\n' '本次编译数据库没有 greeting.c；模块仍被发现，但组件已关闭。'
+fi
+test -f build/learning-tools/p006/component_hello-off/zephyr/zephyr.elf

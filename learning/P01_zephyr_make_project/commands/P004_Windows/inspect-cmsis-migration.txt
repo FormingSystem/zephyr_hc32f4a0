@@ -1,0 +1,10 @@
+# P004 4.1.6：可选的上游迁移历史复核
+# Windows UCRT64；Zephyr Git 主仓；相关提交对象须已存在。
+# 本章正文已给出结论。ZIP/浅克隆读者不必为了完成下载实验补齐历史。
+cd /g/zephyr_practice/zephyr-main
+git --no-pager show --format=fuller f930d973794214d722d5d1ed04c5c5099b4c6e92 -- west.yml
+git --no-pager show --format=fuller f726cb5123eda12feb8746e3acb34a1f7d7b0340 -- modules/cmsis modules/cmsis_6
+git --no-pager show --format=fuller b853f01010cb7b15c8a808d037ace5cbf2d9af48 -- doc/releases/migration-guide-4.2.rst
+git --no-pager show --format=fuller 56a446b4ee04b3e8cb0a85f60e49a077a8801593 -- modules/cmsis/CMakeLists.txt modules/cmsis_6/CMakeLists.txt
+git --no-pager show --format=fuller d7cf5fee739e08aef0bd9b4854408be59977734a -- modules/cmsis_6/CMakeLists.txt west.yml
+# 若出现 bad object 等缺失提交错误，使用正文固定链接复核即可；不执行 checkout/reset。

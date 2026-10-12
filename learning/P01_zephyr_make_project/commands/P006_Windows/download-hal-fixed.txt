@@ -1,0 +1,10 @@
+# P006 6.3：没有可复用 HAL 时下载固定修订
+# 按正文前提选择本操作，不批量执行整个目录。
+# Windows UCRT64；仅准备 HC32 且没有可复用 HAL 根时下载。
+# 已有 hal_xhsc-zephyr 等完整目录时跳过此块，不再克隆第二份。
+cd /g/zephyr_practice/zephyr-main
+test ! -e ../hal_xhsc && \
+  git clone --no-checkout https://github.com/zephyrproject-rtos/hal_xhsc \
+    ../hal_xhsc && \
+  git -C ../hal_xhsc checkout --detach \
+    a84e04900616f68097d80cda2e89eaa8af3afadd

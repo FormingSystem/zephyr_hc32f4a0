@@ -13,123 +13,138 @@
     },
     {
       "number": 3,
+      "title": "同一任务中，SDK 负责哪一部分",
+      "part": "ppt/slides/guide7.xml"
+    },
+    {
+      "number": 4,
       "title": "GNU SDK、Minimal 与独立工具链",
       "part": "ppt/slides/slide3.xml"
     },
     {
-      "number": 4,
+      "number": 5,
       "title": "补齐 Minimal 后，SDK 的结构相同",
       "part": "ppt/slides/slide4.xml"
     },
     {
-      "number": 5,
+      "number": 6,
       "title": "确定原生源码所需要的SDK包版本",
       "part": "ppt/slides/slide5.xml"
     },
     {
-      "number": 6,
+      "number": 7,
       "title": "电脑架构与开发板架构",
       "part": "ppt/slides/slide6.xml"
     },
     {
-      "number": 7,
+      "number": 8,
       "title": "在官方发行页选择下载项",
       "part": "ppt/slides/slide7.xml"
     },
     {
-      "number": 8,
+      "number": 9,
       "title": "下载目录、SDK 根与源码根",
       "part": "ppt/slides/slide8.xml"
     },
     {
-      "number": 9,
+      "number": 10,
       "title": "GNU 路线：核验摘要并解压",
       "part": "ppt/slides/slide9.xml"
     },
     {
-      "number": 10,
+      "number": 11,
       "title": "Minimal 路线：先解压 SDK 框架",
       "part": "ppt/slides/slide10.xml"
     },
     {
-      "number": 11,
+      "number": 12,
       "title": "Minimal 在线补装 ARM",
       "part": "ppt/slides/slide11.xml"
     },
     {
-      "number": 12,
+      "number": 13,
       "title": "已有 ARM 包：直接补到 SDK/gnu",
       "part": "ppt/slides/slide12.xml"
     },
     {
-      "number": 13,
+      "number": 14,
       "title": "安装完成：核验 SDK 与 ARM GCC",
       "part": "ppt/slides/slide13.xml"
     },
     {
-      "number": 14,
+      "number": 15,
       "title": "工程先找 SDK，再找目标编译器",
       "part": "ppt/slides/slide14.xml"
     },
     {
-      "number": 15,
+      "number": 16,
       "title": "Zephyr 源码包与 SDK 包分别定位",
       "part": "ppt/slides/slide15.xml"
     },
     {
-      "number": 16,
+      "number": 17,
       "title": "SDK 发现方式：选一种入口即可",
       "part": "ppt/slides/slide16.xml"
     },
     {
-      "number": 17,
+      "number": 18,
       "title": "可选：让当前用户的工程自动发现 SDK",
       "part": "ppt/slides/slide17.xml"
     },
     {
-      "number": 18,
+      "number": 19,
       "title": "不注册：从当前终端传入 SDK 根",
       "part": "ppt/slides/slide18.xml"
     },
     {
-      "number": 19,
+      "number": 20,
       "title": "不注册：给应用配置命令传入 SDK 根",
       "part": "ppt/slides/slide19.xml"
     },
     {
-      "number": 20,
+      "number": 21,
       "title": "路径由 Zephyr 查找脚本读取",
       "part": "ppt/slides/slide20.xml"
     },
     {
-      "number": 21,
+      "number": 22,
       "title": "BOARD 的架构如何对应 SDK 中的工具",
       "part": "ppt/slides/slide21.xml"
     },
     {
-      "number": 22,
+      "number": 23,
       "title": "可选：独立 ARM 工具链直接接入",
       "part": "ppt/slides/slide22.xml"
     },
     {
-      "number": 23,
+      "number": 24,
       "title": "独立工具链：完整配置示例",
       "part": "ppt/slides/slide23.xml"
     },
     {
-      "number": 24,
+      "number": 25,
       "title": "配置后核对工程实际选中的工具",
       "part": "ppt/slides/slide24.xml"
     },
     {
-      "number": 25,
+      "number": 26,
       "title": "按失败阶段返回检查",
       "part": "ppt/slides/slide25.xml"
     },
     {
-      "number": 26,
+      "number": 27,
       "title": "准备完成后的工程入口",
       "part": "ppt/slides/slide26.xml"
+    },
+    {
+      "number": 28,
+      "title": "工具可运行之后，下一步找源码的缺口",
+      "part": "ppt/slides/guide8.xml"
+    },
+    {
+      "number": 29,
+      "title": "进入 CMSIS 下载前，核对 Python 使用的 Git",
+      "part": "ppt/slides/westGit27.xml"
     }
   ],
   "parts": [
@@ -143,6 +158,8 @@
     "ppt/media/image3.png",
     "ppt/notesMasters/_rels/notesMaster1.xml.rels",
     "ppt/notesMasters/notesMaster1.xml",
+    "ppt/notesSlides/_rels/guide7.xml.rels",
+    "ppt/notesSlides/_rels/guide8.xml.rels",
     "ppt/notesSlides/_rels/notesSlide1.xml.rels",
     "ppt/notesSlides/_rels/notesSlide10.xml.rels",
     "ppt/notesSlides/_rels/notesSlide11.xml.rels",
@@ -169,6 +186,9 @@
     "ppt/notesSlides/_rels/notesSlide7.xml.rels",
     "ppt/notesSlides/_rels/notesSlide8.xml.rels",
     "ppt/notesSlides/_rels/notesSlide9.xml.rels",
+    "ppt/notesSlides/_rels/westGit27.xml.rels",
+    "ppt/notesSlides/guide7.xml",
+    "ppt/notesSlides/guide8.xml",
     "ppt/notesSlides/notesSlide1.xml",
     "ppt/notesSlides/notesSlide10.xml",
     "ppt/notesSlides/notesSlide11.xml",
@@ -195,6 +215,7 @@
     "ppt/notesSlides/notesSlide7.xml",
     "ppt/notesSlides/notesSlide8.xml",
     "ppt/notesSlides/notesSlide9.xml",
+    "ppt/notesSlides/westGit27.xml",
     "ppt/presProps.xml",
     "ppt/presentation.xml",
     "ppt/slideLayouts/_rels/slideLayout1.xml.rels",
@@ -327,6 +348,8 @@
     "ppt/slideMasters/slideMaster7.xml",
     "ppt/slideMasters/slideMaster8.xml",
     "ppt/slideMasters/slideMaster9.xml",
+    "ppt/slides/_rels/guide7.xml.rels",
+    "ppt/slides/_rels/guide8.xml.rels",
     "ppt/slides/_rels/slide1.xml.rels",
     "ppt/slides/_rels/slide10.xml.rels",
     "ppt/slides/_rels/slide11.xml.rels",
@@ -353,6 +376,9 @@
     "ppt/slides/_rels/slide7.xml.rels",
     "ppt/slides/_rels/slide8.xml.rels",
     "ppt/slides/_rels/slide9.xml.rels",
+    "ppt/slides/_rels/westGit27.xml.rels",
+    "ppt/slides/guide7.xml",
+    "ppt/slides/guide8.xml",
     "ppt/slides/slide1.xml",
     "ppt/slides/slide10.xml",
     "ppt/slides/slide11.xml",
@@ -379,6 +405,7 @@
     "ppt/slides/slide7.xml",
     "ppt/slides/slide8.xml",
     "ppt/slides/slide9.xml",
+    "ppt/slides/westGit27.xml",
     "ppt/tableStyles.xml",
     "ppt/theme/theme1.xml",
     "ppt/theme/theme10.xml",

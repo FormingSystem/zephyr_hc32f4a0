@@ -1,0 +1,13 @@
+# P004 4.2：复用现有 west 工作区，缺失时才初始化
+# 按正文前提选择本操作，不批量执行整个目录。
+# Windows UCRT64；仍在实验源码根，.venv 已激活；复用官方原有 west.yml。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+test -f west.yml && if west topdir >/dev/null 2>&1; then
+  printf '已有 west 工作区，复用现有配置。\n'
+else
+  west init -l .
+fi
+west topdir
+west config manifest.path
+west config manifest.file
