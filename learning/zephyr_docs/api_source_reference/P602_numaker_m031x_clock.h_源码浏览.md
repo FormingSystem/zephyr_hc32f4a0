@@ -1,0 +1,437 @@
+---
+id: learning.zephyr-docs.api-source-reference.page-602
+title: numaker_m031x_clock.h_源码浏览
+kind: reference
+status: maintained
+domains: [zephyr, drivers, api]
+source_url: https://docs.zephyrproject.org/latest/doxygen/html/numaker__m031x__clock_8h_source.html
+---
+
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<!-- 中文翻译；编号、导航和明确标注的译注为本地新增。 -->
+
+# 第602章\_numaker\_m031x\_clock.h\_源码浏览
+
+原文：[官方源码浏览页](https://docs.zephyrproject.org/latest/doxygen/html/numaker__m031x__clock_8h_source.html)。读取日期：2026-10-17；来源摘要见[来源记录](../SOURCES.md)。
+
+本页保留官方 Doxygen 源码浏览页的全部可见代码与注释，仅去除展示行号、还原展示用不换行空格并清除行尾空白。Doxygen 会省略已用于生成接口说明的部分文档注释，因此原行号可能跳跃。下方译文覆盖本页全部可见注释；函数、参数、返回值及宏定义说明见[对应文件参考](https://docs.zephyrproject.org/latest/doxygen/html/numaker__m031x__clock_8h.html)。
+
+## 602.1\_原始可见代码（Source Code）
+
+<a id="l00001"></a>
+<a id="l00002"></a>
+<a id="l00003"></a>
+<a id="l00004"></a>
+<a id="l00005"></a>
+<a id="l00006"></a>
+<a id="l00007"></a>
+<a id="l00008"></a>
+<a id="l00009"></a>
+<a id="l00015"></a>
+<a id="l00024"></a>
+<a id="l00026"></a>
+<a id="l00032"></a>
+<a id="l00033"></a>
+<a id="l00034"></a>
+<a id="l00035"></a>
+<a id="l00036"></a>
+<a id="l00037"></a>
+<a id="l00038"></a>
+<a id="l00039"></a>
+<a id="l00040"></a>
+<a id="l00041"></a>
+<a id="l00042"></a>
+<a id="l00043"></a>
+<a id="l00044"></a>
+<a id="l00045"></a>
+<a id="l00046"></a>
+<a id="l00047"></a>
+<a id="l00048"></a>
+<a id="l00049"></a>
+<a id="l00050"></a>
+<a id="l00051"></a>
+<a id="l00052"></a>
+<a id="l00053"></a>
+<a id="l00054"></a>
+<a id="l00055"></a>
+<a id="l00056"></a>
+<a id="l00057"></a>
+<a id="l00058"></a>
+<a id="l00059"></a>
+<a id="l00060"></a>
+<a id="l00061"></a>
+<a id="l00062"></a>
+<a id="l00063"></a>
+<a id="l00064"></a>
+<a id="l00065"></a>
+<a id="l00066"></a>
+<a id="l00067"></a>
+<a id="l00068"></a>
+<a id="l00069"></a>
+<a id="l00070"></a>
+<a id="l00071"></a>
+<a id="l00072"></a>
+<a id="l00073"></a>
+<a id="l00074"></a>
+<a id="l00075"></a>
+<a id="l00076"></a>
+<a id="l00077"></a>
+<a id="l00078"></a>
+<a id="l00079"></a>
+<a id="l00080"></a>
+<a id="l00081"></a>
+<a id="l00082"></a>
+<a id="l00083"></a>
+<a id="l00084"></a>
+<a id="l00085"></a>
+<a id="l00086"></a>
+<a id="l00087"></a>
+<a id="l00088"></a>
+<a id="l00089"></a>
+<a id="l00090"></a>
+<a id="l00091"></a>
+<a id="l00092"></a>
+<a id="l00093"></a>
+<a id="l00094"></a>
+<a id="l00095"></a>
+<a id="l00096"></a>
+<a id="l00097"></a>
+<a id="l00098"></a>
+<a id="l00099"></a>
+<a id="l00100"></a>
+<a id="l00101"></a>
+<a id="l00102"></a>
+<a id="l00103"></a>
+<a id="l00104"></a>
+<a id="l00105"></a>
+<a id="l00106"></a>
+<a id="l00107"></a>
+<a id="l00108"></a>
+<a id="l00109"></a>
+<a id="l00110"></a>
+<a id="l00111"></a>
+<a id="l00112"></a>
+<a id="l00113"></a>
+<a id="l00114"></a>
+<a id="l00115"></a>
+<a id="l00116"></a>
+<a id="l00117"></a>
+<a id="l00118"></a>
+<a id="l00119"></a>
+<a id="l00120"></a>
+<a id="l00121"></a>
+<a id="l00122"></a>
+<a id="l00123"></a>
+<a id="l00124"></a>
+<a id="l00125"></a>
+<a id="l00126"></a>
+<a id="l00127"></a>
+<a id="l00128"></a>
+<a id="l00129"></a>
+<a id="l00130"></a>
+<a id="l00131"></a>
+<a id="l00132"></a>
+<a id="l00133"></a>
+<a id="l00134"></a>
+<a id="l00135"></a>
+<a id="l00136"></a>
+<a id="l00137"></a>
+<a id="l00138"></a>
+<a id="l00139"></a>
+<a id="l00140"></a>
+<a id="l00141"></a>
+<a id="l00142"></a>
+<a id="l00143"></a>
+<a id="l00144"></a>
+<a id="l00145"></a>
+<a id="l00146"></a>
+<a id="l00147"></a>
+<a id="l00148"></a>
+<a id="l00149"></a>
+<a id="l00150"></a>
+<a id="l00151"></a>
+<a id="l00152"></a>
+<a id="l00153"></a>
+<a id="l00154"></a>
+<a id="l00155"></a>
+<a id="l00156"></a>
+<a id="l00157"></a>
+<a id="l00158"></a>
+<a id="l00159"></a>
+<a id="l00160"></a>
+<a id="l00161"></a>
+<a id="l00162"></a>
+<a id="l00163"></a>
+<a id="l00164"></a>
+<a id="l00165"></a>
+<a id="l00166"></a>
+<a id="l00167"></a>
+<a id="l00168"></a>
+<a id="l00169"></a>
+<a id="l00170"></a>
+<a id="l00171"></a>
+<a id="l00172"></a>
+<a id="l00173"></a>
+<a id="l00174"></a>
+<a id="l00175"></a>
+<a id="l00176"></a>
+<a id="l00177"></a>
+<a id="l00178"></a>
+<a id="l00179"></a>
+<a id="l00180"></a>
+<a id="l00181"></a>
+<a id="l00182"></a>
+<a id="l00183"></a>
+<a id="l00184"></a>
+<a id="l00185"></a>
+<a id="l00186"></a>
+<a id="l00187"></a>
+<a id="l00188"></a>
+<a id="l00189"></a>
+<a id="l00190"></a>
+<a id="l00191"></a>
+<a id="l00192"></a>
+<a id="l00193"></a>
+<a id="l00194"></a>
+<a id="l00195"></a>
+<a id="l00196"></a>
+<a id="l00197"></a>
+<a id="l00198"></a>
+<a id="l00199"></a>
+<a id="l00200"></a>
+<a id="l00201"></a>
+<a id="l00202"></a>
+<a id="l00203"></a>
+<a id="l00204"></a>
+<a id="l00205"></a>
+<a id="l00206"></a>
+<a id="l00207"></a>
+<a id="l00208"></a>
+<a id="l00209"></a>
+<a id="l00210"></a>
+<a id="l00211"></a>
+<a id="l00212"></a>
+<a id="l00213"></a>
+<a id="l00214"></a>
+<a id="l00216"></a>
+<a id="l00218"></a>
+<a id="l00220"></a>
+<a id="l00221"></a>
+
+```c
+/*
+ * Copyright (c) 2026 Nuvoton Technology Corporation.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+#ifndef ZEPHYR_INCLUDE_DT_BINDINGS_CLOCK_NUMAKER_M031X_CLOCK_H
+#define ZEPHYR_INCLUDE_DT_BINDINGS_CLOCK_NUMAKER_M031X_CLOCK_H
+
+
+
+
+
+#define NUMAKER_CLK_CLKSEL0_HCLKSEL_HXT 0x00000000
+#define NUMAKER_CLK_CLKSEL0_HCLKSEL_LXT 0x00000001
+#define NUMAKER_CLK_CLKSEL0_HCLKSEL_PLL 0x00000002
+#define NUMAKER_CLK_CLKSEL0_HCLKSEL_LIRC 0x00000003
+#define NUMAKER_CLK_CLKSEL0_HCLKSEL_HIRC 0x00000007
+#define NUMAKER_CLK_CLKSEL0_STCLKSEL_HXT 0x00000000
+#define NUMAKER_CLK_CLKSEL0_STCLKSEL_LXT 0x00000008
+#define NUMAKER_CLK_CLKSEL0_STCLKSEL_HXT_DIV2 0x00000010
+#define NUMAKER_CLK_CLKSEL0_STCLKSEL_HCLK_DIV2 0x00000018
+#define NUMAKER_CLK_CLKSEL0_STCLKSEL_HIRC_DIV2 0x00000038
+#define NUMAKER_CLK_CLKSEL0_USBDSEL_HIRC 0x00000000
+#define NUMAKER_CLK_CLKSEL0_USBDSEL_PLL 0x00000100
+#define NUMAKER_CLK_CLKSEL1_WDTSEL_LXT 0x00000001
+#define NUMAKER_CLK_CLKSEL1_WDTSEL_HCLK_DIV2048 0x00000002
+#define NUMAKER_CLK_CLKSEL1_WDTSEL_LIRC 0x00000003
+#define NUMAKER_CLK_CLKSEL1_WWDTSEL_HCLK_DIV2048 0x00000008
+#define NUMAKER_CLK_CLKSEL1_WWDTSEL_LIRC 0x0000000C
+#define NUMAKER_CLK_CLKSEL1_CLKOSEL_HXT 0x00000000
+#define NUMAKER_CLK_CLKSEL1_CLKOSEL_LXT 0x00000010
+#define NUMAKER_CLK_CLKSEL1_CLKOSEL_HCLK 0x00000020
+#define NUMAKER_CLK_CLKSEL1_CLKOSEL_HIRC 0x00000030
+#define NUMAKER_CLK_CLKSEL1_CLKOSEL_LIRC 0x00000040
+#define NUMAKER_CLK_CLKSEL1_CLKOSEL_PLL 0x00000060
+#define NUMAKER_CLK_CLKSEL1_CLKOSEL_SOF 0x00000070
+#define NUMAKER_CLK_CLKSEL1_TMR0SEL_HXT 0x00000000
+#define NUMAKER_CLK_CLKSEL1_TMR0SEL_LXT 0x00000100
+#define NUMAKER_CLK_CLKSEL1_TMR0SEL_PCLK0 0x00000200
+#define NUMAKER_CLK_CLKSEL1_TMR0SEL_EXT_TRG 0x00000300
+#define NUMAKER_CLK_CLKSEL1_TMR0SEL_LIRC 0x00000500
+#define NUMAKER_CLK_CLKSEL1_TMR0SEL_HIRC 0x00000700
+#define NUMAKER_CLK_CLKSEL1_TMR1SEL_HXT 0x00000000
+#define NUMAKER_CLK_CLKSEL1_TMR1SEL_LXT 0x00001000
+#define NUMAKER_CLK_CLKSEL1_TMR1SEL_PCLK0 0x00002000
+#define NUMAKER_CLK_CLKSEL1_TMR1SEL_EXT_TRG 0x00003000
+#define NUMAKER_CLK_CLKSEL1_TMR1SEL_LIRC 0x00005000
+#define NUMAKER_CLK_CLKSEL1_TMR1SEL_HIRC 0x00007000
+#define NUMAKER_CLK_CLKSEL1_TMR2SEL_HXT 0x00000000
+#define NUMAKER_CLK_CLKSEL1_TMR2SEL_LXT 0x00010000
+#define NUMAKER_CLK_CLKSEL1_TMR2SEL_PCLK1 0x00020000
+#define NUMAKER_CLK_CLKSEL1_TMR2SEL_EXT_TRG 0x00030000
+#define NUMAKER_CLK_CLKSEL1_TMR2SEL_LIRC 0x00050000
+#define NUMAKER_CLK_CLKSEL1_TMR2SEL_HIRC 0x00070000
+#define NUMAKER_CLK_CLKSEL1_TMR3SEL_HXT 0x00000000
+#define NUMAKER_CLK_CLKSEL1_TMR3SEL_LXT 0x00100000
+#define NUMAKER_CLK_CLKSEL1_TMR3SEL_PCLK1 0x00200000
+#define NUMAKER_CLK_CLKSEL1_TMR3SEL_EXT_TRG 0x00300000
+#define NUMAKER_CLK_CLKSEL1_TMR3SEL_LIRC 0x00500000
+#define NUMAKER_CLK_CLKSEL1_TMR3SEL_HIRC 0x00700000
+#define NUMAKER_CLK_CLKSEL1_UART0SEL_HXT 0x00000000
+#define NUMAKER_CLK_CLKSEL1_UART0SEL_PLL 0x01000000
+#define NUMAKER_CLK_CLKSEL1_UART0SEL_LXT 0x02000000
+#define NUMAKER_CLK_CLKSEL1_UART0SEL_HIRC 0x03000000
+#define NUMAKER_CLK_CLKSEL1_UART0SEL_PCLK0 0x04000000
+#define NUMAKER_CLK_CLKSEL1_UART0SEL_LIRC 0x05000000
+#define NUMAKER_CLK_CLKSEL1_UART1SEL_HXT 0x00000000
+#define NUMAKER_CLK_CLKSEL1_UART1SEL_PLL 0x10000000
+#define NUMAKER_CLK_CLKSEL1_UART1SEL_LXT 0x20000000
+#define NUMAKER_CLK_CLKSEL1_UART1SEL_HIRC 0x30000000
+#define NUMAKER_CLK_CLKSEL1_UART1SEL_PCLK1 0x40000000
+#define NUMAKER_CLK_CLKSEL1_UART1SEL_LIRC 0x50000000
+#define NUMAKER_CLK_CLKSEL2_PWM0SEL_PLL 0x00000000
+#define NUMAKER_CLK_CLKSEL2_PWM0SEL_PCLK0 0x00000001
+#define NUMAKER_CLK_CLKSEL2_PWM1SEL_PLL 0x00000000
+#define NUMAKER_CLK_CLKSEL2_PWM1SEL_PCLK1 0x00000002
+#define NUMAKER_CLK_CLKSEL2_QSPI0SEL_HXT 0x00000000
+#define NUMAKER_CLK_CLKSEL2_QSPI0SEL_PLL 0x00000004
+#define NUMAKER_CLK_CLKSEL2_QSPI0SEL_PCLK0 0x00000008
+#define NUMAKER_CLK_CLKSEL2_QSPI0SEL_HIRC 0x0000000C
+#define NUMAKER_CLK_CLKSEL2_SPI0SEL_HXT 0x00000000
+#define NUMAKER_CLK_CLKSEL2_SPI0SEL_PLL 0x00000010
+#define NUMAKER_CLK_CLKSEL2_SPI0SEL_PCLK1 0x00000020
+#define NUMAKER_CLK_CLKSEL2_SPI0SEL_HIRC 0x00000030
+#define NUMAKER_CLK_CLKSEL2_BPWM0SEL_PLL 0x00000000
+#define NUMAKER_CLK_CLKSEL2_BPWM0SEL_PCLK0 0x00000100
+#define NUMAKER_CLK_CLKSEL2_BPWM1SEL_PLL 0x00000000
+#define NUMAKER_CLK_CLKSEL2_BPWM1SEL_PCLK1 0x00000200
+#define NUMAKER_CLK_CLKSEL2_ADCSEL_HXT 0x00000000
+#define NUMAKER_CLK_CLKSEL2_ADCSEL_PLL 0x00100000
+#define NUMAKER_CLK_CLKSEL2_ADCSEL_PCLK1 0x00200000
+#define NUMAKER_CLK_CLKSEL2_ADCSEL_HIRC 0x00300000
+#define NUMAKER_CLK_CLKSEL3_UART3SEL_HXT 0x00000000
+#define NUMAKER_CLK_CLKSEL3_UART3SEL_PLL 0x10000000
+#define NUMAKER_CLK_CLKSEL3_UART3SEL_LXT 0x20000000
+#define NUMAKER_CLK_CLKSEL3_UART3SEL_HIRC 0x30000000
+#define NUMAKER_CLK_CLKSEL3_UART3SEL_PCLK1 0x40000000
+#define NUMAKER_CLK_CLKSEL3_UART3SEL_LIRC 0x50000000
+#define NUMAKER_CLK_CLKSEL3_UART2SEL_HXT 0x00000000
+#define NUMAKER_CLK_CLKSEL3_UART2SEL_PLL 0x01000000
+#define NUMAKER_CLK_CLKSEL3_UART2SEL_LXT 0x02000000
+#define NUMAKER_CLK_CLKSEL3_UART2SEL_HIRC 0x03000000
+#define NUMAKER_CLK_CLKSEL3_UART2SEL_PCLK0 0x04000000
+#define NUMAKER_CLK_CLKSEL3_UART2SEL_LIRC 0x05000000
+#define NUMAKER_CLK_CLKSEL3_UART5SEL_HXT 0x00000000
+#define NUMAKER_CLK_CLKSEL3_UART5SEL_PLL 0x00100000
+#define NUMAKER_CLK_CLKSEL3_UART5SEL_LXT 0x00200000
+#define NUMAKER_CLK_CLKSEL3_UART5SEL_HIRC 0x00300000
+#define NUMAKER_CLK_CLKSEL3_UART5SEL_PCLK1 0x00400000
+#define NUMAKER_CLK_CLKSEL3_UART5SEL_LIRC 0x00500000
+#define NUMAKER_CLK_CLKSEL3_UART4SEL_HXT 0x00000000
+#define NUMAKER_CLK_CLKSEL3_UART4SEL_PLL 0x00010000
+#define NUMAKER_CLK_CLKSEL3_UART4SEL_LXT 0x00020000
+#define NUMAKER_CLK_CLKSEL3_UART4SEL_HIRC 0x00030000
+#define NUMAKER_CLK_CLKSEL3_UART4SEL_PCLK0 0x00040000
+#define NUMAKER_CLK_CLKSEL3_UART4SEL_LIRC 0x00050000
+#define NUMAKER_CLK_CLKSEL3_UART7SEL_HXT 0x00000000
+#define NUMAKER_CLK_CLKSEL3_UART7SEL_PLL 0x00001000
+#define NUMAKER_CLK_CLKSEL3_UART7SEL_LXT 0x00002000
+#define NUMAKER_CLK_CLKSEL3_UART7SEL_HIRC 0x00003000
+#define NUMAKER_CLK_CLKSEL3_UART7SEL_PCLK1 0x00004000
+#define NUMAKER_CLK_CLKSEL3_UART7SEL_LIRC 0x00005000
+#define NUMAKER_CLK_CLKSEL3_UART6SEL_HXT 0x00000000
+#define NUMAKER_CLK_CLKSEL3_UART6SEL_PLL 0x00000100
+#define NUMAKER_CLK_CLKSEL3_UART6SEL_LXT 0x00000200
+#define NUMAKER_CLK_CLKSEL3_UART6SEL_HIRC 0x00000300
+#define NUMAKER_CLK_CLKSEL3_UART6SEL_PCLK0 0x00000400
+#define NUMAKER_CLK_CLKSEL3_UART6SEL_LIRC 0x00000500
+#define NUMAKER_CLK_CLKDIV0_HCLK(x)  (((x) - 1) << 0)
+#define NUMAKER_CLK_CLKDIV0_USB(x)   (((x) - 1) << 4)
+#define NUMAKER_CLK_CLKDIV0_UART0(x) (((x) - 1) << 8)
+#define NUMAKER_CLK_CLKDIV0_UART1(x) (((x) - 1) << 12)
+#define NUMAKER_CLK_CLKDIV0_ADC(x)   (((x) - 1) << 16)
+#define NUMAKER_CLK_CLKDIV4_UART2(x) (((x) - 1) << 0)
+#define NUMAKER_CLK_CLKDIV4_UART3(x) (((x) - 1) << 4)
+#define NUMAKER_CLK_CLKDIV4_UART4(x) (((x) - 1) << 8)
+#define NUMAKER_CLK_CLKDIV4_UART5(x) (((x) - 1) << 12)
+#define NUMAKER_CLK_CLKDIV4_UART6(x) (((x) - 1) << 16)
+#define NUMAKER_CLK_CLKDIV4_UART7(x) (((x) - 1) << 20)
+#define NUMAKER_CLK_PCLKDIV_APB0DIV_DIV1 0x00000000
+#define NUMAKER_CLK_PCLKDIV_APB0DIV_DIV2 0x00000001
+#define NUMAKER_CLK_PCLKDIV_APB0DIV_DIV4 0x00000002
+#define NUMAKER_CLK_PCLKDIV_APB0DIV_DIV8 0x00000003
+#define NUMAKER_CLK_PCLKDIV_APB0DIV_DIV16 0x00000004
+#define NUMAKER_CLK_PCLKDIV_APB1DIV_DIV1 0x00000000
+#define NUMAKER_CLK_PCLKDIV_APB1DIV_DIV2 0x00000010
+#define NUMAKER_CLK_PCLKDIV_APB1DIV_DIV4 0x00000020
+#define NUMAKER_CLK_PCLKDIV_APB1DIV_DIV8 0x00000030
+#define NUMAKER_CLK_PCLKDIV_APB1DIV_DIV16 0x00000040
+#define NUMAKER_CLK_PLLCTL_PLLSRC_HXT 0x00000000
+#define NUMAKER_CLK_PLLCTL_PLLSRC_HIRC_DIV4 0x00080000
+#define NUMAKER_PDMA_MODULE 0x00000001
+#define NUMAKER_ISP_MODULE 0x00000002
+#define NUMAKER_EBI_MODULE 0x00000003
+#define NUMAKER_HDIV_MODULE 0x00000004
+#define NUMAKER_CRC_MODULE 0x00000007
+#define NUMAKER_WDT_MODULE 0x56000000
+#define NUMAKER_WWDT_MODULE 0x56200000
+#define NUMAKER_RTC_MODULE 0x40000001
+#define NUMAKER_TMR0_MODULE 0x5E800002
+#define NUMAKER_TMR1_MODULE 0x5EC00003
+#define NUMAKER_TMR2_MODULE 0x5F000004
+#define NUMAKER_TMR3_MODULE 0x5F400005
+#define NUMAKER_CLKO_MODULE 0x5E400006
+#define NUMAKER_UART0_MODULE 0x5F803D10
+#define NUMAKER_UART1_MODULE 0x5FC03D91
+#define NUMAKER_UART2_MODULE 0x7F8C3C12
+#define NUMAKER_UART3_MODULE 0x7FCC3C93
+#define NUMAKER_UART4_MODULE 0x7F0C3D14
+#define NUMAKER_UART5_MODULE 0x7F4C3D95
+#define NUMAKER_UART6_MODULE 0x7E8C3E16
+#define NUMAKER_UART7_MODULE 0x7ECC3E97
+#define NUMAKER_I2C0_MODULE 0x40000008
+#define NUMAKER_I2C1_MODULE 0x40000009
+#define NUMAKER_QSPI0_MODULE 0x6620000C
+#define NUMAKER_SPI0_MODULE 0x6640000D
+#define NUMAKER_ADC_MODULE 0x6743FE1C
+#define NUMAKER_ACMP01_MODULE 0x40000007
+#define NUMAKER_USBD_MODULE 0x42803C9B
+#define NUMAKER_PWM0_MODULE 0xA2000010
+#define NUMAKER_PWM1_MODULE 0xA2100011
+#define NUMAKER_BPWM0_MODULE 0xA2800012
+#define NUMAKER_BPWM1_MODULE 0xA2900013
+#define NUMAKER_USCI0_MODULE 0x80000008
+#define NUMAKER_USCI1_MODULE 0x80000009
+#define NUMAKER_GPA_MODULE 0xFFFFFFFF
+#define NUMAKER_GPB_MODULE 0xFFFFFFFF
+#define NUMAKER_GPC_MODULE 0xFFFFFFFF
+#define NUMAKER_GPD_MODULE 0xFFFFFFFF
+#define NUMAKER_GPE_MODULE 0xFFFFFFFF
+#define NUMAKER_GPF_MODULE 0xFFFFFFFF
+#define NUMAKER_GPG_MODULE 0xFFFFFFFF
+#define NUMAKER_GPH_MODULE 0xFFFFFFFF
+
+
+
+
+#endif
+```
+
+## 602.2\_可见注释译文（Comments）
+
+### 注释 1：原第 1 行
+
+版权（Copyright）：© 2026 Nuvoton Technology Corporation.。
+
+SPDX 许可证标识（License Identifier）：`Apache-2.0`。
+
+## 602.3\_原页交叉引用（Cross References）
+
+- [查看此文件的参考说明](https://docs.zephyrproject.org/latest/doxygen/html/numaker__m031x__clock_8h.html)
+
+---
+
+[上一章](P601_nrf_qspi_nor.h_源码浏览.md) · [返回大纲](大纲.md) · [下一章](P603_numaker_m2l31x_clock.h_源码浏览.md)
