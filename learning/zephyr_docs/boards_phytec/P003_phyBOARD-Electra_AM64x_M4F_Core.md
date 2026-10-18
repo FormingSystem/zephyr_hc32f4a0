@@ -1,0 +1,348 @@
+---
+id: learning.zephyr-docs.boards-phytec.page-3
+title: phyBOARD-Electra AM64x M4F Core
+kind: reference
+status: maintained
+domains: [zephyr, boards]
+source_url: https://docs.zephyrproject.org/latest/boards/phytec/phyboard_electra/doc/index.html
+---
+
+<!-- Copyright 2015-2026 Zephyr Project members and individual contributors. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<!-- 中文翻译；编号、导航与译注为本地新增。 -->
+
+<a id="phyboard_electra"></a>
+
+# 第3章\_phyBOARD-Electra AM64x M4F核
+
+原文：[官方页面](https://docs.zephyrproject.org/latest/boards/phytec/phyboard_electra/doc/index.html)。读取日期：2026-10-16；来源摘要见[来源记录](../SOURCES.md)。
+
+开发板概览（Board Overview）
+
+<a id="id1"></a>
+
+[![官方原图：../../../../_images/phyCORE-AM64x_Electra_frontside.webp](images/phyCORE-AM64x_Electra_frontside.webp)](images/phyCORE-AM64x_Electra_frontside.webp)
+
+phyBOARD-Electra AM64x M4F核
+
+名称（Name）：
+
+`phyboard_electra`
+
+厂商（Vendor）：
+
+[PHYTEC](https://docs.zephyrproject.org/latest/boards/index.html#vendor=phytec)
+
+状态（Status）：
+
+维护中（Maintained）
+
+架构（Architecture）：
+
+[arm](https://docs.zephyrproject.org/latest/boards/index.html#arch=arm)
+
+片上系统（SoC）：
+
+[am6442](https://docs.zephyrproject.org/latest/boards/index.html#soc=am6442)
+
+<a id="board-github-link"></a>
+
+[浏览开发板源码（Browse Board Sources）](https://github.com/zephyrproject-rtos/zephyr/blob/main//boards/phytec/phyboard_electra/doc/index.rst/../..)<a id="phyboard-electra-am64x-m4f-core"></a>
+
+## phyBOARD-Electra AM64x M4F核
+
+<a id="overview"></a>
+
+### 概述（Overview）
+
+AM64x phyBOARD-Electra配置供运行于TI AM64x平台的Zephyr应用使用，支持Arm Cortex-M4F MCU核及以下功能：
+
+
+- 嵌套向量中断控制器（NVIC）
+- 系统滴答系统时钟（SYSTICK / System Tick System Clock）
+
+此板配置也启用半主机（Semihosting）调试控制台。
+
+详情见[PHYTEC AM64x产品页](https://www.phytec.com/product/phycore-am64x/)。
+
+<a id="id2"></a>
+
+![官方原图：phyBOARD-Electra AM64x](images/phyCORE-AM64x_Electra_frontside1.webp)
+
+搭载phyCORE-AM64x SoM的PHYTEC phyBOARD-Electra
+
+<a id="hardware"></a>
+
+### 硬件（Hardware）
+
+AM64x phyBOARD-Electra套件采用AM64x SoC：主域（MAIN）内有一个双Cortex-A53集群及两组双Cortex-R5F核，MCU域内有一个Cortex-M4核。Zephyr移植到M4F核运行，使用以下硬件：
+
+
+- 低功耗Arm Cortex-M4F
+- 存储器（Memory）
+
+  > - 256 KB SRAM
+  > - 2 GB DDR4
+- 调试（Debug）
+
+  > - 基于XDS110的JTAG
+
+<a id="supported-features"></a>
+
+#### 支持的功能（Supported Features）
+
+`phyboard_electra`开发板支持下表所列的硬件功能。
+
+片上／板载（On-Chip / On-Board）
+
+功能集成在片上系统（SoC）内／位于开发板上。
+
+2 / 2
+
+分别表示已启用／已禁用的实例数。点击数量标签，可查看开发板或SoC设备树源码（DTS）中该功能的第一个实例。
+
+`vnd,foo`
+
+与此功能匹配的设备树绑定兼容字符串（Compatible String）；点击链接可查看绑定文档。
+
+<a id="phyboard_electra-hw-features"></a>
+
+<a id="phyboard_electra-phyboard_electra/am6442/m4-hw-features-section"></a>
+
+##### `phyboard_electra/am6442/m4`目标（Target）
+
+<a id="phyboard_electra-phyboard_electra/am6442/m4-hw-features-panel"></a>
+
+<a id="phyboard_electra-phyboard_electra/am6442/m4-hw-features-memory"></a>
+
+该开发板目标的片上存储容量：192 KiB RAM、N/A Flash。
+
+<a id="phyboard_electra-phyboard_electra/am6442/m4-hw-features-table"></a>
+
+<table>
+<tr>
+<th>类型（Type）</th>
+<th>位置（Location）</th>
+<th>说明（Description）</th>
+<th>兼容字符串（Compatible）</th>
+</tr>
+<tr>
+<td rowspan="1">中央处理器（CPU）</td>
+<td>片上（On-Chip）</td>
+<td>ARM Cortex-M4F 处理器（CPU）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/ti/am64x_m4.dtsi?plain=1#L20">已启用：1</a>）</td>
+<td><a href="../cpu_arm_riscv_binding_reference/P025_arm_cortex-m4f.md#std-dtcompatible-arm-cortex-m4f"><code>arm,cortex-m4f</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">模数转换器（ADC）</td>
+<td>片上（On-Chip）</td>
+<td>TI AM335X模数转换器（ADC）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/vendor/ti/am64x_main.dtsi?plain=1#L421">已禁用：1</a>）</td>
+<td><a href="../hardware/P904_TIAM335x模数转换器绑定.md#dtbinding-ti-am335x-adc"><code>ti,am335x-adc</code></a></td>
+</tr>
+<tr>
+<td rowspan="2">时钟控制（Clock Control）</td>
+<td>片上（On-Chip）</td>
+<td>TI系统控制接口（TI-SCI）时钟控制器（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/vendor/ti/am64x_main.dtsi?plain=1#L22">已启用：1</a>）</td>
+<td><a href="../clock_silabs_ti_xilinx_binding_reference/P024_ti_k2g-sci-clk.md#std-dtcompatible-ti-k2g-sci-clk"><code>ti,k2g-sci-clk</code></a></td>
+</tr>
+<tr>
+<td>片上（On-Chip）</td>
+<td>通用固定频率时钟提供者（Fixed-Rate Clock Provider）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/ti/am64x_m4.dtsi?plain=1#L37">已启用：1</a>）</td>
+<td><a href="../hardware/P566_固定时钟绑定.md#dtbinding-fixed-clock"><code>fixed-clock</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">固件（Firmware）</td>
+<td>片上（On-Chip）</td>
+<td>TISCI客户端驱动（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/vendor/ti/am64x_main.dtsi?plain=1#L15">已禁用：1</a>）</td>
+<td><a href="../hardware/P612_TI%20K2G系统控制接口绑定.md#dtbinding-ti-k2g-sci"><code>ti,k2g-sci</code></a></td>
+</tr>
+<tr>
+<td rowspan="2">通用输入输出与接插件（GPIO &amp; Headers）</td>
+<td>片上（On-Chip）</td>
+<td>Davinci及Keystone器件的GPIO控制器（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/vendor/ti/am64x_main.dtsi?plain=1#L225">已启用：2</a>）</td>
+<td><a href="../gpio_ti_xilinx_sdl_binding_reference/P013_ti_davinci-gpio-nexus.md#std-dtcompatible-ti-davinci-gpio-nexus"><code>ti,davinci-gpio-nexus</code></a></td>
+</tr>
+<tr>
+<td>片上（On-Chip）</td>
+<td>Davinci及Keystone器件的GPIO控制器（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/vendor/ti/am64x_mcu.dtsi?plain=1#L65">已启用：1</a>；<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/vendor/ti/am64x_main.dtsi?plain=1#L323">已禁用：6</a>）</td>
+<td><a href="../gpio_ti_xilinx_sdl_binding_reference/P014_ti_davinci-gpio.md#std-dtcompatible-ti-davinci-gpio"><code>ti,davinci-gpio</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">集成电路间总线（I2C）</td>
+<td>片上（On-Chip）</td>
+<td>TI OMAP I2C控制器（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/vendor/ti/am64x_main.dtsi?plain=1#L189">已禁用：6</a>）</td>
+<td><a href="../i2c_stm32_ti_mux_binding_reference/P013_ti_omap-i2c.md#std-dtcompatible-ti-omap-i2c"><code>ti,omap-i2c</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">中断控制器（Interrupt Controller）</td>
+<td>片上（On-Chip）</td>
+<td>ARMv7-M 嵌套向量中断控制器（Nested Vectored Interrupt Controller，NVIC）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/armv7-m.dtsi?plain=1#L13">已启用：1</a>）</td>
+<td><a href="../arm_interrupt_timer_binding_reference/P002_ARMv7_M_NVIC.md#std-dtcompatible-arm-v7m-nvic"><code>arm,v7m-nvic</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">发光二极管（LED）</td>
+<td>板载（On-Board）</td>
+<td>一组由 GPIO 控制的 LED（GPIO-Controlled LEDs）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/boards/phytec/phyboard_electra/phyboard_electra_am6442_m4.dts?plain=1#L54">已启用：1</a>）</td>
+<td><a href="../hardware/P564_GPIO指示灯绑定.md#dtbinding-gpio-leds"><code>gpio-leds</code></a></td>
+</tr>
+<tr>
+<td rowspan="2">邮箱（Mailbox）</td>
+<td>片上（On-Chip）</td>
+<td>TI安全代理邮箱（Secure Proxy Mailbox）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/vendor/ti/am64x_main.dtsi?plain=1#L28">已禁用：1</a>）</td>
+<td><a href="../intercore_reference/P056_TI安全代理邮箱绑定.md#dtbinding-ti-secure-proxy"><code>ti,secure-proxy</code></a></td>
+</tr>
+<tr>
+<td>片上（On-Chip）</td>
+<td>TI OMAP邮箱（MAILBOX）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/vendor/ti/am64x_main.dtsi?plain=1#L479">已禁用：8</a>）</td>
+<td><a href="../intercore_reference/P055_TIOMAP邮箱绑定.md#dtbinding-ti-omap-mailbox"><code>ti,omap-mailbox</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">多位串行外设接口（Multi-Bit SPI）</td>
+<td>片上（On-Chip）</td>
+<td>带多线SPI接口（MSPI）的Cadence xSPI闪存控制器，支持双线、四线及八线SPI（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/vendor/ti/am64x_main.dtsi?plain=1#L702">已禁用：1</a>）</td>
+<td><a href="../mspi_binding_reference/P003_cdns_xspi-nor.md#std-dtcompatible-cdns-xspi-nor"><code>cdns,xspi-nor</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">引脚控制（Pin Control）</td>
+<td>片上（On-Chip）</td>
+<td>TI K3引脚控制器（Pin Controller）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/vendor/ti/am64x_mcu.dtsi?plain=1#L22">已启用：1</a>；<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/vendor/ti/am64x_main.dtsi?plain=1#L44">已禁用：1</a>）</td>
+<td><a href="../pinctrl_stm32_ti_xilinx_binding_reference/P013_ti_k3-pinctrl.md#std-dtcompatible-ti-k3-pinctrl"><code>ti,k3-pinctrl</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">电源域（Power Domain）</td>
+<td>片上（On-Chip）</td>
+<td>由TISCI管理的电源域（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/vendor/ti/am64x_main_power_domains.dtsi?plain=1#L8">已启用：148</a>）</td>
+<td><a href="../power_domain_binding_reference/P011_ti_sci-pm-domain.md#std-dtcompatible-ti-sci-pm-domain"><code>ti,sci-pm-domain</code></a></td>
+</tr>
+<tr>
+<td rowspan="2">脉宽调制（PWM）</td>
+<td>片上（On-Chip）</td>
+<td>TI SoC基于增强型高分辨率PWM（EHRPWM）的PWM控制器（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/vendor/ti/am64x_main.dtsi?plain=1#L585">已禁用：9</a>）</td>
+<td><a href="../pwm_stm32_ti_generic_binding_reference/P014_ti_am3352-ehrpwm.md#std-dtcompatible-ti-am3352-ehrpwm"><code>ti,am3352-ehrpwm</code></a></td>
+</tr>
+<tr>
+<td>片上（On-Chip）</td>
+<td>TI SoC基于增强型捕获模块（ECAP）的PWM控制器（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/vendor/ti/am64x_main.dtsi?plain=1#L675">已禁用：3</a>）</td>
+<td><a href="../pwm_stm32_ti_generic_binding_reference/P013_ti_am3352-ecap.md#std-dtcompatible-ti-am3352-ecap"><code>ti,am3352-ecap</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">SD 主机控制器（SDHC）</td>
+<td>片上（On-Chip）</td>
+<td>TI SD／eMMC主机控制器（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/vendor/ti/am64x_main.dtsi?plain=1#L542">已禁用：2</a>）</td>
+<td><a href="../sdhc_binding_reference/P020_ti_am654-sdhci.md#std-dtcompatible-ti-am654-sdhci"><code>ti,am654-sdhci</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">串行控制器（Serial Controller）</td>
+<td>片上（On-Chip）</td>
+<td>ns16550通用异步收发器（UART）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/vendor/ti/am64x_mcu.dtsi?plain=1#L29">已启用：1</a>；<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/vendor/ti/am64x_main.dtsi?plain=1#L133">已禁用：8</a>）</td>
+<td><a href="../uart_microchip_nordic_nxp_binding_reference/P005_ns16550.md#std-dtcompatible-ns16550"><code>ns16550</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">串行外设接口（SPI）</td>
+<td>片上（On-Chip）</td>
+<td>用于OMAP及K3 SoC的TI多通道SPI控制器（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/vendor/ti/am64x_main.dtsi?plain=1#L371">已禁用：7</a>）</td>
+<td><a href="../spi_stm32_ti_xilinx_binding_reference/P018_ti_omap-mcspi.md#std-dtcompatible-ti-omap-mcspi"><code>ti,omap-mcspi</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">静态随机存储器（SRAM）</td>
+<td>片上（On-Chip）</td>
+<td>通用片上静态随机存储器（SRAM）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/ti/am64x_m4.dtsi?plain=1#L27">已启用：3</a>）</td>
+<td><a href="../hardware/P567_内存映射SRAM绑定.md#dtbinding-mmio-sram"><code>mmio-sram</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">系统控制器（System Controller）</td>
+<td>片上（On-Chip）</td>
+<td>TI K3器件级控制寄存器模块（Device Level Control Register Module）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/vendor/ti/am64x_main.dtsi?plain=1#L36">已启用：3</a>）</td>
+<td><a href="../edac_syscon_binding_reference/P009_ti_control-module.md#std-dtcompatible-ti-control-module"><code>ti,control-module</code></a></td>
+</tr>
+<tr>
+<td rowspan="2">定时器（Timer）</td>
+<td>片上（On-Chip）</td>
+<td>ARMv7-M 系统节拍（System Tick）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/armv7-m.dtsi?plain=1#L21">已启用：1</a>）</td>
+<td><a href="../arm_interrupt_timer_binding_reference/P006_ARMv7_M_SysTick.md#std-dtcompatible-arm-armv7m-systick"><code>arm,armv7m-systick</code></a></td>
+</tr>
+<tr>
+<td>片上（On-Chip）</td>
+<td>TI双模式定时器（Dual-Mode Timer）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/vendor/ti/am64x_main.dtsi?plain=1#L61">已禁用：12</a>）</td>
+<td><a href="../stm32_ti_silabs_timer_binding_reference/P012_ti_am654-timer.md#std-dtcompatible-ti-am654-timer"><code>ti,am654-timer</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">看门狗（Watchdog）</td>
+<td>片上（On-Chip）</td>
+<td>K3代处理器的看门狗定时器，实时间隔（RTI）模块（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/vendor/ti/am64x_main.dtsi?plain=1#L430">已禁用：7</a>）</td>
+<td><a href="../stm32_ti_xilinx_watchdog_binding_reference/P006_ti_j7-rti-wdt.md#std-dtcompatible-ti-j7-rti-wdt"><code>ti,j7-rti-wdt</code></a></td>
+</tr>
+</table>
+
+<a id="devices"></a>
+
+#### 设备（Devices）
+
+<a id="system-clock"></a>
+
+##### 系统时钟（System Clock）
+
+此开发板配置使用400 MHz系统时钟。
+
+<a id="ddr-ram"></a>
+
+##### DDR随机存取存储器（DDR RAM）
+
+此板有2 GB DDR RAM。原文称为Zephyr分配4 KB RAM，仅用于资源表（Resource Table），并给出范围0xa4100000至0xa4100400；该范围实际跨度为1 KiB，容量与地址均按原文保留。
+
+<a id="serial-port"></a>
+
+##### 串口（Serial Port）
+
+此配置使用MCU域UART，即MCU_UART0，作为唯一串行通信通道。
+
+<a id="gpio"></a>
+
+##### 通用输入输出（GPIO）
+
+phyCORE-AM64x的心跳LED连接gpio6，已配置为可构建并运行[Blinky](../getting_started/P004_LED闪烁示例.md#blinky)示例。
+
+<a id="sd-card"></a>
+
+### SD卡（SD Card）
+
+下载PHYTEC官方[WIC](https://download.phytec.de/Software/Linux/BSP-Yocto-AM64x/BSP-Yocto-Ampliphy-AM64x-PD23.2.1/images/ampliphy/phyboard-electra-am64xx-2/phytec-headless-image-phyboard-electra-am64xx-2.wic.xz)镜像及[BMAP](https://download.phytec.de/Software/Linux/BSP-Yocto-AM64x/BSP-Yocto-Ampliphy-AM64x-PD23.2.1/images/ampliphy/phyboard-electra-am64xx-2/phytec-headless-image-phyboard-electra-am64xx-2.wic.bmap)文件，使用镜像写入软件将WIC写入SD卡。SoM的A53应用核将启动Linux，再通过remoteproc将Zephyr二进制加载到M4。
+
+默认配置位于[boards/phytec/phyboard_electra/phyboard_electra_am6442_m4_defconfig](https://github.com/zephyrproject-rtos/zephyr/blob/main/boards/phytec/phyboard_electra/phyboard_electra_am6442_m4_defconfig)。
+
+<a id="flashing"></a>
+
+### 烧录（Flashing）
+
+A53上的Linux通过远程处理器框架（Remoteproc）管理M4F协处理器。因此测试时需先将二进制复制到SD卡，使A53启动时可通过remoteproc加载。
+
+测试M4F内核时，使用以下命令构建[Hello World](../getting_started/P005_HelloWorld示例.md#hello_world)示例。
+
+```text
+# From the root of the zephyr repository
+west build -b phyboard_electra/am6442/m4 samples/hello_world
+```
+
+构建生成的二进制文件名为`zephyr.elf`，位于`build/zephyr`目录。
+
+将此二进制复制到SD卡的/lib/firmware目录，命名为am64-mcu-m4f0_0-fw。
+
+```text
+# Mount the SD card at sdcard for example
+sudo mount /dev/sdX sdcard
+# copy the elf to the /lib/firmware directory
+sudo cp --remove-destination zephyr.elf sdcard/lib/firmware/am64-mcu-m4f0_0-fw
+```
+
+随后可用SD卡启动系统，启动时二进制程序会被加载到M4F内核。
+
+将启动引脚设为SD卡模式以从SD卡启动，参见[phyBOARD SD卡启动要点](https://docs.phytec.com/projects/yocto-phycore-am64x/en/bsp-yocto-ampliphy-am64x-pd23.2.1/bootingessentials/sdcard.html)。
+
+开发板应启动Linux，随后二进制运行并向MCU_UART0输出Hello world。
+
+## 译注
+
+Electra M4F由A53上的Linux remoteproc加载。原文称资源表区4 KB，但0xa4100000至0xa4100400跨度为1 KiB，两者分别保留。
+
+---
+
+[上一章](P002_phyBOARD-Atlas_i.MX_RT1170.md) · [返回大纲](大纲.md) · [全站翻译进度](../PROGRESS.md) · [下一章](P004_phyBOARD-Lyra_AM62x_A53_Core.md)

@@ -1,0 +1,467 @@
+---
+id: learning.zephyr-docs.boards-cdac-to-cthings.page-8
+title: CRD40L50-POC-Q
+kind: reference
+status: maintained
+domains: [zephyr, boards]
+source_url: https://docs.zephyrproject.org/latest/boards/cirrus/crd40l50/doc/index.html
+---
+
+<!-- Copyright 2015-2026 Zephyr Project members and individual contributors. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<!-- 中文翻译；编号、导航与译注为本地新增。 -->
+
+<a id="crd40l50"></a>
+
+# 第8章\_CRD40L50-POC-Q
+
+原文：[官方页面](https://docs.zephyrproject.org/latest/boards/cirrus/crd40l50/doc/index.html)。读取日期：2026-10-16；来源摘要见[来源记录](../SOURCES.md)。
+
+开发板概览（Board Overview）
+
+<a id="id1"></a>
+
+[![官方原图：../../../../_images/cirrus_crd40l50.webp](images/cirrus_crd40l50.webp)](images/cirrus_crd40l50.webp)
+
+CRD40L50-POC-Q
+
+名称（Name）：
+
+`crd40l50`
+
+厂商（Vendor）：
+
+[Cirrus Logic, Inc.公司](https://docs.zephyrproject.org/latest/boards/index.html#vendor=cirrus)
+
+状态（Status）：
+
+当前未积极维护（Not Actively Maintained）
+
+架构（Architecture）：
+
+[arm](https://docs.zephyrproject.org/latest/boards/index.html#arch=arm)
+
+片上系统（SoC）：
+
+[stm32f401xd](https://docs.zephyrproject.org/latest/boards/index.html#soc=stm32f401xd)
+
+<a id="board-github-link"></a>
+
+[浏览开发板源码（Browse Board Sources）](https://github.com/zephyrproject-rtos/zephyr/blob/main//boards/cirrus/crd40l50/doc/index.rst/../..)<a id="overview"></a>
+
+## 概述（Overview）
+
+CRD40L50-POC-Q“Blackstar”演示板是一款评估Cirrus Logic CS40L50触觉驱动器（Haptic Driver）的硬件平台。开发板提供一组功能，可将自定义示例应用编程到板载STM32F401xD微控制器，包括Zephyr的`samples`目录所提供的CS40L5x示例。
+
+<a id="hardware"></a>
+
+## 硬件（Hardware）
+
+
+- STM32F401xD微控制器（Microcontroller）
+- AT25 SPI闪存控制器，配有256 KiB闪存
+- 32.768 kHz晶体振荡器（Crystal Oscillator）
+- 两个通过／失败（Pass/Fail）LED，一绿一红
+- 三个黄色用户LED
+- 一个用户按键
+- 电源选择开关（Power Source Selector Switch）
+- 用于线性谐振致动器（LRA）的驱动输出
+- 一个用于GPIO的Pico-Clasp连接器
+- 一个用于Cirrus Logic ETHapBridge连接的USB-C端口
+- 通过串行线调试（SWD）对板载STM32F401xD进行编程与调试
+
+<a id="supported-features"></a>
+
+### 支持的功能（Supported Features）
+
+`crd40l50`开发板支持下表所列的硬件功能。
+
+片上／板载（On-Chip / On-Board）
+
+功能集成在片上系统（SoC）内／位于开发板上。
+
+2 / 2
+
+分别表示已启用／已禁用的实例数。点击数量标签，可查看开发板或SoC设备树源码（DTS）中该功能的第一个实例。
+
+`vnd,foo`
+
+与此功能匹配的设备树绑定兼容字符串（Compatible String）；点击链接可查看绑定文档。
+
+<a id="crd40l50-hw-features"></a>
+
+<a id="crd40l50-crd40l50/stm32f401xd-hw-features-section"></a>
+
+#### `crd40l50/stm32f401xd`目标（Target）
+
+<a id="crd40l50-crd40l50/stm32f401xd-hw-features-panel"></a>
+
+<a id="crd40l50-crd40l50/stm32f401xd-hw-features-memory"></a>
+
+该开发板目标的片上存储容量：96 KiB RAM、384 KiB Flash。
+
+<a id="crd40l50-crd40l50/stm32f401xd-hw-features-table"></a>
+
+<table>
+<tr>
+<th>类型（Type）</th>
+<th>位置（Location）</th>
+<th>说明（Description）</th>
+<th>兼容字符串（Compatible）</th>
+</tr>
+<tr>
+<td rowspan="1">中央处理器（CPU）</td>
+<td>片上（On-Chip）</td>
+<td>ARM Cortex-M4F 处理器（CPU）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/f4/stm32f4.dtsi?plain=1#L34">已启用：1</a>）</td>
+<td><a href="../cpu_arm_riscv_binding_reference/P025_arm_cortex-m4f.md#std-dtcompatible-arm-cortex-m4f"><code>arm,cortex-m4f</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">模数转换器（ADC）</td>
+<td>片上（On-Chip）</td>
+<td>STM32F4 模数转换器（ADC）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/f4/stm32f4.dtsi?plain=1#L611">已禁用：1</a>）</td>
+<td><a href="../hardware/P841_STM32F4模数转换器绑定.md#dtbinding-st-stm32f4-adc"><code>st,stm32f4-adc</code></a></td>
+</tr>
+<tr>
+<td rowspan="5">时钟控制（Clock Control）</td>
+<td>片上（On-Chip）</td>
+<td>STM32F4 复位与时钟控制器（Reset and Clock Controller，RCC）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/f4/stm32f4.dtsi?plain=1#L178">已启用：1</a>）</td>
+<td><a href="../timer_reference/P127_STM32F4复位与时钟控制绑定.md#dtbinding-st-stm32f4-rcc"><code>st,stm32f4-rcc</code></a></td>
+</tr>
+<tr>
+<td>片上（On-Chip）</td>
+<td>STM32 外部高速时钟（HSE Clock）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/f4/stm32f4.dtsi?plain=1#L63">已禁用：1</a>）</td>
+<td><a href="../timer_reference/P129_STM32高速外部时钟绑定.md#dtbinding-st-stm32-hse-clock"><code>st,stm32-hse-clock</code></a></td>
+</tr>
+<tr>
+<td>片上（On-Chip）</td>
+<td>通用固定频率时钟提供者（Fixed-Rate Clock Provider）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/f4/stm32f4.dtsi?plain=1#L69">已启用：2</a>；<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/f4/stm32f4.dtsi?plain=1#L83">已禁用：1</a>）</td>
+<td><a href="../hardware/P566_固定时钟绑定.md#dtbinding-fixed-clock"><code>fixed-clock</code></a></td>
+</tr>
+<tr>
+<td>片上（On-Chip）</td>
+<td>STM32F2、STM32F4、STM32F7 的锁相环节点绑定（PLL Node Binding）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/f4/stm32f4.dtsi?plain=1#L90">已启用：1</a>；<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/f4/stm32f401.dtsi?plain=1#L11">已禁用：1</a>）</td>
+<td><a href="../timer_reference/P128_STM32Fx锁相环时钟绑定.md#dtbinding-st-stm32fx-pll-clock"><code>st,stm32fx-pll-clock</code></a></td>
+</tr>
+<tr>
+<td>片上（On-Chip）</td>
+<td>STM32 微控制器时钟输出（Microcontroller Clock Output，MCO）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/f4/stm32f4.dtsi?plain=1#L98">已禁用：2</a>）</td>
+<td><a href="../timer_reference/P134_STM32时钟输出绑定.md#dtbinding-st-stm32-clock-mco"><code>st,stm32-clock-mco</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">计数器（Counter）</td>
+<td>片上（On-Chip）</td>
+<td>STM32 计数器（Counters）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/f4/stm32f4.dtsi?plain=1#L396">已禁用：8</a>）</td>
+<td><a href="../stm32_ti_xilinx_counter_binding_reference/P007_st_stm32-counter.md#std-dtcompatible-st-stm32-counter"><code>st,stm32-counter</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">直接存储器访问（DMA）</td>
+<td>片上（On-Chip）</td>
+<td>STM32 DMA 控制器（Controller，V1）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/f4/stm32f4.dtsi?plain=1#L636">已禁用：2</a>）</td>
+<td><a href="../stm32_ti_xilinx_dma_binding_reference/P007_st_stm32-dma-v1.md#std-dtcompatible-st-stm32-dma-v1"><code>st,stm32-dma-v1</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">闪存控制器（Flash Controller）</td>
+<td>片上（On-Chip）</td>
+<td>STM32 系列闪存控制器（Flash Controller）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/f4/stm32f4.dtsi?plain=1#L112">已启用：1</a>）</td>
+<td><a href="../flash_renesas_st_ti_binding_reference/P011_st_stm32-flash-controller.md#std-dtcompatible-st-stm32-flash-controller"><code>st,stm32-flash-controller</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">通用输入输出与接插件（GPIO &amp; Headers）</td>
+<td>片上（On-Chip）</td>
+<td>STM32 通用输入输出控制器（GPIO Controller）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/f4/stm32f4.dtsi?plain=1#L212">已启用：8</a>）</td>
+<td><a href="../gpio_silabs_st_connectors_binding_reference/P029_st_stm32-gpio.md#std-dtcompatible-st-stm32-gpio"><code>st,stm32-gpio</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">触觉反馈（Haptics）</td>
+<td>板载（On-Board）</td>
+<td>I2C总线上的CS40L50触觉驱动器（Haptic Driver）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/boards/cirrus/crd40l50/crd40l50.dts?plain=1#L119">已启用：1</a>）</td>
+<td><a href="../compatible_binding_reference/P031_cirrus_cs40l50.md#std-dtcompatible-cirrus-cs40l50"><code>cirrus,cs40l50</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">集成电路间总线（I2C）</td>
+<td>片上（On-Chip）</td>
+<td>STM32 I2C V1 控制器（Controller）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/f4/stm32f4.dtsi?plain=1#L318">已启用：1</a>；<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/f4/stm32f4.dtsi?plain=1#L330">已禁用：2</a>）</td>
+<td><a href="../i2c_stm32_ti_mux_binding_reference/P007_st_stm32-i2c-v1.md#std-dtcompatible-st-stm32-i2c-v1"><code>st,stm32-i2c-v1</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">集成电路间音频总线（I2S）</td>
+<td>片上（On-Chip）</td>
+<td>STM32 I2S 控制器（Controller）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/f4/stm32f401.dtsi?plain=1#L54">已禁用：2</a>）</td>
+<td><a href="../i2s_binding_reference/P016_st_stm32-i2s.md#std-dtcompatible-st-stm32-i2s"><code>st,stm32-i2s</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">输入（Input）</td>
+<td>板载（On-Board）</td>
+<td>一组绑定到 GPIO 的输入按键（GPIO-Bound Input Keys）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/boards/cirrus/crd40l50/crd40l50.dts?plain=1#L27">已启用：1</a>）</td>
+<td><a href="../hardware/P563_GPIO按键绑定.md#std-dtcompatible-gpio-keys"><code>gpio-keys</code></a></td>
+</tr>
+<tr>
+<td rowspan="2">中断控制器（Interrupt Controller）</td>
+<td>片上（On-Chip）</td>
+<td>ARMv7-M 嵌套向量中断控制器（Nested Vectored Interrupt Controller，NVIC）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/armv7-m.dtsi?plain=1#L13">已启用：1</a>）</td>
+<td><a href="../arm_interrupt_timer_binding_reference/P002_ARMv7_M_NVIC.md#std-dtcompatible-arm-v7m-nvic"><code>arm,v7m-nvic</code></a></td>
+</tr>
+<tr>
+<td>片上（On-Chip）</td>
+<td>STM32 外部中断控制器（External Interrupt Controller）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/f4/stm32f4.dtsi?plain=1#L189">已启用：1</a>）</td>
+<td><a href="../mcu_external_interrupt_binding_reference/P001_st_stm32-exti.md#std-dtcompatible-st-stm32-exti"><code>st,stm32-exti</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">发光二极管（LED）</td>
+<td>板载（On-Board）</td>
+<td>一组由 GPIO 控制的 LED（GPIO-Controlled LEDs）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/boards/cirrus/crd40l50/crd40l50.dts?plain=1#L45">已启用：1</a>）</td>
+<td><a href="../hardware/P564_GPIO指示灯绑定.md#dtbinding-gpio-leds"><code>gpio-leds</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">存储器控制器（Memory Controller）</td>
+<td>片上（On-Chip）</td>
+<td>STM32 电池备份 RAM（Battery-Backed RAM）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/f4/stm32f4.dtsi?plain=1#L604">已禁用：1</a>）</td>
+<td><a href="../memory_controller_sdram_psram_binding_reference/P010_st_stm32-bbram.md#std-dtcompatible-st-stm32-bbram"><code>st,stm32-bbram</code></a></td>
+</tr>
+<tr>
+<td rowspan="2">存储技术设备（MTD）</td>
+<td>片上（On-Chip）</td>
+<td>STM32F4 闪存（Flash Memory）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/f4/stm32f4.dtsi?plain=1#L121">已启用：1</a>）</td>
+<td><a href="../mtd_nxp_st_ti_partition_binding_reference/P017_st_stm32f4-nv-flash.md#std-dtcompatible-st-stm32f4-nv-flash"><code>st,stm32f4-nv-flash</code></a></td>
+</tr>
+<tr>
+<td>板载（On-Board）</td>
+<td>AT25XV021A SPI闪存变体（Variants）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/boards/cirrus/crd40l50/crd40l50.dts?plain=1#L147">已启用：1</a>）</td>
+<td><a href="../mtd_atmel_bouffalo_binding_reference/P007_atmel_at25xv021a.md#std-dtcompatible-atmel-at25xv021a"><code>atmel,at25xv021a</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">非易失存储器（NVMEM）</td>
+<td>片上（On-Chip）</td>
+<td>非易失存储器固定布局（Fixed Layout for Non-Volatile Memory）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/f4/stm32f4.dtsi?plain=1#L152">已启用：1</a>）</td>
+<td><a href="../memory_protection_binding_reference/P009_fixed-layout.md#std-dtcompatible-fixed-layout"><code>fixed-layout</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">一次性可编程存储器（OTP Memory）</td>
+<td>片上（On-Chip）</td>
+<td>STM32 嵌入式非易失一次性可编程存储器（NVM OTP）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/f4/stm32f4.dtsi?plain=1#L148">已启用：1</a>；<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/f4/stm32f4.dtsi?plain=1#L131">已禁用：1</a>）</td>
+<td><a href="../otp_binding_reference/P010_st_stm32-nvm-otp.md#std-dtcompatible-st-stm32-nvm-otp"><code>st,stm32-nvm-otp</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">物理层（PHY）</td>
+<td>片上（On-Chip）</td>
+<td>用于所有内置于 USB IP 的 USB 收发器（USB Transceivers）的绑定。（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/f4/stm32f4.dtsi?plain=1#L711">已启用：1</a>）</td>
+<td><a href="../phy_binding_reference/P008_usb-nop-xceiv.md#std-dtcompatible-usb-nop-xceiv"><code>usb-nop-xceiv</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">引脚控制（Pin Control）</td>
+<td>片上（On-Chip）</td>
+<td>STM32 引脚控制器（Pin Controller）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/f4/stm32f4.dtsi?plain=1#L205">已启用：1</a>）</td>
+<td><a href="../pinctrl_stm32_ti_xilinx_binding_reference/P004_st_stm32-pinctrl.md#std-dtcompatible-st-stm32-pinctrl"><code>st,stm32-pinctrl</code></a></td>
+</tr>
+<tr>
+<td rowspan="2">电源管理（Power Management）</td>
+<td>片上（On-Chip）</td>
+<td>STM32 电源控制器（Power Controller）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/f4/stm32f4.dtsi?plain=1#L665">已启用：1</a>）</td>
+<td><a href="../stm32_soc_power_binding_reference/P010_st_stm32-pwr.md#std-dtcompatible-st-stm32-pwr"><code>st,stm32-pwr</code></a></td>
+</tr>
+<tr>
+<td>片上（On-Chip）</td>
+<td>STM32F1 风格的唤醒引脚控制器（Wake-Up Pins Controller）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/f4/stm32f4.dtsi?plain=1#L669">已禁用：1</a>）</td>
+<td><a href="../stm32_soc_power_binding_reference/P011_st_stm32f1-pwr-wkupctrl.md#std-dtcompatible-st-stm32f1-pwr-wkupctrl"><code>st,stm32f1-pwr-wkupctrl</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">脉宽调制（PWM）</td>
+<td>片上（On-Chip）</td>
+<td>STM32 脉宽调制（PWM）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/f4/stm32f4.dtsi?plain=1#L390">已禁用：8</a>）</td>
+<td><a href="../pwm_stm32_ti_generic_binding_reference/P011_st_stm32-pwm.md#std-dtcompatible-st-stm32-pwm"><code>st,stm32-pwm</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">复位控制器（Reset Controller）</td>
+<td>片上（On-Chip）</td>
+<td>STM32 复位与时钟控制器（Reset and Clock Control，RCC）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/f4/stm32f4.dtsi?plain=1#L183">已启用：1</a>）</td>
+<td><a href="../reset_controller_binding_reference/P017_st_stm32-rcc-rctl.md#std-dtcompatible-st-stm32-rcc-rctl"><code>st,stm32-rcc-rctl</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">实时时钟（RTC）</td>
+<td>片上（On-Chip）</td>
+<td>STM32 实时时钟（RTC）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/f4/stm32f4.dtsi?plain=1#L593">已禁用：1</a>）</td>
+<td><a href="../soc_rtc_binding_reference/P014_st_stm32-rtc.md#std-dtcompatible-st-stm32-rtc"><code>st,stm32-rtc</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">SD 主机控制器（SDHC）</td>
+<td>片上（On-Chip）</td>
+<td>STM32 SDMMC 主机控制器（Host Controller）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/f4/stm32f4.dtsi?plain=1#L655">已禁用：1</a>）</td>
+<td><a href="../sdhc_binding_reference/P019_st_stm32-sdmmc.md#std-dtcompatible-st-stm32-sdmmc"><code>st,stm32-sdmmc</code></a></td>
+</tr>
+<tr>
+<td rowspan="4">传感器（Sensors）</td>
+<td>片上（On-Chip）</td>
+<td>STM32 正交解码器（Quadrature Decoder）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/f4/stm32f4.dtsi?plain=1#L401">已禁用：5</a>）</td>
+<td><a href="../sensor_st_lsm_stm32_binding_reference/P028_st_stm32-qdec.md#std-dtcompatible-st-stm32-qdec"><code>st,stm32-qdec</code></a></td>
+</tr>
+<tr>
+<td>片上（On-Chip）</td>
+<td>STM32 系列温度节点（TEMP），用于以两个温度点完成生产校准的传感器。（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/f4/stm32f4.dtsi?plain=1#L685">已禁用：1</a>）</td>
+<td><a href="../sensor_st_lsm_stm32_binding_reference/P029_st_stm32-temp-cal.md#std-dtcompatible-st-stm32-temp-cal"><code>st,stm32-temp-cal</code></a></td>
+</tr>
+<tr>
+<td>片上（On-Chip）</td>
+<td>STM32 参考电压（VREF+）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/f4/stm32f4.dtsi?plain=1#L696">已禁用：1</a>）</td>
+<td><a href="../sensor_st_ti_power_capacitance_binding_reference/P003_st_stm32-vref.md#std-dtcompatible-st-stm32-vref"><code>st,stm32-vref</code></a></td>
+</tr>
+<tr>
+<td>片上（On-Chip）</td>
+<td>STM32 电池电压（VBAT）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/f4/stm32f4.dtsi?plain=1#L704">已禁用：1</a>）</td>
+<td><a href="../sensor_st_ti_power_capacitance_binding_reference/P001_st_stm32-vbat.md#std-dtcompatible-st-stm32-vbat"><code>st,stm32-vbat</code></a></td>
+</tr>
+<tr>
+<td rowspan="2">串行控制器（Serial Controller）</td>
+<td>片上（On-Chip）</td>
+<td>STM32 通用同步／异步收发器（USART）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/f4/stm32f4.dtsi?plain=1#L291">已禁用：3</a>）</td>
+<td><a href="../uart_silabs_stm32_ti_binding_reference/P016_st_stm32-usart.md#std-dtcompatible-st-stm32-usart"><code>st,stm32-usart</code></a></td>
+</tr>
+<tr>
+<td>板载（On-Board）</td>
+<td>Segger实时传输（RTT）UART（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/boards/cirrus/crd40l50/crd40l50.dts?plain=1#L74">已启用：1</a>）</td>
+<td><a href="../uart_raspberrypi_realtek_renesas_binding_reference/P020_segger_rtt-uart.md#std-dtcompatible-segger-rtt-uart"><code>segger,rtt-uart</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">系统管理总线（SMbus）</td>
+<td>片上（On-Chip）</td>
+<td>STM32 系统管理总线控制器（SMBus Controller）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/f4/stm32f4.dtsi?plain=1#L716">已禁用：3</a>）</td>
+<td><a href="../i3c_smbus_binding_reference/P013_st_stm32-smbus.md#std-dtcompatible-st-stm32-smbus"><code>st,stm32-smbus</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">串行外设接口（SPI）</td>
+<td>片上（On-Chip）</td>
+<td>STM32 串行外设接口控制器（SPI Controller）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/f4/stm32f401.dtsi?plain=1#L21">已启用：1</a>；<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/f4/stm32f4.dtsi?plain=1#L354">已禁用：3</a>）</td>
+<td><a href="../spi_stm32_ti_xilinx_binding_reference/P012_st_stm32-spi.md#std-dtcompatible-st-stm32-spi"><code>st,stm32-spi</code></a></td>
+</tr>
+<tr>
+<td rowspan="2">定时器（Timer）</td>
+<td>片上（On-Chip）</td>
+<td>ARMv7-M 系统节拍（System Tick）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/armv7-m.dtsi?plain=1#L21">已启用：1</a>）</td>
+<td><a href="../arm_interrupt_timer_binding_reference/P006_ARMv7_M_SysTick.md#std-dtcompatible-arm-armv7m-systick"><code>arm,armv7m-systick</code></a></td>
+</tr>
+<tr>
+<td>片上（On-Chip）</td>
+<td>STM32 定时器（Timers）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/f4/stm32f4.dtsi?plain=1#L379">已禁用：8</a>）</td>
+<td><a href="../stm32_ti_silabs_timer_binding_reference/P008_st_stm32-timers.md#std-dtcompatible-st-stm32-timers"><code>st,stm32-timers</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">通用串行总线（USB）</td>
+<td>片上（On-Chip）</td>
+<td>STM32 全速 USB OTG 控制器（OTGFS Controller）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/f4/stm32f4.dtsi?plain=1#L365">已禁用：1</a>）</td>
+<td><a href="../usb_stm32_audio_binding_reference/P004_st_stm32-otgfs.md#std-dtcompatible-st-stm32-otgfs"><code>st,stm32-otgfs</code></a></td>
+</tr>
+<tr>
+<td rowspan="2">看门狗（Watchdog）</td>
+<td>片上（On-Chip）</td>
+<td>STM32 看门狗（Watchdog）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/f4/stm32f4.dtsi?plain=1#L277">已禁用：1</a>）</td>
+<td><a href="../stm32_ti_xilinx_watchdog_binding_reference/P001_st_stm32-watchdog.md#std-dtcompatible-st-stm32-watchdog"><code>st,stm32-watchdog</code></a></td>
+</tr>
+<tr>
+<td>片上（On-Chip）</td>
+<td>STM32 系统窗口看门狗（System Window Watchdog）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/f4/stm32f4.dtsi?plain=1#L283">已禁用：1</a>）</td>
+<td><a href="../stm32_ti_xilinx_watchdog_binding_reference/P002_st_stm32-window-watchdog.md#std-dtcompatible-st-stm32-window-watchdog"><code>st,stm32-window-watchdog</code></a></td>
+</tr>
+</table>
+
+<a id="connections-and-ios"></a>
+
+### 连接与输入输出（Connections and IOs）
+
+
+- Molex 1053131302连接器（J4），用于触觉输出
+- JST S2B-PH-SM4-TB(LF)(SN)连接器（J5），用于外接电源
+- SWD排针（J7），用于J-Link调试探针
+- Molex 203559-0607连接器（J8），用于GPIO
+- USB-C端口（J10），用于ETHapBridge连接
+
+<a id="programming-debugging"></a>
+
+## 编程与调试（Programming & Debugging）
+
+`crd40l50`开发板支持下表所列的运行工具（Runners）及相关west命令。
+
+<table>
+<tr>
+<th></th>
+<th>烧录（flash）</th>
+<th>调试（debug）</th>
+<th>连接调试会话（attach）</th>
+<th>实时传输（rtt）</th>
+<th>调试服务器（debugserver）</th>
+<th>复位（reset）</th>
+</tr>
+<tr>
+<td><a href="https://docs.zephyrproject.org/latest/develop/flash_debug/host-tools.html#runner-jlink"><code>jlink</code></a></td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="https://docs.zephyrproject.org/latest/develop/flash_debug/host-tools.html#runner-openocd">openocd</a></td>
+<td>✅</td>
+<td>✅（默认 / default）</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://docs.zephyrproject.org/latest/develop/flash_debug/host-tools.html#runner-stm32cubeprogrammer">stm32cubeprogrammer</a></td>
+<td>✅（默认 / default）</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</table>
+
+<a id="flash-using-j-link"></a>
+
+### 使用J-Link烧录（Flash Using J-Link）
+
+使用J-Link调试器烧录开发板时，请按以下步骤操作：
+
+
+1. 安装J-Link软件（Install J-Link Software）
+
+
+  - 从Segger下载并安装[J-Link软件](https://www.segger.com/downloads/jlink)工具。
+  - 确保已安装的J-Link可执行程序，例如`JLink`及`JLinkRTTViewer`，能够通过系统`PATH`找到。
+2. 连接开发板（Connect the Board）
+
+
+  - 将J-Link调试探针连接到开发板的SWD排针J7。（[J-Link调试探针（Debug Probe）](https://www.segger.com/products/debug-probes/j-link/)）
+  - 通过USB将J-Link调试探针的另一端连接到主机。
+  - 将VBAT连接器J5接到外部电源，给开发板供电。
+3. 构建应用（Build the Application）
+
+  可以使用west工具构建Zephyr示例，例如Blinky或cs40l5x。在Zephyr工作区执行以下命令：
+
+  ```text
+  west build -b crd40l50 -p always samples/drivers/haptics/cs40l5x
+  ```
+
+  这将为`crd40l50`开发板构建CS40L5x示例应用。
+4. 烧录设备（Flash the Device）
+
+  构建完成后，用以下命令烧录固件：
+
+  ```text
+  west flash --runner jlink
+  ```
+
+  该命令使用`jlink`运行器（Runner）将应用烧录到开发板。
+5. 观察结果（Observe the Result）
+
+  烧录后，通过JLinkRTTViewer与Shell接口交互，演示板载CS40L50触觉驱动器。
+
+<a id="references"></a>
+
+## 参考资料（References）
+
+---
+
+[上一章](P007_CRD40L26-POC-C.md) · [返回大纲](大纲.md) · [全站翻译进度](../PROGRESS.md) · [下一章](P009_Cirrus_Logic_Inc..md)

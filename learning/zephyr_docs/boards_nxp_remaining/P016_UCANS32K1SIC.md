@@ -1,0 +1,564 @@
+---
+id: learning.zephyr-docs.boards-nxp-remaining.page-16
+title: UCANS32K1SIC
+kind: reference
+status: maintained
+domains: [zephyr, boards]
+source_url: https://docs.zephyrproject.org/latest/boards/nxp/ucans32k1sic/doc/index.html
+---
+
+<!-- Copyright 2015-2026 Zephyr Project members and individual contributors. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<!-- 中文翻译；编号、导航与译注为本地新增。 -->
+
+<a id="ucans32k1sic"></a>
+
+# 第16章\_UCANS32K1SIC
+
+原文：[官方页面](https://docs.zephyrproject.org/latest/boards/nxp/ucans32k1sic/doc/index.html)。读取日期：2026-10-16；来源摘要见[来源记录](../SOURCES.md)。
+
+开发板概览（Board Overview）
+
+<a id="id1"></a>
+
+[![官方原图：../../../../_images/ucans32k1sic_top.webp](images/ucans32k1sic_top.webp)](images/ucans32k1sic_top.webp)
+
+UCANS32K1SIC
+
+名称（Name）：
+
+`ucans32k1sic`
+
+厂商（Vendor）：
+
+[恩智浦半导体（NXP Semiconductors）](https://docs.zephyrproject.org/latest/boards/index.html#vendor=nxp)
+
+状态（Status）：
+
+维护中（Maintained）
+
+架构（Architecture）：
+
+[arm](https://docs.zephyrproject.org/latest/boards/index.html#arch=arm)
+
+片上系统（SoC）：
+
+[s32k146](https://docs.zephyrproject.org/latest/boards/index.html#soc=s32k146)
+
+<a id="board-github-link"></a>
+
+[浏览开发板源码（Browse Board Sources）](https://github.com/zephyrproject-rtos/zephyr/blob/main//boards/nxp/ucans32k1sic/doc/index.rst/../..)<a id="overview"></a>
+
+## 概述（Overview）
+
+<a id="id19"></a>
+
+<a id="id22"></a>
+
+[NXP UCANS32K1SIC](https://www.nxp.com/design/development-boards/analog-toolbox/can-sic-evaluation-board:UCANS32K1SIC) [注8](#id18)是面向汽车及工业应用的CAN信号改善能力（Signal Improvement Capability，SIC）评估板，提供两个CAN SIC接口，基于32位Arm Cortex-M4F [NXP S32K146](https://www.nxp.com/products/processors-and-microcontrollers/s32-automotive-platform/s32k-auto-general-purpose-mcus/s32k1-microcontrollers-for-automotive-general-purpose:S32K1) [注9](#id21)微控制器。
+
+<a id="hardware"></a>
+
+## 硬件（Hardware）
+
+
+- NXP S32K146
+
+
+  - Arm Cortex-M4F，最高112 MHz
+  - 1 MB闪存（Flash）
+  - 128 KB静态随机存储器（SRAM）
+  - 最多127个I/O
+  - 3路FlexCAN，其中2路支持FD
+  - 增强型DMA（eDMA）、12位ADC、内存保护单元（MPU）、ECC等
+- 接口（Interfaces）：
+
+
+  - DCD-LZ调试接口，提供SWD及控制台／UART
+  - 双路CAN FD PHY，各带双连接器以支持菊花链（Daisy Chain）连接
+  - 符合DroneCode标准的JST-GH连接器及I/O排针
+  - 用户RGB LED及按键
+
+<a id="id20"></a>
+
+硬件及设计资源的更多信息见[NXP UCANS32K1SIC](https://www.nxp.com/design/development-boards/analog-toolbox/can-sic-evaluation-board:UCANS32K1SIC) [注8](#id18)网站。
+
+<a id="supported-features"></a>
+
+### 支持的功能（Supported Features）
+
+`ucans32k1sic`开发板支持下表所列的硬件功能。
+
+片上／板载（On-Chip / On-Board）
+
+功能集成在片上系统（SoC）内／位于开发板上。
+
+2 / 2
+
+分别表示已启用／已禁用的实例数。点击数量标签，可查看开发板或SoC设备树源码（DTS）中该功能的第一个实例。
+
+`vnd,foo`
+
+与此功能匹配的设备树绑定兼容字符串（Compatible String）；点击链接可查看绑定文档。
+
+<a id="ucans32k1sic-hw-features"></a>
+
+<a id="ucans32k1sic-ucans32k1sic/s32k146-hw-features-section"></a>
+
+#### `ucans32k1sic/s32k146`目标（Target）
+
+<a id="ucans32k1sic-ucans32k1sic/s32k146-hw-features-panel"></a>
+
+<a id="ucans32k1sic-ucans32k1sic/s32k146-hw-features-memory"></a>
+
+该开发板目标的片上存储容量：64 KiB RAM、1 MiB Flash。
+
+<a id="ucans32k1sic-ucans32k1sic/s32k146-hw-features-table"></a>
+
+<table>
+<tr>
+<th>类型（Type）</th>
+<th>位置（Location）</th>
+<th>说明（Description）</th>
+<th>兼容字符串（Compatible）</th>
+</tr>
+<tr>
+<td rowspan="1">中央处理器（CPU）</td>
+<td>片上（On-Chip）</td>
+<td>ARM Cortex-M4F 处理器（CPU）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/nxp/s32/nxp_s32k1xx.dtsi?plain=1#L21">已启用：1</a>）</td>
+<td><a href="../cpu_arm_riscv_binding_reference/P025_arm_cortex-m4f.md#std-dtcompatible-arm-cortex-m4f"><code>arm,cortex-m4f</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">模数转换器（ADC）</td>
+<td>片上（On-Chip）</td>
+<td>NXP 12位模数转换器（ADC12）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/nxp/s32/nxp_s32k1xx.dtsi?plain=1#L337">已启用：2</a>）</td>
+<td><a href="../hardware/P847_NXPADC12模数转换器绑定.md#dtbinding-nxp-adc12"><code>nxp,adc12</code></a></td>
+</tr>
+<tr>
+<td rowspan="2">控制器局域网（CAN）</td>
+<td>片上（On-Chip）</td>
+<td>NXP FlexCAN CAN FD控制器（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/nxp/s32/nxp_s32k1xx.dtsi?plain=1#L52">已启用：2</a>）</td>
+<td><a href="../can_adi_atmel_nxp_binding_reference/P016_nxp_flexcan-fd.md#std-dtcompatible-nxp-flexcan-fd"><code>nxp,flexcan-fd</code></a></td>
+</tr>
+<tr>
+<td>片上（On-Chip）</td>
+<td>NXP FlexCAN控制器（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/nxp/s32/nxp_s32k1xx.dtsi?plain=1#L67">已禁用：1</a>）</td>
+<td><a href="../can_adi_atmel_nxp_binding_reference/P017_nxp_flexcan.md#std-dtcompatible-nxp-flexcan"><code>nxp,flexcan</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">时钟控制（Clock Control）</td>
+<td>片上（On-Chip）</td>
+<td>NXP S32时钟发生器IP节点（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/nxp/s32/nxp_s32k1xx.dtsi?plain=1#L147">已启用：1</a>）</td>
+<td><a href="../clock_nxp_pico_realtek_renesas_binding_reference/P014_nxp_s32-clock.md#std-dtcompatible-nxp-s32-clock"><code>nxp,s32-clock</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">闪存控制器（Flash Controller）</td>
+<td>片上（On-Chip）</td>
+<td>NXP Kinetis闪存模块C（FTFC）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/nxp/s32/nxp_s32k1xx.dtsi?plain=1#L42">已禁用：1</a>）</td>
+<td><a href="../flash_nuvoton_nxp_renesas_binding_reference/P015_nxp_kinetis-ftfc.md#std-dtcompatible-nxp-kinetis-ftfc"><code>nxp,kinetis-ftfc</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">通用输入输出与接插件（GPIO &amp; Headers）</td>
+<td>片上（On-Chip）</td>
+<td>Kinetis通用输入输出（GPIO）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/nxp/s32/nxp_s32k1xx.dtsi?plain=1#L198">已启用：5</a>）</td>
+<td><a href="../gpio_nxp_expanders_binding_reference/P002_nxp_kinetis-gpio.md#std-dtcompatible-nxp-kinetis-gpio"><code>nxp,kinetis-gpio</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">集成电路间总线（I2C）</td>
+<td>片上（On-Chip）</td>
+<td>NXP低功耗I2C（LPI2C）控制器（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/nxp/s32/nxp_s32k1xx.dtsi?plain=1#L154">已启用：1</a>）</td>
+<td><a href="../i2c_nxp_pico_renesas_binding_reference/P005_nxp_lpi2c.md#std-dtcompatible-nxp-lpi2c"><code>nxp,lpi2c</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">输入（Input）</td>
+<td>板载（On-Board）</td>
+<td>一组绑定到 GPIO 的输入按键（GPIO-Bound Input Keys）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/boards/nxp/ucans32k1sic/ucans32k1sic.dts?plain=1#L80">已启用：1</a>）</td>
+<td><a href="../hardware/P563_GPIO按键绑定.md#std-dtcompatible-gpio-keys"><code>gpio-keys</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">中断控制器（Interrupt Controller）</td>
+<td>片上（On-Chip）</td>
+<td>ARMv7-M 嵌套向量中断控制器（Nested Vectored Interrupt Controller，NVIC）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/armv7-m.dtsi?plain=1#L13">已启用：1</a>）</td>
+<td><a href="../arm_interrupt_timer_binding_reference/P002_ARMv7_M_NVIC.md#std-dtcompatible-arm-v7m-nvic"><code>arm,v7m-nvic</code></a></td>
+</tr>
+<tr>
+<td rowspan="2">发光二极管（LED）</td>
+<td>板载（On-Board）</td>
+<td>一组由 GPIO 控制的 LED（GPIO-Controlled LEDs）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/boards/nxp/ucans32k1sic/ucans32k1sic.dts?plain=1#L42">已启用：1</a>）</td>
+<td><a href="../hardware/P564_GPIO指示灯绑定.md#dtbinding-gpio-leds"><code>gpio-leds</code></a></td>
+</tr>
+<tr>
+<td>板载（On-Board）</td>
+<td>一组由脉宽调制（PWM）控制的LED（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/boards/nxp/ucans32k1sic/ucans32k1sic.dts?plain=1#L61">已启用：1</a>）</td>
+<td><a href="../hardware/P565_PWM指示灯绑定.md#dtbinding-pwm-leds"><code>pwm-leds</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">内存管理单元／内存保护单元（MMU / MPU）</td>
+<td>片上（On-Chip）</td>
+<td>NXP系统内存保护单元（SYSMPU）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/nxp/s32/nxp_s32k1xx.dtsi?plain=1#L36">已禁用：1</a>）</td>
+<td><a href="../memory_protection_binding_reference/P008_nxp_sysmpu.md#std-dtcompatible-nxp-sysmpu"><code>nxp,sysmpu</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">存储技术设备（MTD）</td>
+<td>片上（On-Chip）</td>
+<td>闪存（Flash）节点（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/nxp/s32/nxp_s32k146.dtsi?plain=1#L45">已启用：1</a>）</td>
+<td><a href="../mtd_nxp_st_ti_partition_binding_reference/P013_soc-nv-flash.md#std-dtcompatible-soc-nv-flash"><code>soc-nv-flash</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">物理层（PHY）</td>
+<td>板载（On-Board）</td>
+<td>由简单GPIO控制的CAN收发器（Transceiver）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/boards/nxp/ucans32k1sic/ucans32k1sic.dts?plain=1#L90">已启用：2</a>）</td>
+<td><a href="../phy_binding_reference/P001_can-transceiver-gpio.md#std-dtcompatible-can-transceiver-gpio"><code>can-transceiver-gpio</code></a></td>
+</tr>
+<tr>
+<td rowspan="2">引脚控制（Pin Control）</td>
+<td>片上（On-Chip）</td>
+<td>NXP PORT引脚控制器（Pin Controller）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/nxp/s32/nxp_s32k1xx.dtsi?plain=1#L107">已启用：5</a>）</td>
+<td><a href="../pinctrl_nxp_pico_binding_reference/P017_nxp_port-pinmux.md#std-dtcompatible-nxp-port-pinmux"><code>nxp,port-pinmux</code></a></td>
+</tr>
+<tr>
+<td>片上（On-Chip）</td>
+<td>NXP PORT引脚控制器（Pin Controller）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/nxp/s32/nxp_s32k1xx.dtsi?plain=1#L28">已启用：1</a>）</td>
+<td><a href="../pinctrl_nxp_pico_binding_reference/P016_nxp_port-pinctrl.md#std-dtcompatible-nxp-port-pinctrl"><code>nxp,port-pinctrl</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">脉宽调制（PWM）</td>
+<td>片上（On-Chip）</td>
+<td>NXP FlexTimer模块（FTM）PWM控制器（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/nxp/s32/nxp_s32k1xx.dtsi?plain=1#L248">已启用：3</a>）</td>
+<td><a href="../pwm_nxp_renesas_binding_reference/P004_nxp_ftm-pwm.md#std-dtcompatible-nxp-ftm-pwm"><code>nxp,ftm-pwm</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">实时时钟（RTC）</td>
+<td>片上（On-Chip）</td>
+<td>NXP实时时钟（RTC / Real Time Clock）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/nxp/s32/nxp_s32k1xx.dtsi?plain=1#L328">已启用：1</a>）</td>
+<td><a href="../soc_rtc_binding_reference/P002_nxp_rtc.md#std-dtcompatible-nxp-rtc"><code>nxp,rtc</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">串行控制器（Serial Controller）</td>
+<td>片上（On-Chip）</td>
+<td>NXP低功耗UART（LPUART）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/nxp/s32/nxp_s32k1xx.dtsi?plain=1#L183">已启用：1</a>；<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/nxp/s32/nxp_s32k1xx.dtsi?plain=1#L175">已禁用：2</a>）</td>
+<td><a href="../uart_microchip_nordic_nxp_binding_reference/P017_nxp_lpuart.md#std-dtcompatible-nxp-lpuart"><code>nxp,lpuart</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">串行外设接口（SPI）</td>
+<td>片上（On-Chip）</td>
+<td>NXP低功耗SPI（LPSPI）控制器（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/nxp/s32/nxp_s32k1xx.dtsi?plain=1#L73">已启用：1</a>；<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/nxp/s32/nxp_s32k1xx.dtsi?plain=1#L85">已禁用：2</a>）</td>
+<td><a href="../spi_flexspi_nxp_renesas_binding_reference/P004_nxp_lpspi.md#std-dtcompatible-nxp-lpspi"><code>nxp,lpspi</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">静态随机存储器（SRAM）</td>
+<td>片上（On-Chip）</td>
+<td>通用片上静态随机存储器（SRAM）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/nxp/s32/nxp_s32k146.dtsi?plain=1#L24">已启用：2</a>）</td>
+<td><a href="../hardware/P567_内存映射SRAM绑定.md#dtbinding-mmio-sram"><code>mmio-sram</code></a></td>
+</tr>
+<tr>
+<td rowspan="2">定时器（Timer）</td>
+<td>片上（On-Chip）</td>
+<td>ARMv7-M 系统节拍（System Tick）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/armv7-m.dtsi?plain=1#L21">已启用：1</a>）</td>
+<td><a href="../arm_interrupt_timer_binding_reference/P006_ARMv7_M_SysTick.md#std-dtcompatible-arm-armv7m-systick"><code>arm,armv7m-systick</code></a></td>
+</tr>
+<tr>
+<td>片上（On-Chip）</td>
+<td>NXP FlexTimer模块（FTM）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/nxp/s32/nxp_s32k1xx.dtsi?plain=1#L278">已禁用：3</a>）</td>
+<td><a href="../microchip_nordic_nxp_realtek_timer_binding_reference/P006_nxp_ftm.md#std-dtcompatible-nxp-ftm"><code>nxp,ftm</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">看门狗（Watchdog）</td>
+<td>片上（On-Chip）</td>
+<td>NXP看门狗（WDOG32）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/nxp/s32/nxp_s32k1xx.dtsi?plain=1#L137">已启用：1</a>）</td>
+<td><a href="../nxp_nordic_nuvoton_watchdog_binding_reference/P014_nxp_wdog32.md#std-dtcompatible-nxp-wdog32"><code>nxp,wdog32</code></a></td>
+</tr>
+</table>
+
+<a id="connections-and-ios"></a>
+
+### 连接与输入输出（Connections and IOs）
+
+此板有5个GPIO端口，名为gpioa至gpioe。
+
+可在应用覆盖文件中，向唯一的pinctrl节点添加包含所需引脚复用配置的子节点，进一步配置引脚控制。支持的属性见[dts/bindings/pinctrl/nxp,port-pinctrl.yaml](https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/bindings/pinctrl/nxp,port-pinctrl.yaml)。
+
+<a id="leds"></a>
+
+#### 发光二极管（LEDs）
+
+UCANS32K1SIC有一个用户RGB LED，可用作GPIO LED或PWM LED。
+
+<a id="id2"></a>
+
+<table>
+<tr>
+<th>设备树节点（Devicetree Node）</th>
+<th>设备树别名（Devicetree Alias）</th>
+<th>标签（Label）</th>
+<th>引脚（Pin）</th>
+</tr>
+<tr>
+<td>led1_red</td>
+<td>led0</td>
+<td>LED1_RGB_RED</td>
+<td>PTD15</td>
+</tr>
+<tr>
+<td>led1_green</td>
+<td>led1</td>
+<td>LED1_RGB_GREEN</td>
+<td>PTD16</td>
+</tr>
+<tr>
+<td>led1_blue</td>
+<td>led2</td>
+<td>LED1_RGB_BLUE</td>
+<td>PTD0</td>
+</tr>
+</table>
+
+<a id="id3"></a>
+
+<table>
+<tr>
+<th>设备树节点（Devicetree Node）</th>
+<th>设备树别名（Devicetree Alias）</th>
+<th>标签（Label）</th>
+<th>引脚（Pin）</th>
+</tr>
+<tr>
+<td>led1_red_pwm</td>
+<td>pwm-led0 / red-pwm-led</td>
+<td>LED1_RGB_RED_PWM</td>
+<td>PTD15 / FTM0_CH0</td>
+</tr>
+<tr>
+<td>led1_green_pwm</td>
+<td>pwm-led1 / green-pwm-led</td>
+<td>LED1_RGB_GREEN_PWM</td>
+<td>PTD16 / FTM0_CH1</td>
+</tr>
+<tr>
+<td>led1_blue_pwm</td>
+<td>pwm-led2 / blue-pwm-led</td>
+<td>LED1_RGB_BLUE_PWM</td>
+<td>PTD0 / FTM0_CH2</td>
+</tr>
+</table>
+
+用户可自行控制这些LED，输出0时LED亮起。
+
+<a id="buttons"></a>
+
+#### 按键（Buttons）
+
+UCANS32K1SIC有一个用户按键：
+
+<table>
+<tr>
+<th>设备树节点（Devicetree Node）</th>
+<th>标签（Label）</th>
+<th>引脚（Pin）</th>
+</tr>
+<tr>
+<td>sw0 / button_3</td>
+<td>SW3</td>
+<td>PTD15</td>
+</tr>
+</table>
+
+<a id="serial-console"></a>
+
+### 串口控制台（Serial Console）
+
+串口控制台由lpuart1提供，位于7引脚DCD-LZ调试连接器P6。
+
+<table>
+<tr>
+<th>连接器（Connector）</th>
+<th>引脚（Pin）</th>
+<th>引脚功能（Pin Function）</th>
+</tr>
+<tr>
+<td>P6.2</td>
+<td>PTC7</td>
+<td>LPUART1_TX</td>
+</tr>
+<tr>
+<td>P6.3</td>
+<td>PTC6</td>
+<td>LPUART1_RX</td>
+</tr>
+</table>
+
+<a id="system-clock"></a>
+
+### 系统时钟（System Clock）
+
+Arm Cortex-M4F核配置为在RUN模式下以80 MHz运行。
+
+<a id="programming-and-debugging"></a>
+
+## 烧录与调试（Programming and Debugging）
+
+`ucans32k1sic`开发板支持下表所列的运行工具（Runners）及相关west命令。
+
+<table>
+<tr>
+<th></th>
+<th>烧录（flash）</th>
+<th>调试（debug）</th>
+<th>连接调试会话（attach）</th>
+<th>实时传输（rtt）</th>
+<th>复位（reset）</th>
+<th>调试服务器（debugserver）</th>
+</tr>
+<tr>
+<td><a href="https://docs.zephyrproject.org/latest/develop/flash_debug/host-tools.html#runner-jlink">jlink</a></td>
+<td>✅（默认 / default）</td>
+<td>✅（默认 / default）</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="https://docs.zephyrproject.org/latest/develop/flash_debug/host-tools.html#runner-trace32">trace32</a></td>
+<td>✅</td>
+<td>✅</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</table>
+
+ucans32k1sic应用可按“构建应用”中的常规方法构建。（[构建应用（Building an Application）](../application/P001_应用开发.md#build-an-application)）
+
+<a id="id24"></a>
+
+<a id="id26"></a>
+
+此板支持[Lauterbach TRACE32](https://www.lauterbach.com) [注10](#id23)及[SEGGER J-Link](https://wiki.segger.com/S32Kxxx) [注11](#id25)运行工具，用于烧录及调试应用。分别按对应的调试主机工具说明设置，默认运行工具为J-Link。（[Lauterbach TRACE32调试主机工具](https://docs.zephyrproject.org/latest/develop/flash_debug/host-tools.html#lauterbach-trace32-debug-host-tools)；[J-Link主机调试工具（Debug Host Tools）](https://docs.zephyrproject.org/latest/develop/flash_debug/host-tools.html#jlink-debug-host-tools)）
+
+<a id="flashing"></a>
+
+### 烧录（Flashing）
+
+运行west flash，通过SEGGER J-Link烧录应用；或运行west flash -r trace32，使用Lauterbach TRACE32。
+
+Lauterbach TRACE32运行工具还支持从命令行传入以下附加选项：
+
+```text
+west flash -r trace32 --startup-args elfFile=<elf_path> loadTo=<flash/sram>
+   eraseFlash=<yes/no> verifyFlash=<yes/no>
+```
+
+其中：
+
+
+- `<elf_path>`为输出目录中Zephyr应用ELF文件的路径。
+- loadTo=flash将应用加载到SoC内部程序闪存，要求设置[CONFIG_XIP](https://docs.zephyrproject.org/latest/kconfig.html#CONFIG_XIP)；loadTo=sram将应用加载到SRAM。默认值为flash。
+- eraseFlash=yes在将应用下载到闪存或SRAM之前，擦除SoC内部闪存的全部内容，此操作需要一定时间。默认值为no。
+- verifyFlash=yes在编程后核验SoC内部闪存内容，应与loadTo=flash配合使用。默认值为no。
+
+例如，要擦除并核验闪存内容：
+
+```text
+west flash -r trace32 --startup-args elfFile=build/zephyr/zephyr.elf loadTo=flash eraseFlash=yes verifyFlash=yes
+```
+
+<a id="debugging"></a>
+
+### 调试（Debugging）
+
+运行west debug，通过SEGGER J-Link启动GDB会话；或运行west debug -r trace32，启动Lauterbach TRACE32调试界面。
+
+<a id="support-resources-for-zephyr"></a>
+
+### Zephyr支持资源（Support Resources）
+
+
+- <a id="id5"></a>
+
+  [NXP开发板支持状态（Board Support Status）](https://github.com/nxp-zephyr/nxp-zsdk/blob/main/doc/releases/Board-Support-Status.md)[注1](#id4)
+- <a id="id7"></a>
+
+  [NXP Zephyr下游软件开发工具包（Downstream SDK）](https://github.com/nxp-zephyr/nxp-zsdk)[注2](#id6)
+- <a id="id9"></a>
+
+  <a id="id11"></a>
+
+  [MCUXpresso for VS Code文档](https://mcuxpresso.nxp.com/mcux-vscode) [注3](#id8)及[Zephyr实验指南](https://mcuxpresso.nxp.com/mcux-vscode/latest/html/Training-Zephyr-Getting-Started.html) [注4](#id10)
+- <a id="id13"></a>
+
+  [NXP Zephyr知识中心（Knowledge Hub）](https://community.nxp.com/t5/Zephyr-Project-Knowledge-Base/Zephyr-Knowledge-Hub/ta-p/2008548)[注5](#id12)
+- <a id="id15"></a>
+
+  [NXP的Zephyr专题页面](https://nxp.com/zephyr) [注6](#id14)，含培训资源
+- <a id="id17"></a>
+
+  NXP Zephyr支持社区论坛 [注7](#id16)（[NXP Zephyr支持社区论坛（Support Community）](https://community.nxp.com/t5/Zephyr-Project/bd-p/Zephyr-Project)）
+
+<a id="references"></a>
+
+## 参考资料（References）
+
+<a id="id4"></a>
+
+〔[1](#id5)〕 [https://github.com/nxp-zephyr/nxp-zsdk/blob/main/doc/releases/Board-Support-Status.md](https://github.com/nxp-zephyr/nxp-zsdk/blob/main/doc/releases/Board-Support-Status.md)
+
+<a id="id6"></a>
+
+〔[2](#id7)〕 [https://github.com/nxp-zephyr/nxp-zsdk](https://github.com/nxp-zephyr/nxp-zsdk)
+
+<a id="id8"></a>
+
+〔[3](#id9)〕 [https://mcuxpresso.nxp.com/mcux-vscode](https://mcuxpresso.nxp.com/mcux-vscode)
+
+<a id="id10"></a>
+
+〔[4](#id11)〕 [https://mcuxpresso.nxp.com/mcux-vscode/latest/html/Training-Zephyr-Getting-Started.html](https://mcuxpresso.nxp.com/mcux-vscode/latest/html/Training-Zephyr-Getting-Started.html)
+
+<a id="id12"></a>
+
+〔[5](#id13)〕 [https://community.nxp.com/t5/Zephyr-Project-Knowledge-Base/Zephyr-Knowledge-Hub/ta-p/2008548](https://community.nxp.com/t5/Zephyr-Project-Knowledge-Base/Zephyr-Knowledge-Hub/ta-p/2008548)
+
+<a id="id14"></a>
+
+〔[6](#id15)〕 [https://nxp.com/zephyr](https://nxp.com/zephyr)
+
+<a id="id16"></a>
+
+〔[7](#id17)〕 [https://community.nxp.com/t5/Zephyr-Project/bd-p/Zephyr-Project](https://community.nxp.com/t5/Zephyr-Project/bd-p/Zephyr-Project)
+
+<a id="id18"></a>
+
+〔8〕 ([1](#id19),[2](#id20)) [https://www.nxp.com/design/development-boards/analog-toolbox/can-sic-evaluation-board:UCANS32K1SIC](https://www.nxp.com/design/development-boards/analog-toolbox/can-sic-evaluation-board:UCANS32K1SIC)
+
+<a id="id21"></a>
+
+〔[9](#id22)〕 [https://www.nxp.com/products/processors-and-microcontrollers/s32-automotive-platform/s32k-auto-general-purpose-mcus/s32k1-microcontrollers-for-automotive-general-purpose:S32K1](https://www.nxp.com/products/processors-and-microcontrollers/s32-automotive-platform/s32k-auto-general-purpose-mcus/s32k1-microcontrollers-for-automotive-general-purpose:S32K1)
+
+<a id="id23"></a>
+
+〔[10](#id24)〕 [https://www.lauterbach.com](https://www.lauterbach.com)
+
+<a id="id25"></a>
+
+〔[11](#id26)〕 [https://wiki.segger.com/S32Kxxx](https://wiki.segger.com/S32Kxxx)
+
+## 译注
+
+UCANS32K1SIC提供CAN SIC接口，控制台为P6的lpuart1；TRACE32与J-Link的加载、擦除、核验及调试参数均保留。
+
+## 原文外链核对
+
+2026-10-16核对并重试以下原文外链时未能确认可访问性，保留原始目标，不将访问失败解释为原文内容有误。
+
+- [2008548](https://community.nxp.com/t5/Zephyr-Project-Knowledge-Base/Zephyr-Knowledge-Hub/ta-p/2008548)：HTTP Error 403: Forbidden。
+- [Zephyr-Project](https://community.nxp.com/t5/Zephyr-Project/bd-p/Zephyr-Project)：HTTP Error 403: Forbidden。
+- [Training-Zephyr-Getting-Started.html](https://mcuxpresso.nxp.com/mcux-vscode/latest/html/Training-Zephyr-Getting-Started.html)：HTTP Error 404: Not Found。
+- [zephyr](https://nxp.com/zephyr)：HTTP Error 404: Not Found。
+- [can-sic-evaluation-board:UCANS32K1SIC](https://www.nxp.com/design/development-boards/analog-toolbox/can-sic-evaluation-board:UCANS32K1SIC)：HTTP Error 404: Not Found。
+- [s32k1-microcontrollers-for-automotive-general-purpose:S32K1](https://www.nxp.com/products/processors-and-microcontrollers/s32-automotive-platform/s32k-auto-general-purpose-mcus/s32k1-microcontrollers-for-automotive-general-purpose:S32K1)：HTTP Error 404: Not Found。
+
+---
+
+[上一章](P015_TWR-KV58F220M.md) · [返回大纲](大纲.md) · [全站翻译进度](../PROGRESS.md) · [下一章](P017_USB-KW24D512.md)

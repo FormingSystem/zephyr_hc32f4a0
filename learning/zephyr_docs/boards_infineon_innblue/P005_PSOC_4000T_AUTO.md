@@ -1,0 +1,456 @@
+---
+id: learning.zephyr-docs.boards-infineon-innblue.page-5
+title: PSOC 4000T AUTO
+kind: reference
+status: maintained
+domains: [zephyr, boards]
+source_url: https://docs.zephyrproject.org/latest/boards/infineon/cy8cproto_040t/doc/cy8cproto_040t_auto.html
+---
+
+<!-- Copyright 2015-2026 Zephyr Project members and individual contributors. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<!-- 中文翻译；编号、导航与译注为本地新增。 -->
+
+<a id="cy8cproto_040t_auto"></a>
+
+# 第5章\_PSOC 4000T AUTO
+
+原文：[官方页面](https://docs.zephyrproject.org/latest/boards/infineon/cy8cproto_040t/doc/cy8cproto_040t_auto.html)。读取日期：2026-10-16；来源摘要见[来源记录](../SOURCES.md)。
+
+开发板概览（Board Overview）
+
+<a id="id1"></a>
+
+[![官方原图：../../../../_images/cy8cproto_040t.webp](images/cy8cproto_040t.webp)](images/cy8cproto_040t.webp)
+
+PSOC 4000T AUTO
+
+名称（Name）：
+
+`cy8cproto_040t_auto`
+
+厂商（Vendor）：
+
+[英飞凌科技（Infineon Technologies）](https://docs.zephyrproject.org/latest/boards/index.html#vendor=infineon)
+
+状态（Status）：
+
+维护中（Maintained）
+
+架构（Architecture）：
+
+[arm](https://docs.zephyrproject.org/latest/boards/index.html#arch=arm)
+
+片上系统（SoC）：
+
+[cy8c4046lqe_t1](https://docs.zephyrproject.org/latest/boards/index.html#soc=cy8c4046lqe_t1)
+
+<a id="board-github-link"></a>
+
+[浏览开发板源码（Browse Board Sources）](https://github.com/zephyrproject-rtos/zephyr/blob/main//boards/infineon/cy8cproto_040t/doc/cy8cproto_040t_auto.rst/../..)<a id="overview"></a>
+
+## 概述（Overview）
+
+[CY8CPROTO-040T-AUTO](https://www.infineon.com/evaluation-board/CY8CPROTO-040T)是基于PSOC 4000T系列的原型开发套件，采用PSOC 4000T微控制器CY8C4046LQE-T1，Arm Cortex-M0+内核最高48 MHz。
+
+主要特性包括64 KB Flash、8 KB SRAM、CAPSENSE低功耗感应，以及通过USB Micro-B连接的板载[KitProg3](https://github.com/Infineon/KitProg3)编程器／调试器。
+
+<a id="hardware"></a>
+
+## 硬件（Hardware）
+
+
+- 片上系统（SoC）：PSOC™ 4000T (CY8C4046LQE-T1)
+- CPU：Arm Cortex-M0+，48 MHz
+- 闪存（Flash）：64 KB
+- 静态随机存储器（SRAM）：8 KB
+- 外设：TCPWM、SCB（UART／SPI／I2C）、低功耗多传感器模块（MSCLP / CAPSENSE）
+- 调试：板载KitProg3，提供SWD及UART桥接
+- 电源：通过Micro-B接口由USB供电，工作电压5 V
+
+PSOC™ 4000T及CY8CPROTO-040T-AUTO更多信息见：
+
+
+- [PSOC 4 SoC网站](https://www.infineon.com/cms/en/product/microcontroller/32-bit-psoc-arm-cortex-microcontroller/psoc-4-32-bit-arm-cortex-m0-mcu/)
+
+<a id="kit-contents"></a>
+
+### 套件内容（Kit Contents）
+
+
+- PSOC 4000T Prototyping Kit开发板
+- USB-A转Micro-B线缆
+- 快速入门指南（Quick Start Guide）
+
+<a id="supported-features"></a>
+
+### 支持的功能（Supported Features）
+
+`cy8cproto_040t_auto`开发板支持下表所列的硬件功能。
+
+片上／板载（On-Chip / On-Board）
+
+功能集成在片上系统（SoC）内／位于开发板上。
+
+2 / 2
+
+分别表示已启用／已禁用的实例数。点击数量标签，可查看开发板或SoC设备树源码（DTS）中该功能的第一个实例。
+
+`vnd,foo`
+
+与此功能匹配的设备树绑定兼容字符串（Compatible String）；点击链接可查看绑定文档。
+
+<a id="cy8cproto_040t_auto-hw-features"></a>
+
+<a id="cy8cproto_040t_auto-cy8cproto_040t_auto/cy8c4046lqe_t1-hw-features-section"></a>
+
+#### `cy8cproto_040t_auto/cy8c4046lqe_t1`目标（Target）
+
+<a id="cy8cproto_040t_auto-cy8cproto_040t_auto/cy8c4046lqe_t1-hw-features-panel"></a>
+
+<a id="cy8cproto_040t_auto-cy8cproto_040t_auto/cy8c4046lqe_t1-hw-features-memory"></a>
+
+该开发板目标的片上存储容量：8 KiB RAM、64 KiB Flash。
+
+<a id="cy8cproto_040t_auto-cy8cproto_040t_auto/cy8c4046lqe_t1-hw-features-table"></a>
+
+<table>
+<tr>
+<th>类型（Type）</th>
+<th>位置（Location）</th>
+<th>说明（Description）</th>
+<th>兼容字符串（Compatible）</th>
+</tr>
+<tr>
+<td rowspan="1">中央处理器（CPU）</td>
+<td>片上（On-Chip）</td>
+<td>ARM Cortex-M0+处理器（CPU）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/infineon/psoc4/psoc4000t/psoc4000t.cm0p.dtsi?plain=1#L15">已启用：1</a>）</td>
+<td><a href="../cpu_arm_riscv_binding_reference/P017_arm_cortex-m0+.md#std-dtcompatible-arm-cortex-m0"><code>arm,cortex-m0+</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">ARM 架构（ARM Architecture）</td>
+<td>片上（On-Chip）</td>
+<td>英飞凌串行通信模块（SCB / Serial Communication Blocks）节点（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/infineon/psoc4/psoc4000t/psoc4000t.dtsi?plain=1#L110">已禁用：1</a>）</td>
+<td><a href="../arm_timing_ethosu_control_binding_reference/P011_infineon_scb.md#std-dtcompatible-infineon-scb"><code>infineon,scb</code></a></td>
+</tr>
+<tr>
+<td rowspan="3">时钟控制（Clock Control）</td>
+<td>片上（On-Chip）</td>
+<td>通用固定频率时钟提供者（Fixed-Rate Clock Provider）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/infineon/psoc4/psoc4000t/system_clocks.dtsi?plain=1#L19">已启用：2</a>；<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/infineon/psoc4/psoc4000t/system_clocks.dtsi?plain=1#L37">已禁用：1</a>）</td>
+<td><a href="../timer_reference/P112_Infineon固定时钟绑定.md#dtbinding-infineon-fixed-clock"><code>infineon,fixed-clock</code></a></td>
+</tr>
+<tr>
+<td>片上（On-Chip）</td>
+<td>通用固定频率时钟提供者（Fixed-Rate Clock Provider）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/infineon/psoc4/psoc4000t/system_clocks.dtsi?plain=1#L45">已启用：1</a>）</td>
+<td><a href="../timer_reference/P113_Infineon固定比例时钟绑定.md#dtbinding-infineon-fixed-factor-clock"><code>infineon,fixed-factor-clock</code></a></td>
+</tr>
+<tr>
+<td>片上（On-Chip）</td>
+<td>英飞凌外设分频器（Peripheral Divider）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/infineon/psoc4/psoc4000t/system_clocks.dtsi?plain=1#L57">已启用：1</a>；<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/infineon/psoc4/psoc4000t/system_clocks.dtsi?plain=1#L66">已禁用：3</a>）</td>
+<td><a href="../clock_esp_infineon_microchip_binding_reference/P009_infineon_peri-div.md#std-dtcompatible-infineon-peri-div"><code>infineon,peri-div</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">计数器（Counter）</td>
+<td>片上（On-Chip）</td>
+<td>英飞凌TCPWM计数器（Counter）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/infineon/psoc4/psoc4000t/psoc4000t.dtsi?plain=1#L145">已禁用：2</a>）</td>
+<td><a href="../microchip_soc_counter_binding_reference/P002_infineon_tcpwm-counter.md#std-dtcompatible-infineon-tcpwm-counter"><code>infineon,tcpwm-counter</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">闪存控制器（Flash Controller）</td>
+<td>片上（On-Chip）</td>
+<td>英飞凌CAT1闪存控制器（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/infineon/psoc4/psoc4000t/psoc4000t.dtsi?plain=1#L14">已启用：1</a>）</td>
+<td><a href="../flash_adi_microchip_nordic_binding_reference/P014_infineon_flash-controller.md#std-dtcompatible-infineon-flash-controller"><code>infineon,flash-controller</code></a></td>
+</tr>
+<tr>
+<td rowspan="2">通用输入输出与接插件（GPIO &amp; Headers）</td>
+<td>片上（On-Chip）</td>
+<td>英飞凌GPIO端口（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/infineon/psoc4/psoc4000t/psoc4000t.dtsi?plain=1#L54">已启用：3</a>；<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/infineon/psoc4/psoc4000t/psoc4000t.dtsi?plain=1#L44">已禁用：2</a>）</td>
+<td><a href="../gpio_infineon_intel_ite_microchip_binding_reference/P001_infineon_gpio.md#std-dtcompatible-infineon-gpio"><code>infineon,gpio</code></a></td>
+</tr>
+<tr>
+<td>片上（On-Chip）</td>
+<td>英飞凌共享GPIO集合（Shared GPIO Set）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/infineon/psoc4/psoc4000t/psoc4000t.dtsi?plain=1#L85">已启用：1</a>）</td>
+<td><a href="../gpio_infineon_intel_ite_microchip_binding_reference/P002_infineon_shared-gpio.md#std-dtcompatible-infineon-shared-gpio"><code>infineon,shared-gpio</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">中断控制器（Interrupt Controller）</td>
+<td>片上（On-Chip）</td>
+<td>ARMv6-M嵌套向量中断控制器（NVIC / Nested Vectored Interrupt Controller）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/armv6-m.dtsi?plain=1#L13">已启用：1</a>）</td>
+<td><a href="../arm_interrupt_timer_binding_reference/P001_ARMv6_M_NVIC.md#std-dtcompatible-arm-v6m-nvic"><code>arm,v6m-nvic</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">发光二极管（LED）</td>
+<td>板载（On-Board）</td>
+<td>一组由 GPIO 控制的 LED（GPIO-Controlled LEDs）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/boards/infineon/cy8cproto_040t/cy8cproto_040t_auto.dts?plain=1#L29">已启用：1</a>）</td>
+<td><a href="../hardware/P564_GPIO指示灯绑定.md#dtbinding-gpio-leds"><code>gpio-leds</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">存储技术设备（MTD）</td>
+<td>片上（On-Chip）</td>
+<td>闪存（Flash）节点（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/infineon/psoc4/psoc4000t/psoc4000t.dtsi?plain=1#L22">已启用：1</a>）</td>
+<td><a href="../mtd_nxp_st_ti_partition_binding_reference/P013_soc-nv-flash.md#std-dtcompatible-soc-nv-flash"><code>soc-nv-flash</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">引脚控制（Pin Control）</td>
+<td>片上（On-Chip）</td>
+<td>英飞凌（Infineon）CAT1引脚控制容器（Pinctrl Container）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/infineon/psoc4/psoc4000t/psoc4000t.dtsi?plain=1#L39">已启用：1</a>）</td>
+<td><a href="../pinctrl_infineon_nordic_nxp_binding_reference/P001_infineon_pinctrl.md#std-dtcompatible-infineon-pinctrl"><code>infineon,pinctrl</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">脉宽调制（PWM）</td>
+<td>片上（On-Chip）</td>
+<td>英飞凌TCPWM脉宽调制（PWM）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/infineon/psoc4/psoc4000t/psoc4000t.dtsi?plain=1#L139">已禁用：2</a>）</td>
+<td><a href="../pwm_adi_esp_infineon_binding_reference/P019_infineon_tcpwm-pwm.md#std-dtcompatible-infineon-tcpwm-pwm"><code>infineon,tcpwm-pwm</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">串行控制器（Serial Controller）</td>
+<td>片上（On-Chip）</td>
+<td>英飞凌CAT1 UART（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/infineon/psoc4/psoc4000t/psoc4000t.dtsi?plain=1#L102">已启用：1</a>）</td>
+<td><a href="../uart_espressif_infineon_microchip_binding_reference/P008_infineon_uart.md#std-dtcompatible-infineon-uart"><code>infineon,uart</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">静态随机存储器（SRAM）</td>
+<td>片上（On-Chip）</td>
+<td>通用片上静态随机存储器（SRAM）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/infineon/psoc4/psoc4000t/psoc4000t.dtsi?plain=1#L33">已启用：1</a>）</td>
+<td><a href="../hardware/P567_内存映射SRAM绑定.md#dtbinding-mmio-sram"><code>mmio-sram</code></a></td>
+</tr>
+<tr>
+<td rowspan="2">定时器（Timer）</td>
+<td>片上（On-Chip）</td>
+<td>ARMv6-M系统节拍（System Tick）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/armv6-m.dtsi?plain=1#L21">已启用：1</a>）</td>
+<td><a href="../arm_interrupt_timer_binding_reference/P005_ARMv6_M_SysTick.md#std-dtcompatible-arm-armv6m-systick"><code>arm,armv6m-systick</code></a></td>
+</tr>
+<tr>
+<td>片上（On-Chip）</td>
+<td>英飞凌TCPWM定时器（Timer）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/infineon/psoc4/psoc4000t/psoc4000t.dtsi?plain=1#L130">已禁用：2</a>）</td>
+<td><a href="../mcu_timer_binding_reference/P009_infineon_tcpwm.md#std-dtcompatible-infineon-tcpwm"><code>infineon,tcpwm</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">看门狗（Watchdog）</td>
+<td>片上（On-Chip）</td>
+<td>英飞凌CAT1看门狗（Watchdog）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/infineon/psoc4/psoc4000t/psoc4000t.dtsi?plain=1#L118">已禁用：1</a>）</td>
+<td><a href="../soc_pmic_watchdog_binding_reference/P001_infineon_watchdog.md#std-dtcompatible-infineon-watchdog"><code>infineon,watchdog</code></a></td>
+</tr>
+</table>
+
+<a id="connections-and-ios"></a>
+
+### 连接与输入输出（Connections and IOs）
+
+<a id="leds"></a>
+
+#### 发光二极管（LEDs）
+
+<table>
+<tr>
+<th>名称（Name）</th>
+<th>GPIO引脚（Pin）</th>
+</tr>
+<tr>
+<td>LED3</td>
+<td>P1.0（高电平有效 / active high）</td>
+</tr>
+<tr>
+<td>LED1</td>
+<td>P3.0（低电平有效 / active low）</td>
+</tr>
+</table>
+
+<a id="push-buttons"></a>
+
+#### 按键（Push Buttons）
+
+开发板默认不定义按键节点。P3.0通过排针J6与SW4共用信号路径，因此被定义为`led1`，见上文。[Button](../basic_samples/P003_按钮输入.md#button)等需要将SW4作为输入的示例会提供设备树覆盖文件（Devicetree Overlay），把该引脚重新用作`sw0`按键。
+
+注意（Note）
+
+USER LED1与用户按键SW4通过选择排针J6共用信号路径，因此同一时刻只能使用J6选定的功能，即LED1或SW4。
+
+<a id="default-zephyr-peripheral-mapping"></a>
+
+#### Zephyr默认外设映射（Default Peripheral Mapping）
+
+<table>
+<tr>
+<th>引脚（Pin）</th>
+<th>功能（Function）</th>
+<th>用途（Usage）</th>
+</tr>
+<tr>
+<td>P2.3</td>
+<td>SCB0 UART 发送（TX）</td>
+<td>控制台发送（Console TX）</td>
+</tr>
+<tr>
+<td>P2.2</td>
+<td>SCB0 UART 接收（RX）</td>
+<td>控制台接收（Console RX）</td>
+</tr>
+<tr>
+<td>P1.0</td>
+<td>通用输入输出（GPIO）</td>
+<td>LED3，取决于J6设置</td>
+</tr>
+<tr>
+<td>P3.0</td>
+<td>通用输入输出（GPIO）</td>
+<td>LED1／按键SW4，由J6选择</td>
+</tr>
+</table>
+
+注意（Note）
+
+用于生产前，应根据官方开发板原理图核对上述UART引脚映射。
+
+注意（Note）
+
+通过KitProg3 USB-UART桥接器使用控制台时，必须将SW2设到UART位置。如果将SCB0配置为I2C，SW2也用于选择I2C引脚连接。
+
+<a id="system-clock"></a>
+
+### 系统时钟（System Clock）
+
+PSOC 4000T默认使用内部主振荡器（IMO）作为系统时钟源，时钟路径如下：
+
+
+- 内部主振荡器（IMO）：48 MHz
+- CLK_HF：48 MHz，系统时钟
+
+<a id="serial-port"></a>
+
+### 串口（Serial Port）
+
+PSOC 4000T有两个串行通信模块（SCB）接口，每个均可配置为UART、SPI或I2C。Zephyr控制台分配到SCB0（uart0），通过KitProg3 USB-UART桥接器连接主机。
+
+要使用UART控制台，必须将SW2设到UART位置，否则KitProg3 USB-UART桥接器未连接SCB0引脚，控制台不可用。
+
+默认通信设置为115200、8N1。
+
+<a id="building"></a>
+
+## 构建（Building）
+
+下面以[Hello World](../getting_started/P005_HelloWorld示例.md#hello_world)应用为例。
+
+```text
+# From the root of the zephyr repository
+west build -b cy8cproto_040t_auto samples/hello_world
+```
+
+<a id="programming-and-debugging"></a>
+
+## 烧录与调试（Programming and Debugging）
+
+`cy8cproto_040t_auto`开发板支持下表所列的运行工具（Runners）及相关west命令。
+
+<table>
+<tr>
+<th></th>
+<th>烧录（flash）</th>
+<th>调试（debug）</th>
+<th>连接调试会话（attach）</th>
+<th>实时传输（rtt）</th>
+<th>调试服务器（debugserver）</th>
+</tr>
+<tr>
+<td><a href="https://docs.zephyrproject.org/latest/develop/flash_debug/host-tools.html#runner-openocd">openocd</a></td>
+<td>✅（默认 / default）</td>
+<td>✅（默认 / default）</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+</table>
+
+[CY8CPROTO-040T-AUTO](https://www.infineon.com/evaluation-board/CY8CPROTO-040T)集成板载[KitProg3](https://github.com/Infineon/KitProg3)编程器／调试器，可编程及调试PSOC™ 4000T Cortex-M0+内核。
+
+<a id="infineon-openocd-installation"></a>
+
+### 英飞凌OpenOCD安装（Installation）
+
+ModusToolbox编程工具包（Programming Tools）包含[英飞凌OpenOCD](https://github.com/Infineon/openocd/releases/latest)。也可下载适用于当前系统的英飞凌OpenOCD发行版，解压到选定位置，独立安装。（[ModusToolbox编程工具（Programming Tools）](https://softwaretools.infineon.com/tools/com.ifx.tb.tool.modustoolboxprogtools)）
+
+注意（Note）
+
+Linux需要为KitProg3设置设备访问权限，ModusToolbox编程工具安装过程会自动处理。独立安装OpenOCD时，可手动执行`openocd/udev_rules/install_rules.sh`脚本设置。
+
+<a id="configuring-a-console"></a>
+
+### 配置控制台（Configuring a Console）
+
+使用USB线缆连接计算机与[CY8CPROTO-040T-AUTO](https://www.infineon.com/evaluation-board/CY8CPROTO-040T)的KitProg3 USB Micro-B连接器，选择minicom、PuTTY等串口终端，并使用以下设置：
+
+
+- 速率（Speed）：115200波特率
+- 数据位（Data）：8位
+- 奇偶校验（Parity）：无（None）
+- 停止位（Stop Bits）：1位
+
+<a id="flashing"></a>
+
+### 烧录（Flashing）
+
+<a id="tab-0-V2luZG93cw=="></a>
+
+<a id="tab-0-TGludXg="></a>
+
+<a id="panel-0-V2luZG93cw=="></a>
+
+**Windows**
+
+一次性设置英飞凌OpenOCD路径：
+
+```text
+west config build.cmake-args -- "-DOPENOCD=path/to/infineon/openocd/bin/openocd.exe"
+```
+
+构建并烧录应用：
+
+```text
+west build -b cy8cproto_040t_auto -p always samples/hello_world
+west flash
+```
+
+<a id="panel-0-TGludXg="></a>
+
+**Linux**
+
+一次性设置英飞凌OpenOCD路径：
+
+```text
+west config build.cmake-args -- -DOPENOCD=path/to/infineon/openocd/bin/openocd
+```
+
+构建并烧录应用：
+
+```text
+west build -b cy8cproto_040t_auto -p always samples/hello_world
+west flash
+```
+
+控制台上应显示以下消息：
+
+```text
+*** Booting Zephyr OS build vX.Y.Z ***
+Hello World! cy8cproto_040t_auto
+```
+
+<a id="debugging"></a>
+
+### 调试（Debugging）
+
+```text
+# From the root of the zephyr repository
+west build -b cy8cproto_040t_auto samples/hello_world
+west debug
+```
+
+GDB控制台启动后，可设置断点（Breakpoints），并对PSOC™ 4000T Cortex-M0+内核执行标准GDB调试。
+
+<a id="references"></a>
+
+## 参考资料（References）
+
+---
+
+[上一章](P004_PSOC_4000T.md) · [返回大纲](大纲.md) · [全站翻译进度](../PROGRESS.md) · [下一章](P006_CY8CPROTO-041TP.md)

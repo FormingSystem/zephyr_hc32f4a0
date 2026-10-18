@@ -1,0 +1,623 @@
+---
+id: learning.zephyr-docs.boards-st-nucleo.page-65
+title: Nucleo U031R8
+kind: reference
+status: maintained
+domains: [zephyr, boards]
+source_url: https://docs.zephyrproject.org/latest/boards/st/nucleo_u031r8/doc/index.html
+---
+
+<!-- Copyright 2015-2026 Zephyr Project members and individual contributors. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<!-- 中文翻译；编号、导航与译注为本地新增。 -->
+
+<a id="nucleo_u031r8"></a>
+
+# 第65章\_Nucleo U031R8开发板
+
+原文：[官方页面](https://docs.zephyrproject.org/latest/boards/st/nucleo_u031r8/doc/index.html)。读取日期：2026-10-16；来源摘要见[来源记录](../SOURCES.md)。
+
+开发板概览（Board Overview）
+
+<a id="id1"></a>
+
+[![官方原图：../../../../_images/nucleo_u031r8.jpg](images/nucleo_u031r8.jpg)](images/nucleo_u031r8.jpg)
+
+Nucleo U031R8开发板
+
+名称（Name）：
+
+`nucleo_u031r8`
+
+厂商（Vendor）：
+
+[意法半导体（STMicroelectronics）](https://docs.zephyrproject.org/latest/boards/index.html#vendor=st)
+
+状态（Status）：
+
+维护中（Maintained）
+
+架构（Architecture）：
+
+[arm](https://docs.zephyrproject.org/latest/boards/index.html#arch=arm)
+
+片上系统（SoC）：
+
+[stm32u031xx](https://docs.zephyrproject.org/latest/boards/index.html#soc=stm32u031xx)
+
+<a id="board-github-link"></a>
+
+[浏览开发板源码（Browse Board Sources）](https://github.com/zephyrproject-rtos/zephyr/blob/main//boards/st/nucleo_u031r8/doc/index.rst/../..)<a id="overview"></a>
+
+## 概述（Overview）
+
+Nucleo U031R8搭载基于Arm Cortex-M0+的STM32U031R8 MCU，用户可选择不同性能与功耗组合，以经济、灵活的方式尝试新概念和构建原型。主要特点如下：
+
+
+- LQFP48封装的STM32U031R8微控制器
+- 两类扩展资源：
+
+
+  - Arduino Uno V3连接接口
+  - ST morpho扩展排针，可访问全部STM32U0 I/O
+- 板载STLINK-V2EC调试器／编程器支持USB重新枚举，提供大容量存储、虚拟COM端口及调试端口
+- 灵活的开发板供电方式：
+
+
+  - 通过USB VBUS或外部电源（3.3 V、5 V、7～12 V）供电
+- 与ARDUINO® Uno V3共用的用户LED
+- 两个按键：USER及RESET
+- 用于ST-LINK的USB Type-C®连接器
+
+更多信息见[NUCLEO_U031R8网站](https://www.st.com/en/evaluation-tools/nucleo-u031r8.html)。
+
+<a id="hardware"></a>
+
+## 硬件（Hardware）
+
+STM32U031x4/6/8属于STM32U0超低功耗微控制器系列，基于Arm® Cortex®-M0+ 32位RISC内核，最高工作频率56 MHz。
+
+
+- 采用ST先进专利技术
+- 支持FlexPowerControl的超低功耗设计：
+
+
+  - 供电电压1.71～3.6 V
+  - 工作温度范围−40 °C至+85／125 °C
+  - VBAT模式130 nA，为RTC及9个32位备份寄存器供电
+  - 关断模式（Shutdown Mode）16 nA，4个唤醒引脚
+  - 未开启RTC的待机模式（Standby Mode）30 nA，6个唤醒引脚
+  - 开启RTC的待机模式160 nA
+  - 开启RTC的Stop 2模式630 nA
+  - 未开启RTC的Stop 2模式515 nA
+  - 从停止模式唤醒：原文写“4 µA”，单位为电流，照录并提示疑点。
+  - 运行模式52 µA/MHz
+  - 欠压复位（Brownout Reset）
+- 处理器核（Core）：
+
+
+  - 32位Arm® Cortex®-M0+ CPU，最高56 MHz
+- 自适应实时加速器（ART Accelerator）：
+
+
+  - 1 Kbyte指令缓存，支持从Flash零等待执行
+- 基准测试（Benchmarks）：
+
+
+  - 1.13 DMIPS/MHz，原文基准名称拼作Drystone 2.1
+  - 134 CoreMark®，56 MHz时2.4 CoreMark/MHz
+  - ULPMark™-CP分数：430
+  - ULPMark™-PP分数：167
+  - ULPMark™-CM分数：20.3
+- 存储器（Memories）：
+
+
+  - 64 Kbyte单存储区Flash，支持专有代码读出保护
+  - 12 Kbyte SRAM，支持硬件奇偶校验
+- 通用输入输出（GPIO）：
+
+
+  - 最多53个高速I/O，多数耐受5 V
+- 时钟管理（Clock Management）：
+
+
+  - 4–48 MHz晶体振荡器（Crystal Oscillator）
+  - 用于实时时钟（RTC）的32 kHz低速外部晶体振荡器（LSE）
+  - 内部16 MHz RC振荡器，出厂校准（Factory-Trimmed），精度±1%
+  - 内部低功耗32 kHz RC振荡器，精度±5%
+  - 内部多速率100 kHz至48 MHz振荡器，由LSE自动校准，精度优于±0.25%
+  - 用于系统时钟及ADC的锁相环（PLL）
+- 安全（Security）：
+
+
+  - 用户代码保护（Customer Code Protection）
+  - 稳健读出保护（RDP）：3个保护等级，支持基于128位密码（PSWD）的保护回退（Regression）
+  - 硬件保护功能（Hardware Protection，HDP）
+  - 安全启动（Secure Boot）
+  - 真随机数生成，原文状态为NIST SP 800-90B认证候选
+  - 原文状态为Arm® PSA Level 1及SESIP Level 3认证候选
+  - 5个被动防篡改引脚（Passive Anti-tamper Pins）
+  - 96位唯一标识（Unique ID）
+- 最多9个定时器、RTC及2个看门狗：
+
+
+  - 1个16位高级电机控制定时器、1个32位及3个16位通用定时器、2个16位基本定时器、2个可在停止模式工作的16位低功耗定时器、2个看门狗及SysTick定时器
+  - RTC，带硬件日历、闹钟及校准
+- 最多16个通信外设：
+
+
+  - 6路USART/LPUART，支持SPI、ISO 7816、LIN、IrDA及调制解调器
+  - 3路I2C，支持快速模式（Fast-mode）及快速模式增强（Fast-mode Plus），最高1 Mbit/s
+  - 2路SPI，另有4路USART可配置为SPI模式
+  - 红外定时器（IRTIM，Infrared Interface）
+- 丰富的模拟外设，具有独立供电：
+
+
+  - 1个12位ADC，转换时间0.4 µs，通过硬件过采样可达16位
+  - 1路12位DAC输出，支持低功耗采样保持
+  - 1个通用运算放大器，内置PGA，可变增益最高16倍
+  - 一个超低功耗比较器（Comparator）
+- 符合ECOPACK2的封装
+
+STM32U031R8的更多信息见：
+
+
+- [STM32U031R8在ST官网的产品页](https://www.st.com/en/microcontrollers-microprocessors/stm32u031r8)
+- [STM32U031R8参考手册（Reference Manual）](https://www.st.com/resource/en/reference_manual/rm0503-stm32u0-series-advanced-armbased-32bit-mcus-stmicroelectronics.pdf)
+
+<a id="supported-features"></a>
+
+### 支持的功能（Supported Features）
+
+`nucleo_u031r8`开发板支持下表所列的硬件功能。
+
+片上／板载（On-Chip / On-Board）
+
+功能集成在片上系统（SoC）内／位于开发板上。
+
+2 / 2
+
+分别表示已启用／已禁用的实例数。点击数量标签，可查看开发板或SoC设备树源码（DTS）中该功能的第一个实例。
+
+`vnd,foo`
+
+与此功能匹配的设备树绑定兼容字符串（Compatible String）；点击链接可查看绑定文档。
+
+<a id="nucleo_u031r8-hw-features"></a>
+
+<a id="nucleo_u031r8-nucleo_u031r8/stm32u031xx-hw-features-section"></a>
+
+#### `nucleo_u031r8/stm32u031xx`目标（Target）
+
+<a id="nucleo_u031r8-nucleo_u031r8/stm32u031xx-hw-features-panel"></a>
+
+<a id="nucleo_u031r8-nucleo_u031r8/stm32u031xx-hw-features-memory"></a>
+
+该开发板目标的片上存储容量：8 KiB RAM、64 KiB Flash。
+
+<a id="nucleo_u031r8-nucleo_u031r8/stm32u031xx-hw-features-table"></a>
+
+<table>
+<tr>
+<th>类型（Type）</th>
+<th>位置（Location）</th>
+<th>说明（Description）</th>
+<th>兼容字符串（Compatible）</th>
+</tr>
+<tr>
+<td rowspan="1">中央处理器（CPU）</td>
+<td>片上（On-Chip）</td>
+<td>ARM Cortex-M0+处理器（CPU）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/u0/stm32u0.dtsi?plain=1#L32">已启用：1</a>）</td>
+<td><a href="../cpu_arm_riscv_binding_reference/P017_arm_cortex-m0+.md#std-dtcompatible-arm-cortex-m0"><code>arm,cortex-m0+</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">模数转换器（ADC）</td>
+<td>片上（On-Chip）</td>
+<td>STM32模数转换器（ADC）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/u0/stm32u0.dtsi?plain=1#L371">已启用：1</a>）</td>
+<td><a href="../hardware/P839_STM32模数转换器绑定.md#dtbinding-st-stm32-adc"><code>st,stm32-adc</code></a></td>
+</tr>
+<tr>
+<td rowspan="7">时钟控制（Clock Control）</td>
+<td>片上（On-Chip）</td>
+<td>STM32F0/G0复位与时钟控制器（RCC）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/u0/stm32u0.dtsi?plain=1#L176">已启用：1</a>）</td>
+<td><a href="../timer_reference/P171_STM32F0复位与时钟控制绑定.md#dtbinding-st-stm32f0-rcc"><code>st,stm32f0-rcc</code></a></td>
+</tr>
+<tr>
+<td>片上（On-Chip）</td>
+<td>STM32 外部高速时钟（HSE Clock）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/u0/stm32u0.dtsi?plain=1#L70">已禁用：1</a>）</td>
+<td><a href="../timer_reference/P129_STM32高速外部时钟绑定.md#dtbinding-st-stm32-hse-clock"><code>st,stm32-hse-clock</code></a></td>
+</tr>
+<tr>
+<td>片上（On-Chip）</td>
+<td>通用固定频率时钟提供者（Fixed-Rate Clock Provider）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/u0/stm32u0.dtsi?plain=1#L76">已启用：1</a>；<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/u0/stm32u0.dtsi?plain=1#L98">已禁用：1</a>）</td>
+<td><a href="../hardware/P566_固定时钟绑定.md#dtbinding-fixed-clock"><code>fixed-clock</code></a></td>
+</tr>
+<tr>
+<td>片上（On-Chip）</td>
+<td>STM32多速内部时钟（MSI Clock）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/u0/stm32u0.dtsi?plain=1#L83">已禁用：1</a>）</td>
+<td><a href="../timer_reference/P132_STM32多速内部时钟绑定.md#dtbinding-st-stm32-msi-clock"><code>st,stm32-msi-clock</code></a></td>
+</tr>
+<tr>
+<td>片上（On-Chip）</td>
+<td>STM32低速外部时钟（LSE Clock）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/u0/stm32u0.dtsi?plain=1#L90">已禁用：1</a>）</td>
+<td><a href="../timer_reference/P130_STM32低速外部时钟绑定.md#dtbinding-st-stm32-lse-clock"><code>st,stm32-lse-clock</code></a></td>
+</tr>
+<tr>
+<td>片上（On-Chip）</td>
+<td>STM32U0主锁相环（PLL）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/u0/stm32u0.dtsi?plain=1#L105">已启用：1</a>）</td>
+<td><a href="../timer_reference/P149_STM32U0锁相环时钟绑定.md#dtbinding-st-stm32u0-pll-clock"><code>st,stm32u0-pll-clock</code></a></td>
+</tr>
+<tr>
+<td>片上（On-Chip）</td>
+<td>STM32 时钟多路复用器（Clock Multiplexer）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/u0/stm32u0.dtsi?plain=1#L111">已禁用：1</a>）</td>
+<td><a href="../timer_reference/P133_STM32时钟多路复用绑定.md#dtbinding-st-stm32-clock-mux"><code>st,stm32-clock-mux</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">计数器（Counter）</td>
+<td>片上（On-Chip）</td>
+<td>STM32 计数器（Counters）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/u0/stm32u0.dtsi?plain=1#L543">已禁用：7</a>）</td>
+<td><a href="../stm32_ti_xilinx_counter_binding_reference/P007_st_stm32-counter.md#std-dtcompatible-st-stm32-counter"><code>st,stm32-counter</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">循环冗余校验（CRC）</td>
+<td>片上（On-Chip）</td>
+<td>STM32 CRC 计算单元（Calculation Unit）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/u0/stm32u0.dtsi?plain=1#L727">已禁用：1</a>）</td>
+<td><a href="../crc_clock_monitor_binding_reference/P011_st_stm32-crc.md#std-dtcompatible-st-stm32-crc"><code>st,stm32-crc</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">密码学加速器（Cryptographic Accelerator）</td>
+<td>片上（On-Chip）</td>
+<td>STM32高级加密标准加速器（AES Accelerator）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/u0/stm32u0.dtsi?plain=1#L505">已禁用：1</a>）</td>
+<td><a href="../crypto_secure_engine_st_ti_binding_reference/P015_st_stm32-aes.md#std-dtcompatible-st-stm32-aes"><code>st,stm32-aes</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">数模转换器（DAC）</td>
+<td>片上（On-Chip）</td>
+<td>STM32 系列数模转换器（DAC）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/u0/stm32u0.dtsi?plain=1#L395">已启用：1</a>）</td>
+<td><a href="../hardware/P760_STM32数模转换器绑定.md#dtbinding-st-stm32-dac"><code>st,stm32-dac</code></a></td>
+</tr>
+<tr>
+<td rowspan="2">直接存储器访问（DMA）</td>
+<td>片上（On-Chip）</td>
+<td>STM32直接存储器访问控制器（DMA Controller，V2）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/u0/stm32u0.dtsi?plain=1#L439">已禁用：1</a>）</td>
+<td><a href="../stm32_ti_xilinx_dma_binding_reference/P008_st_stm32-dma-v2.md#std-dtcompatible-st-stm32-dma-v2"><code>st,stm32-dma-v2</code></a></td>
+</tr>
+<tr>
+<td>片上（On-Chip）</td>
+<td>STM32 DMA 多路复用控制器（DMAMUX Controller）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/u0/stm32u0.dtsi?plain=1#L450">已禁用：1</a>）</td>
+<td><a href="../stm32_ti_xilinx_dma_binding_reference/P011_st_stm32-dmamux.md#std-dtcompatible-st-stm32-dmamux"><code>st,stm32-dmamux</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">闪存控制器（Flash Controller）</td>
+<td>片上（On-Chip）</td>
+<td>STM32 系列闪存控制器（Flash Controller）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/u0/stm32u0.dtsi?plain=1#L120">已启用：1</a>）</td>
+<td><a href="../flash_renesas_st_ti_binding_reference/P011_st_stm32-flash-controller.md#std-dtcompatible-st-stm32-flash-controller"><code>st,stm32-flash-controller</code></a></td>
+</tr>
+<tr>
+<td rowspan="2">通用输入输出与接插件（GPIO &amp; Headers）</td>
+<td>片上（On-Chip）</td>
+<td>STM32 通用输入输出控制器（GPIO Controller）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/u0/stm32u0.dtsi?plain=1#L208">已启用：6</a>）</td>
+<td><a href="../gpio_silabs_st_connectors_binding_reference/P029_st_stm32-gpio.md#std-dtcompatible-st-stm32-gpio"><code>st,stm32-gpio</code></a></td>
+</tr>
+<tr>
+<td>板载（On-Board）</td>
+<td>引出到Arduino Uno R3排针（Headers）的GPIO引脚（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/boards/st/nucleo_u031r8/arduino_r3_connector.dtsi?plain=1#L10">已启用：1</a>）</td>
+<td><a href="../gpio_adi_headers_ambiq_binding_reference/P023_arduino-header-r3.md#std-dtcompatible-arduino-header-r3"><code>arduino-header-r3</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">集成电路间总线（I2C）</td>
+<td>片上（On-Chip）</td>
+<td>STM32 I2C V2 控制器（Controller）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/u0/stm32u0.dtsi?plain=1#L403">已启用：2</a>；<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/u0/stm32u0.dtsi?plain=1#L427">已禁用：1</a>）</td>
+<td><a href="../i2c_stm32_ti_mux_binding_reference/P008_st_stm32-i2c-v2.md#std-dtcompatible-st-stm32-i2c-v2"><code>st,stm32-i2c-v2</code></a></td>
+</tr>
+<tr>
+<td rowspan="2">输入（Input）</td>
+<td>片上（On-Chip）</td>
+<td>STM32触摸感应控制器驱动（TSC；原文Tocuh拼写如此）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/u0/stm32u0.dtsi?plain=1#L717">已禁用：1</a>）</td>
+<td><a href="../input_touch_lvgl_gesture_binding_reference/P007_st_stm32-tsc.md#std-dtcompatible-st-stm32-tsc"><code>st,stm32-tsc</code></a></td>
+</tr>
+<tr>
+<td>板载（On-Board）</td>
+<td>一组绑定到 GPIO 的输入按键（GPIO-Bound Input Keys）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/boards/st/nucleo_u031r8/nucleo_u031r8.dts?plain=1#L33">已启用：1</a>）</td>
+<td><a href="../hardware/P563_GPIO按键绑定.md#std-dtcompatible-gpio-keys"><code>gpio-keys</code></a></td>
+</tr>
+<tr>
+<td rowspan="2">中断控制器（Interrupt Controller）</td>
+<td>片上（On-Chip）</td>
+<td>ARMv6-M嵌套向量中断控制器（NVIC / Nested Vectored Interrupt Controller）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/armv6-m.dtsi?plain=1#L13">已启用：1</a>）</td>
+<td><a href="../arm_interrupt_timer_binding_reference/P001_ARMv6_M_NVIC.md#std-dtcompatible-arm-v6m-nvic"><code>arm,v6m-nvic</code></a></td>
+</tr>
+<tr>
+<td>片上（On-Chip）</td>
+<td>STM32G0 外部中断控制器（External Interrupt Controller）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/u0/stm32u0.dtsi?plain=1#L188">已启用：1</a>）</td>
+<td><a href="../mcu_external_interrupt_binding_reference/P002_st_stm32g0-exti.md#std-dtcompatible-st-stm32g0-exti"><code>st,stm32g0-exti</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">发光二极管（LED）</td>
+<td>板载（On-Board）</td>
+<td>一组由 GPIO 控制的 LED（GPIO-Controlled LEDs）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/boards/st/nucleo_u031r8/nucleo_u031r8.dts?plain=1#L24">已启用：1</a>）</td>
+<td><a href="../hardware/P564_GPIO指示灯绑定.md#dtbinding-gpio-leds"><code>gpio-leds</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">存储技术设备（MTD）</td>
+<td>片上（On-Chip）</td>
+<td>STM32闪存（Flash Memory）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/u0/stm32u0.dtsi?plain=1#L129">已启用：1</a>）</td>
+<td><a href="../mtd_nxp_st_ti_partition_binding_reference/P016_st_stm32-nv-flash.md#std-dtcompatible-st-stm32-nv-flash"><code>st,stm32-nv-flash</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">非易失存储器（NVMEM）</td>
+<td>片上（On-Chip）</td>
+<td>非易失存储器固定布局（Fixed Layout for Non-Volatile Memory）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/u0/stm32u0.dtsi?plain=1#L150">已启用：1</a>）</td>
+<td><a href="../memory_protection_binding_reference/P009_fixed-layout.md#std-dtcompatible-fixed-layout"><code>fixed-layout</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">一次性可编程存储器（OTP Memory）</td>
+<td>片上（On-Chip）</td>
+<td>STM32 嵌入式非易失一次性可编程存储器（NVM OTP）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/u0/stm32u0.dtsi?plain=1#L146">已启用：1</a>；<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/u0/stm32u0.dtsi?plain=1#L139">已禁用：1</a>）</td>
+<td><a href="../otp_binding_reference/P010_st_stm32-nvm-otp.md#std-dtcompatible-st-stm32-nvm-otp"><code>st,stm32-nvm-otp</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">引脚控制（Pin Control）</td>
+<td>片上（On-Chip）</td>
+<td>STM32 引脚控制器（Pin Controller）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/u0/stm32u0.dtsi?plain=1#L201">已启用：1</a>）</td>
+<td><a href="../pinctrl_stm32_ti_xilinx_binding_reference/P004_st_stm32-pinctrl.md#std-dtcompatible-st-stm32-pinctrl"><code>st,stm32-pinctrl</code></a></td>
+</tr>
+<tr>
+<td rowspan="2">电源管理（Power Management）</td>
+<td>片上（On-Chip）</td>
+<td>STM32 电源控制器（Power Controller）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/u0/stm32u0.dtsi?plain=1#L257">已启用：1</a>）</td>
+<td><a href="../stm32_soc_power_binding_reference/P010_st_stm32-pwr.md#std-dtcompatible-st-stm32-pwr"><code>st,stm32-pwr</code></a></td>
+</tr>
+<tr>
+<td>片上（On-Chip）</td>
+<td>STM32唤醒线控制器（Wake-up Lines Controller）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/u0/stm32u0.dtsi?plain=1#L261">已禁用：1</a>）</td>
+<td><a href="../stm32_soc_power_binding_reference/P009_st_stm32-pwr-wkupctrl.md#std-dtcompatible-st-stm32-pwr-wkupctrl"><code>st,stm32-pwr-wkupctrl</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">脉宽调制（PWM）</td>
+<td>片上（On-Chip）</td>
+<td>STM32 脉宽调制（PWM）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/u0/stm32u0.dtsi?plain=1#L537">已启用：2</a>；<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/u0/stm32u0.dtsi?plain=1#L595">已禁用：3</a>）</td>
+<td><a href="../pwm_stm32_ti_generic_binding_reference/P011_st_stm32-pwm.md#std-dtcompatible-st-stm32-pwm"><code>st,stm32-pwm</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">复位控制器（Reset Controller）</td>
+<td>片上（On-Chip）</td>
+<td>STM32 复位与时钟控制器（Reset and Clock Control，RCC）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/u0/stm32u0.dtsi?plain=1#L182">已启用：1</a>）</td>
+<td><a href="../reset_controller_binding_reference/P017_st_stm32-rcc-rctl.md#std-dtcompatible-st-stm32-rcc-rctl"><code>st,stm32-rcc-rctl</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">随机数生成器（RNG）</td>
+<td>片上（On-Chip）</td>
+<td>STM32 随机数生成器（Random Number Generator）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/u0/stm32u0.dtsi?plain=1#L494">已禁用：1</a>）</td>
+<td><a href="../soc_rng_binding_reference/P016_st_stm32-rng.md#std-dtcompatible-st-stm32-rng"><code>st,stm32-rng</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">实时时钟（RTC）</td>
+<td>片上（On-Chip）</td>
+<td>STM32 实时时钟（RTC）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/u0/stm32u0.dtsi?plain=1#L515">已禁用：1</a>）</td>
+<td><a href="../soc_rtc_binding_reference/P014_st_stm32-rtc.md#std-dtcompatible-st-stm32-rtc"><code>st,stm32-rtc</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">传感器（Sensors）</td>
+<td>片上（On-Chip）</td>
+<td>STM32 正交解码器（Quadrature Decoder）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/u0/stm32u0.dtsi?plain=1#L548">已禁用：3</a>）</td>
+<td><a href="../sensor_st_lsm_stm32_binding_reference/P028_st_stm32-qdec.md#std-dtcompatible-st-stm32-qdec"><code>st,stm32-qdec</code></a></td>
+</tr>
+<tr>
+<td rowspan="2">串行控制器（Serial Controller）</td>
+<td>片上（On-Chip）</td>
+<td>STM32 通用同步／异步收发器（USART）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/u0/stm32u0.dtsi?plain=1#L302">已启用：2</a>；<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/u0/stm32u0.dtsi?plain=1#L320">已禁用：2</a>）</td>
+<td><a href="../uart_silabs_stm32_ti_binding_reference/P016_st_stm32-usart.md#std-dtcompatible-st-stm32-usart"><code>st,stm32-usart</code></a></td>
+</tr>
+<tr>
+<td>片上（On-Chip）</td>
+<td>STM32低功耗通用异步收发器（LPUART）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/u0/stm32u0.dtsi?plain=1#L338">已禁用：2</a>）</td>
+<td><a href="../uart_silabs_stm32_ti_binding_reference/P014_st_stm32-lpuart.md#std-dtcompatible-st-stm32-lpuart"><code>st,stm32-lpuart</code></a></td>
+</tr>
+<tr>
+<td rowspan="1">串行外设接口（SPI）</td>
+<td>片上（On-Chip）</td>
+<td>带嵌入式接收和发送先进先出队列（Rx / Tx FIFOs）的STM32 SPI控制器（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/u0/stm32u0.dtsi?plain=1#L461">已禁用：3</a>）</td>
+<td><a href="../spi_stm32_ti_xilinx_binding_reference/P009_st_stm32-spi-fifo.md#std-dtcompatible-st-stm32-spi-fifo"><code>st,stm32-spi-fifo</code></a></td>
+</tr>
+<tr>
+<td rowspan="3">定时器（Timer）</td>
+<td>片上（On-Chip）</td>
+<td>ARMv6-M系统节拍（System Tick）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/armv6-m.dtsi?plain=1#L21">已启用：1</a>）</td>
+<td><a href="../arm_interrupt_timer_binding_reference/P005_ARMv6_M_SysTick.md#std-dtcompatible-arm-armv6m-systick"><code>arm,armv6m-systick</code></a></td>
+</tr>
+<tr>
+<td>片上（On-Chip）</td>
+<td>STM32 定时器（Timers）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/u0/stm32u0.dtsi?plain=1#L526">已启用：2</a>；<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/u0/stm32u0.dtsi?plain=1#L584">已禁用：5</a>）</td>
+<td><a href="../stm32_ti_silabs_timer_binding_reference/P008_st_stm32-timers.md#std-dtcompatible-st-stm32-timers"><code>st,stm32-timers</code></a></td>
+</tr>
+<tr>
+<td>片上（On-Chip）</td>
+<td>STM32U5低功耗定时器（LPTIM）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/u0/stm32u0.dtsi?plain=1#L693">已禁用：2</a>）</td>
+<td><a href="../stm32_ti_silabs_timer_binding_reference/P009_st_stm32u5-lptim.md#std-dtcompatible-st-stm32u5-lptim"><code>st,stm32u5-lptim</code></a></td>
+</tr>
+<tr>
+<td rowspan="2">看门狗（Watchdog）</td>
+<td>片上（On-Chip）</td>
+<td>STM32 看门狗（Watchdog）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/u0/stm32u0.dtsi?plain=1#L356">已禁用：1</a>）</td>
+<td><a href="../stm32_ti_xilinx_watchdog_binding_reference/P001_st_stm32-watchdog.md#std-dtcompatible-st-stm32-watchdog"><code>st,stm32-watchdog</code></a></td>
+</tr>
+<tr>
+<td>片上（On-Chip）</td>
+<td>STM32 系统窗口看门狗（System Window Watchdog）（<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm/st/u0/stm32u0.dtsi?plain=1#L363">已禁用：1</a>）</td>
+<td><a href="../stm32_ti_xilinx_watchdog_binding_reference/P002_st_stm32-window-watchdog.md#std-dtcompatible-st-stm32-window-watchdog"><code>st,stm32-window-watchdog</code></a></td>
+</tr>
+</table>
+
+<a id="connections-and-ios"></a>
+
+### 连接与输入输出（Connections and IOs）
+
+Nucleo U031R8有10个通用输入输出（GPIO）控制器，负责引脚复用（Pin Muxing）、输入输出、上拉等功能。
+
+更多细节见[STM32U031用户手册](https://www.st.com/resource/en/user_manual/um3261-stm32u0-series-safety-manual-stmicroelectronics.pdf)。
+
+<a id="default-zephyr-peripheral-mapping"></a>
+
+#### Zephyr 默认外设映射（Peripheral Mapping）：
+
+
+- `DAC1_OUT1 : PA4`
+- LD1 : PA5
+- UART_1_TX：PA9
+- UART_1_RX：PA10
+- `UART_2_TX : PA2`
+- `UART_2_RX : PA3`
+- `USER_PB : PC13`
+
+<a id="system-clock"></a>
+
+#### 系统时钟（System Clock）
+
+Nucleo U031R8系统时钟可来自内部振荡器、外部振荡器或主PLL。默认以4 MHz中速内部振荡器（MSI）驱动PLL，产生48 MHz系统时钟。
+
+<a id="serial-port"></a>
+
+#### 串口（Serial Port）
+
+Nucleo U031R8有4路U(S)ART，Zephyr控制台分配给USART2，默认参数115200、8N1。
+
+<a id="programming-and-debugging"></a>
+
+## 烧录与调试（Programming and Debugging）
+
+`nucleo_u031r8`开发板支持下表所列的运行工具（Runners）及相关west命令。
+
+<table>
+<tr>
+<th></th>
+<th>烧录（flash）</th>
+<th>调试（debug）</th>
+<th>复位（reset）</th>
+<th>连接调试会话（attach）</th>
+<th>实时传输（rtt）</th>
+<th>调试服务器（debugserver）</th>
+</tr>
+<tr>
+<td><a href="https://docs.zephyrproject.org/latest/develop/flash_debug/host-tools.html#runner-jlink">jlink</a></td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="https://docs.zephyrproject.org/latest/develop/flash_debug/host-tools.html#runner-pyocd">pyocd</a></td>
+<td>✅</td>
+<td>✅（默认 / default）</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="https://docs.zephyrproject.org/latest/develop/flash_debug/host-tools.html#runner-stlink-gdbserver">stlink_gdbserver</a></td>
+<td></td>
+<td>✅</td>
+<td></td>
+<td>✅</td>
+<td></td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="https://docs.zephyrproject.org/latest/develop/flash_debug/host-tools.html#runner-stm32cubeprogrammer"><code>stm32cubeprogrammer</code></a></td>
+<td>✅（默认 / default）</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</table>
+
+原文此处说明Nucleo U031R8内置ST-LINK/V3调试工具接口，可用多种工具烧录。译注：硬件列表写STLINK-V2EC，调试器型号差异保留。
+
+警告（Warning）
+
+板载ST-LINK/V3不能转换为J-Link，因此使用J-Link运行工具（Runner）需要外部J-Link调试探针。（[转换为J-Link探针](https://www.segger.com/products/debug-probes/j-link/models/other-j-links/st-link-on-board/)）
+
+警告（Warning）
+
+本板使用pyOCD运行工具存在已知问题。如果遇到问题，例如无法调试，应改用[ST-Link GDB Server](https://docs.zephyrproject.org/latest/develop/flash_debug/host-tools.html#runner-stlink-gdbserver)运行工具。
+
+<a id="flashing"></a>
+
+### 烧录（Flashing）
+
+此板默认通过west的[STM32CubeProgrammer](https://www.st.com/en/development-tools/stm32cubeprog.html)运行器（Runner）烧录，因此需要安装该工具。（[installation](https://docs.zephyrproject.org/latest/develop/flash_debug/host-tools.html#stm32cubeprog-flash-host-tools)）
+
+也可以使用J-Link或pyOCD，通过--runner或-r选项烧录开发板：
+
+```text
+$ west flash --runner pyocd
+$ west flash --runner jlink
+```
+
+pyOCD需要额外目标信息，可执行以下pyOCD命令安装：
+
+```text
+$ pyocd pack --update
+$ pyocd pack --install stm32u0
+```
+
+<a id="flashing-an-application-to-nucleo-u031r8"></a>
+
+#### 向Nucleo U031R8烧录应用（Flashing an Application）
+
+通过USB将Nucleo U031R8连接主机，然后构建并烧录应用。以下以[Hello World](../getting_started/P005_HelloWorld示例.md#hello_world)为例。
+
+运行主机串口程序，连接Nucleo开发板：
+
+```text
+$ minicom -D /dev/ttyACM0
+```
+
+随后构建并烧录应用。
+
+```text
+# From the root of the zephyr repository
+west build -b nucleo_u031r8 samples/hello_world
+west flash
+```
+
+控制台上应显示以下消息：
+
+```text
+Hello World! nucleo_u031r8
+```
+
+<a id="debugging"></a>
+
+### 调试（Debugging）
+
+以下以[Blinky](../getting_started/P004_LED闪烁示例.md#blinky)应用为例。
+
+```text
+# From the root of the zephyr repository
+west build -b nucleo_u031r8 samples/basic/blinky
+west debug
+```
+
+## 译注
+
+原文唤醒指标写4 µA，硬件调试器写STLINK-V2EC而操作段写ST-LINK/V3，两处差异已注明。
+
+## 原文外链核对
+
+2026-10-16核对并重试以下原文外链时未能确认可访问性，保留原始目标，不将访问失败解释为原文内容有误。
+
+- [stm32cubeprog.html](https://www.st.com/en/development-tools/stm32cubeprog.html)：HTTP Error 567: Unknown Status。
+- [nucleo-u031r8.html](https://www.st.com/en/evaluation-tools/nucleo-u031r8.html)：HTTP Error 567: Unknown Status。
+- [stm32u031r8](https://www.st.com/en/microcontrollers-microprocessors/stm32u031r8)：HTTP Error 567: Unknown Status。
+- [rm0503-stm32u0-series-advanced-armbased-32bit-mcus-stmicroelectronics.pdf](https://www.st.com/resource/en/reference_manual/rm0503-stm32u0-series-advanced-armbased-32bit-mcus-stmicroelectronics.pdf)：HTTP Error 567: Unknown Status。
+- [um3261-stm32u0-series-safety-manual-stmicroelectronics.pdf](https://www.st.com/resource/en/user_manual/um3261-stm32u0-series-safety-manual-stmicroelectronics.pdf)：HTTP Error 567: Unknown Status。
+
+---
+
+[上一章](P064_Nucleo_N657X0-Q.md) · [返回大纲](大纲.md) · [全站翻译进度](../PROGRESS.md) · [下一章](P066_Nucleo_U083RC.md)
