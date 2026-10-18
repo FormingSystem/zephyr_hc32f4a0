@@ -1,0 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
+# This is an authored documentation module, not a generated build directory.
+!build_system/
+!build_system/**
