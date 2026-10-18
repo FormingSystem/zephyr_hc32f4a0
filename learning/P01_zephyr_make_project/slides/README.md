@@ -12,6 +12,8 @@ domains: [zephyr, tools]
 
 每个核心问题占一个连续三位章号；Windows 主线 P001—P012，另有 Linux P001，共 13 份正式 PPT。MD 与 PPT 同名配对，页码在各册内独立计数。
 
+官方依据见[各章与官方译文的对应关系](../大纲.md#official-reference)。技术纠错以当前正式稿为基线，同步正文、可复制命令、幻灯片与备注，再更新原生重建源；保留固定源码版本与 `latest` 译文之间的区别。
+
 | 章号 | 完整正文 | 正式 PPT | 页数 |
 | --- | --- | --- | --- |
 | P001 | [准备UCRT64环境与下载Zephyr](../P001_准备UCRT64环境与下载Zephyr_Windows.md) | [PPT](P001_准备UCRT64环境与下载Zephyr_Windows.pptx) | 44 |

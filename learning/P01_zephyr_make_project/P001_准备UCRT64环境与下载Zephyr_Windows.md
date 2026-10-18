@@ -20,6 +20,8 @@ domains: [zephyr, tools]
 
 眼下还没有可以交给构建系统的源码。准备下载 Zephyr 时，Windows 电脑往往还缺少终端和 Git。本章从安装 MSYS2 开始，先让下载工具可用，再选择 Git 克隆或 ZIP 压缩包取得源码，最后按需补回 Git 历史。已有的下载截图和终端记录保留作对照，软件版本、文件大小和提交数量以实际下载结果为准。
 
+**官方译文对照：** [入门指南](../zephyr_docs/getting_started/P002_入门指南.md)说明主机依赖、west 工作区与模块获取的官方流程。本章先用 UCRT64 下载主仓，是本教程的分步安排；ZIP、Git 主仓和完整 west 工作区是不同状态，后续按 P002—P004 补齐环境与模块。官方全文从[主线阅读目录](../zephyr_docs/reading/README.md)进入。
+
 本文面向 Windows x64，命令默认在 **MSYS2 UCRT64 的 Bash 终端**执行。MSYS2 是提供类 Unix 命令行工具和软件包管理器的 Windows 工具环境；Bash 是解释并执行命令的 shell。UCRT64 是 MSYS2 中使用 Windows 通用 C 运行库（Universal C Runtime，UCRT）的 64 位环境，它仍运行在 Windows 上。
 
 正文展示的 `G:\zephyr_practice` 是 **Windows 资源管理器路径**；Bash 的文件操作使用 `/g/zephyr_practice`。从资源管理器粘贴的路径通过 `read -r` 接收后，用 `cygpath -u` 转换，不能把未处理的反斜杠路径直接写在 `cd` 后。这套 `/g` 和 `cygpath` 写法属于 Windows/MSYS2，不是 Linux 或 WSL 的通用路径。

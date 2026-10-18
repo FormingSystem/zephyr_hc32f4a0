@@ -1,13 +1,13 @@
 # P004 4.1.2：从已知配置查真实消费者，再比较两套 CMSIS 接入
 # Windows UCRT64；当前官方源码根；只读，不要求 CMSIS 已下载。
 cd /g/zephyr_practice/zephyr-main
-git grep -n -w 'CONFIG_CPU_CORTEX_M' -- 'modules/*/CMakeLists.txt'
+grep -n -w 'CONFIG_CPU_CORTEX_M' -- modules/*/CMakeLists.txt
 # 本版上一条返回 modules/cmsis_6/CMakeLists.txt；先核对输出，再读对应文件。
 cat modules/cmsis_6/CMakeLists.txt
-git grep -n -E 'CONFIG_CPU_.*CORTEX' -- 'modules/cmsis*/CMakeLists.txt'
+grep -n -E 'CONFIG_CPU_.*CORTEX' -- modules/cmsis*/CMakeLists.txt
 cat modules/cmsis/CMakeLists.txt
 # 接入与外部模块名的绑定由以下主仓源码实现。
-git grep -n -A 10 'def process_cmake' -- scripts/zephyr_module.py
+grep -n -A 10 'def process_cmake' -- scripts/zephyr_module.py
 cat modules/modules.cmake
-git grep -n -e 'MODULE_EXT_ROOT' -e 'string(CONFIGURE' -- cmake/modules/zephyr_module.cmake
-git grep -n -A 13 'foreach(module_name ${ZEPHYR_MODULE_NAMES})' -- CMakeLists.txt
+grep -n -e 'MODULE_EXT_ROOT' -e 'string(CONFIGURE' -- cmake/modules/zephyr_module.cmake
+grep -n -A 13 'foreach(module_name ${ZEPHYR_MODULE_NAMES})' -- CMakeLists.txt

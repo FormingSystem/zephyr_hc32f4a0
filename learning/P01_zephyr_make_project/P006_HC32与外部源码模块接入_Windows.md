@@ -19,6 +19,8 @@ P005 已经解释官方 MPS2 工程如何把应用、设备描述、配置选源
 
 配套 [PPT](slides/P006_HC32与外部源码模块接入_Windows.pptx)；返回 [环境与依赖导航](环境与依赖导航.md)。
 
+官方译文对照：[模块与外部项目](../zephyr_docs/modules/P001_模块与外部项目.md)、[设备驱动模型](../zephyr_docs/hardware/P003_设备驱动模型.md)、[SoC 移植指南](../zephyr_docs/hardware/P002_SoC移植指南.md)。官方接口和本教程 HC32 适配分开核对；本章保留固定源码与 HAL 基线，不把 latest 的变化视为现有实验已经升级。
+
 **复制命令：** 本章完整操作统一放在 [P006 命令索引](commands/P006_Windows/README.md)。按正文前提选择分支，不批量执行全部文件。实验生成目录中的 `p003`、`p006` 保留原有标识，不因教材重排搬动。
 
 <a id="section-6-1"></a>
@@ -299,7 +301,7 @@ P005 的 MPS2 构建已经使用默认模块发现；没有要追加的本地模
 
 官方 `samples/hello_world/CMakeLists.txt` 已有 `find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})`。应用配置时，这句加载源码中的 `share/zephyr-package/cmake/ZephyrConfig.cmake`，进入 `cmake/modules/zephyr_default.cmake`，再包含模块发现规则 `zephyr_module.cmake`。这些是 **Zephyr 原有文件**，读者不用新增它们。
 
-`zephyr_module.cmake` 调用原有的 `scripts/zephyr_module.py`。脚本默认从 west 取得候选项目；若当前配置提供了 `EXTRA_ZEPHYR_MODULES`，CMake 还会把它转换为 `--extra-modules` 输入。`parse_modules()` 遍历候选根，`process_module()` 逐个读取 `zephyr/module.yml`。**先知道目录在哪里，才读取目录中的接入声明**；未进入候选列表的 HAL 不会因为带有 module.yml 就自行加入工程。
+`zephyr_module.cmake` 调用原有的 `scripts/zephyr_module.py`。脚本默认从 west 取得候选项目；若当前配置提供了 `EXTRA_ZEPHYR_MODULES`，CMake 还会把它转换为 `--extra-modules` 输入。`parse_modules()` 遍历候选根，`process_module()` 优先读取 `zephyr/module.yml`，当前固定源码也接受 `zephyr/module.yaml`；两种声明都没有时，仅在 `zephyr/CMakeLists.txt` 与 `zephyr/Kconfig` 同时存在时按旧式布局接入。**先知道目录在哪里，才读取目录中的接入声明**；未进入候选列表的 HAL 不会因为带有 module.yml 就自行加入工程。
 
 ```mermaid
 flowchart TD
@@ -453,7 +455,7 @@ HC32 的选择则由具体接入规则决定。[固定 HAL 修订的根 CMakeLis
 | 默认发现 + 额外追加 | 默认集合，再加 `EXTRA_ZEPHYR_MODULES` | CMSIS_6 加 app_greeting；HC32 可追加 HAL | 提供额外模块真实根路径 |
 | 显式列表 | `ZEPHYR_MODULES` | CMSIS_6 与 app_greeting 都明确列出 | 下载、版本和列表完整性均自行维护 |
 
-`EXTRA_ZEPHYR_MODULES` 是追加路径；`ZEPHYR_MODULES` 是提供基础列表，会取代默认从 west 取得列表的方式。不要为加入一个组件而把显式列表写成只有该组件，那会遗漏 CMSIS 等原本通过默认路径发现的依赖。[官方 Module Inclusion](https://docs.zephyrproject.org/latest/develop/modules.html#module-inclusion)；实现见 `cmake/modules/zephyr_module.cmake` 和 `scripts/zephyr_module.py: parse_modules()`。
+`EXTRA_ZEPHYR_MODULES` 用于增加或替换个别模块：名称不同时加入候选；与 west 项目具有相同模块名时，额外模块优先，替换该模块的来源，其余默认模块保留。同名判定按模块身份，不能把两份同名 HAL 当成两个并存的实现。`ZEPHYR_MODULES` 则提供完整基础列表，取代默认从 west 取得列表的方式。不要为加入一个组件而把显式列表写成只有该组件，那会遗漏 CMSIS 等原本通过默认路径发现的依赖。详见[官方译文的模块接入与选择规则](../zephyr_docs/modules/P001_模块与外部项目.md)。[官方 Module Inclusion](https://docs.zephyrproject.org/latest/develop/modules.html#module-inclusion)；实现见 `cmake/modules/zephyr_module.cmake` 和 `scripts/zephyr_module.py: parse_modules()`。
 
 <a id="section-6-5-9"></a>
 
@@ -499,7 +501,7 @@ G:\zephyr_practice\
 
 ### 6.6.1\_复制适配模块并接入硬件搜索根
 
-CMSIS_6 仍由默认 west 模块发现提供。HAL 主线根是 `G:/zephyr_practice/hal_xhsc`；已有 `G:/zephyr_practice/hal_xhsc-zephyr` 时直接复用。本教程将适配工作副本放在 `G:/zephyr_practice/zephyr-main/build/learning-tools/p003/hc32_port`，沿用系列约定；这不是 Zephyr 官方自带目录，也不表示当前电脑已经创建过它。
+CMSIS_6 仍由默认 west 模块发现提供。HAL 主线根是 `G:/zephyr_practice/hal_xhsc`；已有 `G:/zephyr_practice/hal_xhsc-zephyr` 时直接复用。本教程将适配工作副本放在 `G:/zephyr_practice/zephyr-main/build/learning-tools/p003/hc32_port`，沿用系列约定；这不是 Zephyr 官方自带目录，也不表示当前电脑已经创建过它。若本节已经建立副本，进入 P012 时复用并逐文件阅读，再做 P012 12.6.5 的只读比较；不用再次执行“从空模块复制”的分支。
 
 教材已提供完整模块原件 `F:/git_storage/zephyr_hc32f4a0/learning/board/labs/hc32_port`。只在选择 HC32 分支时，使用以下完整块建立工作副本；若已存在则停下检查已有内容，不覆盖。它复制的是本项目适配，不会下载华大 DDL 或替代 CMSIS。完整附件见 [copy-hc32-port.txt](commands/P006_Windows/copy-hc32-port.txt)。
 

@@ -1,6 +1,13 @@
 # P012_Windows / 12.4.1\_先登记新板身份
 # 先核对正文的终端、目录与前提，再执行此完整操作单元。
 # UCRT64；源码根。首次创建；已存在则先检查，勿覆盖已有练习。
+(
+set -eu
+cd /g/zephyr_practice/zephyr-main
+if test -e build/learning-tools/p003/new-board/boards/others/practice_mps2; then
+  printf '%s\n' '练习板目录已存在；停止创建，先只读核对已有文件。' >&2
+  exit 1
+fi
 mkdir -p build/learning-tools/p003/new-board/boards/others
 mkdir build/learning-tools/p003/new-board/boards/others/practice_mps2
 cat > build/learning-tools/p003/new-board/boards/others/practice_mps2/board.yml <<'EOF'
@@ -17,3 +24,4 @@ cat > build/learning-tools/p003/new-board/boards/others/practice_mps2/Kconfig.pr
 config BOARD_PRACTICE_MPS2
     select SOC_AN386
 EOF
+)

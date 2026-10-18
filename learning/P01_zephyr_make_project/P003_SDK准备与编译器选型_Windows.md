@@ -13,6 +13,8 @@ domains: [zephyr, tools]
 
 P002 之后，CMake、Python 和 Ninja 能在电脑上运行了，但它们还不能替 Cortex-M4 生成指令。现在继续同一个任务：把官方 `hello_world` 交给 `mps2/an386`。我们需要一套运行于 Windows、面向 ARM 目标的编译器；后续 HC32F4A0 同样使用 Cortex-M4 系列内核，可以复用它，芯片外设支持另在源码中准备。
 
+**官方译文对照：** [Zephyr SDK](../zephyr_docs/toolchains/P002_ZephyrSDK.md)、[环境变量](../zephyr_docs/toolchains/P003_环境变量.md)与[其他交叉编译器](../zephyr_docs/toolchains/P005_其他交叉编译器.md)。以下沿用本教程的 SDK 1.0.1 和已注明的源码修订，按本地译文核对包类型、发现接口与替代工具链的边界。
+
 本章只解决 **SDK 下载、安装，以及 zephyr-main 如何发现 SDK 和交叉编译器**。先选择一条安装路线，得到可运行的 ARM 工具链；涉及完整应用的命令留到 CMSIS 准备完成后复现。本文补齐分支、命令前提与结果判断。配套 [PPT](slides/P003_SDK准备与编译器选型_Windows.pptx)、[命令索引](commands/P003_Windows/README.md)、[环境与依赖导航](环境与依赖导航.md)。
 
 前置：[P002](P002_主机工具与Python环境_Windows.md) 已准备 CMake、7-Zip、Python 与 `.venv`。实验源码在 `G:\zephyr_practice\zephyr-main`；普通命令使用 **Windows UCRT64 Bash**，`setup.cmd` 和注册表操作切换 **Windows PowerShell**。两个终端的当前目录和临时环境变量不互相继承。Linux 的安装操作见 [Ubuntu 22.04 分支](P001_官方环境安装与源码准备_Linux.md)，不要照抄本章 `.cmd` 和 Windows 注册表命令。
@@ -101,7 +103,7 @@ cat VERSION
 cat SDK_VERSION
 ```
 
-本期源码为 Zephyr `4.5.0-rc1`，`SDK_VERSION` 为 `1.0.1`。这个文件供原生文档和 `west sdk install` 的默认版本选择使用。构建时 `cmake/modules/FindHostTools.cmake` 请求 `find_package(Zephyr-sdk 1.0)`，再由 SDK 包版本规则判断兼容性；推荐版本不等于只有这一版本能用。这里固定 1.0.1 便于复现，升级后重新读取所用源码。
+本轮核对的源码修订为 `25c8f4a23988dd3b2cfb463613622738298c2d6c`，Zephyr 版本为 `4.5.0-rc1`，`SDK_VERSION` 为 `1.0.1`。保留的早期截图来自 `3777ab91262f93c2c2da7e1ab8cff4e8ea5f4ce4`；两版的 `VERSION`、`SDK_VERSION` 与本章引用的 `FindZephyr-sdk.cmake` 已逐文件比对一致，截图不作为当前检出提交的证明。这个文件供原生文档和 `west sdk install` 的默认版本选择使用。构建时 `cmake/modules/FindHostTools.cmake` 请求 `find_package(Zephyr-sdk 1.0)`，再由 SDK 包版本规则判断兼容性；推荐版本不等于只有这一版本能用。这里固定 1.0.1 便于复现，升级后重新读取所用源码。
 
 主机平台按电脑选：Windows x64 → `windows-x86_64`。目标工具链按生成固件所面向的架构选：官方参考目标 **MPS2 / AN386（Cortex-M4）** 与后续实板 **HC32F4A0（Cortex-M4F）** 都使用 `arm-zephyr-eabi`。HC32 的板和 SoC 适配在 P012 新增，SDK 装好不等于原生源码已经支持 HC32。
 
@@ -229,13 +231,15 @@ flowchart TD
 | 入口 | 提供什么 | 保存范围 / 默认行为 |
 | --- | --- | --- |
 | 默认自动发现 | CMake 用户包记录、原生包搜索输入与 Zephyr 预设路径 | 选择兼容 SDK；找到后缓存本次位置 |
-| Zephyr 输入 `ZEPHYR_SDK_INSTALL_DIR` | SDK 根，可由环境变量或 `-D` 传入 | 由 `zephyr_get` 读取；显式限定到这套 SDK |
+| Zephyr 输入 `ZEPHYR_SDK_INSTALL_DIR` | SDK 根，或包含多套 `zephyr-sdk-*` 的父目录；可由环境变量或 `-D` 传入 | 由 `zephyr_get` 读取；限定搜索前缀，本例选择单套 SDK 根 |
 | CMake 原生 `Zephyr-sdk_DIR` | `SDK根/cmake`，直接含 SDK 包配置文件的目录 | CMake 包目录提示；与 SDK 根不是同一层 |
 | CMake 原生 `CMAKE_PREFIX_PATH` | 包的安装前缀，本例为 SDK 根 | 可影响多个包的搜索，不只 SDK |
 
+本章示例传入单套 SDK 根，以便固定 1.0.1；接口本身也允许传入多版本父目录，例如 `G:/zephyr_practice`，再从其下 `zephyr-sdk-*` 安装中查找兼容版本。因此“显式路径”不必然等于“已固定唯一版本”。这与[官方 SDK 译文的安装包与变量说明](../zephyr_docs/toolchains/P002_ZephyrSDK.md)一致。
+
 **默认自动发现成功时，不需要额外填写 SDK 根或 `ZEPHYR_TOOLCHAIN_VARIANT=zephyr`。** 不愿写用户注册表，或需要明确固定某套 SDK 时，用环境变量或 `-D` 即可。不需要将所有入口叠加设置；普通使用优先理解 Zephyr 的 SDK 根接口。
 
-依据可直接打开官方源码 `doc/develop/toolchains/zephyr_sdk.rst`、`cmake/modules/FindHostTools.cmake`、`cmake/modules/FindZephyr-sdk.cmake`，以及 SDK 的 `cmake/Zephyr-sdkConfig.cmake`。在线入口：[SDK 使用说明](https://docs.zephyrproject.org/latest/develop/toolchains/zephyr_sdk.html)；[本期固定源码中的查找实现](https://github.com/zephyrproject-rtos/zephyr/blob/3777ab91262f93c2c2da7e1ab8cff4e8ea5f4ce4/cmake/modules/FindZephyr-sdk.cmake)。网页 latest 可能更新，复现时以上述本期源码和实际 SDK 包为准。
+依据可直接打开官方源码 `doc/develop/toolchains/zephyr_sdk.rst`、`cmake/modules/FindHostTools.cmake`、`cmake/modules/FindZephyr-sdk.cmake`，以及 SDK 的 `cmake/Zephyr-sdkConfig.cmake`。在线入口：[SDK 使用说明](https://docs.zephyrproject.org/latest/develop/toolchains/zephyr_sdk.html)；[本轮核对修订中的查找实现](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/cmake/modules/FindZephyr-sdk.cmake)。网页 latest 可能更新，复现时以上述本期源码和实际 SDK 包为准。
 
 以下是**只读原文件中的关键调用**，不创建或替换任何文件：
 
@@ -243,12 +247,12 @@ flowchart TD
 # zephyr-main/cmake/modules/FindZephyr-sdk.cmake 中的读取调用
 zephyr_get(ZEPHYR_SDK_INSTALL_DIR)
 
-# 在显式 SDK 根的 LOAD 分支内，官方调用的关键参数
+# 在显式 SDK 路径的 LOAD 分支内，官方调用的关键参数
 find_package(Zephyr-sdk ${Zephyr-sdk_FIND_VERSION_COMPLETE}
              REQUIRED QUIET CONFIG HINTS ${ZEPHYR_SDK_INSTALL_DIR} NO_DEFAULT_PATH)
 ```
 
-`NO_DEFAULT_PATH` 使该分支严格使用给定位置；如果位置或版本不对，应清楚报错，而非悄悄换到注册表里的另一套 SDK。未显式指定时才走自动搜索分支。因此“SDK 明明存在却没找到”首先是路径入口问题，不代表缺了某个新建文件。
+`NO_DEFAULT_PATH` 限制这次查包使用的默认搜索位置；在没有旧包缓存或其他直接包目录输入的新构建目录中，不会因指定位置不兼容而退回注册表里的另一套 SDK。给定位置仍可采用上一段的多版本父目录布局。它不会清空已有 `Zephyr-sdk_DIR` 包缓存，因此改 SDK 时应使用新的构建目录，或按 P011 明确更新相应缓存，不能把这一选项理解为“强制覆盖旧选择”。未显式指定 SDK 路径时，Zephyr 则进入后续自动搜索分支。
 
 <a id="section-3-2-6"></a>
 <a id="sdk-registry"></a>
@@ -367,7 +371,7 @@ grep -F ' toolchain_gnu_windows-x86_64_arm-zephyr-eabi.7z' sha256.sum |
 | `CROSS_COMPILE` | 目录加程序共同前缀；末尾必须保留 `arm-zephyr-eabi-` 的横线 |
 | `CROSS_COMPILE_TOOLCHAIN_PATH` | 独立根，供当前源码检查配套 Newlib/Picolibc 头文件等 C 库能力 |
 
-主机 CMake、Ninja、Python、DTC 等仍是前提。P004 的 CMSIS_6 准备完成并按 P005 核对工程输入后，可以用同一官方应用、同一 `BOARD` 配置新的构建目录；这一工具链对照仍不需要 HC32 HAL：
+主机 CMake、Ninja 和 Python 仍是前提；`dtc` 用于补充设备树诊断，`gperf` 按所选功能使用，具体用途见 P002 2.1.1，不能一概当成每次构建的硬性条件。P004 的 CMSIS_6 准备完成并按 P005 核对工程输入后，可以用同一官方应用、同一 `BOARD` 配置新的构建目录；这一工具链对照仍不需要 HC32 HAL：
 
 ```bash
 # Windows UCRT64；完成 P002—P005；已解压同版独立 ARM 包。

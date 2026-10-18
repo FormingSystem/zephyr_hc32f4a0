@@ -17,6 +17,8 @@ SDK、CMSIS 和 HC32 DDL 下载分别回到 P003、P004、P006；缓存与排错
 
 配套 [PPT](slides/P010_Zephyr的CMake输入与依赖发现_Windows.pptx) 与正文同序。源码依据为 `25c8f4a23988dd3b2cfb463613622738298c2d6c`；网页 latest 用于阅读，固定提交用于核对。Windows 命令默认 UCRT64，实验根为 `/g/zephyr_practice/zephyr-main`。
 
+**官方译文对照：** [配置文件发现](../zephyr_docs/cmake_reference/P004_configuration_files.md)、[CMake 扩展接口](../zephyr_docs/cmake_reference/P008_extensions.md)、[模块与外部项目](../zephyr_docs/modules/P001_模块与外部项目.md)及 [Zephyr SDK](../zephyr_docs/toolchains/P002_ZephyrSDK.md)。接口规则与当前固定源码相互核对；模块已发现、功能已启用和源文件已编译分别判断。
+
 **复制命令：** [本章完整操作单元](commands/P010_Windows/README.md)。按正文选择分支，不把整个目录的命令依次执行。
 
 **视频与复习对照：** 页码按当前正式 PPT；以阶段名称和正文链接定位，操作前提、完整命令、输出判断与恢复以 Markdown 为准。
@@ -81,7 +83,7 @@ SDK、CMSIS 和 HC32 DDL 下载分别回到 P003、P004、P006；缓存与排错
 | `soc/arm/CMakeLists.txt:4` | 按 `CONFIG_SOC_SERIES` 加载子目录 | 进入 `soc/arm/mps2` |
 | `soc/arm/mps2/CMakeLists.txt:3` | `zephyr_sources(soc.c)` | 这份平台实现进入构建 |
 
-这解释了为什么“应用没有写 `soc.c`”仍会编译它：应用加载 Zephyr 的构建规则后，规则读取 `BOARD` 所引出的配置并加入源码。应在构建目录 `.config` 中同时查到 `CONFIG_SOC="an386"` 和 `CONFIG_CPU_CORTEX_M4=y`，再在编译清单查到 `soc/arm/mps2/soc.c`。[板级选择源码](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/boards/arm/mps2/Kconfig.mps2#L8)、[SoC 选入源码](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/soc/arm/mps2/CMakeLists.txt#L3)。
+这解释了为什么“应用没有写 `soc.c`”仍会编译它：应用加载 Zephyr 的构建规则后，规则读取 `BOARD` 所引出的配置并加入源码。应在构建目录的 `zephyr/.config` 中同时查到 `CONFIG_SOC="an386"` 和 `CONFIG_CPU_CORTEX_M4=y`，再在编译清单查到 `soc/arm/mps2/soc.c`。[板级选择源码](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/boards/arm/mps2/Kconfig.mps2#L8)、[SoC 选入源码](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/soc/arm/mps2/CMakeLists.txt#L3)。
 
 官方板位于默认源码搜索范围内，通常不需要 `BOARD_ROOT`。当 P012 创建树外练习板时，`BOARD_ROOT` 才用于增加搜索根；它应指向**下面包含 boards 目录的上层目录**，而不是 `board.yml` 文件。模块的 `build.settings.board_root` 也能提供搜索根，这是前面先发现模块再找板的原因。
 
@@ -184,11 +186,13 @@ flowchart LR
 | 场景 | 读者需要表达什么 | 为什么 |
 | --- | --- | --- |
 | 已注册的完整 SDK 或补齐后的 Minimal | 默认可省略类型与 SDK 根 | 包发现给出工具位置及默认规则 |
-| 多套 SDK 中固定一套 | 按需给 `ZEPHYR_SDK_INSTALL_DIR` 指定 SDK 根 | 约束本次工具来源，路径下应有 SDK 包配置 |
+| 多套 SDK 中选择一套 | 在新的构建目录中给 `ZEPHYR_SDK_INSTALL_DIR` 指定目标 SDK 根 | 核对实际 `Zephyr-sdk_DIR` 和编译器，避免旧包缓存继续生效 |
 | 独立 GNU 工具组件 | `cross-compile` 配合 `CROSS_COMPILE` | 告诉已有 GNU 规则如何定位程序 |
 | 维护尚无接入规则的新工具链 | 自定义类型与 `TOOLCHAIN_ROOT`，并实现所需规则 | 这是扩展构建系统，不是普通 SDK 安装 |
 
 `CROSS_COMPILE` 的值由程序目录加共同文件名前缀组成，包含末尾横线，例如 `G:/zephyr_practice/arm-zephyr-eabi/bin/arm-zephyr-eabi-`。它不是仅到 bin 的目录，也不是 gcc.exe 的完整文件名。目标库还须匹配，必要时根据该路线文档设置 `SYSROOT_DIR`；程序可运行并不等于目标库齐全。具体包准备见 P003，完整构建见 P012。依据：[独立 GNU 接入说明](https://docs.zephyrproject.org/latest/develop/toolchains/other_x_compilers.html)（原件 `doc/develop/toolchains/other_x_compilers.rst`，第 3 行附近）；[树外工具链设计说明](https://docs.zephyrproject.org/latest/develop/toolchains/custom_cmake.html)（原件 `doc/develop/toolchains/custom_cmake.rst`，第 3 行附近）；[SDK 文档](https://docs.zephyrproject.org/latest/develop/toolchains/zephyr_sdk.html)（原件 `doc/develop/toolchains/zephyr_sdk.rst`，第 3 行附近）。
+
+[官方 SDK 译文](../zephyr_docs/toolchains/P002_ZephyrSDK.md)还允许 `ZEPHYR_SDK_INSTALL_DIR` 指向包含多套 SDK 的父目录，由包发现选择兼容版本。因此该输入是 SDK 搜索位置，不能仅凭写了它就认定只会选中某个版本。希望固定一套时，使用新构建目录并指向该套 SDK 的根，随后核对配置日志、`Zephyr-sdk_DIR` 和编译器路径；它不会清除已有包缓存。
 
 `TOOLCHAIN_ROOT` 指 Zephyr 工具链接入规则所在根，默认使用 Zephyr 源码；它不等于 SDK 安装根。树外规则按官方约定提供 `cmake/toolchain/<类型>/generic.cmake` 和 `target.cmake`，并满足其依赖的 compiler/linker/bintools 规则。SDK 工具、树外规则与源码模块三类目录不能互换。
 
@@ -211,7 +215,7 @@ west 清单告诉 west 去哪里、按哪个修订取得项目。下载到磁盘
 
 本例中，`west.yml` 的 `cmsis_6` 项目提供外部 CMSIS Core；`boards/arm/mps2`、`soc/arm/mps2`、`drivers/serial/uart_cmsdk_apb.c` 已在 Zephyr 主仓库里，不对应三个必须另外下载的 west 项目。将它们一起叫“包”会掩盖各自位置：查板看硬件目录，查可下载项目看 manifest，查实际使用看配置和编译规则。
 
-已在官方清单中的 CMSIS 先按 P004 交给 west 下载。清单之外的新增 HAL，可通过 `EXTRA_ZEPHYR_MODULES` 给**这次 CMake 配置**追加模块根。该变量接受以分号分隔的路径列表，指模块根，不是 module.yml 文件。`ZEPHYR_MODULES` 则可以显式取代默认基础候选列表，容易漏掉 CMSIS 等原依赖；单加一个 HAL 时通常使用追加接口。依据：[外部项目模块说明](https://docs.zephyrproject.org/latest/develop/modules.html)（原件 `doc/develop/modules.rst`，第 3 行附近）；[模块输入与发现脚本调用](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/cmake/modules/zephyr_module.cmake#L34)（原件 `cmake/modules/zephyr_module.cmake`，第 34 行附近）；[候选项目解析实现](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/scripts/zephyr_module.py#L627)（原件 `scripts/zephyr_module.py`，第 627 行附近）。
+已在官方清单中的 CMSIS 先按 P004 交给 west 下载。清单之外的新增 HAL，可通过 `EXTRA_ZEPHYR_MODULES` 给**这次 CMake 配置**追加模块根。该变量接受以分号分隔的路径列表，指模块根，不是 module.yml 文件。`ZEPHYR_MODULES` 则可以显式取代默认基础候选列表，容易漏掉 CMSIS 等原依赖；单加一个 HAL 时通常使用追加接口。同名模块同时来自 west 和追加列表时，追加列表中的模块优先；这里的“追加”并不意味着两个同名实现一起编译，见[官方模块译文的构建接入说明](../zephyr_docs/modules/P001_模块与外部项目.md)。依据：[外部项目模块说明](https://docs.zephyrproject.org/latest/develop/modules.html)（原件 `doc/develop/modules.rst`，第 3 行附近）；[模块输入与发现脚本调用](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/cmake/modules/zephyr_module.cmake#L34)（原件 `cmake/modules/zephyr_module.cmake`，第 34 行附近）；[候选项目解析实现](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/scripts/zephyr_module.py#L627)（原件 `scripts/zephyr_module.py`，第 627 行附近）。
 
 <a id="section-10-3-2"></a>
 
@@ -246,9 +250,9 @@ flowchart TD
     E --> F["模块脚本：加入头文件、源码和库"]
 ```
 
-`zephyr_modules.txt` 是**工具生成文件**，位于所选构建目录。它不是读者必须提前创建的清单，也不是 west.yml。`zephyr_module.cmake` 读取其中名字、模块根和 CMake 入口，把名字规范化为大写后设置变量；例如模块名 `hal_xhsc` 对应 `ZEPHYR_HAL_XHSC_MODULE_DIR`。
+`zephyr_modules.txt` 是**工具生成文件**，位于所选构建目录。它不是读者必须提前创建的清单，也不是 west.yml。`zephyr_module.cmake` 读取其中名字、模块根和 CMake 入口，把模块名转为大写、将非字母数字字符替换为下划线后设置变量；例如模块名 `hal_xhsc` 对应 `ZEPHYR_HAL_XHSC_MODULE_DIR`。
 
-接着 Zephyr 根 CMakeLists 遍历已识别模块，设置本轮 `ZEPHYR_CURRENT_MODULE_DIR` 等上下文，再调用 `add_subdirectory` 执行该模块的 CMake 入口。只有走过候选识别、元数据解析和记录读取，才有这个派生变量。**预先手填同名 MODULE_DIR 不会代替模块注册与入口执行。**
+接着 Zephyr 根 CMakeLists 遍历已识别模块，设置本轮 `ZEPHYR_CURRENT_MODULE_DIR` 等上下文，对提供非空 CMake 入口的模块，再调用 `add_subdirectory` 执行入口；只有 Kconfig 或其他元数据的模块不一定有可执行的 CMake 入口。只有走过候选识别、元数据解析和记录读取，才有这个派生变量。**预先手填同名 MODULE_DIR 不会代替模块注册与入口执行。**
 
 再换成时序图看“谁先调用谁”。图中的 Zephyr CMake 和模块入口实际都由同一个 CMake 进程执行，分列只是区分脚本的职责；Python 发现脚本由 CMake 启动。
 
@@ -301,7 +305,7 @@ if missing:
     raise SystemExit('先完成 P008 配置，或核对构建目录：' + ', '.join(missing))
 print('BUILD:', build.resolve())
 for line in (build / 'CMakeCache.txt').read_text(encoding='utf-8').splitlines():
-    if line.startswith(('BOARD:', 'BOARD_DIR:', 'CMAKE_C_COMPILER:', 'ZEPHYR_SDK_INSTALL_DIR:')):
+    if line.startswith(('BOARD:', 'BOARD_DIR:', 'CMAKE_C_COMPILER:', 'ZEPHYR_SDK_INSTALL_DIR:', 'Zephyr-sdk_DIR:')):
         print(line)
 for line in (build / 'zephyr/.config').read_text(encoding='utf-8').splitlines():
     if line.startswith(('CONFIG_BOARD=', 'CONFIG_BOARD_TARGET=', 'CONFIG_SOC=',

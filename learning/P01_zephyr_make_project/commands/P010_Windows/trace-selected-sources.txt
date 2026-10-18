@@ -11,7 +11,7 @@ if missing:
     raise SystemExit('先完成 P008 配置，或核对构建目录：' + ', '.join(missing))
 print('BUILD:', build.resolve())
 for line in (build / 'CMakeCache.txt').read_text(encoding='utf-8').splitlines():
-    if line.startswith(('BOARD:', 'BOARD_DIR:', 'CMAKE_C_COMPILER:', 'ZEPHYR_SDK_INSTALL_DIR:')):
+    if line.startswith(('BOARD:', 'BOARD_DIR:', 'CMAKE_C_COMPILER:', 'ZEPHYR_SDK_INSTALL_DIR:', 'Zephyr-sdk_DIR:')):
         print(line)
 for line in (build / 'zephyr/.config').read_text(encoding='utf-8').splitlines():
     if line.startswith(('CONFIG_BOARD=', 'CONFIG_BOARD_TARGET=', 'CONFIG_SOC=',

@@ -13,6 +13,8 @@ domains: [zephyr, application, modules, build]
 
 P003 已准备好编译工具。第一次拿到 Zephyr 源码时，我们已知道产品使用哪颗芯片，但未必知道需要下载哪些外部源码。本章先教会读者从已有 SoC/板登记、架构配置及其接入规则找出 CMSIS 需求，再让清单给出仓库、版本和落盘位置，完成下载与核验。
 
+**官方译文对照：** [迁移到 Zephyr 4.2 的 CMSIS 说明](../zephyr_docs/releases_guides/P004_迁移到Zephyr_4.2.md)、[模块与外部项目](../zephyr_docs/modules/P001_模块与外部项目.md)与 [west 主线译文](../zephyr_docs/reading/west.md)。CMSIS 选择仍按本章固定源码的实际消费者与清单确定，不以 `latest` 页面替换既有依赖修订。
+
 阅读顺序是 **确认 CMSIS 来源 → 核对 Git 与 west → 下载及版本核验 → 必要时排错**。完成后，P005 用官方 MPS2 目标解释 Zephyr 如何组织应用和设备驱动；理解这些规则后，P006 再选择 HC32 的 DDL 并接入工程。
 
 前提是 P001 的 `G:\zephyr_practice\zephyr-main`、P002 的 `.venv` 与 P003 的 SDK 已准备。默认终端为 Windows MSYS2 UCRT64，工作目录为 `/g/zephyr_practice/zephyr-main`。官方 `west.yml` 保持原样，已有工作区优先复用。
@@ -81,7 +83,7 @@ soc: an386 | ['G:\\zephyr_practice\\zephyr-main\\soc\\arm']
 
 现在要回答两个不同的问题：**芯片需要哪一种 Core 接口；这版 Zephyr 用哪个软件包提供它。** `HAS_CMSIS_CORE` 只能回答“需要 Core 接口”，其名字和取值都没有指定 CMSIS 5 或 6。下面先走到接口需求，再查实际提供头文件的构建规则，不从这个符号直接跳到包名。
 
-**先确定 CPU 分支，暂不选择 CMSIS 版本。** 对官方已有的 AN386，读取以下配置即可复核每一步；`select` 在这里表示该目标还要选中相应能力。完整操作：[配置查询 TXT](commands/P004_Windows/probe-cmsis-config.txt)。
+**先确定 CPU 分支，暂不选择 CMSIS 版本。** 对官方已有的 AN386，读取以下配置即可复核每一步；`select` 在这里表示该目标还要选中相应能力。完整操作：[配置查询 TXT](commands/P004_Windows/probe-cmsis-config.txt)。这些查询只需读取磁盘文件，使用普通 `grep`；P001 只解压 ZIP、尚无 `.git` 的读者也可以执行。
 
 ```bash
 # P004 4.1.2：只读确认 SoC、CPU 与 Core 接口需求
@@ -89,9 +91,9 @@ soc: an386 | ['G:\\zephyr_practice\\zephyr-main\\soc\\arm']
 cd /g/zephyr_practice/zephyr-main
 cat boards/arm/mps2/board.yml
 cat boards/arm/mps2/Kconfig.mps2
-git grep -n -A 5 -e 'config SOC_AN386' -- soc/arm/mps2/Kconfig
-git grep -n -A 5 -e 'config CPU_CORTEX_M4' -- arch/arm/core/cortex_m/Kconfig
-git grep -n -A 5 -e 'config CPU_CORTEX_M' -- arch/arm/core/Kconfig
+grep -n -A 5 -e 'config SOC_AN386' -- soc/arm/mps2/Kconfig
+grep -n -A 5 -e 'config CPU_CORTEX_M4' -- arch/arm/core/cortex_m/Kconfig
+grep -n -A 5 -e 'config CPU_CORTEX_M' -- arch/arm/core/Kconfig
 ```
 
 | 实际声明所在位置 | 关键选择 | 到此可以得出的结论 |
@@ -106,7 +108,7 @@ git grep -n -A 5 -e 'config CPU_CORTEX_M' -- arch/arm/core/Kconfig
 ```bash
 # Windows UCRT64；当前官方源码根；只读搜索，不要求依赖已下载。
 cd /g/zephyr_practice/zephyr-main
-git grep -n -w 'CONFIG_CPU_CORTEX_M' -- 'modules/*/CMakeLists.txt'
+grep -n -w 'CONFIG_CPU_CORTEX_M' -- modules/*/CMakeLists.txt
 ```
 
 本版实际输出为：
@@ -115,7 +117,7 @@ git grep -n -w 'CONFIG_CPU_CORTEX_M' -- 'modules/*/CMakeLists.txt'
 modules/cmsis_6/CMakeLists.txt:4:if(CONFIG_CPU_CORTEX_M)
 ```
 
-`-w` 按完整符号匹配，避免把更长的配置符号混进查询结果。**cmsis_6 这个名字是搜索结果给出的，不是从 M4、Armv7 或 HAS_CMSIS_CORE 猜出来的。** 搜索只帮我们定位候选，接下来还要看它具体提供什么，不能把搜索命中本身当成依赖证明。
+`-w` 按完整符号匹配，避免把更长的配置符号混进查询结果。这里 `modules/*/CMakeLists.txt` 由 Bash 展开成已有文件列表，不加单引号；普通 `grep` 不需要 Git 元数据。**cmsis_6 这个名字是搜索结果给出的，不是从 M4、Armv7 或 HAS_CMSIS_CORE 猜出来的。** 搜索只帮我们定位候选，接下来还要看它具体提供什么，不能把搜索命中本身当成依赖证明。
 
 完整的搜索与对照操作放在 [消费者查询 TXT](commands/P004_Windows/find-cmsis-consumer.txt)。读取命中的文件后，可以看到下面两套实际接入条件；代码均为当前主仓已有文件的只读节选，不新建或替换它们：
 

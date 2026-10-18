@@ -4,8 +4,15 @@
 set -e
 cd /g/zephyr_practice/zephyr-main
 source .venv/Scripts/activate
-for tool in python west cmake ninja dtc gperf git; do
+for tool in python west cmake ninja git; do
   command -v "$tool"
+done
+# 推荐工具：dtc 提供额外设备树诊断；gperf 用于用户模式内核对象哈希。
+# 缺失时记录提示，本例默认 hello_world 不因这两项缺失而停止。
+for tool in dtc gperf; do
+  if ! command -v "$tool"; then
+    printf '未找到推荐工具 %s；用途与补装见 P002。\n' "$tool"
+  fi
 done
 python -m pip check
 west topdir

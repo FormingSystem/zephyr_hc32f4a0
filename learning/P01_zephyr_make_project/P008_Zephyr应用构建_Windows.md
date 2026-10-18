@@ -17,6 +17,8 @@ domains: [zephyr, cmake, tools]
 
 配套 [PPT](slides/P008_Zephyr应用构建_Windows.pptx) 与正文同序。源码依据为 `25c8f4a23988dd3b2cfb463613622738298c2d6c`；网页 latest 用于阅读，固定提交用于核对。Windows 命令默认 UCRT64，实验根为 `/g/zephyr_practice/zephyr-main`。
 
+**官方译文对照：** [应用开发](../zephyr_docs/application/P001_应用开发.md)、[CMake 构建系统](../zephyr_docs/build_system/P001_CMake构建系统.md)与 [Zephyr CMake 包](../zephyr_docs/build_system/P002_Zephyr_CMake包.md)。译文保留各页读取日期；本章的版本和 MPS2 实验参数仍按上面的固定基线核对。
+
 **复制命令：** [本章完整操作单元](commands/P008_Windows/README.md)。按正文选择分支，不把整个目录的命令依次执行。
 
 **视频与复习对照：** 页码按当前正式 PPT；以阶段名称和正文链接定位，操作前提、完整命令、输出判断与恢复以 Markdown 为准。
@@ -178,10 +180,12 @@ flowchart LR
 | 首次构建所需输入 | 应当已经具备 | 缺失时返回 |
 | --- | --- | --- |
 | 官方源码 | samples/hello_world/CMakeLists.txt、boards/arm/mps2/board.yml | P001 |
-| 主机工具 | cmake、ninja、dtc、gperf 可执行 | P002 |
+| 主机工具 | cmake、ninja 可执行；dtc、gperf 按下述用途检查 | P002 |
 | Python | 根 .venv 已激活，Zephyr 基础依赖已安装 | P002 |
 | SDK | SDK 包可被 CMake 发现，且包含 ARM 工具链 | P003 |
 | CMSIS | 活动工作区正确、modules/hal/cmsis_6 已按清单下载 | P004、P005 |
+
+`dtc` 用于额外的设备树诊断，未安装时 Zephyr 跳过该检查，设备树头文件仍由 Python 工具生成。`gperf` 在启用用户模式等需要内核对象哈希的构建中使用；本例默认 `hello_world` 未启用用户模式，不能把这两项都当作所有构建的硬前提。本系列仍建议按 P002 准备，便于后续实验。依据：[官方构建阶段译文](../zephyr_docs/build_system/P001_CMake构建系统.md)的设备树处理与内核对象哈希小节；固定源码 `cmake/modules/dts.cmake` 的 `dts_dtc()`、`cmake/modules/FindHostTools.cmake:53` 及 `CMakeLists.txt` 的 `CONFIG_USERSPACE` 分支。
 
 源码 ZIP 只提供第一行，并不随包附带所有工具与外部模块。各项成立后，下面从源码根开始的完整命令即可配置官方示例；不需要先新增开发板。
 
@@ -215,7 +219,7 @@ CMSIS_6 解决的是另一件事：本目标的 Cortex-M4 通用内核头文件�
 | 板和 SoC 是否已内置 | `boards/arm/mps2/board.yml`、`soc/arm/mps2` | 已有 `mps2/an386` 和对应实现 |
 | UART 驱动是否已内置 | DTS 的 `arm,cmsdk-uart`，再找 `drivers/serial` 的 compatible、Kconfig、CMake | 已有 `uart_cmsdk_apb.c`，由配置选入 |
 | west 能取得哪些项目 | 当前活动 manifest 的 `west list`；项目版本和路径看 `west.yml` | `cmsis_6` 在清单中，固定修订和下载路径可查 |
-| 此次究竟用了哪些材料 | 配置后 `.config`、`zephyr_modules.txt` 与 `compile_commands.json` | 后续逐层核对，不从下载列表猜使用情况 |
+| 此次究竟用了哪些材料 | 构建目录的 `zephyr/.config`、`zephyr_modules.txt` 与 `compile_commands.json` | 后续逐层核对，不从下载列表猜使用情况 |
 
 `west list` 不会把 `BOARD=mps2/an386` 转换成一份完整下载需求。它回答清单里有哪些项目；板、驱动与外部模块是否被本次构建使用，要接着看源码中的选择规则和生成结果。若换板，应重新做这条查询，不能把本例的依赖表推广给所有 Arm 板。
 
@@ -228,8 +232,15 @@ CMSIS_6 解决的是另一件事：本目标的 Cortex-M4 通用内核头文件�
 set -e
 cd /g/zephyr_practice/zephyr-main
 source .venv/Scripts/activate
-for tool in python west cmake ninja dtc gperf git; do
+for tool in python west cmake ninja git; do
   command -v "$tool"
+done
+# 推荐工具：dtc 提供额外设备树诊断；gperf 用于用户模式内核对象哈希。
+# 缺失时记录提示，本例默认 hello_world 不因这两项缺失而停止。
+for tool in dtc gperf; do
+  if ! command -v "$tool"; then
+    printf '未找到推荐工具 %s；用途与补装见 P002。\n' "$tool"
+  fi
 done
 python -m pip check
 west topdir
@@ -354,14 +365,17 @@ cmake -S samples/hello_world \
 # Windows UCRT64；源码根；前提：8.2 的 cmake-demo 配置成功。
 cd /g/zephyr_practice/zephyr-main
 source .venv/Scripts/activate
-# 构建同一个目录，不重新选择 BOARD；4 表示最多四个并行任务。
-cmake --build build/learning-tools/p003/cmake-demo --parallel 4
-ls -l build/learning-tools/p003/cmake-demo/zephyr/zephyr.elf
-# 没改输入时，再次构建通常没有需要重做的编译任务。
-cmake --build build/learning-tools/p003/cmake-demo --parallel 4
+# 构建成功才检查 ELF 和执行增量对照；失败时不把旧产物当作本次结果。
+if cmake --build build/learning-tools/p003/cmake-demo --parallel 4; then
+  ls -l build/learning-tools/p003/cmake-demo/zephyr/zephyr.elf
+  # 没改输入时，再次构建通常没有需要重做的编译任务。
+  cmake --build build/learning-tools/p003/cmake-demo --parallel 4
+else
+  printf '%s\n' '本次构建失败，请检查首个错误；已有 ELF 不能证明本次成功。' >&2
+fi
 ```
 
-首次执行会看到编译、生成和链接任务，最后能列出 `zephyr/zephyr.elf`。同样的 build 命令再执行一次，若输入没有变化，通常会看到 `ninja: no work to do.`；有些生成目标仍可能检查或运行，不能要求每个工程都完全零输出。修改 `src/main.c` 后仍用这条命令，Ninja 按依赖只更新受影响的对象和链接结果。
+首次执行成功后会看到编译、生成和链接任务，并列出 `zephyr/zephyr.elf`；失败则停止本块的后续对照并打印提示。同样的 build 命令再执行一次，若输入没有变化，通常会看到 `ninja: no work to do.`；有些生成目标仍可能检查或运行，不能要求每个工程都完全零输出。修改 `src/main.c` 后仍用这条命令，Ninja 按依赖只更新受影响的对象和链接结果。
 
 构建成功要结合本次命令正常结束、没有失败任务以及对应输出判断。已有目录可能保留上一次成功的 ELF，因此“ls 能看到文件”本身不能证明刚才的构建成功。若需要查看退出状态，UCRT64 中的 `$?` 只表示紧邻上一条命令的返回码；先执行了 ls 或 grep 后，它就不再是构建的返回码。
 

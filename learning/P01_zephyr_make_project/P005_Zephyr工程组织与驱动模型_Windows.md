@@ -23,6 +23,8 @@ domains: [zephyr, application, modules, build]
 
 配套 [PPT](slides/P005_Zephyr工程组织与驱动模型_Windows.pptx)；返回 [环境与依赖导航](环境与依赖导航.md)。
 
+官方译文对照：[设备驱动模型](../zephyr_docs/hardware/P003_设备驱动模型.md)、[模块与外部项目](../zephyr_docs/modules/P001_模块与外部项目.md)。译文用于核对概念与公共接口；本章文件名、配置和实验结果仍按所注明的固定源码基线理解，不由 latest 页面推定本机已经升级。
+
 **复制命令：** 本章完整操作统一放在 [P005 命令索引](commands/P005_Windows/README.md)。按正文前提选择分支，不批量执行全部文件。实验生成目录中的 `p003`、`p006` 保留原有标识，不因教材重排搬动。
 
 <a id="architecture-soc-board"></a>
@@ -81,7 +83,7 @@ Zephyr SDK 是电脑上运行的编译工具包。它为所选架构提供编译
 
 ### 5.2.2\_module 是源码包接入 Zephyr 的契约
 
-一个外部源码目录要被 Zephyr 当作模块，需具备可识别的入口，例如 `zephyr/module.yml`。声明给出模块名及 CMake/Kconfig 位置；构建先拿到模块根，再按入口读取这些规则。**磁盘上有一个目录，不等于它已经进入当前构建。**
+一个外部源码目录要被 Zephyr 当作模块，需具备可识别的入口，例如 `zephyr/module.yml`。声明给出模块名及 CMake/Kconfig 位置；构建先拿到模块根，再按入口读取这些规则。本章固定源码也接受 `zephyr/module.yaml`；两种声明都没有时，构建系统仍兼容同时具有 `zephyr/CMakeLists.txt` 和 `zephyr/Kconfig` 的旧式模块；只有其中一个文件不满足这条回退规则。**磁盘上有一个目录，不等于它已经进入当前构建。** 见[官方译文“选择本次构建使用的模块”](../zephyr_docs/modules/P001_模块与外部项目.md)。
 
 CMSIS_6、hal_xhsc 和P006 将自写的 app_greeting 都可以通过模块机制接入，但它们贡献不同内容：CMSIS-Core 提供内核头，hal_xhsc 提供华大设备/外设源码，普通组件提供业务函数。模块是组织与接入方式，不能单凭“它是模块”判断它适用哪颗芯片。
 
@@ -171,7 +173,7 @@ target_sources(app PRIVATE src/main.c)
 
 认识上从架构到应用逐层展开，操作上通常先选 BOARD 和应用。不要同时随意给 Cortex-M3 架构、AN386 系统和另一块板拼接参数；BOARD 支持文件应提供内部一致的硬件组合。
 
-同板换应用，例如本章后面从 `samples/hello_world` 换成 `G:/zephyr_practice/applications/component_hello`，输出改为 `build/learning-tools/p006/component_hello`；同应用换板，例如从 AN386 改为同样受支持的 AN385，输出应另设 `build/learning-tools/p006/hello_world-an385`。三次都是独立组合，不复用同一个缓存目录。此处只解释组合，后面的实验会实际执行前两项。
+同板换应用，例如下一章从 `samples/hello_world` 换成 `G:/zephyr_practice/applications/component_hello`，输出改为 `build/learning-tools/p006/component_hello`；同应用换板，例如从 AN386 改为同样受支持的 AN385，输出应另设 `build/learning-tools/p006/hello_world-an385`。三次都是独立组合，不复用同一个缓存目录。此处只解释组合，本章建立第一项基线，P006 的组件实验执行第二项。
 
 <a id="section-5-3-3"></a>
 
@@ -354,7 +356,7 @@ mps2_an386_defconfig → hello_world/prj.conf
 zephyr/.config + zephyr/include/generated/zephyr/autoconf.h
 ```
 
-若像本章组件关闭实验那样提供 `EXTRA_CONF_FILE=off.conf`，附加片段在应用配置之后读取；对允许用户赋值的同一符号，后面的赋值可以覆盖前面片段的请求。当前 `merge_config_files` 的完整顺序还包含板修订/扩展、shield、额外命令行选项和构建目录附加片段，不能把上面的最小例子说成所有工程只有两个文件。默认 `prj.conf` 可由 `CONF_FILE` 换成其他应用片段，所以它也不是任何工程都无法改变的固定文件名。
+若像 P006 的组件关闭实验那样提供 `EXTRA_CONF_FILE=off.conf`，附加片段在应用配置之后读取；对允许用户赋值的同一符号，后面的赋值可以覆盖前面片段的请求。当前 `merge_config_files` 的完整顺序还包含板修订/扩展、shield、额外命令行选项和构建目录附加片段，不能把上面的最小例子说成所有工程只有两个文件。默认 `prj.conf` 可由 `CONF_FILE` 换成其他应用片段，所以它也不是任何工程都无法改变的固定文件名。
 
 配置脚本是 `scripts/kconfig/kconfig.py`：它先加载第一个赋值文件，再对后续文件调用 `load_config(..., replace=False)` 合并，最后结合符号的类型、可见性和依赖计算结果。文件被读入不保证每个请求都能成立。**赋值文件不是符号定义文件**；依赖不满足时，强写 `CONFIG_UART_CMSDK_APB=y` 也不能把不存在的硬件和驱动能力变出来，应检查告警及最终 `.config`。
 

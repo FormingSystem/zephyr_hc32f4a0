@@ -17,6 +17,8 @@ slides: slides/P007_原生CMake与目标模型_Windows.pptx
 
 配套 [PPT](slides/P007_原生CMake与目标模型_Windows.pptx) 按同一实验顺序讲解。本文保留完整文件、操作、预期结果和排错方法。先得到一个可执行程序，再增加库，最后比较修改前后的构建关系。
 
+**官方译文对照：** [CMake 构建系统](../zephyr_docs/build_system/P001_CMake构建系统.md)说明 Zephyr 怎样使用库目标与构建阶段；[Zephyr CMake 包](../zephyr_docs/build_system/P002_Zephyr_CMake包.md)说明应用如何加载源码包。本章的 Windows 主机练习由教程自行设计，CMake 原生命令语义仍以各节引用的 CMake 手册为依据。
+
 **复制命令：** [本章完整操作单元](commands/P007_Windows/README.md)。按正文选择分支，不把整个目录的命令依次执行。
 
 **视频与复习对照：** 页码按当前正式 PPT；以阶段名称和正文链接定位，操作前提、完整命令、输出判断与恢复以 Markdown 为准。

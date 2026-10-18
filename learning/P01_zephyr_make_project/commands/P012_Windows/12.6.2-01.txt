@@ -1,7 +1,18 @@
 # P012_Windows / 12.6.2\_描述芯片资源，再描述 PCB 连接
 # 先核对正文的终端、目录与前提，再执行此完整操作单元。
 # UCRT64；源码根；工作模块已由 12.6.1 创建。
+(
+set -eu
+cd /g/zephyr_practice/zephyr-main
+test -f build/learning-tools/p003/hc32_port/zephyr/module.yml
+for name in dts boards; do
+  if test -e "build/learning-tools/p003/hc32_port/$name"; then
+    printf '目标已存在，停止复制：%s\n' "$name" >&2
+    exit 1
+  fi
+done
 cp -R learning/board/labs/hc32_port/dts build/learning-tools/p003/hc32_port/
 cp -R learning/board/labs/hc32_port/boards build/learning-tools/p003/hc32_port/
 cat build/learning-tools/p003/hc32_port/dts/bindings/vendor-prefixes.txt
 cat build/learning-tools/p003/hc32_port/boards/uyup/uyup_rpi_a/board.yml
+)

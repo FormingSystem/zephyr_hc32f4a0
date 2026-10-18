@@ -15,6 +15,8 @@ domains: [zephyr, tools]
 
 对照板与后续 HC32 板共用这套主机环境，因此不因换芯片而重装一份 Python。我们要能在任意一个新开的 UCRT64 窗口里，回到同一源码根并恢复它。 返回 [环境与依赖导航](环境与依赖导航.md)；配套 [PPT](slides/P002_主机工具与Python环境_Windows.pptx)。各章独立编号，完整复制单元按当前小节编号放在 [命令索引](commands/P002_Windows/README.md)。
 
+**官方译文对照：** [入门指南的主机依赖与 Python 环境](../zephyr_docs/getting_started/P002_入门指南.md)。本章保留教程选择的 Windows CPython 3.12.10、west 1.5.0 和 UCRT64 操作顺序；官方完整工作区的 `west packages` 流程与本章先安装基础构建依赖的步骤应分开理解。
+
 实验源码根为 Windows 的 `G:\zephyr_practice\zephyr-main`，UCRT64 中为 `/g/zephyr_practice/zephyr-main`。默认 UCRT64；Windows 专用 setup.cmd 等步骤按正文切换 PowerShell。各模块不重复安装已经完成的前置工具。
 
 **复制命令：** [本章完整操作单元](commands/P002_Windows/README.md)。按正文选择分支，不把整个目录的命令依次执行。
@@ -94,6 +96,8 @@ gperf --version
 若刚安装后 setup 提示找不到 7z，先重新打开 PowerShell，再执行 `Get-Command cmake, 7z -ErrorAction Stop`。本次反馈是旧终端未刷新，无需重复安装；仅重新打开后仍找不到时才核对官方要求的 7-Zip 安装目录和 PATH。SDK 1.0.1 的 Windows `setup.cmd` 会查找外部 CMake 和 7z，因此下载 SDK 不能替代主机依赖安装。[SDK Windows setup 原件](https://github.com/zephyrproject-rtos/sdk-ng/blob/v1.0.1/scripts/template_setup_win)
 
 本次指南下限为 CMake 3.28.0、Python 3.12、dtc 1.4.6。换源码后重新查表；若上游要求与教程固定版本冲突，应更新教程基线和验证记录，不忽略安装错误。
+
+这里按官方推荐清单准备工具，不表示每次构建都会调用清单中的全部程序。设备树宏由 Python 脚本 `gen_defines.py` 生成；`dtc` 存在时用于补充设备树诊断，未安装时构建会跳过这项检查。`gperf` 用于用户模式等相应配置下的内核对象哈希生成，本章的基础 `hello_world` 不能仅因缺少它就判定无法构建。具体流程见[官方 CMake 构建系统译文](../zephyr_docs/build_system/P001_CMake构建系统.md)的设备树处理与内核对象哈希两节。推荐安装步骤仍保留，便于之后切换应用与功能。
 
 Windows CPython/west 应配合 Windows 原生 Git。本系列优先使用 P001 准备的 `/ucrt64/bin/git`，已安装的 Git for Windows 也可复用。`/usr/bin/git` 依赖 MSYS2 运行时，与 Windows Python 的调用边界不同；只看 `git --version` 无法确认选中哪一种。本次故障记录是在 Windows west 调用 `/usr/bin/git` 时看到 `^{commit}` 变成 `^commit`，保持清单和提交不变、改用 `/ucrt64/bin/git` 后恢复；花括号具体在哪一层改变尚未跟踪定位。原生版本的区分见 [MSYS2 Git 说明](https://www.msys2.org/docs/git/)，完整故障证据见 [P004 4.4](P004_CMSIS选择与下载_Windows.md#west-git-compat)。
 

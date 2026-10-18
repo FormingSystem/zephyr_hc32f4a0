@@ -28,6 +28,8 @@ flowchart LR
 
 本章命令均在 Windows UCRT64 执行，以 `/g/zephyr_practice/zephyr-main` 为源码根，使用 P002 的 `.venv`。版本基线为 west 1.5.0 和 Zephyr 提交 `25c8f4a23988dd3b2cfb463613622738298c2d6c`。先做只读查询，发现确实缺失的清单项目后才进入更新分支。
 
+**官方译文对照：** [工作区](../zephyr_docs/west/P004_工作区.md)、[内置命令](../zephyr_docs/west/P011_内置命令.md)、[扩展命令机制](../zephyr_docs/west/P012_扩展命令机制.md)与 [构建、烧录和调试](../zephyr_docs/west/P007_构建烧录与调试.md)。工作区与项目下载遵循 west 核心规则，`build` 的具体参数和执行流程由当前 Zephyr 扩展决定。
+
 **复制命令：** [本章完整操作单元](commands/P009_Windows/README.md)。按正文选择分支，不把整个目录的命令依次执行。
 
 **视频与复习对照：** 页码按当前正式 PPT；以阶段名称和正文链接定位，操作前提、完整命令、输出判断与恢复以 Markdown 为准。
@@ -133,7 +135,7 @@ test -f west.yml && west init -l . &&
 
 ## 9.3\_清单怎样决定下载什么
 
-这里沿 MPS2 对照先找 `cmsis_6`。它的名字可用于 west 查询和下载，是因为当前清单声明了该项目。随后再查 `hal_xhsc`，用一次缺项查询理解清单的边界：它没有列出某个厂商仓库，不代表这个芯片永远无法使用 Zephyr，而是当前不能按该名字执行 `west update`。HC32 分支在 P004 独立取得固定版本，再按模块规则接入。
+这里沿 MPS2 对照先找 `cmsis_6`。它的名字可用于 west 查询和下载，是因为当前清单声明了该项目。随后再查 `hal_xhsc`，用一次缺项查询理解清单的边界：它没有列出某个厂商仓库，不代表这个芯片永远无法使用 Zephyr，而是当前不能按该名字执行 `west update`。HC32 的清单外 HAL 分支在 [P006](P006_HC32与外部源码模块接入_Windows.md) 核对来源、取得固定版本，再按模块规则接入。
 
 `west list --all` 可以查看包括非活动组在内的清单项目，但它不是“这个应用所需全部库”的计算结果。是否需要项目，要继续对照板、SoC、功能和源代码；下载以后有没有被采用，还要看本次构建产物。
 
@@ -185,7 +187,7 @@ fi
 
 本块先排除 Bash 别名/函数遮蔽，再由当前 Windows Python 查询 Git。只允许 P002 已核对来源的 `ucrt64/bin/git.exe` 或 Git for Windows `cmd/git.exe` 入口；路径比较忽略扩展名大小写，因此 `git.EXE` 也能通过。路径检查不代替安装来源核对；`None`、`usr/bin` 或其他尚未确认的入口都会阻止更新，应回到 P002 修复。版本字符串是否带 `.windows.` 不再作为门槛。HEAD 和 manifest-rev 应与本次清单要求一致；目录存在不代表版本已经更新成功。`west update` 不带项目名会更新当前清单中适用的项目集合，可能下载很多仓库；本例只请求 cmsis_6。它不会自动拉取 Zephyr 清单仓库的最新提交，更不会更新 SDK。先选 Zephyr 版本，再让 update 匹配其依赖，才有可复现的组合。本章不替读者决定后续仓库同步策略。
 
-如果出现 `not a valid SHA1`，仅凭该行不能判定是上游删了提交。停止构建，回 P004 核对活动清单、west 实际调用的 Git、下载日志、仓库来源和修订是否可取得；不删除 `.west`，不擅自换成最新 ZIP，不关闭证书检查。清单没有 hal_xhsc 时，`west update hal_xhsc` 无法凭仓库存在就发现它；按 P004 下载，按 P005 接入。
+如果出现 `not a valid SHA1`，仅凭该行不能判定是上游删了提交。停止构建，回 P004 核对活动清单、west 实际调用的 Git、下载日志、仓库来源和修订是否可取得；不删除 `.west`，不擅自换成最新 ZIP，不关闭证书检查。清单没有 hal_xhsc 时，`west update hal_xhsc` 无法凭仓库存在就发现它；按 [P006 的厂商模块步骤](P006_HC32与外部源码模块接入_Windows.md) 下载并接入。
 
 依据：[清单](https://docs.zephyrproject.org/latest/develop/west/manifest.html)、[west update](https://docs.zephyrproject.org/latest/develop/west/built-in.html#west-update)；原件 `doc/develop/west/manifest.rst`、`built-in.rst`。源码模块是否参加 CMake 构建还取决于模块发现与功能选择，详见 P010；被 west 下载不等于其所有源码都参与当前固件。
 
@@ -240,7 +242,7 @@ west build --help
 
 ## 9.5\_把 west build 展开为 CMake 调用
 
-本节仍用官方 `samples/hello_world` 与 `mps2/an386`。该目标是 Arm MPS2 的 Cortex-M4 系统配置，不是 HC32 实板；本例无需连接开发板。需要的主机工具、Python、SDK ARM 工具链与 CMSIS 已由 P002—P005 准备，并通过 P008 首次构建检查。
+本节仍用官方 `samples/hello_world` 与 `mps2/an386`。该目标是 Arm MPS2 的 Cortex-M4 系统配置，不是 HC32 实板；本例无需连接开发板。需要的主机工具、Python、SDK ARM 工具链与 CMSIS 已由 P002—P004 准备，并通过 P008 首次构建检查。
 
 ```mermaid
 sequenceDiagram

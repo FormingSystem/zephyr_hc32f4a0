@@ -3,6 +3,6 @@
 cd /g/zephyr_practice/zephyr-main
 cat boards/arm/mps2/board.yml
 cat boards/arm/mps2/Kconfig.mps2
-git grep -n -A 5 -e 'config SOC_AN386' -- soc/arm/mps2/Kconfig
-git grep -n -A 5 -e 'config CPU_CORTEX_M4' -- arch/arm/core/cortex_m/Kconfig
-git grep -n -A 5 -e 'config CPU_CORTEX_M' -- arch/arm/core/Kconfig
+grep -n -A 5 -e 'config SOC_AN386' -- soc/arm/mps2/Kconfig
+grep -n -A 5 -e 'config CPU_CORTEX_M4' -- arch/arm/core/cortex_m/Kconfig
+grep -n -A 5 -e 'config CPU_CORTEX_M' -- arch/arm/core/Kconfig

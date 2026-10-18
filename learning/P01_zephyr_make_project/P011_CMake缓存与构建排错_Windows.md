@@ -17,6 +17,8 @@ domains: [zephyr, cmake, tools]
 
 配套 [PPT](slides/P011_CMake缓存与构建排错_Windows.pptx) 与正文同序。源码依据为 `25c8f4a23988dd3b2cfb463613622738298c2d6c`；网页 latest 用于阅读，固定提交用于核对。Windows 命令默认 UCRT64，实验根为 `/g/zephyr_practice/zephyr-main`。
 
+**官方译文对照：** [应用开发](../zephyr_docs/application/P001_应用开发.md)的缓存、重建与清理说明，[west 构建](../zephyr_docs/west/P007_构建烧录与调试.md)的 pristine 说明，以及 [CMake 扩展接口](../zephyr_docs/cmake_reference/P008_extensions.md)的 `zephyr_get()` 规则。CMake 原生的 `-N`、`-U`、`--fresh` 与预设仍以本章所引 CMake 手册为依据。
+
 **复制命令：** [本章完整操作单元](commands/P011_Windows/README.md)。按正文选择分支，不把整个目录的命令依次执行。
 
 **视频与复习对照：** 页码按当前正式 PPT；以阶段名称和正文链接定位，操作前提、完整命令、输出判断与恢复以 Markdown 为准。
@@ -267,6 +269,8 @@ CMake 的 `${名字}` 通常先找普通变量、再找缓存；`$ENV{名字}` �
 
 因此，第一次用 SDK-A 配置构建目录后，第二次只在终端 export SDK-B，旧缓存可能仍使 A 生效。这是同一构建目录在保留选择，不是“注册失败”。换工具组合时使用新的构建目录，可以避免关联编译器和库配置残留；不能仅修改一个缓存路径就假定全部状态同步。
 
+还应区分 `ZEPHYR_SDK_INSTALL_DIR` 与 `Zephyr-sdk_DIR`：前者是 Zephyr 的 SDK 搜索位置输入，后者是 CMake 保存的 SDK 包配置目录。即使重新传了前者，有效的旧 `Zephyr-sdk_DIR` 仍可能先被 CMake 采用；`NO_DEFAULT_PATH` 只限制后续搜索范围，不会删除已有包缓存。[官方 SDK 译文](../zephyr_docs/toolchains/P002_ZephyrSDK.md)还允许前者指向多版本父目录，所以“指定搜索位置”与“已验证选中某个 SDK”也要分开。换 SDK 时用新构建目录，并一起核对这两个值与 `CMAKE_C_COMPILER`，不通过盲删其他缓存项修复。具体读取者为 `cmake/modules/FindZephyr-sdk.cmake` 的包查找分支，以及 CMake 的 [`find_package` 配置模式](https://cmake.org/cmake/help/latest/command/find_package.html#config-mode-search-procedure)。
+
 完整函数还考虑 sysbuild 与 snippets 作用域，不能把这个简化顺序说成所有 CMake 变量的通用规则。`ZEPHYR_BASE` 有自己的包入口分支；额外模块也不同：`EXTRA_ZEPHYR_MODULES` 与兼容名 `ZEPHYR_EXTRA_MODULES` 使用 MERGE 合并来源，所以只给空 `-D` 不一定清除环境里追加的路径。P012 的恢复分支分别处理旧环境和新构建目录。依据：[Zephyr 输入读取与优先级](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/cmake/modules/extensions.cmake#L4088)（原件 `cmake/modules/extensions.cmake`，第 4088 行附近）；[模块输入与发现脚本调用](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/cmake/modules/zephyr_module.cmake#L34)（原件 `cmake/modules/zephyr_module.cmake`，第 34 行附近）；[包入口 include_boilerplate](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/share/zephyr-package/cmake/ZephyrConfig.cmake#L28)（原件 `share/zephyr-package/cmake/ZephyrConfig.cmake`，第 28 行附近）。
 
 <a id="interface-combinations"></a>
@@ -278,7 +282,7 @@ CMake 的 `${名字}` 通常先找普通变量、再找缓存；`$ENV{名字}` �
 | 本次要改变什么 | 使用或保留的接口 | 不应误做的事情 |
 | --- | --- | --- |
 | 编译已支持的官方板 | 选择应用和 BOARD，默认 SDK 与 west 模块可继续使用 | 为了表示“用 Zephyr”重复设置默认类型 |
-| 多套 SDK 固定一套 | 按需固定 SDK 根 | 把 SDK 根填成 TOOLCHAIN_ROOT |
+| 多套 SDK 选择一套 | 新构建目录中指定目标 SDK 根，并核对包目录与编译器 | 把 SDK 根填成 TOOLCHAIN_ROOT，或忽略旧 Zephyr-sdk_DIR |
 | 改用独立 GNU 编译器组件 | 选择 cross-compile 与程序前缀，核对目标库 | 把独立组件称作 Minimal SDK |
 | 加一个 HAL 项目 | 下载后通过追加模块接口提供根路径 | 替换整份默认模块列表或直接伪造 MODULE_DIR |
 | 增加树外板/SoC | 提供相应搜索根或模块 settings，并实现硬件文件 | 只换 BOARD 名称就宣称硬件存在 |
@@ -350,7 +354,7 @@ if test -f build/learning-tools/p003/cmake-demo/CMakeCache.txt; then
   grep -E '^(CMAKE_HOME_DIRECTORY|CMAKE_GENERATOR|BOARD|BOARD_QUALIFIERS|ZEPHYR_BASE|Zephyr_DIR|Python3_EXECUTABLE):' \
     build/learning-tools/p003/cmake-demo/CMakeCache.txt
   # SDK 选择与配置阶段确定的 C 编译器。
-  grep -E '^(ZEPHYR_TOOLCHAIN_VARIANT|ZEPHYR_SDK_INSTALL_DIR|CMAKE_C_COMPILER):' \
+  grep -E '^(ZEPHYR_TOOLCHAIN_VARIANT|ZEPHYR_SDK_INSTALL_DIR|Zephyr-sdk_DIR|CMAKE_C_COMPILER):' \
     build/learning-tools/p003/cmake-demo/CMakeCache.txt
 else
   printf '%s\n' '尚无本章缓存，请先完成 8.2.2 的配置。'
@@ -363,7 +367,7 @@ else
 fi
 ```
 
-本例应能关联出同一组选择：应用是 `samples/hello_world`，板是 `mps2/an386`，生成器是 Ninja，Python 指向项目 `.venv/Scripts/python.exe`，Zephyr 包入口位于当前源码根的 `share/zephyr-package/cmake`，SDK 根为实际选中的 SDK，C 编译器在它的 `gnu/arm-zephyr-eabi/bin` 下。本机对应的 SDK 根是 `G:/zephyr_practice/zephyr-sdk-1.0.1`，读者使用其他有效位置时不必强行改成这个路径。BOARD 及限定项的保存形态可能随版本规范化，以板日志和相关记录共同核对。
+本例应能关联出同一组选择：应用是 `samples/hello_world`，板是 `mps2/an386`，生成器是 Ninja，Python 指向项目 `.venv/Scripts/python.exe`，Zephyr 包入口位于当前源码根的 `share/zephyr-package/cmake`，SDK 根为实际选中的 SDK，`Zephyr-sdk_DIR` 指向该 SDK 的 `cmake` 包目录，C 编译器在它的 `gnu/arm-zephyr-eabi/bin` 下。本机对应的 SDK 根是 `G:/zephyr_practice/zephyr-sdk-1.0.1`，读者使用其他有效位置时不必强行改成这个路径。BOARD 及限定项的保存形态可能随版本规范化，以板日志和相关记录共同核对。
 
 `cmsis_6` 的模块记录应指向 P004 获取的源码根；第三列若保留 `${ZEPHYR_CMSIS_6_CMAKE_DIR}`，这是供 Zephyr 后续解析的外置接入入口表达式，不是目录丢失，也不是要求读者创建这个名字的文件。其后续读取链已在 10.3.2—10.3.3 展开。[可复制检查](commands/P011_Windows/11.2.4-01.txt)。
 

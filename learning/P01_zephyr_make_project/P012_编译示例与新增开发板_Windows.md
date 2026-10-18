@@ -47,7 +47,7 @@ flowchart LR
 
 “有这个板名”不保证应用要用的全部外设已支持。先看官方板说明的能力，再查对应 DTS/Kconfig/驱动实现；若缺的只是某个驱动，就补该驱动，不重写已有架构。`west list` 用来查可下载项目，不能回答当前硬件支持是否完整。[官方板移植指南](https://docs.zephyrproject.org/latest/hardware/porting/board_porting.html)。
 
-配套 [P012 PPT](slides/P012_编译示例与新增开发板_Windows.pptx)按这些实验推进；完整命令和输出判断以本文为主。上一篇：[P011 缓存与构建排错](P011_CMake缓存与构建排错_Windows.md)；准备材料：[P002—P006 环境、驱动模型与依赖](环境与依赖导航.md)；返回[大纲](大纲.md)。
+配套 [P012 PPT](slides/P012_编译示例与新增开发板_Windows.pptx)按这些实验推进；完整命令和输出判断以本文为主。官方译文可对照[开发板移植指南](../zephyr_docs/hardware/P001_开发板移植指南.md)、[SoC 移植指南](../zephyr_docs/hardware/P002_SoC移植指南.md)和[模块与外部项目](../zephyr_docs/modules/P001_模块与外部项目.md)。硬件模型与公共接口按这些译文核对，具体文件和命令仍以本章固定源码及适配快照为准。上一篇：[P011 缓存与构建排错](P011_CMake缓存与构建排错_Windows.md)；准备材料：[P002—P006 环境、驱动模型与依赖](环境与依赖导航.md)；返回[大纲](大纲.md)。
 
 | 正文 | PPT 阶段 | Markdown 继续展开 |
 | --- | --- | --- |
@@ -387,6 +387,13 @@ flowchart LR
 
 ```bash
 # UCRT64；源码根。首次创建；已存在则先检查，勿覆盖已有练习。
+(
+set -eu
+cd /g/zephyr_practice/zephyr-main
+if test -e build/learning-tools/p003/new-board/boards/others/practice_mps2; then
+  printf '%s\n' '练习板目录已存在；停止创建，先只读核对已有文件。' >&2
+  exit 1
+fi
 mkdir -p build/learning-tools/p003/new-board/boards/others
 mkdir build/learning-tools/p003/new-board/boards/others/practice_mps2
 cat > build/learning-tools/p003/new-board/boards/others/practice_mps2/board.yml <<'EOF'
@@ -403,6 +410,7 @@ cat > build/learning-tools/p003/new-board/boards/others/practice_mps2/Kconfig.pr
 config BOARD_PRACTICE_MPS2
     select SOC_AN386
 EOF
+)
 ```
 
 原板需要按限定名在多个 SoC 中选择；本练习只有 an386，所以选择关系更简单。名字必须与文件名、BOARD 参数一致。先执行发现检查：
@@ -419,6 +427,16 @@ python scripts/list_boards.py --board-root build/learning-tools/p003/new-board \
 
 ```bash
 # UCRT64；源码根。复制当前同一修订的官方文件，保留 SPDX 和版权。
+(
+set -eu
+cd /g/zephyr_practice/zephyr-main
+test -f build/learning-tools/p003/new-board/boards/others/practice_mps2/board.yml
+for name in practice_mps2_an386.dts mps2_base.dtsi mps2-pinctrl.dtsi practice_mps2_an386_defconfig; do
+  if test -e "build/learning-tools/p003/new-board/boards/others/practice_mps2/$name"; then
+    printf '目标已存在，停止复制：%s\n' "$name" >&2
+    exit 1
+  fi
+done
 cp boards/arm/mps2/mps2_an386.dts \
   build/learning-tools/p003/new-board/boards/others/practice_mps2/practice_mps2_an386.dts
 cp boards/arm/mps2/mps2_base.dtsi boards/arm/mps2/mps2-pinctrl.dtsi \
@@ -430,6 +448,7 @@ CONFIG_SERIAL=y
 CONFIG_CONSOLE=y
 CONFIG_UART_CONSOLE=y
 EOF
+)
 ```
 
 对照 DTS 的 include 链：AN386 文件引入 mps2_base，后者引用 pinctrl，因此不能只复制最外层 DTS。`chosen` 决定使用哪一个 UART，defconfig 决定启用 UART 控制台软件功能；两者都需要。另须保留 `CONFIG_GPIO=y`：当前 `drivers/pinctrl/pinctrl_arm_mps2.c` 通过 GPIO 设备设置引脚复用，删去 GPIO 会导致 `__device_dts_ord_*` 链接错误；这是复用原硬件描述时必须一并保留的驱动依赖。此练习没有编造新的 PCB，所以硬件 compatible 保留 mps2；“板登记名变了”不等于硬件设计变了。
@@ -487,7 +506,7 @@ flowchart LR
     S --> E["SoC DTS：寄存器与存储"]
 ```
 
-配套完整材料为 `learning/board/labs/hc32_port`，先将随教程取得的 learning 放在实验源码根。下一节**从空工作模块开始分组加入文件**，对照材料逐步读懂接入；不是要求读者只运行一个“复制全部”命令。驱动寄存器算法的完整实现保存在 `.c` 文件，本文讲清每层为何需要、由谁发现、何时能够验证。
+配套完整材料为 `learning/board/labs/hc32_port`，先将随教程取得的 learning 放在实验源码根。下一节按两种状态继续：**尚无工作模块时，从空目录分组加入文件；已完成 P006 6.6.1 时，复用现有模块，逐组只读对照，然后执行 12.6.5 检查。** 已有副本不再执行 12.6.1—12.6.4 的复制块；需要重做从零练习时另选新目录，并同步后面的搜索根和构建参数，不删除或覆盖旧副本。驱动寄存器算法的完整实现保存在 `.c` 文件，本文讲清每层为何需要、由谁发现、何时能够验证。
 
 ### 12.5.1\_先确认这套 HC32 实现需要的厂商文件
 
@@ -531,7 +550,7 @@ flowchart LR
     style S4 stroke:#007F8A,stroke-width:3px
 ```
 
-工作模块为 `build/learning-tools/p003/hc32_port`，参考材料仍保留在 `learning/board/labs/hc32_port`。两者不得同时加入构建，只使用工作模块。以下全部在 **UCRT64、源码根** 执行；`HAL_XHSC_DIR` 的含义与生效范围已在 12.5.1 明确。
+工作模块为 `build/learning-tools/p003/hc32_port`，参考材料仍保留在 `learning/board/labs/hc32_port`。两者不得同时加入构建，只使用工作模块。下面的复制块仅供尚未加入该组文件的工作副本使用；目标已存在会停止，不覆盖已有修改。以下全部在 **UCRT64、源码根** 执行；`HAL_XHSC_DIR` 的含义与生效范围已在 12.5.1 明确。
 
 ### 12.6.1\_登记模块和 SoC 身份
 
@@ -539,6 +558,14 @@ flowchart LR
 
 ```bash
 # Windows UCRT64；源码根；随附 learning 已放入源码根。
+(
+set -eu
+cd /g/zephyr_practice/zephyr-main
+if test -e build/learning-tools/p003/hc32_port; then
+  printf '%s\n' '工作模块已存在；若由 P006 创建，跳过本节复制块并转到 12.6.5 比较。' >&2
+  exit 1
+fi
+mkdir -p build/learning-tools/p003
 test -f learning/board/labs/hc32_port/zephyr/module.yml
 mkdir build/learning-tools/p003/hc32_port
 mkdir -p build/learning-tools/p003/hc32_port/soc/xhsc/hc32f4a0
@@ -547,6 +574,7 @@ cp learning/board/labs/hc32_port/Kconfig learning/board/labs/hc32_port/CMakeList
   build/learning-tools/p003/hc32_port/
 cp learning/board/labs/hc32_port/soc/xhsc/hc32f4a0/{soc.yml,Kconfig.soc,Kconfig,Kconfig.defconfig} \
   build/learning-tools/p003/hc32_port/soc/xhsc/hc32f4a0/
+)
 ```
 
 这一步先登记入口；根 Kconfig/CMake 引用的驱动稍后才加入，**此时不要运行完整配置**。逐个打开并对照：
@@ -563,10 +591,21 @@ cp learning/board/labs/hc32_port/soc/xhsc/hc32f4a0/{soc.yml,Kconfig.soc,Kconfig,
 
 ```bash
 # UCRT64；源码根；工作模块已由 12.6.1 创建。
+(
+set -eu
+cd /g/zephyr_practice/zephyr-main
+test -f build/learning-tools/p003/hc32_port/zephyr/module.yml
+for name in dts boards; do
+  if test -e "build/learning-tools/p003/hc32_port/$name"; then
+    printf '目标已存在，停止复制：%s\n' "$name" >&2
+    exit 1
+  fi
+done
 cp -R learning/board/labs/hc32_port/dts build/learning-tools/p003/hc32_port/
 cp -R learning/board/labs/hc32_port/boards build/learning-tools/p003/hc32_port/
 cat build/learning-tools/p003/hc32_port/dts/bindings/vendor-prefixes.txt
 cat build/learning-tools/p003/hc32_port/boards/uyup/uyup_rpi_a/board.yml
+)
 ```
 
 SoC 的 `dts/arm/xhsc/hc32f4a0.dtsi` 定义片上资源，型号文件 `hc32f4a0pitb.dtsi` 约束具体容量和引脚，板级 DTS 再选择控制台、LED 和实际 PCB 连线。这与 AN386 的“公共硬件描述 + 目标 DTS”对应，但数值必须来自 HC32 手册。
@@ -588,8 +627,19 @@ python scripts/list_boards.py --board-root build/learning-tools/p003/hc32_port \
 
 ```bash
 # UCRT64；源码根；保留原 SPDX 和版权。
+(
+set -eu
+cd /g/zephyr_practice/zephyr-main
+test -f build/learning-tools/p003/hc32_port/soc/xhsc/hc32f4a0/soc.yml
+for name in CMakeLists.txt soc.c soc.h reset_hook.S icg.ld hc32_ll_conf.h hc32f4xx_conf.h; do
+  if test -e "build/learning-tools/p003/hc32_port/soc/xhsc/hc32f4a0/$name"; then
+    printf '目标已存在，停止复制：%s\n' "$name" >&2
+    exit 1
+  fi
+done
 cp learning/board/labs/hc32_port/soc/xhsc/hc32f4a0/{CMakeLists.txt,soc.c,soc.h,reset_hook.S,icg.ld,hc32_ll_conf.h,hc32f4xx_conf.h} \
   build/learning-tools/p003/hc32_port/soc/xhsc/hc32f4a0/
+)
 ```
 
 `reset_hook.S` 负责芯片早期入口需要的处理，`soc.c` 完成当前 12 MHz 晶振直驱初始化，`icg.ld` 放置芯片配置字；它们不是把 AN386 文件改名得到的。保留 Zephyr 的向量/复位框架，不重复链接厂商 startup。SoC CMake 使用原生生成的 `ZEPHYR_HAL_XHSC_MODULE_DIR` 引用 P006 准备并在 12.5.1 核验的 HAL，编译所需 system 与 DDL 源文件，并提供设备头 include；此变量由模块名产生，不需要读者 export。
@@ -619,10 +669,19 @@ flowchart LR
 
 ```bash
 # UCRT64；源码根。
+(
+set -eu
+cd /g/zephyr_practice/zephyr-main
+test -f build/learning-tools/p003/hc32_port/zephyr/module.yml
+if test -e build/learning-tools/p003/hc32_port/drivers; then
+  printf '%s\n' '驱动目录已存在；停止复制，先只读核对已有文件。' >&2
+  exit 1
+fi
 cp -R learning/board/labs/hc32_port/drivers build/learning-tools/p003/hc32_port/
 cat build/learning-tools/p003/hc32_port/Kconfig
 cat build/learning-tools/p003/hc32_port/CMakeLists.txt
 cat build/learning-tools/p003/hc32_port/drivers/serial/Kconfig.hc32
+)
 ```
 
 原生 MPS2 的 UART 是 CMSDK 驱动；HC32 的 USART 寄存器和 HAL API 不同，需要 `drivers/serial/uart_hc32.c` 提供 Zephyr UART 接口，GPIO 同理。Kconfig 决定是否启用，CMake 决定哪些 `.c` 参与构建，binding/DTS 把配置送给驱动实例，HAL 完成对应芯片寄存器操作。这些层缺一不可，不能只下载 HAL 或只新增 YAML。

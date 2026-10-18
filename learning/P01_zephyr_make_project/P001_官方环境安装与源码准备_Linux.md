@@ -17,6 +17,8 @@ domains: [zephyr, linux, tools]
 
 `hello_world` 是应用，入口文件为应用根的 `CMakeLists.txt` 和 `prj.conf`；`mps2/an386` 是所选硬件目标，表示 Arm MPS2 FPGA 平台的 Cortex-M4F 系统配置。应用回答做什么，板回答在哪里运行。以后同板换应用或同应用换板，都建立各自构建目录；先不把应用源码、板文件和生成目录混为一处。
 
+**官方译文对照：** [入门指南](../zephyr_docs/getting_started/P002_入门指南.md)、[Linux 主机依赖](../zephyr_docs/getting_started/P007_Linux主机依赖.md)与 [Zephyr SDK](../zephyr_docs/toolchains/P002_ZephyrSDK.md)。官方快速开始使用 Ubuntu 24.04 及更新版本，本章保留 22.04 的工具补齐路线；源码和 SDK 的固定版本不因译文来自 `latest` 而自动升级。
+
 本教程使用 **Ubuntu 22.04 LTS（Jammy）**，命令在 Linux Bash 执行。WSL Ubuntu 也按 Linux 分支处理。Windows UCRT64 读者转到 [Windows 环境](环境与依赖导航.md)。其他发行版使用[官方 Linux 依赖说明](https://docs.zephyrproject.org/latest/develop/getting_started/installation_linux.html)。
 
 配套 [Linux P001 演示文稿](slides/P001_官方环境安装与源码准备_Linux.pptx)。返回[专题大纲](大纲.md)。本章采用官方 `~/zephyrproject/zephyr` 源码布局，`.venv` 在其父级工作区；这是 Linux 独立示例，不是在 Linux 上输入 Windows 的 `G:\...` 或 UCRT64 的 `/g/...`。
@@ -282,10 +284,13 @@ cd ~/Downloads
 # SDK 根由解压生成；已有同名安装时先停止并核对。
 tar -xf zephyr-sdk-1.0.1_linux-x86_64_minimal.tar.xz -C "$HOME"
 cd ~/zephyr-sdk-1.0.1
-# 官方 setup.sh：-t 安装 ARM；-c 把 SDK 路径保存到当前 Linux 用户的包索引。
-./setup.sh -t arm-zephyr-eabi -c
+# 官方 setup.sh：-t 安装 ARM；-h 初始化主机工具；-c 保存用户包地址。
+./setup.sh -t arm-zephyr-eabi -h -c
 ./gnu/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc --version
+test -d hosttools/sysroots && printf 'Linux SDK 主机工具已展开。\n'
 ```
+
+`-t`、`-h`、`-c` 是三个独立动作。Linux SDK 1.0.1 归档的 `hosttools/` 初始含主机工具安装器，`-h` 才执行它并展开 `hosttools/sysroots/`；只运行 `-t ... -c` 不会完成这一步。完整 GNU 包虽然预带目标工具链，同样需要初始化 Linux 主机工具。上面的目录检查应成功，但不等于已经运行 QEMU 或构建固件。依据见[官方 SDK 译文的 Linux 安装步骤](../zephyr_docs/toolchains/P002_ZephyrSDK.md)与 [SDK 1.0.1 的 POSIX setup 原件](https://github.com/zephyrproject-rtos/sdk-ng/blob/v1.0.1/scripts/template_setup_posix)中的 `-h` 分支和 host tools 安装段；官方 `scripts/west_commands/sdk.py` 的 `run_setup()` 也会默认传入 `-h`。
 
 `-c` 调用 SDK 包内的导出脚本，在当前 Linux 用户的 `~/.cmake/packages/Zephyr-sdk/` 下写入地址记录，内容指向 SDK 的 cmake 目录。它跨终端和重启保存，供同一 Linux 用户的多个 CMake 工程自动查找，不绑定当前工程或 .venv，也不写 Windows 注册表。可查看该目录中文件核对；取消某条记录时只移除内容指向对应 SDK 的文件，不删除其他 SDK 项。
 
@@ -296,16 +301,17 @@ cd ~/zephyr-sdk-1.0.1
 
 ### 1.5.1\_GNU 与 Minimal 的接入关系
 
-在 Ubuntu 22.04 上，GNU 包预带多种目标工具链，Minimal 包保留 SDK 基础文件和主机工具、再由 `setup.sh -t arm-zephyr-eabi` 安装 ARM。两种路线最终都以含 `sdk_version`、`cmake` 和 `gnu` 的 SDK 根接到 Zephyr。单独的工具链压缩包只含目标工具与库，不能代替 SDK 基础包。主机包要选 Linux，对应脚本是 setup.sh，不能复制 Windows 的 setup.cmd 命令。
+在 Ubuntu 22.04 上，GNU 包预带多种目标工具链，Minimal 包保留 SDK 基础文件与主机工具安装器，再由 `setup.sh -t arm-zephyr-eabi` 安装 ARM。两种包都要执行 `setup.sh -h` 初始化 Linux 主机工具，或合并为上面的 `-t ... -h -c` 操作。两种路线最终都以含 `sdk_version`、`cmake` 和 `gnu` 的 SDK 根接到 Zephyr。单独的工具链压缩包只含目标工具与库，不能代替 SDK 基础包。主机包要选 Linux，对应脚本是 setup.sh，不能复制 Windows 的 setup.cmd 命令。
 
 工程先通过路径或当前 Linux 用户的 CMake 包记录找到 SDK，再由板与 SoC 的架构配置选择 ARM 工具链。新增 Cortex-M4 芯片一般复用 ARM 工具链，新增工作落在 SoC、板和驱动；CMSIS/HAL 属于源码模块。详细概念与官方文件位置见 [P003 的三种归档与接入说明](P003_SDK准备与编译器选型_Windows.md#section-3-2)和 [P010 的工具链发现机制](P010_Zephyr的CMake输入与依赖发现_Windows.md#toolchain-contract)，其中 Windows 下载和注册表命令只适用于 Windows。
 
 ```mermaid
 flowchart LR
-    A["GNU：预带目标工具"] --> C["相同 SDK CMake 接口"]
-    B["Minimal：setup.sh 补目标工具"] --> C
-    C --> D["工程选 SDK 根，板配置选架构"]
-    D --> E["当前构建目录保存选择"]
+    A["GNU 预带工具"] --> C["同一 SDK 根"]
+    B["Minimal 补工具"] --> C
+    C --> D["工程选 SDK"]
+    D --> E["板配置选目标"]
+    E --> F["P008 编译"]
 ```
 
 <a id="section-1-6"></a>

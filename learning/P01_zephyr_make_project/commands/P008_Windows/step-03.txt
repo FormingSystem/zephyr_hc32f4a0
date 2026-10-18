@@ -1,8 +1,11 @@
 # Windows UCRT64；源码根；前提：8.2 的 cmake-demo 配置成功。
 cd /g/zephyr_practice/zephyr-main
 source .venv/Scripts/activate
-# 构建同一个目录，不重新选择 BOARD；4 表示最多四个并行任务。
-cmake --build build/learning-tools/p003/cmake-demo --parallel 4
-ls -l build/learning-tools/p003/cmake-demo/zephyr/zephyr.elf
-# 没改输入时，再次构建通常没有需要重做的编译任务。
-cmake --build build/learning-tools/p003/cmake-demo --parallel 4
+# 构建成功才检查 ELF 和执行增量对照；失败时不把旧产物当作本次结果。
+if cmake --build build/learning-tools/p003/cmake-demo --parallel 4; then
+  ls -l build/learning-tools/p003/cmake-demo/zephyr/zephyr.elf
+  # 没改输入时，再次构建通常没有需要重做的编译任务。
+  cmake --build build/learning-tools/p003/cmake-demo --parallel 4
+else
+  printf '%s\n' '本次构建失败，请检查首个错误；已有 ELF 不能证明本次成功。' >&2
+fi

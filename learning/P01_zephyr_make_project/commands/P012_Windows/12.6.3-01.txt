@@ -1,5 +1,16 @@
 # P012_Windows / 12.6.3\_接入复位、时钟和链接布局
 # 先核对正文的终端、目录与前提，再执行此完整操作单元。
 # UCRT64；源码根；保留原 SPDX 和版权。
+(
+set -eu
+cd /g/zephyr_practice/zephyr-main
+test -f build/learning-tools/p003/hc32_port/soc/xhsc/hc32f4a0/soc.yml
+for name in CMakeLists.txt soc.c soc.h reset_hook.S icg.ld hc32_ll_conf.h hc32f4xx_conf.h; do
+  if test -e "build/learning-tools/p003/hc32_port/soc/xhsc/hc32f4a0/$name"; then
+    printf '目标已存在，停止复制：%s\n' "$name" >&2
+    exit 1
+  fi
+done
 cp learning/board/labs/hc32_port/soc/xhsc/hc32f4a0/{CMakeLists.txt,soc.c,soc.h,reset_hook.S,icg.ld,hc32_ll_conf.h,hc32f4xx_conf.h} \
   build/learning-tools/p003/hc32_port/soc/xhsc/hc32f4a0/
+)
