@@ -1,0 +1,20 @@
+
+        sequenceDiagram
+    participant T as Twister
+    participant H as Harness<br/>(ttcn3_runner.py)
+    participant Z as System under test
+    participant B as build.sh + Titan
+    participant S as TTCN-3 suite
+
+    T->>H: start test (900 s budget)
+    H->>H: flock(LOCK_EX) on the interface
+    Note over H,Z: the lock is taken before the DUT fixture,<br/>so nothing starts while another test runs
+    H->>Z: start
+    Z-->>H: ready line (30 s)
+    H->>B: build the suite (1800 s)
+    B-->>H: executable
+    H->>S: run against the running application (600 s)
+    S-->>H: verdict statistics, overall verdict
+    H->>H: release the lock
+    H-->>T: pass or fail
+    
