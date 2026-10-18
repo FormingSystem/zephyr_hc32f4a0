@@ -1,0 +1,2677 @@
+---
+id: learning.zephyr-docs.api-file-reference.page-32
+title: zephyr__dt-bindings__pinctrl__cc23x0-pinctrl.h_文件参考
+kind: reference
+status: maintained
+domains: [zephyr, drivers, api]
+source_url: https://docs.zephyrproject.org/latest/doxygen/html/cc23x0-pinctrl_8h.html
+---
+
+<!-- Copyright 2015-2026 Zephyr Project members and individual contributors. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<!-- 中文翻译；编号、导航和明确标注的译注为本地新增。 -->
+
+# 第32章\_zephyr\_\_dt-bindings\_\_pinctrl\_\_cc23x0-pinctrl.h\_文件参考
+
+原文：[官方页面](https://docs.zephyrproject.org/latest/doxygen/html/cc23x0-pinctrl_8h.html)。读取日期：2026-10-17；来源摘要见[来源记录](../SOURCES.md)。
+
+查看此文件的源码。
+
+<a id="header-define-members"></a>
+<a id="define-members"></a>
+
+## 32.1\_宏定义（Macros）
+
+<a id="r_aa502a06b1e9f31be173481ff4626bb70"></a>
+
+```c
+#define IOC_PORTCFG_BASE 0U
+```
+
+相关声明：[IOC_PORTCFG_BASE](#aa502a06b1e9f31be173481ff4626bb70)。
+
+<a id="r_a4ac7f9fbb7a989da2815fa48a2c63bd9"></a>
+
+```c
+#define IOC_PORTCFG_PFUNC1 1U
+```
+
+相关声明：[IOC_PORTCFG_PFUNC1](#a4ac7f9fbb7a989da2815fa48a2c63bd9)。
+
+<a id="r_a469848941ebbce5b2fc1b54d57f7d965"></a>
+
+```c
+#define IOC_PORTCFG_PFUNC2 2U
+```
+
+相关声明：[IOC_PORTCFG_PFUNC2](#a469848941ebbce5b2fc1b54d57f7d965)。
+
+<a id="r_a420b3a48d4a6010feb9866b97a7492dd"></a>
+
+```c
+#define IOC_PORTCFG_PFUNC3 3U
+```
+
+相关声明：[IOC_PORTCFG_PFUNC3](#a420b3a48d4a6010feb9866b97a7492dd)。
+
+<a id="r_a3f27b6bb5191b2c2def7b74afa0c0019"></a>
+
+```c
+#define IOC_PORTCFG_PFUNC4 4U
+```
+
+相关声明：[IOC_PORTCFG_PFUNC4](#a3f27b6bb5191b2c2def7b74afa0c0019)。
+
+<a id="r_af33d2e20e5de9cc53b70a3e826624837"></a>
+
+```c
+#define IOC_PORTCFG_PFUNC5 5U
+```
+
+相关声明：[IOC_PORTCFG_PFUNC5](#af33d2e20e5de9cc53b70a3e826624837)。
+
+<a id="r_a375a32390601a0a7e8daf034bf696482"></a>
+
+```c
+#define IOC_PORTCFG_ANA 6U
+```
+
+相关声明：[IOC_PORTCFG_ANA](#a375a32390601a0a7e8daf034bf696482)。
+
+<a id="r_a6c1e87a84343d63b8ab60e53b14944d3"></a>
+
+```c
+#define IOC_PORTCFG_DTB 7U
+```
+
+相关声明：[IOC_PORTCFG_DTB](#a6c1e87a84343d63b8ab60e53b14944d3)。
+
+<a id="r_ade776b707cd244b692be71202a7e08cb"></a>
+
+```c
+#define DIO0_GPIO0 IOC_PORTCFG_BASE
+```
+
+相关声明：[DIO0_GPIO0](#ade776b707cd244b692be71202a7e08cb)、[IOC_PORTCFG_BASE](#aa502a06b1e9f31be173481ff4626bb70)。
+
+<a id="r_a92c899e5d01e371e4abee45e3f31c5f4"></a>
+
+```c
+#define DIO0_SPI0_CSN IOC_PORTCFG_PFUNC1
+```
+
+相关声明：[DIO0_SPI0_CSN](#a92c899e5d01e371e4abee45e3f31c5f4)、[IOC_PORTCFG_PFUNC1](#a4ac7f9fbb7a989da2815fa48a2c63bd9)。
+
+<a id="r_a1da175a81e69788efebd00db91beba6e"></a>
+
+```c
+#define DIO0_I2C0_SDA IOC_PORTCFG_PFUNC2
+```
+
+相关声明：[DIO0_I2C0_SDA](#a1da175a81e69788efebd00db91beba6e)、[IOC_PORTCFG_PFUNC2](#a469848941ebbce5b2fc1b54d57f7d965)。
+
+<a id="r_ae6321d9d1d78a0ee5c58b5f94577f501"></a>
+
+```c
+#define DIO0_T3_C2 IOC_PORTCFG_PFUNC3
+```
+
+相关声明：[DIO0_T3_C2](#ae6321d9d1d78a0ee5c58b5f94577f501)、[IOC_PORTCFG_PFUNC3](#a420b3a48d4a6010feb9866b97a7492dd)。
+
+<a id="r_ab256a8550b3c03978e5c6b707ba6d1ce"></a>
+
+```c
+#define DIO0_ADC5 IOC_PORTCFG_ANA
+```
+
+相关声明：[DIO0_ADC5](#ab256a8550b3c03978e5c6b707ba6d1ce)、[IOC_PORTCFG_ANA](#a375a32390601a0a7e8daf034bf696482)。
+
+<a id="r_ac38ece6a277c436f774ab4b0392ea635"></a>
+
+```c
+#define DIO1_GPIO1 IOC_PORTCFG_BASE
+```
+
+相关声明：[DIO1_GPIO1](#ac38ece6a277c436f774ab4b0392ea635)、[IOC_PORTCFG_BASE](#aa502a06b1e9f31be173481ff4626bb70)。
+
+<a id="r_a2b5d4a0a786d41a76b959a976c3435a4"></a>
+
+```c
+#define DIO1_T3_C1 IOC_PORTCFG_PFUNC1
+```
+
+相关声明：[DIO1_T3_C1](#a2b5d4a0a786d41a76b959a976c3435a4)、[IOC_PORTCFG_PFUNC1](#a4ac7f9fbb7a989da2815fa48a2c63bd9)。
+
+<a id="r_acb8c92941a28948edf78ea8ba7bf1a3f"></a>
+
+```c
+#define DIO1_LRFD7 IOC_PORTCFG_PFUNC2
+```
+
+相关声明：[DIO1_LRFD7](#acb8c92941a28948edf78ea8ba7bf1a3f)、[IOC_PORTCFG_PFUNC2](#a469848941ebbce5b2fc1b54d57f7d965)。
+
+<a id="r_a522504deec63fc7e124ee2628e21158c"></a>
+
+```c
+#define DIO1_T1_F IOC_PORTCFG_PFUNC3
+```
+
+相关声明：[DIO1_T1_F](#a522504deec63fc7e124ee2628e21158c)、[IOC_PORTCFG_PFUNC3](#a420b3a48d4a6010feb9866b97a7492dd)。
+
+<a id="r_a6f9ff300c12b1d0f6291da925d53d049"></a>
+
+```c
+#define DIO1_UART0_RTS IOC_PORTCFG_PFUNC4
+```
+
+相关声明：[DIO1_UART0_RTS](#a6f9ff300c12b1d0f6291da925d53d049)、[IOC_PORTCFG_PFUNC4](#a3f27b6bb5191b2c2def7b74afa0c0019)。
+
+<a id="r_ac1db8b2eec7a587f2777ec42bc741332"></a>
+
+```c
+#define DIO1_ADC4 IOC_PORTCFG_ANA
+```
+
+相关声明：[DIO1_ADC4](#ac1db8b2eec7a587f2777ec42bc741332)、[IOC_PORTCFG_ANA](#a375a32390601a0a7e8daf034bf696482)。
+
+<a id="r_a22d9f90c38345c7487044591caaa5a60"></a>
+
+```c
+#define DIO1_DTB2 IOC_PORTCFG_DTB
+```
+
+相关声明：[DIO1_DTB2](#a22d9f90c38345c7487044591caaa5a60)、[IOC_PORTCFG_DTB](#a6c1e87a84343d63b8ab60e53b14944d3)。
+
+<a id="r_acce8374fb4d805494ebaf78834d431d6"></a>
+
+```c
+#define DIO2_GPIO2 IOC_PORTCFG_BASE
+```
+
+相关声明：[DIO2_GPIO2](#acce8374fb4d805494ebaf78834d431d6)、[IOC_PORTCFG_BASE](#aa502a06b1e9f31be173481ff4626bb70)。
+
+<a id="r_ae1e1837425d79845e84a9551c6ce90d3"></a>
+
+```c
+#define DIO2_T0_PE IOC_PORTCFG_PFUNC1
+```
+
+相关声明：[DIO2_T0_PE](#ae1e1837425d79845e84a9551c6ce90d3)、[IOC_PORTCFG_PFUNC1](#a4ac7f9fbb7a989da2815fa48a2c63bd9)。
+
+<a id="r_a943d0d0497b8d939b4bdf6eb1ed7af03"></a>
+
+```c
+#define DIO2_T2_C1N IOC_PORTCFG_PFUNC2
+```
+
+相关声明：[DIO2_T2_C1N](#a943d0d0497b8d939b4bdf6eb1ed7af03)、[IOC_PORTCFG_PFUNC2](#a469848941ebbce5b2fc1b54d57f7d965)。
+
+<a id="r_aebfe126f475d93068b93eb195049f586"></a>
+
+```c
+#define DIO2_UART0_CTS IOC_PORTCFG_PFUNC3
+```
+
+相关声明：[DIO2_UART0_CTS](#aebfe126f475d93068b93eb195049f586)、[IOC_PORTCFG_PFUNC3](#a420b3a48d4a6010feb9866b97a7492dd)。
+
+<a id="r_a592b7a2687e97ac64b684681a43dbc0b"></a>
+
+```c
+#define DIO2_ADC3 IOC_PORTCFG_ANA
+```
+
+相关声明：[DIO2_ADC3](#a592b7a2687e97ac64b684681a43dbc0b)、[IOC_PORTCFG_ANA](#a375a32390601a0a7e8daf034bf696482)。
+
+<a id="r_a02eb22dc2b9867c418e972a64c4e549c"></a>
+
+```c
+#define DIO3_GPIO3 IOC_PORTCFG_BASE
+```
+
+相关声明：[DIO3_GPIO3](#a02eb22dc2b9867c418e972a64c4e549c)、[IOC_PORTCFG_BASE](#aa502a06b1e9f31be173481ff4626bb70)。
+
+<a id="r_a9babb38598d110fa6972313e4a5f90ac"></a>
+
+```c
+#define DIO3_LFCI IOC_PORTCFG_PFUNC1
+```
+
+相关声明：[DIO3_LFCI](#a9babb38598d110fa6972313e4a5f90ac)、[IOC_PORTCFG_PFUNC1](#a4ac7f9fbb7a989da2815fa48a2c63bd9)。
+
+<a id="r_ad5f0fade34b37ed25a23b27a101f9796"></a>
+
+```c
+#define DIO3_T0_C1N IOC_PORTCFG_PFUNC2
+```
+
+相关声明：[DIO3_T0_C1N](#ad5f0fade34b37ed25a23b27a101f9796)、[IOC_PORTCFG_PFUNC2](#a469848941ebbce5b2fc1b54d57f7d965)。
+
+<a id="r_a2680e26e7c1dd92e43413727f9f4c415"></a>
+
+```c
+#define DIO3_LRFD0 IOC_PORTCFG_PFUNC3
+```
+
+相关声明：[DIO3_LRFD0](#a2680e26e7c1dd92e43413727f9f4c415)、[IOC_PORTCFG_PFUNC3](#a420b3a48d4a6010feb9866b97a7492dd)。
+
+<a id="r_a3856eb90a0dec21a3055041edf7c975a"></a>
+
+```c
+#define DIO3_T3_C1 IOC_PORTCFG_PFUNC4
+```
+
+相关声明：[DIO3_T3_C1](#a3856eb90a0dec21a3055041edf7c975a)、[IOC_PORTCFG_PFUNC4](#a3f27b6bb5191b2c2def7b74afa0c0019)。
+
+<a id="r_a31ecae7e3f360d17dee9b78b2a8f18b1"></a>
+
+```c
+#define DIO3_T1_C2 IOC_PORTCFG_PFUNC5
+```
+
+相关声明：[DIO3_T1_C2](#a31ecae7e3f360d17dee9b78b2a8f18b1)、[IOC_PORTCFG_PFUNC5](#af33d2e20e5de9cc53b70a3e826624837)。
+
+<a id="r_a6d5fd06f8df458a27ee0cb75746203df"></a>
+
+```c
+#define DIO3_LFXT_P IOC_PORTCFG_ANA
+```
+
+相关声明：[DIO3_LFXT_P](#a6d5fd06f8df458a27ee0cb75746203df)、[IOC_PORTCFG_ANA](#a375a32390601a0a7e8daf034bf696482)。
+
+<a id="r_a95e01bbcdcd732983e0bca7cf02fcf33"></a>
+
+```c
+#define DIO3_DTB7 IOC_PORTCFG_DTB
+```
+
+相关声明：[DIO3_DTB7](#a95e01bbcdcd732983e0bca7cf02fcf33)、[IOC_PORTCFG_DTB](#a6c1e87a84343d63b8ab60e53b14944d3)。
+
+<a id="r_ae3239b06b452ff8757f9990f5f091a61"></a>
+
+```c
+#define DIO4_GPIO4 IOC_PORTCFG_BASE
+```
+
+相关声明：[DIO4_GPIO4](#ae3239b06b452ff8757f9990f5f091a61)、[IOC_PORTCFG_BASE](#aa502a06b1e9f31be173481ff4626bb70)。
+
+<a id="r_a040b8faba6859f0decc43d318cee6ed1"></a>
+
+```c
+#define DIO4_T0_C2N IOC_PORTCFG_PFUNC1
+```
+
+相关声明：[DIO4_T0_C2N](#a040b8faba6859f0decc43d318cee6ed1)、[IOC_PORTCFG_PFUNC1](#a4ac7f9fbb7a989da2815fa48a2c63bd9)。
+
+<a id="r_a4ee4d6b4e97e0053b9dfdadd47ffd55e"></a>
+
+```c
+#define DIO4_UART0_TXD IOC_PORTCFG_PFUNC2
+```
+
+相关声明：[DIO4_UART0_TXD](#a4ee4d6b4e97e0053b9dfdadd47ffd55e)、[IOC_PORTCFG_PFUNC2](#a469848941ebbce5b2fc1b54d57f7d965)。
+
+<a id="r_a5f4c955ea6d875eb53f8575a59b8fc1a"></a>
+
+```c
+#define DIO4_LRFD1 IOC_PORTCFG_PFUNC3
+```
+
+相关声明：[DIO4_LRFD1](#a5f4c955ea6d875eb53f8575a59b8fc1a)、[IOC_PORTCFG_PFUNC3](#a420b3a48d4a6010feb9866b97a7492dd)。
+
+<a id="r_a17ea74b30c1aed816d675fcc2ff076fc"></a>
+
+```c
+#define DIO4_SPI0_MOSI IOC_PORTCFG_PFUNC4
+```
+
+相关声明：[DIO4_SPI0_MOSI](#a17ea74b30c1aed816d675fcc2ff076fc)、[IOC_PORTCFG_PFUNC4](#a3f27b6bb5191b2c2def7b74afa0c0019)。
+
+<a id="r_ab42c816bea20237638d790ffcee2b2cf"></a>
+
+```c
+#define DIO4_T0_C2 IOC_PORTCFG_PFUNC5
+```
+
+相关声明：[DIO4_T0_C2](#ab42c816bea20237638d790ffcee2b2cf)、[IOC_PORTCFG_PFUNC5](#af33d2e20e5de9cc53b70a3e826624837)。
+
+<a id="r_ae5bbef3a760612759307039d94ae8d4c"></a>
+
+```c
+#define DIO4_LFXT_N IOC_PORTCFG_ANA
+```
+
+相关声明：[DIO4_LFXT_N](#ae5bbef3a760612759307039d94ae8d4c)、[IOC_PORTCFG_ANA](#a375a32390601a0a7e8daf034bf696482)。
+
+<a id="r_abebb35dde4a811b0237b9fb24517b41f"></a>
+
+```c
+#define DIO4_DTB8 IOC_PORTCFG_DTB
+```
+
+相关声明：[DIO4_DTB8](#abebb35dde4a811b0237b9fb24517b41f)、[IOC_PORTCFG_DTB](#a6c1e87a84343d63b8ab60e53b14944d3)。
+
+<a id="r_ae860734b858834f5024b4f35377c56cb"></a>
+
+```c
+#define DIO5_GPIO5 IOC_PORTCFG_BASE
+```
+
+相关声明：[DIO5_GPIO5](#ae860734b858834f5024b4f35377c56cb)、[IOC_PORTCFG_BASE](#aa502a06b1e9f31be173481ff4626bb70)。
+
+<a id="r_abbada75153e0f5b9c352a2cfd6669037"></a>
+
+```c
+#define DIO5_T2_C2 IOC_PORTCFG_PFUNC1
+```
+
+相关声明：[DIO5_T2_C2](#abbada75153e0f5b9c352a2cfd6669037)、[IOC_PORTCFG_PFUNC1](#a4ac7f9fbb7a989da2815fa48a2c63bd9)。
+
+<a id="r_aff51e9eb6eb949038b5cccb4fa074212"></a>
+
+```c
+#define DIO5_LRFD6 IOC_PORTCFG_PFUNC3
+```
+
+相关声明：[DIO5_LRFD6](#aff51e9eb6eb949038b5cccb4fa074212)、[IOC_PORTCFG_PFUNC3](#a420b3a48d4a6010feb9866b97a7492dd)。
+
+<a id="r_a09619eb634cab8068134cb40a152f17b"></a>
+
+```c
+#define DIO5_ADC2 IOC_PORTCFG_ANA
+```
+
+相关声明：[DIO5_ADC2](#a09619eb634cab8068134cb40a152f17b)、[IOC_PORTCFG_ANA](#a375a32390601a0a7e8daf034bf696482)。
+
+<a id="r_a56f5afccece122855f957668e81d1bcd"></a>
+
+```c
+#define DIO6_GPIO6 IOC_PORTCFG_BASE
+```
+
+相关声明：[DIO6_GPIO6](#a56f5afccece122855f957668e81d1bcd)、[IOC_PORTCFG_BASE](#aa502a06b1e9f31be173481ff4626bb70)。
+
+<a id="r_a38d80b5fc0894b55beba01019350edca"></a>
+
+```c
+#define DIO6_SPI0_CSN IOC_PORTCFG_PFUNC1
+```
+
+相关声明：[DIO6_SPI0_CSN](#a38d80b5fc0894b55beba01019350edca)、[IOC_PORTCFG_PFUNC1](#a4ac7f9fbb7a989da2815fa48a2c63bd9)。
+
+<a id="r_a914b6a41adb66c2f65413c46ff620c5c"></a>
+
+```c
+#define DIO6_I2C0_SCL IOC_PORTCFG_PFUNC2
+```
+
+相关声明：[DIO6_I2C0_SCL](#a914b6a41adb66c2f65413c46ff620c5c)、[IOC_PORTCFG_PFUNC2](#a469848941ebbce5b2fc1b54d57f7d965)。
+
+<a id="r_ad17cc424f3421617c753d1387da6c6bf"></a>
+
+```c
+#define DIO6_T1_C2 IOC_PORTCFG_PFUNC3
+```
+
+相关声明：[DIO6_T1_C2](#ad17cc424f3421617c753d1387da6c6bf)、[IOC_PORTCFG_PFUNC3](#a420b3a48d4a6010feb9866b97a7492dd)。
+
+<a id="r_a834af6e67831d342dbef9084a4bc422e"></a>
+
+```c
+#define DIO6_LRFD2 IOC_PORTCFG_PFUNC4
+```
+
+相关声明：[DIO6_LRFD2](#a834af6e67831d342dbef9084a4bc422e)、[IOC_PORTCFG_PFUNC4](#a3f27b6bb5191b2c2def7b74afa0c0019)。
+
+<a id="r_ac55e5ce877a5e57cf565830193c076e6"></a>
+
+```c
+#define DIO6_UART0_TXD IOC_PORTCFG_PFUNC5
+```
+
+相关声明：[DIO6_UART0_TXD](#ac55e5ce877a5e57cf565830193c076e6)、[IOC_PORTCFG_PFUNC5](#af33d2e20e5de9cc53b70a3e826624837)。
+
+<a id="r_a39e4a39c6d312c974b37acac1b1054da"></a>
+
+```c
+#define DIO6_ADC1_AREFP IOC_PORTCFG_ANA
+```
+
+相关声明：[DIO6_ADC1_AREFP](#a39e4a39c6d312c974b37acac1b1054da)、[IOC_PORTCFG_ANA](#a375a32390601a0a7e8daf034bf696482)。
+
+<a id="r_aac1e3c63427f92bd1d73d472ca215eb1"></a>
+
+```c
+#define DIO6_DTB6 IOC_PORTCFG_DTB
+```
+
+相关声明：[DIO6_DTB6](#aac1e3c63427f92bd1d73d472ca215eb1)、[IOC_PORTCFG_DTB](#a6c1e87a84343d63b8ab60e53b14944d3)。
+
+<a id="r_ae0e5f07c43371d3602b4353f6178a214"></a>
+
+```c
+#define DIO7_GPIO7 IOC_PORTCFG_BASE
+```
+
+相关声明：[DIO7_GPIO7](#ae0e5f07c43371d3602b4353f6178a214)、[IOC_PORTCFG_BASE](#aa502a06b1e9f31be173481ff4626bb70)。
+
+<a id="r_ae60dd20c9960b001a992d37fbfa05956"></a>
+
+```c
+#define DIO7_T3_C1 IOC_PORTCFG_PFUNC1
+```
+
+相关声明：[DIO7_T3_C1](#ae60dd20c9960b001a992d37fbfa05956)、[IOC_PORTCFG_PFUNC1](#a4ac7f9fbb7a989da2815fa48a2c63bd9)。
+
+<a id="r_a8a354e58d7f6425c9cb91137dc4aa766"></a>
+
+```c
+#define DIO7_LRFD4 IOC_PORTCFG_PFUNC3
+```
+
+相关声明：[DIO7_LRFD4](#a8a354e58d7f6425c9cb91137dc4aa766)、[IOC_PORTCFG_PFUNC3](#a420b3a48d4a6010feb9866b97a7492dd)。
+
+<a id="r_a3c92801ae0b96fae2be1a9b018022aea"></a>
+
+```c
+#define DIO7_ADC0_AREFM IOC_PORTCFG_ANA
+```
+
+相关声明：[DIO7_ADC0_AREFM](#a3c92801ae0b96fae2be1a9b018022aea)、[IOC_PORTCFG_ANA](#a375a32390601a0a7e8daf034bf696482)。
+
+<a id="r_afe29503f0e97bf76bea3ed2ec3fe4b64"></a>
+
+```c
+#define DIO8_GPIO8 IOC_PORTCFG_BASE
+```
+
+相关声明：[DIO8_GPIO8](#afe29503f0e97bf76bea3ed2ec3fe4b64)、[IOC_PORTCFG_BASE](#aa502a06b1e9f31be173481ff4626bb70)。
+
+<a id="r_a3d22644d12be2b507ed4a4a05097b29f"></a>
+
+```c
+#define DIO8_SPI0_SCLK IOC_PORTCFG_PFUNC1
+```
+
+相关声明：[DIO8_SPI0_SCLK](#a3d22644d12be2b507ed4a4a05097b29f)、[IOC_PORTCFG_PFUNC1](#a4ac7f9fbb7a989da2815fa48a2c63bd9)。
+
+<a id="r_a82f64fe945445f96be0db2aa2d021e6b"></a>
+
+```c
+#define DIO8_UART0_RTS IOC_PORTCFG_PFUNC2
+```
+
+相关声明：[DIO8_UART0_RTS](#a82f64fe945445f96be0db2aa2d021e6b)、[IOC_PORTCFG_PFUNC2](#a469848941ebbce5b2fc1b54d57f7d965)。
+
+<a id="r_ab32d21fdbcde3256731b561d9f5f2ad1"></a>
+
+```c
+#define DIO8_T1_C0N IOC_PORTCFG_PFUNC3
+```
+
+相关声明：[DIO8_T1_C0N](#ab32d21fdbcde3256731b561d9f5f2ad1)、[IOC_PORTCFG_PFUNC3](#a420b3a48d4a6010feb9866b97a7492dd)。
+
+<a id="r_a2b845037d4c448c3847ba408ba98720d"></a>
+
+```c
+#define DIO8_I2C0_SDA IOC_PORTCFG_PFUNC4
+```
+
+相关声明：[DIO8_I2C0_SDA](#a2b845037d4c448c3847ba408ba98720d)、[IOC_PORTCFG_PFUNC4](#a3f27b6bb5191b2c2def7b74afa0c0019)。
+
+<a id="r_aff36d54d77c72974b870285fb6d8b801"></a>
+
+```c
+#define DIO8_T0_C0N IOC_PORTCFG_PFUNC5
+```
+
+相关声明：[DIO8_T0_C0N](#aff36d54d77c72974b870285fb6d8b801)、[IOC_PORTCFG_PFUNC5](#af33d2e20e5de9cc53b70a3e826624837)。
+
+<a id="r_a82913b1243033ac74f06eeaf4aff7df4"></a>
+
+```c
+#define DIO8_DTB3 IOC_PORTCFG_DTB
+```
+
+相关声明：[DIO8_DTB3](#a82913b1243033ac74f06eeaf4aff7df4)、[IOC_PORTCFG_DTB](#a6c1e87a84343d63b8ab60e53b14944d3)。
+
+<a id="r_a74d0f7de1cb705b147947312f67e273a"></a>
+
+```c
+#define DIO9_GPIO9 IOC_PORTCFG_BASE
+```
+
+相关声明：[DIO9_GPIO9](#a74d0f7de1cb705b147947312f67e273a)、[IOC_PORTCFG_BASE](#aa502a06b1e9f31be173481ff4626bb70)。
+
+<a id="r_a87eac578bb6d3ba94be53508d81ddae8"></a>
+
+```c
+#define DIO9_T3_C0 IOC_PORTCFG_PFUNC1
+```
+
+相关声明：[DIO9_T3_C0](#a87eac578bb6d3ba94be53508d81ddae8)、[IOC_PORTCFG_PFUNC1](#a4ac7f9fbb7a989da2815fa48a2c63bd9)。
+
+<a id="r_a069db119313663a8bd1052992e12e85a"></a>
+
+```c
+#define DIO9_LRFD3 IOC_PORTCFG_PFUNC3
+```
+
+相关声明：[DIO9_LRFD3](#a069db119313663a8bd1052992e12e85a)、[IOC_PORTCFG_PFUNC3](#a420b3a48d4a6010feb9866b97a7492dd)。
+
+<a id="r_a4d4ecf52202b89bd18fd07df9f8cf23c"></a>
+
+```c
+#define DIO10_GPIO10 IOC_PORTCFG_BASE
+```
+
+相关声明：[DIO10_GPIO10](#a4d4ecf52202b89bd18fd07df9f8cf23c)、[IOC_PORTCFG_BASE](#aa502a06b1e9f31be173481ff4626bb70)。
+
+<a id="r_a7c38cc0d168019884b5d0e022be58047"></a>
+
+```c
+#define DIO10_LPC0 IOC_PORTCFG_PFUNC1
+```
+
+相关声明：[DIO10_LPC0](#a7c38cc0d168019884b5d0e022be58047)、[IOC_PORTCFG_PFUNC1](#a4ac7f9fbb7a989da2815fa48a2c63bd9)。
+
+<a id="r_a401c41789d4f0730631c8d95c95356f1"></a>
+
+```c
+#define DIO10_T2_PE IOC_PORTCFG_PFUNC2
+```
+
+相关声明：[DIO10_T2_PE](#a401c41789d4f0730631c8d95c95356f1)、[IOC_PORTCFG_PFUNC2](#a469848941ebbce5b2fc1b54d57f7d965)。
+
+<a id="r_a132cf71891f6ac14dd1f3cdae463b369"></a>
+
+```c
+#define DIO10_T3_C0N IOC_PORTCFG_PFUNC3
+```
+
+相关声明：[DIO10_T3_C0N](#a132cf71891f6ac14dd1f3cdae463b369)、[IOC_PORTCFG_PFUNC3](#a420b3a48d4a6010feb9866b97a7492dd)。
+
+<a id="r_a406be9c9748d230aaa5f6a0936a59fa1"></a>
+
+```c
+#define DIO11_GPIO11 IOC_PORTCFG_BASE
+```
+
+相关声明：[DIO11_GPIO11](#a406be9c9748d230aaa5f6a0936a59fa1)、[IOC_PORTCFG_BASE](#aa502a06b1e9f31be173481ff4626bb70)。
+
+<a id="r_ac4ad3c53ba96f31cc859d3126c477049"></a>
+
+```c
+#define DIO11_SPI0_CSN IOC_PORTCFG_PFUNC1
+```
+
+相关声明：[DIO11_SPI0_CSN](#ac4ad3c53ba96f31cc859d3126c477049)、[IOC_PORTCFG_PFUNC1](#a4ac7f9fbb7a989da2815fa48a2c63bd9)。
+
+<a id="r_ac72ec42df93ef20cc55b1d33bea8a3b7"></a>
+
+```c
+#define DIO11_T1_C2N IOC_PORTCFG_PFUNC2
+```
+
+相关声明：[DIO11_T1_C2N](#ac72ec42df93ef20cc55b1d33bea8a3b7)、[IOC_PORTCFG_PFUNC2](#a469848941ebbce5b2fc1b54d57f7d965)。
+
+<a id="r_af351c707516ced033891623bdacf3b4f"></a>
+
+```c
+#define DIO11_T0_C0 IOC_PORTCFG_PFUNC3
+```
+
+相关声明：[DIO11_T0_C0](#af351c707516ced033891623bdacf3b4f)、[IOC_PORTCFG_PFUNC3](#a420b3a48d4a6010feb9866b97a7492dd)。
+
+<a id="r_a8e5989e85216c9b9fa9e7e66d9339371"></a>
+
+```c
+#define DIO11_LRFD0 IOC_PORTCFG_PFUNC4
+```
+
+相关声明：[DIO11_LRFD0](#a8e5989e85216c9b9fa9e7e66d9339371)、[IOC_PORTCFG_PFUNC4](#a3f27b6bb5191b2c2def7b74afa0c0019)。
+
+<a id="r_ac8e3ba0e0fbcaaeeb910680f1ebed192"></a>
+
+```c
+#define DIO11_SPI0_MISO IOC_PORTCFG_PFUNC5
+```
+
+相关声明：[DIO11_SPI0_MISO](#ac8e3ba0e0fbcaaeeb910680f1ebed192)、[IOC_PORTCFG_PFUNC5](#af33d2e20e5de9cc53b70a3e826624837)。
+
+<a id="r_a14a9531e81aa7d43ab54d458ab6ea221"></a>
+
+```c
+#define DIO11_DTB9 IOC_PORTCFG_DTB
+```
+
+相关声明：[DIO11_DTB9](#a14a9531e81aa7d43ab54d458ab6ea221)、[IOC_PORTCFG_DTB](#a6c1e87a84343d63b8ab60e53b14944d3)。
+
+<a id="r_a2ad2d410f5ff120cb65fd6b899ddc165"></a>
+
+```c
+#define DIO12_GPIO12 IOC_PORTCFG_BASE
+```
+
+相关声明：[DIO12_GPIO12](#a2ad2d410f5ff120cb65fd6b899ddc165)、[IOC_PORTCFG_BASE](#aa502a06b1e9f31be173481ff4626bb70)。
+
+<a id="r_a7e1b7a3e5d11986b97f56d85a3ff5c76"></a>
+
+```c
+#define DIO12_SPI0_MISO IOC_PORTCFG_PFUNC1
+```
+
+相关声明：[DIO12_SPI0_MISO](#a7e1b7a3e5d11986b97f56d85a3ff5c76)、[IOC_PORTCFG_PFUNC1](#a4ac7f9fbb7a989da2815fa48a2c63bd9)。
+
+<a id="r_a37571bec3db0e47d21abbe176d87d96c"></a>
+
+```c
+#define DIO12_SPI0_MOSI IOC_PORTCFG_PFUNC2
+```
+
+相关声明：[DIO12_SPI0_MOSI](#a37571bec3db0e47d21abbe176d87d96c)、[IOC_PORTCFG_PFUNC2](#a469848941ebbce5b2fc1b54d57f7d965)。
+
+<a id="r_a1dda1b7dd1213db83dac067a3995419e"></a>
+
+```c
+#define DIO12_UART0_RXD IOC_PORTCFG_PFUNC3
+```
+
+相关声明：[DIO12_UART0_RXD](#a1dda1b7dd1213db83dac067a3995419e)、[IOC_PORTCFG_PFUNC3](#a420b3a48d4a6010feb9866b97a7492dd)。
+
+<a id="r_adc65e540bd2e34316f283cedc4cccfea"></a>
+
+```c
+#define DIO12_T1_C1 IOC_PORTCFG_PFUNC4
+```
+
+相关声明：[DIO12_T1_C1](#adc65e540bd2e34316f283cedc4cccfea)、[IOC_PORTCFG_PFUNC4](#a3f27b6bb5191b2c2def7b74afa0c0019)。
+
+<a id="r_a6b0c99c8c413097f40eac6523b9d5924"></a>
+
+```c
+#define DIO12_I2C0_SDA IOC_PORTCFG_PFUNC5
+```
+
+相关声明：[DIO12_I2C0_SDA](#a6b0c99c8c413097f40eac6523b9d5924)、[IOC_PORTCFG_PFUNC5](#af33d2e20e5de9cc53b70a3e826624837)。
+
+<a id="r_a693aebfd8e479fe790e147df42ffa526"></a>
+
+```c
+#define DIO12_DTB13 IOC_PORTCFG_DTB
+```
+
+相关声明：[DIO12_DTB13](#a693aebfd8e479fe790e147df42ffa526)、[IOC_PORTCFG_DTB](#a6c1e87a84343d63b8ab60e53b14944d3)。
+
+<a id="r_a13e07e2b2ebb2fbd832e032046b18ad4"></a>
+
+```c
+#define DIO13_GPIO13 IOC_PORTCFG_BASE
+```
+
+相关声明：[DIO13_GPIO13](#a13e07e2b2ebb2fbd832e032046b18ad4)、[IOC_PORTCFG_BASE](#aa502a06b1e9f31be173481ff4626bb70)。
+
+<a id="r_a0c3a3c06beb7126113bf9e0bb5599d51"></a>
+
+```c
+#define DIO13_SPI0_MISO IOC_PORTCFG_PFUNC1
+```
+
+相关声明：[DIO13_SPI0_MISO](#a0c3a3c06beb7126113bf9e0bb5599d51)、[IOC_PORTCFG_PFUNC1](#a4ac7f9fbb7a989da2815fa48a2c63bd9)。
+
+<a id="r_a1a10e7a429f2a8d0885999e57780387e"></a>
+
+```c
+#define DIO13_SPI0_MOSI IOC_PORTCFG_PFUNC2
+```
+
+相关声明：[DIO13_SPI0_MOSI](#a1a10e7a429f2a8d0885999e57780387e)、[IOC_PORTCFG_PFUNC2](#a469848941ebbce5b2fc1b54d57f7d965)。
+
+<a id="r_abb44537be4746bbcf1d3e0d32bfa3cba"></a>
+
+```c
+#define DIO13_UART0_TXD IOC_PORTCFG_PFUNC3
+```
+
+相关声明：[DIO13_UART0_TXD](#abb44537be4746bbcf1d3e0d32bfa3cba)、[IOC_PORTCFG_PFUNC3](#a420b3a48d4a6010feb9866b97a7492dd)。
+
+<a id="r_a856cc517f1a799d293114daaa33aeb38"></a>
+
+```c
+#define DIO13_T0_C0N IOC_PORTCFG_PFUNC4
+```
+
+相关声明：[DIO13_T0_C0N](#a856cc517f1a799d293114daaa33aeb38)、[IOC_PORTCFG_PFUNC4](#a3f27b6bb5191b2c2def7b74afa0c0019)。
+
+<a id="r_acec3eda273c31b29324b3bfe2afdc070"></a>
+
+```c
+#define DIO13_T1_F IOC_PORTCFG_PFUNC5
+```
+
+相关声明：[DIO13_T1_F](#acec3eda273c31b29324b3bfe2afdc070)、[IOC_PORTCFG_PFUNC5](#af33d2e20e5de9cc53b70a3e826624837)。
+
+<a id="r_a9400a3fa8fc3e8d07191a9c72d551fb5"></a>
+
+```c
+#define DIO13_DTB4 IOC_PORTCFG_DTB
+```
+
+相关声明：[DIO13_DTB4](#a9400a3fa8fc3e8d07191a9c72d551fb5)、[IOC_PORTCFG_DTB](#a6c1e87a84343d63b8ab60e53b14944d3)。
+
+<a id="r_ae30591306137378af20de546bfbc402e"></a>
+
+```c
+#define DIO14_GPIO14 IOC_PORTCFG_BASE
+```
+
+相关声明：[DIO14_GPIO14](#ae30591306137378af20de546bfbc402e)、[IOC_PORTCFG_BASE](#aa502a06b1e9f31be173481ff4626bb70)。
+
+<a id="r_a0c7457a723d316668a3aabd0404a0a65"></a>
+
+```c
+#define DIO14_T3_C2 IOC_PORTCFG_PFUNC1
+```
+
+相关声明：[DIO14_T3_C2](#a0c7457a723d316668a3aabd0404a0a65)、[IOC_PORTCFG_PFUNC1](#a4ac7f9fbb7a989da2815fa48a2c63bd9)。
+
+<a id="r_abc3f5cb7c0f595fc80d3285d902ba829"></a>
+
+```c
+#define DIO14_T1_C2N IOC_PORTCFG_PFUNC2
+```
+
+相关声明：[DIO14_T1_C2N](#abc3f5cb7c0f595fc80d3285d902ba829)、[IOC_PORTCFG_PFUNC2](#a469848941ebbce5b2fc1b54d57f7d965)。
+
+<a id="r_af9774a009ad29c47036e7b07960ae463"></a>
+
+```c
+#define DIO14_LRFD5 IOC_PORTCFG_PFUNC3
+```
+
+相关声明：[DIO14_LRFD5](#af9774a009ad29c47036e7b07960ae463)、[IOC_PORTCFG_PFUNC3](#a420b3a48d4a6010feb9866b97a7492dd)。
+
+<a id="r_a696088726823aa9e47180eadf02d3313"></a>
+
+```c
+#define DIO14_T1_F IOC_PORTCFG_PFUNC4
+```
+
+相关声明：[DIO14_T1_F](#a696088726823aa9e47180eadf02d3313)、[IOC_PORTCFG_PFUNC4](#a3f27b6bb5191b2c2def7b74afa0c0019)。
+
+<a id="r_a7b466888d002460d0428519529ea5801"></a>
+
+```c
+#define DIO15_GPIO15 IOC_PORTCFG_BASE
+```
+
+相关声明：[DIO15_GPIO15](#a7b466888d002460d0428519529ea5801)、[IOC_PORTCFG_BASE](#aa502a06b1e9f31be173481ff4626bb70)。
+
+<a id="r_a7af48be34e0d425d8ccc4fceb79d94d6"></a>
+
+```c
+#define DIO15_UART0_RXD IOC_PORTCFG_PFUNC1
+```
+
+相关声明：[DIO15_UART0_RXD](#a7af48be34e0d425d8ccc4fceb79d94d6)、[IOC_PORTCFG_PFUNC1](#a4ac7f9fbb7a989da2815fa48a2c63bd9)。
+
+<a id="r_acebedef69b351c4431523381334adcb1"></a>
+
+```c
+#define DIO15_T2_C0N IOC_PORTCFG_PFUNC2
+```
+
+相关声明：[DIO15_T2_C0N](#acebedef69b351c4431523381334adcb1)、[IOC_PORTCFG_PFUNC2](#a469848941ebbce5b2fc1b54d57f7d965)。
+
+<a id="r_afddb1472afadde08d88f6abd1dc5d5ff"></a>
+
+```c
+#define DIO15_CKMIN IOC_PORTCFG_PFUNC3
+```
+
+相关声明：[DIO15_CKMIN](#afddb1472afadde08d88f6abd1dc5d5ff)、[IOC_PORTCFG_PFUNC3](#a420b3a48d4a6010feb9866b97a7492dd)。
+
+<a id="r_a076f8c5d1093fd600d3e9ba2edad8431"></a>
+
+```c
+#define DIO16_GPIO16 IOC_PORTCFG_BASE
+```
+
+相关声明：[DIO16_GPIO16](#a076f8c5d1093fd600d3e9ba2edad8431)、[IOC_PORTCFG_BASE](#aa502a06b1e9f31be173481ff4626bb70)。
+
+<a id="r_a603eb2c90c89a84edd7eb73290defd91"></a>
+
+```c
+#define DIO16_SPI0_MOSI IOC_PORTCFG_PFUNC1
+```
+
+相关声明：[DIO16_SPI0_MOSI](#a603eb2c90c89a84edd7eb73290defd91)、[IOC_PORTCFG_PFUNC1](#a4ac7f9fbb7a989da2815fa48a2c63bd9)。
+
+<a id="r_a04c17e95330f4aaa17d886d2f5053cc9"></a>
+
+```c
+#define DIO16_UART0_RXD IOC_PORTCFG_PFUNC2
+```
+
+相关声明：[DIO16_UART0_RXD](#a04c17e95330f4aaa17d886d2f5053cc9)、[IOC_PORTCFG_PFUNC2](#a469848941ebbce5b2fc1b54d57f7d965)。
+
+<a id="r_a68ae64d639cab3dbadcaf50c92a13fbd"></a>
+
+```c
+#define DIO16_I2C0_SDA IOC_PORTCFG_PFUNC3
+```
+
+相关声明：[DIO16_I2C0_SDA](#a68ae64d639cab3dbadcaf50c92a13fbd)、[IOC_PORTCFG_PFUNC3](#a420b3a48d4a6010feb9866b97a7492dd)。
+
+<a id="r_a280b489d7c4528ec5a0775c3b83ba551"></a>
+
+```c
+#define DIO16_T1_C2 IOC_PORTCFG_PFUNC4
+```
+
+相关声明：[DIO16_T1_C2](#a280b489d7c4528ec5a0775c3b83ba551)、[IOC_PORTCFG_PFUNC4](#a3f27b6bb5191b2c2def7b74afa0c0019)。
+
+<a id="r_aa1e519e01cb798538022755aaf81574a"></a>
+
+```c
+#define DIO16_T1_C0N IOC_PORTCFG_PFUNC5
+```
+
+相关声明：[DIO16_T1_C0N](#aa1e519e01cb798538022755aaf81574a)、[IOC_PORTCFG_PFUNC5](#af33d2e20e5de9cc53b70a3e826624837)。
+
+<a id="r_ab14227b4703363152450eefdfe5f0186"></a>
+
+```c
+#define DIO16_DTB10 IOC_PORTCFG_DTB
+```
+
+相关声明：[DIO16_DTB10](#ab14227b4703363152450eefdfe5f0186)、[IOC_PORTCFG_DTB](#a6c1e87a84343d63b8ab60e53b14944d3)。
+
+<a id="r_aa6695223061a1bf458e6b5cf667a4ef3"></a>
+
+```c
+#define DIO17_GPIO17 IOC_PORTCFG_BASE
+```
+
+相关声明：[DIO17_GPIO17](#aa6695223061a1bf458e6b5cf667a4ef3)、[IOC_PORTCFG_BASE](#aa502a06b1e9f31be173481ff4626bb70)。
+
+<a id="r_a01082d3bb0958749c3a705ebd381d304"></a>
+
+```c
+#define DIO17_SPI0_SCLK IOC_PORTCFG_PFUNC1
+```
+
+相关声明：[DIO17_SPI0_SCLK](#a01082d3bb0958749c3a705ebd381d304)、[IOC_PORTCFG_PFUNC1](#a4ac7f9fbb7a989da2815fa48a2c63bd9)。
+
+<a id="r_a6af94601226f5b9da48be2449edf12c3"></a>
+
+```c
+#define DIO17_UART0_TXD IOC_PORTCFG_PFUNC2
+```
+
+相关声明：[DIO17_UART0_TXD](#a6af94601226f5b9da48be2449edf12c3)、[IOC_PORTCFG_PFUNC2](#a469848941ebbce5b2fc1b54d57f7d965)。
+
+<a id="r_a724128f152f9c8153925c0b433aa46aa"></a>
+
+```c
+#define DIO17_I2C0_SCL IOC_PORTCFG_PFUNC3
+```
+
+相关声明：[DIO17_I2C0_SCL](#a724128f152f9c8153925c0b433aa46aa)、[IOC_PORTCFG_PFUNC3](#a420b3a48d4a6010feb9866b97a7492dd)。
+
+<a id="r_ad690f4824516a3f08fd8cbb1e4baec5e"></a>
+
+```c
+#define DIO17_T1_C1N IOC_PORTCFG_PFUNC4
+```
+
+相关声明：[DIO17_T1_C1N](#ad690f4824516a3f08fd8cbb1e4baec5e)、[IOC_PORTCFG_PFUNC4](#a3f27b6bb5191b2c2def7b74afa0c0019)。
+
+<a id="r_a885ff00b679ea6922cb8177310871aee"></a>
+
+```c
+#define DIO17_T0_C2 IOC_PORTCFG_PFUNC5
+```
+
+相关声明：[DIO17_T0_C2](#a885ff00b679ea6922cb8177310871aee)、[IOC_PORTCFG_PFUNC5](#af33d2e20e5de9cc53b70a3e826624837)。
+
+<a id="r_a79ba035326c60d89c4ab8b8de50eee6b"></a>
+
+```c
+#define DIO17_DTB11 IOC_PORTCFG_DTB
+```
+
+相关声明：[DIO17_DTB11](#a79ba035326c60d89c4ab8b8de50eee6b)、[IOC_PORTCFG_DTB](#a6c1e87a84343d63b8ab60e53b14944d3)。
+
+<a id="r_abbcd9337ffa2c9120d74cf17bcc7092f"></a>
+
+```c
+#define DIO18_GPIO18 IOC_PORTCFG_BASE
+```
+
+相关声明：[DIO18_GPIO18](#abbcd9337ffa2c9120d74cf17bcc7092f)、[IOC_PORTCFG_BASE](#aa502a06b1e9f31be173481ff4626bb70)。
+
+<a id="r_a5e9c6406866d7aaa23929a4cec8fc828"></a>
+
+```c
+#define DIO18_T3_C0 IOC_PORTCFG_PFUNC1
+```
+
+相关声明：[DIO18_T3_C0](#a5e9c6406866d7aaa23929a4cec8fc828)、[IOC_PORTCFG_PFUNC1](#a4ac7f9fbb7a989da2815fa48a2c63bd9)。
+
+<a id="r_a3944baa4569ea0dccccedf1729c962f7"></a>
+
+```c
+#define DIO18_LPC0 IOC_PORTCFG_PFUNC2
+```
+
+相关声明：[DIO18_LPC0](#a3944baa4569ea0dccccedf1729c962f7)、[IOC_PORTCFG_PFUNC2](#a469848941ebbce5b2fc1b54d57f7d965)。
+
+<a id="r_ab9c8fac3f7501cf6303771c87040cb78"></a>
+
+```c
+#define DIO18_UART0_TXD IOC_PORTCFG_PFUNC3
+```
+
+相关声明：[DIO18_UART0_TXD](#ab9c8fac3f7501cf6303771c87040cb78)、[IOC_PORTCFG_PFUNC3](#a420b3a48d4a6010feb9866b97a7492dd)。
+
+<a id="r_a2751e01acf954ff4bb4a10bab7d39153"></a>
+
+```c
+#define DIO18_SPI0_SCLK IOC_PORTCFG_PFUNC4
+```
+
+相关声明：[DIO18_SPI0_SCLK](#a2751e01acf954ff4bb4a10bab7d39153)、[IOC_PORTCFG_PFUNC4](#a3f27b6bb5191b2c2def7b74afa0c0019)。
+
+<a id="r_afe75a43f8da9e6ac26d98d11e62a7f0f"></a>
+
+```c
+#define DIO18_DTB12 IOC_PORTCFG_DTB
+```
+
+相关声明：[DIO18_DTB12](#afe75a43f8da9e6ac26d98d11e62a7f0f)、[IOC_PORTCFG_DTB](#a6c1e87a84343d63b8ab60e53b14944d3)。
+
+<a id="r_a7c21093db3bdff8c498afd0564a58ff8"></a>
+
+```c
+#define DIO19_GPIO19 IOC_PORTCFG_BASE
+```
+
+相关声明：[DIO19_GPIO19](#a7c21093db3bdff8c498afd0564a58ff8)、[IOC_PORTCFG_BASE](#aa502a06b1e9f31be173481ff4626bb70)。
+
+<a id="r_a516468dc4fd432493b9686d9c295c1a0"></a>
+
+```c
+#define DIO19_T3_C1 IOC_PORTCFG_PFUNC1
+```
+
+相关声明：[DIO19_T3_C1](#a516468dc4fd432493b9686d9c295c1a0)、[IOC_PORTCFG_PFUNC1](#a4ac7f9fbb7a989da2815fa48a2c63bd9)。
+
+<a id="r_aa055d07c9295649e85dbc84e210bfe8a"></a>
+
+```c
+#define DIO19_T2_PE IOC_PORTCFG_PFUNC2
+```
+
+相关声明：[DIO19_T2_PE](#aa055d07c9295649e85dbc84e210bfe8a)、[IOC_PORTCFG_PFUNC2](#a469848941ebbce5b2fc1b54d57f7d965)。
+
+<a id="r_a79de211a3fc81572d675791c8eab515d"></a>
+
+```c
+#define DIO19_SPI0_MOSI IOC_PORTCFG_PFUNC4
+```
+
+相关声明：[DIO19_SPI0_MOSI](#a79de211a3fc81572d675791c8eab515d)、[IOC_PORTCFG_PFUNC4](#a3f27b6bb5191b2c2def7b74afa0c0019)。
+
+<a id="r_accad3142e44944f617f4b6ade2f07c1e"></a>
+
+```c
+#define DIO19_DTB0 IOC_PORTCFG_DTB
+```
+
+相关声明：[DIO19_DTB0](#accad3142e44944f617f4b6ade2f07c1e)、[IOC_PORTCFG_DTB](#a6c1e87a84343d63b8ab60e53b14944d3)。
+
+<a id="r_a9dde4d0ddc64a4c2e78c050210e467dc"></a>
+
+```c
+#define DIO20_GPIO20 IOC_PORTCFG_BASE
+```
+
+相关声明：[DIO20_GPIO20](#a9dde4d0ddc64a4c2e78c050210e467dc)、[IOC_PORTCFG_BASE](#aa502a06b1e9f31be173481ff4626bb70)。
+
+<a id="r_ab590e7f2abe46b464f1e9d6a89059e25"></a>
+
+```c
+#define DIO20_LPC0 IOC_PORTCFG_PFUNC1
+```
+
+相关声明：[DIO20_LPC0](#ab590e7f2abe46b464f1e9d6a89059e25)、[IOC_PORTCFG_PFUNC1](#a4ac7f9fbb7a989da2815fa48a2c63bd9)。
+
+<a id="r_aa68e87bb88d59212e0768800c7aa7f48"></a>
+
+```c
+#define DIO20_UART0_TXD IOC_PORTCFG_PFUNC2
+```
+
+相关声明：[DIO20_UART0_TXD](#aa68e87bb88d59212e0768800c7aa7f48)、[IOC_PORTCFG_PFUNC2](#a469848941ebbce5b2fc1b54d57f7d965)。
+
+<a id="r_a0ae35f4a7376bb6980832c871ab714d5"></a>
+
+```c
+#define DIO20_UART0_RXD IOC_PORTCFG_PFUNC3
+```
+
+相关声明：[DIO20_UART0_RXD](#a0ae35f4a7376bb6980832c871ab714d5)、[IOC_PORTCFG_PFUNC3](#a420b3a48d4a6010feb9866b97a7492dd)。
+
+<a id="r_a032c884bb4ad0772aa26e2f41f49310f"></a>
+
+```c
+#define DIO20_T1_C0 IOC_PORTCFG_PFUNC4
+```
+
+相关声明：[DIO20_T1_C0](#a032c884bb4ad0772aa26e2f41f49310f)、[IOC_PORTCFG_PFUNC4](#a3f27b6bb5191b2c2def7b74afa0c0019)。
+
+<a id="r_aa78b09deb2e32131c51af0aa2cf186a4"></a>
+
+```c
+#define DIO20_SPI0_MISO IOC_PORTCFG_PFUNC5
+```
+
+相关声明：[DIO20_SPI0_MISO](#aa78b09deb2e32131c51af0aa2cf186a4)、[IOC_PORTCFG_PFUNC5](#af33d2e20e5de9cc53b70a3e826624837)。
+
+<a id="r_af160531047627880d2c9a45fc4e78d3c"></a>
+
+```c
+#define DIO20_ADC11 IOC_PORTCFG_ANA
+```
+
+相关声明：[DIO20_ADC11](#af160531047627880d2c9a45fc4e78d3c)、[IOC_PORTCFG_ANA](#a375a32390601a0a7e8daf034bf696482)。
+
+<a id="r_ad45e111439f668b6b3b2c2a8dc197685"></a>
+
+```c
+#define DIO20_DTB14 IOC_PORTCFG_DTB
+```
+
+相关声明：[DIO20_DTB14](#ad45e111439f668b6b3b2c2a8dc197685)、[IOC_PORTCFG_DTB](#a6c1e87a84343d63b8ab60e53b14944d3)。
+
+<a id="r_a3543027e96dd24a8f423642793f9231f"></a>
+
+```c
+#define DIO21_GPIO21 IOC_PORTCFG_BASE
+```
+
+相关声明：[DIO21_GPIO21](#a3543027e96dd24a8f423642793f9231f)、[IOC_PORTCFG_BASE](#aa502a06b1e9f31be173481ff4626bb70)。
+
+<a id="r_aeda0333fb8765d7a24d514ee25d1b4b2"></a>
+
+```c
+#define DIO21_UART0_CTS IOC_PORTCFG_PFUNC1
+```
+
+相关声明：[DIO21_UART0_CTS](#aeda0333fb8765d7a24d514ee25d1b4b2)、[IOC_PORTCFG_PFUNC1](#a4ac7f9fbb7a989da2815fa48a2c63bd9)。
+
+<a id="r_a938311835000f5598aa29b4140fe6886"></a>
+
+```c
+#define DIO21_T1_C1N IOC_PORTCFG_PFUNC2
+```
+
+相关声明：[DIO21_T1_C1N](#a938311835000f5598aa29b4140fe6886)、[IOC_PORTCFG_PFUNC2](#a469848941ebbce5b2fc1b54d57f7d965)。
+
+<a id="r_ae217ff4c8cf56f66ad3bec48d95ea87f"></a>
+
+```c
+#define DIO21_T0_C1 IOC_PORTCFG_PFUNC3
+```
+
+相关声明：[DIO21_T0_C1](#ae217ff4c8cf56f66ad3bec48d95ea87f)、[IOC_PORTCFG_PFUNC3](#a420b3a48d4a6010feb9866b97a7492dd)。
+
+<a id="r_a8d66bd3f2da6e8e38b7d464d2e8fbe2e"></a>
+
+```c
+#define DIO21_SPI0_MISO IOC_PORTCFG_PFUNC4
+```
+
+相关声明：[DIO21_SPI0_MISO](#a8d66bd3f2da6e8e38b7d464d2e8fbe2e)、[IOC_PORTCFG_PFUNC4](#a3f27b6bb5191b2c2def7b74afa0c0019)。
+
+<a id="r_adc4c2c233df06c2f52ccd24dee3c6664"></a>
+
+```c
+#define DIO21_LRFD1 IOC_PORTCFG_PFUNC5
+```
+
+相关声明：[DIO21_LRFD1](#adc4c2c233df06c2f52ccd24dee3c6664)、[IOC_PORTCFG_PFUNC5](#af33d2e20e5de9cc53b70a3e826624837)。
+
+<a id="r_a9351b7540ddc91c96c7eb06c6e3160e9"></a>
+
+```c
+#define DIO21_ADC10_LPCP IOC_PORTCFG_ANA
+```
+
+相关声明：[DIO21_ADC10_LPCP](#a9351b7540ddc91c96c7eb06c6e3160e9)、[IOC_PORTCFG_ANA](#a375a32390601a0a7e8daf034bf696482)。
+
+<a id="r_a58b92ea2552dd70802efc1c996e47db7"></a>
+
+```c
+#define DIO21_DTB15 IOC_PORTCFG_DTB
+```
+
+相关声明：[DIO21_DTB15](#a58b92ea2552dd70802efc1c996e47db7)、[IOC_PORTCFG_DTB](#a6c1e87a84343d63b8ab60e53b14944d3)。
+
+<a id="r_a0a59e5293cbce628fb9ed582ed8640f5"></a>
+
+```c
+#define DIO22_GPIO22 IOC_PORTCFG_BASE
+```
+
+相关声明：[DIO22_GPIO22](#a0a59e5293cbce628fb9ed582ed8640f5)、[IOC_PORTCFG_BASE](#aa502a06b1e9f31be173481ff4626bb70)。
+
+<a id="r_ab4318e5a3f89c6d0a09e11f5cba9938a"></a>
+
+```c
+#define DIO22_T2_C0 IOC_PORTCFG_PFUNC1
+```
+
+相关声明：[DIO22_T2_C0](#ab4318e5a3f89c6d0a09e11f5cba9938a)、[IOC_PORTCFG_PFUNC1](#a4ac7f9fbb7a989da2815fa48a2c63bd9)。
+
+<a id="r_af1e0eff63be94a61ba5910793796f2eb"></a>
+
+```c
+#define DIO22_UART0_RXD IOC_PORTCFG_PFUNC2
+```
+
+相关声明：[DIO22_UART0_RXD](#af1e0eff63be94a61ba5910793796f2eb)、[IOC_PORTCFG_PFUNC2](#a469848941ebbce5b2fc1b54d57f7d965)。
+
+<a id="r_af2086537e03f4e02f8edbfab24e1e0cc"></a>
+
+```c
+#define DIO22_T3_C1N IOC_PORTCFG_PFUNC3
+```
+
+相关声明：[DIO22_T3_C1N](#af2086537e03f4e02f8edbfab24e1e0cc)、[IOC_PORTCFG_PFUNC3](#a420b3a48d4a6010feb9866b97a7492dd)。
+
+<a id="r_a124a45cbc60d6e3b80d2242483a4e48e"></a>
+
+```c
+#define DIO22_ADC9 IOC_PORTCFG_ANA
+```
+
+相关声明：[DIO22_ADC9](#a124a45cbc60d6e3b80d2242483a4e48e)、[IOC_PORTCFG_ANA](#a375a32390601a0a7e8daf034bf696482)。
+
+<a id="r_aee614c39986f53d769971914fe0f09bf"></a>
+
+```c
+#define DIO22_DTB1 IOC_PORTCFG_DTB
+```
+
+相关声明：[DIO22_DTB1](#aee614c39986f53d769971914fe0f09bf)、[IOC_PORTCFG_DTB](#a6c1e87a84343d63b8ab60e53b14944d3)。
+
+<a id="r_a7b6e8fc88c08014e5f55fb61b631f630"></a>
+
+```c
+#define DIO23_GPIO23 IOC_PORTCFG_BASE
+```
+
+相关声明：[DIO23_GPIO23](#a7b6e8fc88c08014e5f55fb61b631f630)、[IOC_PORTCFG_BASE](#aa502a06b1e9f31be173481ff4626bb70)。
+
+<a id="r_a458eb72bee3bc88ae42b099da2a8d8b5"></a>
+
+```c
+#define DIO23_T2_C1 IOC_PORTCFG_PFUNC1
+```
+
+相关声明：[DIO23_T2_C1](#a458eb72bee3bc88ae42b099da2a8d8b5)、[IOC_PORTCFG_PFUNC1](#a4ac7f9fbb7a989da2815fa48a2c63bd9)。
+
+<a id="r_a24e0baa35ebf15509fa6df01161b550c"></a>
+
+```c
+#define DIO23_T3_C2N IOC_PORTCFG_PFUNC3
+```
+
+相关声明：[DIO23_T3_C2N](#a24e0baa35ebf15509fa6df01161b550c)、[IOC_PORTCFG_PFUNC3](#a420b3a48d4a6010feb9866b97a7492dd)。
+
+<a id="r_a3680907697a966084193c02a0a9b092b"></a>
+
+```c
+#define DIO23_ADC8_LPCP_LPCM IOC_PORTCFG_ANA
+```
+
+相关声明：[DIO23_ADC8_LPCP_LPCM](#a3680907697a966084193c02a0a9b092b)、[IOC_PORTCFG_ANA](#a375a32390601a0a7e8daf034bf696482)。
+
+<a id="r_ab007c4540993b710800e31b01c59ac45"></a>
+
+```c
+#define DIO24_GPIO24 IOC_PORTCFG_BASE
+```
+
+相关声明：[DIO24_GPIO24](#ab007c4540993b710800e31b01c59ac45)、[IOC_PORTCFG_BASE](#aa502a06b1e9f31be173481ff4626bb70)。
+
+<a id="r_a449c49cd104260e5c8d8af85121d3a1e"></a>
+
+```c
+#define DIO24_SPI0_SCLK IOC_PORTCFG_PFUNC1
+```
+
+相关声明：[DIO24_SPI0_SCLK](#a449c49cd104260e5c8d8af85121d3a1e)、[IOC_PORTCFG_PFUNC1](#a4ac7f9fbb7a989da2815fa48a2c63bd9)。
+
+<a id="r_aee83a92878c7892d370985a85f49982f"></a>
+
+```c
+#define DIO24_T1_C0 IOC_PORTCFG_PFUNC2
+```
+
+相关声明：[DIO24_T1_C0](#aee83a92878c7892d370985a85f49982f)、[IOC_PORTCFG_PFUNC2](#a469848941ebbce5b2fc1b54d57f7d965)。
+
+<a id="r_a9ada17b86400635fe102fc2525d792fc"></a>
+
+```c
+#define DIO24_T3_C0 IOC_PORTCFG_PFUNC3
+```
+
+相关声明：[DIO24_T3_C0](#a9ada17b86400635fe102fc2525d792fc)、[IOC_PORTCFG_PFUNC3](#a420b3a48d4a6010feb9866b97a7492dd)。
+
+<a id="r_a0fb7b862a44272d6fd564d472ea31e21"></a>
+
+```c
+#define DIO24_T0_PE IOC_PORTCFG_PFUNC4
+```
+
+相关声明：[DIO24_T0_PE](#a0fb7b862a44272d6fd564d472ea31e21)、[IOC_PORTCFG_PFUNC4](#a3f27b6bb5191b2c2def7b74afa0c0019)。
+
+<a id="r_a110d85e1d37be48932cbf1d89c0be29e"></a>
+
+```c
+#define DIO24_I2C0_SCL IOC_PORTCFG_PFUNC5
+```
+
+相关声明：[DIO24_I2C0_SCL](#a110d85e1d37be48932cbf1d89c0be29e)、[IOC_PORTCFG_PFUNC5](#af33d2e20e5de9cc53b70a3e826624837)。
+
+<a id="r_a8ac3818f8c180ff363102c1037a39bb3"></a>
+
+```c
+#define DIO24_ADC7_LPCP_LPCM IOC_PORTCFG_ANA
+```
+
+相关声明：[DIO24_ADC7_LPCP_LPCM](#a8ac3818f8c180ff363102c1037a39bb3)、[IOC_PORTCFG_ANA](#a375a32390601a0a7e8daf034bf696482)。
+
+<a id="r_a90d085bab2b84b19d92eee13c3760f97"></a>
+
+```c
+#define DIO24_DTB5 IOC_PORTCFG_DTB
+```
+
+相关声明：[DIO24_DTB5](#a90d085bab2b84b19d92eee13c3760f97)、[IOC_PORTCFG_DTB](#a6c1e87a84343d63b8ab60e53b14944d3)。
+
+<a id="r_ae8f1ccd4414f0b0bf1724eb52fc5e2f4"></a>
+
+```c
+#define DIO25_GPIO25 IOC_PORTCFG_BASE
+```
+
+相关声明：[DIO25_GPIO25](#ae8f1ccd4414f0b0bf1724eb52fc5e2f4)、[IOC_PORTCFG_BASE](#aa502a06b1e9f31be173481ff4626bb70)。
+
+<a id="r_ad7f714f27470179ac1653fa13d4b6f3a"></a>
+
+```c
+#define DIO25_SPI0_MISO IOC_PORTCFG_PFUNC1
+```
+
+相关声明：[DIO25_SPI0_MISO](#ad7f714f27470179ac1653fa13d4b6f3a)、[IOC_PORTCFG_PFUNC1](#a4ac7f9fbb7a989da2815fa48a2c63bd9)。
+
+<a id="r_a2b4cca3f5437f8e8f7889194b566a21f"></a>
+
+```c
+#define DIO25_I2C0_SCL IOC_PORTCFG_PFUNC2
+```
+
+相关声明：[DIO25_I2C0_SCL](#a2b4cca3f5437f8e8f7889194b566a21f)、[IOC_PORTCFG_PFUNC2](#a469848941ebbce5b2fc1b54d57f7d965)。
+
+<a id="r_a5d80e2f09069929f0fd4801a953a7684"></a>
+
+```c
+#define DIO25_T2_C2N IOC_PORTCFG_PFUNC3
+```
+
+相关声明：[DIO25_T2_C2N](#a5d80e2f09069929f0fd4801a953a7684)、[IOC_PORTCFG_PFUNC3](#a420b3a48d4a6010feb9866b97a7492dd)。
+
+<a id="r_a1646bb58bfa079d72088be6dbacf1699"></a>
+
+```c
+#define DIO25_ADC6 IOC_PORTCFG_ANA
+```
+
+相关声明：[DIO25_ADC6](#a1646bb58bfa079d72088be6dbacf1699)、[IOC_PORTCFG_ANA](#a375a32390601a0a7e8daf034bf696482)。
+
+## 32.2\_详细说明（Detailed Documentation）
+
+<a id="ab256a8550b3c03978e5c6b707ba6d1ce"></a>
+
+### `DIO0_ADC5`
+
+```c
+#define DIO0_ADC5 IOC_PORTCFG_ANA
+```
+
+<a id="ade776b707cd244b692be71202a7e08cb"></a>
+
+### `DIO0_GPIO0`
+
+```c
+#define DIO0_GPIO0 IOC_PORTCFG_BASE
+```
+
+<a id="a1da175a81e69788efebd00db91beba6e"></a>
+
+### `DIO0_I2C0_SDA`
+
+```c
+#define DIO0_I2C0_SDA IOC_PORTCFG_PFUNC2
+```
+
+<a id="a92c899e5d01e371e4abee45e3f31c5f4"></a>
+
+### `DIO0_SPI0_CSN`
+
+```c
+#define DIO0_SPI0_CSN IOC_PORTCFG_PFUNC1
+```
+
+<a id="ae6321d9d1d78a0ee5c58b5f94577f501"></a>
+
+### `DIO0_T3_C2`
+
+```c
+#define DIO0_T3_C2 IOC_PORTCFG_PFUNC3
+```
+
+<a id="a4d4ecf52202b89bd18fd07df9f8cf23c"></a>
+
+### `DIO10_GPIO10`
+
+```c
+#define DIO10_GPIO10 IOC_PORTCFG_BASE
+```
+
+<a id="a7c38cc0d168019884b5d0e022be58047"></a>
+
+### `DIO10_LPC0`
+
+```c
+#define DIO10_LPC0 IOC_PORTCFG_PFUNC1
+```
+
+<a id="a401c41789d4f0730631c8d95c95356f1"></a>
+
+### `DIO10_T2_PE`
+
+```c
+#define DIO10_T2_PE IOC_PORTCFG_PFUNC2
+```
+
+<a id="a132cf71891f6ac14dd1f3cdae463b369"></a>
+
+### `DIO10_T3_C0N`
+
+```c
+#define DIO10_T3_C0N IOC_PORTCFG_PFUNC3
+```
+
+<a id="a14a9531e81aa7d43ab54d458ab6ea221"></a>
+
+### `DIO11_DTB9`
+
+```c
+#define DIO11_DTB9 IOC_PORTCFG_DTB
+```
+
+<a id="a406be9c9748d230aaa5f6a0936a59fa1"></a>
+
+### `DIO11_GPIO11`
+
+```c
+#define DIO11_GPIO11 IOC_PORTCFG_BASE
+```
+
+<a id="a8e5989e85216c9b9fa9e7e66d9339371"></a>
+
+### `DIO11_LRFD0`
+
+```c
+#define DIO11_LRFD0 IOC_PORTCFG_PFUNC4
+```
+
+<a id="ac4ad3c53ba96f31cc859d3126c477049"></a>
+
+### `DIO11_SPI0_CSN`
+
+```c
+#define DIO11_SPI0_CSN IOC_PORTCFG_PFUNC1
+```
+
+<a id="ac8e3ba0e0fbcaaeeb910680f1ebed192"></a>
+
+### `DIO11_SPI0_MISO`
+
+```c
+#define DIO11_SPI0_MISO IOC_PORTCFG_PFUNC5
+```
+
+<a id="af351c707516ced033891623bdacf3b4f"></a>
+
+### `DIO11_T0_C0`
+
+```c
+#define DIO11_T0_C0 IOC_PORTCFG_PFUNC3
+```
+
+<a id="ac72ec42df93ef20cc55b1d33bea8a3b7"></a>
+
+### `DIO11_T1_C2N`
+
+```c
+#define DIO11_T1_C2N IOC_PORTCFG_PFUNC2
+```
+
+<a id="a693aebfd8e479fe790e147df42ffa526"></a>
+
+### `DIO12_DTB13`
+
+```c
+#define DIO12_DTB13 IOC_PORTCFG_DTB
+```
+
+<a id="a2ad2d410f5ff120cb65fd6b899ddc165"></a>
+
+### `DIO12_GPIO12`
+
+```c
+#define DIO12_GPIO12 IOC_PORTCFG_BASE
+```
+
+<a id="a6b0c99c8c413097f40eac6523b9d5924"></a>
+
+### `DIO12_I2C0_SDA`
+
+```c
+#define DIO12_I2C0_SDA IOC_PORTCFG_PFUNC5
+```
+
+<a id="a7e1b7a3e5d11986b97f56d85a3ff5c76"></a>
+
+### `DIO12_SPI0_MISO`
+
+```c
+#define DIO12_SPI0_MISO IOC_PORTCFG_PFUNC1
+```
+
+<a id="a37571bec3db0e47d21abbe176d87d96c"></a>
+
+### `DIO12_SPI0_MOSI`
+
+```c
+#define DIO12_SPI0_MOSI IOC_PORTCFG_PFUNC2
+```
+
+<a id="adc65e540bd2e34316f283cedc4cccfea"></a>
+
+### `DIO12_T1_C1`
+
+```c
+#define DIO12_T1_C1 IOC_PORTCFG_PFUNC4
+```
+
+<a id="a1dda1b7dd1213db83dac067a3995419e"></a>
+
+### `DIO12_UART0_RXD`
+
+```c
+#define DIO12_UART0_RXD IOC_PORTCFG_PFUNC3
+```
+
+<a id="a9400a3fa8fc3e8d07191a9c72d551fb5"></a>
+
+### `DIO13_DTB4`
+
+```c
+#define DIO13_DTB4 IOC_PORTCFG_DTB
+```
+
+<a id="a13e07e2b2ebb2fbd832e032046b18ad4"></a>
+
+### `DIO13_GPIO13`
+
+```c
+#define DIO13_GPIO13 IOC_PORTCFG_BASE
+```
+
+<a id="a0c3a3c06beb7126113bf9e0bb5599d51"></a>
+
+### `DIO13_SPI0_MISO`
+
+```c
+#define DIO13_SPI0_MISO IOC_PORTCFG_PFUNC1
+```
+
+<a id="a1a10e7a429f2a8d0885999e57780387e"></a>
+
+### `DIO13_SPI0_MOSI`
+
+```c
+#define DIO13_SPI0_MOSI IOC_PORTCFG_PFUNC2
+```
+
+<a id="a856cc517f1a799d293114daaa33aeb38"></a>
+
+### `DIO13_T0_C0N`
+
+```c
+#define DIO13_T0_C0N IOC_PORTCFG_PFUNC4
+```
+
+<a id="acec3eda273c31b29324b3bfe2afdc070"></a>
+
+### `DIO13_T1_F`
+
+```c
+#define DIO13_T1_F IOC_PORTCFG_PFUNC5
+```
+
+<a id="abb44537be4746bbcf1d3e0d32bfa3cba"></a>
+
+### `DIO13_UART0_TXD`
+
+```c
+#define DIO13_UART0_TXD IOC_PORTCFG_PFUNC3
+```
+
+<a id="ae30591306137378af20de546bfbc402e"></a>
+
+### `DIO14_GPIO14`
+
+```c
+#define DIO14_GPIO14 IOC_PORTCFG_BASE
+```
+
+<a id="af9774a009ad29c47036e7b07960ae463"></a>
+
+### `DIO14_LRFD5`
+
+```c
+#define DIO14_LRFD5 IOC_PORTCFG_PFUNC3
+```
+
+<a id="abc3f5cb7c0f595fc80d3285d902ba829"></a>
+
+### `DIO14_T1_C2N`
+
+```c
+#define DIO14_T1_C2N IOC_PORTCFG_PFUNC2
+```
+
+<a id="a696088726823aa9e47180eadf02d3313"></a>
+
+### `DIO14_T1_F`
+
+```c
+#define DIO14_T1_F IOC_PORTCFG_PFUNC4
+```
+
+<a id="a0c7457a723d316668a3aabd0404a0a65"></a>
+
+### `DIO14_T3_C2`
+
+```c
+#define DIO14_T3_C2 IOC_PORTCFG_PFUNC1
+```
+
+<a id="afddb1472afadde08d88f6abd1dc5d5ff"></a>
+
+### `DIO15_CKMIN`
+
+```c
+#define DIO15_CKMIN IOC_PORTCFG_PFUNC3
+```
+
+<a id="a7b466888d002460d0428519529ea5801"></a>
+
+### `DIO15_GPIO15`
+
+```c
+#define DIO15_GPIO15 IOC_PORTCFG_BASE
+```
+
+<a id="acebedef69b351c4431523381334adcb1"></a>
+
+### `DIO15_T2_C0N`
+
+```c
+#define DIO15_T2_C0N IOC_PORTCFG_PFUNC2
+```
+
+<a id="a7af48be34e0d425d8ccc4fceb79d94d6"></a>
+
+### `DIO15_UART0_RXD`
+
+```c
+#define DIO15_UART0_RXD IOC_PORTCFG_PFUNC1
+```
+
+<a id="ab14227b4703363152450eefdfe5f0186"></a>
+
+### `DIO16_DTB10`
+
+```c
+#define DIO16_DTB10 IOC_PORTCFG_DTB
+```
+
+<a id="a076f8c5d1093fd600d3e9ba2edad8431"></a>
+
+### `DIO16_GPIO16`
+
+```c
+#define DIO16_GPIO16 IOC_PORTCFG_BASE
+```
+
+<a id="a68ae64d639cab3dbadcaf50c92a13fbd"></a>
+
+### `DIO16_I2C0_SDA`
+
+```c
+#define DIO16_I2C0_SDA IOC_PORTCFG_PFUNC3
+```
+
+<a id="a603eb2c90c89a84edd7eb73290defd91"></a>
+
+### `DIO16_SPI0_MOSI`
+
+```c
+#define DIO16_SPI0_MOSI IOC_PORTCFG_PFUNC1
+```
+
+<a id="aa1e519e01cb798538022755aaf81574a"></a>
+
+### `DIO16_T1_C0N`
+
+```c
+#define DIO16_T1_C0N IOC_PORTCFG_PFUNC5
+```
+
+<a id="a280b489d7c4528ec5a0775c3b83ba551"></a>
+
+### `DIO16_T1_C2`
+
+```c
+#define DIO16_T1_C2 IOC_PORTCFG_PFUNC4
+```
+
+<a id="a04c17e95330f4aaa17d886d2f5053cc9"></a>
+
+### `DIO16_UART0_RXD`
+
+```c
+#define DIO16_UART0_RXD IOC_PORTCFG_PFUNC2
+```
+
+<a id="a79ba035326c60d89c4ab8b8de50eee6b"></a>
+
+### `DIO17_DTB11`
+
+```c
+#define DIO17_DTB11 IOC_PORTCFG_DTB
+```
+
+<a id="aa6695223061a1bf458e6b5cf667a4ef3"></a>
+
+### `DIO17_GPIO17`
+
+```c
+#define DIO17_GPIO17 IOC_PORTCFG_BASE
+```
+
+<a id="a724128f152f9c8153925c0b433aa46aa"></a>
+
+### `DIO17_I2C0_SCL`
+
+```c
+#define DIO17_I2C0_SCL IOC_PORTCFG_PFUNC3
+```
+
+<a id="a01082d3bb0958749c3a705ebd381d304"></a>
+
+### `DIO17_SPI0_SCLK`
+
+```c
+#define DIO17_SPI0_SCLK IOC_PORTCFG_PFUNC1
+```
+
+<a id="a885ff00b679ea6922cb8177310871aee"></a>
+
+### `DIO17_T0_C2`
+
+```c
+#define DIO17_T0_C2 IOC_PORTCFG_PFUNC5
+```
+
+<a id="ad690f4824516a3f08fd8cbb1e4baec5e"></a>
+
+### `DIO17_T1_C1N`
+
+```c
+#define DIO17_T1_C1N IOC_PORTCFG_PFUNC4
+```
+
+<a id="a6af94601226f5b9da48be2449edf12c3"></a>
+
+### `DIO17_UART0_TXD`
+
+```c
+#define DIO17_UART0_TXD IOC_PORTCFG_PFUNC2
+```
+
+<a id="afe75a43f8da9e6ac26d98d11e62a7f0f"></a>
+
+### `DIO18_DTB12`
+
+```c
+#define DIO18_DTB12 IOC_PORTCFG_DTB
+```
+
+<a id="abbcd9337ffa2c9120d74cf17bcc7092f"></a>
+
+### `DIO18_GPIO18`
+
+```c
+#define DIO18_GPIO18 IOC_PORTCFG_BASE
+```
+
+<a id="a3944baa4569ea0dccccedf1729c962f7"></a>
+
+### `DIO18_LPC0`
+
+```c
+#define DIO18_LPC0 IOC_PORTCFG_PFUNC2
+```
+
+<a id="a2751e01acf954ff4bb4a10bab7d39153"></a>
+
+### `DIO18_SPI0_SCLK`
+
+```c
+#define DIO18_SPI0_SCLK IOC_PORTCFG_PFUNC4
+```
+
+<a id="a5e9c6406866d7aaa23929a4cec8fc828"></a>
+
+### `DIO18_T3_C0`
+
+```c
+#define DIO18_T3_C0 IOC_PORTCFG_PFUNC1
+```
+
+<a id="ab9c8fac3f7501cf6303771c87040cb78"></a>
+
+### `DIO18_UART0_TXD`
+
+```c
+#define DIO18_UART0_TXD IOC_PORTCFG_PFUNC3
+```
+
+<a id="accad3142e44944f617f4b6ade2f07c1e"></a>
+
+### `DIO19_DTB0`
+
+```c
+#define DIO19_DTB0 IOC_PORTCFG_DTB
+```
+
+<a id="a7c21093db3bdff8c498afd0564a58ff8"></a>
+
+### `DIO19_GPIO19`
+
+```c
+#define DIO19_GPIO19 IOC_PORTCFG_BASE
+```
+
+<a id="a79de211a3fc81572d675791c8eab515d"></a>
+
+### `DIO19_SPI0_MOSI`
+
+```c
+#define DIO19_SPI0_MOSI IOC_PORTCFG_PFUNC4
+```
+
+<a id="aa055d07c9295649e85dbc84e210bfe8a"></a>
+
+### `DIO19_T2_PE`
+
+```c
+#define DIO19_T2_PE IOC_PORTCFG_PFUNC2
+```
+
+<a id="a516468dc4fd432493b9686d9c295c1a0"></a>
+
+### `DIO19_T3_C1`
+
+```c
+#define DIO19_T3_C1 IOC_PORTCFG_PFUNC1
+```
+
+<a id="ac1db8b2eec7a587f2777ec42bc741332"></a>
+
+### `DIO1_ADC4`
+
+```c
+#define DIO1_ADC4 IOC_PORTCFG_ANA
+```
+
+<a id="a22d9f90c38345c7487044591caaa5a60"></a>
+
+### `DIO1_DTB2`
+
+```c
+#define DIO1_DTB2 IOC_PORTCFG_DTB
+```
+
+<a id="ac38ece6a277c436f774ab4b0392ea635"></a>
+
+### `DIO1_GPIO1`
+
+```c
+#define DIO1_GPIO1 IOC_PORTCFG_BASE
+```
+
+<a id="acb8c92941a28948edf78ea8ba7bf1a3f"></a>
+
+### `DIO1_LRFD7`
+
+```c
+#define DIO1_LRFD7 IOC_PORTCFG_PFUNC2
+```
+
+<a id="a522504deec63fc7e124ee2628e21158c"></a>
+
+### `DIO1_T1_F`
+
+```c
+#define DIO1_T1_F IOC_PORTCFG_PFUNC3
+```
+
+<a id="a2b5d4a0a786d41a76b959a976c3435a4"></a>
+
+### `DIO1_T3_C1`
+
+```c
+#define DIO1_T3_C1 IOC_PORTCFG_PFUNC1
+```
+
+<a id="a6f9ff300c12b1d0f6291da925d53d049"></a>
+
+### `DIO1_UART0_RTS`
+
+```c
+#define DIO1_UART0_RTS IOC_PORTCFG_PFUNC4
+```
+
+<a id="af160531047627880d2c9a45fc4e78d3c"></a>
+
+### `DIO20_ADC11`
+
+```c
+#define DIO20_ADC11 IOC_PORTCFG_ANA
+```
+
+<a id="ad45e111439f668b6b3b2c2a8dc197685"></a>
+
+### `DIO20_DTB14`
+
+```c
+#define DIO20_DTB14 IOC_PORTCFG_DTB
+```
+
+<a id="a9dde4d0ddc64a4c2e78c050210e467dc"></a>
+
+### `DIO20_GPIO20`
+
+```c
+#define DIO20_GPIO20 IOC_PORTCFG_BASE
+```
+
+<a id="ab590e7f2abe46b464f1e9d6a89059e25"></a>
+
+### `DIO20_LPC0`
+
+```c
+#define DIO20_LPC0 IOC_PORTCFG_PFUNC1
+```
+
+<a id="aa78b09deb2e32131c51af0aa2cf186a4"></a>
+
+### `DIO20_SPI0_MISO`
+
+```c
+#define DIO20_SPI0_MISO IOC_PORTCFG_PFUNC5
+```
+
+<a id="a032c884bb4ad0772aa26e2f41f49310f"></a>
+
+### `DIO20_T1_C0`
+
+```c
+#define DIO20_T1_C0 IOC_PORTCFG_PFUNC4
+```
+
+<a id="a0ae35f4a7376bb6980832c871ab714d5"></a>
+
+### `DIO20_UART0_RXD`
+
+```c
+#define DIO20_UART0_RXD IOC_PORTCFG_PFUNC3
+```
+
+<a id="aa68e87bb88d59212e0768800c7aa7f48"></a>
+
+### `DIO20_UART0_TXD`
+
+```c
+#define DIO20_UART0_TXD IOC_PORTCFG_PFUNC2
+```
+
+<a id="a9351b7540ddc91c96c7eb06c6e3160e9"></a>
+
+### `DIO21_ADC10_LPCP`
+
+```c
+#define DIO21_ADC10_LPCP IOC_PORTCFG_ANA
+```
+
+<a id="a58b92ea2552dd70802efc1c996e47db7"></a>
+
+### `DIO21_DTB15`
+
+```c
+#define DIO21_DTB15 IOC_PORTCFG_DTB
+```
+
+<a id="a3543027e96dd24a8f423642793f9231f"></a>
+
+### `DIO21_GPIO21`
+
+```c
+#define DIO21_GPIO21 IOC_PORTCFG_BASE
+```
+
+<a id="adc4c2c233df06c2f52ccd24dee3c6664"></a>
+
+### `DIO21_LRFD1`
+
+```c
+#define DIO21_LRFD1 IOC_PORTCFG_PFUNC5
+```
+
+<a id="a8d66bd3f2da6e8e38b7d464d2e8fbe2e"></a>
+
+### `DIO21_SPI0_MISO`
+
+```c
+#define DIO21_SPI0_MISO IOC_PORTCFG_PFUNC4
+```
+
+<a id="ae217ff4c8cf56f66ad3bec48d95ea87f"></a>
+
+### `DIO21_T0_C1`
+
+```c
+#define DIO21_T0_C1 IOC_PORTCFG_PFUNC3
+```
+
+<a id="a938311835000f5598aa29b4140fe6886"></a>
+
+### `DIO21_T1_C1N`
+
+```c
+#define DIO21_T1_C1N IOC_PORTCFG_PFUNC2
+```
+
+<a id="aeda0333fb8765d7a24d514ee25d1b4b2"></a>
+
+### `DIO21_UART0_CTS`
+
+```c
+#define DIO21_UART0_CTS IOC_PORTCFG_PFUNC1
+```
+
+<a id="a124a45cbc60d6e3b80d2242483a4e48e"></a>
+
+### `DIO22_ADC9`
+
+```c
+#define DIO22_ADC9 IOC_PORTCFG_ANA
+```
+
+<a id="aee614c39986f53d769971914fe0f09bf"></a>
+
+### `DIO22_DTB1`
+
+```c
+#define DIO22_DTB1 IOC_PORTCFG_DTB
+```
+
+<a id="a0a59e5293cbce628fb9ed582ed8640f5"></a>
+
+### `DIO22_GPIO22`
+
+```c
+#define DIO22_GPIO22 IOC_PORTCFG_BASE
+```
+
+<a id="ab4318e5a3f89c6d0a09e11f5cba9938a"></a>
+
+### `DIO22_T2_C0`
+
+```c
+#define DIO22_T2_C0 IOC_PORTCFG_PFUNC1
+```
+
+<a id="af2086537e03f4e02f8edbfab24e1e0cc"></a>
+
+### `DIO22_T3_C1N`
+
+```c
+#define DIO22_T3_C1N IOC_PORTCFG_PFUNC3
+```
+
+<a id="af1e0eff63be94a61ba5910793796f2eb"></a>
+
+### `DIO22_UART0_RXD`
+
+```c
+#define DIO22_UART0_RXD IOC_PORTCFG_PFUNC2
+```
+
+<a id="a3680907697a966084193c02a0a9b092b"></a>
+
+### `DIO23_ADC8_LPCP_LPCM`
+
+```c
+#define DIO23_ADC8_LPCP_LPCM IOC_PORTCFG_ANA
+```
+
+<a id="a7b6e8fc88c08014e5f55fb61b631f630"></a>
+
+### `DIO23_GPIO23`
+
+```c
+#define DIO23_GPIO23 IOC_PORTCFG_BASE
+```
+
+<a id="a458eb72bee3bc88ae42b099da2a8d8b5"></a>
+
+### `DIO23_T2_C1`
+
+```c
+#define DIO23_T2_C1 IOC_PORTCFG_PFUNC1
+```
+
+<a id="a24e0baa35ebf15509fa6df01161b550c"></a>
+
+### `DIO23_T3_C2N`
+
+```c
+#define DIO23_T3_C2N IOC_PORTCFG_PFUNC3
+```
+
+<a id="a8ac3818f8c180ff363102c1037a39bb3"></a>
+
+### `DIO24_ADC7_LPCP_LPCM`
+
+```c
+#define DIO24_ADC7_LPCP_LPCM IOC_PORTCFG_ANA
+```
+
+<a id="a90d085bab2b84b19d92eee13c3760f97"></a>
+
+### `DIO24_DTB5`
+
+```c
+#define DIO24_DTB5 IOC_PORTCFG_DTB
+```
+
+<a id="ab007c4540993b710800e31b01c59ac45"></a>
+
+### `DIO24_GPIO24`
+
+```c
+#define DIO24_GPIO24 IOC_PORTCFG_BASE
+```
+
+<a id="a110d85e1d37be48932cbf1d89c0be29e"></a>
+
+### `DIO24_I2C0_SCL`
+
+```c
+#define DIO24_I2C0_SCL IOC_PORTCFG_PFUNC5
+```
+
+<a id="a449c49cd104260e5c8d8af85121d3a1e"></a>
+
+### `DIO24_SPI0_SCLK`
+
+```c
+#define DIO24_SPI0_SCLK IOC_PORTCFG_PFUNC1
+```
+
+<a id="a0fb7b862a44272d6fd564d472ea31e21"></a>
+
+### `DIO24_T0_PE`
+
+```c
+#define DIO24_T0_PE IOC_PORTCFG_PFUNC4
+```
+
+<a id="aee83a92878c7892d370985a85f49982f"></a>
+
+### `DIO24_T1_C0`
+
+```c
+#define DIO24_T1_C0 IOC_PORTCFG_PFUNC2
+```
+
+<a id="a9ada17b86400635fe102fc2525d792fc"></a>
+
+### `DIO24_T3_C0`
+
+```c
+#define DIO24_T3_C0 IOC_PORTCFG_PFUNC3
+```
+
+<a id="a1646bb58bfa079d72088be6dbacf1699"></a>
+
+### `DIO25_ADC6`
+
+```c
+#define DIO25_ADC6 IOC_PORTCFG_ANA
+```
+
+<a id="ae8f1ccd4414f0b0bf1724eb52fc5e2f4"></a>
+
+### `DIO25_GPIO25`
+
+```c
+#define DIO25_GPIO25 IOC_PORTCFG_BASE
+```
+
+<a id="a2b4cca3f5437f8e8f7889194b566a21f"></a>
+
+### `DIO25_I2C0_SCL`
+
+```c
+#define DIO25_I2C0_SCL IOC_PORTCFG_PFUNC2
+```
+
+<a id="ad7f714f27470179ac1653fa13d4b6f3a"></a>
+
+### `DIO25_SPI0_MISO`
+
+```c
+#define DIO25_SPI0_MISO IOC_PORTCFG_PFUNC1
+```
+
+<a id="a5d80e2f09069929f0fd4801a953a7684"></a>
+
+### `DIO25_T2_C2N`
+
+```c
+#define DIO25_T2_C2N IOC_PORTCFG_PFUNC3
+```
+
+<a id="a592b7a2687e97ac64b684681a43dbc0b"></a>
+
+### `DIO2_ADC3`
+
+```c
+#define DIO2_ADC3 IOC_PORTCFG_ANA
+```
+
+<a id="acce8374fb4d805494ebaf78834d431d6"></a>
+
+### `DIO2_GPIO2`
+
+```c
+#define DIO2_GPIO2 IOC_PORTCFG_BASE
+```
+
+<a id="ae1e1837425d79845e84a9551c6ce90d3"></a>
+
+### `DIO2_T0_PE`
+
+```c
+#define DIO2_T0_PE IOC_PORTCFG_PFUNC1
+```
+
+<a id="a943d0d0497b8d939b4bdf6eb1ed7af03"></a>
+
+### `DIO2_T2_C1N`
+
+```c
+#define DIO2_T2_C1N IOC_PORTCFG_PFUNC2
+```
+
+<a id="aebfe126f475d93068b93eb195049f586"></a>
+
+### `DIO2_UART0_CTS`
+
+```c
+#define DIO2_UART0_CTS IOC_PORTCFG_PFUNC3
+```
+
+<a id="a95e01bbcdcd732983e0bca7cf02fcf33"></a>
+
+### `DIO3_DTB7`
+
+```c
+#define DIO3_DTB7 IOC_PORTCFG_DTB
+```
+
+<a id="a02eb22dc2b9867c418e972a64c4e549c"></a>
+
+### `DIO3_GPIO3`
+
+```c
+#define DIO3_GPIO3 IOC_PORTCFG_BASE
+```
+
+<a id="a9babb38598d110fa6972313e4a5f90ac"></a>
+
+### `DIO3_LFCI`
+
+```c
+#define DIO3_LFCI IOC_PORTCFG_PFUNC1
+```
+
+<a id="a6d5fd06f8df458a27ee0cb75746203df"></a>
+
+### `DIO3_LFXT_P`
+
+```c
+#define DIO3_LFXT_P IOC_PORTCFG_ANA
+```
+
+<a id="a2680e26e7c1dd92e43413727f9f4c415"></a>
+
+### `DIO3_LRFD0`
+
+```c
+#define DIO3_LRFD0 IOC_PORTCFG_PFUNC3
+```
+
+<a id="ad5f0fade34b37ed25a23b27a101f9796"></a>
+
+### `DIO3_T0_C1N`
+
+```c
+#define DIO3_T0_C1N IOC_PORTCFG_PFUNC2
+```
+
+<a id="a31ecae7e3f360d17dee9b78b2a8f18b1"></a>
+
+### `DIO3_T1_C2`
+
+```c
+#define DIO3_T1_C2 IOC_PORTCFG_PFUNC5
+```
+
+<a id="a3856eb90a0dec21a3055041edf7c975a"></a>
+
+### `DIO3_T3_C1`
+
+```c
+#define DIO3_T3_C1 IOC_PORTCFG_PFUNC4
+```
+
+<a id="abebb35dde4a811b0237b9fb24517b41f"></a>
+
+### `DIO4_DTB8`
+
+```c
+#define DIO4_DTB8 IOC_PORTCFG_DTB
+```
+
+<a id="ae3239b06b452ff8757f9990f5f091a61"></a>
+
+### `DIO4_GPIO4`
+
+```c
+#define DIO4_GPIO4 IOC_PORTCFG_BASE
+```
+
+<a id="ae5bbef3a760612759307039d94ae8d4c"></a>
+
+### `DIO4_LFXT_N`
+
+```c
+#define DIO4_LFXT_N IOC_PORTCFG_ANA
+```
+
+<a id="a5f4c955ea6d875eb53f8575a59b8fc1a"></a>
+
+### `DIO4_LRFD1`
+
+```c
+#define DIO4_LRFD1 IOC_PORTCFG_PFUNC3
+```
+
+<a id="a17ea74b30c1aed816d675fcc2ff076fc"></a>
+
+### `DIO4_SPI0_MOSI`
+
+```c
+#define DIO4_SPI0_MOSI IOC_PORTCFG_PFUNC4
+```
+
+<a id="ab42c816bea20237638d790ffcee2b2cf"></a>
+
+### `DIO4_T0_C2`
+
+```c
+#define DIO4_T0_C2 IOC_PORTCFG_PFUNC5
+```
+
+<a id="a040b8faba6859f0decc43d318cee6ed1"></a>
+
+### `DIO4_T0_C2N`
+
+```c
+#define DIO4_T0_C2N IOC_PORTCFG_PFUNC1
+```
+
+<a id="a4ee4d6b4e97e0053b9dfdadd47ffd55e"></a>
+
+### `DIO4_UART0_TXD`
+
+```c
+#define DIO4_UART0_TXD IOC_PORTCFG_PFUNC2
+```
+
+<a id="a09619eb634cab8068134cb40a152f17b"></a>
+
+### `DIO5_ADC2`
+
+```c
+#define DIO5_ADC2 IOC_PORTCFG_ANA
+```
+
+<a id="ae860734b858834f5024b4f35377c56cb"></a>
+
+### `DIO5_GPIO5`
+
+```c
+#define DIO5_GPIO5 IOC_PORTCFG_BASE
+```
+
+<a id="aff51e9eb6eb949038b5cccb4fa074212"></a>
+
+### `DIO5_LRFD6`
+
+```c
+#define DIO5_LRFD6 IOC_PORTCFG_PFUNC3
+```
+
+<a id="abbada75153e0f5b9c352a2cfd6669037"></a>
+
+### `DIO5_T2_C2`
+
+```c
+#define DIO5_T2_C2 IOC_PORTCFG_PFUNC1
+```
+
+<a id="a39e4a39c6d312c974b37acac1b1054da"></a>
+
+### `DIO6_ADC1_AREFP`
+
+```c
+#define DIO6_ADC1_AREFP IOC_PORTCFG_ANA
+```
+
+<a id="aac1e3c63427f92bd1d73d472ca215eb1"></a>
+
+### `DIO6_DTB6`
+
+```c
+#define DIO6_DTB6 IOC_PORTCFG_DTB
+```
+
+<a id="a56f5afccece122855f957668e81d1bcd"></a>
+
+### `DIO6_GPIO6`
+
+```c
+#define DIO6_GPIO6 IOC_PORTCFG_BASE
+```
+
+<a id="a914b6a41adb66c2f65413c46ff620c5c"></a>
+
+### `DIO6_I2C0_SCL`
+
+```c
+#define DIO6_I2C0_SCL IOC_PORTCFG_PFUNC2
+```
+
+<a id="a834af6e67831d342dbef9084a4bc422e"></a>
+
+### `DIO6_LRFD2`
+
+```c
+#define DIO6_LRFD2 IOC_PORTCFG_PFUNC4
+```
+
+<a id="a38d80b5fc0894b55beba01019350edca"></a>
+
+### `DIO6_SPI0_CSN`
+
+```c
+#define DIO6_SPI0_CSN IOC_PORTCFG_PFUNC1
+```
+
+<a id="ad17cc424f3421617c753d1387da6c6bf"></a>
+
+### `DIO6_T1_C2`
+
+```c
+#define DIO6_T1_C2 IOC_PORTCFG_PFUNC3
+```
+
+<a id="ac55e5ce877a5e57cf565830193c076e6"></a>
+
+### `DIO6_UART0_TXD`
+
+```c
+#define DIO6_UART0_TXD IOC_PORTCFG_PFUNC5
+```
+
+<a id="a3c92801ae0b96fae2be1a9b018022aea"></a>
+
+### `DIO7_ADC0_AREFM`
+
+```c
+#define DIO7_ADC0_AREFM IOC_PORTCFG_ANA
+```
+
+<a id="ae0e5f07c43371d3602b4353f6178a214"></a>
+
+### `DIO7_GPIO7`
+
+```c
+#define DIO7_GPIO7 IOC_PORTCFG_BASE
+```
+
+<a id="a8a354e58d7f6425c9cb91137dc4aa766"></a>
+
+### `DIO7_LRFD4`
+
+```c
+#define DIO7_LRFD4 IOC_PORTCFG_PFUNC3
+```
+
+<a id="ae60dd20c9960b001a992d37fbfa05956"></a>
+
+### `DIO7_T3_C1`
+
+```c
+#define DIO7_T3_C1 IOC_PORTCFG_PFUNC1
+```
+
+<a id="a82913b1243033ac74f06eeaf4aff7df4"></a>
+
+### `DIO8_DTB3`
+
+```c
+#define DIO8_DTB3 IOC_PORTCFG_DTB
+```
+
+<a id="afe29503f0e97bf76bea3ed2ec3fe4b64"></a>
+
+### `DIO8_GPIO8`
+
+```c
+#define DIO8_GPIO8 IOC_PORTCFG_BASE
+```
+
+<a id="a2b845037d4c448c3847ba408ba98720d"></a>
+
+### `DIO8_I2C0_SDA`
+
+```c
+#define DIO8_I2C0_SDA IOC_PORTCFG_PFUNC4
+```
+
+<a id="a3d22644d12be2b507ed4a4a05097b29f"></a>
+
+### `DIO8_SPI0_SCLK`
+
+```c
+#define DIO8_SPI0_SCLK IOC_PORTCFG_PFUNC1
+```
+
+<a id="aff36d54d77c72974b870285fb6d8b801"></a>
+
+### `DIO8_T0_C0N`
+
+```c
+#define DIO8_T0_C0N IOC_PORTCFG_PFUNC5
+```
+
+<a id="ab32d21fdbcde3256731b561d9f5f2ad1"></a>
+
+### `DIO8_T1_C0N`
+
+```c
+#define DIO8_T1_C0N IOC_PORTCFG_PFUNC3
+```
+
+<a id="a82f64fe945445f96be0db2aa2d021e6b"></a>
+
+### `DIO8_UART0_RTS`
+
+```c
+#define DIO8_UART0_RTS IOC_PORTCFG_PFUNC2
+```
+
+<a id="a74d0f7de1cb705b147947312f67e273a"></a>
+
+### `DIO9_GPIO9`
+
+```c
+#define DIO9_GPIO9 IOC_PORTCFG_BASE
+```
+
+<a id="a069db119313663a8bd1052992e12e85a"></a>
+
+### `DIO9_LRFD3`
+
+```c
+#define DIO9_LRFD3 IOC_PORTCFG_PFUNC3
+```
+
+<a id="a87eac578bb6d3ba94be53508d81ddae8"></a>
+
+### `DIO9_T3_C0`
+
+```c
+#define DIO9_T3_C0 IOC_PORTCFG_PFUNC1
+```
+
+<a id="a375a32390601a0a7e8daf034bf696482"></a>
+
+### `IOC_PORTCFG_ANA`
+
+```c
+#define IOC_PORTCFG_ANA 6U
+```
+
+<a id="aa502a06b1e9f31be173481ff4626bb70"></a>
+
+### `IOC_PORTCFG_BASE`
+
+```c
+#define IOC_PORTCFG_BASE 0U
+```
+
+<a id="a6c1e87a84343d63b8ab60e53b14944d3"></a>
+
+### `IOC_PORTCFG_DTB`
+
+```c
+#define IOC_PORTCFG_DTB 7U
+```
+
+<a id="a4ac7f9fbb7a989da2815fa48a2c63bd9"></a>
+
+### `IOC_PORTCFG_PFUNC1`
+
+```c
+#define IOC_PORTCFG_PFUNC1 1U
+```
+
+<a id="a469848941ebbce5b2fc1b54d57f7d965"></a>
+
+### `IOC_PORTCFG_PFUNC2`
+
+```c
+#define IOC_PORTCFG_PFUNC2 2U
+```
+
+<a id="a420b3a48d4a6010feb9866b97a7492dd"></a>
+
+### `IOC_PORTCFG_PFUNC3`
+
+```c
+#define IOC_PORTCFG_PFUNC3 3U
+```
+
+<a id="a3f27b6bb5191b2c2def7b74afa0c0019"></a>
+
+### `IOC_PORTCFG_PFUNC4`
+
+```c
+#define IOC_PORTCFG_PFUNC4 4U
+```
+
+<a id="af33d2e20e5de9cc53b70a3e826624837"></a>
+
+### `IOC_PORTCFG_PFUNC5`
+
+```c
+#define IOC_PORTCFG_PFUNC5 5U
+```
+
+
+## 32.3\_原页交叉引用（Cross References）
+
+- [查看此文件的源码。](../api_source_runtime_reference/P004_cc23x0-pinctrl.h_源码浏览.md)
+
+<a id="doc-define-members"></a>
+<a id="header-doc-define-members"></a>
+
+---
+
+[上一章](P031_zephyr__dt-bindings__pinctrl__cc13xx_cc26xx-pinctrl.h_文件参考.md) · [返回大纲](大纲.md) · [下一章](P033_____w__zephyr__zephyr__lib__libc__minimal__include__sys__cdefs.h_文件参考.md)

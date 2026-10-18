@@ -1,0 +1,10679 @@
+---
+id: learning.zephyr-docs.api-file-reference.page-269
+title: zephyr__dt-bindings__clock__numaker_m46x_clock.h_文件参考
+kind: reference
+status: maintained
+domains: [zephyr, drivers, api]
+source_url: https://docs.zephyrproject.org/latest/doxygen/html/numaker__m46x__clock_8h.html
+---
+
+<!-- Copyright 2015-2026 Zephyr Project members and individual contributors. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<!-- 中文翻译；编号、导航和明确标注的译注为本地新增。 -->
+
+# 第269章\_zephyr\_\_dt-bindings\_\_clock\_\_numaker\_m46x\_clock.h\_文件参考
+
+原文：[官方页面](https://docs.zephyrproject.org/latest/doxygen/html/numaker__m46x__clock_8h.html)。读取日期：2026-10-17；来源摘要见[来源记录](../SOURCES.md)。
+
+查看此文件的源码。
+
+<a id="header-define-members"></a>
+<a id="define-members"></a>
+
+## 269.1\_宏定义（Macros）
+
+<a id="r_a58b51925b1e326fcf1b44c78c9aac0bc"></a>
+
+```c
+#define NUMAKER_CLK_AHBCLK0_PDMA0CKEN_Pos (1)
+```
+
+相关声明：[NUMAKER_CLK_AHBCLK0_PDMA0CKEN_Pos](#a58b51925b1e326fcf1b44c78c9aac0bc)。
+
+<a id="r_a38d9951e8a71b2f89bdf7b016feb09cb"></a>
+
+```c
+#define NUMAKER_CLK_AHBCLK0_ISPCKEN_Pos (2)
+```
+
+相关声明：[NUMAKER_CLK_AHBCLK0_ISPCKEN_Pos](#a38d9951e8a71b2f89bdf7b016feb09cb)。
+
+<a id="r_abe3b51583a6c3b5e7fac4502c29a15c5"></a>
+
+```c
+#define NUMAKER_CLK_AHBCLK0_EBICKEN_Pos (3)
+```
+
+相关声明：[NUMAKER_CLK_AHBCLK0_EBICKEN_Pos](#abe3b51583a6c3b5e7fac4502c29a15c5)。
+
+<a id="r_a59c032586da81c2128ecfe553e779560"></a>
+
+```c
+#define NUMAKER_CLK_AHBCLK0_STCKEN_Pos (4)
+```
+
+相关声明：[NUMAKER_CLK_AHBCLK0_STCKEN_Pos](#a59c032586da81c2128ecfe553e779560)。
+
+<a id="r_af00c90db38b73bed47ef5a00cfe92a87"></a>
+
+```c
+#define NUMAKER_CLK_AHBCLK0_EMAC0CKEN_Pos (5)
+```
+
+相关声明：[NUMAKER_CLK_AHBCLK0_EMAC0CKEN_Pos](#af00c90db38b73bed47ef5a00cfe92a87)。
+
+<a id="r_a34b8dd1f5a2a514eec3ee4ff2376126d"></a>
+
+```c
+#define NUMAKER_CLK_AHBCLK0_SDH0CKEN_Pos (6)
+```
+
+相关声明：[NUMAKER_CLK_AHBCLK0_SDH0CKEN_Pos](#a34b8dd1f5a2a514eec3ee4ff2376126d)。
+
+<a id="r_a43961045e5cfb5bfd8e3f25ca0d3de38"></a>
+
+```c
+#define NUMAKER_CLK_AHBCLK0_CRCCKEN_Pos (7)
+```
+
+相关声明：[NUMAKER_CLK_AHBCLK0_CRCCKEN_Pos](#a43961045e5cfb5bfd8e3f25ca0d3de38)。
+
+<a id="r_a7e8862c4f20298f950b253c0ab613fec"></a>
+
+```c
+#define NUMAKER_CLK_AHBCLK0_CCAPCKEN_Pos (8)
+```
+
+相关声明：[NUMAKER_CLK_AHBCLK0_CCAPCKEN_Pos](#a7e8862c4f20298f950b253c0ab613fec)。
+
+<a id="r_a5de977a2fd728aa7a12e0a667b639bca"></a>
+
+```c
+#define NUMAKER_CLK_AHBCLK0_SENCKEN_Pos (9)
+```
+
+相关声明：[NUMAKER_CLK_AHBCLK0_SENCKEN_Pos](#a5de977a2fd728aa7a12e0a667b639bca)。
+
+<a id="r_afd7bb1592e766086bf5c4f2f2d6224cd"></a>
+
+```c
+#define NUMAKER_CLK_AHBCLK0_HSUSBDCKEN_Pos (10)
+```
+
+相关声明：[NUMAKER_CLK_AHBCLK0_HSUSBDCKEN_Pos](#afd7bb1592e766086bf5c4f2f2d6224cd)。
+
+<a id="r_a806485d7f3f8924d91f8daedb53faecf"></a>
+
+```c
+#define NUMAKER_CLK_AHBCLK0_HBICKEN_Pos (11)
+```
+
+相关声明：[NUMAKER_CLK_AHBCLK0_HBICKEN_Pos](#a806485d7f3f8924d91f8daedb53faecf)。
+
+<a id="r_a31f1a197a3b5093f006feb37b424b1d7"></a>
+
+```c
+#define NUMAKER_CLK_AHBCLK0_CRPTCKEN_Pos (12)
+```
+
+相关声明：[NUMAKER_CLK_AHBCLK0_CRPTCKEN_Pos](#a31f1a197a3b5093f006feb37b424b1d7)。
+
+<a id="r_a3d2f1af1de01e7d4459d16e92f1c73a4"></a>
+
+```c
+#define NUMAKER_CLK_AHBCLK0_KSCKEN_Pos (13)
+```
+
+相关声明：[NUMAKER_CLK_AHBCLK0_KSCKEN_Pos](#a3d2f1af1de01e7d4459d16e92f1c73a4)。
+
+<a id="r_af224d39ec0080a0d4f0776098ed240a6"></a>
+
+```c
+#define NUMAKER_CLK_AHBCLK0_SPIMCKEN_Pos (14)
+```
+
+相关声明：[NUMAKER_CLK_AHBCLK0_SPIMCKEN_Pos](#af224d39ec0080a0d4f0776098ed240a6)。
+
+<a id="r_aa1b458c17c208504e2736af420016fe9"></a>
+
+```c
+#define NUMAKER_CLK_AHBCLK0_FMCIDLE_Pos (15)
+```
+
+相关声明：[NUMAKER_CLK_AHBCLK0_FMCIDLE_Pos](#aa1b458c17c208504e2736af420016fe9)。
+
+<a id="r_a69bca44bfebe798d128021f12a902367"></a>
+
+```c
+#define NUMAKER_CLK_AHBCLK0_USBHCKEN_Pos (16)
+```
+
+相关声明：[NUMAKER_CLK_AHBCLK0_USBHCKEN_Pos](#a69bca44bfebe798d128021f12a902367)。
+
+<a id="r_a76947087379239ccbc5e822d45667dc4"></a>
+
+```c
+#define NUMAKER_CLK_AHBCLK0_SDH1CKEN_Pos (17)
+```
+
+相关声明：[NUMAKER_CLK_AHBCLK0_SDH1CKEN_Pos](#a76947087379239ccbc5e822d45667dc4)。
+
+<a id="r_a0067d71da4392dcafde9dc0b4c3a7fe9"></a>
+
+```c
+#define NUMAKER_CLK_AHBCLK0_PDMA1CKEN_Pos (18)
+```
+
+相关声明：[NUMAKER_CLK_AHBCLK0_PDMA1CKEN_Pos](#a0067d71da4392dcafde9dc0b4c3a7fe9)。
+
+<a id="r_ab06c990333e66d787fe5e08e749f2f0d"></a>
+
+```c
+#define NUMAKER_CLK_AHBCLK0_TRACECKEN_Pos (19)
+```
+
+相关声明：[NUMAKER_CLK_AHBCLK0_TRACECKEN_Pos](#ab06c990333e66d787fe5e08e749f2f0d)。
+
+<a id="r_a61792f0f11c9f76016d1a89ce71b74f7"></a>
+
+```c
+#define NUMAKER_CLK_AHBCLK0_GPACKEN_Pos (24)
+```
+
+相关声明：[NUMAKER_CLK_AHBCLK0_GPACKEN_Pos](#a61792f0f11c9f76016d1a89ce71b74f7)。
+
+<a id="r_af8cd5804e7ae8676e0245ccd9e6a4c74"></a>
+
+```c
+#define NUMAKER_CLK_AHBCLK0_GPBCKEN_Pos (25)
+```
+
+相关声明：[NUMAKER_CLK_AHBCLK0_GPBCKEN_Pos](#af8cd5804e7ae8676e0245ccd9e6a4c74)。
+
+<a id="r_ad5dc0793b20ab18ddba5e972f71caedb"></a>
+
+```c
+#define NUMAKER_CLK_AHBCLK0_GPCCKEN_Pos (26)
+```
+
+相关声明：[NUMAKER_CLK_AHBCLK0_GPCCKEN_Pos](#ad5dc0793b20ab18ddba5e972f71caedb)。
+
+<a id="r_ab150c51327c505db2217f90e5f8fd028"></a>
+
+```c
+#define NUMAKER_CLK_AHBCLK0_GPDCKEN_Pos (27)
+```
+
+相关声明：[NUMAKER_CLK_AHBCLK0_GPDCKEN_Pos](#ab150c51327c505db2217f90e5f8fd028)。
+
+<a id="r_a8be4ace7190b0947707eaa8d99fc63b0"></a>
+
+```c
+#define NUMAKER_CLK_AHBCLK0_GPECKEN_Pos (28)
+```
+
+相关声明：[NUMAKER_CLK_AHBCLK0_GPECKEN_Pos](#a8be4ace7190b0947707eaa8d99fc63b0)。
+
+<a id="r_a33270f5ef0594fe4960eabd4d135e612"></a>
+
+```c
+#define NUMAKER_CLK_AHBCLK0_GPFCKEN_Pos (29)
+```
+
+相关声明：[NUMAKER_CLK_AHBCLK0_GPFCKEN_Pos](#a33270f5ef0594fe4960eabd4d135e612)。
+
+<a id="r_a7b443fbeff14a12542f89e445ea2f2d3"></a>
+
+```c
+#define NUMAKER_CLK_AHBCLK0_GPGCKEN_Pos (30)
+```
+
+相关声明：[NUMAKER_CLK_AHBCLK0_GPGCKEN_Pos](#a7b443fbeff14a12542f89e445ea2f2d3)。
+
+<a id="r_ae1e54f46825a4fa27f526ba7de0c8607"></a>
+
+```c
+#define NUMAKER_CLK_AHBCLK0_GPHCKEN_Pos (31)
+```
+
+相关声明：[NUMAKER_CLK_AHBCLK0_GPHCKEN_Pos](#ae1e54f46825a4fa27f526ba7de0c8607)。
+
+<a id="r_ab2ec740c5cb44791065972a2de785cbe"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK0_WDTCKEN_Pos (0)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK0_WDTCKEN_Pos](#ab2ec740c5cb44791065972a2de785cbe)。
+
+<a id="r_a8c3c6a3361689ff6f7737ccdff117bc6"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK0_RTCCKEN_Pos (1)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK0_RTCCKEN_Pos](#a8c3c6a3361689ff6f7737ccdff117bc6)。
+
+<a id="r_aa3854ff57bfbbaecfe7e23d2771d7333"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK0_TMR0CKEN_Pos (2)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK0_TMR0CKEN_Pos](#aa3854ff57bfbbaecfe7e23d2771d7333)。
+
+<a id="r_afb30c612fbf094fc60c811ccbaa22df0"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK0_TMR1CKEN_Pos (3)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK0_TMR1CKEN_Pos](#afb30c612fbf094fc60c811ccbaa22df0)。
+
+<a id="r_a70e54a13473d4ec204f354d2a8e120c8"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK0_TMR2CKEN_Pos (4)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK0_TMR2CKEN_Pos](#a70e54a13473d4ec204f354d2a8e120c8)。
+
+<a id="r_a8588ec96cf9ba5a541372b886310e31f"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK0_TMR3CKEN_Pos (5)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK0_TMR3CKEN_Pos](#a8588ec96cf9ba5a541372b886310e31f)。
+
+<a id="r_a20f966cae9fa1c3ffd7533892c014af9"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK0_CLKOCKEN_Pos (6)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK0_CLKOCKEN_Pos](#a20f966cae9fa1c3ffd7533892c014af9)。
+
+<a id="r_a51a8258755b28e0f0c6d147cb169ee95"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK0_ACMP01CKEN_Pos (7)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK0_ACMP01CKEN_Pos](#a51a8258755b28e0f0c6d147cb169ee95)。
+
+<a id="r_a8e959e2086ca96c0da9ed6e8a8426dad"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK0_I2C0CKEN_Pos (8)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK0_I2C0CKEN_Pos](#a8e959e2086ca96c0da9ed6e8a8426dad)。
+
+<a id="r_ae9cacf97bbdb9935315aef7d852da0b8"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK0_I2C1CKEN_Pos (9)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK0_I2C1CKEN_Pos](#ae9cacf97bbdb9935315aef7d852da0b8)。
+
+<a id="r_a896126d0a6312d382ebd1054216c73d7"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK0_I2C2CKEN_Pos (10)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK0_I2C2CKEN_Pos](#a896126d0a6312d382ebd1054216c73d7)。
+
+<a id="r_ad616218273d67669884e19ef3ee5234e"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK0_I2C3CKEN_Pos (11)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK0_I2C3CKEN_Pos](#ad616218273d67669884e19ef3ee5234e)。
+
+<a id="r_aabf3594b4f7e6224a88d5edc89afbfe0"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK0_QSPI0CKEN_Pos (12)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK0_QSPI0CKEN_Pos](#aabf3594b4f7e6224a88d5edc89afbfe0)。
+
+<a id="r_a367f258ea5537b3948adedc307b90e2b"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK0_SPI0CKEN_Pos (13)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK0_SPI0CKEN_Pos](#a367f258ea5537b3948adedc307b90e2b)。
+
+<a id="r_acbab43558f5e2ca3ab88245ddb009f3f"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK0_SPI1CKEN_Pos (14)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK0_SPI1CKEN_Pos](#acbab43558f5e2ca3ab88245ddb009f3f)。
+
+<a id="r_a1fdb03816fc8bdaed6f207be2ab47548"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK0_SPI2CKEN_Pos (15)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK0_SPI2CKEN_Pos](#a1fdb03816fc8bdaed6f207be2ab47548)。
+
+<a id="r_a5c2df8fa94c924887ecdb20e8c664f5c"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK0_UART0CKEN_Pos (16)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK0_UART0CKEN_Pos](#a5c2df8fa94c924887ecdb20e8c664f5c)。
+
+<a id="r_a61fc05731dec14cd6bdf6c16d8ddd0cb"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK0_UART1CKEN_Pos (17)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK0_UART1CKEN_Pos](#a61fc05731dec14cd6bdf6c16d8ddd0cb)。
+
+<a id="r_a1ffeeb21492fe1cae89a23e3809056ce"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK0_UART2CKEN_Pos (18)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK0_UART2CKEN_Pos](#a1ffeeb21492fe1cae89a23e3809056ce)。
+
+<a id="r_afa7a7b670568bbed4613ac860ac764d4"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK0_UART3CKEN_Pos (19)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK0_UART3CKEN_Pos](#afa7a7b670568bbed4613ac860ac764d4)。
+
+<a id="r_af2b11ee30e0ee2608d2550656aa38c26"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK0_UART4CKEN_Pos (20)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK0_UART4CKEN_Pos](#af2b11ee30e0ee2608d2550656aa38c26)。
+
+<a id="r_adb4a2eb99fa2c5646866a5d55b97534e"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK0_UART5CKEN_Pos (21)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK0_UART5CKEN_Pos](#adb4a2eb99fa2c5646866a5d55b97534e)。
+
+<a id="r_a34c0f3828864c8e740190bc3a094a5de"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK0_UART6CKEN_Pos (22)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK0_UART6CKEN_Pos](#a34c0f3828864c8e740190bc3a094a5de)。
+
+<a id="r_ae1a1383fc645274edfb35e3f603e559f"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK0_UART7CKEN_Pos (23)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK0_UART7CKEN_Pos](#ae1a1383fc645274edfb35e3f603e559f)。
+
+<a id="r_ac2c53fe5cfb83b42bebaea1140368cc7"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK0_OTGCKEN_Pos (26)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK0_OTGCKEN_Pos](#ac2c53fe5cfb83b42bebaea1140368cc7)。
+
+<a id="r_a03fba41df5559e507195dfa734d6ce0e"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK0_USBDCKEN_Pos (27)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK0_USBDCKEN_Pos](#a03fba41df5559e507195dfa734d6ce0e)。
+
+<a id="r_a58adbfadda83fb8b1d9a50578ee64409"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK0_EADC0CKEN_Pos (28)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK0_EADC0CKEN_Pos](#a58adbfadda83fb8b1d9a50578ee64409)。
+
+<a id="r_a0dda3ed1ac9a4473df221a3c7602d789"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK0_I2S0CKEN_Pos (29)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK0_I2S0CKEN_Pos](#a0dda3ed1ac9a4473df221a3c7602d789)。
+
+<a id="r_a1b8069d895df60e4dc9269adc36602c8"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK0_HSOTGCKEN_Pos (30)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK0_HSOTGCKEN_Pos](#a1b8069d895df60e4dc9269adc36602c8)。
+
+<a id="r_a572eca05a9b8478a29f63e9401145bd4"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK1_SC0CKEN_Pos (0)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK1_SC0CKEN_Pos](#a572eca05a9b8478a29f63e9401145bd4)。
+
+<a id="r_a59ba15908e8db725b14dc000fbb17318"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK1_SC1CKEN_Pos (1)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK1_SC1CKEN_Pos](#a59ba15908e8db725b14dc000fbb17318)。
+
+<a id="r_aa1cb79620df2a7aa170b83b9f0837294"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK1_SC2CKEN_Pos (2)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK1_SC2CKEN_Pos](#aa1cb79620df2a7aa170b83b9f0837294)。
+
+<a id="r_ab2e9eda6c9cf544ee895d2c238241dd4"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK1_I2C4CKEN_Pos (3)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK1_I2C4CKEN_Pos](#ab2e9eda6c9cf544ee895d2c238241dd4)。
+
+<a id="r_a069cd6290f117eded4bfc7db70dd3c50"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK1_QSPI1CKEN_Pos (4)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK1_QSPI1CKEN_Pos](#a069cd6290f117eded4bfc7db70dd3c50)。
+
+<a id="r_a386c818d9955a72ee48ceb19e4f91927"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK1_SPI3CKEN_Pos (6)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK1_SPI3CKEN_Pos](#a386c818d9955a72ee48ceb19e4f91927)。
+
+<a id="r_a1d8508e63ddc549f0cdbd58e7f2fecac"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK1_SPI4CKEN_Pos (7)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK1_SPI4CKEN_Pos](#a1d8508e63ddc549f0cdbd58e7f2fecac)。
+
+<a id="r_a789f8b30f0fc9e2713b025d3e56a78ad"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK1_USCI0CKEN_Pos (8)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK1_USCI0CKEN_Pos](#a789f8b30f0fc9e2713b025d3e56a78ad)。
+
+<a id="r_a5f14b1218cc23b5ae4a5febf2ab3f231"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK1_PSIOCKEN_Pos (10)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK1_PSIOCKEN_Pos](#a5f14b1218cc23b5ae4a5febf2ab3f231)。
+
+<a id="r_ac4bb6f1b74c5ae9e8c25a2c4accf3e91"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK1_DACCKEN_Pos (12)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK1_DACCKEN_Pos](#ac4bb6f1b74c5ae9e8c25a2c4accf3e91)。
+
+<a id="r_a4187ddb711d9b621ffd100f693ecab87"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK1_ECAP2CKEN_Pos (13)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK1_ECAP2CKEN_Pos](#a4187ddb711d9b621ffd100f693ecab87)。
+
+<a id="r_a2303b958de0df016987f93b1bf3ab085"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK1_ECAP3CKEN_Pos (14)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK1_ECAP3CKEN_Pos](#a2303b958de0df016987f93b1bf3ab085)。
+
+<a id="r_aa26749ba77ea33d82dac563913f91631"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK1_EPWM0CKEN_Pos (16)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK1_EPWM0CKEN_Pos](#aa26749ba77ea33d82dac563913f91631)。
+
+<a id="r_a1030ba160597af2055aa8bc8cf1e783f"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK1_EPWM1CKEN_Pos (17)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK1_EPWM1CKEN_Pos](#a1030ba160597af2055aa8bc8cf1e783f)。
+
+<a id="r_a7748917fa5664552d90ad85fd3ac6253"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK1_BPWM0CKEN_Pos (18)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK1_BPWM0CKEN_Pos](#a7748917fa5664552d90ad85fd3ac6253)。
+
+<a id="r_ac240fa173fd611698a50e18acacc7e8b"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK1_BPWM1CKEN_Pos (19)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK1_BPWM1CKEN_Pos](#ac240fa173fd611698a50e18acacc7e8b)。
+
+<a id="r_a8159e95120dff6946e93d12bb9c2e103"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK1_EQEI2CKEN_Pos (20)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK1_EQEI2CKEN_Pos](#a8159e95120dff6946e93d12bb9c2e103)。
+
+<a id="r_af4ba87fd1820c165e405c025bc1c6e1f"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK1_EQEI3CKEN_Pos (21)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK1_EQEI3CKEN_Pos](#af4ba87fd1820c165e405c025bc1c6e1f)。
+
+<a id="r_a96f335c83be01e4d323ff1050f55af19"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK1_EQEI0CKEN_Pos (22)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK1_EQEI0CKEN_Pos](#a96f335c83be01e4d323ff1050f55af19)。
+
+<a id="r_a3f26ee3e388e1bad4752c264e706d34f"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK1_EQEI1CKEN_Pos (23)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK1_EQEI1CKEN_Pos](#a3f26ee3e388e1bad4752c264e706d34f)。
+
+<a id="r_a453287405a43aaa6e2215c1d1d20b079"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK1_TRNGCKEN_Pos (25)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK1_TRNGCKEN_Pos](#a453287405a43aaa6e2215c1d1d20b079)。
+
+<a id="r_a93061f89415f32df54b3d386a85608d8"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK1_ECAP0CKEN_Pos (26)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK1_ECAP0CKEN_Pos](#a93061f89415f32df54b3d386a85608d8)。
+
+<a id="r_a68b041451f3023be8d47f78c56c64875"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK1_ECAP1CKEN_Pos (27)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK1_ECAP1CKEN_Pos](#a68b041451f3023be8d47f78c56c64875)。
+
+<a id="r_a327ba049d422169d52fabb8296f204c1"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK1_I2S1CKEN_Pos (29)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK1_I2S1CKEN_Pos](#a327ba049d422169d52fabb8296f204c1)。
+
+<a id="r_a87a961c8e77c418e7df428ff03974d15"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK1_EADC1CKEN_Pos (31)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK1_EADC1CKEN_Pos](#a87a961c8e77c418e7df428ff03974d15)。
+
+<a id="r_a222c77f1b55f0230c37bd5335616e31c"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_HCLKSEL_Pos (0)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_HCLKSEL_Pos](#a222c77f1b55f0230c37bd5335616e31c)。
+
+<a id="r_a08af6458eb9ad7f8e6d66c0e51625585"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_STCLKSEL_Pos (3)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_STCLKSEL_Pos](#a08af6458eb9ad7f8e6d66c0e51625585)。
+
+<a id="r_a04d6c39e779459221829cc06c880a3be"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_USBSEL_Pos (8)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_USBSEL_Pos](#a04d6c39e779459221829cc06c880a3be)。
+
+<a id="r_aaed2bedbc7da8190be001522a8b0fda3"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_EADC0SEL_Pos (10)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_EADC0SEL_Pos](#aaed2bedbc7da8190be001522a8b0fda3)。
+
+<a id="r_a4aabc45f1e6d05ed3882752d3d9cd0bc"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_EADC1SEL_Pos (12)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_EADC1SEL_Pos](#a4aabc45f1e6d05ed3882752d3d9cd0bc)。
+
+<a id="r_a0cc1044cebda8f140387cd6668c1d28b"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_EADC2SEL_Pos (14)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_EADC2SEL_Pos](#a0cc1044cebda8f140387cd6668c1d28b)。
+
+<a id="r_a26fbf9452f88cd3c9d56da527bcf9701"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CCAPSEL_Pos (16)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_CCAPSEL_Pos](#a26fbf9452f88cd3c9d56da527bcf9701)。
+
+<a id="r_ad511a487821a9fce9bb9f3ba370d2a88"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_SDH0SEL_Pos (20)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_SDH0SEL_Pos](#ad511a487821a9fce9bb9f3ba370d2a88)。
+
+<a id="r_a43fe53773587485494ee0658e7191db6"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_SDH1SEL_Pos (22)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_SDH1SEL_Pos](#a43fe53773587485494ee0658e7191db6)。
+
+<a id="r_ae8a431223539932fdb7f76dd696dc660"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CANFD0SEL_Pos (24)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_CANFD0SEL_Pos](#ae8a431223539932fdb7f76dd696dc660)。
+
+<a id="r_ac37d09c55ca74d2b3b07f1c9528589b9"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CANFD1SEL_Pos (26)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_CANFD1SEL_Pos](#ac37d09c55ca74d2b3b07f1c9528589b9)。
+
+<a id="r_aa8b514cd21320d7554a07793f8a275dc"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CANFD2SEL_Pos (28)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_CANFD2SEL_Pos](#aa8b514cd21320d7554a07793f8a275dc)。
+
+<a id="r_a58f6dd49a1d6ea3f453ec352e2ad3d31"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CANFD3SEL_Pos (30)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_CANFD3SEL_Pos](#a58f6dd49a1d6ea3f453ec352e2ad3d31)。
+
+<a id="r_ae766e87b0198cd6d632efc6ad6c90f2f"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_WDTSEL_Pos (0)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_WDTSEL_Pos](#ae766e87b0198cd6d632efc6ad6c90f2f)。
+
+<a id="r_a173d950f779cd43bcbc19ab59bcfdb9f"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_CLKOSEL_Pos (4)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_CLKOSEL_Pos](#a173d950f779cd43bcbc19ab59bcfdb9f)。
+
+<a id="r_a5267afb76d8c7121ae916d16bd11beba"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR0SEL_Pos (8)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_TMR0SEL_Pos](#a5267afb76d8c7121ae916d16bd11beba)。
+
+<a id="r_acc9cb2446eb710fd02622388b038cb80"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR1SEL_Pos (12)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_TMR1SEL_Pos](#acc9cb2446eb710fd02622388b038cb80)。
+
+<a id="r_a434692498a750b11be1cc4fb23f15d25"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR2SEL_Pos (16)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_TMR2SEL_Pos](#a434692498a750b11be1cc4fb23f15d25)。
+
+<a id="r_a6431caf24c465342f811c99c46beec23"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR3SEL_Pos (20)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_TMR3SEL_Pos](#a6431caf24c465342f811c99c46beec23)。
+
+<a id="r_a59454cdc6f895e4870f36409d2bae4ec"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_UART0SEL_Pos (24)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_UART0SEL_Pos](#a59454cdc6f895e4870f36409d2bae4ec)。
+
+<a id="r_af7249c7982a7b0aecb14ad23d4d69177"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_UART1SEL_Pos (26)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_UART1SEL_Pos](#af7249c7982a7b0aecb14ad23d4d69177)。
+
+<a id="r_abde910c3bea13e43a62ea0f308a3d67d"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_WWDTSEL_Pos (30)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_WWDTSEL_Pos](#abde910c3bea13e43a62ea0f308a3d67d)。
+
+<a id="r_a7c7e4439cb2a5ea61d131ca5aa34c13f"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_EPWM0SEL_Pos (0)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_EPWM0SEL_Pos](#a7c7e4439cb2a5ea61d131ca5aa34c13f)。
+
+<a id="r_a789a88e5c5bb82243395ab44d9150f2f"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_EPWM1SEL_Pos (1)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_EPWM1SEL_Pos](#a789a88e5c5bb82243395ab44d9150f2f)。
+
+<a id="r_afd2bdefddd574beef75f27fe63235b71"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_QSPI0SEL_Pos (2)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_QSPI0SEL_Pos](#afd2bdefddd574beef75f27fe63235b71)。
+
+<a id="r_a3f3697e0e6786758e2d558704c1ae95b"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_SPI0SEL_Pos (4)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_SPI0SEL_Pos](#a3f3697e0e6786758e2d558704c1ae95b)。
+
+<a id="r_a468889c86406ba0ac19dc13ea3676819"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_BPWM0SEL_Pos (8)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_BPWM0SEL_Pos](#a468889c86406ba0ac19dc13ea3676819)。
+
+<a id="r_ac1482052fb0001105c872760676e9b85"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_BPWM1SEL_Pos (9)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_BPWM1SEL_Pos](#ac1482052fb0001105c872760676e9b85)。
+
+<a id="r_abaa371d43c61b5eac6209c49450be2bb"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_QSPI1SEL_Pos (10)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_QSPI1SEL_Pos](#abaa371d43c61b5eac6209c49450be2bb)。
+
+<a id="r_a00200de5091f4a3e3eb6205a3eb2710e"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_SPI1SEL_Pos (12)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_SPI1SEL_Pos](#a00200de5091f4a3e3eb6205a3eb2710e)。
+
+<a id="r_a62b60bef47ebaa4283c592cf1befd06a"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_I2S1SEL_Pos (16)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_I2S1SEL_Pos](#a62b60bef47ebaa4283c592cf1befd06a)。
+
+<a id="r_a77c6617ce411e7d7c1c844b5d759ea81"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_UART8SEL_Pos (20)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_UART8SEL_Pos](#a77c6617ce411e7d7c1c844b5d759ea81)。
+
+<a id="r_aa0d54fd960a54667ebd1648e3ff59372"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_UART9SEL_Pos (22)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_UART9SEL_Pos](#aa0d54fd960a54667ebd1648e3ff59372)。
+
+<a id="r_ae64e22341ff5a80754b972cc939499f2"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_TRNGSEL_Pos (27)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_TRNGSEL_Pos](#ae64e22341ff5a80754b972cc939499f2)。
+
+<a id="r_a3dd2bba6fd135bb75d81ba88307145ad"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_PSIOSEL_Pos (28)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_PSIOSEL_Pos](#a3dd2bba6fd135bb75d81ba88307145ad)。
+
+<a id="r_a19c633148ca7ea93e9614e49d2e143e5"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SC0SEL_Pos (0)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_SC0SEL_Pos](#a19c633148ca7ea93e9614e49d2e143e5)。
+
+<a id="r_a6fd49b4bc34a81053e90d06014081b29"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SC1SEL_Pos (2)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_SC1SEL_Pos](#a6fd49b4bc34a81053e90d06014081b29)。
+
+<a id="r_a0937060d13a67d6c6b6b440b160bce78"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SC2SEL_Pos (4)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_SC2SEL_Pos](#a0937060d13a67d6c6b6b440b160bce78)。
+
+<a id="r_ab62463cdd14a928e8d9981d10bb58c5d"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_KPISEL_Pos (6)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_KPISEL_Pos](#ab62463cdd14a928e8d9981d10bb58c5d)。
+
+<a id="r_a34f8358a68834ea06c779d8554990ab1"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SPI2SEL_Pos (9)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_SPI2SEL_Pos](#a34f8358a68834ea06c779d8554990ab1)。
+
+<a id="r_a8544ff20404a07e93d2dbcd170da2806"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SPI3SEL_Pos (12)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_SPI3SEL_Pos](#a8544ff20404a07e93d2dbcd170da2806)。
+
+<a id="r_a8998c20d1845afb0936f18a3ffdd277e"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_I2S0SEL_Pos (16)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_I2S0SEL_Pos](#a8998c20d1845afb0936f18a3ffdd277e)。
+
+<a id="r_a0fa73839deb734011ed856ab1b3d29f3"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART6SEL_Pos (20)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_UART6SEL_Pos](#a0fa73839deb734011ed856ab1b3d29f3)。
+
+<a id="r_a19cd6b3c40c825dfe2a8193ad3d530ca"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART7SEL_Pos (22)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_UART7SEL_Pos](#a19cd6b3c40c825dfe2a8193ad3d530ca)。
+
+<a id="r_aa1f1fc552a722bafea8f9177ed609877"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART2SEL_Pos (24)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_UART2SEL_Pos](#aa1f1fc552a722bafea8f9177ed609877)。
+
+<a id="r_acf28a2139435cc793c0b712e8e8a0806"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART3SEL_Pos (26)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_UART3SEL_Pos](#acf28a2139435cc793c0b712e8e8a0806)。
+
+<a id="r_a3b8ea6d3069dfc8d3727f0bb4cdf6600"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART4SEL_Pos (28)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_UART4SEL_Pos](#a3b8ea6d3069dfc8d3727f0bb4cdf6600)。
+
+<a id="r_aac88d611ffa6b1f45c123b1af12b0d6d"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART5SEL_Pos (30)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_UART5SEL_Pos](#aac88d611ffa6b1f45c123b1af12b0d6d)。
+
+<a id="r_a97fa36df7672c2dd77d953d8c52179c3"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV0_HCLKDIV_Pos (0)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV0_HCLKDIV_Pos](#a97fa36df7672c2dd77d953d8c52179c3)。
+
+<a id="r_a9c6fa39e37ec8da8ef2de45a01669724"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV0_USBDIV_Pos (4)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV0_USBDIV_Pos](#a9c6fa39e37ec8da8ef2de45a01669724)。
+
+<a id="r_a5c6e1b8ff6fc666f729c456ced30ed2d"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV0_UART0DIV_Pos (8)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV0_UART0DIV_Pos](#a5c6e1b8ff6fc666f729c456ced30ed2d)。
+
+<a id="r_a079560398552b7e309109dea93758098"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV0_UART1DIV_Pos (12)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV0_UART1DIV_Pos](#a079560398552b7e309109dea93758098)。
+
+<a id="r_a6b2cf403f52fd1a62f33611ddff65ccb"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV0_EADC0DIV_Pos (16)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV0_EADC0DIV_Pos](#a6b2cf403f52fd1a62f33611ddff65ccb)。
+
+<a id="r_a308fbc20ea60cfcc3a64aba7f83336df"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV0_SDH0DIV_Pos (24)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV0_SDH0DIV_Pos](#a308fbc20ea60cfcc3a64aba7f83336df)。
+
+<a id="r_a26f255ab6373c7db56f9541ffcaf9137"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV1_SC0DIV_Pos (0)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV1_SC0DIV_Pos](#a26f255ab6373c7db56f9541ffcaf9137)。
+
+<a id="r_afdc1213b38b64f09f75e5d59d9bd343b"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV1_SC1DIV_Pos (8)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV1_SC1DIV_Pos](#afdc1213b38b64f09f75e5d59d9bd343b)。
+
+<a id="r_ac1aea552215c5515caa825405d3d3926"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV1_SC2DIV_Pos (16)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV1_SC2DIV_Pos](#ac1aea552215c5515caa825405d3d3926)。
+
+<a id="r_abb507dbd18f953fc72e539c44957d43b"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV1_PSIODIV_Pos (24)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV1_PSIODIV_Pos](#abb507dbd18f953fc72e539c44957d43b)。
+
+<a id="r_a15546e5819aea803f07b0be19fe156fe"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV2_I2S0DIV_Pos (0)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV2_I2S0DIV_Pos](#a15546e5819aea803f07b0be19fe156fe)。
+
+<a id="r_a4ee0df1038a212dc2c943d3b66af8849"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV2_I2S1DIV_Pos (4)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV2_I2S1DIV_Pos](#a4ee0df1038a212dc2c943d3b66af8849)。
+
+<a id="r_ad29157a28b15201dcda03bbb484d4e17"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV2_KPIDIV_Pos (8)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV2_KPIDIV_Pos](#ad29157a28b15201dcda03bbb484d4e17)。
+
+<a id="r_ac3630dbacd1ad31365cf658614529810"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV2_EADC1DIV_Pos (24)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV2_EADC1DIV_Pos](#ac3630dbacd1ad31365cf658614529810)。
+
+<a id="r_ad9ad999a5cf04196d30a8d91d3938f0a"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV3_VSENSEDIV_Pos (8)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV3_VSENSEDIV_Pos](#ad9ad999a5cf04196d30a8d91d3938f0a)。
+
+<a id="r_a2b55d1154a5c7723e7ddfcf35565b542"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV3_EMAC0DIV_Pos (16)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV3_EMAC0DIV_Pos](#a2b55d1154a5c7723e7ddfcf35565b542)。
+
+<a id="r_aedc4fed5c50badc54edef17ec075ecc4"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV3_SDH1DIV_Pos (24)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV3_SDH1DIV_Pos](#aedc4fed5c50badc54edef17ec075ecc4)。
+
+<a id="r_a4ea4427d406d1eb1078c209177e42f73"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV4_UART2DIV_Pos (0)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV4_UART2DIV_Pos](#a4ea4427d406d1eb1078c209177e42f73)。
+
+<a id="r_acfdd626271018f3f1432ce7e2d9d7376"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV4_UART3DIV_Pos (4)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV4_UART3DIV_Pos](#acfdd626271018f3f1432ce7e2d9d7376)。
+
+<a id="r_a3624622b04d58420cc034e869c932928"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV4_UART4DIV_Pos (8)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV4_UART4DIV_Pos](#a3624622b04d58420cc034e869c932928)。
+
+<a id="r_afc690368ba8774739f034d404e3c5401"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV4_UART5DIV_Pos (12)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV4_UART5DIV_Pos](#afc690368ba8774739f034d404e3c5401)。
+
+<a id="r_ab72e30643c1e14a66d5e5a19aa3e0b3c"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV4_UART6DIV_Pos (16)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV4_UART6DIV_Pos](#ab72e30643c1e14a66d5e5a19aa3e0b3c)。
+
+<a id="r_ace495a935bbfe7dba9c4101d10ed7ff4"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV4_UART7DIV_Pos (20)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV4_UART7DIV_Pos](#ace495a935bbfe7dba9c4101d10ed7ff4)。
+
+<a id="r_a254f625e23596b631a3b9ee7e2d23d7c"></a>
+
+```c
+#define NUMAKER_CLK_PCLKDIV_APB0DIV_Pos (0)
+```
+
+相关声明：[NUMAKER_CLK_PCLKDIV_APB0DIV_Pos](#a254f625e23596b631a3b9ee7e2d23d7c)。
+
+<a id="r_ab1bcb755f780777114d690945f00cce6"></a>
+
+```c
+#define NUMAKER_CLK_PCLKDIV_APB1DIV_Pos (4)
+```
+
+相关声明：[NUMAKER_CLK_PCLKDIV_APB1DIV_Pos](#ab1bcb755f780777114d690945f00cce6)。
+
+<a id="r_a8a2c2a4f9e6d38bb5198f0bf78b123ed"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK2_KPICKEN_Pos (0)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK2_KPICKEN_Pos](#a8a2c2a4f9e6d38bb5198f0bf78b123ed)。
+
+<a id="r_a1074ea1f3692cf7c3c263cf409624cba"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK2_EADC2CKEN_Pos (6)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK2_EADC2CKEN_Pos](#a1074ea1f3692cf7c3c263cf409624cba)。
+
+<a id="r_a27e7054840a6130eb6a91160e9294a85"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK2_ACMP23CKEN_Pos (7)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK2_ACMP23CKEN_Pos](#a27e7054840a6130eb6a91160e9294a85)。
+
+<a id="r_ab31f85d74e996dff00563e13de27cfb9"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK2_SPI5CKEN_Pos (8)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK2_SPI5CKEN_Pos](#ab31f85d74e996dff00563e13de27cfb9)。
+
+<a id="r_a831afd6bae798caf0303159b748d62bf"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK2_SPI6CKEN_Pos (9)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK2_SPI6CKEN_Pos](#a831afd6bae798caf0303159b748d62bf)。
+
+<a id="r_a16689092a9fde746dcfb179af8c07470"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK2_SPI7CKEN_Pos (10)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK2_SPI7CKEN_Pos](#a16689092a9fde746dcfb179af8c07470)。
+
+<a id="r_abbff3536dfcc434dedd936ef17fae208"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK2_SPI8CKEN_Pos (11)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK2_SPI8CKEN_Pos](#abbff3536dfcc434dedd936ef17fae208)。
+
+<a id="r_affa49b7c031d534acb6d6989da9611c1"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK2_SPI9CKEN_Pos (12)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK2_SPI9CKEN_Pos](#affa49b7c031d534acb6d6989da9611c1)。
+
+<a id="r_a998500f8ff7b225099aabfc56dea74e7"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK2_SPI10CKEN_Pos (13)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK2_SPI10CKEN_Pos](#a998500f8ff7b225099aabfc56dea74e7)。
+
+<a id="r_aa27014b1c91ab54b8a60401be51e86be"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK2_UART8CKEN_Pos (16)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK2_UART8CKEN_Pos](#aa27014b1c91ab54b8a60401be51e86be)。
+
+<a id="r_ae25c9ea6caa15b827fc92cad41b1d2c4"></a>
+
+```c
+#define NUMAKER_CLK_APBCLK2_UART9CKEN_Pos (17)
+```
+
+相关声明：[NUMAKER_CLK_APBCLK2_UART9CKEN_Pos](#ae25c9ea6caa15b827fc92cad41b1d2c4)。
+
+<a id="r_ac5847065a5b666a23ad5ab459cab206e"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV5_CANFD0DIV_Pos (0)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV5_CANFD0DIV_Pos](#ac5847065a5b666a23ad5ab459cab206e)。
+
+<a id="r_ab9f0662feaf58f785abb509007878ac8"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV5_CANFD1DIV_Pos (4)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV5_CANFD1DIV_Pos](#ab9f0662feaf58f785abb509007878ac8)。
+
+<a id="r_a74ebf455bde77e81cb6885a3f8ee644c"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV5_CANFD2DIV_Pos (8)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV5_CANFD2DIV_Pos](#a74ebf455bde77e81cb6885a3f8ee644c)。
+
+<a id="r_a38f53a703ceeb17e3e1794004b79cea1"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV5_CANFD3DIV_Pos (12)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV5_CANFD3DIV_Pos](#a38f53a703ceeb17e3e1794004b79cea1)。
+
+<a id="r_a7295d4b8918c0eb234826e2e3c86695d"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV5_UART8DIV_Pos (16)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV5_UART8DIV_Pos](#a7295d4b8918c0eb234826e2e3c86695d)。
+
+<a id="r_af9e916e5c92262fc8f7dc79dfd51da11"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV5_UART9DIV_Pos (20)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV5_UART9DIV_Pos](#af9e916e5c92262fc8f7dc79dfd51da11)。
+
+<a id="r_af968f32399159b10da33c64b8b73ab2c"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV5_EADC2DIV_Pos (24)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV5_EADC2DIV_Pos](#af968f32399159b10da33c64b8b73ab2c)。
+
+<a id="r_a08b8216298f1ab185b96159bfd0d68e7"></a>
+
+```c
+#define NUMAKER_CLK_AHBCLK1_CANFD0CKEN_Pos (20)
+```
+
+相关声明：[NUMAKER_CLK_AHBCLK1_CANFD0CKEN_Pos](#a08b8216298f1ab185b96159bfd0d68e7)。
+
+<a id="r_a010bc688f8ac881039b1c74297017492"></a>
+
+```c
+#define NUMAKER_CLK_AHBCLK1_CANFD1CKEN_Pos (21)
+```
+
+相关声明：[NUMAKER_CLK_AHBCLK1_CANFD1CKEN_Pos](#a010bc688f8ac881039b1c74297017492)。
+
+<a id="r_a90bfed7241959b097624838c56fd05fb"></a>
+
+```c
+#define NUMAKER_CLK_AHBCLK1_CANFD2CKEN_Pos (22)
+```
+
+相关声明：[NUMAKER_CLK_AHBCLK1_CANFD2CKEN_Pos](#a90bfed7241959b097624838c56fd05fb)。
+
+<a id="r_a8fbabf2f5b8be3af891ea039e533dd3e"></a>
+
+```c
+#define NUMAKER_CLK_AHBCLK1_CANFD3CKEN_Pos (23)
+```
+
+相关声明：[NUMAKER_CLK_AHBCLK1_CANFD3CKEN_Pos](#a8fbabf2f5b8be3af891ea039e533dd3e)。
+
+<a id="r_a32f4d5437f7724cdf93bbde025c0825a"></a>
+
+```c
+#define NUMAKER_CLK_AHBCLK1_GPICKEN_Pos (24)
+```
+
+相关声明：[NUMAKER_CLK_AHBCLK1_GPICKEN_Pos](#a32f4d5437f7724cdf93bbde025c0825a)。
+
+<a id="r_a48e8655610a9b5e7f0548d0d02467d22"></a>
+
+```c
+#define NUMAKER_CLK_AHBCLK1_GPJCKEN_Pos (25)
+```
+
+相关声明：[NUMAKER_CLK_AHBCLK1_GPJCKEN_Pos](#a48e8655610a9b5e7f0548d0d02467d22)。
+
+<a id="r_a824b2bde29f8f7374bed1bec0d7f114d"></a>
+
+```c
+#define NUMAKER_CLK_AHBCLK1_BMCCKEN_Pos (28)
+```
+
+相关声明：[NUMAKER_CLK_AHBCLK1_BMCCKEN_Pos](#a824b2bde29f8f7374bed1bec0d7f114d)。
+
+<a id="r_a09bd54b91ecd5c6729d6dd2270d1f538"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI4SEL_Pos (0)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL4_SPI4SEL_Pos](#a09bd54b91ecd5c6729d6dd2270d1f538)。
+
+<a id="r_a7f314d8e78add81c86d07bf9bbf3d4c4"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI5SEL_Pos (4)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL4_SPI5SEL_Pos](#a7f314d8e78add81c86d07bf9bbf3d4c4)。
+
+<a id="r_ac2232b05fd8986cf75aaba710c42d257"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI6SEL_Pos (8)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL4_SPI6SEL_Pos](#ac2232b05fd8986cf75aaba710c42d257)。
+
+<a id="r_afb315f157e0a04e14fd5962844c099e4"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI7SEL_Pos (12)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL4_SPI7SEL_Pos](#afb315f157e0a04e14fd5962844c099e4)。
+
+<a id="r_a4781a6db591eb9488391fc9ee8711041"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI8SEL_Pos (16)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL4_SPI8SEL_Pos](#a4781a6db591eb9488391fc9ee8711041)。
+
+<a id="r_a140802fd7bd3257bc125d6a32ad3a1b8"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI9SEL_Pos (20)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL4_SPI9SEL_Pos](#a140802fd7bd3257bc125d6a32ad3a1b8)。
+
+<a id="r_a7a92cd1f644926d955409b49b785c738"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI10SEL_Pos (24)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL4_SPI10SEL_Pos](#a7a92cd1f644926d955409b49b785c738)。
+
+<a id="r_aaf5b579f16bb170913264beb84939aa2"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_HCLKSEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL0_HCLKSEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_HCLKSEL_HXT](#aaf5b579f16bb170913264beb84939aa2)、[NUMAKER_CLK_CLKSEL0_HCLKSEL_Pos](#a222c77f1b55f0230c37bd5335616e31c)。
+
+<a id="r_a53e9db59708390ee4ff22e11f554fc5e"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_HCLKSEL_LXT (0x1UL << NUMAKER_CLK_CLKSEL0_HCLKSEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_HCLKSEL_LXT](#a53e9db59708390ee4ff22e11f554fc5e)、[NUMAKER_CLK_CLKSEL0_HCLKSEL_Pos](#a222c77f1b55f0230c37bd5335616e31c)。
+
+<a id="r_ae98f1f84fa81ed435a46eccaab5bb66b"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_HCLKSEL_PLL (0x2UL << NUMAKER_CLK_CLKSEL0_HCLKSEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_HCLKSEL_PLL](#ae98f1f84fa81ed435a46eccaab5bb66b)、[NUMAKER_CLK_CLKSEL0_HCLKSEL_Pos](#a222c77f1b55f0230c37bd5335616e31c)。
+
+<a id="r_a88a9e37b2360e0f703c0c469468adb1e"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_HCLKSEL_LIRC (0x3UL << NUMAKER_CLK_CLKSEL0_HCLKSEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_HCLKSEL_LIRC](#a88a9e37b2360e0f703c0c469468adb1e)、[NUMAKER_CLK_CLKSEL0_HCLKSEL_Pos](#a222c77f1b55f0230c37bd5335616e31c)。
+
+<a id="r_a35a5144f4df0ca09710fbc8d86377537"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_HCLKSEL_HIRC (0x7UL << NUMAKER_CLK_CLKSEL0_HCLKSEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_HCLKSEL_HIRC](#a35a5144f4df0ca09710fbc8d86377537)、[NUMAKER_CLK_CLKSEL0_HCLKSEL_Pos](#a222c77f1b55f0230c37bd5335616e31c)。
+
+<a id="r_a937c9db689672d3f6e53e6b0f5a680ae"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_STCLKSEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL0_STCLKSEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_STCLKSEL_HXT](#a937c9db689672d3f6e53e6b0f5a680ae)、[NUMAKER_CLK_CLKSEL0_STCLKSEL_Pos](#a08af6458eb9ad7f8e6d66c0e51625585)。
+
+<a id="r_a7195fd0da5b897cf2c1e5df46205198d"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_STCLKSEL_LXT (0x1UL << NUMAKER_CLK_CLKSEL0_STCLKSEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_STCLKSEL_LXT](#a7195fd0da5b897cf2c1e5df46205198d)、[NUMAKER_CLK_CLKSEL0_STCLKSEL_Pos](#a08af6458eb9ad7f8e6d66c0e51625585)。
+
+<a id="r_a1afd0ea4fb7e6bbc5f36a7845121b5bb"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_STCLKSEL_HXT_DIV2 (0x2UL << NUMAKER_CLK_CLKSEL0_STCLKSEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_STCLKSEL_HXT_DIV2](#a1afd0ea4fb7e6bbc5f36a7845121b5bb)、[NUMAKER_CLK_CLKSEL0_STCLKSEL_Pos](#a08af6458eb9ad7f8e6d66c0e51625585)。
+
+<a id="r_a6e4942ca524470a1dbfd9c1012c3d6fc"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_STCLKSEL_HCLK_DIV2 (0x3UL << NUMAKER_CLK_CLKSEL0_STCLKSEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_STCLKSEL_HCLK_DIV2](#a6e4942ca524470a1dbfd9c1012c3d6fc)、[NUMAKER_CLK_CLKSEL0_STCLKSEL_Pos](#a08af6458eb9ad7f8e6d66c0e51625585)。
+
+<a id="r_aee56f494a2a1028b579aee48a229bd62"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_STCLKSEL_HIRC_DIV2 (0x7UL << NUMAKER_CLK_CLKSEL0_STCLKSEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_STCLKSEL_HIRC_DIV2](#aee56f494a2a1028b579aee48a229bd62)、[NUMAKER_CLK_CLKSEL0_STCLKSEL_Pos](#a08af6458eb9ad7f8e6d66c0e51625585)。
+
+<a id="r_a80331a452e4606a3ea97a6e8271c879f"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_STCLKSEL_HCLK (0x1UL << SysTick_CTRL_CLKSOURCE_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_STCLKSEL_HCLK](#a80331a452e4606a3ea97a6e8271c879f)。
+
+<a id="r_a4324fd407c6e6dbb86e84810094030fb"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_USBSEL_HIRC48M (0x0UL << NUMAKER_CLK_CLKSEL0_USBSEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_USBSEL_HIRC48M](#a4324fd407c6e6dbb86e84810094030fb)、[NUMAKER_CLK_CLKSEL0_USBSEL_Pos](#a04d6c39e779459221829cc06c880a3be)。
+
+<a id="r_ae3285c43e19c374c1bf08c3a4c76dd4a"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_USBSEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL0_USBSEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_USBSEL_PLL_DIV2](#ae3285c43e19c374c1bf08c3a4c76dd4a)、[NUMAKER_CLK_CLKSEL0_USBSEL_Pos](#a04d6c39e779459221829cc06c880a3be)。
+
+<a id="r_ae1a84816773eaaedd0e9ec34f9601c49"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_EADC0SEL_PLLFN_DIV2 (0x0UL << NUMAKER_CLK_CLKSEL0_EADC0SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_EADC0SEL_PLLFN_DIV2](#ae1a84816773eaaedd0e9ec34f9601c49)、[NUMAKER_CLK_CLKSEL0_EADC0SEL_Pos](#aaed2bedbc7da8190be001522a8b0fda3)。
+
+<a id="r_a334d6fe725e38ef14aa66f5811f154b0"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_EADC0SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL0_EADC0SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_EADC0SEL_PLL_DIV2](#a334d6fe725e38ef14aa66f5811f154b0)、[NUMAKER_CLK_CLKSEL0_EADC0SEL_Pos](#aaed2bedbc7da8190be001522a8b0fda3)。
+
+<a id="r_a8f1802b4d8c733d098e6f457ea9ca0a8"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_EADC0SEL_HCLK (0x2UL << NUMAKER_CLK_CLKSEL0_EADC0SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_EADC0SEL_HCLK](#a8f1802b4d8c733d098e6f457ea9ca0a8)、[NUMAKER_CLK_CLKSEL0_EADC0SEL_Pos](#aaed2bedbc7da8190be001522a8b0fda3)。
+
+<a id="r_ae53479d1a845ca065c134e9acb69d490"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_EADC1SEL_PLLFN_DIV2 (0x0UL << NUMAKER_CLK_CLKSEL0_EADC1SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_EADC1SEL_PLLFN_DIV2](#ae53479d1a845ca065c134e9acb69d490)、[NUMAKER_CLK_CLKSEL0_EADC1SEL_Pos](#a4aabc45f1e6d05ed3882752d3d9cd0bc)。
+
+<a id="r_a23ff9c30be18f670d0830c9565f51b21"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_EADC1SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL0_EADC1SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_EADC1SEL_PLL_DIV2](#a23ff9c30be18f670d0830c9565f51b21)、[NUMAKER_CLK_CLKSEL0_EADC1SEL_Pos](#a4aabc45f1e6d05ed3882752d3d9cd0bc)。
+
+<a id="r_ae200cb9323674a161a17a687e820dd0d"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_EADC1SEL_HCLK (0x2UL << NUMAKER_CLK_CLKSEL0_EADC1SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_EADC1SEL_HCLK](#ae200cb9323674a161a17a687e820dd0d)、[NUMAKER_CLK_CLKSEL0_EADC1SEL_Pos](#a4aabc45f1e6d05ed3882752d3d9cd0bc)。
+
+<a id="r_ad0975703b1f9d5446601410f2a45cf69"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_EADC2SEL_PLLFN_DIV2 (0x0UL << NUMAKER_CLK_CLKSEL0_EADC2SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_EADC2SEL_PLLFN_DIV2](#ad0975703b1f9d5446601410f2a45cf69)、[NUMAKER_CLK_CLKSEL0_EADC2SEL_Pos](#a0cc1044cebda8f140387cd6668c1d28b)。
+
+<a id="r_ac21c81c36e2b66261e6cc7642cac3051"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_EADC2SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL0_EADC2SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_EADC2SEL_PLL_DIV2](#ac21c81c36e2b66261e6cc7642cac3051)、[NUMAKER_CLK_CLKSEL0_EADC2SEL_Pos](#a0cc1044cebda8f140387cd6668c1d28b)。
+
+<a id="r_adaf33eed919c5f3bfcc9d98bb6ce7025"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_EADC2SEL_HCLK (0x2UL << NUMAKER_CLK_CLKSEL0_EADC2SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_EADC2SEL_HCLK](#adaf33eed919c5f3bfcc9d98bb6ce7025)、[NUMAKER_CLK_CLKSEL0_EADC2SEL_Pos](#a0cc1044cebda8f140387cd6668c1d28b)。
+
+<a id="r_a19564616e7f7cb594daede7dde7d60e7"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CCAPSEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL0_CCAPSEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_CCAPSEL_HXT](#a19564616e7f7cb594daede7dde7d60e7)、[NUMAKER_CLK_CLKSEL0_CCAPSEL_Pos](#a26fbf9452f88cd3c9d56da527bcf9701)。
+
+<a id="r_afb6a8f7e4181068fd138c948a1c84343"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CCAPSEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL0_CCAPSEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_CCAPSEL_PLL_DIV2](#afb6a8f7e4181068fd138c948a1c84343)、[NUMAKER_CLK_CLKSEL0_CCAPSEL_Pos](#a26fbf9452f88cd3c9d56da527bcf9701)。
+
+<a id="r_a6e7fe24e1cfdc83fc916636c5d50dc0e"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CCAPSEL_HCLK (0x2UL << NUMAKER_CLK_CLKSEL0_CCAPSEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_CCAPSEL_HCLK](#a6e7fe24e1cfdc83fc916636c5d50dc0e)、[NUMAKER_CLK_CLKSEL0_CCAPSEL_Pos](#a26fbf9452f88cd3c9d56da527bcf9701)。
+
+<a id="r_a5bcbdba224ba0863fdd1ff02e5cf0adc"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CCAPSEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL0_CCAPSEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_CCAPSEL_HIRC](#a5bcbdba224ba0863fdd1ff02e5cf0adc)、[NUMAKER_CLK_CLKSEL0_CCAPSEL_Pos](#a26fbf9452f88cd3c9d56da527bcf9701)。
+
+<a id="r_a8787763bb8d1de77dba37b5f1d7fab5c"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_SDH0SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL0_SDH0SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_SDH0SEL_HXT](#a8787763bb8d1de77dba37b5f1d7fab5c)、[NUMAKER_CLK_CLKSEL0_SDH0SEL_Pos](#ad511a487821a9fce9bb9f3ba370d2a88)。
+
+<a id="r_aa07cf8396225f74e82b25c19064855f1"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_SDH0SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL0_SDH0SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_SDH0SEL_PLL_DIV2](#aa07cf8396225f74e82b25c19064855f1)、[NUMAKER_CLK_CLKSEL0_SDH0SEL_Pos](#ad511a487821a9fce9bb9f3ba370d2a88)。
+
+<a id="r_a9946b9c0f363e64e4e71b4cd12baa129"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_SDH0SEL_HCLK (0x2UL << NUMAKER_CLK_CLKSEL0_SDH0SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_SDH0SEL_HCLK](#a9946b9c0f363e64e4e71b4cd12baa129)、[NUMAKER_CLK_CLKSEL0_SDH0SEL_Pos](#ad511a487821a9fce9bb9f3ba370d2a88)。
+
+<a id="r_a3a5b94ee47a9439e2f17b182eec68fe2"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_SDH0SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL0_SDH0SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_SDH0SEL_HIRC](#a3a5b94ee47a9439e2f17b182eec68fe2)、[NUMAKER_CLK_CLKSEL0_SDH0SEL_Pos](#ad511a487821a9fce9bb9f3ba370d2a88)。
+
+<a id="r_a4a793ae5ae068f7da0a955f5059cbabc"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_SDH1SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL0_SDH1SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_SDH1SEL_HXT](#a4a793ae5ae068f7da0a955f5059cbabc)、[NUMAKER_CLK_CLKSEL0_SDH1SEL_Pos](#a43fe53773587485494ee0658e7191db6)。
+
+<a id="r_ac7348489c232f20a0aedd88e668b6b01"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_SDH1SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL0_SDH1SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_SDH1SEL_PLL_DIV2](#ac7348489c232f20a0aedd88e668b6b01)、[NUMAKER_CLK_CLKSEL0_SDH1SEL_Pos](#a43fe53773587485494ee0658e7191db6)。
+
+<a id="r_a18c3b00a9fa924d2c5ade2623fda2e38"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_SDH1SEL_HCLK (0x2UL << NUMAKER_CLK_CLKSEL0_SDH1SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_SDH1SEL_HCLK](#a18c3b00a9fa924d2c5ade2623fda2e38)、[NUMAKER_CLK_CLKSEL0_SDH1SEL_Pos](#a43fe53773587485494ee0658e7191db6)。
+
+<a id="r_a979cf701d7e4950ef37cd897e627e994"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_SDH1SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL0_SDH1SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_SDH1SEL_HIRC](#a979cf701d7e4950ef37cd897e627e994)、[NUMAKER_CLK_CLKSEL0_SDH1SEL_Pos](#a43fe53773587485494ee0658e7191db6)。
+
+<a id="r_a097628cbacc57dad0410c5330b6385b8"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CANFD0SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL0_CANFD0SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_CANFD0SEL_HXT](#a097628cbacc57dad0410c5330b6385b8)、[NUMAKER_CLK_CLKSEL0_CANFD0SEL_Pos](#ae8a431223539932fdb7f76dd696dc660)。
+
+<a id="r_aa708753d71c526051cf157266060a2b0"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CANFD0SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL0_CANFD0SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_CANFD0SEL_PLL_DIV2](#aa708753d71c526051cf157266060a2b0)、[NUMAKER_CLK_CLKSEL0_CANFD0SEL_Pos](#ae8a431223539932fdb7f76dd696dc660)。
+
+<a id="r_ae369ded35f04609db7e2a5a6922a5e1a"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CANFD0SEL_HCLK (0x2UL << NUMAKER_CLK_CLKSEL0_CANFD0SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_CANFD0SEL_HCLK](#ae369ded35f04609db7e2a5a6922a5e1a)、[NUMAKER_CLK_CLKSEL0_CANFD0SEL_Pos](#ae8a431223539932fdb7f76dd696dc660)。
+
+<a id="r_aba0fe8b523048854cd02b4825e59f1c0"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CANFD0SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL0_CANFD0SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_CANFD0SEL_HIRC](#aba0fe8b523048854cd02b4825e59f1c0)、[NUMAKER_CLK_CLKSEL0_CANFD0SEL_Pos](#ae8a431223539932fdb7f76dd696dc660)。
+
+<a id="r_a3cc669c6de091303d9c65853000637e2"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CANFD1SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL0_CANFD1SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_CANFD1SEL_HXT](#a3cc669c6de091303d9c65853000637e2)、[NUMAKER_CLK_CLKSEL0_CANFD1SEL_Pos](#ac37d09c55ca74d2b3b07f1c9528589b9)。
+
+<a id="r_a0273d49ae0ae0c27533a83ab1d8b4689"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CANFD1SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL0_CANFD1SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_CANFD1SEL_PLL_DIV2](#a0273d49ae0ae0c27533a83ab1d8b4689)、[NUMAKER_CLK_CLKSEL0_CANFD1SEL_Pos](#ac37d09c55ca74d2b3b07f1c9528589b9)。
+
+<a id="r_a1752cabeb909b64b92adbdc61215f3f9"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CANFD1SEL_HCLK (0x2UL << NUMAKER_CLK_CLKSEL0_CANFD1SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_CANFD1SEL_HCLK](#a1752cabeb909b64b92adbdc61215f3f9)、[NUMAKER_CLK_CLKSEL0_CANFD1SEL_Pos](#ac37d09c55ca74d2b3b07f1c9528589b9)。
+
+<a id="r_a43849c77be4cb2dd288f1d0b81bb18c8"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CANFD1SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL0_CANFD1SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_CANFD1SEL_HIRC](#a43849c77be4cb2dd288f1d0b81bb18c8)、[NUMAKER_CLK_CLKSEL0_CANFD1SEL_Pos](#ac37d09c55ca74d2b3b07f1c9528589b9)。
+
+<a id="r_acfc10476765f4bf15d8b2b1fc0f765a4"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CANFD2SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL0_CANFD2SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_CANFD2SEL_HXT](#acfc10476765f4bf15d8b2b1fc0f765a4)、[NUMAKER_CLK_CLKSEL0_CANFD2SEL_Pos](#aa8b514cd21320d7554a07793f8a275dc)。
+
+<a id="r_a317f7eea8e7c25f610828a7d27bc28eb"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CANFD2SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL0_CANFD2SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_CANFD2SEL_PLL_DIV2](#a317f7eea8e7c25f610828a7d27bc28eb)、[NUMAKER_CLK_CLKSEL0_CANFD2SEL_Pos](#aa8b514cd21320d7554a07793f8a275dc)。
+
+<a id="r_a2aa1ee270857376418300d41da66266f"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CANFD2SEL_HCLK (0x2UL << NUMAKER_CLK_CLKSEL0_CANFD2SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_CANFD2SEL_HCLK](#a2aa1ee270857376418300d41da66266f)、[NUMAKER_CLK_CLKSEL0_CANFD2SEL_Pos](#aa8b514cd21320d7554a07793f8a275dc)。
+
+<a id="r_ac2013365641d14ee89cb3971297f9858"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CANFD2SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL0_CANFD2SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_CANFD2SEL_HIRC](#ac2013365641d14ee89cb3971297f9858)、[NUMAKER_CLK_CLKSEL0_CANFD2SEL_Pos](#aa8b514cd21320d7554a07793f8a275dc)。
+
+<a id="r_ac9556b696bec169814058c9d8c8834ec"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CANFD3SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL0_CANFD3SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_CANFD3SEL_HXT](#ac9556b696bec169814058c9d8c8834ec)、[NUMAKER_CLK_CLKSEL0_CANFD3SEL_Pos](#a58f6dd49a1d6ea3f453ec352e2ad3d31)。
+
+<a id="r_a28328552ec42974273d5fda9ddaf1236"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CANFD3SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL0_CANFD3SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_CANFD3SEL_PLL_DIV2](#a28328552ec42974273d5fda9ddaf1236)、[NUMAKER_CLK_CLKSEL0_CANFD3SEL_Pos](#a58f6dd49a1d6ea3f453ec352e2ad3d31)。
+
+<a id="r_a354084c66cd641682a67230fcdd4a869"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CANFD3SEL_HCLK (0x2UL << NUMAKER_CLK_CLKSEL0_CANFD3SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_CANFD3SEL_HCLK](#a354084c66cd641682a67230fcdd4a869)、[NUMAKER_CLK_CLKSEL0_CANFD3SEL_Pos](#a58f6dd49a1d6ea3f453ec352e2ad3d31)。
+
+<a id="r_a8c5085efce1104852894e1e00e6d4ddf"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CANFD3SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL0_CANFD3SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL0_CANFD3SEL_HIRC](#a8c5085efce1104852894e1e00e6d4ddf)、[NUMAKER_CLK_CLKSEL0_CANFD3SEL_Pos](#a58f6dd49a1d6ea3f453ec352e2ad3d31)。
+
+<a id="r_a7c7748061529c4f6552bc9394b90c701"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_WDTSEL_LXT (0x1UL << NUMAKER_CLK_CLKSEL1_WDTSEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_WDTSEL_LXT](#a7c7748061529c4f6552bc9394b90c701)、[NUMAKER_CLK_CLKSEL1_WDTSEL_Pos](#ae766e87b0198cd6d632efc6ad6c90f2f)。
+
+<a id="r_a7feb3eb8a79e72de8dce4bb1a0fe1f75"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_WDTSEL_HCLK_DIV2048 (0x2UL << NUMAKER_CLK_CLKSEL1_WDTSEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_WDTSEL_HCLK_DIV2048](#a7feb3eb8a79e72de8dce4bb1a0fe1f75)、[NUMAKER_CLK_CLKSEL1_WDTSEL_Pos](#ae766e87b0198cd6d632efc6ad6c90f2f)。
+
+<a id="r_ac746e9a7ac0032e91032d8e4f3286040"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_WDTSEL_LIRC (0x3UL << NUMAKER_CLK_CLKSEL1_WDTSEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_WDTSEL_LIRC](#ac746e9a7ac0032e91032d8e4f3286040)、[NUMAKER_CLK_CLKSEL1_WDTSEL_Pos](#ae766e87b0198cd6d632efc6ad6c90f2f)。
+
+<a id="r_a2dba089a2c9a8780fa15705ce58719e4"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_CLKOSEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL1_CLKOSEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_CLKOSEL_HXT](#a2dba089a2c9a8780fa15705ce58719e4)、[NUMAKER_CLK_CLKSEL1_CLKOSEL_Pos](#a173d950f779cd43bcbc19ab59bcfdb9f)。
+
+<a id="r_a0b6ad7b069802aead804d11668cab813"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_CLKOSEL_LXT (0x1UL << NUMAKER_CLK_CLKSEL1_CLKOSEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_CLKOSEL_LXT](#a0b6ad7b069802aead804d11668cab813)、[NUMAKER_CLK_CLKSEL1_CLKOSEL_Pos](#a173d950f779cd43bcbc19ab59bcfdb9f)。
+
+<a id="r_a9cc286fd7b086fa05e00d24e2d7e5846"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_CLKOSEL_HCLK (0x2UL << NUMAKER_CLK_CLKSEL1_CLKOSEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_CLKOSEL_HCLK](#a9cc286fd7b086fa05e00d24e2d7e5846)、[NUMAKER_CLK_CLKSEL1_CLKOSEL_Pos](#a173d950f779cd43bcbc19ab59bcfdb9f)。
+
+<a id="r_a33998b80d4139f5cfd5aa6dc02c762c8"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_CLKOSEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL1_CLKOSEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_CLKOSEL_HIRC](#a33998b80d4139f5cfd5aa6dc02c762c8)、[NUMAKER_CLK_CLKSEL1_CLKOSEL_Pos](#a173d950f779cd43bcbc19ab59bcfdb9f)。
+
+<a id="r_ade649734a0c7017a8ddf62fdde78873b"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_CLKOSEL_LIRC (0x4UL << NUMAKER_CLK_CLKSEL1_CLKOSEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_CLKOSEL_LIRC](#ade649734a0c7017a8ddf62fdde78873b)、[NUMAKER_CLK_CLKSEL1_CLKOSEL_Pos](#a173d950f779cd43bcbc19ab59bcfdb9f)。
+
+<a id="r_a9e71ef0e2022fe9445aae65f908461cc"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_CLKOSEL_PLLFN_DIV2 (0x5UL << NUMAKER_CLK_CLKSEL1_CLKOSEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_CLKOSEL_PLLFN_DIV2](#a9e71ef0e2022fe9445aae65f908461cc)、[NUMAKER_CLK_CLKSEL1_CLKOSEL_Pos](#a173d950f779cd43bcbc19ab59bcfdb9f)。
+
+<a id="r_a221299347ceccbd32f2fa331685b869a"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_CLKOSEL_PLL_DIV2 (0x6UL << NUMAKER_CLK_CLKSEL1_CLKOSEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_CLKOSEL_PLL_DIV2](#a221299347ceccbd32f2fa331685b869a)、[NUMAKER_CLK_CLKSEL1_CLKOSEL_Pos](#a173d950f779cd43bcbc19ab59bcfdb9f)。
+
+<a id="r_a269fe710118dddabc1d17f2d1386835c"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR0SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL1_TMR0SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_TMR0SEL_HXT](#a269fe710118dddabc1d17f2d1386835c)、[NUMAKER_CLK_CLKSEL1_TMR0SEL_Pos](#a5267afb76d8c7121ae916d16bd11beba)。
+
+<a id="r_a37317151b25b9c7563a6e572e0199acc"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR0SEL_LXT (0x1UL << NUMAKER_CLK_CLKSEL1_TMR0SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_TMR0SEL_LXT](#a37317151b25b9c7563a6e572e0199acc)、[NUMAKER_CLK_CLKSEL1_TMR0SEL_Pos](#a5267afb76d8c7121ae916d16bd11beba)。
+
+<a id="r_afe9eadbd094da1c48851507719485200"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR0SEL_PCLK0 (0x2UL << NUMAKER_CLK_CLKSEL1_TMR0SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_TMR0SEL_PCLK0](#afe9eadbd094da1c48851507719485200)、[NUMAKER_CLK_CLKSEL1_TMR0SEL_Pos](#a5267afb76d8c7121ae916d16bd11beba)。
+
+<a id="r_ab4b9c993b869f23701052ef27c88cc3b"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR0SEL_EXT (0x3UL << NUMAKER_CLK_CLKSEL1_TMR0SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_TMR0SEL_EXT](#ab4b9c993b869f23701052ef27c88cc3b)、[NUMAKER_CLK_CLKSEL1_TMR0SEL_Pos](#a5267afb76d8c7121ae916d16bd11beba)。
+
+<a id="r_a7f4fd7330e7ff33c4bcd4b8e666f01c1"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR0SEL_LIRC (0x5UL << NUMAKER_CLK_CLKSEL1_TMR0SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_TMR0SEL_LIRC](#a7f4fd7330e7ff33c4bcd4b8e666f01c1)、[NUMAKER_CLK_CLKSEL1_TMR0SEL_Pos](#a5267afb76d8c7121ae916d16bd11beba)。
+
+<a id="r_ac7913ee7fe365daa500f7e1175bda470"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR0SEL_HIRC (0x7UL << NUMAKER_CLK_CLKSEL1_TMR0SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_TMR0SEL_HIRC](#ac7913ee7fe365daa500f7e1175bda470)、[NUMAKER_CLK_CLKSEL1_TMR0SEL_Pos](#a5267afb76d8c7121ae916d16bd11beba)。
+
+<a id="r_a1a6d0e60fd711d553ac0b0bf78ea6d54"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR1SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL1_TMR1SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_TMR1SEL_HXT](#a1a6d0e60fd711d553ac0b0bf78ea6d54)、[NUMAKER_CLK_CLKSEL1_TMR1SEL_Pos](#acc9cb2446eb710fd02622388b038cb80)。
+
+<a id="r_a425b5c7e0d424c13328840437f9a0bb9"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR1SEL_LXT (0x1UL << NUMAKER_CLK_CLKSEL1_TMR1SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_TMR1SEL_LXT](#a425b5c7e0d424c13328840437f9a0bb9)、[NUMAKER_CLK_CLKSEL1_TMR1SEL_Pos](#acc9cb2446eb710fd02622388b038cb80)。
+
+<a id="r_a54f24cfa94c28f844f428bd06e68eb8e"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR1SEL_PCLK0 (0x2UL << NUMAKER_CLK_CLKSEL1_TMR1SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_TMR1SEL_PCLK0](#a54f24cfa94c28f844f428bd06e68eb8e)、[NUMAKER_CLK_CLKSEL1_TMR1SEL_Pos](#acc9cb2446eb710fd02622388b038cb80)。
+
+<a id="r_a208dcc5b1095e5cf4c2dec3c312a62ac"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR1SEL_EXT (0x3UL << NUMAKER_CLK_CLKSEL1_TMR1SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_TMR1SEL_EXT](#a208dcc5b1095e5cf4c2dec3c312a62ac)、[NUMAKER_CLK_CLKSEL1_TMR1SEL_Pos](#acc9cb2446eb710fd02622388b038cb80)。
+
+<a id="r_a1f9fde3db711f618393435af9dcdd621"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR1SEL_LIRC (0x5UL << NUMAKER_CLK_CLKSEL1_TMR1SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_TMR1SEL_LIRC](#a1f9fde3db711f618393435af9dcdd621)、[NUMAKER_CLK_CLKSEL1_TMR1SEL_Pos](#acc9cb2446eb710fd02622388b038cb80)。
+
+<a id="r_acb979acb614600a7126e12eefc181c8c"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR1SEL_HIRC (0x7UL << NUMAKER_CLK_CLKSEL1_TMR1SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_TMR1SEL_HIRC](#acb979acb614600a7126e12eefc181c8c)、[NUMAKER_CLK_CLKSEL1_TMR1SEL_Pos](#acc9cb2446eb710fd02622388b038cb80)。
+
+<a id="r_ad0ac4ff4a21c3469c892dca5f6a7d469"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR2SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL1_TMR2SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_TMR2SEL_HXT](#ad0ac4ff4a21c3469c892dca5f6a7d469)、[NUMAKER_CLK_CLKSEL1_TMR2SEL_Pos](#a434692498a750b11be1cc4fb23f15d25)。
+
+<a id="r_afc8fb6c4fa6138465928926044fadd86"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR2SEL_LXT (0x1UL << NUMAKER_CLK_CLKSEL1_TMR2SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_TMR2SEL_LXT](#afc8fb6c4fa6138465928926044fadd86)、[NUMAKER_CLK_CLKSEL1_TMR2SEL_Pos](#a434692498a750b11be1cc4fb23f15d25)。
+
+<a id="r_af5d0ba5a62dbc29d7e5e2d0ebf026584"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR2SEL_PCLK1 (0x2UL << NUMAKER_CLK_CLKSEL1_TMR2SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_TMR2SEL_PCLK1](#af5d0ba5a62dbc29d7e5e2d0ebf026584)、[NUMAKER_CLK_CLKSEL1_TMR2SEL_Pos](#a434692498a750b11be1cc4fb23f15d25)。
+
+<a id="r_a6cd38e0106ba70158dce964022d1ff93"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR2SEL_EXT (0x3UL << NUMAKER_CLK_CLKSEL1_TMR2SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_TMR2SEL_EXT](#a6cd38e0106ba70158dce964022d1ff93)、[NUMAKER_CLK_CLKSEL1_TMR2SEL_Pos](#a434692498a750b11be1cc4fb23f15d25)。
+
+<a id="r_a868569fb4688e0c5399d753f751b71f4"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR2SEL_LIRC (0x5UL << NUMAKER_CLK_CLKSEL1_TMR2SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_TMR2SEL_LIRC](#a868569fb4688e0c5399d753f751b71f4)、[NUMAKER_CLK_CLKSEL1_TMR2SEL_Pos](#a434692498a750b11be1cc4fb23f15d25)。
+
+<a id="r_aa19a857602df260f1c5715008dd7cedf"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR2SEL_HIRC (0x7UL << NUMAKER_CLK_CLKSEL1_TMR2SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_TMR2SEL_HIRC](#aa19a857602df260f1c5715008dd7cedf)、[NUMAKER_CLK_CLKSEL1_TMR2SEL_Pos](#a434692498a750b11be1cc4fb23f15d25)。
+
+<a id="r_a41fd2a33360832aa6de1ff87d1a8d1a4"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR3SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL1_TMR3SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_TMR3SEL_HXT](#a41fd2a33360832aa6de1ff87d1a8d1a4)、[NUMAKER_CLK_CLKSEL1_TMR3SEL_Pos](#a6431caf24c465342f811c99c46beec23)。
+
+<a id="r_a20ba7b5a926c9a4686e452a209221336"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR3SEL_LXT (0x1UL << NUMAKER_CLK_CLKSEL1_TMR3SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_TMR3SEL_LXT](#a20ba7b5a926c9a4686e452a209221336)、[NUMAKER_CLK_CLKSEL1_TMR3SEL_Pos](#a6431caf24c465342f811c99c46beec23)。
+
+<a id="r_a597126647f0c72cddca37488818158f1"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR3SEL_PCLK1 (0x2UL << NUMAKER_CLK_CLKSEL1_TMR3SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_TMR3SEL_PCLK1](#a597126647f0c72cddca37488818158f1)、[NUMAKER_CLK_CLKSEL1_TMR3SEL_Pos](#a6431caf24c465342f811c99c46beec23)。
+
+<a id="r_a6173a75df6e455a46b27486fa74d1b97"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR3SEL_EXT (0x3UL << NUMAKER_CLK_CLKSEL1_TMR3SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_TMR3SEL_EXT](#a6173a75df6e455a46b27486fa74d1b97)、[NUMAKER_CLK_CLKSEL1_TMR3SEL_Pos](#a6431caf24c465342f811c99c46beec23)。
+
+<a id="r_a3c686b34710b45462347705592e74cb7"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR3SEL_LIRC (0x5UL << NUMAKER_CLK_CLKSEL1_TMR3SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_TMR3SEL_LIRC](#a3c686b34710b45462347705592e74cb7)、[NUMAKER_CLK_CLKSEL1_TMR3SEL_Pos](#a6431caf24c465342f811c99c46beec23)。
+
+<a id="r_a59c5904ed60fd6aff34f2d90cebdf906"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR3SEL_HIRC (0x7UL << NUMAKER_CLK_CLKSEL1_TMR3SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_TMR3SEL_HIRC](#a59c5904ed60fd6aff34f2d90cebdf906)、[NUMAKER_CLK_CLKSEL1_TMR3SEL_Pos](#a6431caf24c465342f811c99c46beec23)。
+
+<a id="r_ab90957a31d553a527d3810f1e7f5d55a"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_UART0SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL1_UART0SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_UART0SEL_HXT](#ab90957a31d553a527d3810f1e7f5d55a)、[NUMAKER_CLK_CLKSEL1_UART0SEL_Pos](#a59454cdc6f895e4870f36409d2bae4ec)。
+
+<a id="r_ab9b28d741c7058b1f9e37a599f7d0c2e"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_UART0SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL1_UART0SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_UART0SEL_PLL_DIV2](#ab9b28d741c7058b1f9e37a599f7d0c2e)、[NUMAKER_CLK_CLKSEL1_UART0SEL_Pos](#a59454cdc6f895e4870f36409d2bae4ec)。
+
+<a id="r_a991726670d9ec0108ff6b944d372f469"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_UART0SEL_LXT (0x2UL << NUMAKER_CLK_CLKSEL1_UART0SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_UART0SEL_LXT](#a991726670d9ec0108ff6b944d372f469)、[NUMAKER_CLK_CLKSEL1_UART0SEL_Pos](#a59454cdc6f895e4870f36409d2bae4ec)。
+
+<a id="r_a19ac2326e82a127d9e946465a27e0f4f"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_UART0SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL1_UART0SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_UART0SEL_HIRC](#a19ac2326e82a127d9e946465a27e0f4f)、[NUMAKER_CLK_CLKSEL1_UART0SEL_Pos](#a59454cdc6f895e4870f36409d2bae4ec)。
+
+<a id="r_aaa3e59f75b64a5b1c10367b583359f6b"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_UART1SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL1_UART1SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_UART1SEL_HXT](#aaa3e59f75b64a5b1c10367b583359f6b)、[NUMAKER_CLK_CLKSEL1_UART1SEL_Pos](#af7249c7982a7b0aecb14ad23d4d69177)。
+
+<a id="r_ac198c6857f66747fe5f776fa78b10aa1"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_UART1SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL1_UART1SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_UART1SEL_PLL_DIV2](#ac198c6857f66747fe5f776fa78b10aa1)、[NUMAKER_CLK_CLKSEL1_UART1SEL_Pos](#af7249c7982a7b0aecb14ad23d4d69177)。
+
+<a id="r_a4b7f0550827dab6d2a46dc5511526246"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_UART1SEL_LXT (0x2UL << NUMAKER_CLK_CLKSEL1_UART1SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_UART1SEL_LXT](#a4b7f0550827dab6d2a46dc5511526246)、[NUMAKER_CLK_CLKSEL1_UART1SEL_Pos](#af7249c7982a7b0aecb14ad23d4d69177)。
+
+<a id="r_ab5931f2210f1de1ac7f49309a55ce8b8"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_UART1SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL1_UART1SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_UART1SEL_HIRC](#ab5931f2210f1de1ac7f49309a55ce8b8)、[NUMAKER_CLK_CLKSEL1_UART1SEL_Pos](#af7249c7982a7b0aecb14ad23d4d69177)。
+
+<a id="r_a7d55fac6b093ac281eb9a0bf0762ade4"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_WWDTSEL_HCLK_DIV2048 (0x2UL << NUMAKER_CLK_CLKSEL1_WWDTSEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_WWDTSEL_HCLK_DIV2048](#a7d55fac6b093ac281eb9a0bf0762ade4)、[NUMAKER_CLK_CLKSEL1_WWDTSEL_Pos](#abde910c3bea13e43a62ea0f308a3d67d)。
+
+<a id="r_a838ca0acbf99746d596456f32ea411e1"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL1_WWDTSEL_LIRC (0x3UL << NUMAKER_CLK_CLKSEL1_WWDTSEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL1_WWDTSEL_LIRC](#a838ca0acbf99746d596456f32ea411e1)、[NUMAKER_CLK_CLKSEL1_WWDTSEL_Pos](#abde910c3bea13e43a62ea0f308a3d67d)。
+
+<a id="r_a066b7281b9e714d8e30af62b3df99fb1"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_EPWM0SEL_HCLK (0x0UL << NUMAKER_CLK_CLKSEL2_EPWM0SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_EPWM0SEL_HCLK](#a066b7281b9e714d8e30af62b3df99fb1)、[NUMAKER_CLK_CLKSEL2_EPWM0SEL_Pos](#a7c7e4439cb2a5ea61d131ca5aa34c13f)。
+
+<a id="r_a5886a5009f7f0ef41f04bff54c2f4781"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_EPWM0SEL_PCLK0 (0x1UL << NUMAKER_CLK_CLKSEL2_EPWM0SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_EPWM0SEL_PCLK0](#a5886a5009f7f0ef41f04bff54c2f4781)、[NUMAKER_CLK_CLKSEL2_EPWM0SEL_Pos](#a7c7e4439cb2a5ea61d131ca5aa34c13f)。
+
+<a id="r_a6ed53fbec964b2d85b10b8be7d3d5063"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_EPWM1SEL_HCLK (0x0UL << NUMAKER_CLK_CLKSEL2_EPWM1SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_EPWM1SEL_HCLK](#a6ed53fbec964b2d85b10b8be7d3d5063)、[NUMAKER_CLK_CLKSEL2_EPWM1SEL_Pos](#a789a88e5c5bb82243395ab44d9150f2f)。
+
+<a id="r_a84f8299574ba19909d135d6958655a67"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_EPWM1SEL_PCLK1 (0x1UL << NUMAKER_CLK_CLKSEL2_EPWM1SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_EPWM1SEL_PCLK1](#a84f8299574ba19909d135d6958655a67)、[NUMAKER_CLK_CLKSEL2_EPWM1SEL_Pos](#a789a88e5c5bb82243395ab44d9150f2f)。
+
+<a id="r_ab2035f3ef4f5dfa4dbd629b928729114"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_QSPI0SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL2_QSPI0SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_QSPI0SEL_HXT](#ab2035f3ef4f5dfa4dbd629b928729114)、[NUMAKER_CLK_CLKSEL2_QSPI0SEL_Pos](#afd2bdefddd574beef75f27fe63235b71)。
+
+<a id="r_a33885ea70f6c99f43f6b814090ce695c"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_QSPI0SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL2_QSPI0SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_QSPI0SEL_PLL_DIV2](#a33885ea70f6c99f43f6b814090ce695c)、[NUMAKER_CLK_CLKSEL2_QSPI0SEL_Pos](#afd2bdefddd574beef75f27fe63235b71)。
+
+<a id="r_a7e185755d01c123d2b05e7657f50b87f"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_QSPI0SEL_PCLK0 (0x2UL << NUMAKER_CLK_CLKSEL2_QSPI0SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_QSPI0SEL_PCLK0](#a7e185755d01c123d2b05e7657f50b87f)、[NUMAKER_CLK_CLKSEL2_QSPI0SEL_Pos](#afd2bdefddd574beef75f27fe63235b71)。
+
+<a id="r_ab8f6509882bb312a7bb5f215e21556be"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_QSPI0SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL2_QSPI0SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_QSPI0SEL_HIRC](#ab8f6509882bb312a7bb5f215e21556be)、[NUMAKER_CLK_CLKSEL2_QSPI0SEL_Pos](#afd2bdefddd574beef75f27fe63235b71)。
+
+<a id="r_aa8fea6d4d392fbb12385bd3dc3d7e41d"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_SPI0SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL2_SPI0SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_SPI0SEL_HXT](#aa8fea6d4d392fbb12385bd3dc3d7e41d)、[NUMAKER_CLK_CLKSEL2_SPI0SEL_Pos](#a3f3697e0e6786758e2d558704c1ae95b)。
+
+<a id="r_a1f155d341a87fdac387ea48a5778d4ed"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_SPI0SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL2_SPI0SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_SPI0SEL_PLL_DIV2](#a1f155d341a87fdac387ea48a5778d4ed)、[NUMAKER_CLK_CLKSEL2_SPI0SEL_Pos](#a3f3697e0e6786758e2d558704c1ae95b)。
+
+<a id="r_a7f6f7f591f7b3ce3522fa63abe564fe5"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_SPI0SEL_PCLK1 (0x2UL << NUMAKER_CLK_CLKSEL2_SPI0SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_SPI0SEL_PCLK1](#a7f6f7f591f7b3ce3522fa63abe564fe5)、[NUMAKER_CLK_CLKSEL2_SPI0SEL_Pos](#a3f3697e0e6786758e2d558704c1ae95b)。
+
+<a id="r_a5490e8ae6a82a281d81026b37ad5dfb7"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_SPI0SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL2_SPI0SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_SPI0SEL_HIRC](#a5490e8ae6a82a281d81026b37ad5dfb7)、[NUMAKER_CLK_CLKSEL2_SPI0SEL_Pos](#a3f3697e0e6786758e2d558704c1ae95b)。
+
+<a id="r_ad8b1a5339bf72877ac1eee28e35cdc76"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_SPI0SEL_HIRC48M (0x4UL << NUMAKER_CLK_CLKSEL2_SPI0SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_SPI0SEL_HIRC48M](#ad8b1a5339bf72877ac1eee28e35cdc76)、[NUMAKER_CLK_CLKSEL2_SPI0SEL_Pos](#a3f3697e0e6786758e2d558704c1ae95b)。
+
+<a id="r_a738bbbfabacb6342c8b257b1ece00ebe"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_SPI0SEL_PLLFN_DIV2 (0x5UL << NUMAKER_CLK_CLKSEL2_SPI0SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_SPI0SEL_PLLFN_DIV2](#a738bbbfabacb6342c8b257b1ece00ebe)、[NUMAKER_CLK_CLKSEL2_SPI0SEL_Pos](#a3f3697e0e6786758e2d558704c1ae95b)。
+
+<a id="r_a055b9b799418142db0c31e371b9753fa"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_BPWM0SEL_HCLK (0x0UL << NUMAKER_CLK_CLKSEL2_BPWM0SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_BPWM0SEL_HCLK](#a055b9b799418142db0c31e371b9753fa)、[NUMAKER_CLK_CLKSEL2_BPWM0SEL_Pos](#a468889c86406ba0ac19dc13ea3676819)。
+
+<a id="r_ae7a979646d487520cae4eb025deb3d88"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_BPWM0SEL_PCLK0 (0x1UL << NUMAKER_CLK_CLKSEL2_BPWM0SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_BPWM0SEL_PCLK0](#ae7a979646d487520cae4eb025deb3d88)、[NUMAKER_CLK_CLKSEL2_BPWM0SEL_Pos](#a468889c86406ba0ac19dc13ea3676819)。
+
+<a id="r_a31696dd1f857e3a56b70cf752aabe8f0"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_BPWM1SEL_HCLK (0x0UL << NUMAKER_CLK_CLKSEL2_BPWM1SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_BPWM1SEL_HCLK](#a31696dd1f857e3a56b70cf752aabe8f0)、[NUMAKER_CLK_CLKSEL2_BPWM1SEL_Pos](#ac1482052fb0001105c872760676e9b85)。
+
+<a id="r_aae05c896f4800dc75fcb0f400d304f62"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_BPWM1SEL_PCLK1 (0x1UL << NUMAKER_CLK_CLKSEL2_BPWM1SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_BPWM1SEL_PCLK1](#aae05c896f4800dc75fcb0f400d304f62)、[NUMAKER_CLK_CLKSEL2_BPWM1SEL_Pos](#ac1482052fb0001105c872760676e9b85)。
+
+<a id="r_a9d983236876b97094c0b0198bf362da0"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_QSPI1SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL2_QSPI1SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_QSPI1SEL_HXT](#a9d983236876b97094c0b0198bf362da0)、[NUMAKER_CLK_CLKSEL2_QSPI1SEL_Pos](#abaa371d43c61b5eac6209c49450be2bb)。
+
+<a id="r_a0d4eceb83b11d248d984cae5286c14cc"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_QSPI1SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL2_QSPI1SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_QSPI1SEL_PLL_DIV2](#a0d4eceb83b11d248d984cae5286c14cc)、[NUMAKER_CLK_CLKSEL2_QSPI1SEL_Pos](#abaa371d43c61b5eac6209c49450be2bb)。
+
+<a id="r_a92310f4949beba40270a3b7056b768a8"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_QSPI1SEL_PCLK1 (0x2UL << NUMAKER_CLK_CLKSEL2_QSPI1SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_QSPI1SEL_PCLK1](#a92310f4949beba40270a3b7056b768a8)、[NUMAKER_CLK_CLKSEL2_QSPI1SEL_Pos](#abaa371d43c61b5eac6209c49450be2bb)。
+
+<a id="r_a18b75ffb5e2247daa96bad18e29ac504"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_QSPI1SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL2_QSPI1SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_QSPI1SEL_HIRC](#a18b75ffb5e2247daa96bad18e29ac504)、[NUMAKER_CLK_CLKSEL2_QSPI1SEL_Pos](#abaa371d43c61b5eac6209c49450be2bb)。
+
+<a id="r_a02ec8188dc04f486240c9534ecbd2f76"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_SPI1SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL2_SPI1SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_SPI1SEL_HXT](#a02ec8188dc04f486240c9534ecbd2f76)、[NUMAKER_CLK_CLKSEL2_SPI1SEL_Pos](#a00200de5091f4a3e3eb6205a3eb2710e)。
+
+<a id="r_aa7b96f0cab55a160ffb9c13cbe8af877"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_SPI1SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL2_SPI1SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_SPI1SEL_PLL_DIV2](#aa7b96f0cab55a160ffb9c13cbe8af877)、[NUMAKER_CLK_CLKSEL2_SPI1SEL_Pos](#a00200de5091f4a3e3eb6205a3eb2710e)。
+
+<a id="r_ac6fe2e428168fde50cdc9d7accebba31"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_SPI1SEL_PCLK0 (0x2UL << NUMAKER_CLK_CLKSEL2_SPI1SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_SPI1SEL_PCLK0](#ac6fe2e428168fde50cdc9d7accebba31)、[NUMAKER_CLK_CLKSEL2_SPI1SEL_Pos](#a00200de5091f4a3e3eb6205a3eb2710e)。
+
+<a id="r_a62209956eeaf9174960a476a2514b72d"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_SPI1SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL2_SPI1SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_SPI1SEL_HIRC](#a62209956eeaf9174960a476a2514b72d)、[NUMAKER_CLK_CLKSEL2_SPI1SEL_Pos](#a00200de5091f4a3e3eb6205a3eb2710e)。
+
+<a id="r_a14000a6d12ea314b48c738e39ae5e6c2"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_SPI1SEL_HIRC48M (0x4UL << NUMAKER_CLK_CLKSEL2_SPI1SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_SPI1SEL_HIRC48M](#a14000a6d12ea314b48c738e39ae5e6c2)、[NUMAKER_CLK_CLKSEL2_SPI1SEL_Pos](#a00200de5091f4a3e3eb6205a3eb2710e)。
+
+<a id="r_ade1874823eacddebee27346428929ede"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_SPI1SEL_PLLFN_DIV2 (0x5UL << NUMAKER_CLK_CLKSEL2_SPI1SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_SPI1SEL_PLLFN_DIV2](#ade1874823eacddebee27346428929ede)、[NUMAKER_CLK_CLKSEL2_SPI1SEL_Pos](#a00200de5091f4a3e3eb6205a3eb2710e)。
+
+<a id="r_aa344af8b6f18787fac24b160e68cdc43"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_I2S1SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL2_I2S1SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_I2S1SEL_HXT](#aa344af8b6f18787fac24b160e68cdc43)、[NUMAKER_CLK_CLKSEL2_I2S1SEL_Pos](#a62b60bef47ebaa4283c592cf1befd06a)。
+
+<a id="r_a5781d8776f1f0639e61db3ff3f18308d"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_I2S1SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL2_I2S1SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_I2S1SEL_PLL_DIV2](#a5781d8776f1f0639e61db3ff3f18308d)、[NUMAKER_CLK_CLKSEL2_I2S1SEL_Pos](#a62b60bef47ebaa4283c592cf1befd06a)。
+
+<a id="r_adb1533714b11dbf4c4bc7346a47c127b"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_I2S1SEL_PCLK1 (0x2UL << NUMAKER_CLK_CLKSEL2_I2S1SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_I2S1SEL_PCLK1](#adb1533714b11dbf4c4bc7346a47c127b)、[NUMAKER_CLK_CLKSEL2_I2S1SEL_Pos](#a62b60bef47ebaa4283c592cf1befd06a)。
+
+<a id="r_acd9a0f64bd383507c174cfb15e840d2b"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_I2S1SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL2_I2S1SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_I2S1SEL_HIRC](#acd9a0f64bd383507c174cfb15e840d2b)、[NUMAKER_CLK_CLKSEL2_I2S1SEL_Pos](#a62b60bef47ebaa4283c592cf1befd06a)。
+
+<a id="r_af62a05371d707939ecf9b2297cdb8bf8"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_I2S1SEL_HIRC48M (0x4UL << NUMAKER_CLK_CLKSEL2_I2S1SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_I2S1SEL_HIRC48M](#af62a05371d707939ecf9b2297cdb8bf8)、[NUMAKER_CLK_CLKSEL2_I2S1SEL_Pos](#a62b60bef47ebaa4283c592cf1befd06a)。
+
+<a id="r_a0e4f643aa45c97deec5cd470a02fc394"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_I2S1SEL_PLLFN_DIV2 (0x5UL << NUMAKER_CLK_CLKSEL2_I2S1SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_I2S1SEL_PLLFN_DIV2](#a0e4f643aa45c97deec5cd470a02fc394)、[NUMAKER_CLK_CLKSEL2_I2S1SEL_Pos](#a62b60bef47ebaa4283c592cf1befd06a)。
+
+<a id="r_a9bf2e582bee931751b74b2a548646270"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_UART8SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL2_UART8SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_UART8SEL_HXT](#a9bf2e582bee931751b74b2a548646270)、[NUMAKER_CLK_CLKSEL2_UART8SEL_Pos](#a77c6617ce411e7d7c1c844b5d759ea81)。
+
+<a id="r_af1287ca664d3787fc7d43045461c0f80"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_UART8SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL2_UART8SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_UART8SEL_PLL_DIV2](#af1287ca664d3787fc7d43045461c0f80)、[NUMAKER_CLK_CLKSEL2_UART8SEL_Pos](#a77c6617ce411e7d7c1c844b5d759ea81)。
+
+<a id="r_af1f34545d01798605d3121d673c246ba"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_UART8SEL_LXT (0x2UL << NUMAKER_CLK_CLKSEL2_UART8SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_UART8SEL_LXT](#af1f34545d01798605d3121d673c246ba)、[NUMAKER_CLK_CLKSEL2_UART8SEL_Pos](#a77c6617ce411e7d7c1c844b5d759ea81)。
+
+<a id="r_aab4cb19bf0ad8e6104c8db8a8e8b4660"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_UART8SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL2_UART8SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_UART8SEL_HIRC](#aab4cb19bf0ad8e6104c8db8a8e8b4660)、[NUMAKER_CLK_CLKSEL2_UART8SEL_Pos](#a77c6617ce411e7d7c1c844b5d759ea81)。
+
+<a id="r_a585a3db6c47f759efec73a4ed7fa22ea"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_UART9SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL2_UART9SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_UART9SEL_HXT](#a585a3db6c47f759efec73a4ed7fa22ea)、[NUMAKER_CLK_CLKSEL2_UART9SEL_Pos](#aa0d54fd960a54667ebd1648e3ff59372)。
+
+<a id="r_ad6255ce889f6dbd8a9329bde314aae09"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_UART9SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL2_UART9SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_UART9SEL_PLL_DIV2](#ad6255ce889f6dbd8a9329bde314aae09)、[NUMAKER_CLK_CLKSEL2_UART9SEL_Pos](#aa0d54fd960a54667ebd1648e3ff59372)。
+
+<a id="r_a3e8c5f032ac973a2c6e97f5233d41d2e"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_UART9SEL_LXT (0x2UL << NUMAKER_CLK_CLKSEL2_UART9SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_UART9SEL_LXT](#a3e8c5f032ac973a2c6e97f5233d41d2e)、[NUMAKER_CLK_CLKSEL2_UART9SEL_Pos](#aa0d54fd960a54667ebd1648e3ff59372)。
+
+<a id="r_aac3144fb15ccfb78bd7fc83af15b514a"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_UART9SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL2_UART9SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_UART9SEL_HIRC](#aac3144fb15ccfb78bd7fc83af15b514a)、[NUMAKER_CLK_CLKSEL2_UART9SEL_Pos](#aa0d54fd960a54667ebd1648e3ff59372)。
+
+<a id="r_a30bf76b4a03d61b0f0f8365cb6b9639c"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_TRNGSEL_LXT (0x0UL << NUMAKER_CLK_CLKSEL2_TRNGSEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_TRNGSEL_LXT](#a30bf76b4a03d61b0f0f8365cb6b9639c)、[NUMAKER_CLK_CLKSEL2_TRNGSEL_Pos](#ae64e22341ff5a80754b972cc939499f2)。
+
+<a id="r_a3f961d2f6e112240fc930fd43f0a6e88"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_TRNGSEL_LIRC (0x1UL << NUMAKER_CLK_CLKSEL2_TRNGSEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_TRNGSEL_LIRC](#a3f961d2f6e112240fc930fd43f0a6e88)、[NUMAKER_CLK_CLKSEL2_TRNGSEL_Pos](#ae64e22341ff5a80754b972cc939499f2)。
+
+<a id="r_a9aa23bab20b1b4468a8743302dd1c7ab"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_PSIOSEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL2_PSIOSEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_PSIOSEL_HXT](#a9aa23bab20b1b4468a8743302dd1c7ab)、[NUMAKER_CLK_CLKSEL2_PSIOSEL_Pos](#a3dd2bba6fd135bb75d81ba88307145ad)。
+
+<a id="r_ae6720ec8079ccfd3034fa74f8aa8ed18"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_PSIOSEL_LXT (0x1UL << NUMAKER_CLK_CLKSEL2_PSIOSEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_PSIOSEL_LXT](#ae6720ec8079ccfd3034fa74f8aa8ed18)、[NUMAKER_CLK_CLKSEL2_PSIOSEL_Pos](#a3dd2bba6fd135bb75d81ba88307145ad)。
+
+<a id="r_a14234fa9d410f13ce14866ae0347a882"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_PSIOSEL_PCLK1 (0x2UL << NUMAKER_CLK_CLKSEL2_PSIOSEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_PSIOSEL_PCLK1](#a14234fa9d410f13ce14866ae0347a882)、[NUMAKER_CLK_CLKSEL2_PSIOSEL_Pos](#a3dd2bba6fd135bb75d81ba88307145ad)。
+
+<a id="r_a7b56de33f223091c59782a86eea91f56"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_PSIOSEL_PLL_DIV2 (0x3UL << NUMAKER_CLK_CLKSEL2_PSIOSEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_PSIOSEL_PLL_DIV2](#a7b56de33f223091c59782a86eea91f56)、[NUMAKER_CLK_CLKSEL2_PSIOSEL_Pos](#a3dd2bba6fd135bb75d81ba88307145ad)。
+
+<a id="r_af2a0cf63f7a2af7aa989963c4f90abc2"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_PSIOSEL_LIRC (0x4UL << NUMAKER_CLK_CLKSEL2_PSIOSEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_PSIOSEL_LIRC](#af2a0cf63f7a2af7aa989963c4f90abc2)、[NUMAKER_CLK_CLKSEL2_PSIOSEL_Pos](#a3dd2bba6fd135bb75d81ba88307145ad)。
+
+<a id="r_af34cb3673e0ad70480a5a24ce26ca9a3"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL2_PSIOSEL_HIRC (0x5UL << NUMAKER_CLK_CLKSEL2_PSIOSEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL2_PSIOSEL_HIRC](#af34cb3673e0ad70480a5a24ce26ca9a3)、[NUMAKER_CLK_CLKSEL2_PSIOSEL_Pos](#a3dd2bba6fd135bb75d81ba88307145ad)。
+
+<a id="r_a51a3f59da3bb773b180df7ffb8f6e062"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SC0SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL3_SC0SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_SC0SEL_HXT](#a51a3f59da3bb773b180df7ffb8f6e062)、[NUMAKER_CLK_CLKSEL3_SC0SEL_Pos](#a19c633148ca7ea93e9614e49d2e143e5)。
+
+<a id="r_afd2366fc3ed2750af1224ff94b4f4473"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SC0SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL3_SC0SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_SC0SEL_PLL_DIV2](#afd2366fc3ed2750af1224ff94b4f4473)、[NUMAKER_CLK_CLKSEL3_SC0SEL_Pos](#a19c633148ca7ea93e9614e49d2e143e5)。
+
+<a id="r_aa2f306a6f8133c48b65e9296b9252def"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SC0SEL_PCLK0 (0x2UL << NUMAKER_CLK_CLKSEL3_SC0SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_SC0SEL_PCLK0](#aa2f306a6f8133c48b65e9296b9252def)、[NUMAKER_CLK_CLKSEL3_SC0SEL_Pos](#a19c633148ca7ea93e9614e49d2e143e5)。
+
+<a id="r_ab7a71f01a8340762103de86a4485501b"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SC0SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL3_SC0SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_SC0SEL_HIRC](#ab7a71f01a8340762103de86a4485501b)、[NUMAKER_CLK_CLKSEL3_SC0SEL_Pos](#a19c633148ca7ea93e9614e49d2e143e5)。
+
+<a id="r_a48d1214da483d0510aba9b06c0e9c8ef"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SC1SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL3_SC1SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_SC1SEL_HXT](#a48d1214da483d0510aba9b06c0e9c8ef)、[NUMAKER_CLK_CLKSEL3_SC1SEL_Pos](#a6fd49b4bc34a81053e90d06014081b29)。
+
+<a id="r_a6c43b7837b4ebaf01d6ab8f6d441de9c"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SC1SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL3_SC1SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_SC1SEL_PLL_DIV2](#a6c43b7837b4ebaf01d6ab8f6d441de9c)、[NUMAKER_CLK_CLKSEL3_SC1SEL_Pos](#a6fd49b4bc34a81053e90d06014081b29)。
+
+<a id="r_aaac8336fe0aad8115a1f1c8f9c985d87"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SC1SEL_PCLK1 (0x2UL << NUMAKER_CLK_CLKSEL3_SC1SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_SC1SEL_PCLK1](#aaac8336fe0aad8115a1f1c8f9c985d87)、[NUMAKER_CLK_CLKSEL3_SC1SEL_Pos](#a6fd49b4bc34a81053e90d06014081b29)。
+
+<a id="r_a40d22aade311a018b9f95336cb0baaa6"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SC1SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL3_SC1SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_SC1SEL_HIRC](#a40d22aade311a018b9f95336cb0baaa6)、[NUMAKER_CLK_CLKSEL3_SC1SEL_Pos](#a6fd49b4bc34a81053e90d06014081b29)。
+
+<a id="r_a41a42c3b21866a058623ac46b20f01a3"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SC2SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL3_SC2SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_SC2SEL_HXT](#a41a42c3b21866a058623ac46b20f01a3)、[NUMAKER_CLK_CLKSEL3_SC2SEL_Pos](#a0937060d13a67d6c6b6b440b160bce78)。
+
+<a id="r_a8a2981c9b91c13a2cbdfe6161ee5f890"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SC2SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL3_SC2SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_SC2SEL_PLL_DIV2](#a8a2981c9b91c13a2cbdfe6161ee5f890)、[NUMAKER_CLK_CLKSEL3_SC2SEL_Pos](#a0937060d13a67d6c6b6b440b160bce78)。
+
+<a id="r_aa5675f4749b15655a31586dd4aac26b8"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SC2SEL_PCLK0 (0x2UL << NUMAKER_CLK_CLKSEL3_SC2SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_SC2SEL_PCLK0](#aa5675f4749b15655a31586dd4aac26b8)、[NUMAKER_CLK_CLKSEL3_SC2SEL_Pos](#a0937060d13a67d6c6b6b440b160bce78)。
+
+<a id="r_a50f0041607bf3863c8df920fedf96ea0"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SC2SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL3_SC2SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_SC2SEL_HIRC](#a50f0041607bf3863c8df920fedf96ea0)、[NUMAKER_CLK_CLKSEL3_SC2SEL_Pos](#a0937060d13a67d6c6b6b440b160bce78)。
+
+<a id="r_abae76078aade03ef47ac19c1ad20bae7"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_KPISEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL3_KPISEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_KPISEL_HXT](#abae76078aade03ef47ac19c1ad20bae7)、[NUMAKER_CLK_CLKSEL3_KPISEL_Pos](#ab62463cdd14a928e8d9981d10bb58c5d)。
+
+<a id="r_a8b046263c9ff1d8fbe51fa377b048119"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_KPISEL_LIRC (0x1UL << NUMAKER_CLK_CLKSEL3_KPISEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_KPISEL_LIRC](#a8b046263c9ff1d8fbe51fa377b048119)、[NUMAKER_CLK_CLKSEL3_KPISEL_Pos](#ab62463cdd14a928e8d9981d10bb58c5d)。
+
+<a id="r_ad0d8e9747739d59ec078ed6c9d24bb85"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_KPISEL_HIRC (0x2UL << NUMAKER_CLK_CLKSEL3_KPISEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_KPISEL_HIRC](#ad0d8e9747739d59ec078ed6c9d24bb85)、[NUMAKER_CLK_CLKSEL3_KPISEL_Pos](#ab62463cdd14a928e8d9981d10bb58c5d)。
+
+<a id="r_abfae567f85ec08381bb0db7c81fd74d3"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SPI2SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL3_SPI2SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_SPI2SEL_HXT](#abfae567f85ec08381bb0db7c81fd74d3)、[NUMAKER_CLK_CLKSEL3_SPI2SEL_Pos](#a34f8358a68834ea06c779d8554990ab1)。
+
+<a id="r_a0f678617a8bd348b9587a04609be7548"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SPI2SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL3_SPI2SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_SPI2SEL_PLL_DIV2](#a0f678617a8bd348b9587a04609be7548)、[NUMAKER_CLK_CLKSEL3_SPI2SEL_Pos](#a34f8358a68834ea06c779d8554990ab1)。
+
+<a id="r_a13a781d3f27119fb8067191f981fc52b"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SPI2SEL_PCLK1 (0x2UL << NUMAKER_CLK_CLKSEL3_SPI2SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_SPI2SEL_PCLK1](#a13a781d3f27119fb8067191f981fc52b)、[NUMAKER_CLK_CLKSEL3_SPI2SEL_Pos](#a34f8358a68834ea06c779d8554990ab1)。
+
+<a id="r_ab087f54ea6ea67e1f41aeaf948782c1f"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SPI2SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL3_SPI2SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_SPI2SEL_HIRC](#ab087f54ea6ea67e1f41aeaf948782c1f)、[NUMAKER_CLK_CLKSEL3_SPI2SEL_Pos](#a34f8358a68834ea06c779d8554990ab1)。
+
+<a id="r_a3e5c5f8daec012d060843a800802fea1"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SPI2SEL_HIRC48M (0x4UL << NUMAKER_CLK_CLKSEL3_SPI2SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_SPI2SEL_HIRC48M](#a3e5c5f8daec012d060843a800802fea1)、[NUMAKER_CLK_CLKSEL3_SPI2SEL_Pos](#a34f8358a68834ea06c779d8554990ab1)。
+
+<a id="r_aecd6af9356ecdeead2b9daa599628f69"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SPI2SEL_PLLFN_DIV2 (0x5UL << NUMAKER_CLK_CLKSEL3_SPI2SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_SPI2SEL_PLLFN_DIV2](#aecd6af9356ecdeead2b9daa599628f69)、[NUMAKER_CLK_CLKSEL3_SPI2SEL_Pos](#a34f8358a68834ea06c779d8554990ab1)。
+
+<a id="r_a3b87db844ad61714826adc34da9ec7b0"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SPI3SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL3_SPI3SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_SPI3SEL_HXT](#a3b87db844ad61714826adc34da9ec7b0)、[NUMAKER_CLK_CLKSEL3_SPI3SEL_Pos](#a8544ff20404a07e93d2dbcd170da2806)。
+
+<a id="r_a63ae5b13f3280b5f9842a994fb017263"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SPI3SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL3_SPI3SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_SPI3SEL_PLL_DIV2](#a63ae5b13f3280b5f9842a994fb017263)、[NUMAKER_CLK_CLKSEL3_SPI3SEL_Pos](#a8544ff20404a07e93d2dbcd170da2806)。
+
+<a id="r_a38d7de1142dbcbb41efc14ff3a509e6a"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SPI3SEL_PCLK0 (0x2UL << NUMAKER_CLK_CLKSEL3_SPI3SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_SPI3SEL_PCLK0](#a38d7de1142dbcbb41efc14ff3a509e6a)、[NUMAKER_CLK_CLKSEL3_SPI3SEL_Pos](#a8544ff20404a07e93d2dbcd170da2806)。
+
+<a id="r_a013d56f4921687d6417e06944e0604f4"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SPI3SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL3_SPI3SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_SPI3SEL_HIRC](#a013d56f4921687d6417e06944e0604f4)、[NUMAKER_CLK_CLKSEL3_SPI3SEL_Pos](#a8544ff20404a07e93d2dbcd170da2806)。
+
+<a id="r_a97eb5cf29a9fdf172288db3696a9c690"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SPI3SEL_HIRC48M (0x4UL << NUMAKER_CLK_CLKSEL3_SPI3SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_SPI3SEL_HIRC48M](#a97eb5cf29a9fdf172288db3696a9c690)、[NUMAKER_CLK_CLKSEL3_SPI3SEL_Pos](#a8544ff20404a07e93d2dbcd170da2806)。
+
+<a id="r_a583b38aa35525e5f4262d79c2f74142a"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SPI3SEL_PLLFN_DIV2 (0x5UL << NUMAKER_CLK_CLKSEL3_SPI3SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_SPI3SEL_PLLFN_DIV2](#a583b38aa35525e5f4262d79c2f74142a)、[NUMAKER_CLK_CLKSEL3_SPI3SEL_Pos](#a8544ff20404a07e93d2dbcd170da2806)。
+
+<a id="r_a5974644957888fce996694a23d0c8974"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_I2S0SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL3_I2S0SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_I2S0SEL_HXT](#a5974644957888fce996694a23d0c8974)、[NUMAKER_CLK_CLKSEL3_I2S0SEL_Pos](#a8998c20d1845afb0936f18a3ffdd277e)。
+
+<a id="r_a6f43b5f162e778c82096ba88e61c3bab"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_I2S0SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL3_I2S0SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_I2S0SEL_PLL_DIV2](#a6f43b5f162e778c82096ba88e61c3bab)、[NUMAKER_CLK_CLKSEL3_I2S0SEL_Pos](#a8998c20d1845afb0936f18a3ffdd277e)。
+
+<a id="r_a19fae5fa37ea497e8cbbc4e35fcc7a1c"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_I2S0SEL_PCLK0 (0x2UL << NUMAKER_CLK_CLKSEL3_I2S0SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_I2S0SEL_PCLK0](#a19fae5fa37ea497e8cbbc4e35fcc7a1c)、[NUMAKER_CLK_CLKSEL3_I2S0SEL_Pos](#a8998c20d1845afb0936f18a3ffdd277e)。
+
+<a id="r_ae6167fdcb715fdab8590115d08732a52"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_I2S0SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL3_I2S0SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_I2S0SEL_HIRC](#ae6167fdcb715fdab8590115d08732a52)、[NUMAKER_CLK_CLKSEL3_I2S0SEL_Pos](#a8998c20d1845afb0936f18a3ffdd277e)。
+
+<a id="r_a05f172005696ffe09d09e2419ec4a0c2"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_I2S0SEL_HIRC48M (0x4UL << NUMAKER_CLK_CLKSEL3_I2S0SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_I2S0SEL_HIRC48M](#a05f172005696ffe09d09e2419ec4a0c2)、[NUMAKER_CLK_CLKSEL3_I2S0SEL_Pos](#a8998c20d1845afb0936f18a3ffdd277e)。
+
+<a id="r_af4fa24cf94713ff0cc30c3f75fd9a1c7"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_I2S0SEL_PLLFN_DIV2 (0x5UL << NUMAKER_CLK_CLKSEL3_I2S0SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_I2S0SEL_PLLFN_DIV2](#af4fa24cf94713ff0cc30c3f75fd9a1c7)、[NUMAKER_CLK_CLKSEL3_I2S0SEL_Pos](#a8998c20d1845afb0936f18a3ffdd277e)。
+
+<a id="r_a5750431bef8248dbf0400bc304c28e83"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART6SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL3_UART6SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_UART6SEL_HXT](#a5750431bef8248dbf0400bc304c28e83)、[NUMAKER_CLK_CLKSEL3_UART6SEL_Pos](#a0fa73839deb734011ed856ab1b3d29f3)。
+
+<a id="r_a8ced2c03a1e88b125372539afef7d6fb"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART6SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL3_UART6SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_UART6SEL_PLL_DIV2](#a8ced2c03a1e88b125372539afef7d6fb)、[NUMAKER_CLK_CLKSEL3_UART6SEL_Pos](#a0fa73839deb734011ed856ab1b3d29f3)。
+
+<a id="r_a7c12327af81e305e8daee591c40a6e29"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART6SEL_LXT (0x2UL << NUMAKER_CLK_CLKSEL3_UART6SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_UART6SEL_LXT](#a7c12327af81e305e8daee591c40a6e29)、[NUMAKER_CLK_CLKSEL3_UART6SEL_Pos](#a0fa73839deb734011ed856ab1b3d29f3)。
+
+<a id="r_acfe7822fd07115a0361d50dd2c1b158a"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART6SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL3_UART6SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_UART6SEL_HIRC](#acfe7822fd07115a0361d50dd2c1b158a)、[NUMAKER_CLK_CLKSEL3_UART6SEL_Pos](#a0fa73839deb734011ed856ab1b3d29f3)。
+
+<a id="r_ae826f6a8852e0768e4b68300e24cc298"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART7SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL3_UART7SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_UART7SEL_HXT](#ae826f6a8852e0768e4b68300e24cc298)、[NUMAKER_CLK_CLKSEL3_UART7SEL_Pos](#a19cd6b3c40c825dfe2a8193ad3d530ca)。
+
+<a id="r_ae1d938ba5b4aa9838f1a860db7591f60"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART7SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL3_UART7SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_UART7SEL_PLL_DIV2](#ae1d938ba5b4aa9838f1a860db7591f60)、[NUMAKER_CLK_CLKSEL3_UART7SEL_Pos](#a19cd6b3c40c825dfe2a8193ad3d530ca)。
+
+<a id="r_a2992f14efbae61aaa34af5b854c70c24"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART7SEL_LXT (0x2UL << NUMAKER_CLK_CLKSEL3_UART7SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_UART7SEL_LXT](#a2992f14efbae61aaa34af5b854c70c24)、[NUMAKER_CLK_CLKSEL3_UART7SEL_Pos](#a19cd6b3c40c825dfe2a8193ad3d530ca)。
+
+<a id="r_a3d6df478f726baa83aa0ed72a41e14b2"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART7SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL3_UART7SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_UART7SEL_HIRC](#a3d6df478f726baa83aa0ed72a41e14b2)、[NUMAKER_CLK_CLKSEL3_UART7SEL_Pos](#a19cd6b3c40c825dfe2a8193ad3d530ca)。
+
+<a id="r_aa4cf778724c945fbdf5ce101d53db019"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART2SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL3_UART2SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_UART2SEL_HXT](#aa4cf778724c945fbdf5ce101d53db019)、[NUMAKER_CLK_CLKSEL3_UART2SEL_Pos](#aa1f1fc552a722bafea8f9177ed609877)。
+
+<a id="r_a6b98bb87b62119444fe455d2061d85c2"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART2SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL3_UART2SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_UART2SEL_PLL_DIV2](#a6b98bb87b62119444fe455d2061d85c2)、[NUMAKER_CLK_CLKSEL3_UART2SEL_Pos](#aa1f1fc552a722bafea8f9177ed609877)。
+
+<a id="r_a64e775dfda0f36499d1d357c301a517d"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART2SEL_LXT (0x2UL << NUMAKER_CLK_CLKSEL3_UART2SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_UART2SEL_LXT](#a64e775dfda0f36499d1d357c301a517d)、[NUMAKER_CLK_CLKSEL3_UART2SEL_Pos](#aa1f1fc552a722bafea8f9177ed609877)。
+
+<a id="r_a240355ff578cb006df6b963071fe1151"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART2SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL3_UART2SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_UART2SEL_HIRC](#a240355ff578cb006df6b963071fe1151)、[NUMAKER_CLK_CLKSEL3_UART2SEL_Pos](#aa1f1fc552a722bafea8f9177ed609877)。
+
+<a id="r_a435f628f7f8ed83c7919590dab30d723"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART3SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL3_UART3SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_UART3SEL_HXT](#a435f628f7f8ed83c7919590dab30d723)、[NUMAKER_CLK_CLKSEL3_UART3SEL_Pos](#acf28a2139435cc793c0b712e8e8a0806)。
+
+<a id="r_a5685fa5b106626b8bd39e12591a8e6e4"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART3SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL3_UART3SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_UART3SEL_PLL_DIV2](#a5685fa5b106626b8bd39e12591a8e6e4)、[NUMAKER_CLK_CLKSEL3_UART3SEL_Pos](#acf28a2139435cc793c0b712e8e8a0806)。
+
+<a id="r_ab7ba7823db4fb9e9573c5022993e658c"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART3SEL_LXT (0x2UL << NUMAKER_CLK_CLKSEL3_UART3SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_UART3SEL_LXT](#ab7ba7823db4fb9e9573c5022993e658c)、[NUMAKER_CLK_CLKSEL3_UART3SEL_Pos](#acf28a2139435cc793c0b712e8e8a0806)。
+
+<a id="r_abc297ff0ee39a512baccea1b84d31743"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART3SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL3_UART3SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_UART3SEL_HIRC](#abc297ff0ee39a512baccea1b84d31743)、[NUMAKER_CLK_CLKSEL3_UART3SEL_Pos](#acf28a2139435cc793c0b712e8e8a0806)。
+
+<a id="r_ad1bd01284da31bc01fd795e9008ba940"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART4SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL3_UART4SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_UART4SEL_HXT](#ad1bd01284da31bc01fd795e9008ba940)、[NUMAKER_CLK_CLKSEL3_UART4SEL_Pos](#a3b8ea6d3069dfc8d3727f0bb4cdf6600)。
+
+<a id="r_a4cde53577fb97204f462d44532a6a44c"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART4SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL3_UART4SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_UART4SEL_PLL_DIV2](#a4cde53577fb97204f462d44532a6a44c)、[NUMAKER_CLK_CLKSEL3_UART4SEL_Pos](#a3b8ea6d3069dfc8d3727f0bb4cdf6600)。
+
+<a id="r_a0668601d9c207300251ea1cb4d88af80"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART4SEL_LXT (0x2UL << NUMAKER_CLK_CLKSEL3_UART4SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_UART4SEL_LXT](#a0668601d9c207300251ea1cb4d88af80)、[NUMAKER_CLK_CLKSEL3_UART4SEL_Pos](#a3b8ea6d3069dfc8d3727f0bb4cdf6600)。
+
+<a id="r_a5caa47dd6f666aba29f1c1fbf2d39733"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART4SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL3_UART4SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_UART4SEL_HIRC](#a5caa47dd6f666aba29f1c1fbf2d39733)、[NUMAKER_CLK_CLKSEL3_UART4SEL_Pos](#a3b8ea6d3069dfc8d3727f0bb4cdf6600)。
+
+<a id="r_a3883f4f7ad84d8fccef42a0ae9c83fb5"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART5SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL3_UART5SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_UART5SEL_HXT](#a3883f4f7ad84d8fccef42a0ae9c83fb5)、[NUMAKER_CLK_CLKSEL3_UART5SEL_Pos](#aac88d611ffa6b1f45c123b1af12b0d6d)。
+
+<a id="r_a109f1c70fbd27a2b92abf64be1741447"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART5SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL3_UART5SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_UART5SEL_PLL_DIV2](#a109f1c70fbd27a2b92abf64be1741447)、[NUMAKER_CLK_CLKSEL3_UART5SEL_Pos](#aac88d611ffa6b1f45c123b1af12b0d6d)。
+
+<a id="r_a0c55bde547ef28bac6c322ccb530221a"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART5SEL_LXT (0x2UL << NUMAKER_CLK_CLKSEL3_UART5SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_UART5SEL_LXT](#a0c55bde547ef28bac6c322ccb530221a)、[NUMAKER_CLK_CLKSEL3_UART5SEL_Pos](#aac88d611ffa6b1f45c123b1af12b0d6d)。
+
+<a id="r_a9069b1ca1a84527ca21ef310cc7b2245"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART5SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL3_UART5SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL3_UART5SEL_HIRC](#a9069b1ca1a84527ca21ef310cc7b2245)、[NUMAKER_CLK_CLKSEL3_UART5SEL_Pos](#aac88d611ffa6b1f45c123b1af12b0d6d)。
+
+<a id="r_ac8514600296c9b7ecd74022cd9b7c874"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI4SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL4_SPI4SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL4_SPI4SEL_HXT](#ac8514600296c9b7ecd74022cd9b7c874)、[NUMAKER_CLK_CLKSEL4_SPI4SEL_Pos](#a09bd54b91ecd5c6729d6dd2270d1f538)。
+
+<a id="r_ab2938006eaeb574908b87e912aadddc3"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI4SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL4_SPI4SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL4_SPI4SEL_PLL_DIV2](#ab2938006eaeb574908b87e912aadddc3)、[NUMAKER_CLK_CLKSEL4_SPI4SEL_Pos](#a09bd54b91ecd5c6729d6dd2270d1f538)。
+
+<a id="r_acb56dc94227bcbee031f1431c9683d1a"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI4SEL_PCLK1 (0x2UL << NUMAKER_CLK_CLKSEL4_SPI4SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL4_SPI4SEL_PCLK1](#acb56dc94227bcbee031f1431c9683d1a)、[NUMAKER_CLK_CLKSEL4_SPI4SEL_Pos](#a09bd54b91ecd5c6729d6dd2270d1f538)。
+
+<a id="r_a93a489bf85281241c2d0a287ad57fb79"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI4SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL4_SPI4SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL4_SPI4SEL_HIRC](#a93a489bf85281241c2d0a287ad57fb79)、[NUMAKER_CLK_CLKSEL4_SPI4SEL_Pos](#a09bd54b91ecd5c6729d6dd2270d1f538)。
+
+<a id="r_a69728a9cc0cdad59f4c835881bcb7a62"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI5SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL4_SPI5SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL4_SPI5SEL_HXT](#a69728a9cc0cdad59f4c835881bcb7a62)、[NUMAKER_CLK_CLKSEL4_SPI5SEL_Pos](#a7f314d8e78add81c86d07bf9bbf3d4c4)。
+
+<a id="r_a4551497e4f38af0723198c4e037bc982"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI5SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL4_SPI5SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL4_SPI5SEL_PLL_DIV2](#a4551497e4f38af0723198c4e037bc982)、[NUMAKER_CLK_CLKSEL4_SPI5SEL_Pos](#a7f314d8e78add81c86d07bf9bbf3d4c4)。
+
+<a id="r_a24e622934d9093ef32b4b5babbcb7a18"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI5SEL_PCLK0 (0x2UL << NUMAKER_CLK_CLKSEL4_SPI5SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL4_SPI5SEL_PCLK0](#a24e622934d9093ef32b4b5babbcb7a18)、[NUMAKER_CLK_CLKSEL4_SPI5SEL_Pos](#a7f314d8e78add81c86d07bf9bbf3d4c4)。
+
+<a id="r_aec58f9c54807426347ead63e3277f15b"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI5SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL4_SPI5SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL4_SPI5SEL_HIRC](#aec58f9c54807426347ead63e3277f15b)、[NUMAKER_CLK_CLKSEL4_SPI5SEL_Pos](#a7f314d8e78add81c86d07bf9bbf3d4c4)。
+
+<a id="r_a6f02c1ae7c7b709df8af90b8b32ebc73"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI6SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL4_SPI6SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL4_SPI6SEL_HXT](#a6f02c1ae7c7b709df8af90b8b32ebc73)、[NUMAKER_CLK_CLKSEL4_SPI6SEL_Pos](#ac2232b05fd8986cf75aaba710c42d257)。
+
+<a id="r_adc13b50c748385eb7d681d17dc11b2cc"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI6SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL4_SPI6SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL4_SPI6SEL_PLL_DIV2](#adc13b50c748385eb7d681d17dc11b2cc)、[NUMAKER_CLK_CLKSEL4_SPI6SEL_Pos](#ac2232b05fd8986cf75aaba710c42d257)。
+
+<a id="r_a4436fbda0d2fde16132e7f9c5b70ccfe"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI6SEL_PCLK1 (0x2UL << NUMAKER_CLK_CLKSEL4_SPI6SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL4_SPI6SEL_PCLK1](#a4436fbda0d2fde16132e7f9c5b70ccfe)、[NUMAKER_CLK_CLKSEL4_SPI6SEL_Pos](#ac2232b05fd8986cf75aaba710c42d257)。
+
+<a id="r_a86134de3e0dd4a7f52f9952ec9cc9a54"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI6SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL4_SPI6SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL4_SPI6SEL_HIRC](#a86134de3e0dd4a7f52f9952ec9cc9a54)、[NUMAKER_CLK_CLKSEL4_SPI6SEL_Pos](#ac2232b05fd8986cf75aaba710c42d257)。
+
+<a id="r_a49037df2c9b78d760a2eebf420fe6c8b"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI7SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL4_SPI7SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL4_SPI7SEL_HXT](#a49037df2c9b78d760a2eebf420fe6c8b)、[NUMAKER_CLK_CLKSEL4_SPI7SEL_Pos](#afb315f157e0a04e14fd5962844c099e4)。
+
+<a id="r_ab532a55008e2e83147359909cf361107"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI7SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL4_SPI7SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL4_SPI7SEL_PLL_DIV2](#ab532a55008e2e83147359909cf361107)、[NUMAKER_CLK_CLKSEL4_SPI7SEL_Pos](#afb315f157e0a04e14fd5962844c099e4)。
+
+<a id="r_a53a4e1dee4e38b93e38a030466edf424"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI7SEL_PCLK0 (0x2UL << NUMAKER_CLK_CLKSEL4_SPI7SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL4_SPI7SEL_PCLK0](#a53a4e1dee4e38b93e38a030466edf424)、[NUMAKER_CLK_CLKSEL4_SPI7SEL_Pos](#afb315f157e0a04e14fd5962844c099e4)。
+
+<a id="r_aadde00be68631599399d380b29c7857f"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI7SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL4_SPI7SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL4_SPI7SEL_HIRC](#aadde00be68631599399d380b29c7857f)、[NUMAKER_CLK_CLKSEL4_SPI7SEL_Pos](#afb315f157e0a04e14fd5962844c099e4)。
+
+<a id="r_a427cb59c0f6dcb39cf08797c59c59256"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI8SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL4_SPI8SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL4_SPI8SEL_HXT](#a427cb59c0f6dcb39cf08797c59c59256)、[NUMAKER_CLK_CLKSEL4_SPI8SEL_Pos](#a4781a6db591eb9488391fc9ee8711041)。
+
+<a id="r_a46202f0420f33fe19aad2bd045d27585"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI8SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL4_SPI8SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL4_SPI8SEL_PLL_DIV2](#a46202f0420f33fe19aad2bd045d27585)、[NUMAKER_CLK_CLKSEL4_SPI8SEL_Pos](#a4781a6db591eb9488391fc9ee8711041)。
+
+<a id="r_a8982cb3b8f566d0ed6e10382bd6d68e6"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI8SEL_PCLK1 (0x2UL << NUMAKER_CLK_CLKSEL4_SPI8SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL4_SPI8SEL_PCLK1](#a8982cb3b8f566d0ed6e10382bd6d68e6)、[NUMAKER_CLK_CLKSEL4_SPI8SEL_Pos](#a4781a6db591eb9488391fc9ee8711041)。
+
+<a id="r_accbf0d3921f7911520a406fbe1daa61a"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI8SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL4_SPI8SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL4_SPI8SEL_HIRC](#accbf0d3921f7911520a406fbe1daa61a)、[NUMAKER_CLK_CLKSEL4_SPI8SEL_Pos](#a4781a6db591eb9488391fc9ee8711041)。
+
+<a id="r_a31eae63ea888b7b147036a232e4465f8"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI9SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL4_SPI9SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL4_SPI9SEL_HXT](#a31eae63ea888b7b147036a232e4465f8)、[NUMAKER_CLK_CLKSEL4_SPI9SEL_Pos](#a140802fd7bd3257bc125d6a32ad3a1b8)。
+
+<a id="r_a5e568453ae38a4a3f1437189006d80e0"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI9SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL4_SPI9SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL4_SPI9SEL_PLL_DIV2](#a5e568453ae38a4a3f1437189006d80e0)、[NUMAKER_CLK_CLKSEL4_SPI9SEL_Pos](#a140802fd7bd3257bc125d6a32ad3a1b8)。
+
+<a id="r_a0e98bd4c3e1f06670e350b7d30a3edb7"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI9SEL_PCLK0 (0x2UL << NUMAKER_CLK_CLKSEL4_SPI9SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL4_SPI9SEL_PCLK0](#a0e98bd4c3e1f06670e350b7d30a3edb7)、[NUMAKER_CLK_CLKSEL4_SPI9SEL_Pos](#a140802fd7bd3257bc125d6a32ad3a1b8)。
+
+<a id="r_a8e8843f0cbd75f81bf4eaebe696f67bf"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI9SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL4_SPI9SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL4_SPI9SEL_HIRC](#a8e8843f0cbd75f81bf4eaebe696f67bf)、[NUMAKER_CLK_CLKSEL4_SPI9SEL_Pos](#a140802fd7bd3257bc125d6a32ad3a1b8)。
+
+<a id="r_ae4bc5a2e0d464d59fcd67f1b8768e9a0"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI10SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL4_SPI10SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL4_SPI10SEL_HXT](#ae4bc5a2e0d464d59fcd67f1b8768e9a0)、[NUMAKER_CLK_CLKSEL4_SPI10SEL_Pos](#a7a92cd1f644926d955409b49b785c738)。
+
+<a id="r_a6830b1a49c4937b7f8a4ab5771e915b4"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI10SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL4_SPI10SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL4_SPI10SEL_PLL_DIV2](#a6830b1a49c4937b7f8a4ab5771e915b4)、[NUMAKER_CLK_CLKSEL4_SPI10SEL_Pos](#a7a92cd1f644926d955409b49b785c738)。
+
+<a id="r_a755c1325d17f55e0de754c687dbbc322"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI10SEL_PCLK1 (0x2UL << NUMAKER_CLK_CLKSEL4_SPI10SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL4_SPI10SEL_PCLK1](#a755c1325d17f55e0de754c687dbbc322)、[NUMAKER_CLK_CLKSEL4_SPI10SEL_Pos](#a7a92cd1f644926d955409b49b785c738)。
+
+<a id="r_a13fdfeb9c81a6794461c1e3e022780a0"></a>
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI10SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL4_SPI10SEL_Pos)
+```
+
+相关声明：[NUMAKER_CLK_CLKSEL4_SPI10SEL_HIRC](#a13fdfeb9c81a6794461c1e3e022780a0)、[NUMAKER_CLK_CLKSEL4_SPI10SEL_Pos](#a7a92cd1f644926d955409b49b785c738)。
+
+<a id="r_a7791710203e4af03f6f76b909c7b467c"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV0_HCLK(x)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV0_HCLK](#a7791710203e4af03f6f76b909c7b467c)。
+
+<a id="r_a6ea0c7b58fdbfff2d813f7859a3ac1cd"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV0_USB(x)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV0_USB](#a6ea0c7b58fdbfff2d813f7859a3ac1cd)。
+
+<a id="r_a76b9c597c2cc89d992f2b705a1a9ec18"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV0_SDH0(x)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV0_SDH0](#a76b9c597c2cc89d992f2b705a1a9ec18)。
+
+<a id="r_a3c7cfbdf43433e075643b8e5f7d8dc5f"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV0_UART0(x)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV0_UART0](#a3c7cfbdf43433e075643b8e5f7d8dc5f)。
+
+<a id="r_aa44610811c5e62ed93cf91dc7925eb10"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV0_UART1(x)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV0_UART1](#aa44610811c5e62ed93cf91dc7925eb10)。
+
+<a id="r_a84bca9b50b18d2f260f637d7e58cb369"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV0_EADC0(x)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV0_EADC0](#a84bca9b50b18d2f260f637d7e58cb369)。
+
+<a id="r_aa32657011255cdbb44af8ebf41d38657"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV1_SC0(x)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV1_SC0](#aa32657011255cdbb44af8ebf41d38657)。
+
+<a id="r_ad9b81e35b2cafac307babbcf455244b0"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV1_SC1(x)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV1_SC1](#ad9b81e35b2cafac307babbcf455244b0)。
+
+<a id="r_a038a62342904de71e466bef93b8efe27"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV1_SC2(x)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV1_SC2](#a038a62342904de71e466bef93b8efe27)。
+
+<a id="r_ab8b2208d1408ce0cd72763565a63092c"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV1_PSIO(x)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV1_PSIO](#ab8b2208d1408ce0cd72763565a63092c)。
+
+<a id="r_ad25d8e0adda00ccd42aa4debbd9a9042"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV2_I2S0(x)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV2_I2S0](#ad25d8e0adda00ccd42aa4debbd9a9042)。
+
+<a id="r_a51148f92b0b67a16fb270fd551ea89aa"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV2_I2S1(x)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV2_I2S1](#a51148f92b0b67a16fb270fd551ea89aa)。
+
+<a id="r_ab03c15f49e0ac48901c8e862b67ad91f"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV2_KPI(x)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV2_KPI](#ab03c15f49e0ac48901c8e862b67ad91f)。
+
+<a id="r_aacfc89cba45ef5942a7316828ad8c670"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV2_EADC1(x)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV2_EADC1](#aacfc89cba45ef5942a7316828ad8c670)。
+
+<a id="r_ac341868a272b7f0bfd246f5a665b4ffe"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV3_VSENSE(x)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV3_VSENSE](#ac341868a272b7f0bfd246f5a665b4ffe)。
+
+<a id="r_afb15d4e0ae420f44430b07f2453dbcc5"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV3_EMAC0(x)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV3_EMAC0](#afb15d4e0ae420f44430b07f2453dbcc5)。
+
+<a id="r_adb949fa1266754742211dab64b971a09"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV3_SDH1(x)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV3_SDH1](#adb949fa1266754742211dab64b971a09)。
+
+<a id="r_a5a548de5d860e906f139858512608955"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV4_UART2(x)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV4_UART2](#a5a548de5d860e906f139858512608955)。
+
+<a id="r_aa10601c99a3fc178163dfa652bd2d934"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV4_UART3(x)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV4_UART3](#aa10601c99a3fc178163dfa652bd2d934)。
+
+<a id="r_a2aaecc74fc40ead21b8ad38bf14fcd81"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV4_UART4(x)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV4_UART4](#a2aaecc74fc40ead21b8ad38bf14fcd81)。
+
+<a id="r_a9444b25128c546730f2f95651d6a6d78"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV4_UART5(x)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV4_UART5](#a9444b25128c546730f2f95651d6a6d78)。
+
+<a id="r_a12b519bee17127c49d6aece4dcf9360a"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV4_UART6(x)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV4_UART6](#a12b519bee17127c49d6aece4dcf9360a)。
+
+<a id="r_acadcdbe15918ca5478c17f30d417aa4a"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV4_UART7(x)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV4_UART7](#acadcdbe15918ca5478c17f30d417aa4a)。
+
+<a id="r_a225dfb2e0f8ce7ae299746ee4242e22f"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV5_CANFD0(x)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV5_CANFD0](#a225dfb2e0f8ce7ae299746ee4242e22f)。
+
+<a id="r_a67f5c63a1322683d74d56ee68c193cb4"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV5_CANFD1(x)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV5_CANFD1](#a67f5c63a1322683d74d56ee68c193cb4)。
+
+<a id="r_a5b10f7af05c3b67935a6f6eaa2aa6401"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV5_CANFD2(x)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV5_CANFD2](#a5b10f7af05c3b67935a6f6eaa2aa6401)。
+
+<a id="r_ab857a9380f45415ee55b36cb57f7a835"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV5_CANFD3(x)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV5_CANFD3](#ab857a9380f45415ee55b36cb57f7a835)。
+
+<a id="r_ae0ec95d4d59e16f2f2522ac750c06609"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV5_UART8(x)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV5_UART8](#ae0ec95d4d59e16f2f2522ac750c06609)。
+
+<a id="r_a907216283187fc94ff9e36c7300f615f"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV5_UART9(x)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV5_UART9](#a907216283187fc94ff9e36c7300f615f)。
+
+<a id="r_a1d34513b627cf8077fc0b9eb27d7d86a"></a>
+
+```c
+#define NUMAKER_CLK_CLKDIV5_EADC2(x)
+```
+
+相关声明：[NUMAKER_CLK_CLKDIV5_EADC2](#a1d34513b627cf8077fc0b9eb27d7d86a)。
+
+<a id="r_a4cd3514d3e28ef6e766c5f1f82282440"></a>
+
+```c
+#define NUMAKER_CLK_PCLKDIV_PCLK0DIV1 (0x0UL << NUMAKER_CLK_PCLKDIV_APB0DIV_Pos)
+```
+
+相关声明：[NUMAKER_CLK_PCLKDIV_PCLK0DIV1](#a4cd3514d3e28ef6e766c5f1f82282440)、[NUMAKER_CLK_PCLKDIV_APB0DIV_Pos](#a254f625e23596b631a3b9ee7e2d23d7c)。
+
+<a id="r_afff3e78da346a4cfc396106aea619a84"></a>
+
+```c
+#define NUMAKER_CLK_PCLKDIV_PCLK0DIV2 (0x1UL << NUMAKER_CLK_PCLKDIV_APB0DIV_Pos)
+```
+
+相关声明：[NUMAKER_CLK_PCLKDIV_PCLK0DIV2](#afff3e78da346a4cfc396106aea619a84)、[NUMAKER_CLK_PCLKDIV_APB0DIV_Pos](#a254f625e23596b631a3b9ee7e2d23d7c)。
+
+<a id="r_aca64a8e2c1414cc2448c51ae7e94db02"></a>
+
+```c
+#define NUMAKER_CLK_PCLKDIV_PCLK0DIV4 (0x2UL << NUMAKER_CLK_PCLKDIV_APB0DIV_Pos)
+```
+
+相关声明：[NUMAKER_CLK_PCLKDIV_PCLK0DIV4](#aca64a8e2c1414cc2448c51ae7e94db02)、[NUMAKER_CLK_PCLKDIV_APB0DIV_Pos](#a254f625e23596b631a3b9ee7e2d23d7c)。
+
+<a id="r_af12f5adad50c241bb35e5846e3ddcc94"></a>
+
+```c
+#define NUMAKER_CLK_PCLKDIV_PCLK0DIV8 (0x3UL << NUMAKER_CLK_PCLKDIV_APB0DIV_Pos)
+```
+
+相关声明：[NUMAKER_CLK_PCLKDIV_PCLK0DIV8](#af12f5adad50c241bb35e5846e3ddcc94)、[NUMAKER_CLK_PCLKDIV_APB0DIV_Pos](#a254f625e23596b631a3b9ee7e2d23d7c)。
+
+<a id="r_a067cb901b89bf0940ac01236cd6ee514"></a>
+
+```c
+#define NUMAKER_CLK_PCLKDIV_PCLK0DIV16 (0x4UL << NUMAKER_CLK_PCLKDIV_APB0DIV_Pos)
+```
+
+相关声明：[NUMAKER_CLK_PCLKDIV_PCLK0DIV16](#a067cb901b89bf0940ac01236cd6ee514)、[NUMAKER_CLK_PCLKDIV_APB0DIV_Pos](#a254f625e23596b631a3b9ee7e2d23d7c)。
+
+<a id="r_ab0a16daad92a2ffed7d37d8813053e5e"></a>
+
+```c
+#define NUMAKER_CLK_PCLKDIV_PCLK1DIV1 (0x0UL << NUMAKER_CLK_PCLKDIV_APB1DIV_Pos)
+```
+
+相关声明：[NUMAKER_CLK_PCLKDIV_PCLK1DIV1](#ab0a16daad92a2ffed7d37d8813053e5e)、[NUMAKER_CLK_PCLKDIV_APB1DIV_Pos](#ab1bcb755f780777114d690945f00cce6)。
+
+<a id="r_a19155e2c85834e6d67e884b8a541f98a"></a>
+
+```c
+#define NUMAKER_CLK_PCLKDIV_PCLK1DIV2 (0x1UL << NUMAKER_CLK_PCLKDIV_APB1DIV_Pos)
+```
+
+相关声明：[NUMAKER_CLK_PCLKDIV_PCLK1DIV2](#a19155e2c85834e6d67e884b8a541f98a)、[NUMAKER_CLK_PCLKDIV_APB1DIV_Pos](#ab1bcb755f780777114d690945f00cce6)。
+
+<a id="r_a657b489628d7d9cc801736b2da2087cc"></a>
+
+```c
+#define NUMAKER_CLK_PCLKDIV_PCLK1DIV4 (0x2UL << NUMAKER_CLK_PCLKDIV_APB1DIV_Pos)
+```
+
+相关声明：[NUMAKER_CLK_PCLKDIV_PCLK1DIV4](#a657b489628d7d9cc801736b2da2087cc)、[NUMAKER_CLK_PCLKDIV_APB1DIV_Pos](#ab1bcb755f780777114d690945f00cce6)。
+
+<a id="r_a4fca0206e3bbfc0c52f0fd43aa733fcb"></a>
+
+```c
+#define NUMAKER_CLK_PCLKDIV_PCLK1DIV8 (0x3UL << NUMAKER_CLK_PCLKDIV_APB1DIV_Pos)
+```
+
+相关声明：[NUMAKER_CLK_PCLKDIV_PCLK1DIV8](#a4fca0206e3bbfc0c52f0fd43aa733fcb)、[NUMAKER_CLK_PCLKDIV_APB1DIV_Pos](#ab1bcb755f780777114d690945f00cce6)。
+
+<a id="r_ac37e48036b1fcbd5f39acaf01316e840"></a>
+
+```c
+#define NUMAKER_CLK_PCLKDIV_PCLK1DIV16 (0x4UL << NUMAKER_CLK_PCLKDIV_APB1DIV_Pos)
+```
+
+相关声明：[NUMAKER_CLK_PCLKDIV_PCLK1DIV16](#ac37e48036b1fcbd5f39acaf01316e840)、[NUMAKER_CLK_PCLKDIV_APB1DIV_Pos](#ab1bcb755f780777114d690945f00cce6)。
+
+<a id="r_a91226a1fd31413d76529f104d209823c"></a>
+
+```c
+#define NUMAKER_CLK_PCLKDIV_APB0DIV_DIV1 (0x0UL << NUMAKER_CLK_PCLKDIV_APB0DIV_Pos)
+```
+
+相关声明：[NUMAKER_CLK_PCLKDIV_APB0DIV_DIV1](#a91226a1fd31413d76529f104d209823c)、[NUMAKER_CLK_PCLKDIV_APB0DIV_Pos](#a254f625e23596b631a3b9ee7e2d23d7c)。
+
+<a id="r_a084853a709e714db6f49d45d45342d37"></a>
+
+```c
+#define NUMAKER_CLK_PCLKDIV_APB0DIV_DIV2 (0x1UL << NUMAKER_CLK_PCLKDIV_APB0DIV_Pos)
+```
+
+相关声明：[NUMAKER_CLK_PCLKDIV_APB0DIV_DIV2](#a084853a709e714db6f49d45d45342d37)、[NUMAKER_CLK_PCLKDIV_APB0DIV_Pos](#a254f625e23596b631a3b9ee7e2d23d7c)。
+
+<a id="r_a87a3393828150a62072a81dd58d2b80f"></a>
+
+```c
+#define NUMAKER_CLK_PCLKDIV_APB0DIV_DIV4 (0x2UL << NUMAKER_CLK_PCLKDIV_APB0DIV_Pos)
+```
+
+相关声明：[NUMAKER_CLK_PCLKDIV_APB0DIV_DIV4](#a87a3393828150a62072a81dd58d2b80f)、[NUMAKER_CLK_PCLKDIV_APB0DIV_Pos](#a254f625e23596b631a3b9ee7e2d23d7c)。
+
+<a id="r_a43013dc7b87074e5f7606a1e1ac14bce"></a>
+
+```c
+#define NUMAKER_CLK_PCLKDIV_APB0DIV_DIV8 (0x3UL << NUMAKER_CLK_PCLKDIV_APB0DIV_Pos)
+```
+
+相关声明：[NUMAKER_CLK_PCLKDIV_APB0DIV_DIV8](#a43013dc7b87074e5f7606a1e1ac14bce)、[NUMAKER_CLK_PCLKDIV_APB0DIV_Pos](#a254f625e23596b631a3b9ee7e2d23d7c)。
+
+<a id="r_aac77daf4ae27aeab8c73177be5acdbe8"></a>
+
+```c
+#define NUMAKER_CLK_PCLKDIV_APB0DIV_DIV16 (0x4UL << NUMAKER_CLK_PCLKDIV_APB0DIV_Pos)
+```
+
+相关声明：[NUMAKER_CLK_PCLKDIV_APB0DIV_DIV16](#aac77daf4ae27aeab8c73177be5acdbe8)、[NUMAKER_CLK_PCLKDIV_APB0DIV_Pos](#a254f625e23596b631a3b9ee7e2d23d7c)。
+
+<a id="r_af5199c68008764c41a3ce9ba27ea24e9"></a>
+
+```c
+#define NUMAKER_CLK_PCLKDIV_APB1DIV_DIV1 (0x0UL << NUMAKER_CLK_PCLKDIV_APB1DIV_Pos)
+```
+
+相关声明：[NUMAKER_CLK_PCLKDIV_APB1DIV_DIV1](#af5199c68008764c41a3ce9ba27ea24e9)、[NUMAKER_CLK_PCLKDIV_APB1DIV_Pos](#ab1bcb755f780777114d690945f00cce6)。
+
+<a id="r_af6cb3de51e49729e92044287ed499105"></a>
+
+```c
+#define NUMAKER_CLK_PCLKDIV_APB1DIV_DIV2 (0x1UL << NUMAKER_CLK_PCLKDIV_APB1DIV_Pos)
+```
+
+相关声明：[NUMAKER_CLK_PCLKDIV_APB1DIV_DIV2](#af6cb3de51e49729e92044287ed499105)、[NUMAKER_CLK_PCLKDIV_APB1DIV_Pos](#ab1bcb755f780777114d690945f00cce6)。
+
+<a id="r_a8e63b55ca8e84958230453a54f3983b2"></a>
+
+```c
+#define NUMAKER_CLK_PCLKDIV_APB1DIV_DIV4 (0x2UL << NUMAKER_CLK_PCLKDIV_APB1DIV_Pos)
+```
+
+相关声明：[NUMAKER_CLK_PCLKDIV_APB1DIV_DIV4](#a8e63b55ca8e84958230453a54f3983b2)、[NUMAKER_CLK_PCLKDIV_APB1DIV_Pos](#ab1bcb755f780777114d690945f00cce6)。
+
+<a id="r_a8e59ceb6473e9a050af9efeeeb79c72a"></a>
+
+```c
+#define NUMAKER_CLK_PCLKDIV_APB1DIV_DIV8 (0x3UL << NUMAKER_CLK_PCLKDIV_APB1DIV_Pos)
+```
+
+相关声明：[NUMAKER_CLK_PCLKDIV_APB1DIV_DIV8](#a8e59ceb6473e9a050af9efeeeb79c72a)、[NUMAKER_CLK_PCLKDIV_APB1DIV_Pos](#ab1bcb755f780777114d690945f00cce6)。
+
+<a id="r_a8e7dec640447de9b571147cbe7fe6e26"></a>
+
+```c
+#define NUMAKER_CLK_PCLKDIV_APB1DIV_DIV16 (0x4UL << NUMAKER_CLK_PCLKDIV_APB1DIV_Pos)
+```
+
+相关声明：[NUMAKER_CLK_PCLKDIV_APB1DIV_DIV16](#a8e7dec640447de9b571147cbe7fe6e26)、[NUMAKER_CLK_PCLKDIV_APB1DIV_Pos](#ab1bcb755f780777114d690945f00cce6)。
+
+<a id="r_a6dd2c25defa8fa66e7e72aa111f1ee02"></a>
+
+```c
+#define NUMAKER_MODULE_NoMsk 0x0UL
+```
+
+相关声明：[NUMAKER_MODULE_NoMsk](#a6dd2c25defa8fa66e7e72aa111f1ee02)。
+
+<a id="r_a922f9d60a8929a9ea5139e1da86d5387"></a>
+
+```c
+#define NUMAKER_NA NUMAKER_MODULE_NoMsk
+```
+
+相关声明：[NUMAKER_NA](#a922f9d60a8929a9ea5139e1da86d5387)、[NUMAKER_MODULE_NoMsk](#a6dd2c25defa8fa66e7e72aa111f1ee02)。
+
+<a id="r_aafa8852333e620f24f98d98d27420788"></a>
+
+```c
+#define NUMAKER_MODULE_APBCLK_ENC(x)
+```
+
+相关声明：[NUMAKER_MODULE_APBCLK_ENC](#aafa8852333e620f24f98d98d27420788)。
+
+<a id="r_ad1fc2bf50be3ade92c4d51aceb460890"></a>
+
+```c
+#define NUMAKER_MODULE_CLKSEL_ENC(x)
+```
+
+相关声明：[NUMAKER_MODULE_CLKSEL_ENC](#ad1fc2bf50be3ade92c4d51aceb460890)。
+
+<a id="r_aa499dc56e839cf41404faa352c80a526"></a>
+
+```c
+#define NUMAKER_MODULE_CLKSEL_Msk_ENC(x)
+```
+
+相关声明：[NUMAKER_MODULE_CLKSEL_Msk_ENC](#aa499dc56e839cf41404faa352c80a526)。
+
+<a id="r_a649f7ee2853b623d1b9479cbb191b260"></a>
+
+```c
+#define NUMAKER_MODULE_CLKSEL_Pos_ENC(x)
+```
+
+相关声明：[NUMAKER_MODULE_CLKSEL_Pos_ENC](#a649f7ee2853b623d1b9479cbb191b260)。
+
+<a id="r_adc57f655a02127165185c3a6a5453541"></a>
+
+```c
+#define NUMAKER_MODULE_CLKDIV_ENC(x)
+```
+
+相关声明：[NUMAKER_MODULE_CLKDIV_ENC](#adc57f655a02127165185c3a6a5453541)。
+
+<a id="r_aa18f25c62b95c9b5691b23a8b3ce87a0"></a>
+
+```c
+#define NUMAKER_MODULE_CLKDIV_Msk_ENC(x)
+```
+
+相关声明：[NUMAKER_MODULE_CLKDIV_Msk_ENC](#aa18f25c62b95c9b5691b23a8b3ce87a0)。
+
+<a id="r_abbf6921f1302337ed1a46886e6517285"></a>
+
+```c
+#define NUMAKER_MODULE_CLKDIV_Pos_ENC(x)
+```
+
+相关声明：[NUMAKER_MODULE_CLKDIV_Pos_ENC](#abbf6921f1302337ed1a46886e6517285)。
+
+<a id="r_acdd40f56d4640d677c4001a6e9e35f63"></a>
+
+```c
+#define NUMAKER_MODULE_IP_EN_Pos_ENC(x)
+```
+
+相关声明：[NUMAKER_MODULE_IP_EN_Pos_ENC](#acdd40f56d4640d677c4001a6e9e35f63)。
+
+<a id="r_a81c0a35692befb3b0427efc7a1e2686e"></a>
+
+```c
+#define NUMAKER_PDMA0_MODULE
+```
+
+相关声明：[NUMAKER_PDMA0_MODULE](#a81c0a35692befb3b0427efc7a1e2686e)。
+
+<a id="r_a9e1a03d652040f0e3d9c0766bfdb2604"></a>
+
+```c
+#define NUMAKER_ISP_MODULE
+```
+
+相关声明：[NUMAKER_ISP_MODULE](#a9e1a03d652040f0e3d9c0766bfdb2604)。
+
+<a id="r_a4380f8998993e0ea2d85260fb9dd8200"></a>
+
+```c
+#define NUMAKER_EBI_MODULE
+```
+
+相关声明：[NUMAKER_EBI_MODULE](#a4380f8998993e0ea2d85260fb9dd8200)。
+
+<a id="r_a3e379c3d426c06b772e848633767d2e5"></a>
+
+```c
+#define NUMAKER_ST_MODULE
+```
+
+相关声明：[NUMAKER_ST_MODULE](#a3e379c3d426c06b772e848633767d2e5)。
+
+<a id="r_a982967caa2c7f9eac528120a94d10bf5"></a>
+
+```c
+#define NUMAKER_EMAC0_MODULE
+```
+
+相关声明：[NUMAKER_EMAC0_MODULE](#a982967caa2c7f9eac528120a94d10bf5)。
+
+<a id="r_aac1289976a442b2fedb1233b15982ae0"></a>
+
+```c
+#define NUMAKER_SDH0_MODULE
+```
+
+相关声明：[NUMAKER_SDH0_MODULE](#aac1289976a442b2fedb1233b15982ae0)。
+
+<a id="r_af7f021090417dc8ba8eac4b2674cf8b8"></a>
+
+```c
+#define NUMAKER_CRC_MODULE
+```
+
+相关声明：[NUMAKER_CRC_MODULE](#af7f021090417dc8ba8eac4b2674cf8b8)。
+
+<a id="r_acb6254a4cc244665d416934d3022128a"></a>
+
+```c
+#define NUMAKER_CCAP_MODULE
+```
+
+相关声明：[NUMAKER_CCAP_MODULE](#acb6254a4cc244665d416934d3022128a)。
+
+<a id="r_a05f1316adcadb329b721d688c122f765"></a>
+
+```c
+#define NUMAKER_SEN_MODULE
+```
+
+相关声明：[NUMAKER_SEN_MODULE](#a05f1316adcadb329b721d688c122f765)。
+
+<a id="r_a94ca074cf142aae599f5061e25a0390f"></a>
+
+```c
+#define NUMAKER_HSUSBD_MODULE
+```
+
+相关声明：[NUMAKER_HSUSBD_MODULE](#a94ca074cf142aae599f5061e25a0390f)。
+
+<a id="r_a6cd417a41929491e83bed7bab4319e34"></a>
+
+```c
+#define NUMAKER_HBI_MODULE
+```
+
+相关声明：[NUMAKER_HBI_MODULE](#a6cd417a41929491e83bed7bab4319e34)。
+
+<a id="r_a7a2da068169709e20c06f2962569bc46"></a>
+
+```c
+#define NUMAKER_CRPT_MODULE
+```
+
+相关声明：[NUMAKER_CRPT_MODULE](#a7a2da068169709e20c06f2962569bc46)。
+
+<a id="r_a3b983a5a538bbf7b2e6288beacfb5427"></a>
+
+```c
+#define NUMAKER_KS_MODULE
+```
+
+相关声明：[NUMAKER_KS_MODULE](#a3b983a5a538bbf7b2e6288beacfb5427)。
+
+<a id="r_a2aad906d9be605b1ed9877a203e01722"></a>
+
+```c
+#define NUMAKER_SPIM_MODULE
+```
+
+相关声明：[NUMAKER_SPIM_MODULE](#a2aad906d9be605b1ed9877a203e01722)。
+
+<a id="r_a5f0a8a97c7fa707043ff4f90837c218a"></a>
+
+```c
+#define NUMAKER_FMCIDLE_MODULE
+```
+
+相关声明：[NUMAKER_FMCIDLE_MODULE](#a5f0a8a97c7fa707043ff4f90837c218a)。
+
+<a id="r_a43b0b287abedfd2b9c78857bb0004be9"></a>
+
+```c
+#define NUMAKER_USBH_MODULE
+```
+
+相关声明：[NUMAKER_USBH_MODULE](#a43b0b287abedfd2b9c78857bb0004be9)。
+
+<a id="r_a5ee10e118573a4c747d9c0712e5adede"></a>
+
+```c
+#define NUMAKER_SDH1_MODULE
+```
+
+相关声明：[NUMAKER_SDH1_MODULE](#a5ee10e118573a4c747d9c0712e5adede)。
+
+<a id="r_a9bd6ce359c452c822a59a6f0da68c7d0"></a>
+
+```c
+#define NUMAKER_PDMA1_MODULE
+```
+
+相关声明：[NUMAKER_PDMA1_MODULE](#a9bd6ce359c452c822a59a6f0da68c7d0)。
+
+<a id="r_ab68674b62e1c8a26f80772a9add2fcf7"></a>
+
+```c
+#define NUMAKER_TRACE_MODULE
+```
+
+相关声明：[NUMAKER_TRACE_MODULE](#ab68674b62e1c8a26f80772a9add2fcf7)。
+
+<a id="r_a106a0eb0dac7825f2b6b05a0329c6a3a"></a>
+
+```c
+#define NUMAKER_GPA_MODULE
+```
+
+相关声明：[NUMAKER_GPA_MODULE](#a106a0eb0dac7825f2b6b05a0329c6a3a)。
+
+<a id="r_a922653d8eb98a7a175366566506834d6"></a>
+
+```c
+#define NUMAKER_GPB_MODULE
+```
+
+相关声明：[NUMAKER_GPB_MODULE](#a922653d8eb98a7a175366566506834d6)。
+
+<a id="r_a9daa2cdbc788c5e5f3e4cbe29169816f"></a>
+
+```c
+#define NUMAKER_GPC_MODULE
+```
+
+相关声明：[NUMAKER_GPC_MODULE](#a9daa2cdbc788c5e5f3e4cbe29169816f)。
+
+<a id="r_a277e860c7fdd493a496900c32b6085f7"></a>
+
+```c
+#define NUMAKER_GPD_MODULE
+```
+
+相关声明：[NUMAKER_GPD_MODULE](#a277e860c7fdd493a496900c32b6085f7)。
+
+<a id="r_a7a5abf84843eb843233e2f24323559f3"></a>
+
+```c
+#define NUMAKER_GPE_MODULE
+```
+
+相关声明：[NUMAKER_GPE_MODULE](#a7a5abf84843eb843233e2f24323559f3)。
+
+<a id="r_a19540c109f7a0e276ad7f7f52faf6c7e"></a>
+
+```c
+#define NUMAKER_GPF_MODULE
+```
+
+相关声明：[NUMAKER_GPF_MODULE](#a19540c109f7a0e276ad7f7f52faf6c7e)。
+
+<a id="r_ad377845a8b368f1b1b6d20f6629dcdd3"></a>
+
+```c
+#define NUMAKER_GPG_MODULE
+```
+
+相关声明：[NUMAKER_GPG_MODULE](#ad377845a8b368f1b1b6d20f6629dcdd3)。
+
+<a id="r_a74e2344ff20eec0e1ccbd137d75183fb"></a>
+
+```c
+#define NUMAKER_GPH_MODULE
+```
+
+相关声明：[NUMAKER_GPH_MODULE](#a74e2344ff20eec0e1ccbd137d75183fb)。
+
+<a id="r_aec648b50b3e87890e01766e735130d34"></a>
+
+```c
+#define NUMAKER_CANFD0_MODULE
+```
+
+相关声明：[NUMAKER_CANFD0_MODULE](#aec648b50b3e87890e01766e735130d34)。
+
+<a id="r_a4cf36800f445d6eab593a8838285d913"></a>
+
+```c
+#define NUMAKER_CANFD1_MODULE
+```
+
+相关声明：[NUMAKER_CANFD1_MODULE](#a4cf36800f445d6eab593a8838285d913)。
+
+<a id="r_a6385023e2b2d645f347a7d04f3686e65"></a>
+
+```c
+#define NUMAKER_CANFD2_MODULE
+```
+
+相关声明：[NUMAKER_CANFD2_MODULE](#a6385023e2b2d645f347a7d04f3686e65)。
+
+<a id="r_af956a53c2db2138d4cc1625d48f065c5"></a>
+
+```c
+#define NUMAKER_CANFD3_MODULE
+```
+
+相关声明：[NUMAKER_CANFD3_MODULE](#af956a53c2db2138d4cc1625d48f065c5)。
+
+<a id="r_a8fd7ed7ba36e7293edcd9f0fe511f5d2"></a>
+
+```c
+#define NUMAKER_GPI_MODULE
+```
+
+相关声明：[NUMAKER_GPI_MODULE](#a8fd7ed7ba36e7293edcd9f0fe511f5d2)。
+
+<a id="r_a67adfb2ff0a39fd0615a9a3fb562f2bc"></a>
+
+```c
+#define NUMAKER_GPJ_MODULE
+```
+
+相关声明：[NUMAKER_GPJ_MODULE](#a67adfb2ff0a39fd0615a9a3fb562f2bc)。
+
+<a id="r_a63a4d8cb621e8c4ee32de0276c36085e"></a>
+
+```c
+#define NUMAKER_BMC_MODULE
+```
+
+相关声明：[NUMAKER_BMC_MODULE](#a63a4d8cb621e8c4ee32de0276c36085e)。
+
+<a id="r_a963952cad9b6b670e736875be75328e2"></a>
+
+```c
+#define NUMAKER_WDT_MODULE
+```
+
+相关声明：[NUMAKER_WDT_MODULE](#a963952cad9b6b670e736875be75328e2)。
+
+<a id="r_a531cdddd54f1c2a56d603b9135348e0f"></a>
+
+```c
+#define NUMAKER_WWDT_MODULE
+```
+
+相关声明：[NUMAKER_WWDT_MODULE](#a531cdddd54f1c2a56d603b9135348e0f)。
+
+<a id="r_a6216a664ac302a57a0b632754c3fce5f"></a>
+
+```c
+#define NUMAKER_RTC_MODULE
+```
+
+相关声明：[NUMAKER_RTC_MODULE](#a6216a664ac302a57a0b632754c3fce5f)。
+
+<a id="r_adaec43e184ed7f3c34f66b4e98041f62"></a>
+
+```c
+#define NUMAKER_TMR0_MODULE
+```
+
+相关声明：[NUMAKER_TMR0_MODULE](#adaec43e184ed7f3c34f66b4e98041f62)。
+
+<a id="r_a50c780a3f2c07cc2dfca1e647e83782d"></a>
+
+```c
+#define NUMAKER_TMR1_MODULE
+```
+
+相关声明：[NUMAKER_TMR1_MODULE](#a50c780a3f2c07cc2dfca1e647e83782d)。
+
+<a id="r_a7a60853a52958a5c8a78e383f378f579"></a>
+
+```c
+#define NUMAKER_TMR2_MODULE
+```
+
+相关声明：[NUMAKER_TMR2_MODULE](#a7a60853a52958a5c8a78e383f378f579)。
+
+<a id="r_a42fd788548168d2b519f5d49d2eead47"></a>
+
+```c
+#define NUMAKER_TMR3_MODULE
+```
+
+相关声明：[NUMAKER_TMR3_MODULE](#a42fd788548168d2b519f5d49d2eead47)。
+
+<a id="r_a913b0eed144c8d228a461dec3f0b49e6"></a>
+
+```c
+#define NUMAKER_CLKO_MODULE
+```
+
+相关声明：[NUMAKER_CLKO_MODULE](#a913b0eed144c8d228a461dec3f0b49e6)。
+
+<a id="r_abe18bfc9e64be82d3734d80a69e2541c"></a>
+
+```c
+#define NUMAKER_ACMP01_MODULE
+```
+
+相关声明：[NUMAKER_ACMP01_MODULE](#abe18bfc9e64be82d3734d80a69e2541c)。
+
+<a id="r_a8241dce3f2329ef3561277656bd68e7f"></a>
+
+```c
+#define NUMAKER_I2C0_MODULE
+```
+
+相关声明：[NUMAKER_I2C0_MODULE](#a8241dce3f2329ef3561277656bd68e7f)。
+
+<a id="r_a08413ee5eed011e452f7352a276b45af"></a>
+
+```c
+#define NUMAKER_I2C1_MODULE
+```
+
+相关声明：[NUMAKER_I2C1_MODULE](#a08413ee5eed011e452f7352a276b45af)。
+
+<a id="r_a211a7c416249dad417b5971a4c8526fe"></a>
+
+```c
+#define NUMAKER_I2C2_MODULE
+```
+
+相关声明：[NUMAKER_I2C2_MODULE](#a211a7c416249dad417b5971a4c8526fe)。
+
+<a id="r_a0660bb6481a262632fdfd08f4c65c1db"></a>
+
+```c
+#define NUMAKER_I2C3_MODULE
+```
+
+相关声明：[NUMAKER_I2C3_MODULE](#a0660bb6481a262632fdfd08f4c65c1db)。
+
+<a id="r_a6dad02cb850ad26c2afde2291d669808"></a>
+
+```c
+#define NUMAKER_QSPI0_MODULE
+```
+
+相关声明：[NUMAKER_QSPI0_MODULE](#a6dad02cb850ad26c2afde2291d669808)。
+
+<a id="r_adaa689295a31e5b259a7c05b6611a125"></a>
+
+```c
+#define NUMAKER_SPI0_MODULE
+```
+
+相关声明：[NUMAKER_SPI0_MODULE](#adaa689295a31e5b259a7c05b6611a125)。
+
+<a id="r_a144be66983b8b45995a7b037681477e7"></a>
+
+```c
+#define NUMAKER_SPI1_MODULE
+```
+
+相关声明：[NUMAKER_SPI1_MODULE](#a144be66983b8b45995a7b037681477e7)。
+
+<a id="r_a227a44ce55b040227bfe3233cfd63467"></a>
+
+```c
+#define NUMAKER_SPI2_MODULE
+```
+
+相关声明：[NUMAKER_SPI2_MODULE](#a227a44ce55b040227bfe3233cfd63467)。
+
+<a id="r_aaf0220a2af6dd7368761bf753ae7b73e"></a>
+
+```c
+#define NUMAKER_UART0_MODULE
+```
+
+相关声明：[NUMAKER_UART0_MODULE](#aaf0220a2af6dd7368761bf753ae7b73e)。
+
+<a id="r_a38d069ddfd9912c38c42a8f7e3ead763"></a>
+
+```c
+#define NUMAKER_UART1_MODULE
+```
+
+相关声明：[NUMAKER_UART1_MODULE](#a38d069ddfd9912c38c42a8f7e3ead763)。
+
+<a id="r_aa6dbc85be07f392f38a88bc074f11046"></a>
+
+```c
+#define NUMAKER_UART2_MODULE
+```
+
+相关声明：[NUMAKER_UART2_MODULE](#aa6dbc85be07f392f38a88bc074f11046)。
+
+<a id="r_a98c5368b7868f6bc68e09df7f479be73"></a>
+
+```c
+#define NUMAKER_UART3_MODULE
+```
+
+相关声明：[NUMAKER_UART3_MODULE](#a98c5368b7868f6bc68e09df7f479be73)。
+
+<a id="r_a0045544d52c292c13edb09e90f4b16c8"></a>
+
+```c
+#define NUMAKER_UART4_MODULE
+```
+
+相关声明：[NUMAKER_UART4_MODULE](#a0045544d52c292c13edb09e90f4b16c8)。
+
+<a id="r_a0fdf72d7961da9c046d7d4bb9e19cf1f"></a>
+
+```c
+#define NUMAKER_UART5_MODULE
+```
+
+相关声明：[NUMAKER_UART5_MODULE](#a0fdf72d7961da9c046d7d4bb9e19cf1f)。
+
+<a id="r_aa4081c973118f02b92299ea8d775a1e5"></a>
+
+```c
+#define NUMAKER_UART6_MODULE
+```
+
+相关声明：[NUMAKER_UART6_MODULE](#aa4081c973118f02b92299ea8d775a1e5)。
+
+<a id="r_a86caba0b690236e26e440bc39e4bf4c9"></a>
+
+```c
+#define NUMAKER_UART7_MODULE
+```
+
+相关声明：[NUMAKER_UART7_MODULE](#a86caba0b690236e26e440bc39e4bf4c9)。
+
+<a id="r_ac504259898b6070a12ca5a8eed921e17"></a>
+
+```c
+#define NUMAKER_OTG_MODULE
+```
+
+相关声明：[NUMAKER_OTG_MODULE](#ac504259898b6070a12ca5a8eed921e17)。
+
+<a id="r_aa751a53c366beda2ac9b3f5169cd4ace"></a>
+
+```c
+#define NUMAKER_USBD_MODULE
+```
+
+相关声明：[NUMAKER_USBD_MODULE](#aa751a53c366beda2ac9b3f5169cd4ace)。
+
+<a id="r_a46a5cffa974b2f1425d2ced8e678c3e2"></a>
+
+```c
+#define NUMAKER_EADC0_MODULE
+```
+
+相关声明：[NUMAKER_EADC0_MODULE](#a46a5cffa974b2f1425d2ced8e678c3e2)。
+
+<a id="r_a93460f284274121252ffaf3ca48510e5"></a>
+
+```c
+#define NUMAKER_I2S0_MODULE
+```
+
+相关声明：[NUMAKER_I2S0_MODULE](#a93460f284274121252ffaf3ca48510e5)。
+
+<a id="r_a4a0086f1b2bed74585826d07d8fdc971"></a>
+
+```c
+#define NUMAKER_HSOTG_MODULE
+```
+
+相关声明：[NUMAKER_HSOTG_MODULE](#a4a0086f1b2bed74585826d07d8fdc971)。
+
+<a id="r_ade881cb3ef71ab90bc655c5775f4b5f2"></a>
+
+```c
+#define NUMAKER_SC0_MODULE
+```
+
+相关声明：[NUMAKER_SC0_MODULE](#ade881cb3ef71ab90bc655c5775f4b5f2)。
+
+<a id="r_a183b62952b0a65cd91e9f8f43bbc85d5"></a>
+
+```c
+#define NUMAKER_SC1_MODULE
+```
+
+相关声明：[NUMAKER_SC1_MODULE](#a183b62952b0a65cd91e9f8f43bbc85d5)。
+
+<a id="r_aac46396a96d07b982ea79848109c8df5"></a>
+
+```c
+#define NUMAKER_SC2_MODULE
+```
+
+相关声明：[NUMAKER_SC2_MODULE](#aac46396a96d07b982ea79848109c8df5)。
+
+<a id="r_a39ddacc5770039457425f67567bfbf0b"></a>
+
+```c
+#define NUMAKER_I2C4_MODULE
+```
+
+相关声明：[NUMAKER_I2C4_MODULE](#a39ddacc5770039457425f67567bfbf0b)。
+
+<a id="r_a38cb7b22e41b081d55f594b4b5812fc4"></a>
+
+```c
+#define NUMAKER_QSPI1_MODULE
+```
+
+相关声明：[NUMAKER_QSPI1_MODULE](#a38cb7b22e41b081d55f594b4b5812fc4)。
+
+<a id="r_aa251c8b6a225d24b4e3f20dd22498b79"></a>
+
+```c
+#define NUMAKER_SPI3_MODULE
+```
+
+相关声明：[NUMAKER_SPI3_MODULE](#aa251c8b6a225d24b4e3f20dd22498b79)。
+
+<a id="r_a56a76adf61a24f812f18e13534405106"></a>
+
+```c
+#define NUMAKER_SPI4_MODULE
+```
+
+相关声明：[NUMAKER_SPI4_MODULE](#a56a76adf61a24f812f18e13534405106)。
+
+<a id="r_a96da4a8ec09af3cbf8ab34e1bccb7819"></a>
+
+```c
+#define NUMAKER_USCI0_MODULE
+```
+
+相关声明：[NUMAKER_USCI0_MODULE](#a96da4a8ec09af3cbf8ab34e1bccb7819)。
+
+<a id="r_aa1455b010fdbd2f07815cdeeaf49907a"></a>
+
+```c
+#define NUMAKER_PSIO_MODULE
+```
+
+相关声明：[NUMAKER_PSIO_MODULE](#aa1455b010fdbd2f07815cdeeaf49907a)。
+
+<a id="r_a9a5f7dc5dfa877dd92f3952ce7315ba8"></a>
+
+```c
+#define NUMAKER_DAC_MODULE
+```
+
+相关声明：[NUMAKER_DAC_MODULE](#a9a5f7dc5dfa877dd92f3952ce7315ba8)。
+
+<a id="r_a6f1eccd8218399311b9854c7b84185ea"></a>
+
+```c
+#define NUMAKER_ECAP2_MODULE
+```
+
+相关声明：[NUMAKER_ECAP2_MODULE](#a6f1eccd8218399311b9854c7b84185ea)。
+
+<a id="r_a2cd99780f8545b94483180123aedb756"></a>
+
+```c
+#define NUMAKER_ECAP3_MODULE
+```
+
+相关声明：[NUMAKER_ECAP3_MODULE](#a2cd99780f8545b94483180123aedb756)。
+
+<a id="r_ab42a9a75250104163dab040657beb440"></a>
+
+```c
+#define NUMAKER_EPWM0_MODULE
+```
+
+相关声明：[NUMAKER_EPWM0_MODULE](#ab42a9a75250104163dab040657beb440)。
+
+<a id="r_a686fa9f9995ef124c47ce20de165b74d"></a>
+
+```c
+#define NUMAKER_EPWM1_MODULE
+```
+
+相关声明：[NUMAKER_EPWM1_MODULE](#a686fa9f9995ef124c47ce20de165b74d)。
+
+<a id="r_a357c036321109c1962abd936c52bc241"></a>
+
+```c
+#define NUMAKER_BPWM0_MODULE
+```
+
+相关声明：[NUMAKER_BPWM0_MODULE](#a357c036321109c1962abd936c52bc241)。
+
+<a id="r_a0e2a179864ee42ef88d014d068712aee"></a>
+
+```c
+#define NUMAKER_BPWM1_MODULE
+```
+
+相关声明：[NUMAKER_BPWM1_MODULE](#a0e2a179864ee42ef88d014d068712aee)。
+
+<a id="r_a4fe52c877b603a575a230d3de64d2f45"></a>
+
+```c
+#define NUMAKER_EQEI0_MODULE
+```
+
+相关声明：[NUMAKER_EQEI0_MODULE](#a4fe52c877b603a575a230d3de64d2f45)。
+
+<a id="r_a446b5934e374a30377594e63423018b1"></a>
+
+```c
+#define NUMAKER_EQEI1_MODULE
+```
+
+相关声明：[NUMAKER_EQEI1_MODULE](#a446b5934e374a30377594e63423018b1)。
+
+<a id="r_a062009660b6134f8b288eff5a498566c"></a>
+
+```c
+#define NUMAKER_EQEI2_MODULE
+```
+
+相关声明：[NUMAKER_EQEI2_MODULE](#a062009660b6134f8b288eff5a498566c)。
+
+<a id="r_ab2f4ab88554aee61bdd944ea3d4edd3f"></a>
+
+```c
+#define NUMAKER_EQEI3_MODULE
+```
+
+相关声明：[NUMAKER_EQEI3_MODULE](#ab2f4ab88554aee61bdd944ea3d4edd3f)。
+
+<a id="r_a7b544eadd5c042e91ea89541fd9431f6"></a>
+
+```c
+#define NUMAKER_TRNG_MODULE
+```
+
+相关声明：[NUMAKER_TRNG_MODULE](#a7b544eadd5c042e91ea89541fd9431f6)。
+
+<a id="r_afcd2263655b3f52378ee24f2f8bfc0d6"></a>
+
+```c
+#define NUMAKER_ECAP0_MODULE
+```
+
+相关声明：[NUMAKER_ECAP0_MODULE](#afcd2263655b3f52378ee24f2f8bfc0d6)。
+
+<a id="r_a43cc65940b5464683c572c94650a58e9"></a>
+
+```c
+#define NUMAKER_ECAP1_MODULE
+```
+
+相关声明：[NUMAKER_ECAP1_MODULE](#a43cc65940b5464683c572c94650a58e9)。
+
+<a id="r_aa1bcd301211aae3a1ae668af74ee58f6"></a>
+
+```c
+#define NUMAKER_I2S1_MODULE
+```
+
+相关声明：[NUMAKER_I2S1_MODULE](#aa1bcd301211aae3a1ae668af74ee58f6)。
+
+<a id="r_afe88f0224f22993a2e38a57b0cbc3e4f"></a>
+
+```c
+#define NUMAKER_EADC1_MODULE
+```
+
+相关声明：[NUMAKER_EADC1_MODULE](#afe88f0224f22993a2e38a57b0cbc3e4f)。
+
+<a id="r_ad194e1ddf64d6d4e59ee7c62ab3330a9"></a>
+
+```c
+#define NUMAKER_KPI_MODULE
+```
+
+相关声明：[NUMAKER_KPI_MODULE](#ad194e1ddf64d6d4e59ee7c62ab3330a9)。
+
+<a id="r_a77f267351914a668aa66e1e20bdd76c6"></a>
+
+```c
+#define NUMAKER_EADC2_MODULE
+```
+
+相关声明：[NUMAKER_EADC2_MODULE](#a77f267351914a668aa66e1e20bdd76c6)。
+
+<a id="r_a655d49dd28c77605c8a071b78eee9e15"></a>
+
+```c
+#define NUMAKER_ACMP23_MODULE
+```
+
+相关声明：[NUMAKER_ACMP23_MODULE](#a655d49dd28c77605c8a071b78eee9e15)。
+
+<a id="r_a57178e2899985344ea021f32efa43c20"></a>
+
+```c
+#define NUMAKER_SPI5_MODULE
+```
+
+相关声明：[NUMAKER_SPI5_MODULE](#a57178e2899985344ea021f32efa43c20)。
+
+<a id="r_a39bbcd5b0f7175757fcc6dd523df1eb6"></a>
+
+```c
+#define NUMAKER_SPI6_MODULE
+```
+
+相关声明：[NUMAKER_SPI6_MODULE](#a39bbcd5b0f7175757fcc6dd523df1eb6)。
+
+<a id="r_ace0d844db14edd1e5f4b250281438206"></a>
+
+```c
+#define NUMAKER_SPI7_MODULE
+```
+
+相关声明：[NUMAKER_SPI7_MODULE](#ace0d844db14edd1e5f4b250281438206)。
+
+<a id="r_a47f43cb3ccd9192fa3d0f34b365fd81e"></a>
+
+```c
+#define NUMAKER_SPI8_MODULE
+```
+
+相关声明：[NUMAKER_SPI8_MODULE](#a47f43cb3ccd9192fa3d0f34b365fd81e)。
+
+<a id="r_abaf1f5fc92d1f9502fffbef8cf1715bd"></a>
+
+```c
+#define NUMAKER_SPI9_MODULE
+```
+
+相关声明：[NUMAKER_SPI9_MODULE](#abaf1f5fc92d1f9502fffbef8cf1715bd)。
+
+<a id="r_a9c5987ca481ecfbf505082335630402d"></a>
+
+```c
+#define NUMAKER_SPI10_MODULE
+```
+
+相关声明：[NUMAKER_SPI10_MODULE](#a9c5987ca481ecfbf505082335630402d)。
+
+<a id="r_a30c536594814a2d4c58d383469a91081"></a>
+
+```c
+#define NUMAKER_UART8_MODULE
+```
+
+相关声明：[NUMAKER_UART8_MODULE](#a30c536594814a2d4c58d383469a91081)。
+
+<a id="r_a87e45a8420e6329f101f564e08f896b2"></a>
+
+```c
+#define NUMAKER_UART9_MODULE
+```
+
+相关声明：[NUMAKER_UART9_MODULE](#a87e45a8420e6329f101f564e08f896b2)。
+
+<a id="r_a4d0aca792eb3e7b8e6c8ef3b22fad7f9"></a>
+
+```c
+#define NUMAKER_CLK_PMUCTL_PDMSEL_PD 0x00000000
+```
+
+相关声明：[NUMAKER_CLK_PMUCTL_PDMSEL_PD](#a4d0aca792eb3e7b8e6c8ef3b22fad7f9)。
+
+<a id="r_a8d57d119b131f2475d3777c810dae8ff"></a>
+
+```c
+#define NUMAKER_CLK_PMUCTL_PDMSEL_LLPD 0x00000001
+```
+
+相关声明：[NUMAKER_CLK_PMUCTL_PDMSEL_LLPD](#a8d57d119b131f2475d3777c810dae8ff)。
+
+<a id="r_a68e892198a906786bbbb110f5522f9ac"></a>
+
+```c
+#define NUMAKER_CLK_PMUCTL_PDMSEL_FWPD 0x00000002
+```
+
+相关声明：[NUMAKER_CLK_PMUCTL_PDMSEL_FWPD](#a68e892198a906786bbbb110f5522f9ac)。
+
+<a id="r_a829b1eeaf193113f4f463868123e50e1"></a>
+
+```c
+#define NUMAKER_CLK_PMUCTL_PDMSEL_SPD 0x00000004
+```
+
+相关声明：[NUMAKER_CLK_PMUCTL_PDMSEL_SPD](#a829b1eeaf193113f4f463868123e50e1)。
+
+<a id="r_a8a4c948735bae3f534d7517c80a58ac0"></a>
+
+```c
+#define NUMAKER_CLK_PMUCTL_PDMSEL_DPD 0x00000006
+```
+
+相关声明：[NUMAKER_CLK_PMUCTL_PDMSEL_DPD](#a8a4c948735bae3f534d7517c80a58ac0)。
+
+## 269.2\_详细说明（Detailed Documentation）
+
+<a id="abe18bfc9e64be82d3734d80a69e2541c"></a>
+
+### `NUMAKER_ACMP01_MODULE`
+
+```c
+#define NUMAKER_ACMP01_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(1UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK0_ACMP01CKEN_Pos) |                        \
+ NUMAKER_MODULE_CLKSEL_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKSEL_Msk_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a655d49dd28c77605c8a071b78eee9e15"></a>
+
+### `NUMAKER_ACMP23_MODULE`
+
+```c
+#define NUMAKER_ACMP23_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(3UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK2_ACMP23CKEN_Pos) |                        \
+ NUMAKER_MODULE_CLKSEL_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKSEL_Msk_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a63a4d8cb621e8c4ee32de0276c36085e"></a>
+
+### `NUMAKER_BMC_MODULE`
+
+```c
+#define NUMAKER_BMC_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(4UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_AHBCLK1_BMCCKEN_Pos) |                           \
+ NUMAKER_MODULE_CLKSEL_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKSEL_Msk_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a357c036321109c1962abd936c52bc241"></a>
+
+### `NUMAKER_BPWM0_MODULE`
+
+```c
+#define NUMAKER_BPWM0_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(2UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK1_BPWM0CKEN_Pos) |                         \
+ NUMAKER_MODULE_CLKSEL_ENC(2UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(1UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(8UL) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |              \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a0e2a179864ee42ef88d014d068712aee"></a>
+
+### `NUMAKER_BPWM1_MODULE`
+
+```c
+#define NUMAKER_BPWM1_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(2UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK1_BPWM1CKEN_Pos) |                         \
+ NUMAKER_MODULE_CLKSEL_ENC(2UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(1UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(9UL) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |              \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="aec648b50b3e87890e01766e735130d34"></a>
+
+### `NUMAKER_CANFD0_MODULE`
+
+```c
+#define NUMAKER_CANFD0_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(4UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_AHBCLK1_CANFD0CKEN_Pos) |                        \
+ NUMAKER_MODULE_CLKSEL_ENC(0UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(3UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(24UL) | NUMAKER_MODULE_CLKDIV_ENC(5UL) |                    \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(0x0FUL) | NUMAKER_MODULE_CLKDIV_Pos_ENC(0UL))
+```
+
+<a id="a4cf36800f445d6eab593a8838285d913"></a>
+
+### `NUMAKER_CANFD1_MODULE`
+
+```c
+#define NUMAKER_CANFD1_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(4UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_AHBCLK1_CANFD1CKEN_Pos) |                        \
+ NUMAKER_MODULE_CLKSEL_ENC(0UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(3UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(26UL) | NUMAKER_MODULE_CLKDIV_ENC(5UL) |                    \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(0x0FUL) | NUMAKER_MODULE_CLKDIV_Pos_ENC(4UL))
+```
+
+<a id="a6385023e2b2d645f347a7d04f3686e65"></a>
+
+### `NUMAKER_CANFD2_MODULE`
+
+```c
+#define NUMAKER_CANFD2_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(4UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_AHBCLK1_CANFD2CKEN_Pos) |                        \
+ NUMAKER_MODULE_CLKSEL_ENC(0UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(3UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(28UL) | NUMAKER_MODULE_CLKDIV_ENC(5UL) |                    \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(0x0FUL) | NUMAKER_MODULE_CLKDIV_Pos_ENC(8UL))
+```
+
+<a id="af956a53c2db2138d4cc1625d48f065c5"></a>
+
+### `NUMAKER_CANFD3_MODULE`
+
+```c
+#define NUMAKER_CANFD3_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(4UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_AHBCLK1_CANFD3CKEN_Pos) |                        \
+ NUMAKER_MODULE_CLKSEL_ENC(0UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(3UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(30UL) | NUMAKER_MODULE_CLKDIV_ENC(5UL) |                    \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(0x0FUL) | NUMAKER_MODULE_CLKDIV_Pos_ENC(12UL))
+```
+
+<a id="acb6254a4cc244665d416934d3022128a"></a>
+
+### `NUMAKER_CCAP_MODULE`
+
+```c
+#define NUMAKER_CCAP_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(0UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_AHBCLK0_CCAPCKEN_Pos) |                          \
+ NUMAKER_MODULE_CLKSEL_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKSEL_Msk_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a7e8862c4f20298f950b253c0ab613fec"></a>
+
+### `NUMAKER_CLK_AHBCLK0_CCAPCKEN_Pos`
+
+```c
+#define NUMAKER_CLK_AHBCLK0_CCAPCKEN_Pos (8)
+```
+
+<a id="a43961045e5cfb5bfd8e3f25ca0d3de38"></a>
+
+### `NUMAKER_CLK_AHBCLK0_CRCCKEN_Pos`
+
+```c
+#define NUMAKER_CLK_AHBCLK0_CRCCKEN_Pos (7)
+```
+
+<a id="a31f1a197a3b5093f006feb37b424b1d7"></a>
+
+### `NUMAKER_CLK_AHBCLK0_CRPTCKEN_Pos`
+
+```c
+#define NUMAKER_CLK_AHBCLK0_CRPTCKEN_Pos (12)
+```
+
+<a id="abe3b51583a6c3b5e7fac4502c29a15c5"></a>
+
+### `NUMAKER_CLK_AHBCLK0_EBICKEN_Pos`
+
+```c
+#define NUMAKER_CLK_AHBCLK0_EBICKEN_Pos (3)
+```
+
+<a id="af00c90db38b73bed47ef5a00cfe92a87"></a>
+
+### `NUMAKER_CLK_AHBCLK0_EMAC0CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_AHBCLK0_EMAC0CKEN_Pos (5)
+```
+
+<a id="aa1b458c17c208504e2736af420016fe9"></a>
+
+### `NUMAKER_CLK_AHBCLK0_FMCIDLE_Pos`
+
+```c
+#define NUMAKER_CLK_AHBCLK0_FMCIDLE_Pos (15)
+```
+
+<a id="a61792f0f11c9f76016d1a89ce71b74f7"></a>
+
+### `NUMAKER_CLK_AHBCLK0_GPACKEN_Pos`
+
+```c
+#define NUMAKER_CLK_AHBCLK0_GPACKEN_Pos (24)
+```
+
+<a id="af8cd5804e7ae8676e0245ccd9e6a4c74"></a>
+
+### `NUMAKER_CLK_AHBCLK0_GPBCKEN_Pos`
+
+```c
+#define NUMAKER_CLK_AHBCLK0_GPBCKEN_Pos (25)
+```
+
+<a id="ad5dc0793b20ab18ddba5e972f71caedb"></a>
+
+### `NUMAKER_CLK_AHBCLK0_GPCCKEN_Pos`
+
+```c
+#define NUMAKER_CLK_AHBCLK0_GPCCKEN_Pos (26)
+```
+
+<a id="ab150c51327c505db2217f90e5f8fd028"></a>
+
+### `NUMAKER_CLK_AHBCLK0_GPDCKEN_Pos`
+
+```c
+#define NUMAKER_CLK_AHBCLK0_GPDCKEN_Pos (27)
+```
+
+<a id="a8be4ace7190b0947707eaa8d99fc63b0"></a>
+
+### `NUMAKER_CLK_AHBCLK0_GPECKEN_Pos`
+
+```c
+#define NUMAKER_CLK_AHBCLK0_GPECKEN_Pos (28)
+```
+
+<a id="a33270f5ef0594fe4960eabd4d135e612"></a>
+
+### `NUMAKER_CLK_AHBCLK0_GPFCKEN_Pos`
+
+```c
+#define NUMAKER_CLK_AHBCLK0_GPFCKEN_Pos (29)
+```
+
+<a id="a7b443fbeff14a12542f89e445ea2f2d3"></a>
+
+### `NUMAKER_CLK_AHBCLK0_GPGCKEN_Pos`
+
+```c
+#define NUMAKER_CLK_AHBCLK0_GPGCKEN_Pos (30)
+```
+
+<a id="ae1e54f46825a4fa27f526ba7de0c8607"></a>
+
+### `NUMAKER_CLK_AHBCLK0_GPHCKEN_Pos`
+
+```c
+#define NUMAKER_CLK_AHBCLK0_GPHCKEN_Pos (31)
+```
+
+<a id="a806485d7f3f8924d91f8daedb53faecf"></a>
+
+### `NUMAKER_CLK_AHBCLK0_HBICKEN_Pos`
+
+```c
+#define NUMAKER_CLK_AHBCLK0_HBICKEN_Pos (11)
+```
+
+<a id="afd7bb1592e766086bf5c4f2f2d6224cd"></a>
+
+### `NUMAKER_CLK_AHBCLK0_HSUSBDCKEN_Pos`
+
+```c
+#define NUMAKER_CLK_AHBCLK0_HSUSBDCKEN_Pos (10)
+```
+
+<a id="a38d9951e8a71b2f89bdf7b016feb09cb"></a>
+
+### `NUMAKER_CLK_AHBCLK0_ISPCKEN_Pos`
+
+```c
+#define NUMAKER_CLK_AHBCLK0_ISPCKEN_Pos (2)
+```
+
+<a id="a3d2f1af1de01e7d4459d16e92f1c73a4"></a>
+
+### `NUMAKER_CLK_AHBCLK0_KSCKEN_Pos`
+
+```c
+#define NUMAKER_CLK_AHBCLK0_KSCKEN_Pos (13)
+```
+
+<a id="a58b51925b1e326fcf1b44c78c9aac0bc"></a>
+
+### `NUMAKER_CLK_AHBCLK0_PDMA0CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_AHBCLK0_PDMA0CKEN_Pos (1)
+```
+
+<a id="a0067d71da4392dcafde9dc0b4c3a7fe9"></a>
+
+### `NUMAKER_CLK_AHBCLK0_PDMA1CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_AHBCLK0_PDMA1CKEN_Pos (18)
+```
+
+<a id="a34b8dd1f5a2a514eec3ee4ff2376126d"></a>
+
+### `NUMAKER_CLK_AHBCLK0_SDH0CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_AHBCLK0_SDH0CKEN_Pos (6)
+```
+
+<a id="a76947087379239ccbc5e822d45667dc4"></a>
+
+### `NUMAKER_CLK_AHBCLK0_SDH1CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_AHBCLK0_SDH1CKEN_Pos (17)
+```
+
+<a id="a5de977a2fd728aa7a12e0a667b639bca"></a>
+
+### `NUMAKER_CLK_AHBCLK0_SENCKEN_Pos`
+
+```c
+#define NUMAKER_CLK_AHBCLK0_SENCKEN_Pos (9)
+```
+
+<a id="af224d39ec0080a0d4f0776098ed240a6"></a>
+
+### `NUMAKER_CLK_AHBCLK0_SPIMCKEN_Pos`
+
+```c
+#define NUMAKER_CLK_AHBCLK0_SPIMCKEN_Pos (14)
+```
+
+<a id="a59c032586da81c2128ecfe553e779560"></a>
+
+### `NUMAKER_CLK_AHBCLK0_STCKEN_Pos`
+
+```c
+#define NUMAKER_CLK_AHBCLK0_STCKEN_Pos (4)
+```
+
+<a id="ab06c990333e66d787fe5e08e749f2f0d"></a>
+
+### `NUMAKER_CLK_AHBCLK0_TRACECKEN_Pos`
+
+```c
+#define NUMAKER_CLK_AHBCLK0_TRACECKEN_Pos (19)
+```
+
+<a id="a69bca44bfebe798d128021f12a902367"></a>
+
+### `NUMAKER_CLK_AHBCLK0_USBHCKEN_Pos`
+
+```c
+#define NUMAKER_CLK_AHBCLK0_USBHCKEN_Pos (16)
+```
+
+<a id="a824b2bde29f8f7374bed1bec0d7f114d"></a>
+
+### `NUMAKER_CLK_AHBCLK1_BMCCKEN_Pos`
+
+```c
+#define NUMAKER_CLK_AHBCLK1_BMCCKEN_Pos (28)
+```
+
+<a id="a08b8216298f1ab185b96159bfd0d68e7"></a>
+
+### `NUMAKER_CLK_AHBCLK1_CANFD0CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_AHBCLK1_CANFD0CKEN_Pos (20)
+```
+
+<a id="a010bc688f8ac881039b1c74297017492"></a>
+
+### `NUMAKER_CLK_AHBCLK1_CANFD1CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_AHBCLK1_CANFD1CKEN_Pos (21)
+```
+
+<a id="a90bfed7241959b097624838c56fd05fb"></a>
+
+### `NUMAKER_CLK_AHBCLK1_CANFD2CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_AHBCLK1_CANFD2CKEN_Pos (22)
+```
+
+<a id="a8fbabf2f5b8be3af891ea039e533dd3e"></a>
+
+### `NUMAKER_CLK_AHBCLK1_CANFD3CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_AHBCLK1_CANFD3CKEN_Pos (23)
+```
+
+<a id="a32f4d5437f7724cdf93bbde025c0825a"></a>
+
+### `NUMAKER_CLK_AHBCLK1_GPICKEN_Pos`
+
+```c
+#define NUMAKER_CLK_AHBCLK1_GPICKEN_Pos (24)
+```
+
+<a id="a48e8655610a9b5e7f0548d0d02467d22"></a>
+
+### `NUMAKER_CLK_AHBCLK1_GPJCKEN_Pos`
+
+```c
+#define NUMAKER_CLK_AHBCLK1_GPJCKEN_Pos (25)
+```
+
+<a id="a51a8258755b28e0f0c6d147cb169ee95"></a>
+
+### `NUMAKER_CLK_APBCLK0_ACMP01CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK0_ACMP01CKEN_Pos (7)
+```
+
+<a id="a20f966cae9fa1c3ffd7533892c014af9"></a>
+
+### `NUMAKER_CLK_APBCLK0_CLKOCKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK0_CLKOCKEN_Pos (6)
+```
+
+<a id="a58adbfadda83fb8b1d9a50578ee64409"></a>
+
+### `NUMAKER_CLK_APBCLK0_EADC0CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK0_EADC0CKEN_Pos (28)
+```
+
+<a id="a1b8069d895df60e4dc9269adc36602c8"></a>
+
+### `NUMAKER_CLK_APBCLK0_HSOTGCKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK0_HSOTGCKEN_Pos (30)
+```
+
+<a id="a8e959e2086ca96c0da9ed6e8a8426dad"></a>
+
+### `NUMAKER_CLK_APBCLK0_I2C0CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK0_I2C0CKEN_Pos (8)
+```
+
+<a id="ae9cacf97bbdb9935315aef7d852da0b8"></a>
+
+### `NUMAKER_CLK_APBCLK0_I2C1CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK0_I2C1CKEN_Pos (9)
+```
+
+<a id="a896126d0a6312d382ebd1054216c73d7"></a>
+
+### `NUMAKER_CLK_APBCLK0_I2C2CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK0_I2C2CKEN_Pos (10)
+```
+
+<a id="ad616218273d67669884e19ef3ee5234e"></a>
+
+### `NUMAKER_CLK_APBCLK0_I2C3CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK0_I2C3CKEN_Pos (11)
+```
+
+<a id="a0dda3ed1ac9a4473df221a3c7602d789"></a>
+
+### `NUMAKER_CLK_APBCLK0_I2S0CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK0_I2S0CKEN_Pos (29)
+```
+
+<a id="ac2c53fe5cfb83b42bebaea1140368cc7"></a>
+
+### `NUMAKER_CLK_APBCLK0_OTGCKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK0_OTGCKEN_Pos (26)
+```
+
+<a id="aabf3594b4f7e6224a88d5edc89afbfe0"></a>
+
+### `NUMAKER_CLK_APBCLK0_QSPI0CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK0_QSPI0CKEN_Pos (12)
+```
+
+<a id="a8c3c6a3361689ff6f7737ccdff117bc6"></a>
+
+### `NUMAKER_CLK_APBCLK0_RTCCKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK0_RTCCKEN_Pos (1)
+```
+
+<a id="a367f258ea5537b3948adedc307b90e2b"></a>
+
+### `NUMAKER_CLK_APBCLK0_SPI0CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK0_SPI0CKEN_Pos (13)
+```
+
+<a id="acbab43558f5e2ca3ab88245ddb009f3f"></a>
+
+### `NUMAKER_CLK_APBCLK0_SPI1CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK0_SPI1CKEN_Pos (14)
+```
+
+<a id="a1fdb03816fc8bdaed6f207be2ab47548"></a>
+
+### `NUMAKER_CLK_APBCLK0_SPI2CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK0_SPI2CKEN_Pos (15)
+```
+
+<a id="aa3854ff57bfbbaecfe7e23d2771d7333"></a>
+
+### `NUMAKER_CLK_APBCLK0_TMR0CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK0_TMR0CKEN_Pos (2)
+```
+
+<a id="afb30c612fbf094fc60c811ccbaa22df0"></a>
+
+### `NUMAKER_CLK_APBCLK0_TMR1CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK0_TMR1CKEN_Pos (3)
+```
+
+<a id="a70e54a13473d4ec204f354d2a8e120c8"></a>
+
+### `NUMAKER_CLK_APBCLK0_TMR2CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK0_TMR2CKEN_Pos (4)
+```
+
+<a id="a8588ec96cf9ba5a541372b886310e31f"></a>
+
+### `NUMAKER_CLK_APBCLK0_TMR3CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK0_TMR3CKEN_Pos (5)
+```
+
+<a id="a5c2df8fa94c924887ecdb20e8c664f5c"></a>
+
+### `NUMAKER_CLK_APBCLK0_UART0CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK0_UART0CKEN_Pos (16)
+```
+
+<a id="a61fc05731dec14cd6bdf6c16d8ddd0cb"></a>
+
+### `NUMAKER_CLK_APBCLK0_UART1CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK0_UART1CKEN_Pos (17)
+```
+
+<a id="a1ffeeb21492fe1cae89a23e3809056ce"></a>
+
+### `NUMAKER_CLK_APBCLK0_UART2CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK0_UART2CKEN_Pos (18)
+```
+
+<a id="afa7a7b670568bbed4613ac860ac764d4"></a>
+
+### `NUMAKER_CLK_APBCLK0_UART3CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK0_UART3CKEN_Pos (19)
+```
+
+<a id="af2b11ee30e0ee2608d2550656aa38c26"></a>
+
+### `NUMAKER_CLK_APBCLK0_UART4CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK0_UART4CKEN_Pos (20)
+```
+
+<a id="adb4a2eb99fa2c5646866a5d55b97534e"></a>
+
+### `NUMAKER_CLK_APBCLK0_UART5CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK0_UART5CKEN_Pos (21)
+```
+
+<a id="a34c0f3828864c8e740190bc3a094a5de"></a>
+
+### `NUMAKER_CLK_APBCLK0_UART6CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK0_UART6CKEN_Pos (22)
+```
+
+<a id="ae1a1383fc645274edfb35e3f603e559f"></a>
+
+### `NUMAKER_CLK_APBCLK0_UART7CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK0_UART7CKEN_Pos (23)
+```
+
+<a id="a03fba41df5559e507195dfa734d6ce0e"></a>
+
+### `NUMAKER_CLK_APBCLK0_USBDCKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK0_USBDCKEN_Pos (27)
+```
+
+<a id="ab2ec740c5cb44791065972a2de785cbe"></a>
+
+### `NUMAKER_CLK_APBCLK0_WDTCKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK0_WDTCKEN_Pos (0)
+```
+
+<a id="a7748917fa5664552d90ad85fd3ac6253"></a>
+
+### `NUMAKER_CLK_APBCLK1_BPWM0CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK1_BPWM0CKEN_Pos (18)
+```
+
+<a id="ac240fa173fd611698a50e18acacc7e8b"></a>
+
+### `NUMAKER_CLK_APBCLK1_BPWM1CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK1_BPWM1CKEN_Pos (19)
+```
+
+<a id="ac4bb6f1b74c5ae9e8c25a2c4accf3e91"></a>
+
+### `NUMAKER_CLK_APBCLK1_DACCKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK1_DACCKEN_Pos (12)
+```
+
+<a id="a87a961c8e77c418e7df428ff03974d15"></a>
+
+### `NUMAKER_CLK_APBCLK1_EADC1CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK1_EADC1CKEN_Pos (31)
+```
+
+<a id="a93061f89415f32df54b3d386a85608d8"></a>
+
+### `NUMAKER_CLK_APBCLK1_ECAP0CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK1_ECAP0CKEN_Pos (26)
+```
+
+<a id="a68b041451f3023be8d47f78c56c64875"></a>
+
+### `NUMAKER_CLK_APBCLK1_ECAP1CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK1_ECAP1CKEN_Pos (27)
+```
+
+<a id="a4187ddb711d9b621ffd100f693ecab87"></a>
+
+### `NUMAKER_CLK_APBCLK1_ECAP2CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK1_ECAP2CKEN_Pos (13)
+```
+
+<a id="a2303b958de0df016987f93b1bf3ab085"></a>
+
+### `NUMAKER_CLK_APBCLK1_ECAP3CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK1_ECAP3CKEN_Pos (14)
+```
+
+<a id="aa26749ba77ea33d82dac563913f91631"></a>
+
+### `NUMAKER_CLK_APBCLK1_EPWM0CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK1_EPWM0CKEN_Pos (16)
+```
+
+<a id="a1030ba160597af2055aa8bc8cf1e783f"></a>
+
+### `NUMAKER_CLK_APBCLK1_EPWM1CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK1_EPWM1CKEN_Pos (17)
+```
+
+<a id="a96f335c83be01e4d323ff1050f55af19"></a>
+
+### `NUMAKER_CLK_APBCLK1_EQEI0CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK1_EQEI0CKEN_Pos (22)
+```
+
+<a id="a3f26ee3e388e1bad4752c264e706d34f"></a>
+
+### `NUMAKER_CLK_APBCLK1_EQEI1CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK1_EQEI1CKEN_Pos (23)
+```
+
+<a id="a8159e95120dff6946e93d12bb9c2e103"></a>
+
+### `NUMAKER_CLK_APBCLK1_EQEI2CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK1_EQEI2CKEN_Pos (20)
+```
+
+<a id="af4ba87fd1820c165e405c025bc1c6e1f"></a>
+
+### `NUMAKER_CLK_APBCLK1_EQEI3CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK1_EQEI3CKEN_Pos (21)
+```
+
+<a id="ab2e9eda6c9cf544ee895d2c238241dd4"></a>
+
+### `NUMAKER_CLK_APBCLK1_I2C4CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK1_I2C4CKEN_Pos (3)
+```
+
+<a id="a327ba049d422169d52fabb8296f204c1"></a>
+
+### `NUMAKER_CLK_APBCLK1_I2S1CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK1_I2S1CKEN_Pos (29)
+```
+
+<a id="a5f14b1218cc23b5ae4a5febf2ab3f231"></a>
+
+### `NUMAKER_CLK_APBCLK1_PSIOCKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK1_PSIOCKEN_Pos (10)
+```
+
+<a id="a069cd6290f117eded4bfc7db70dd3c50"></a>
+
+### `NUMAKER_CLK_APBCLK1_QSPI1CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK1_QSPI1CKEN_Pos (4)
+```
+
+<a id="a572eca05a9b8478a29f63e9401145bd4"></a>
+
+### `NUMAKER_CLK_APBCLK1_SC0CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK1_SC0CKEN_Pos (0)
+```
+
+<a id="a59ba15908e8db725b14dc000fbb17318"></a>
+
+### `NUMAKER_CLK_APBCLK1_SC1CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK1_SC1CKEN_Pos (1)
+```
+
+<a id="aa1cb79620df2a7aa170b83b9f0837294"></a>
+
+### `NUMAKER_CLK_APBCLK1_SC2CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK1_SC2CKEN_Pos (2)
+```
+
+<a id="a386c818d9955a72ee48ceb19e4f91927"></a>
+
+### `NUMAKER_CLK_APBCLK1_SPI3CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK1_SPI3CKEN_Pos (6)
+```
+
+<a id="a1d8508e63ddc549f0cdbd58e7f2fecac"></a>
+
+### `NUMAKER_CLK_APBCLK1_SPI4CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK1_SPI4CKEN_Pos (7)
+```
+
+<a id="a453287405a43aaa6e2215c1d1d20b079"></a>
+
+### `NUMAKER_CLK_APBCLK1_TRNGCKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK1_TRNGCKEN_Pos (25)
+```
+
+<a id="a789f8b30f0fc9e2713b025d3e56a78ad"></a>
+
+### `NUMAKER_CLK_APBCLK1_USCI0CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK1_USCI0CKEN_Pos (8)
+```
+
+<a id="a27e7054840a6130eb6a91160e9294a85"></a>
+
+### `NUMAKER_CLK_APBCLK2_ACMP23CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK2_ACMP23CKEN_Pos (7)
+```
+
+<a id="a1074ea1f3692cf7c3c263cf409624cba"></a>
+
+### `NUMAKER_CLK_APBCLK2_EADC2CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK2_EADC2CKEN_Pos (6)
+```
+
+<a id="a8a2c2a4f9e6d38bb5198f0bf78b123ed"></a>
+
+### `NUMAKER_CLK_APBCLK2_KPICKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK2_KPICKEN_Pos (0)
+```
+
+<a id="a998500f8ff7b225099aabfc56dea74e7"></a>
+
+### `NUMAKER_CLK_APBCLK2_SPI10CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK2_SPI10CKEN_Pos (13)
+```
+
+<a id="ab31f85d74e996dff00563e13de27cfb9"></a>
+
+### `NUMAKER_CLK_APBCLK2_SPI5CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK2_SPI5CKEN_Pos (8)
+```
+
+<a id="a831afd6bae798caf0303159b748d62bf"></a>
+
+### `NUMAKER_CLK_APBCLK2_SPI6CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK2_SPI6CKEN_Pos (9)
+```
+
+<a id="a16689092a9fde746dcfb179af8c07470"></a>
+
+### `NUMAKER_CLK_APBCLK2_SPI7CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK2_SPI7CKEN_Pos (10)
+```
+
+<a id="abbff3536dfcc434dedd936ef17fae208"></a>
+
+### `NUMAKER_CLK_APBCLK2_SPI8CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK2_SPI8CKEN_Pos (11)
+```
+
+<a id="affa49b7c031d534acb6d6989da9611c1"></a>
+
+### `NUMAKER_CLK_APBCLK2_SPI9CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK2_SPI9CKEN_Pos (12)
+```
+
+<a id="aa27014b1c91ab54b8a60401be51e86be"></a>
+
+### `NUMAKER_CLK_APBCLK2_UART8CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK2_UART8CKEN_Pos (16)
+```
+
+<a id="ae25c9ea6caa15b827fc92cad41b1d2c4"></a>
+
+### `NUMAKER_CLK_APBCLK2_UART9CKEN_Pos`
+
+```c
+#define NUMAKER_CLK_APBCLK2_UART9CKEN_Pos (17)
+```
+
+<a id="a84bca9b50b18d2f260f637d7e58cb369"></a>
+
+### `NUMAKER_CLK_CLKDIV0_EADC0`
+
+```c
+#define NUMAKER_CLK_CLKDIV0_EADC0 ( x)
+```
+
+展开值（Value）：
+
+```c
+(((x)-1UL) << NUMAKER_CLK_CLKDIV0_EADC0DIV_Pos)
+```
+
+<a id="a6b2cf403f52fd1a62f33611ddff65ccb"></a>
+
+### `NUMAKER_CLK_CLKDIV0_EADC0DIV_Pos`
+
+```c
+#define NUMAKER_CLK_CLKDIV0_EADC0DIV_Pos (16)
+```
+
+<a id="a7791710203e4af03f6f76b909c7b467c"></a>
+
+### `NUMAKER_CLK_CLKDIV0_HCLK`
+
+```c
+#define NUMAKER_CLK_CLKDIV0_HCLK ( x)
+```
+
+展开值（Value）：
+
+```c
+(((x)-1UL) << NUMAKER_CLK_CLKDIV0_HCLKDIV_Pos)
+```
+
+<a id="a97fa36df7672c2dd77d953d8c52179c3"></a>
+
+### `NUMAKER_CLK_CLKDIV0_HCLKDIV_Pos`
+
+```c
+#define NUMAKER_CLK_CLKDIV0_HCLKDIV_Pos (0)
+```
+
+<a id="a76b9c597c2cc89d992f2b705a1a9ec18"></a>
+
+### `NUMAKER_CLK_CLKDIV0_SDH0`
+
+```c
+#define NUMAKER_CLK_CLKDIV0_SDH0 ( x)
+```
+
+展开值（Value）：
+
+```c
+(((x)-1UL) << NUMAKER_CLK_CLKDIV0_SDH0DIV_Pos)
+```
+
+<a id="a308fbc20ea60cfcc3a64aba7f83336df"></a>
+
+### `NUMAKER_CLK_CLKDIV0_SDH0DIV_Pos`
+
+```c
+#define NUMAKER_CLK_CLKDIV0_SDH0DIV_Pos (24)
+```
+
+<a id="a3c7cfbdf43433e075643b8e5f7d8dc5f"></a>
+
+### `NUMAKER_CLK_CLKDIV0_UART0`
+
+```c
+#define NUMAKER_CLK_CLKDIV0_UART0 ( x)
+```
+
+展开值（Value）：
+
+```c
+(((x)-1UL) << NUMAKER_CLK_CLKDIV0_UART0DIV_Pos)
+```
+
+<a id="a5c6e1b8ff6fc666f729c456ced30ed2d"></a>
+
+### `NUMAKER_CLK_CLKDIV0_UART0DIV_Pos`
+
+```c
+#define NUMAKER_CLK_CLKDIV0_UART0DIV_Pos (8)
+```
+
+<a id="aa44610811c5e62ed93cf91dc7925eb10"></a>
+
+### `NUMAKER_CLK_CLKDIV0_UART1`
+
+```c
+#define NUMAKER_CLK_CLKDIV0_UART1 ( x)
+```
+
+展开值（Value）：
+
+```c
+(((x)-1UL) << NUMAKER_CLK_CLKDIV0_UART1DIV_Pos)
+```
+
+<a id="a079560398552b7e309109dea93758098"></a>
+
+### `NUMAKER_CLK_CLKDIV0_UART1DIV_Pos`
+
+```c
+#define NUMAKER_CLK_CLKDIV0_UART1DIV_Pos (12)
+```
+
+<a id="a6ea0c7b58fdbfff2d813f7859a3ac1cd"></a>
+
+### `NUMAKER_CLK_CLKDIV0_USB`
+
+```c
+#define NUMAKER_CLK_CLKDIV0_USB ( x)
+```
+
+展开值（Value）：
+
+```c
+(((x)-1UL) << NUMAKER_CLK_CLKDIV0_USBDIV_Pos)
+```
+
+<a id="a9c6fa39e37ec8da8ef2de45a01669724"></a>
+
+### `NUMAKER_CLK_CLKDIV0_USBDIV_Pos`
+
+```c
+#define NUMAKER_CLK_CLKDIV0_USBDIV_Pos (4)
+```
+
+<a id="ab8b2208d1408ce0cd72763565a63092c"></a>
+
+### `NUMAKER_CLK_CLKDIV1_PSIO`
+
+```c
+#define NUMAKER_CLK_CLKDIV1_PSIO ( x)
+```
+
+展开值（Value）：
+
+```c
+(((x)-1UL) << NUMAKER_CLK_CLKDIV1_PSIODIV_Pos)
+```
+
+<a id="abb507dbd18f953fc72e539c44957d43b"></a>
+
+### `NUMAKER_CLK_CLKDIV1_PSIODIV_Pos`
+
+```c
+#define NUMAKER_CLK_CLKDIV1_PSIODIV_Pos (24)
+```
+
+<a id="aa32657011255cdbb44af8ebf41d38657"></a>
+
+### `NUMAKER_CLK_CLKDIV1_SC0`
+
+```c
+#define NUMAKER_CLK_CLKDIV1_SC0 ( x)
+```
+
+展开值（Value）：
+
+```c
+(((x)-1UL) << NUMAKER_CLK_CLKDIV1_SC0DIV_Pos)
+```
+
+<a id="a26f255ab6373c7db56f9541ffcaf9137"></a>
+
+### `NUMAKER_CLK_CLKDIV1_SC0DIV_Pos`
+
+```c
+#define NUMAKER_CLK_CLKDIV1_SC0DIV_Pos (0)
+```
+
+<a id="ad9b81e35b2cafac307babbcf455244b0"></a>
+
+### `NUMAKER_CLK_CLKDIV1_SC1`
+
+```c
+#define NUMAKER_CLK_CLKDIV1_SC1 ( x)
+```
+
+展开值（Value）：
+
+```c
+(((x)-1UL) << NUMAKER_CLK_CLKDIV1_SC1DIV_Pos)
+```
+
+<a id="afdc1213b38b64f09f75e5d59d9bd343b"></a>
+
+### `NUMAKER_CLK_CLKDIV1_SC1DIV_Pos`
+
+```c
+#define NUMAKER_CLK_CLKDIV1_SC1DIV_Pos (8)
+```
+
+<a id="a038a62342904de71e466bef93b8efe27"></a>
+
+### `NUMAKER_CLK_CLKDIV1_SC2`
+
+```c
+#define NUMAKER_CLK_CLKDIV1_SC2 ( x)
+```
+
+展开值（Value）：
+
+```c
+(((x)-1UL) << NUMAKER_CLK_CLKDIV1_SC2DIV_Pos)
+```
+
+<a id="ac1aea552215c5515caa825405d3d3926"></a>
+
+### `NUMAKER_CLK_CLKDIV1_SC2DIV_Pos`
+
+```c
+#define NUMAKER_CLK_CLKDIV1_SC2DIV_Pos (16)
+```
+
+<a id="aacfc89cba45ef5942a7316828ad8c670"></a>
+
+### `NUMAKER_CLK_CLKDIV2_EADC1`
+
+```c
+#define NUMAKER_CLK_CLKDIV2_EADC1 ( x)
+```
+
+展开值（Value）：
+
+```c
+(((x)-1UL) << NUMAKER_CLK_CLKDIV2_EADC1DIV_Pos)
+```
+
+<a id="ac3630dbacd1ad31365cf658614529810"></a>
+
+### `NUMAKER_CLK_CLKDIV2_EADC1DIV_Pos`
+
+```c
+#define NUMAKER_CLK_CLKDIV2_EADC1DIV_Pos (24)
+```
+
+<a id="ad25d8e0adda00ccd42aa4debbd9a9042"></a>
+
+### `NUMAKER_CLK_CLKDIV2_I2S0`
+
+```c
+#define NUMAKER_CLK_CLKDIV2_I2S0 ( x)
+```
+
+展开值（Value）：
+
+```c
+(((x)-1UL) << NUMAKER_CLK_CLKDIV2_I2S0DIV_Pos)
+```
+
+<a id="a15546e5819aea803f07b0be19fe156fe"></a>
+
+### `NUMAKER_CLK_CLKDIV2_I2S0DIV_Pos`
+
+```c
+#define NUMAKER_CLK_CLKDIV2_I2S0DIV_Pos (0)
+```
+
+<a id="a51148f92b0b67a16fb270fd551ea89aa"></a>
+
+### `NUMAKER_CLK_CLKDIV2_I2S1`
+
+```c
+#define NUMAKER_CLK_CLKDIV2_I2S1 ( x)
+```
+
+展开值（Value）：
+
+```c
+(((x)-1UL) << NUMAKER_CLK_CLKDIV2_I2S1DIV_Pos)
+```
+
+<a id="a4ee0df1038a212dc2c943d3b66af8849"></a>
+
+### `NUMAKER_CLK_CLKDIV2_I2S1DIV_Pos`
+
+```c
+#define NUMAKER_CLK_CLKDIV2_I2S1DIV_Pos (4)
+```
+
+<a id="ab03c15f49e0ac48901c8e862b67ad91f"></a>
+
+### `NUMAKER_CLK_CLKDIV2_KPI`
+
+```c
+#define NUMAKER_CLK_CLKDIV2_KPI ( x)
+```
+
+展开值（Value）：
+
+```c
+(((x)-1UL) << NUMAKER_CLK_CLKDIV2_KPIDIV_Pos)
+```
+
+<a id="ad29157a28b15201dcda03bbb484d4e17"></a>
+
+### `NUMAKER_CLK_CLKDIV2_KPIDIV_Pos`
+
+```c
+#define NUMAKER_CLK_CLKDIV2_KPIDIV_Pos (8)
+```
+
+<a id="afb15d4e0ae420f44430b07f2453dbcc5"></a>
+
+### `NUMAKER_CLK_CLKDIV3_EMAC0`
+
+```c
+#define NUMAKER_CLK_CLKDIV3_EMAC0 ( x)
+```
+
+展开值（Value）：
+
+```c
+(((x)-1UL) << NUMAKER_CLK_CLKDIV3_EMAC0DIV_Pos)
+```
+
+<a id="a2b55d1154a5c7723e7ddfcf35565b542"></a>
+
+### `NUMAKER_CLK_CLKDIV3_EMAC0DIV_Pos`
+
+```c
+#define NUMAKER_CLK_CLKDIV3_EMAC0DIV_Pos (16)
+```
+
+<a id="adb949fa1266754742211dab64b971a09"></a>
+
+### `NUMAKER_CLK_CLKDIV3_SDH1`
+
+```c
+#define NUMAKER_CLK_CLKDIV3_SDH1 ( x)
+```
+
+展开值（Value）：
+
+```c
+(((x)-1UL) << NUMAKER_CLK_CLKDIV3_SDH1DIV_Pos)
+```
+
+<a id="aedc4fed5c50badc54edef17ec075ecc4"></a>
+
+### `NUMAKER_CLK_CLKDIV3_SDH1DIV_Pos`
+
+```c
+#define NUMAKER_CLK_CLKDIV3_SDH1DIV_Pos (24)
+```
+
+<a id="ac341868a272b7f0bfd246f5a665b4ffe"></a>
+
+### `NUMAKER_CLK_CLKDIV3_VSENSE`
+
+```c
+#define NUMAKER_CLK_CLKDIV3_VSENSE ( x)
+```
+
+展开值（Value）：
+
+```c
+(((x)-1UL) << NUMAKER_CLK_CLKDIV3_VSENSEDIV_Pos)
+```
+
+<a id="ad9ad999a5cf04196d30a8d91d3938f0a"></a>
+
+### `NUMAKER_CLK_CLKDIV3_VSENSEDIV_Pos`
+
+```c
+#define NUMAKER_CLK_CLKDIV3_VSENSEDIV_Pos (8)
+```
+
+<a id="a5a548de5d860e906f139858512608955"></a>
+
+### `NUMAKER_CLK_CLKDIV4_UART2`
+
+```c
+#define NUMAKER_CLK_CLKDIV4_UART2 ( x)
+```
+
+展开值（Value）：
+
+```c
+(((x)-1UL) << NUMAKER_CLK_CLKDIV4_UART2DIV_Pos)
+```
+
+<a id="a4ea4427d406d1eb1078c209177e42f73"></a>
+
+### `NUMAKER_CLK_CLKDIV4_UART2DIV_Pos`
+
+```c
+#define NUMAKER_CLK_CLKDIV4_UART2DIV_Pos (0)
+```
+
+<a id="aa10601c99a3fc178163dfa652bd2d934"></a>
+
+### `NUMAKER_CLK_CLKDIV4_UART3`
+
+```c
+#define NUMAKER_CLK_CLKDIV4_UART3 ( x)
+```
+
+展开值（Value）：
+
+```c
+(((x)-1UL) << NUMAKER_CLK_CLKDIV4_UART3DIV_Pos)
+```
+
+<a id="acfdd626271018f3f1432ce7e2d9d7376"></a>
+
+### `NUMAKER_CLK_CLKDIV4_UART3DIV_Pos`
+
+```c
+#define NUMAKER_CLK_CLKDIV4_UART3DIV_Pos (4)
+```
+
+<a id="a2aaecc74fc40ead21b8ad38bf14fcd81"></a>
+
+### `NUMAKER_CLK_CLKDIV4_UART4`
+
+```c
+#define NUMAKER_CLK_CLKDIV4_UART4 ( x)
+```
+
+展开值（Value）：
+
+```c
+(((x)-1UL) << NUMAKER_CLK_CLKDIV4_UART4DIV_Pos)
+```
+
+<a id="a3624622b04d58420cc034e869c932928"></a>
+
+### `NUMAKER_CLK_CLKDIV4_UART4DIV_Pos`
+
+```c
+#define NUMAKER_CLK_CLKDIV4_UART4DIV_Pos (8)
+```
+
+<a id="a9444b25128c546730f2f95651d6a6d78"></a>
+
+### `NUMAKER_CLK_CLKDIV4_UART5`
+
+```c
+#define NUMAKER_CLK_CLKDIV4_UART5 ( x)
+```
+
+展开值（Value）：
+
+```c
+(((x)-1UL) << NUMAKER_CLK_CLKDIV4_UART5DIV_Pos)
+```
+
+<a id="afc690368ba8774739f034d404e3c5401"></a>
+
+### `NUMAKER_CLK_CLKDIV4_UART5DIV_Pos`
+
+```c
+#define NUMAKER_CLK_CLKDIV4_UART5DIV_Pos (12)
+```
+
+<a id="a12b519bee17127c49d6aece4dcf9360a"></a>
+
+### `NUMAKER_CLK_CLKDIV4_UART6`
+
+```c
+#define NUMAKER_CLK_CLKDIV4_UART6 ( x)
+```
+
+展开值（Value）：
+
+```c
+(((x)-1UL) << NUMAKER_CLK_CLKDIV4_UART6DIV_Pos)
+```
+
+<a id="ab72e30643c1e14a66d5e5a19aa3e0b3c"></a>
+
+### `NUMAKER_CLK_CLKDIV4_UART6DIV_Pos`
+
+```c
+#define NUMAKER_CLK_CLKDIV4_UART6DIV_Pos (16)
+```
+
+<a id="acadcdbe15918ca5478c17f30d417aa4a"></a>
+
+### `NUMAKER_CLK_CLKDIV4_UART7`
+
+```c
+#define NUMAKER_CLK_CLKDIV4_UART7 ( x)
+```
+
+展开值（Value）：
+
+```c
+(((x)-1UL) << NUMAKER_CLK_CLKDIV4_UART7DIV_Pos)
+```
+
+<a id="ace495a935bbfe7dba9c4101d10ed7ff4"></a>
+
+### `NUMAKER_CLK_CLKDIV4_UART7DIV_Pos`
+
+```c
+#define NUMAKER_CLK_CLKDIV4_UART7DIV_Pos (20)
+```
+
+<a id="a225dfb2e0f8ce7ae299746ee4242e22f"></a>
+
+### `NUMAKER_CLK_CLKDIV5_CANFD0`
+
+```c
+#define NUMAKER_CLK_CLKDIV5_CANFD0 ( x)
+```
+
+展开值（Value）：
+
+```c
+(((x)-1UL) << NUMAKER_CLK_CLKDIV5_CANFD0DIV_Pos)
+```
+
+<a id="ac5847065a5b666a23ad5ab459cab206e"></a>
+
+### `NUMAKER_CLK_CLKDIV5_CANFD0DIV_Pos`
+
+```c
+#define NUMAKER_CLK_CLKDIV5_CANFD0DIV_Pos (0)
+```
+
+<a id="a67f5c63a1322683d74d56ee68c193cb4"></a>
+
+### `NUMAKER_CLK_CLKDIV5_CANFD1`
+
+```c
+#define NUMAKER_CLK_CLKDIV5_CANFD1 ( x)
+```
+
+展开值（Value）：
+
+```c
+(((x)-1UL) << NUMAKER_CLK_CLKDIV5_CANFD1DIV_Pos)
+```
+
+<a id="ab9f0662feaf58f785abb509007878ac8"></a>
+
+### `NUMAKER_CLK_CLKDIV5_CANFD1DIV_Pos`
+
+```c
+#define NUMAKER_CLK_CLKDIV5_CANFD1DIV_Pos (4)
+```
+
+<a id="a5b10f7af05c3b67935a6f6eaa2aa6401"></a>
+
+### `NUMAKER_CLK_CLKDIV5_CANFD2`
+
+```c
+#define NUMAKER_CLK_CLKDIV5_CANFD2 ( x)
+```
+
+展开值（Value）：
+
+```c
+(((x)-1UL) << NUMAKER_CLK_CLKDIV5_CANFD2DIV_Pos)
+```
+
+<a id="a74ebf455bde77e81cb6885a3f8ee644c"></a>
+
+### `NUMAKER_CLK_CLKDIV5_CANFD2DIV_Pos`
+
+```c
+#define NUMAKER_CLK_CLKDIV5_CANFD2DIV_Pos (8)
+```
+
+<a id="ab857a9380f45415ee55b36cb57f7a835"></a>
+
+### `NUMAKER_CLK_CLKDIV5_CANFD3`
+
+```c
+#define NUMAKER_CLK_CLKDIV5_CANFD3 ( x)
+```
+
+展开值（Value）：
+
+```c
+(((x)-1UL) << NUMAKER_CLK_CLKDIV5_CANFD3DIV_Pos)
+```
+
+<a id="a38f53a703ceeb17e3e1794004b79cea1"></a>
+
+### `NUMAKER_CLK_CLKDIV5_CANFD3DIV_Pos`
+
+```c
+#define NUMAKER_CLK_CLKDIV5_CANFD3DIV_Pos (12)
+```
+
+<a id="a1d34513b627cf8077fc0b9eb27d7d86a"></a>
+
+### `NUMAKER_CLK_CLKDIV5_EADC2`
+
+```c
+#define NUMAKER_CLK_CLKDIV5_EADC2 ( x)
+```
+
+展开值（Value）：
+
+```c
+(((x)-1UL) << NUMAKER_CLK_CLKDIV5_EADC2DIV_Pos)
+```
+
+<a id="af968f32399159b10da33c64b8b73ab2c"></a>
+
+### `NUMAKER_CLK_CLKDIV5_EADC2DIV_Pos`
+
+```c
+#define NUMAKER_CLK_CLKDIV5_EADC2DIV_Pos (24)
+```
+
+<a id="ae0ec95d4d59e16f2f2522ac750c06609"></a>
+
+### `NUMAKER_CLK_CLKDIV5_UART8`
+
+```c
+#define NUMAKER_CLK_CLKDIV5_UART8 ( x)
+```
+
+展开值（Value）：
+
+```c
+(((x)-1UL) << NUMAKER_CLK_CLKDIV5_UART8DIV_Pos)
+```
+
+<a id="a7295d4b8918c0eb234826e2e3c86695d"></a>
+
+### `NUMAKER_CLK_CLKDIV5_UART8DIV_Pos`
+
+```c
+#define NUMAKER_CLK_CLKDIV5_UART8DIV_Pos (16)
+```
+
+<a id="a907216283187fc94ff9e36c7300f615f"></a>
+
+### `NUMAKER_CLK_CLKDIV5_UART9`
+
+```c
+#define NUMAKER_CLK_CLKDIV5_UART9 ( x)
+```
+
+展开值（Value）：
+
+```c
+(((x)-1UL) << NUMAKER_CLK_CLKDIV5_UART9DIV_Pos)
+```
+
+<a id="af9e916e5c92262fc8f7dc79dfd51da11"></a>
+
+### `NUMAKER_CLK_CLKDIV5_UART9DIV_Pos`
+
+```c
+#define NUMAKER_CLK_CLKDIV5_UART9DIV_Pos (20)
+```
+
+<a id="ae369ded35f04609db7e2a5a6922a5e1a"></a>
+
+### `NUMAKER_CLK_CLKSEL0_CANFD0SEL_HCLK`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CANFD0SEL_HCLK (0x2UL << NUMAKER_CLK_CLKSEL0_CANFD0SEL_Pos)
+```
+
+<a id="aba0fe8b523048854cd02b4825e59f1c0"></a>
+
+### `NUMAKER_CLK_CLKSEL0_CANFD0SEL_HIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CANFD0SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL0_CANFD0SEL_Pos)
+```
+
+<a id="a097628cbacc57dad0410c5330b6385b8"></a>
+
+### `NUMAKER_CLK_CLKSEL0_CANFD0SEL_HXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CANFD0SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL0_CANFD0SEL_Pos)
+```
+
+<a id="aa708753d71c526051cf157266060a2b0"></a>
+
+### `NUMAKER_CLK_CLKSEL0_CANFD0SEL_PLL_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CANFD0SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL0_CANFD0SEL_Pos)
+```
+
+<a id="ae8a431223539932fdb7f76dd696dc660"></a>
+
+### `NUMAKER_CLK_CLKSEL0_CANFD0SEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CANFD0SEL_Pos (24)
+```
+
+<a id="a1752cabeb909b64b92adbdc61215f3f9"></a>
+
+### `NUMAKER_CLK_CLKSEL0_CANFD1SEL_HCLK`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CANFD1SEL_HCLK (0x2UL << NUMAKER_CLK_CLKSEL0_CANFD1SEL_Pos)
+```
+
+<a id="a43849c77be4cb2dd288f1d0b81bb18c8"></a>
+
+### `NUMAKER_CLK_CLKSEL0_CANFD1SEL_HIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CANFD1SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL0_CANFD1SEL_Pos)
+```
+
+<a id="a3cc669c6de091303d9c65853000637e2"></a>
+
+### `NUMAKER_CLK_CLKSEL0_CANFD1SEL_HXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CANFD1SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL0_CANFD1SEL_Pos)
+```
+
+<a id="a0273d49ae0ae0c27533a83ab1d8b4689"></a>
+
+### `NUMAKER_CLK_CLKSEL0_CANFD1SEL_PLL_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CANFD1SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL0_CANFD1SEL_Pos)
+```
+
+<a id="ac37d09c55ca74d2b3b07f1c9528589b9"></a>
+
+### `NUMAKER_CLK_CLKSEL0_CANFD1SEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CANFD1SEL_Pos (26)
+```
+
+<a id="a2aa1ee270857376418300d41da66266f"></a>
+
+### `NUMAKER_CLK_CLKSEL0_CANFD2SEL_HCLK`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CANFD2SEL_HCLK (0x2UL << NUMAKER_CLK_CLKSEL0_CANFD2SEL_Pos)
+```
+
+<a id="ac2013365641d14ee89cb3971297f9858"></a>
+
+### `NUMAKER_CLK_CLKSEL0_CANFD2SEL_HIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CANFD2SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL0_CANFD2SEL_Pos)
+```
+
+<a id="acfc10476765f4bf15d8b2b1fc0f765a4"></a>
+
+### `NUMAKER_CLK_CLKSEL0_CANFD2SEL_HXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CANFD2SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL0_CANFD2SEL_Pos)
+```
+
+<a id="a317f7eea8e7c25f610828a7d27bc28eb"></a>
+
+### `NUMAKER_CLK_CLKSEL0_CANFD2SEL_PLL_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CANFD2SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL0_CANFD2SEL_Pos)
+```
+
+<a id="aa8b514cd21320d7554a07793f8a275dc"></a>
+
+### `NUMAKER_CLK_CLKSEL0_CANFD2SEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CANFD2SEL_Pos (28)
+```
+
+<a id="a354084c66cd641682a67230fcdd4a869"></a>
+
+### `NUMAKER_CLK_CLKSEL0_CANFD3SEL_HCLK`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CANFD3SEL_HCLK (0x2UL << NUMAKER_CLK_CLKSEL0_CANFD3SEL_Pos)
+```
+
+<a id="a8c5085efce1104852894e1e00e6d4ddf"></a>
+
+### `NUMAKER_CLK_CLKSEL0_CANFD3SEL_HIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CANFD3SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL0_CANFD3SEL_Pos)
+```
+
+<a id="ac9556b696bec169814058c9d8c8834ec"></a>
+
+### `NUMAKER_CLK_CLKSEL0_CANFD3SEL_HXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CANFD3SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL0_CANFD3SEL_Pos)
+```
+
+<a id="a28328552ec42974273d5fda9ddaf1236"></a>
+
+### `NUMAKER_CLK_CLKSEL0_CANFD3SEL_PLL_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CANFD3SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL0_CANFD3SEL_Pos)
+```
+
+<a id="a58f6dd49a1d6ea3f453ec352e2ad3d31"></a>
+
+### `NUMAKER_CLK_CLKSEL0_CANFD3SEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CANFD3SEL_Pos (30)
+```
+
+<a id="a6e7fe24e1cfdc83fc916636c5d50dc0e"></a>
+
+### `NUMAKER_CLK_CLKSEL0_CCAPSEL_HCLK`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CCAPSEL_HCLK (0x2UL << NUMAKER_CLK_CLKSEL0_CCAPSEL_Pos)
+```
+
+<a id="a5bcbdba224ba0863fdd1ff02e5cf0adc"></a>
+
+### `NUMAKER_CLK_CLKSEL0_CCAPSEL_HIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CCAPSEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL0_CCAPSEL_Pos)
+```
+
+<a id="a19564616e7f7cb594daede7dde7d60e7"></a>
+
+### `NUMAKER_CLK_CLKSEL0_CCAPSEL_HXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CCAPSEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL0_CCAPSEL_Pos)
+```
+
+<a id="afb6a8f7e4181068fd138c948a1c84343"></a>
+
+### `NUMAKER_CLK_CLKSEL0_CCAPSEL_PLL_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CCAPSEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL0_CCAPSEL_Pos)
+```
+
+<a id="a26fbf9452f88cd3c9d56da527bcf9701"></a>
+
+### `NUMAKER_CLK_CLKSEL0_CCAPSEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_CCAPSEL_Pos (16)
+```
+
+<a id="a8f1802b4d8c733d098e6f457ea9ca0a8"></a>
+
+### `NUMAKER_CLK_CLKSEL0_EADC0SEL_HCLK`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_EADC0SEL_HCLK (0x2UL << NUMAKER_CLK_CLKSEL0_EADC0SEL_Pos)
+```
+
+<a id="a334d6fe725e38ef14aa66f5811f154b0"></a>
+
+### `NUMAKER_CLK_CLKSEL0_EADC0SEL_PLL_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_EADC0SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL0_EADC0SEL_Pos)
+```
+
+<a id="ae1a84816773eaaedd0e9ec34f9601c49"></a>
+
+### `NUMAKER_CLK_CLKSEL0_EADC0SEL_PLLFN_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_EADC0SEL_PLLFN_DIV2 (0x0UL << NUMAKER_CLK_CLKSEL0_EADC0SEL_Pos)
+```
+
+<a id="aaed2bedbc7da8190be001522a8b0fda3"></a>
+
+### `NUMAKER_CLK_CLKSEL0_EADC0SEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_EADC0SEL_Pos (10)
+```
+
+<a id="ae200cb9323674a161a17a687e820dd0d"></a>
+
+### `NUMAKER_CLK_CLKSEL0_EADC1SEL_HCLK`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_EADC1SEL_HCLK (0x2UL << NUMAKER_CLK_CLKSEL0_EADC1SEL_Pos)
+```
+
+<a id="a23ff9c30be18f670d0830c9565f51b21"></a>
+
+### `NUMAKER_CLK_CLKSEL0_EADC1SEL_PLL_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_EADC1SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL0_EADC1SEL_Pos)
+```
+
+<a id="ae53479d1a845ca065c134e9acb69d490"></a>
+
+### `NUMAKER_CLK_CLKSEL0_EADC1SEL_PLLFN_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_EADC1SEL_PLLFN_DIV2 (0x0UL << NUMAKER_CLK_CLKSEL0_EADC1SEL_Pos)
+```
+
+<a id="a4aabc45f1e6d05ed3882752d3d9cd0bc"></a>
+
+### `NUMAKER_CLK_CLKSEL0_EADC1SEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_EADC1SEL_Pos (12)
+```
+
+<a id="adaf33eed919c5f3bfcc9d98bb6ce7025"></a>
+
+### `NUMAKER_CLK_CLKSEL0_EADC2SEL_HCLK`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_EADC2SEL_HCLK (0x2UL << NUMAKER_CLK_CLKSEL0_EADC2SEL_Pos)
+```
+
+<a id="ac21c81c36e2b66261e6cc7642cac3051"></a>
+
+### `NUMAKER_CLK_CLKSEL0_EADC2SEL_PLL_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_EADC2SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL0_EADC2SEL_Pos)
+```
+
+<a id="ad0975703b1f9d5446601410f2a45cf69"></a>
+
+### `NUMAKER_CLK_CLKSEL0_EADC2SEL_PLLFN_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_EADC2SEL_PLLFN_DIV2 (0x0UL << NUMAKER_CLK_CLKSEL0_EADC2SEL_Pos)
+```
+
+<a id="a0cc1044cebda8f140387cd6668c1d28b"></a>
+
+### `NUMAKER_CLK_CLKSEL0_EADC2SEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_EADC2SEL_Pos (14)
+```
+
+<a id="a35a5144f4df0ca09710fbc8d86377537"></a>
+
+### `NUMAKER_CLK_CLKSEL0_HCLKSEL_HIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_HCLKSEL_HIRC (0x7UL << NUMAKER_CLK_CLKSEL0_HCLKSEL_Pos)
+```
+
+<a id="aaf5b579f16bb170913264beb84939aa2"></a>
+
+### `NUMAKER_CLK_CLKSEL0_HCLKSEL_HXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_HCLKSEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL0_HCLKSEL_Pos)
+```
+
+<a id="a88a9e37b2360e0f703c0c469468adb1e"></a>
+
+### `NUMAKER_CLK_CLKSEL0_HCLKSEL_LIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_HCLKSEL_LIRC (0x3UL << NUMAKER_CLK_CLKSEL0_HCLKSEL_Pos)
+```
+
+<a id="a53e9db59708390ee4ff22e11f554fc5e"></a>
+
+### `NUMAKER_CLK_CLKSEL0_HCLKSEL_LXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_HCLKSEL_LXT (0x1UL << NUMAKER_CLK_CLKSEL0_HCLKSEL_Pos)
+```
+
+<a id="ae98f1f84fa81ed435a46eccaab5bb66b"></a>
+
+### `NUMAKER_CLK_CLKSEL0_HCLKSEL_PLL`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_HCLKSEL_PLL (0x2UL << NUMAKER_CLK_CLKSEL0_HCLKSEL_Pos)
+```
+
+<a id="a222c77f1b55f0230c37bd5335616e31c"></a>
+
+### `NUMAKER_CLK_CLKSEL0_HCLKSEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_HCLKSEL_Pos (0)
+```
+
+<a id="a9946b9c0f363e64e4e71b4cd12baa129"></a>
+
+### `NUMAKER_CLK_CLKSEL0_SDH0SEL_HCLK`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_SDH0SEL_HCLK (0x2UL << NUMAKER_CLK_CLKSEL0_SDH0SEL_Pos)
+```
+
+<a id="a3a5b94ee47a9439e2f17b182eec68fe2"></a>
+
+### `NUMAKER_CLK_CLKSEL0_SDH0SEL_HIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_SDH0SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL0_SDH0SEL_Pos)
+```
+
+<a id="a8787763bb8d1de77dba37b5f1d7fab5c"></a>
+
+### `NUMAKER_CLK_CLKSEL0_SDH0SEL_HXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_SDH0SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL0_SDH0SEL_Pos)
+```
+
+<a id="aa07cf8396225f74e82b25c19064855f1"></a>
+
+### `NUMAKER_CLK_CLKSEL0_SDH0SEL_PLL_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_SDH0SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL0_SDH0SEL_Pos)
+```
+
+<a id="ad511a487821a9fce9bb9f3ba370d2a88"></a>
+
+### `NUMAKER_CLK_CLKSEL0_SDH0SEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_SDH0SEL_Pos (20)
+```
+
+<a id="a18c3b00a9fa924d2c5ade2623fda2e38"></a>
+
+### `NUMAKER_CLK_CLKSEL0_SDH1SEL_HCLK`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_SDH1SEL_HCLK (0x2UL << NUMAKER_CLK_CLKSEL0_SDH1SEL_Pos)
+```
+
+<a id="a979cf701d7e4950ef37cd897e627e994"></a>
+
+### `NUMAKER_CLK_CLKSEL0_SDH1SEL_HIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_SDH1SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL0_SDH1SEL_Pos)
+```
+
+<a id="a4a793ae5ae068f7da0a955f5059cbabc"></a>
+
+### `NUMAKER_CLK_CLKSEL0_SDH1SEL_HXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_SDH1SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL0_SDH1SEL_Pos)
+```
+
+<a id="ac7348489c232f20a0aedd88e668b6b01"></a>
+
+### `NUMAKER_CLK_CLKSEL0_SDH1SEL_PLL_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_SDH1SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL0_SDH1SEL_Pos)
+```
+
+<a id="a43fe53773587485494ee0658e7191db6"></a>
+
+### `NUMAKER_CLK_CLKSEL0_SDH1SEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_SDH1SEL_Pos (22)
+```
+
+<a id="a80331a452e4606a3ea97a6e8271c879f"></a>
+
+### `NUMAKER_CLK_CLKSEL0_STCLKSEL_HCLK`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_STCLKSEL_HCLK (0x1UL << SysTick_CTRL_CLKSOURCE_Pos)
+```
+
+<a id="a6e4942ca524470a1dbfd9c1012c3d6fc"></a>
+
+### `NUMAKER_CLK_CLKSEL0_STCLKSEL_HCLK_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_STCLKSEL_HCLK_DIV2 (0x3UL << NUMAKER_CLK_CLKSEL0_STCLKSEL_Pos)
+```
+
+<a id="aee56f494a2a1028b579aee48a229bd62"></a>
+
+### `NUMAKER_CLK_CLKSEL0_STCLKSEL_HIRC_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_STCLKSEL_HIRC_DIV2 (0x7UL << NUMAKER_CLK_CLKSEL0_STCLKSEL_Pos)
+```
+
+<a id="a937c9db689672d3f6e53e6b0f5a680ae"></a>
+
+### `NUMAKER_CLK_CLKSEL0_STCLKSEL_HXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_STCLKSEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL0_STCLKSEL_Pos)
+```
+
+<a id="a1afd0ea4fb7e6bbc5f36a7845121b5bb"></a>
+
+### `NUMAKER_CLK_CLKSEL0_STCLKSEL_HXT_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_STCLKSEL_HXT_DIV2 (0x2UL << NUMAKER_CLK_CLKSEL0_STCLKSEL_Pos)
+```
+
+<a id="a7195fd0da5b897cf2c1e5df46205198d"></a>
+
+### `NUMAKER_CLK_CLKSEL0_STCLKSEL_LXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_STCLKSEL_LXT (0x1UL << NUMAKER_CLK_CLKSEL0_STCLKSEL_Pos)
+```
+
+<a id="a08af6458eb9ad7f8e6d66c0e51625585"></a>
+
+### `NUMAKER_CLK_CLKSEL0_STCLKSEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_STCLKSEL_Pos (3)
+```
+
+<a id="a4324fd407c6e6dbb86e84810094030fb"></a>
+
+### `NUMAKER_CLK_CLKSEL0_USBSEL_HIRC48M`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_USBSEL_HIRC48M (0x0UL << NUMAKER_CLK_CLKSEL0_USBSEL_Pos)
+```
+
+<a id="ae3285c43e19c374c1bf08c3a4c76dd4a"></a>
+
+### `NUMAKER_CLK_CLKSEL0_USBSEL_PLL_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_USBSEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL0_USBSEL_Pos)
+```
+
+<a id="a04d6c39e779459221829cc06c880a3be"></a>
+
+### `NUMAKER_CLK_CLKSEL0_USBSEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL0_USBSEL_Pos (8)
+```
+
+<a id="a9cc286fd7b086fa05e00d24e2d7e5846"></a>
+
+### `NUMAKER_CLK_CLKSEL1_CLKOSEL_HCLK`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_CLKOSEL_HCLK (0x2UL << NUMAKER_CLK_CLKSEL1_CLKOSEL_Pos)
+```
+
+<a id="a33998b80d4139f5cfd5aa6dc02c762c8"></a>
+
+### `NUMAKER_CLK_CLKSEL1_CLKOSEL_HIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_CLKOSEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL1_CLKOSEL_Pos)
+```
+
+<a id="a2dba089a2c9a8780fa15705ce58719e4"></a>
+
+### `NUMAKER_CLK_CLKSEL1_CLKOSEL_HXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_CLKOSEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL1_CLKOSEL_Pos)
+```
+
+<a id="ade649734a0c7017a8ddf62fdde78873b"></a>
+
+### `NUMAKER_CLK_CLKSEL1_CLKOSEL_LIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_CLKOSEL_LIRC (0x4UL << NUMAKER_CLK_CLKSEL1_CLKOSEL_Pos)
+```
+
+<a id="a0b6ad7b069802aead804d11668cab813"></a>
+
+### `NUMAKER_CLK_CLKSEL1_CLKOSEL_LXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_CLKOSEL_LXT (0x1UL << NUMAKER_CLK_CLKSEL1_CLKOSEL_Pos)
+```
+
+<a id="a221299347ceccbd32f2fa331685b869a"></a>
+
+### `NUMAKER_CLK_CLKSEL1_CLKOSEL_PLL_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_CLKOSEL_PLL_DIV2 (0x6UL << NUMAKER_CLK_CLKSEL1_CLKOSEL_Pos)
+```
+
+<a id="a9e71ef0e2022fe9445aae65f908461cc"></a>
+
+### `NUMAKER_CLK_CLKSEL1_CLKOSEL_PLLFN_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_CLKOSEL_PLLFN_DIV2 (0x5UL << NUMAKER_CLK_CLKSEL1_CLKOSEL_Pos)
+```
+
+<a id="a173d950f779cd43bcbc19ab59bcfdb9f"></a>
+
+### `NUMAKER_CLK_CLKSEL1_CLKOSEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_CLKOSEL_Pos (4)
+```
+
+<a id="ab4b9c993b869f23701052ef27c88cc3b"></a>
+
+### `NUMAKER_CLK_CLKSEL1_TMR0SEL_EXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR0SEL_EXT (0x3UL << NUMAKER_CLK_CLKSEL1_TMR0SEL_Pos)
+```
+
+<a id="ac7913ee7fe365daa500f7e1175bda470"></a>
+
+### `NUMAKER_CLK_CLKSEL1_TMR0SEL_HIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR0SEL_HIRC (0x7UL << NUMAKER_CLK_CLKSEL1_TMR0SEL_Pos)
+```
+
+<a id="a269fe710118dddabc1d17f2d1386835c"></a>
+
+### `NUMAKER_CLK_CLKSEL1_TMR0SEL_HXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR0SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL1_TMR0SEL_Pos)
+```
+
+<a id="a7f4fd7330e7ff33c4bcd4b8e666f01c1"></a>
+
+### `NUMAKER_CLK_CLKSEL1_TMR0SEL_LIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR0SEL_LIRC (0x5UL << NUMAKER_CLK_CLKSEL1_TMR0SEL_Pos)
+```
+
+<a id="a37317151b25b9c7563a6e572e0199acc"></a>
+
+### `NUMAKER_CLK_CLKSEL1_TMR0SEL_LXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR0SEL_LXT (0x1UL << NUMAKER_CLK_CLKSEL1_TMR0SEL_Pos)
+```
+
+<a id="afe9eadbd094da1c48851507719485200"></a>
+
+### `NUMAKER_CLK_CLKSEL1_TMR0SEL_PCLK0`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR0SEL_PCLK0 (0x2UL << NUMAKER_CLK_CLKSEL1_TMR0SEL_Pos)
+```
+
+<a id="a5267afb76d8c7121ae916d16bd11beba"></a>
+
+### `NUMAKER_CLK_CLKSEL1_TMR0SEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR0SEL_Pos (8)
+```
+
+<a id="a208dcc5b1095e5cf4c2dec3c312a62ac"></a>
+
+### `NUMAKER_CLK_CLKSEL1_TMR1SEL_EXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR1SEL_EXT (0x3UL << NUMAKER_CLK_CLKSEL1_TMR1SEL_Pos)
+```
+
+<a id="acb979acb614600a7126e12eefc181c8c"></a>
+
+### `NUMAKER_CLK_CLKSEL1_TMR1SEL_HIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR1SEL_HIRC (0x7UL << NUMAKER_CLK_CLKSEL1_TMR1SEL_Pos)
+```
+
+<a id="a1a6d0e60fd711d553ac0b0bf78ea6d54"></a>
+
+### `NUMAKER_CLK_CLKSEL1_TMR1SEL_HXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR1SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL1_TMR1SEL_Pos)
+```
+
+<a id="a1f9fde3db711f618393435af9dcdd621"></a>
+
+### `NUMAKER_CLK_CLKSEL1_TMR1SEL_LIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR1SEL_LIRC (0x5UL << NUMAKER_CLK_CLKSEL1_TMR1SEL_Pos)
+```
+
+<a id="a425b5c7e0d424c13328840437f9a0bb9"></a>
+
+### `NUMAKER_CLK_CLKSEL1_TMR1SEL_LXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR1SEL_LXT (0x1UL << NUMAKER_CLK_CLKSEL1_TMR1SEL_Pos)
+```
+
+<a id="a54f24cfa94c28f844f428bd06e68eb8e"></a>
+
+### `NUMAKER_CLK_CLKSEL1_TMR1SEL_PCLK0`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR1SEL_PCLK0 (0x2UL << NUMAKER_CLK_CLKSEL1_TMR1SEL_Pos)
+```
+
+<a id="acc9cb2446eb710fd02622388b038cb80"></a>
+
+### `NUMAKER_CLK_CLKSEL1_TMR1SEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR1SEL_Pos (12)
+```
+
+<a id="a6cd38e0106ba70158dce964022d1ff93"></a>
+
+### `NUMAKER_CLK_CLKSEL1_TMR2SEL_EXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR2SEL_EXT (0x3UL << NUMAKER_CLK_CLKSEL1_TMR2SEL_Pos)
+```
+
+<a id="aa19a857602df260f1c5715008dd7cedf"></a>
+
+### `NUMAKER_CLK_CLKSEL1_TMR2SEL_HIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR2SEL_HIRC (0x7UL << NUMAKER_CLK_CLKSEL1_TMR2SEL_Pos)
+```
+
+<a id="ad0ac4ff4a21c3469c892dca5f6a7d469"></a>
+
+### `NUMAKER_CLK_CLKSEL1_TMR2SEL_HXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR2SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL1_TMR2SEL_Pos)
+```
+
+<a id="a868569fb4688e0c5399d753f751b71f4"></a>
+
+### `NUMAKER_CLK_CLKSEL1_TMR2SEL_LIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR2SEL_LIRC (0x5UL << NUMAKER_CLK_CLKSEL1_TMR2SEL_Pos)
+```
+
+<a id="afc8fb6c4fa6138465928926044fadd86"></a>
+
+### `NUMAKER_CLK_CLKSEL1_TMR2SEL_LXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR2SEL_LXT (0x1UL << NUMAKER_CLK_CLKSEL1_TMR2SEL_Pos)
+```
+
+<a id="af5d0ba5a62dbc29d7e5e2d0ebf026584"></a>
+
+### `NUMAKER_CLK_CLKSEL1_TMR2SEL_PCLK1`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR2SEL_PCLK1 (0x2UL << NUMAKER_CLK_CLKSEL1_TMR2SEL_Pos)
+```
+
+<a id="a434692498a750b11be1cc4fb23f15d25"></a>
+
+### `NUMAKER_CLK_CLKSEL1_TMR2SEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR2SEL_Pos (16)
+```
+
+<a id="a6173a75df6e455a46b27486fa74d1b97"></a>
+
+### `NUMAKER_CLK_CLKSEL1_TMR3SEL_EXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR3SEL_EXT (0x3UL << NUMAKER_CLK_CLKSEL1_TMR3SEL_Pos)
+```
+
+<a id="a59c5904ed60fd6aff34f2d90cebdf906"></a>
+
+### `NUMAKER_CLK_CLKSEL1_TMR3SEL_HIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR3SEL_HIRC (0x7UL << NUMAKER_CLK_CLKSEL1_TMR3SEL_Pos)
+```
+
+<a id="a41fd2a33360832aa6de1ff87d1a8d1a4"></a>
+
+### `NUMAKER_CLK_CLKSEL1_TMR3SEL_HXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR3SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL1_TMR3SEL_Pos)
+```
+
+<a id="a3c686b34710b45462347705592e74cb7"></a>
+
+### `NUMAKER_CLK_CLKSEL1_TMR3SEL_LIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR3SEL_LIRC (0x5UL << NUMAKER_CLK_CLKSEL1_TMR3SEL_Pos)
+```
+
+<a id="a20ba7b5a926c9a4686e452a209221336"></a>
+
+### `NUMAKER_CLK_CLKSEL1_TMR3SEL_LXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR3SEL_LXT (0x1UL << NUMAKER_CLK_CLKSEL1_TMR3SEL_Pos)
+```
+
+<a id="a597126647f0c72cddca37488818158f1"></a>
+
+### `NUMAKER_CLK_CLKSEL1_TMR3SEL_PCLK1`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR3SEL_PCLK1 (0x2UL << NUMAKER_CLK_CLKSEL1_TMR3SEL_Pos)
+```
+
+<a id="a6431caf24c465342f811c99c46beec23"></a>
+
+### `NUMAKER_CLK_CLKSEL1_TMR3SEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_TMR3SEL_Pos (20)
+```
+
+<a id="a19ac2326e82a127d9e946465a27e0f4f"></a>
+
+### `NUMAKER_CLK_CLKSEL1_UART0SEL_HIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_UART0SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL1_UART0SEL_Pos)
+```
+
+<a id="ab90957a31d553a527d3810f1e7f5d55a"></a>
+
+### `NUMAKER_CLK_CLKSEL1_UART0SEL_HXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_UART0SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL1_UART0SEL_Pos)
+```
+
+<a id="a991726670d9ec0108ff6b944d372f469"></a>
+
+### `NUMAKER_CLK_CLKSEL1_UART0SEL_LXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_UART0SEL_LXT (0x2UL << NUMAKER_CLK_CLKSEL1_UART0SEL_Pos)
+```
+
+<a id="ab9b28d741c7058b1f9e37a599f7d0c2e"></a>
+
+### `NUMAKER_CLK_CLKSEL1_UART0SEL_PLL_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_UART0SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL1_UART0SEL_Pos)
+```
+
+<a id="a59454cdc6f895e4870f36409d2bae4ec"></a>
+
+### `NUMAKER_CLK_CLKSEL1_UART0SEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_UART0SEL_Pos (24)
+```
+
+<a id="ab5931f2210f1de1ac7f49309a55ce8b8"></a>
+
+### `NUMAKER_CLK_CLKSEL1_UART1SEL_HIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_UART1SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL1_UART1SEL_Pos)
+```
+
+<a id="aaa3e59f75b64a5b1c10367b583359f6b"></a>
+
+### `NUMAKER_CLK_CLKSEL1_UART1SEL_HXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_UART1SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL1_UART1SEL_Pos)
+```
+
+<a id="a4b7f0550827dab6d2a46dc5511526246"></a>
+
+### `NUMAKER_CLK_CLKSEL1_UART1SEL_LXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_UART1SEL_LXT (0x2UL << NUMAKER_CLK_CLKSEL1_UART1SEL_Pos)
+```
+
+<a id="ac198c6857f66747fe5f776fa78b10aa1"></a>
+
+### `NUMAKER_CLK_CLKSEL1_UART1SEL_PLL_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_UART1SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL1_UART1SEL_Pos)
+```
+
+<a id="af7249c7982a7b0aecb14ad23d4d69177"></a>
+
+### `NUMAKER_CLK_CLKSEL1_UART1SEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_UART1SEL_Pos (26)
+```
+
+<a id="a7feb3eb8a79e72de8dce4bb1a0fe1f75"></a>
+
+### `NUMAKER_CLK_CLKSEL1_WDTSEL_HCLK_DIV2048`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_WDTSEL_HCLK_DIV2048 (0x2UL << NUMAKER_CLK_CLKSEL1_WDTSEL_Pos)
+```
+
+<a id="ac746e9a7ac0032e91032d8e4f3286040"></a>
+
+### `NUMAKER_CLK_CLKSEL1_WDTSEL_LIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_WDTSEL_LIRC (0x3UL << NUMAKER_CLK_CLKSEL1_WDTSEL_Pos)
+```
+
+<a id="a7c7748061529c4f6552bc9394b90c701"></a>
+
+### `NUMAKER_CLK_CLKSEL1_WDTSEL_LXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_WDTSEL_LXT (0x1UL << NUMAKER_CLK_CLKSEL1_WDTSEL_Pos)
+```
+
+<a id="ae766e87b0198cd6d632efc6ad6c90f2f"></a>
+
+### `NUMAKER_CLK_CLKSEL1_WDTSEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_WDTSEL_Pos (0)
+```
+
+<a id="a7d55fac6b093ac281eb9a0bf0762ade4"></a>
+
+### `NUMAKER_CLK_CLKSEL1_WWDTSEL_HCLK_DIV2048`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_WWDTSEL_HCLK_DIV2048 (0x2UL << NUMAKER_CLK_CLKSEL1_WWDTSEL_Pos)
+```
+
+<a id="a838ca0acbf99746d596456f32ea411e1"></a>
+
+### `NUMAKER_CLK_CLKSEL1_WWDTSEL_LIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_WWDTSEL_LIRC (0x3UL << NUMAKER_CLK_CLKSEL1_WWDTSEL_Pos)
+```
+
+<a id="abde910c3bea13e43a62ea0f308a3d67d"></a>
+
+### `NUMAKER_CLK_CLKSEL1_WWDTSEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL1_WWDTSEL_Pos (30)
+```
+
+<a id="a055b9b799418142db0c31e371b9753fa"></a>
+
+### `NUMAKER_CLK_CLKSEL2_BPWM0SEL_HCLK`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_BPWM0SEL_HCLK (0x0UL << NUMAKER_CLK_CLKSEL2_BPWM0SEL_Pos)
+```
+
+<a id="ae7a979646d487520cae4eb025deb3d88"></a>
+
+### `NUMAKER_CLK_CLKSEL2_BPWM0SEL_PCLK0`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_BPWM0SEL_PCLK0 (0x1UL << NUMAKER_CLK_CLKSEL2_BPWM0SEL_Pos)
+```
+
+<a id="a468889c86406ba0ac19dc13ea3676819"></a>
+
+### `NUMAKER_CLK_CLKSEL2_BPWM0SEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_BPWM0SEL_Pos (8)
+```
+
+<a id="a31696dd1f857e3a56b70cf752aabe8f0"></a>
+
+### `NUMAKER_CLK_CLKSEL2_BPWM1SEL_HCLK`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_BPWM1SEL_HCLK (0x0UL << NUMAKER_CLK_CLKSEL2_BPWM1SEL_Pos)
+```
+
+<a id="aae05c896f4800dc75fcb0f400d304f62"></a>
+
+### `NUMAKER_CLK_CLKSEL2_BPWM1SEL_PCLK1`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_BPWM1SEL_PCLK1 (0x1UL << NUMAKER_CLK_CLKSEL2_BPWM1SEL_Pos)
+```
+
+<a id="ac1482052fb0001105c872760676e9b85"></a>
+
+### `NUMAKER_CLK_CLKSEL2_BPWM1SEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_BPWM1SEL_Pos (9)
+```
+
+<a id="a066b7281b9e714d8e30af62b3df99fb1"></a>
+
+### `NUMAKER_CLK_CLKSEL2_EPWM0SEL_HCLK`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_EPWM0SEL_HCLK (0x0UL << NUMAKER_CLK_CLKSEL2_EPWM0SEL_Pos)
+```
+
+<a id="a5886a5009f7f0ef41f04bff54c2f4781"></a>
+
+### `NUMAKER_CLK_CLKSEL2_EPWM0SEL_PCLK0`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_EPWM0SEL_PCLK0 (0x1UL << NUMAKER_CLK_CLKSEL2_EPWM0SEL_Pos)
+```
+
+<a id="a7c7e4439cb2a5ea61d131ca5aa34c13f"></a>
+
+### `NUMAKER_CLK_CLKSEL2_EPWM0SEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_EPWM0SEL_Pos (0)
+```
+
+<a id="a6ed53fbec964b2d85b10b8be7d3d5063"></a>
+
+### `NUMAKER_CLK_CLKSEL2_EPWM1SEL_HCLK`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_EPWM1SEL_HCLK (0x0UL << NUMAKER_CLK_CLKSEL2_EPWM1SEL_Pos)
+```
+
+<a id="a84f8299574ba19909d135d6958655a67"></a>
+
+### `NUMAKER_CLK_CLKSEL2_EPWM1SEL_PCLK1`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_EPWM1SEL_PCLK1 (0x1UL << NUMAKER_CLK_CLKSEL2_EPWM1SEL_Pos)
+```
+
+<a id="a789a88e5c5bb82243395ab44d9150f2f"></a>
+
+### `NUMAKER_CLK_CLKSEL2_EPWM1SEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_EPWM1SEL_Pos (1)
+```
+
+<a id="acd9a0f64bd383507c174cfb15e840d2b"></a>
+
+### `NUMAKER_CLK_CLKSEL2_I2S1SEL_HIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_I2S1SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL2_I2S1SEL_Pos)
+```
+
+<a id="af62a05371d707939ecf9b2297cdb8bf8"></a>
+
+### `NUMAKER_CLK_CLKSEL2_I2S1SEL_HIRC48M`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_I2S1SEL_HIRC48M (0x4UL << NUMAKER_CLK_CLKSEL2_I2S1SEL_Pos)
+```
+
+<a id="aa344af8b6f18787fac24b160e68cdc43"></a>
+
+### `NUMAKER_CLK_CLKSEL2_I2S1SEL_HXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_I2S1SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL2_I2S1SEL_Pos)
+```
+
+<a id="adb1533714b11dbf4c4bc7346a47c127b"></a>
+
+### `NUMAKER_CLK_CLKSEL2_I2S1SEL_PCLK1`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_I2S1SEL_PCLK1 (0x2UL << NUMAKER_CLK_CLKSEL2_I2S1SEL_Pos)
+```
+
+<a id="a5781d8776f1f0639e61db3ff3f18308d"></a>
+
+### `NUMAKER_CLK_CLKSEL2_I2S1SEL_PLL_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_I2S1SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL2_I2S1SEL_Pos)
+```
+
+<a id="a0e4f643aa45c97deec5cd470a02fc394"></a>
+
+### `NUMAKER_CLK_CLKSEL2_I2S1SEL_PLLFN_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_I2S1SEL_PLLFN_DIV2 (0x5UL << NUMAKER_CLK_CLKSEL2_I2S1SEL_Pos)
+```
+
+<a id="a62b60bef47ebaa4283c592cf1befd06a"></a>
+
+### `NUMAKER_CLK_CLKSEL2_I2S1SEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_I2S1SEL_Pos (16)
+```
+
+<a id="af34cb3673e0ad70480a5a24ce26ca9a3"></a>
+
+### `NUMAKER_CLK_CLKSEL2_PSIOSEL_HIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_PSIOSEL_HIRC (0x5UL << NUMAKER_CLK_CLKSEL2_PSIOSEL_Pos)
+```
+
+<a id="a9aa23bab20b1b4468a8743302dd1c7ab"></a>
+
+### `NUMAKER_CLK_CLKSEL2_PSIOSEL_HXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_PSIOSEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL2_PSIOSEL_Pos)
+```
+
+<a id="af2a0cf63f7a2af7aa989963c4f90abc2"></a>
+
+### `NUMAKER_CLK_CLKSEL2_PSIOSEL_LIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_PSIOSEL_LIRC (0x4UL << NUMAKER_CLK_CLKSEL2_PSIOSEL_Pos)
+```
+
+<a id="ae6720ec8079ccfd3034fa74f8aa8ed18"></a>
+
+### `NUMAKER_CLK_CLKSEL2_PSIOSEL_LXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_PSIOSEL_LXT (0x1UL << NUMAKER_CLK_CLKSEL2_PSIOSEL_Pos)
+```
+
+<a id="a14234fa9d410f13ce14866ae0347a882"></a>
+
+### `NUMAKER_CLK_CLKSEL2_PSIOSEL_PCLK1`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_PSIOSEL_PCLK1 (0x2UL << NUMAKER_CLK_CLKSEL2_PSIOSEL_Pos)
+```
+
+<a id="a7b56de33f223091c59782a86eea91f56"></a>
+
+### `NUMAKER_CLK_CLKSEL2_PSIOSEL_PLL_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_PSIOSEL_PLL_DIV2 (0x3UL << NUMAKER_CLK_CLKSEL2_PSIOSEL_Pos)
+```
+
+<a id="a3dd2bba6fd135bb75d81ba88307145ad"></a>
+
+### `NUMAKER_CLK_CLKSEL2_PSIOSEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_PSIOSEL_Pos (28)
+```
+
+<a id="ab8f6509882bb312a7bb5f215e21556be"></a>
+
+### `NUMAKER_CLK_CLKSEL2_QSPI0SEL_HIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_QSPI0SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL2_QSPI0SEL_Pos)
+```
+
+<a id="ab2035f3ef4f5dfa4dbd629b928729114"></a>
+
+### `NUMAKER_CLK_CLKSEL2_QSPI0SEL_HXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_QSPI0SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL2_QSPI0SEL_Pos)
+```
+
+<a id="a7e185755d01c123d2b05e7657f50b87f"></a>
+
+### `NUMAKER_CLK_CLKSEL2_QSPI0SEL_PCLK0`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_QSPI0SEL_PCLK0 (0x2UL << NUMAKER_CLK_CLKSEL2_QSPI0SEL_Pos)
+```
+
+<a id="a33885ea70f6c99f43f6b814090ce695c"></a>
+
+### `NUMAKER_CLK_CLKSEL2_QSPI0SEL_PLL_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_QSPI0SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL2_QSPI0SEL_Pos)
+```
+
+<a id="afd2bdefddd574beef75f27fe63235b71"></a>
+
+### `NUMAKER_CLK_CLKSEL2_QSPI0SEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_QSPI0SEL_Pos (2)
+```
+
+<a id="a18b75ffb5e2247daa96bad18e29ac504"></a>
+
+### `NUMAKER_CLK_CLKSEL2_QSPI1SEL_HIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_QSPI1SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL2_QSPI1SEL_Pos)
+```
+
+<a id="a9d983236876b97094c0b0198bf362da0"></a>
+
+### `NUMAKER_CLK_CLKSEL2_QSPI1SEL_HXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_QSPI1SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL2_QSPI1SEL_Pos)
+```
+
+<a id="a92310f4949beba40270a3b7056b768a8"></a>
+
+### `NUMAKER_CLK_CLKSEL2_QSPI1SEL_PCLK1`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_QSPI1SEL_PCLK1 (0x2UL << NUMAKER_CLK_CLKSEL2_QSPI1SEL_Pos)
+```
+
+<a id="a0d4eceb83b11d248d984cae5286c14cc"></a>
+
+### `NUMAKER_CLK_CLKSEL2_QSPI1SEL_PLL_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_QSPI1SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL2_QSPI1SEL_Pos)
+```
+
+<a id="abaa371d43c61b5eac6209c49450be2bb"></a>
+
+### `NUMAKER_CLK_CLKSEL2_QSPI1SEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_QSPI1SEL_Pos (10)
+```
+
+<a id="a5490e8ae6a82a281d81026b37ad5dfb7"></a>
+
+### `NUMAKER_CLK_CLKSEL2_SPI0SEL_HIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_SPI0SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL2_SPI0SEL_Pos)
+```
+
+<a id="ad8b1a5339bf72877ac1eee28e35cdc76"></a>
+
+### `NUMAKER_CLK_CLKSEL2_SPI0SEL_HIRC48M`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_SPI0SEL_HIRC48M (0x4UL << NUMAKER_CLK_CLKSEL2_SPI0SEL_Pos)
+```
+
+<a id="aa8fea6d4d392fbb12385bd3dc3d7e41d"></a>
+
+### `NUMAKER_CLK_CLKSEL2_SPI0SEL_HXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_SPI0SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL2_SPI0SEL_Pos)
+```
+
+<a id="a7f6f7f591f7b3ce3522fa63abe564fe5"></a>
+
+### `NUMAKER_CLK_CLKSEL2_SPI0SEL_PCLK1`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_SPI0SEL_PCLK1 (0x2UL << NUMAKER_CLK_CLKSEL2_SPI0SEL_Pos)
+```
+
+<a id="a1f155d341a87fdac387ea48a5778d4ed"></a>
+
+### `NUMAKER_CLK_CLKSEL2_SPI0SEL_PLL_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_SPI0SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL2_SPI0SEL_Pos)
+```
+
+<a id="a738bbbfabacb6342c8b257b1ece00ebe"></a>
+
+### `NUMAKER_CLK_CLKSEL2_SPI0SEL_PLLFN_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_SPI0SEL_PLLFN_DIV2 (0x5UL << NUMAKER_CLK_CLKSEL2_SPI0SEL_Pos)
+```
+
+<a id="a3f3697e0e6786758e2d558704c1ae95b"></a>
+
+### `NUMAKER_CLK_CLKSEL2_SPI0SEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_SPI0SEL_Pos (4)
+```
+
+<a id="a62209956eeaf9174960a476a2514b72d"></a>
+
+### `NUMAKER_CLK_CLKSEL2_SPI1SEL_HIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_SPI1SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL2_SPI1SEL_Pos)
+```
+
+<a id="a14000a6d12ea314b48c738e39ae5e6c2"></a>
+
+### `NUMAKER_CLK_CLKSEL2_SPI1SEL_HIRC48M`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_SPI1SEL_HIRC48M (0x4UL << NUMAKER_CLK_CLKSEL2_SPI1SEL_Pos)
+```
+
+<a id="a02ec8188dc04f486240c9534ecbd2f76"></a>
+
+### `NUMAKER_CLK_CLKSEL2_SPI1SEL_HXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_SPI1SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL2_SPI1SEL_Pos)
+```
+
+<a id="ac6fe2e428168fde50cdc9d7accebba31"></a>
+
+### `NUMAKER_CLK_CLKSEL2_SPI1SEL_PCLK0`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_SPI1SEL_PCLK0 (0x2UL << NUMAKER_CLK_CLKSEL2_SPI1SEL_Pos)
+```
+
+<a id="aa7b96f0cab55a160ffb9c13cbe8af877"></a>
+
+### `NUMAKER_CLK_CLKSEL2_SPI1SEL_PLL_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_SPI1SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL2_SPI1SEL_Pos)
+```
+
+<a id="ade1874823eacddebee27346428929ede"></a>
+
+### `NUMAKER_CLK_CLKSEL2_SPI1SEL_PLLFN_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_SPI1SEL_PLLFN_DIV2 (0x5UL << NUMAKER_CLK_CLKSEL2_SPI1SEL_Pos)
+```
+
+<a id="a00200de5091f4a3e3eb6205a3eb2710e"></a>
+
+### `NUMAKER_CLK_CLKSEL2_SPI1SEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_SPI1SEL_Pos (12)
+```
+
+<a id="a3f961d2f6e112240fc930fd43f0a6e88"></a>
+
+### `NUMAKER_CLK_CLKSEL2_TRNGSEL_LIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_TRNGSEL_LIRC (0x1UL << NUMAKER_CLK_CLKSEL2_TRNGSEL_Pos)
+```
+
+<a id="a30bf76b4a03d61b0f0f8365cb6b9639c"></a>
+
+### `NUMAKER_CLK_CLKSEL2_TRNGSEL_LXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_TRNGSEL_LXT (0x0UL << NUMAKER_CLK_CLKSEL2_TRNGSEL_Pos)
+```
+
+<a id="ae64e22341ff5a80754b972cc939499f2"></a>
+
+### `NUMAKER_CLK_CLKSEL2_TRNGSEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_TRNGSEL_Pos (27)
+```
+
+<a id="aab4cb19bf0ad8e6104c8db8a8e8b4660"></a>
+
+### `NUMAKER_CLK_CLKSEL2_UART8SEL_HIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_UART8SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL2_UART8SEL_Pos)
+```
+
+<a id="a9bf2e582bee931751b74b2a548646270"></a>
+
+### `NUMAKER_CLK_CLKSEL2_UART8SEL_HXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_UART8SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL2_UART8SEL_Pos)
+```
+
+<a id="af1f34545d01798605d3121d673c246ba"></a>
+
+### `NUMAKER_CLK_CLKSEL2_UART8SEL_LXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_UART8SEL_LXT (0x2UL << NUMAKER_CLK_CLKSEL2_UART8SEL_Pos)
+```
+
+<a id="af1287ca664d3787fc7d43045461c0f80"></a>
+
+### `NUMAKER_CLK_CLKSEL2_UART8SEL_PLL_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_UART8SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL2_UART8SEL_Pos)
+```
+
+<a id="a77c6617ce411e7d7c1c844b5d759ea81"></a>
+
+### `NUMAKER_CLK_CLKSEL2_UART8SEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_UART8SEL_Pos (20)
+```
+
+<a id="aac3144fb15ccfb78bd7fc83af15b514a"></a>
+
+### `NUMAKER_CLK_CLKSEL2_UART9SEL_HIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_UART9SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL2_UART9SEL_Pos)
+```
+
+<a id="a585a3db6c47f759efec73a4ed7fa22ea"></a>
+
+### `NUMAKER_CLK_CLKSEL2_UART9SEL_HXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_UART9SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL2_UART9SEL_Pos)
+```
+
+<a id="a3e8c5f032ac973a2c6e97f5233d41d2e"></a>
+
+### `NUMAKER_CLK_CLKSEL2_UART9SEL_LXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_UART9SEL_LXT (0x2UL << NUMAKER_CLK_CLKSEL2_UART9SEL_Pos)
+```
+
+<a id="ad6255ce889f6dbd8a9329bde314aae09"></a>
+
+### `NUMAKER_CLK_CLKSEL2_UART9SEL_PLL_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_UART9SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL2_UART9SEL_Pos)
+```
+
+<a id="aa0d54fd960a54667ebd1648e3ff59372"></a>
+
+### `NUMAKER_CLK_CLKSEL2_UART9SEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL2_UART9SEL_Pos (22)
+```
+
+<a id="ae6167fdcb715fdab8590115d08732a52"></a>
+
+### `NUMAKER_CLK_CLKSEL3_I2S0SEL_HIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_I2S0SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL3_I2S0SEL_Pos)
+```
+
+<a id="a05f172005696ffe09d09e2419ec4a0c2"></a>
+
+### `NUMAKER_CLK_CLKSEL3_I2S0SEL_HIRC48M`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_I2S0SEL_HIRC48M (0x4UL << NUMAKER_CLK_CLKSEL3_I2S0SEL_Pos)
+```
+
+<a id="a5974644957888fce996694a23d0c8974"></a>
+
+### `NUMAKER_CLK_CLKSEL3_I2S0SEL_HXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_I2S0SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL3_I2S0SEL_Pos)
+```
+
+<a id="a19fae5fa37ea497e8cbbc4e35fcc7a1c"></a>
+
+### `NUMAKER_CLK_CLKSEL3_I2S0SEL_PCLK0`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_I2S0SEL_PCLK0 (0x2UL << NUMAKER_CLK_CLKSEL3_I2S0SEL_Pos)
+```
+
+<a id="a6f43b5f162e778c82096ba88e61c3bab"></a>
+
+### `NUMAKER_CLK_CLKSEL3_I2S0SEL_PLL_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_I2S0SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL3_I2S0SEL_Pos)
+```
+
+<a id="af4fa24cf94713ff0cc30c3f75fd9a1c7"></a>
+
+### `NUMAKER_CLK_CLKSEL3_I2S0SEL_PLLFN_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_I2S0SEL_PLLFN_DIV2 (0x5UL << NUMAKER_CLK_CLKSEL3_I2S0SEL_Pos)
+```
+
+<a id="a8998c20d1845afb0936f18a3ffdd277e"></a>
+
+### `NUMAKER_CLK_CLKSEL3_I2S0SEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_I2S0SEL_Pos (16)
+```
+
+<a id="ad0d8e9747739d59ec078ed6c9d24bb85"></a>
+
+### `NUMAKER_CLK_CLKSEL3_KPISEL_HIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_KPISEL_HIRC (0x2UL << NUMAKER_CLK_CLKSEL3_KPISEL_Pos)
+```
+
+<a id="abae76078aade03ef47ac19c1ad20bae7"></a>
+
+### `NUMAKER_CLK_CLKSEL3_KPISEL_HXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_KPISEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL3_KPISEL_Pos)
+```
+
+<a id="a8b046263c9ff1d8fbe51fa377b048119"></a>
+
+### `NUMAKER_CLK_CLKSEL3_KPISEL_LIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_KPISEL_LIRC (0x1UL << NUMAKER_CLK_CLKSEL3_KPISEL_Pos)
+```
+
+<a id="ab62463cdd14a928e8d9981d10bb58c5d"></a>
+
+### `NUMAKER_CLK_CLKSEL3_KPISEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_KPISEL_Pos (6)
+```
+
+<a id="ab7a71f01a8340762103de86a4485501b"></a>
+
+### `NUMAKER_CLK_CLKSEL3_SC0SEL_HIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SC0SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL3_SC0SEL_Pos)
+```
+
+<a id="a51a3f59da3bb773b180df7ffb8f6e062"></a>
+
+### `NUMAKER_CLK_CLKSEL3_SC0SEL_HXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SC0SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL3_SC0SEL_Pos)
+```
+
+<a id="aa2f306a6f8133c48b65e9296b9252def"></a>
+
+### `NUMAKER_CLK_CLKSEL3_SC0SEL_PCLK0`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SC0SEL_PCLK0 (0x2UL << NUMAKER_CLK_CLKSEL3_SC0SEL_Pos)
+```
+
+<a id="afd2366fc3ed2750af1224ff94b4f4473"></a>
+
+### `NUMAKER_CLK_CLKSEL3_SC0SEL_PLL_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SC0SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL3_SC0SEL_Pos)
+```
+
+<a id="a19c633148ca7ea93e9614e49d2e143e5"></a>
+
+### `NUMAKER_CLK_CLKSEL3_SC0SEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SC0SEL_Pos (0)
+```
+
+<a id="a40d22aade311a018b9f95336cb0baaa6"></a>
+
+### `NUMAKER_CLK_CLKSEL3_SC1SEL_HIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SC1SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL3_SC1SEL_Pos)
+```
+
+<a id="a48d1214da483d0510aba9b06c0e9c8ef"></a>
+
+### `NUMAKER_CLK_CLKSEL3_SC1SEL_HXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SC1SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL3_SC1SEL_Pos)
+```
+
+<a id="aaac8336fe0aad8115a1f1c8f9c985d87"></a>
+
+### `NUMAKER_CLK_CLKSEL3_SC1SEL_PCLK1`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SC1SEL_PCLK1 (0x2UL << NUMAKER_CLK_CLKSEL3_SC1SEL_Pos)
+```
+
+<a id="a6c43b7837b4ebaf01d6ab8f6d441de9c"></a>
+
+### `NUMAKER_CLK_CLKSEL3_SC1SEL_PLL_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SC1SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL3_SC1SEL_Pos)
+```
+
+<a id="a6fd49b4bc34a81053e90d06014081b29"></a>
+
+### `NUMAKER_CLK_CLKSEL3_SC1SEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SC1SEL_Pos (2)
+```
+
+<a id="a50f0041607bf3863c8df920fedf96ea0"></a>
+
+### `NUMAKER_CLK_CLKSEL3_SC2SEL_HIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SC2SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL3_SC2SEL_Pos)
+```
+
+<a id="a41a42c3b21866a058623ac46b20f01a3"></a>
+
+### `NUMAKER_CLK_CLKSEL3_SC2SEL_HXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SC2SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL3_SC2SEL_Pos)
+```
+
+<a id="aa5675f4749b15655a31586dd4aac26b8"></a>
+
+### `NUMAKER_CLK_CLKSEL3_SC2SEL_PCLK0`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SC2SEL_PCLK0 (0x2UL << NUMAKER_CLK_CLKSEL3_SC2SEL_Pos)
+```
+
+<a id="a8a2981c9b91c13a2cbdfe6161ee5f890"></a>
+
+### `NUMAKER_CLK_CLKSEL3_SC2SEL_PLL_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SC2SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL3_SC2SEL_Pos)
+```
+
+<a id="a0937060d13a67d6c6b6b440b160bce78"></a>
+
+### `NUMAKER_CLK_CLKSEL3_SC2SEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SC2SEL_Pos (4)
+```
+
+<a id="ab087f54ea6ea67e1f41aeaf948782c1f"></a>
+
+### `NUMAKER_CLK_CLKSEL3_SPI2SEL_HIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SPI2SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL3_SPI2SEL_Pos)
+```
+
+<a id="a3e5c5f8daec012d060843a800802fea1"></a>
+
+### `NUMAKER_CLK_CLKSEL3_SPI2SEL_HIRC48M`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SPI2SEL_HIRC48M (0x4UL << NUMAKER_CLK_CLKSEL3_SPI2SEL_Pos)
+```
+
+<a id="abfae567f85ec08381bb0db7c81fd74d3"></a>
+
+### `NUMAKER_CLK_CLKSEL3_SPI2SEL_HXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SPI2SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL3_SPI2SEL_Pos)
+```
+
+<a id="a13a781d3f27119fb8067191f981fc52b"></a>
+
+### `NUMAKER_CLK_CLKSEL3_SPI2SEL_PCLK1`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SPI2SEL_PCLK1 (0x2UL << NUMAKER_CLK_CLKSEL3_SPI2SEL_Pos)
+```
+
+<a id="a0f678617a8bd348b9587a04609be7548"></a>
+
+### `NUMAKER_CLK_CLKSEL3_SPI2SEL_PLL_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SPI2SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL3_SPI2SEL_Pos)
+```
+
+<a id="aecd6af9356ecdeead2b9daa599628f69"></a>
+
+### `NUMAKER_CLK_CLKSEL3_SPI2SEL_PLLFN_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SPI2SEL_PLLFN_DIV2 (0x5UL << NUMAKER_CLK_CLKSEL3_SPI2SEL_Pos)
+```
+
+<a id="a34f8358a68834ea06c779d8554990ab1"></a>
+
+### `NUMAKER_CLK_CLKSEL3_SPI2SEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SPI2SEL_Pos (9)
+```
+
+<a id="a013d56f4921687d6417e06944e0604f4"></a>
+
+### `NUMAKER_CLK_CLKSEL3_SPI3SEL_HIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SPI3SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL3_SPI3SEL_Pos)
+```
+
+<a id="a97eb5cf29a9fdf172288db3696a9c690"></a>
+
+### `NUMAKER_CLK_CLKSEL3_SPI3SEL_HIRC48M`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SPI3SEL_HIRC48M (0x4UL << NUMAKER_CLK_CLKSEL3_SPI3SEL_Pos)
+```
+
+<a id="a3b87db844ad61714826adc34da9ec7b0"></a>
+
+### `NUMAKER_CLK_CLKSEL3_SPI3SEL_HXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SPI3SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL3_SPI3SEL_Pos)
+```
+
+<a id="a38d7de1142dbcbb41efc14ff3a509e6a"></a>
+
+### `NUMAKER_CLK_CLKSEL3_SPI3SEL_PCLK0`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SPI3SEL_PCLK0 (0x2UL << NUMAKER_CLK_CLKSEL3_SPI3SEL_Pos)
+```
+
+<a id="a63ae5b13f3280b5f9842a994fb017263"></a>
+
+### `NUMAKER_CLK_CLKSEL3_SPI3SEL_PLL_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SPI3SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL3_SPI3SEL_Pos)
+```
+
+<a id="a583b38aa35525e5f4262d79c2f74142a"></a>
+
+### `NUMAKER_CLK_CLKSEL3_SPI3SEL_PLLFN_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SPI3SEL_PLLFN_DIV2 (0x5UL << NUMAKER_CLK_CLKSEL3_SPI3SEL_Pos)
+```
+
+<a id="a8544ff20404a07e93d2dbcd170da2806"></a>
+
+### `NUMAKER_CLK_CLKSEL3_SPI3SEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_SPI3SEL_Pos (12)
+```
+
+<a id="a240355ff578cb006df6b963071fe1151"></a>
+
+### `NUMAKER_CLK_CLKSEL3_UART2SEL_HIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART2SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL3_UART2SEL_Pos)
+```
+
+<a id="aa4cf778724c945fbdf5ce101d53db019"></a>
+
+### `NUMAKER_CLK_CLKSEL3_UART2SEL_HXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART2SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL3_UART2SEL_Pos)
+```
+
+<a id="a64e775dfda0f36499d1d357c301a517d"></a>
+
+### `NUMAKER_CLK_CLKSEL3_UART2SEL_LXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART2SEL_LXT (0x2UL << NUMAKER_CLK_CLKSEL3_UART2SEL_Pos)
+```
+
+<a id="a6b98bb87b62119444fe455d2061d85c2"></a>
+
+### `NUMAKER_CLK_CLKSEL3_UART2SEL_PLL_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART2SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL3_UART2SEL_Pos)
+```
+
+<a id="aa1f1fc552a722bafea8f9177ed609877"></a>
+
+### `NUMAKER_CLK_CLKSEL3_UART2SEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART2SEL_Pos (24)
+```
+
+<a id="abc297ff0ee39a512baccea1b84d31743"></a>
+
+### `NUMAKER_CLK_CLKSEL3_UART3SEL_HIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART3SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL3_UART3SEL_Pos)
+```
+
+<a id="a435f628f7f8ed83c7919590dab30d723"></a>
+
+### `NUMAKER_CLK_CLKSEL3_UART3SEL_HXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART3SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL3_UART3SEL_Pos)
+```
+
+<a id="ab7ba7823db4fb9e9573c5022993e658c"></a>
+
+### `NUMAKER_CLK_CLKSEL3_UART3SEL_LXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART3SEL_LXT (0x2UL << NUMAKER_CLK_CLKSEL3_UART3SEL_Pos)
+```
+
+<a id="a5685fa5b106626b8bd39e12591a8e6e4"></a>
+
+### `NUMAKER_CLK_CLKSEL3_UART3SEL_PLL_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART3SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL3_UART3SEL_Pos)
+```
+
+<a id="acf28a2139435cc793c0b712e8e8a0806"></a>
+
+### `NUMAKER_CLK_CLKSEL3_UART3SEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART3SEL_Pos (26)
+```
+
+<a id="a5caa47dd6f666aba29f1c1fbf2d39733"></a>
+
+### `NUMAKER_CLK_CLKSEL3_UART4SEL_HIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART4SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL3_UART4SEL_Pos)
+```
+
+<a id="ad1bd01284da31bc01fd795e9008ba940"></a>
+
+### `NUMAKER_CLK_CLKSEL3_UART4SEL_HXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART4SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL3_UART4SEL_Pos)
+```
+
+<a id="a0668601d9c207300251ea1cb4d88af80"></a>
+
+### `NUMAKER_CLK_CLKSEL3_UART4SEL_LXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART4SEL_LXT (0x2UL << NUMAKER_CLK_CLKSEL3_UART4SEL_Pos)
+```
+
+<a id="a4cde53577fb97204f462d44532a6a44c"></a>
+
+### `NUMAKER_CLK_CLKSEL3_UART4SEL_PLL_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART4SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL3_UART4SEL_Pos)
+```
+
+<a id="a3b8ea6d3069dfc8d3727f0bb4cdf6600"></a>
+
+### `NUMAKER_CLK_CLKSEL3_UART4SEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART4SEL_Pos (28)
+```
+
+<a id="a9069b1ca1a84527ca21ef310cc7b2245"></a>
+
+### `NUMAKER_CLK_CLKSEL3_UART5SEL_HIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART5SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL3_UART5SEL_Pos)
+```
+
+<a id="a3883f4f7ad84d8fccef42a0ae9c83fb5"></a>
+
+### `NUMAKER_CLK_CLKSEL3_UART5SEL_HXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART5SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL3_UART5SEL_Pos)
+```
+
+<a id="a0c55bde547ef28bac6c322ccb530221a"></a>
+
+### `NUMAKER_CLK_CLKSEL3_UART5SEL_LXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART5SEL_LXT (0x2UL << NUMAKER_CLK_CLKSEL3_UART5SEL_Pos)
+```
+
+<a id="a109f1c70fbd27a2b92abf64be1741447"></a>
+
+### `NUMAKER_CLK_CLKSEL3_UART5SEL_PLL_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART5SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL3_UART5SEL_Pos)
+```
+
+<a id="aac88d611ffa6b1f45c123b1af12b0d6d"></a>
+
+### `NUMAKER_CLK_CLKSEL3_UART5SEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART5SEL_Pos (30)
+```
+
+<a id="acfe7822fd07115a0361d50dd2c1b158a"></a>
+
+### `NUMAKER_CLK_CLKSEL3_UART6SEL_HIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART6SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL3_UART6SEL_Pos)
+```
+
+<a id="a5750431bef8248dbf0400bc304c28e83"></a>
+
+### `NUMAKER_CLK_CLKSEL3_UART6SEL_HXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART6SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL3_UART6SEL_Pos)
+```
+
+<a id="a7c12327af81e305e8daee591c40a6e29"></a>
+
+### `NUMAKER_CLK_CLKSEL3_UART6SEL_LXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART6SEL_LXT (0x2UL << NUMAKER_CLK_CLKSEL3_UART6SEL_Pos)
+```
+
+<a id="a8ced2c03a1e88b125372539afef7d6fb"></a>
+
+### `NUMAKER_CLK_CLKSEL3_UART6SEL_PLL_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART6SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL3_UART6SEL_Pos)
+```
+
+<a id="a0fa73839deb734011ed856ab1b3d29f3"></a>
+
+### `NUMAKER_CLK_CLKSEL3_UART6SEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART6SEL_Pos (20)
+```
+
+<a id="a3d6df478f726baa83aa0ed72a41e14b2"></a>
+
+### `NUMAKER_CLK_CLKSEL3_UART7SEL_HIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART7SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL3_UART7SEL_Pos)
+```
+
+<a id="ae826f6a8852e0768e4b68300e24cc298"></a>
+
+### `NUMAKER_CLK_CLKSEL3_UART7SEL_HXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART7SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL3_UART7SEL_Pos)
+```
+
+<a id="a2992f14efbae61aaa34af5b854c70c24"></a>
+
+### `NUMAKER_CLK_CLKSEL3_UART7SEL_LXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART7SEL_LXT (0x2UL << NUMAKER_CLK_CLKSEL3_UART7SEL_Pos)
+```
+
+<a id="ae1d938ba5b4aa9838f1a860db7591f60"></a>
+
+### `NUMAKER_CLK_CLKSEL3_UART7SEL_PLL_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART7SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL3_UART7SEL_Pos)
+```
+
+<a id="a19cd6b3c40c825dfe2a8193ad3d530ca"></a>
+
+### `NUMAKER_CLK_CLKSEL3_UART7SEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL3_UART7SEL_Pos (22)
+```
+
+<a id="a13fdfeb9c81a6794461c1e3e022780a0"></a>
+
+### `NUMAKER_CLK_CLKSEL4_SPI10SEL_HIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI10SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL4_SPI10SEL_Pos)
+```
+
+<a id="ae4bc5a2e0d464d59fcd67f1b8768e9a0"></a>
+
+### `NUMAKER_CLK_CLKSEL4_SPI10SEL_HXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI10SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL4_SPI10SEL_Pos)
+```
+
+<a id="a755c1325d17f55e0de754c687dbbc322"></a>
+
+### `NUMAKER_CLK_CLKSEL4_SPI10SEL_PCLK1`
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI10SEL_PCLK1 (0x2UL << NUMAKER_CLK_CLKSEL4_SPI10SEL_Pos)
+```
+
+<a id="a6830b1a49c4937b7f8a4ab5771e915b4"></a>
+
+### `NUMAKER_CLK_CLKSEL4_SPI10SEL_PLL_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI10SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL4_SPI10SEL_Pos)
+```
+
+<a id="a7a92cd1f644926d955409b49b785c738"></a>
+
+### `NUMAKER_CLK_CLKSEL4_SPI10SEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI10SEL_Pos (24)
+```
+
+<a id="a93a489bf85281241c2d0a287ad57fb79"></a>
+
+### `NUMAKER_CLK_CLKSEL4_SPI4SEL_HIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI4SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL4_SPI4SEL_Pos)
+```
+
+<a id="ac8514600296c9b7ecd74022cd9b7c874"></a>
+
+### `NUMAKER_CLK_CLKSEL4_SPI4SEL_HXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI4SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL4_SPI4SEL_Pos)
+```
+
+<a id="acb56dc94227bcbee031f1431c9683d1a"></a>
+
+### `NUMAKER_CLK_CLKSEL4_SPI4SEL_PCLK1`
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI4SEL_PCLK1 (0x2UL << NUMAKER_CLK_CLKSEL4_SPI4SEL_Pos)
+```
+
+<a id="ab2938006eaeb574908b87e912aadddc3"></a>
+
+### `NUMAKER_CLK_CLKSEL4_SPI4SEL_PLL_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI4SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL4_SPI4SEL_Pos)
+```
+
+<a id="a09bd54b91ecd5c6729d6dd2270d1f538"></a>
+
+### `NUMAKER_CLK_CLKSEL4_SPI4SEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI4SEL_Pos (0)
+```
+
+<a id="aec58f9c54807426347ead63e3277f15b"></a>
+
+### `NUMAKER_CLK_CLKSEL4_SPI5SEL_HIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI5SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL4_SPI5SEL_Pos)
+```
+
+<a id="a69728a9cc0cdad59f4c835881bcb7a62"></a>
+
+### `NUMAKER_CLK_CLKSEL4_SPI5SEL_HXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI5SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL4_SPI5SEL_Pos)
+```
+
+<a id="a24e622934d9093ef32b4b5babbcb7a18"></a>
+
+### `NUMAKER_CLK_CLKSEL4_SPI5SEL_PCLK0`
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI5SEL_PCLK0 (0x2UL << NUMAKER_CLK_CLKSEL4_SPI5SEL_Pos)
+```
+
+<a id="a4551497e4f38af0723198c4e037bc982"></a>
+
+### `NUMAKER_CLK_CLKSEL4_SPI5SEL_PLL_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI5SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL4_SPI5SEL_Pos)
+```
+
+<a id="a7f314d8e78add81c86d07bf9bbf3d4c4"></a>
+
+### `NUMAKER_CLK_CLKSEL4_SPI5SEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI5SEL_Pos (4)
+```
+
+<a id="a86134de3e0dd4a7f52f9952ec9cc9a54"></a>
+
+### `NUMAKER_CLK_CLKSEL4_SPI6SEL_HIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI6SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL4_SPI6SEL_Pos)
+```
+
+<a id="a6f02c1ae7c7b709df8af90b8b32ebc73"></a>
+
+### `NUMAKER_CLK_CLKSEL4_SPI6SEL_HXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI6SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL4_SPI6SEL_Pos)
+```
+
+<a id="a4436fbda0d2fde16132e7f9c5b70ccfe"></a>
+
+### `NUMAKER_CLK_CLKSEL4_SPI6SEL_PCLK1`
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI6SEL_PCLK1 (0x2UL << NUMAKER_CLK_CLKSEL4_SPI6SEL_Pos)
+```
+
+<a id="adc13b50c748385eb7d681d17dc11b2cc"></a>
+
+### `NUMAKER_CLK_CLKSEL4_SPI6SEL_PLL_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI6SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL4_SPI6SEL_Pos)
+```
+
+<a id="ac2232b05fd8986cf75aaba710c42d257"></a>
+
+### `NUMAKER_CLK_CLKSEL4_SPI6SEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI6SEL_Pos (8)
+```
+
+<a id="aadde00be68631599399d380b29c7857f"></a>
+
+### `NUMAKER_CLK_CLKSEL4_SPI7SEL_HIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI7SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL4_SPI7SEL_Pos)
+```
+
+<a id="a49037df2c9b78d760a2eebf420fe6c8b"></a>
+
+### `NUMAKER_CLK_CLKSEL4_SPI7SEL_HXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI7SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL4_SPI7SEL_Pos)
+```
+
+<a id="a53a4e1dee4e38b93e38a030466edf424"></a>
+
+### `NUMAKER_CLK_CLKSEL4_SPI7SEL_PCLK0`
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI7SEL_PCLK0 (0x2UL << NUMAKER_CLK_CLKSEL4_SPI7SEL_Pos)
+```
+
+<a id="ab532a55008e2e83147359909cf361107"></a>
+
+### `NUMAKER_CLK_CLKSEL4_SPI7SEL_PLL_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI7SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL4_SPI7SEL_Pos)
+```
+
+<a id="afb315f157e0a04e14fd5962844c099e4"></a>
+
+### `NUMAKER_CLK_CLKSEL4_SPI7SEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI7SEL_Pos (12)
+```
+
+<a id="accbf0d3921f7911520a406fbe1daa61a"></a>
+
+### `NUMAKER_CLK_CLKSEL4_SPI8SEL_HIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI8SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL4_SPI8SEL_Pos)
+```
+
+<a id="a427cb59c0f6dcb39cf08797c59c59256"></a>
+
+### `NUMAKER_CLK_CLKSEL4_SPI8SEL_HXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI8SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL4_SPI8SEL_Pos)
+```
+
+<a id="a8982cb3b8f566d0ed6e10382bd6d68e6"></a>
+
+### `NUMAKER_CLK_CLKSEL4_SPI8SEL_PCLK1`
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI8SEL_PCLK1 (0x2UL << NUMAKER_CLK_CLKSEL4_SPI8SEL_Pos)
+```
+
+<a id="a46202f0420f33fe19aad2bd045d27585"></a>
+
+### `NUMAKER_CLK_CLKSEL4_SPI8SEL_PLL_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI8SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL4_SPI8SEL_Pos)
+```
+
+<a id="a4781a6db591eb9488391fc9ee8711041"></a>
+
+### `NUMAKER_CLK_CLKSEL4_SPI8SEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI8SEL_Pos (16)
+```
+
+<a id="a8e8843f0cbd75f81bf4eaebe696f67bf"></a>
+
+### `NUMAKER_CLK_CLKSEL4_SPI9SEL_HIRC`
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI9SEL_HIRC (0x3UL << NUMAKER_CLK_CLKSEL4_SPI9SEL_Pos)
+```
+
+<a id="a31eae63ea888b7b147036a232e4465f8"></a>
+
+### `NUMAKER_CLK_CLKSEL4_SPI9SEL_HXT`
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI9SEL_HXT (0x0UL << NUMAKER_CLK_CLKSEL4_SPI9SEL_Pos)
+```
+
+<a id="a0e98bd4c3e1f06670e350b7d30a3edb7"></a>
+
+### `NUMAKER_CLK_CLKSEL4_SPI9SEL_PCLK0`
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI9SEL_PCLK0 (0x2UL << NUMAKER_CLK_CLKSEL4_SPI9SEL_Pos)
+```
+
+<a id="a5e568453ae38a4a3f1437189006d80e0"></a>
+
+### `NUMAKER_CLK_CLKSEL4_SPI9SEL_PLL_DIV2`
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI9SEL_PLL_DIV2 (0x1UL << NUMAKER_CLK_CLKSEL4_SPI9SEL_Pos)
+```
+
+<a id="a140802fd7bd3257bc125d6a32ad3a1b8"></a>
+
+### `NUMAKER_CLK_CLKSEL4_SPI9SEL_Pos`
+
+```c
+#define NUMAKER_CLK_CLKSEL4_SPI9SEL_Pos (20)
+```
+
+<a id="a91226a1fd31413d76529f104d209823c"></a>
+
+### `NUMAKER_CLK_PCLKDIV_APB0DIV_DIV1`
+
+```c
+#define NUMAKER_CLK_PCLKDIV_APB0DIV_DIV1 (0x0UL << NUMAKER_CLK_PCLKDIV_APB0DIV_Pos)
+```
+
+<a id="aac77daf4ae27aeab8c73177be5acdbe8"></a>
+
+### `NUMAKER_CLK_PCLKDIV_APB0DIV_DIV16`
+
+```c
+#define NUMAKER_CLK_PCLKDIV_APB0DIV_DIV16 (0x4UL << NUMAKER_CLK_PCLKDIV_APB0DIV_Pos)
+```
+
+<a id="a084853a709e714db6f49d45d45342d37"></a>
+
+### `NUMAKER_CLK_PCLKDIV_APB0DIV_DIV2`
+
+```c
+#define NUMAKER_CLK_PCLKDIV_APB0DIV_DIV2 (0x1UL << NUMAKER_CLK_PCLKDIV_APB0DIV_Pos)
+```
+
+<a id="a87a3393828150a62072a81dd58d2b80f"></a>
+
+### `NUMAKER_CLK_PCLKDIV_APB0DIV_DIV4`
+
+```c
+#define NUMAKER_CLK_PCLKDIV_APB0DIV_DIV4 (0x2UL << NUMAKER_CLK_PCLKDIV_APB0DIV_Pos)
+```
+
+<a id="a43013dc7b87074e5f7606a1e1ac14bce"></a>
+
+### `NUMAKER_CLK_PCLKDIV_APB0DIV_DIV8`
+
+```c
+#define NUMAKER_CLK_PCLKDIV_APB0DIV_DIV8 (0x3UL << NUMAKER_CLK_PCLKDIV_APB0DIV_Pos)
+```
+
+<a id="a254f625e23596b631a3b9ee7e2d23d7c"></a>
+
+### `NUMAKER_CLK_PCLKDIV_APB0DIV_Pos`
+
+```c
+#define NUMAKER_CLK_PCLKDIV_APB0DIV_Pos (0)
+```
+
+<a id="af5199c68008764c41a3ce9ba27ea24e9"></a>
+
+### `NUMAKER_CLK_PCLKDIV_APB1DIV_DIV1`
+
+```c
+#define NUMAKER_CLK_PCLKDIV_APB1DIV_DIV1 (0x0UL << NUMAKER_CLK_PCLKDIV_APB1DIV_Pos)
+```
+
+<a id="a8e7dec640447de9b571147cbe7fe6e26"></a>
+
+### `NUMAKER_CLK_PCLKDIV_APB1DIV_DIV16`
+
+```c
+#define NUMAKER_CLK_PCLKDIV_APB1DIV_DIV16 (0x4UL << NUMAKER_CLK_PCLKDIV_APB1DIV_Pos)
+```
+
+<a id="af6cb3de51e49729e92044287ed499105"></a>
+
+### `NUMAKER_CLK_PCLKDIV_APB1DIV_DIV2`
+
+```c
+#define NUMAKER_CLK_PCLKDIV_APB1DIV_DIV2 (0x1UL << NUMAKER_CLK_PCLKDIV_APB1DIV_Pos)
+```
+
+<a id="a8e63b55ca8e84958230453a54f3983b2"></a>
+
+### `NUMAKER_CLK_PCLKDIV_APB1DIV_DIV4`
+
+```c
+#define NUMAKER_CLK_PCLKDIV_APB1DIV_DIV4 (0x2UL << NUMAKER_CLK_PCLKDIV_APB1DIV_Pos)
+```
+
+<a id="a8e59ceb6473e9a050af9efeeeb79c72a"></a>
+
+### `NUMAKER_CLK_PCLKDIV_APB1DIV_DIV8`
+
+```c
+#define NUMAKER_CLK_PCLKDIV_APB1DIV_DIV8 (0x3UL << NUMAKER_CLK_PCLKDIV_APB1DIV_Pos)
+```
+
+<a id="ab1bcb755f780777114d690945f00cce6"></a>
+
+### `NUMAKER_CLK_PCLKDIV_APB1DIV_Pos`
+
+```c
+#define NUMAKER_CLK_PCLKDIV_APB1DIV_Pos (4)
+```
+
+<a id="a4cd3514d3e28ef6e766c5f1f82282440"></a>
+
+### `NUMAKER_CLK_PCLKDIV_PCLK0DIV1`
+
+```c
+#define NUMAKER_CLK_PCLKDIV_PCLK0DIV1 (0x0UL << NUMAKER_CLK_PCLKDIV_APB0DIV_Pos)
+```
+
+<a id="a067cb901b89bf0940ac01236cd6ee514"></a>
+
+### `NUMAKER_CLK_PCLKDIV_PCLK0DIV16`
+
+```c
+#define NUMAKER_CLK_PCLKDIV_PCLK0DIV16 (0x4UL << NUMAKER_CLK_PCLKDIV_APB0DIV_Pos)
+```
+
+<a id="afff3e78da346a4cfc396106aea619a84"></a>
+
+### `NUMAKER_CLK_PCLKDIV_PCLK0DIV2`
+
+```c
+#define NUMAKER_CLK_PCLKDIV_PCLK0DIV2 (0x1UL << NUMAKER_CLK_PCLKDIV_APB0DIV_Pos)
+```
+
+<a id="aca64a8e2c1414cc2448c51ae7e94db02"></a>
+
+### `NUMAKER_CLK_PCLKDIV_PCLK0DIV4`
+
+```c
+#define NUMAKER_CLK_PCLKDIV_PCLK0DIV4 (0x2UL << NUMAKER_CLK_PCLKDIV_APB0DIV_Pos)
+```
+
+<a id="af12f5adad50c241bb35e5846e3ddcc94"></a>
+
+### `NUMAKER_CLK_PCLKDIV_PCLK0DIV8`
+
+```c
+#define NUMAKER_CLK_PCLKDIV_PCLK0DIV8 (0x3UL << NUMAKER_CLK_PCLKDIV_APB0DIV_Pos)
+```
+
+<a id="ab0a16daad92a2ffed7d37d8813053e5e"></a>
+
+### `NUMAKER_CLK_PCLKDIV_PCLK1DIV1`
+
+```c
+#define NUMAKER_CLK_PCLKDIV_PCLK1DIV1 (0x0UL << NUMAKER_CLK_PCLKDIV_APB1DIV_Pos)
+```
+
+<a id="ac37e48036b1fcbd5f39acaf01316e840"></a>
+
+### `NUMAKER_CLK_PCLKDIV_PCLK1DIV16`
+
+```c
+#define NUMAKER_CLK_PCLKDIV_PCLK1DIV16 (0x4UL << NUMAKER_CLK_PCLKDIV_APB1DIV_Pos)
+```
+
+<a id="a19155e2c85834e6d67e884b8a541f98a"></a>
+
+### `NUMAKER_CLK_PCLKDIV_PCLK1DIV2`
+
+```c
+#define NUMAKER_CLK_PCLKDIV_PCLK1DIV2 (0x1UL << NUMAKER_CLK_PCLKDIV_APB1DIV_Pos)
+```
+
+<a id="a657b489628d7d9cc801736b2da2087cc"></a>
+
+### `NUMAKER_CLK_PCLKDIV_PCLK1DIV4`
+
+```c
+#define NUMAKER_CLK_PCLKDIV_PCLK1DIV4 (0x2UL << NUMAKER_CLK_PCLKDIV_APB1DIV_Pos)
+```
+
+<a id="a4fca0206e3bbfc0c52f0fd43aa733fcb"></a>
+
+### `NUMAKER_CLK_PCLKDIV_PCLK1DIV8`
+
+```c
+#define NUMAKER_CLK_PCLKDIV_PCLK1DIV8 (0x3UL << NUMAKER_CLK_PCLKDIV_APB1DIV_Pos)
+```
+
+<a id="a8a4c948735bae3f534d7517c80a58ac0"></a>
+
+### `NUMAKER_CLK_PMUCTL_PDMSEL_DPD`
+
+```c
+#define NUMAKER_CLK_PMUCTL_PDMSEL_DPD 0x00000006
+```
+
+<a id="a68e892198a906786bbbb110f5522f9ac"></a>
+
+### `NUMAKER_CLK_PMUCTL_PDMSEL_FWPD`
+
+```c
+#define NUMAKER_CLK_PMUCTL_PDMSEL_FWPD 0x00000002
+```
+
+<a id="a8d57d119b131f2475d3777c810dae8ff"></a>
+
+### `NUMAKER_CLK_PMUCTL_PDMSEL_LLPD`
+
+```c
+#define NUMAKER_CLK_PMUCTL_PDMSEL_LLPD 0x00000001
+```
+
+<a id="a4d0aca792eb3e7b8e6c8ef3b22fad7f9"></a>
+
+### `NUMAKER_CLK_PMUCTL_PDMSEL_PD`
+
+```c
+#define NUMAKER_CLK_PMUCTL_PDMSEL_PD 0x00000000
+```
+
+<a id="a829b1eeaf193113f4f463868123e50e1"></a>
+
+### `NUMAKER_CLK_PMUCTL_PDMSEL_SPD`
+
+```c
+#define NUMAKER_CLK_PMUCTL_PDMSEL_SPD 0x00000004
+```
+
+<a id="a913b0eed144c8d228a461dec3f0b49e6"></a>
+
+### `NUMAKER_CLKO_MODULE`
+
+```c
+#define NUMAKER_CLKO_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(1UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK0_CLKOCKEN_Pos) |                          \
+ NUMAKER_MODULE_CLKSEL_ENC(1UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(7UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(4UL) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |              \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="af7f021090417dc8ba8eac4b2674cf8b8"></a>
+
+### `NUMAKER_CRC_MODULE`
+
+```c
+#define NUMAKER_CRC_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(0UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_AHBCLK0_CRCCKEN_Pos) |                           \
+ NUMAKER_MODULE_CLKSEL_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKSEL_Msk_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a7a2da068169709e20c06f2962569bc46"></a>
+
+### `NUMAKER_CRPT_MODULE`
+
+```c
+#define NUMAKER_CRPT_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(0UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_AHBCLK0_CRPTCKEN_Pos) |                          \
+ NUMAKER_MODULE_CLKSEL_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKSEL_Msk_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a9a5f7dc5dfa877dd92f3952ce7315ba8"></a>
+
+### `NUMAKER_DAC_MODULE`
+
+```c
+#define NUMAKER_DAC_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(2UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK1_DACCKEN_Pos) |                           \
+ NUMAKER_MODULE_CLKSEL_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKSEL_Msk_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a46a5cffa974b2f1425d2ced8e678c3e2"></a>
+
+### `NUMAKER_EADC0_MODULE`
+
+```c
+#define NUMAKER_EADC0_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(1UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK0_EADC0CKEN_Pos) |                         \
+ NUMAKER_MODULE_CLKSEL_ENC(0UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(3UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(10UL) | NUMAKER_MODULE_CLKDIV_ENC(0UL) |                    \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(0x0FUL) | NUMAKER_MODULE_CLKDIV_Pos_ENC(16UL))
+```
+
+<a id="afe88f0224f22993a2e38a57b0cbc3e4f"></a>
+
+### `NUMAKER_EADC1_MODULE`
+
+```c
+#define NUMAKER_EADC1_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(2UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK1_EADC1CKEN_Pos) |                         \
+ NUMAKER_MODULE_CLKSEL_ENC(0UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(3UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(12UL) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |             \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a77f267351914a668aa66e1e20bdd76c6"></a>
+
+### `NUMAKER_EADC2_MODULE`
+
+```c
+#define NUMAKER_EADC2_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(3UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK2_EADC2CKEN_Pos) |                         \
+ NUMAKER_MODULE_CLKSEL_ENC(0UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(3UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(14UL) | NUMAKER_MODULE_CLKDIV_ENC(2UL) |                    \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(0x0FUL) | NUMAKER_MODULE_CLKDIV_Pos_ENC(24UL))
+```
+
+<a id="a4380f8998993e0ea2d85260fb9dd8200"></a>
+
+### `NUMAKER_EBI_MODULE`
+
+```c
+#define NUMAKER_EBI_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(0UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_AHBCLK0_EBICKEN_Pos) |                           \
+ NUMAKER_MODULE_CLKSEL_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKSEL_Msk_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="afcd2263655b3f52378ee24f2f8bfc0d6"></a>
+
+### `NUMAKER_ECAP0_MODULE`
+
+```c
+#define NUMAKER_ECAP0_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(2UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK1_ECAP0CKEN_Pos) |                         \
+ NUMAKER_MODULE_CLKSEL_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKSEL_Msk_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a43cc65940b5464683c572c94650a58e9"></a>
+
+### `NUMAKER_ECAP1_MODULE`
+
+```c
+#define NUMAKER_ECAP1_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(2UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK1_ECAP1CKEN_Pos) |                         \
+ NUMAKER_MODULE_CLKSEL_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKSEL_Msk_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a6f1eccd8218399311b9854c7b84185ea"></a>
+
+### `NUMAKER_ECAP2_MODULE`
+
+```c
+#define NUMAKER_ECAP2_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(2UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK1_ECAP2CKEN_Pos) |                         \
+ NUMAKER_MODULE_CLKSEL_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKSEL_Msk_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a2cd99780f8545b94483180123aedb756"></a>
+
+### `NUMAKER_ECAP3_MODULE`
+
+```c
+#define NUMAKER_ECAP3_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(2UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK1_ECAP3CKEN_Pos) |                         \
+ NUMAKER_MODULE_CLKSEL_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKSEL_Msk_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a982967caa2c7f9eac528120a94d10bf5"></a>
+
+### `NUMAKER_EMAC0_MODULE`
+
+```c
+#define NUMAKER_EMAC0_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(0UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_AHBCLK0_EMAC0CKEN_Pos) |                         \
+ NUMAKER_MODULE_CLKSEL_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKSEL_Msk_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="ab42a9a75250104163dab040657beb440"></a>
+
+### `NUMAKER_EPWM0_MODULE`
+
+```c
+#define NUMAKER_EPWM0_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(2UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK1_EPWM0CKEN_Pos) |                         \
+ NUMAKER_MODULE_CLKSEL_ENC(2UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(1UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(0UL) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |              \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a686fa9f9995ef124c47ce20de165b74d"></a>
+
+### `NUMAKER_EPWM1_MODULE`
+
+```c
+#define NUMAKER_EPWM1_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(2UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK1_EPWM1CKEN_Pos) |                         \
+ NUMAKER_MODULE_CLKSEL_ENC(2UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(1UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(1UL) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |              \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a4fe52c877b603a575a230d3de64d2f45"></a>
+
+### `NUMAKER_EQEI0_MODULE`
+
+```c
+#define NUMAKER_EQEI0_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(2UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK1_EQEI0CKEN_Pos) |                         \
+ NUMAKER_MODULE_CLKSEL_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKSEL_Msk_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a446b5934e374a30377594e63423018b1"></a>
+
+### `NUMAKER_EQEI1_MODULE`
+
+```c
+#define NUMAKER_EQEI1_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(2UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK1_EQEI1CKEN_Pos) |                         \
+ NUMAKER_MODULE_CLKSEL_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKSEL_Msk_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a062009660b6134f8b288eff5a498566c"></a>
+
+### `NUMAKER_EQEI2_MODULE`
+
+```c
+#define NUMAKER_EQEI2_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(2UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK1_EQEI2CKEN_Pos) |                         \
+ NUMAKER_MODULE_CLKSEL_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKSEL_Msk_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="ab2f4ab88554aee61bdd944ea3d4edd3f"></a>
+
+### `NUMAKER_EQEI3_MODULE`
+
+```c
+#define NUMAKER_EQEI3_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(2UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK1_EQEI3CKEN_Pos) |                         \
+ NUMAKER_MODULE_CLKSEL_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKSEL_Msk_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a5f0a8a97c7fa707043ff4f90837c218a"></a>
+
+### `NUMAKER_FMCIDLE_MODULE`
+
+```c
+#define NUMAKER_FMCIDLE_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(0UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_AHBCLK0_FMCIDLE_Pos) |                           \
+ NUMAKER_MODULE_CLKSEL_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKSEL_Msk_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a106a0eb0dac7825f2b6b05a0329c6a3a"></a>
+
+### `NUMAKER_GPA_MODULE`
+
+```c
+#define NUMAKER_GPA_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(0UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_AHBCLK0_GPACKEN_Pos) |                           \
+ NUMAKER_MODULE_CLKSEL_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKSEL_Msk_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a922653d8eb98a7a175366566506834d6"></a>
+
+### `NUMAKER_GPB_MODULE`
+
+```c
+#define NUMAKER_GPB_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(0UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_AHBCLK0_GPBCKEN_Pos) |                           \
+ NUMAKER_MODULE_CLKSEL_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKSEL_Msk_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a9daa2cdbc788c5e5f3e4cbe29169816f"></a>
+
+### `NUMAKER_GPC_MODULE`
+
+```c
+#define NUMAKER_GPC_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(0UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_AHBCLK0_GPCCKEN_Pos) |                           \
+ NUMAKER_MODULE_CLKSEL_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKSEL_Msk_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a277e860c7fdd493a496900c32b6085f7"></a>
+
+### `NUMAKER_GPD_MODULE`
+
+```c
+#define NUMAKER_GPD_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(0UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_AHBCLK0_GPDCKEN_Pos) |                           \
+ NUMAKER_MODULE_CLKSEL_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKSEL_Msk_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a7a5abf84843eb843233e2f24323559f3"></a>
+
+### `NUMAKER_GPE_MODULE`
+
+```c
+#define NUMAKER_GPE_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(0UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_AHBCLK0_GPECKEN_Pos) |                           \
+ NUMAKER_MODULE_CLKSEL_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKSEL_Msk_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a19540c109f7a0e276ad7f7f52faf6c7e"></a>
+
+### `NUMAKER_GPF_MODULE`
+
+```c
+#define NUMAKER_GPF_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(0UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_AHBCLK0_GPFCKEN_Pos) |                           \
+ NUMAKER_MODULE_CLKSEL_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKSEL_Msk_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="ad377845a8b368f1b1b6d20f6629dcdd3"></a>
+
+### `NUMAKER_GPG_MODULE`
+
+```c
+#define NUMAKER_GPG_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(0UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_AHBCLK0_GPGCKEN_Pos) |                           \
+ NUMAKER_MODULE_CLKSEL_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKSEL_Msk_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a74e2344ff20eec0e1ccbd137d75183fb"></a>
+
+### `NUMAKER_GPH_MODULE`
+
+```c
+#define NUMAKER_GPH_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(0UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_AHBCLK0_GPHCKEN_Pos) |                           \
+ NUMAKER_MODULE_CLKSEL_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKSEL_Msk_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a8fd7ed7ba36e7293edcd9f0fe511f5d2"></a>
+
+### `NUMAKER_GPI_MODULE`
+
+```c
+#define NUMAKER_GPI_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(4UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_AHBCLK1_GPICKEN_Pos) |                           \
+ NUMAKER_MODULE_CLKSEL_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKSEL_Msk_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a67adfb2ff0a39fd0615a9a3fb562f2bc"></a>
+
+### `NUMAKER_GPJ_MODULE`
+
+```c
+#define NUMAKER_GPJ_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(4UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_AHBCLK1_GPJCKEN_Pos) |                           \
+ NUMAKER_MODULE_CLKSEL_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKSEL_Msk_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a6cd417a41929491e83bed7bab4319e34"></a>
+
+### `NUMAKER_HBI_MODULE`
+
+```c
+#define NUMAKER_HBI_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(0UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_AHBCLK0_HBICKEN_Pos) |                           \
+ NUMAKER_MODULE_CLKSEL_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKSEL_Msk_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a4a0086f1b2bed74585826d07d8fdc971"></a>
+
+### `NUMAKER_HSOTG_MODULE`
+
+```c
+#define NUMAKER_HSOTG_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(1UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK0_HSOTGCKEN_Pos) |                         \
+ NUMAKER_MODULE_CLKSEL_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKSEL_Msk_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a94ca074cf142aae599f5061e25a0390f"></a>
+
+### `NUMAKER_HSUSBD_MODULE`
+
+```c
+#define NUMAKER_HSUSBD_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(0UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_AHBCLK0_HSUSBDCKEN_Pos) |                        \
+ NUMAKER_MODULE_CLKSEL_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKSEL_Msk_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a8241dce3f2329ef3561277656bd68e7f"></a>
+
+### `NUMAKER_I2C0_MODULE`
+
+```c
+#define NUMAKER_I2C0_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(1UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK0_I2C0CKEN_Pos) |                          \
+ NUMAKER_MODULE_CLKSEL_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKSEL_Msk_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a08413ee5eed011e452f7352a276b45af"></a>
+
+### `NUMAKER_I2C1_MODULE`
+
+```c
+#define NUMAKER_I2C1_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(1UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK0_I2C1CKEN_Pos) |                          \
+ NUMAKER_MODULE_CLKSEL_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKSEL_Msk_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a211a7c416249dad417b5971a4c8526fe"></a>
+
+### `NUMAKER_I2C2_MODULE`
+
+```c
+#define NUMAKER_I2C2_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(1UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK0_I2C2CKEN_Pos) |                          \
+ NUMAKER_MODULE_CLKSEL_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKSEL_Msk_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a0660bb6481a262632fdfd08f4c65c1db"></a>
+
+### `NUMAKER_I2C3_MODULE`
+
+```c
+#define NUMAKER_I2C3_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(1UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK0_I2C3CKEN_Pos) |                          \
+ NUMAKER_MODULE_CLKSEL_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKSEL_Msk_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a39ddacc5770039457425f67567bfbf0b"></a>
+
+### `NUMAKER_I2C4_MODULE`
+
+```c
+#define NUMAKER_I2C4_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(2UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK1_I2C4CKEN_Pos) |                          \
+ NUMAKER_MODULE_CLKSEL_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKSEL_Msk_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a93460f284274121252ffaf3ca48510e5"></a>
+
+### `NUMAKER_I2S0_MODULE`
+
+```c
+#define NUMAKER_I2S0_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(1UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK0_I2S0CKEN_Pos) |                          \
+ NUMAKER_MODULE_CLKSEL_ENC(3UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(7UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(16UL) | NUMAKER_MODULE_CLKDIV_ENC(2UL) |                    \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(0x0FUL) | NUMAKER_MODULE_CLKDIV_Pos_ENC(0UL))
+```
+
+<a id="aa1bcd301211aae3a1ae668af74ee58f6"></a>
+
+### `NUMAKER_I2S1_MODULE`
+
+```c
+#define NUMAKER_I2S1_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(2UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK1_I2S1CKEN_Pos) |                          \
+ NUMAKER_MODULE_CLKSEL_ENC(2UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(7UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(16UL) | NUMAKER_MODULE_CLKDIV_ENC(2UL) |                    \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(0x0FUL) | NUMAKER_MODULE_CLKDIV_Pos_ENC(4UL))
+```
+
+<a id="a9e1a03d652040f0e3d9c0766bfdb2604"></a>
+
+### `NUMAKER_ISP_MODULE`
+
+```c
+#define NUMAKER_ISP_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(0UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_AHBCLK0_ISPCKEN_Pos) |                           \
+ NUMAKER_MODULE_CLKSEL_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKSEL_Msk_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="ad194e1ddf64d6d4e59ee7c62ab3330a9"></a>
+
+### `NUMAKER_KPI_MODULE`
+
+```c
+#define NUMAKER_KPI_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(3UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK2_KPICKEN_Pos) |                           \
+ NUMAKER_MODULE_CLKSEL_ENC(3UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(3UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(6UL) | NUMAKER_MODULE_CLKDIV_ENC(2UL) |                     \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(0x0FUL) | NUMAKER_MODULE_CLKDIV_Pos_ENC(8UL))
+```
+
+<a id="a3b983a5a538bbf7b2e6288beacfb5427"></a>
+
+### `NUMAKER_KS_MODULE`
+
+```c
+#define NUMAKER_KS_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(0UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_AHBCLK0_KSCKEN_Pos) |                            \
+ NUMAKER_MODULE_CLKSEL_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKSEL_Msk_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="aafa8852333e620f24f98d98d27420788"></a>
+
+### `NUMAKER_MODULE_APBCLK_ENC`
+
+```c
+#define NUMAKER_MODULE_APBCLK_ENC ( x)
+```
+
+展开值（Value）：
+
+```c
+(((x)&0x07UL) << 29)
+```
+
+<a id="adc57f655a02127165185c3a6a5453541"></a>
+
+### `NUMAKER_MODULE_CLKDIV_ENC`
+
+```c
+#define NUMAKER_MODULE_CLKDIV_ENC ( x)
+```
+
+展开值（Value）：
+
+```c
+(((x)&0x07UL) << 14)
+```
+
+<a id="aa18f25c62b95c9b5691b23a8b3ce87a0"></a>
+
+### `NUMAKER_MODULE_CLKDIV_Msk_ENC`
+
+```c
+#define NUMAKER_MODULE_CLKDIV_Msk_ENC ( x)
+```
+
+展开值（Value）：
+
+```c
+(((x)&0x0fUL) << 10)
+```
+
+<a id="abbf6921f1302337ed1a46886e6517285"></a>
+
+### `NUMAKER_MODULE_CLKDIV_Pos_ENC`
+
+```c
+#define NUMAKER_MODULE_CLKDIV_Pos_ENC ( x)
+```
+
+展开值（Value）：
+
+```c
+(((x)&0x1fUL) << 5)
+```
+
+<a id="ad1fc2bf50be3ade92c4d51aceb460890"></a>
+
+### `NUMAKER_MODULE_CLKSEL_ENC`
+
+```c
+#define NUMAKER_MODULE_CLKSEL_ENC ( x)
+```
+
+展开值（Value）：
+
+```c
+(((x)&0x07UL) << 26)
+```
+
+<a id="aa499dc56e839cf41404faa352c80a526"></a>
+
+### `NUMAKER_MODULE_CLKSEL_Msk_ENC`
+
+```c
+#define NUMAKER_MODULE_CLKSEL_Msk_ENC ( x)
+```
+
+展开值（Value）：
+
+```c
+(((x)&0x0fUL) << 22)
+```
+
+<a id="a649f7ee2853b623d1b9479cbb191b260"></a>
+
+### `NUMAKER_MODULE_CLKSEL_Pos_ENC`
+
+```c
+#define NUMAKER_MODULE_CLKSEL_Pos_ENC ( x)
+```
+
+展开值（Value）：
+
+```c
+(((x)&0x1fUL) << 17)
+```
+
+<a id="acdd40f56d4640d677c4001a6e9e35f63"></a>
+
+### `NUMAKER_MODULE_IP_EN_Pos_ENC`
+
+```c
+#define NUMAKER_MODULE_IP_EN_Pos_ENC ( x)
+```
+
+展开值（Value）：
+
+```c
+(((x)&0x1fUL) << 0)
+```
+
+<a id="a6dd2c25defa8fa66e7e72aa111f1ee02"></a>
+
+### `NUMAKER_MODULE_NoMsk`
+
+```c
+#define NUMAKER_MODULE_NoMsk 0x0UL
+```
+
+<a id="a922f9d60a8929a9ea5139e1da86d5387"></a>
+
+### `NUMAKER_NA`
+
+```c
+#define NUMAKER_NA NUMAKER_MODULE_NoMsk
+```
+
+<a id="ac504259898b6070a12ca5a8eed921e17"></a>
+
+### `NUMAKER_OTG_MODULE`
+
+```c
+#define NUMAKER_OTG_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(1UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK0_OTGCKEN_Pos) |                           \
+ NUMAKER_MODULE_CLKSEL_ENC(0UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(1UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(8UL) | NUMAKER_MODULE_CLKDIV_ENC(0UL) |                     \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(0xFUL) | NUMAKER_MODULE_CLKDIV_Pos_ENC(4UL))
+```
+
+<a id="a81c0a35692befb3b0427efc7a1e2686e"></a>
+
+### `NUMAKER_PDMA0_MODULE`
+
+```c
+#define NUMAKER_PDMA0_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(0UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_AHBCLK0_PDMA0CKEN_Pos) |                         \
+ NUMAKER_MODULE_CLKSEL_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKSEL_Msk_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a9bd6ce359c452c822a59a6f0da68c7d0"></a>
+
+### `NUMAKER_PDMA1_MODULE`
+
+```c
+#define NUMAKER_PDMA1_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(0UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_AHBCLK0_PDMA1CKEN_Pos) |                         \
+ NUMAKER_MODULE_CLKSEL_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKSEL_Msk_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="aa1455b010fdbd2f07815cdeeaf49907a"></a>
+
+### `NUMAKER_PSIO_MODULE`
+
+```c
+#define NUMAKER_PSIO_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(2UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK1_PSIOCKEN_Pos) |                          \
+ NUMAKER_MODULE_CLKSEL_ENC(2UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(7UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(28UL) | NUMAKER_MODULE_CLKDIV_ENC(1UL) |                    \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(0x0FUL) | NUMAKER_MODULE_CLKDIV_Pos_ENC(24UL))
+```
+
+<a id="a6dad02cb850ad26c2afde2291d669808"></a>
+
+### `NUMAKER_QSPI0_MODULE`
+
+```c
+#define NUMAKER_QSPI0_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(1UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK0_QSPI0CKEN_Pos) |                         \
+ NUMAKER_MODULE_CLKSEL_ENC(2UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(3UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(2UL) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |              \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a38cb7b22e41b081d55f594b4b5812fc4"></a>
+
+### `NUMAKER_QSPI1_MODULE`
+
+```c
+#define NUMAKER_QSPI1_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(2UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK1_QSPI1CKEN_Pos) |                         \
+ NUMAKER_MODULE_CLKSEL_ENC(2UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(3UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(10UL) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |             \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a6216a664ac302a57a0b632754c3fce5f"></a>
+
+### `NUMAKER_RTC_MODULE`
+
+```c
+#define NUMAKER_RTC_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(1UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK0_RTCCKEN_Pos) |                           \
+ NUMAKER_MODULE_CLKSEL_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKSEL_Msk_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="ade881cb3ef71ab90bc655c5775f4b5f2"></a>
+
+### `NUMAKER_SC0_MODULE`
+
+```c
+#define NUMAKER_SC0_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(2UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK1_SC0CKEN_Pos) |                           \
+ NUMAKER_MODULE_CLKSEL_ENC(3UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(3UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(0UL) | NUMAKER_MODULE_CLKDIV_ENC(1UL) |                     \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(0x0FUL) | NUMAKER_MODULE_CLKDIV_Pos_ENC(0UL))
+```
+
+<a id="a183b62952b0a65cd91e9f8f43bbc85d5"></a>
+
+### `NUMAKER_SC1_MODULE`
+
+```c
+#define NUMAKER_SC1_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(2UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK1_SC1CKEN_Pos) |                           \
+ NUMAKER_MODULE_CLKSEL_ENC(3UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(3UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(2UL) | NUMAKER_MODULE_CLKDIV_ENC(1UL) |                     \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(0x0FUL) | NUMAKER_MODULE_CLKDIV_Pos_ENC(8UL))
+```
+
+<a id="aac46396a96d07b982ea79848109c8df5"></a>
+
+### `NUMAKER_SC2_MODULE`
+
+```c
+#define NUMAKER_SC2_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(2UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK1_SC2CKEN_Pos) |                           \
+ NUMAKER_MODULE_CLKSEL_ENC(3UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(3UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(4UL) | NUMAKER_MODULE_CLKDIV_ENC(1UL) |                     \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(0x0FUL) | NUMAKER_MODULE_CLKDIV_Pos_ENC(16UL))
+```
+
+<a id="aac1289976a442b2fedb1233b15982ae0"></a>
+
+### `NUMAKER_SDH0_MODULE`
+
+```c
+#define NUMAKER_SDH0_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(0UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_AHBCLK0_SDH0CKEN_Pos) |                          \
+ NUMAKER_MODULE_CLKSEL_ENC(0UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(3UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(20UL) | NUMAKER_MODULE_CLKDIV_ENC(0UL) |                    \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(0x0FUL) | NUMAKER_MODULE_CLKDIV_Pos_ENC(24UL))
+```
+
+<a id="a5ee10e118573a4c747d9c0712e5adede"></a>
+
+### `NUMAKER_SDH1_MODULE`
+
+```c
+#define NUMAKER_SDH1_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(0UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_AHBCLK0_SDH1CKEN_Pos) |                          \
+ NUMAKER_MODULE_CLKSEL_ENC(0UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(3UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(22UL) | NUMAKER_MODULE_CLKDIV_ENC(3UL) |                    \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(0x0FUL) | NUMAKER_MODULE_CLKDIV_Pos_ENC(24UL))
+```
+
+<a id="a05f1316adcadb329b721d688c122f765"></a>
+
+### `NUMAKER_SEN_MODULE`
+
+```c
+#define NUMAKER_SEN_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(0UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_AHBCLK0_SENCKEN_Pos) |                           \
+ NUMAKER_MODULE_CLKSEL_ENC(0UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(3UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(16UL) | NUMAKER_MODULE_CLKDIV_ENC(3UL) |                    \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(0x0FUL) | NUMAKER_MODULE_CLKDIV_Pos_ENC(8UL))
+```
+
+<a id="adaa689295a31e5b259a7c05b6611a125"></a>
+
+### `NUMAKER_SPI0_MODULE`
+
+```c
+#define NUMAKER_SPI0_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(1UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK0_SPI0CKEN_Pos) |                          \
+ NUMAKER_MODULE_CLKSEL_ENC(2UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(7UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(4UL) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |              \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a9c5987ca481ecfbf505082335630402d"></a>
+
+### `NUMAKER_SPI10_MODULE`
+
+```c
+#define NUMAKER_SPI10_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(3UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK2_SPI10CKEN_Pos) |                         \
+ NUMAKER_MODULE_CLKSEL_ENC(4UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(7UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(24UL) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |             \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a144be66983b8b45995a7b037681477e7"></a>
+
+### `NUMAKER_SPI1_MODULE`
+
+```c
+#define NUMAKER_SPI1_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(1UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK0_SPI1CKEN_Pos) |                          \
+ NUMAKER_MODULE_CLKSEL_ENC(2UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(7UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(12UL) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |             \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a227a44ce55b040227bfe3233cfd63467"></a>
+
+### `NUMAKER_SPI2_MODULE`
+
+```c
+#define NUMAKER_SPI2_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(1UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK0_SPI2CKEN_Pos) |                          \
+ NUMAKER_MODULE_CLKSEL_ENC(3UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(7UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(9UL) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |              \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="aa251c8b6a225d24b4e3f20dd22498b79"></a>
+
+### `NUMAKER_SPI3_MODULE`
+
+```c
+#define NUMAKER_SPI3_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(2UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK1_SPI3CKEN_Pos) |                          \
+ NUMAKER_MODULE_CLKSEL_ENC(3UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(7UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(12UL) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |             \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a56a76adf61a24f812f18e13534405106"></a>
+
+### `NUMAKER_SPI4_MODULE`
+
+```c
+#define NUMAKER_SPI4_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(2UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK1_SPI4CKEN_Pos) |                          \
+ NUMAKER_MODULE_CLKSEL_ENC(4UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(7UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(0UL) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |              \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a57178e2899985344ea021f32efa43c20"></a>
+
+### `NUMAKER_SPI5_MODULE`
+
+```c
+#define NUMAKER_SPI5_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(3UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK2_SPI5CKEN_Pos) |                          \
+ NUMAKER_MODULE_CLKSEL_ENC(4UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(7UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(4UL) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |              \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a39bbcd5b0f7175757fcc6dd523df1eb6"></a>
+
+### `NUMAKER_SPI6_MODULE`
+
+```c
+#define NUMAKER_SPI6_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(3UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK2_SPI6CKEN_Pos) |                          \
+ NUMAKER_MODULE_CLKSEL_ENC(4UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(7UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(8UL) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |              \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="ace0d844db14edd1e5f4b250281438206"></a>
+
+### `NUMAKER_SPI7_MODULE`
+
+```c
+#define NUMAKER_SPI7_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(3UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK2_SPI7CKEN_Pos) |                          \
+ NUMAKER_MODULE_CLKSEL_ENC(4UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(7UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(12UL) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |             \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a47f43cb3ccd9192fa3d0f34b365fd81e"></a>
+
+### `NUMAKER_SPI8_MODULE`
+
+```c
+#define NUMAKER_SPI8_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(3UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK2_SPI8CKEN_Pos) |                          \
+ NUMAKER_MODULE_CLKSEL_ENC(4UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(7UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(16UL) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |             \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="abaf1f5fc92d1f9502fffbef8cf1715bd"></a>
+
+### `NUMAKER_SPI9_MODULE`
+
+```c
+#define NUMAKER_SPI9_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(3UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK2_SPI9CKEN_Pos) |                          \
+ NUMAKER_MODULE_CLKSEL_ENC(4UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(7UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(20UL) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |             \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a2aad906d9be605b1ed9877a203e01722"></a>
+
+### `NUMAKER_SPIM_MODULE`
+
+```c
+#define NUMAKER_SPIM_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(0UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_AHBCLK0_SPIMCKEN_Pos) |                          \
+ NUMAKER_MODULE_CLKSEL_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKSEL_Msk_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a3e379c3d426c06b772e848633767d2e5"></a>
+
+### `NUMAKER_ST_MODULE`
+
+```c
+#define NUMAKER_ST_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(0UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_AHBCLK0_STCKEN_Pos) |                            \
+ NUMAKER_MODULE_CLKSEL_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKSEL_Msk_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="adaec43e184ed7f3c34f66b4e98041f62"></a>
+
+### `NUMAKER_TMR0_MODULE`
+
+```c
+#define NUMAKER_TMR0_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(1UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK0_TMR0CKEN_Pos) |                          \
+ NUMAKER_MODULE_CLKSEL_ENC(1UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(7UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(8UL) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |              \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a50c780a3f2c07cc2dfca1e647e83782d"></a>
+
+### `NUMAKER_TMR1_MODULE`
+
+```c
+#define NUMAKER_TMR1_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(1UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK0_TMR1CKEN_Pos) |                          \
+ NUMAKER_MODULE_CLKSEL_ENC(1UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(7UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(12UL) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |             \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a7a60853a52958a5c8a78e383f378f579"></a>
+
+### `NUMAKER_TMR2_MODULE`
+
+```c
+#define NUMAKER_TMR2_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(1UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK0_TMR2CKEN_Pos) |                          \
+ NUMAKER_MODULE_CLKSEL_ENC(1UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(7UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(16UL) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |             \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a42fd788548168d2b519f5d49d2eead47"></a>
+
+### `NUMAKER_TMR3_MODULE`
+
+```c
+#define NUMAKER_TMR3_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(1UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK0_TMR3CKEN_Pos) |                          \
+ NUMAKER_MODULE_CLKSEL_ENC(1UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(7UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(20UL) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |             \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="ab68674b62e1c8a26f80772a9add2fcf7"></a>
+
+### `NUMAKER_TRACE_MODULE`
+
+```c
+#define NUMAKER_TRACE_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(0UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_AHBCLK0_TRACECKEN_Pos) |                         \
+ NUMAKER_MODULE_CLKSEL_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKSEL_Msk_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a7b544eadd5c042e91ea89541fd9431f6"></a>
+
+### `NUMAKER_TRNG_MODULE`
+
+```c
+#define NUMAKER_TRNG_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(2UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK1_TRNGCKEN_Pos) |                          \
+ NUMAKER_MODULE_CLKSEL_ENC(2UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(1UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(27UL) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |             \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="aaf0220a2af6dd7368761bf753ae7b73e"></a>
+
+### `NUMAKER_UART0_MODULE`
+
+```c
+#define NUMAKER_UART0_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(1UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK0_UART0CKEN_Pos) |                         \
+ NUMAKER_MODULE_CLKSEL_ENC(1UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(3UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(24UL) | NUMAKER_MODULE_CLKDIV_ENC(0UL) |                    \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(0x0FUL) | NUMAKER_MODULE_CLKDIV_Pos_ENC(8UL))
+```
+
+<a id="a38d069ddfd9912c38c42a8f7e3ead763"></a>
+
+### `NUMAKER_UART1_MODULE`
+
+```c
+#define NUMAKER_UART1_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(1UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK0_UART1CKEN_Pos) |                         \
+ NUMAKER_MODULE_CLKSEL_ENC(1UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(3UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(26UL) | NUMAKER_MODULE_CLKDIV_ENC(0UL) |                    \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(0x0FUL) | NUMAKER_MODULE_CLKDIV_Pos_ENC(12UL))
+```
+
+<a id="aa6dbc85be07f392f38a88bc074f11046"></a>
+
+### `NUMAKER_UART2_MODULE`
+
+```c
+#define NUMAKER_UART2_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(1UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK0_UART2CKEN_Pos) |                         \
+ NUMAKER_MODULE_CLKSEL_ENC(3UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(3UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(24UL) | NUMAKER_MODULE_CLKDIV_ENC(4UL) |                    \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(0x0FUL) | NUMAKER_MODULE_CLKDIV_Pos_ENC(0UL))
+```
+
+<a id="a98c5368b7868f6bc68e09df7f479be73"></a>
+
+### `NUMAKER_UART3_MODULE`
+
+```c
+#define NUMAKER_UART3_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(1UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK0_UART3CKEN_Pos) |                         \
+ NUMAKER_MODULE_CLKSEL_ENC(3UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(3UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(26UL) | NUMAKER_MODULE_CLKDIV_ENC(4UL) |                    \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(0x0FUL) | NUMAKER_MODULE_CLKDIV_Pos_ENC(4UL))
+```
+
+<a id="a0045544d52c292c13edb09e90f4b16c8"></a>
+
+### `NUMAKER_UART4_MODULE`
+
+```c
+#define NUMAKER_UART4_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(1UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK0_UART4CKEN_Pos) |                         \
+ NUMAKER_MODULE_CLKSEL_ENC(3UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(3UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(28UL) | NUMAKER_MODULE_CLKDIV_ENC(4UL) |                    \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(0x0FUL) | NUMAKER_MODULE_CLKDIV_Pos_ENC(8UL))
+```
+
+<a id="a0fdf72d7961da9c046d7d4bb9e19cf1f"></a>
+
+### `NUMAKER_UART5_MODULE`
+
+```c
+#define NUMAKER_UART5_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(1UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK0_UART5CKEN_Pos) |                         \
+ NUMAKER_MODULE_CLKSEL_ENC(3UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(3UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(30UL) | NUMAKER_MODULE_CLKDIV_ENC(4UL) |                    \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(0x0FUL) | NUMAKER_MODULE_CLKDIV_Pos_ENC(12UL))
+```
+
+<a id="aa4081c973118f02b92299ea8d775a1e5"></a>
+
+### `NUMAKER_UART6_MODULE`
+
+```c
+#define NUMAKER_UART6_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(1UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK0_UART6CKEN_Pos) |                         \
+ NUMAKER_MODULE_CLKSEL_ENC(3UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(3UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(20UL) | NUMAKER_MODULE_CLKDIV_ENC(4UL) |                    \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(0x0FUL) | NUMAKER_MODULE_CLKDIV_Pos_ENC(16UL))
+```
+
+<a id="a86caba0b690236e26e440bc39e4bf4c9"></a>
+
+### `NUMAKER_UART7_MODULE`
+
+```c
+#define NUMAKER_UART7_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(1UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK0_UART7CKEN_Pos) |                         \
+ NUMAKER_MODULE_CLKSEL_ENC(3UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(3UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(22UL) | NUMAKER_MODULE_CLKDIV_ENC(4UL) |                    \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(0x0FUL) | NUMAKER_MODULE_CLKDIV_Pos_ENC(20UL))
+```
+
+<a id="a30c536594814a2d4c58d383469a91081"></a>
+
+### `NUMAKER_UART8_MODULE`
+
+```c
+#define NUMAKER_UART8_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(3UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK2_UART8CKEN_Pos) |                         \
+ NUMAKER_MODULE_CLKSEL_ENC(2UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(3UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(20UL) | NUMAKER_MODULE_CLKDIV_ENC(5UL) |                    \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(0x0FUL) | NUMAKER_MODULE_CLKDIV_Pos_ENC(16UL))
+```
+
+<a id="a87e45a8420e6329f101f564e08f896b2"></a>
+
+### `NUMAKER_UART9_MODULE`
+
+```c
+#define NUMAKER_UART9_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(3UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK2_UART9CKEN_Pos) |                         \
+ NUMAKER_MODULE_CLKSEL_ENC(2UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(3UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(22UL) | NUMAKER_MODULE_CLKDIV_ENC(5UL) |                    \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(0x0FUL) | NUMAKER_MODULE_CLKDIV_Pos_ENC(20UL))
+```
+
+<a id="aa751a53c366beda2ac9b3f5169cd4ace"></a>
+
+### `NUMAKER_USBD_MODULE`
+
+```c
+#define NUMAKER_USBD_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(1UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK0_USBDCKEN_Pos) |                          \
+ NUMAKER_MODULE_CLKSEL_ENC(0UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(1UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(8UL) | NUMAKER_MODULE_CLKDIV_ENC(0UL) |                     \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(0xFUL) | NUMAKER_MODULE_CLKDIV_Pos_ENC(4UL))
+```
+
+<a id="a43b0b287abedfd2b9c78857bb0004be9"></a>
+
+### `NUMAKER_USBH_MODULE`
+
+```c
+#define NUMAKER_USBH_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(0UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_AHBCLK0_USBHCKEN_Pos) |                          \
+ NUMAKER_MODULE_CLKSEL_ENC(0UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(1UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(8UL) | NUMAKER_MODULE_CLKDIV_ENC(0UL) |                     \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(0xFUL) | NUMAKER_MODULE_CLKDIV_Pos_ENC(4UL))
+```
+
+<a id="a96da4a8ec09af3cbf8ab34e1bccb7819"></a>
+
+### `NUMAKER_USCI0_MODULE`
+
+```c
+#define NUMAKER_USCI0_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(2UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK1_USCI0CKEN_Pos) |                         \
+ NUMAKER_MODULE_CLKSEL_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKSEL_Msk_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |       \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a963952cad9b6b670e736875be75328e2"></a>
+
+### `NUMAKER_WDT_MODULE`
+
+```c
+#define NUMAKER_WDT_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(1UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK0_WDTCKEN_Pos) |                           \
+ NUMAKER_MODULE_CLKSEL_ENC(1UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(3UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(0UL) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |              \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+<a id="a531cdddd54f1c2a56d603b9135348e0f"></a>
+
+### `NUMAKER_WWDT_MODULE`
+
+```c
+#define NUMAKER_WWDT_MODULE
+```
+
+展开值（Value）：
+
+```c
+(NUMAKER_MODULE_APBCLK_ENC(1UL) |                                                          \
+ NUMAKER_MODULE_IP_EN_Pos_ENC(NUMAKER_CLK_APBCLK0_WDTCKEN_Pos) |                           \
+ NUMAKER_MODULE_CLKSEL_ENC(1UL) | NUMAKER_MODULE_CLKSEL_Msk_ENC(3UL) |                     \
+ NUMAKER_MODULE_CLKSEL_Pos_ENC(30UL) | NUMAKER_MODULE_CLKDIV_ENC(NUMAKER_NA) |             \
+ NUMAKER_MODULE_CLKDIV_Msk_ENC(NUMAKER_NA) | NUMAKER_MODULE_CLKDIV_Pos_ENC(NUMAKER_NA))
+```
+
+
+## 269.3\_原页交叉引用（Cross References）
+
+- [查看此文件的源码。](https://docs.zephyrproject.org/latest/doxygen/html/numaker__m46x__clock_8h_source.html)
+
+<a id="doc-define-members"></a>
+<a id="header-doc-define-members"></a>
+<a id="anumaker__m46x__clock_8h_html_a51a8258755b28e0f0c6d147cb169ee95"></a>
+<a id="anumaker__m46x__clock_8h_html_a922f9d60a8929a9ea5139e1da86d5387"></a>
+<a id="anumaker__m46x__clock_8h_html_aa499dc56e839cf41404faa352c80a526"></a>
+<a id="anumaker__m46x__clock_8h_html_aafa8852333e620f24f98d98d27420788"></a>
+<a id="anumaker__m46x__clock_8h_html_abbf6921f1302337ed1a46886e6517285"></a>
+<a id="anumaker__m46x__clock_8h_html_adc57f655a02127165185c3a6a5453541"></a>
+<a id="anumaker__m46x__clock_8h_html_a27e7054840a6130eb6a91160e9294a85"></a>
+<a id="anumaker__m46x__clock_8h_html_a824b2bde29f8f7374bed1bec0d7f114d"></a>
+<a id="anumaker__m46x__clock_8h_html_a7748917fa5664552d90ad85fd3ac6253"></a>
+<a id="anumaker__m46x__clock_8h_html_ac240fa173fd611698a50e18acacc7e8b"></a>
+<a id="anumaker__m46x__clock_8h_html_a08b8216298f1ab185b96159bfd0d68e7"></a>
+<a id="anumaker__m46x__clock_8h_html_a010bc688f8ac881039b1c74297017492"></a>
+<a id="anumaker__m46x__clock_8h_html_a90bfed7241959b097624838c56fd05fb"></a>
+<a id="anumaker__m46x__clock_8h_html_a8fbabf2f5b8be3af891ea039e533dd3e"></a>
+<a id="anumaker__m46x__clock_8h_html_a7e8862c4f20298f950b253c0ab613fec"></a>
+<a id="anumaker__m46x__clock_8h_html_a6b2cf403f52fd1a62f33611ddff65ccb"></a>
+<a id="anumaker__m46x__clock_8h_html_a97fa36df7672c2dd77d953d8c52179c3"></a>
+<a id="anumaker__m46x__clock_8h_html_a308fbc20ea60cfcc3a64aba7f83336df"></a>
+<a id="anumaker__m46x__clock_8h_html_a5c6e1b8ff6fc666f729c456ced30ed2d"></a>
+<a id="anumaker__m46x__clock_8h_html_a079560398552b7e309109dea93758098"></a>
+<a id="anumaker__m46x__clock_8h_html_a9c6fa39e37ec8da8ef2de45a01669724"></a>
+<a id="anumaker__m46x__clock_8h_html_abb507dbd18f953fc72e539c44957d43b"></a>
+<a id="anumaker__m46x__clock_8h_html_a26f255ab6373c7db56f9541ffcaf9137"></a>
+<a id="anumaker__m46x__clock_8h_html_afdc1213b38b64f09f75e5d59d9bd343b"></a>
+<a id="anumaker__m46x__clock_8h_html_ac1aea552215c5515caa825405d3d3926"></a>
+<a id="anumaker__m46x__clock_8h_html_ac3630dbacd1ad31365cf658614529810"></a>
+<a id="anumaker__m46x__clock_8h_html_a15546e5819aea803f07b0be19fe156fe"></a>
+<a id="anumaker__m46x__clock_8h_html_a4ee0df1038a212dc2c943d3b66af8849"></a>
+<a id="anumaker__m46x__clock_8h_html_ad29157a28b15201dcda03bbb484d4e17"></a>
+<a id="anumaker__m46x__clock_8h_html_a2b55d1154a5c7723e7ddfcf35565b542"></a>
+<a id="anumaker__m46x__clock_8h_html_aedc4fed5c50badc54edef17ec075ecc4"></a>
+<a id="anumaker__m46x__clock_8h_html_ad9ad999a5cf04196d30a8d91d3938f0a"></a>
+<a id="anumaker__m46x__clock_8h_html_a4ea4427d406d1eb1078c209177e42f73"></a>
+<a id="anumaker__m46x__clock_8h_html_acfdd626271018f3f1432ce7e2d9d7376"></a>
+<a id="anumaker__m46x__clock_8h_html_a3624622b04d58420cc034e869c932928"></a>
+<a id="anumaker__m46x__clock_8h_html_afc690368ba8774739f034d404e3c5401"></a>
+<a id="anumaker__m46x__clock_8h_html_ab72e30643c1e14a66d5e5a19aa3e0b3c"></a>
+<a id="anumaker__m46x__clock_8h_html_ace495a935bbfe7dba9c4101d10ed7ff4"></a>
+<a id="anumaker__m46x__clock_8h_html_ac5847065a5b666a23ad5ab459cab206e"></a>
+<a id="anumaker__m46x__clock_8h_html_ab9f0662feaf58f785abb509007878ac8"></a>
+<a id="anumaker__m46x__clock_8h_html_a74ebf455bde77e81cb6885a3f8ee644c"></a>
+<a id="anumaker__m46x__clock_8h_html_a38f53a703ceeb17e3e1794004b79cea1"></a>
+<a id="anumaker__m46x__clock_8h_html_af968f32399159b10da33c64b8b73ab2c"></a>
+<a id="anumaker__m46x__clock_8h_html_a7295d4b8918c0eb234826e2e3c86695d"></a>
+<a id="anumaker__m46x__clock_8h_html_af9e916e5c92262fc8f7dc79dfd51da11"></a>
+<a id="anumaker__m46x__clock_8h_html_a20f966cae9fa1c3ffd7533892c014af9"></a>
+<a id="anumaker__m46x__clock_8h_html_a43961045e5cfb5bfd8e3f25ca0d3de38"></a>
+<a id="anumaker__m46x__clock_8h_html_a31f1a197a3b5093f006feb37b424b1d7"></a>
+<a id="anumaker__m46x__clock_8h_html_ac4bb6f1b74c5ae9e8c25a2c4accf3e91"></a>
+<a id="anumaker__m46x__clock_8h_html_a58adbfadda83fb8b1d9a50578ee64409"></a>
+<a id="anumaker__m46x__clock_8h_html_a87a961c8e77c418e7df428ff03974d15"></a>
+<a id="anumaker__m46x__clock_8h_html_a1074ea1f3692cf7c3c263cf409624cba"></a>
+<a id="anumaker__m46x__clock_8h_html_abe3b51583a6c3b5e7fac4502c29a15c5"></a>
+<a id="anumaker__m46x__clock_8h_html_a93061f89415f32df54b3d386a85608d8"></a>
+<a id="anumaker__m46x__clock_8h_html_a68b041451f3023be8d47f78c56c64875"></a>
+<a id="anumaker__m46x__clock_8h_html_a4187ddb711d9b621ffd100f693ecab87"></a>
+<a id="anumaker__m46x__clock_8h_html_a2303b958de0df016987f93b1bf3ab085"></a>
+<a id="anumaker__m46x__clock_8h_html_af00c90db38b73bed47ef5a00cfe92a87"></a>
+<a id="anumaker__m46x__clock_8h_html_aa26749ba77ea33d82dac563913f91631"></a>
+<a id="anumaker__m46x__clock_8h_html_a1030ba160597af2055aa8bc8cf1e783f"></a>
+<a id="anumaker__m46x__clock_8h_html_a96f335c83be01e4d323ff1050f55af19"></a>
+<a id="anumaker__m46x__clock_8h_html_a3f26ee3e388e1bad4752c264e706d34f"></a>
+<a id="anumaker__m46x__clock_8h_html_a8159e95120dff6946e93d12bb9c2e103"></a>
+<a id="anumaker__m46x__clock_8h_html_af4ba87fd1820c165e405c025bc1c6e1f"></a>
+<a id="anumaker__m46x__clock_8h_html_aa1b458c17c208504e2736af420016fe9"></a>
+<a id="anumaker__m46x__clock_8h_html_a61792f0f11c9f76016d1a89ce71b74f7"></a>
+<a id="anumaker__m46x__clock_8h_html_af8cd5804e7ae8676e0245ccd9e6a4c74"></a>
+<a id="anumaker__m46x__clock_8h_html_ad5dc0793b20ab18ddba5e972f71caedb"></a>
+<a id="anumaker__m46x__clock_8h_html_ab150c51327c505db2217f90e5f8fd028"></a>
+<a id="anumaker__m46x__clock_8h_html_a8be4ace7190b0947707eaa8d99fc63b0"></a>
+<a id="anumaker__m46x__clock_8h_html_a33270f5ef0594fe4960eabd4d135e612"></a>
+<a id="anumaker__m46x__clock_8h_html_a7b443fbeff14a12542f89e445ea2f2d3"></a>
+<a id="anumaker__m46x__clock_8h_html_ae1e54f46825a4fa27f526ba7de0c8607"></a>
+<a id="anumaker__m46x__clock_8h_html_a32f4d5437f7724cdf93bbde025c0825a"></a>
+<a id="anumaker__m46x__clock_8h_html_a48e8655610a9b5e7f0548d0d02467d22"></a>
+<a id="anumaker__m46x__clock_8h_html_a806485d7f3f8924d91f8daedb53faecf"></a>
+<a id="anumaker__m46x__clock_8h_html_a1b8069d895df60e4dc9269adc36602c8"></a>
+<a id="anumaker__m46x__clock_8h_html_afd7bb1592e766086bf5c4f2f2d6224cd"></a>
+<a id="anumaker__m46x__clock_8h_html_a8e959e2086ca96c0da9ed6e8a8426dad"></a>
+<a id="anumaker__m46x__clock_8h_html_ae9cacf97bbdb9935315aef7d852da0b8"></a>
+<a id="anumaker__m46x__clock_8h_html_a896126d0a6312d382ebd1054216c73d7"></a>
+<a id="anumaker__m46x__clock_8h_html_ad616218273d67669884e19ef3ee5234e"></a>
+<a id="anumaker__m46x__clock_8h_html_ab2e9eda6c9cf544ee895d2c238241dd4"></a>
+<a id="anumaker__m46x__clock_8h_html_a0dda3ed1ac9a4473df221a3c7602d789"></a>
+<a id="anumaker__m46x__clock_8h_html_a327ba049d422169d52fabb8296f204c1"></a>
+<a id="anumaker__m46x__clock_8h_html_a38d9951e8a71b2f89bdf7b016feb09cb"></a>
+<a id="anumaker__m46x__clock_8h_html_a8a2c2a4f9e6d38bb5198f0bf78b123ed"></a>
+<a id="anumaker__m46x__clock_8h_html_a3d2f1af1de01e7d4459d16e92f1c73a4"></a>
+<a id="anumaker__m46x__clock_8h_html_ac2c53fe5cfb83b42bebaea1140368cc7"></a>
+<a id="anumaker__m46x__clock_8h_html_a58b51925b1e326fcf1b44c78c9aac0bc"></a>
+<a id="anumaker__m46x__clock_8h_html_a0067d71da4392dcafde9dc0b4c3a7fe9"></a>
+<a id="anumaker__m46x__clock_8h_html_a5f14b1218cc23b5ae4a5febf2ab3f231"></a>
+<a id="anumaker__m46x__clock_8h_html_aabf3594b4f7e6224a88d5edc89afbfe0"></a>
+<a id="anumaker__m46x__clock_8h_html_a069cd6290f117eded4bfc7db70dd3c50"></a>
+<a id="anumaker__m46x__clock_8h_html_a8c3c6a3361689ff6f7737ccdff117bc6"></a>
+<a id="anumaker__m46x__clock_8h_html_a572eca05a9b8478a29f63e9401145bd4"></a>
+<a id="anumaker__m46x__clock_8h_html_a59ba15908e8db725b14dc000fbb17318"></a>
+<a id="anumaker__m46x__clock_8h_html_aa1cb79620df2a7aa170b83b9f0837294"></a>
+<a id="anumaker__m46x__clock_8h_html_a34b8dd1f5a2a514eec3ee4ff2376126d"></a>
+<a id="anumaker__m46x__clock_8h_html_a76947087379239ccbc5e822d45667dc4"></a>
+<a id="anumaker__m46x__clock_8h_html_a5de977a2fd728aa7a12e0a667b639bca"></a>
+<a id="anumaker__m46x__clock_8h_html_a367f258ea5537b3948adedc307b90e2b"></a>
+<a id="anumaker__m46x__clock_8h_html_a998500f8ff7b225099aabfc56dea74e7"></a>
+<a id="anumaker__m46x__clock_8h_html_acbab43558f5e2ca3ab88245ddb009f3f"></a>
+<a id="anumaker__m46x__clock_8h_html_a1fdb03816fc8bdaed6f207be2ab47548"></a>
+<a id="anumaker__m46x__clock_8h_html_a386c818d9955a72ee48ceb19e4f91927"></a>
+<a id="anumaker__m46x__clock_8h_html_a1d8508e63ddc549f0cdbd58e7f2fecac"></a>
+<a id="anumaker__m46x__clock_8h_html_ab31f85d74e996dff00563e13de27cfb9"></a>
+<a id="anumaker__m46x__clock_8h_html_a831afd6bae798caf0303159b748d62bf"></a>
+<a id="anumaker__m46x__clock_8h_html_a16689092a9fde746dcfb179af8c07470"></a>
+<a id="anumaker__m46x__clock_8h_html_abbff3536dfcc434dedd936ef17fae208"></a>
+<a id="anumaker__m46x__clock_8h_html_affa49b7c031d534acb6d6989da9611c1"></a>
+<a id="anumaker__m46x__clock_8h_html_af224d39ec0080a0d4f0776098ed240a6"></a>
+<a id="anumaker__m46x__clock_8h_html_a59c032586da81c2128ecfe553e779560"></a>
+<a id="anumaker__m46x__clock_8h_html_aa3854ff57bfbbaecfe7e23d2771d7333"></a>
+<a id="anumaker__m46x__clock_8h_html_afb30c612fbf094fc60c811ccbaa22df0"></a>
+<a id="anumaker__m46x__clock_8h_html_a70e54a13473d4ec204f354d2a8e120c8"></a>
+<a id="anumaker__m46x__clock_8h_html_a8588ec96cf9ba5a541372b886310e31f"></a>
+<a id="anumaker__m46x__clock_8h_html_ab06c990333e66d787fe5e08e749f2f0d"></a>
+<a id="anumaker__m46x__clock_8h_html_a453287405a43aaa6e2215c1d1d20b079"></a>
+<a id="anumaker__m46x__clock_8h_html_a5c2df8fa94c924887ecdb20e8c664f5c"></a>
+<a id="anumaker__m46x__clock_8h_html_a61fc05731dec14cd6bdf6c16d8ddd0cb"></a>
+<a id="anumaker__m46x__clock_8h_html_a1ffeeb21492fe1cae89a23e3809056ce"></a>
+<a id="anumaker__m46x__clock_8h_html_afa7a7b670568bbed4613ac860ac764d4"></a>
+<a id="anumaker__m46x__clock_8h_html_af2b11ee30e0ee2608d2550656aa38c26"></a>
+<a id="anumaker__m46x__clock_8h_html_adb4a2eb99fa2c5646866a5d55b97534e"></a>
+<a id="anumaker__m46x__clock_8h_html_a34c0f3828864c8e740190bc3a094a5de"></a>
+<a id="anumaker__m46x__clock_8h_html_ae1a1383fc645274edfb35e3f603e559f"></a>
+<a id="anumaker__m46x__clock_8h_html_aa27014b1c91ab54b8a60401be51e86be"></a>
+<a id="anumaker__m46x__clock_8h_html_ae25c9ea6caa15b827fc92cad41b1d2c4"></a>
+<a id="anumaker__m46x__clock_8h_html_a03fba41df5559e507195dfa734d6ce0e"></a>
+<a id="anumaker__m46x__clock_8h_html_a69bca44bfebe798d128021f12a902367"></a>
+<a id="anumaker__m46x__clock_8h_html_a789f8b30f0fc9e2713b025d3e56a78ad"></a>
+<a id="anumaker__m46x__clock_8h_html_ab2ec740c5cb44791065972a2de785cbe"></a>
+
+---
+
+[上一章](P268_zephyr__dt-bindings__reset__numaker_m335x_reset.h_文件参考.md) · [返回大纲](大纲.md) · [下一章](P270_zephyr__dt-bindings__reset__numaker_m46x_reset.h_文件参考.md)
