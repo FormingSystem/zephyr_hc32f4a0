@@ -11,13 +11,21 @@ domains: [documentation]
 
 # 学习中心
 
-这里提供从零准备 Zephyr 环境、理解构建工具并逐步开展实验的 Markdown 笔记、PPT 和配套材料。Windows 主线的实验源码目录为 `G:\zephyr_practice\zephyr-main`，在 UCRT64 Bash 中写作 `/g/zephyr_practice/zephyr-main`。源码下载、依赖安装、编译、调试及后续移植都围绕这份源码展开。实验会逐步加入 HC32 板级支持、厂商模块、构建与调试工具和文档，最终形成能够独立开发和维护的完整工程。每个文件或工具都在对应实验中创建并解释，不要求起步时已经具备最终目录。
+只阅读官网资料时，从[Zephyr 官方主线阅读](zephyr_docs/reading/README.md)进入；具体 API、芯片绑定、开发板和示例收在[官方扩展参考](zephyr_docs/reference_library/README.md)。本学习中心其余教程属于仓库自有材料，分出的环境说明见[项目实验补充](zephyr_project_notes/README.md)。
+
+这里提供从零准备 Zephyr 环境、理解构建工具并逐步开展实验的 Markdown 笔记、PPT 和配套材料。Windows 主线使用读者自行选择的实验源码根目录；命令执行位置以各章说明为准，不要求固定盘符或作者目录。源码下载、依赖安装、编译、调试及后续移植都围绕这份源码展开。实验会逐步加入 HC32 板级支持、厂商模块、构建与调试工具和文档，最终形成能够独立开发和维护的完整工程。每个文件或工具都在对应实验中创建并解释，不要求起步时已经具备最终目录。
 
 环境材料统一目录，文件名后缀区分 [Windows](P01_zephyr_make_project/环境与依赖导航.md)与 [Linux](P01_zephyr_make_project/P001_官方环境安装与源码准备_Linux.md)，先查[官方工具依据](P01_zephyr_make_project/主机工具与官方安装来源.md)。Linux 教程使用 **Ubuntu 22.04 LTS**，按正文补齐工具版本并采用独立的官方工作区示例，不能照搬 Windows 盘符、UCRT64 路径或 venv 布局。PPT 的统一目录和最新文件名见[专题大纲](P01_zephyr_make_project/大纲.md)。
 
 默认使用 UCRT64 Bash，保持 Linux 命令习惯。只有 Zephyr 官方明确采用 PowerShell 的 Windows 下载/安装步骤，以及 setup.cmd 等 Windows 专用脚本和其 Windows 管理操作，才切换到 PowerShell。普通下载、摘要校验、解压、版本检查、Python/venv 与 CMake 工程操作仍用 UCRT64，不能仅因调用 Windows 可执行程序就整段改成 PowerShell。Ubuntu 22.04 使用原生 Linux Bash。每段标明终端和目录，切换时重新进入目录，临时变量不互相继承。
 
 ## 怎样使用正文、PPT 和视频
+
+需要对照官方英文文档时，打开 [Zephyr 官方文档中文翻译集](zephyr_docs/README.md)。翻译范围包括整站指南、API、开发板和示例；现有 16336 个适用官方页面的中文译文，覆盖入门、工具链、west、应用开发、Kconfig、设备树、硬件移植、驱动及内核基础，正文翻译已全部完成，剩余原图交付单独记录。完整交付状态见[全站进度](zephyr_docs/PROGRESS.md)。官方示例布局与项目实验布局分别说明，不混用初始化命令。
+
+本次官方清单的 16336 个适用页面正文均已译完；完整交付为 16331 页，另 5 页缺少 8 个原始图片文件，见[缺项与译文入口](zephyr_docs/MISSING_MEDIA.md)。
+
+阅读带动图的译文时，可使用我们的 [Typora Code](https://github.com/FormingSystem/typora_code)，在正文、图片链接预览和全屏查看器中观看 GIF 动画；Markdown、原图与动画文件需一并保留。
 
 第一次学习时按 Markdown 的章节导航阅读，在正文指定位置完成实验并检查结果。PPT 用于配合视频讲清关键关系、复习阶段与典型操作；安装分支、完整命令、输出解释和排错细节以 Markdown 为完整入口。没有配套 PPT 的专题仍可按正文独立学习，不用等待演示材料。
 
@@ -52,7 +60,7 @@ flowchart LR
 | 多个代码仓库必须使用配套版本 | [west 大纲](west/大纲.md) | 自建多仓库清单并写一个可运行的新命令 |
 | 新增 C 文件或可复用模块怎样参与编译 | [CMake 大纲](cmake/大纲.md) | 定位漏实现链接错误，验证模块开关 |
 | VS Code 怎样构建、打断点和单步 | [编辑器与调试大纲](vscode/大纲.md) | 用 GDB 观察变量变化，理解实板调试链路 |
-| 已有 G 盘环境怎样接入 Zephyr IDE 插件 | [Zephyr IDE 手把手教程](zephyr_vscode/README.md) | 复用 SDK/venv、添加应用与 Build、构建并配置源码浏览，附 61 页 PPT |
+| 已有实验环境怎样接入 Zephyr IDE 插件 | [Zephyr IDE 手把手教程](zephyr_vscode/README.md) | 复用 SDK/venv、添加应用与 Build、构建并配置源码浏览，附 61 页 PPT |
 | 怎样选芯片、适配 PCB 接线并验证 | [板级配置大纲](board/大纲.md) | 找到 Kconfig/DTS 输入，区分编译、模拟与实板证据 |
 
 west 安装承接 venv 前两章的环境与 pip 知识；已经掌握这些方法的读者可直接读 west。
@@ -78,7 +86,7 @@ learning/
   BUILD_BOARD_VALIDATION.md  构建、调试与板级实验验收边界
 ```
 
-配套材料按[实验准备](P000_实验准备.md)放入实验源码目录下的 `learning/`。练习副本与运行证据放在 `G:\zephyr_practice\zephyr-main\build\learning-tools\`；SDK 保存在源码外的工具目录。资料保存位置不决定实验命令的执行位置。
+配套材料按[实验准备](P000_实验准备.md)放入实验源码目录下的 `learning/`。练习副本与运行证据放在 实验源码根目录下的 `build/learning-tools/`；SDK 保存在源码外的工具目录。资料保存位置不决定实验命令的执行位置。
 
 新主题使用英文目录名，正文用 `P001_中文主题.md`，大纲说明先后顺序；可执行源文件放到主题的 `labs/`。需要分析特定版本的第三方源码时，再创建该主题的 `source_reading/`，注明版本、出处和修改边界。不要把实验产物、环境目录、个人凭据混进学习资料。
 

@@ -1,0 +1,80 @@
+---
+id: learning.zephyr-docs.reading.kernel
+title: 内核官方译文 · 官方主线
+kind: reference
+status: evolving
+domains: [zephyr, documentation]
+---
+
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+
+# 内核官方译文 · 官方主线
+
+本目录只列官方指南正文。编号可能不连续；其他条目可在[扩展参考](../reference_library/README.md)查阅。
+
+[返回官方主线目录](README.md)
+
+- [中断](../kernel/P001_中断.md)
+- [线程](../kernel/P002_线程.md)
+- [系统线程](../kernel/P003_系统线程.md)
+- [不启用线程的运行方式](../kernel/P004_无线程运行.md)
+- [调度与CPU空闲](../kernel/P005_调度与CPU空闲.md)
+- [定时器](../kernel/P006_定时器.md)
+- [工作队列线程](../kernel/P007_工作队列线程.md)
+- [内核计时](../kernel/P008_内核计时.md)
+- [系统定时器驱动](../kernel/P009_系统定时器驱动.md)
+- [信号量](../kernel/P010_信号量.md)
+- [互斥量](../kernel/P011_互斥量.md)
+- [事件](../kernel/P012_事件.md)
+- [条件变量](../kernel/P013_条件变量.md)
+- [FIFO先进先出队列](../kernel/P014_FIFO先进先出队列.md)
+- [LIFO后进先出队列](../kernel/P015_LIFO后进先出队列.md)
+- [消息队列](../kernel/P016_消息队列.md)
+- [管道](../kernel/P017_管道.md)
+- [邮箱](../kernel/P018_邮箱.md)
+- [环形缓冲区](../kernel/P019_环形缓冲区.md)
+- [轮询API](../kernel/P020_轮询API.md)
+- [内存管理入口](../kernel/P021_内存管理入口.md)
+- [固定块内存池](../kernel/P022_固定块内存池.md)
+- [内存堆](../kernel/P023_内存堆.md)
+- [共享多堆](../kernel/P024_共享多堆.md)
+- [内存块分配器](../kernel/P025_内存块分配器.md)
+- [原子操作](../kernel/P026_原子操作.md)
+- [自旋锁](../kernel/P027_自旋锁.md)
+- [通用队列与取消等待](../kernel/P028_通用队列与取消等待.md)
+- [整数数据栈](../kernel/P029_整数数据栈.md)
+- [致命错误处理](../kernel/P030_致命错误处理.md)
+- [断言](../kernel/P031_断言.md)
+- [浮点服务](../kernel/P032_浮点服务.md)
+- [线程局部存储](../kernel/P033_线程局部存储.md)
+- [内核版本接口](../kernel/P034_内核版本接口.md)
+- [代码执行时间测量](../kernel/P035_代码执行时间测量.md)
+- [精密计时](../kernel/P036_精密计时.md)
+- [时间工具](../kernel/P037_时间工具.md)
+- [用户模式入口](../kernel/P038_用户模式入口.md)
+- [用户模式概述](../kernel/P039_用户模式概述.md)
+- [用户模式内核对象](../kernel/P040_用户模式内核对象.md)
+- [内存保护与内存域](../kernel/P041_内存保护与内存域.md)
+- [MPU栈对象](../kernel/P042_MPU栈对象.md)
+- [MPU用户空间实现](../kernel/P043_MPU用户空间实现.md)
+- [系统调用](../kernel/P044_系统调用.md)
+- [对称多处理](../kernel/P045_对称多处理.md)
+- [虚拟内存](../kernel/P046_虚拟内存.md)
+- [按需分页](../kernel/P047_按需分页.md)
+- [内核对象核心](../kernel/P048_内核对象核心.md)
+- [作用域清理](../kernel/P049_作用域清理.md)
+- [代码与数据重定位](../kernel/P050_代码与数据重定位.md)
+- [可迭代段](../kernel/P051_可迭代段.md)
+- [数据结构入口](../kernel/P052_数据结构入口.md)
+- [双向链表](../kernel/P053_双向链表.md)
+- [单向链表](../kernel/P054_单向链表.md)
+- [最小堆](../kernel/P055_最小堆.md)
+- [红黑树](../kernel/P056_红黑树.md)
+- [环形队列](../kernel/P057_环形队列.md)
+- [多生产者单消费者无锁队列](../kernel/P058_多生产者单消费者无锁队列.md)
+- [单生产者单消费者无锁队列](../kernel/P059_单生产者单消费者无锁队列.md)
+- [多生产者单消费者包缓冲区](../kernel/P060_多生产者单消费者包缓冲区.md)
+- [单生产者单消费者包缓冲区](../kernel/P061_单生产者单消费者包缓冲区.md)
+- [工具函数入口](../kernel/P062_工具函数入口.md)
+- [内核服务入口](../kernel/P063_内核服务入口.md)
+- [内核文档总览](../kernel/P064_内核文档总览.md)
