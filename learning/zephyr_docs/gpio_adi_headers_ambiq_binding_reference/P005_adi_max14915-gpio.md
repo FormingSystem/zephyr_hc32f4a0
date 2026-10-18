@@ -1,0 +1,224 @@
+---
+id: learning.zephyr-docs.gpio-adi-headers-ambiq-binding-reference.page-5
+title: adi_max14915-gpio
+kind: reference
+status: maintained
+domains: [zephyr, devicetree, gpio]
+source_url: https://docs.zephyrproject.org/latest/build/dts/api/bindings/gpio/adi,max14915-gpio.html
+---
+
+<!-- Copyright 2015-2026 Zephyr Project members and individual contributors. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<!-- 中文翻译；编号与导航为本地新增。 -->
+
+# 第5章\_adi_max14915-gpio
+
+原文：[官方页面](https://docs.zephyrproject.org/latest/build/dts/api/bindings/gpio/adi,max14915-gpio.html)。读取日期：2026-10-16；来源摘要见[来源记录](../SOURCES.md)。
+
+<a id="adi-max14915-gpio-on-spi-bus"></a>
+<a id="dtbinding-adi-max14915-gpio"></a>
+<a id="std-dtcompatible-adi-max14915-gpio"></a>
+
+兼容字符串（Compatible String）：`adi,max14915-gpio`。厂商：[ Analog Devices, Inc. ](https://docs.zephyrproject.org/latest/build/dts/api/bindings.html#dt-vendor-adi)。
+
+采用此设备树绑定（Devicetree Binding）的开发板见[官方筛选目录](https://docs.zephyrproject.org/latest/boards/index.html#compatibles=adi,max14915-gpio)。
+
+驱动源码（Driver Source）：[drivers/gpio/gpio_max14916.c](https://github.com/zephyrproject-rtos/zephyr/blob/main/drivers/gpio/gpio_max14916.c)。
+
+<a id="description"></a>
+
+ADI MAX14915紧凑型八通道工业高边开关（Compact Industrial Octal High-side Switch），具有诊断（Diagnostics）功能。
+
+器件资料：[MAX14915官方数据手册](https://www.analog.com/media/en/technical-documentation/data-sheets/MAX14915.pdf)。
+
+<a id="examples"></a>
+
+官方设备树配置原例：
+
+```dts
+max14915: max14915@0 {
+    compatible = "adi,max14915-gpio";
+    status = "okay";
+    reg = <0x00>;
+    fault-gpios = <&gpiof 13 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+    sync-gpios = <&gpioc 7 GPIO_ACTIVE_LOW>;
+    en-gpios = <&gpiob 5 GPIO_ACTIVE_LOW>;
+    drdy-gpios = <&gpioa 15 GPIO_ACTIVE_LOW>;
+    spi-max-frequency = <10000000>;
+    gpio-controller;
+    #gpio-cells = <2>;
+    ngpios = <8>;
+    crc-en;
+    spi-addr = <0>;
+    ow-on-en = <0 0 0 0 0 0 0 0>;
+    ow-off-en = <0 0 0 0 0 0 0 0>;
+    sh-vdd-en = <0 0 0 0 0 0 0 0>;
+    /* Config Reg 1 */
+    fled-set;
+    sled-set;
+    fled-stretch = <3>;
+    ffilter-en;
+    filter-long;
+    flatch-en;
+    led-cur-lim;
+    /* Config Reg 2 */
+    vdd-on-thr;
+    synch-wd-en;
+    sht-vdd-thr = <3>;
+    ow-off-cs = <3>;
+    wd-to = <0>;
+  };
+```
+
+<a id="properties"></a>
+
+属性类型：`int` 为整数，`boolean` 为布尔属性，`string` 为字符串，`string-array` 为字符串数组，`array` 为数值数组，`uint8-array` 为8位无符号整数数组，`compound` 为复合类型；`phandle` 为节点引用（Phandle），`phandles` 为节点引用列表，`phandle-array` 为节点引用与说明符单元数组。
+
+<a id="top-level-properties"></a>
+
+## 5.1\_节点专用属性
+
+这些属性不继承自基础绑定文件。
+
+| 属性 | 类型 | 中文说明与约束 |
+| --- | --- | --- |
+| `wd-to` | `int` | 默认值依据器件文档。设置SPI与SYNCH看门狗超时（Watchdog Timeout）：0禁用SPI看门狗并将SYNCH超时设为典型600ms；1将两者设为典型200ms；2设为典型600ms；3设为典型1.2秒。；默认值：`0`；合法值：`0, 1, 2, 3` |
+| `#gpio-cells` | `int` | **必需**。GPIO说明符（GPIO Specifier）所需的单元数量。；固定值：`2` |
+| `ngpios` | `int` | 支持的GPIO数量。；默认值：`32`；固定值：`8` |
+| `drdy-gpios` | `phandle-array` | 高边开漏输出（High-Side Open-Drain Output）。内部逻辑电源高于欠压锁定阈值（UVLO Threshold）时READY为被动低电平，表明寄存器供电电压足够。 |
+| `fault-gpios` | `phandle-array` | FAULT1或FAULT2任一寄存器出现故障状态时，故障引脚（Fault Pin）指示故障。问题不再持续后，读取会清除这两个寄存器。 |
+| `sync-gpios` | `phandle-array` | 锁存（Latch）数据供读取，与片选CS功能部分重合。 |
+| `en-gpios` | `phandle-array` | DOI使能引脚（Enable Pin）。EN拉高启用DOI_输出，拉低则禁用全部DOI_输出并使其处于三态（Three-state）。 |
+| `crc-en` | `boolean` | 告知驱动CRC引脚是否已启用。 |
+| `spi-addr` | `int` | **必需**。MAX14906PMB模块默认地址为0，即A0、A1均低电平。可通过A0和A1选择设备地址（Device Address）。；合法值：`0, 1, 2, 3` |
+| `ow-on-en` | `array` | 默认值来自器件文档。逐通道启用／禁用导通状态断线检测（Open-wire-on）：0禁用，1启用；通道按CH0～CH7排列。；默认值：`[0, 0, 0, 0, 0, 0, 0, 0]` |
+| `ow-off-en` | `array` | 默认值来自器件文档。逐通道启用／禁用关闭状态断线检测（Open-wire-off）：0禁用，1启用；通道按CH0～CH7排列。；默认值：`[0, 0, 0, 0, 0, 0, 0, 0]` |
+| `sh-vdd-en` | `array` | 默认值来自器件文档。ShVddEN为对VDD短路（Short to VDD）功能使能，逐通道设置：0禁用，1启用；通道按CH0～CH3排列。；默认值：`[0, 0, 0, 0, 0, 0, 0, 0]` |
+| `fled-set` | `boolean` | 启用时，内部故障诊断（Internal Fault Diagnostics）包括SafeDemagF_、SHVDD_、VDDOV_、OWOff_、AboveVDD_、CL_、OVL_和VDDOKFault_。 |
+| `sled-set` | `boolean` | 启用状态指示灯（Status LEDs）。 |
+| `fled-stretch` | `int` | 默认值来自器件文档。设置故障时故障指示灯（Fault LED，FLED）的最短点亮时间：0禁用最短时间；1为典型1秒，2为典型2秒，3为典型3秒。；默认值：`0`；合法值：`0, 1, 2, 3` |
+| `ffilter-en` | `boolean` | FLED由内部控制（FLEDSet=0）时，断线（Open-wire）和对VDD短路（Short-to-VDD）诊断始终使用滤波，不能通过FFilterEn位禁用。 |
+| `filter-long` | `boolean` | false为诊断故障位OWOff_和SHVDD_选择常规消隐时间（Blanking Time），典型4ms；true选择长消隐时间，典型8ms。 |
+| `flatch-en` | `boolean` | false禁用OvrLdChF、OpnWirChF和ShtVDDChF寄存器中诊断故障位的锁存（Latching）；true启用锁存。 |
+| `led-cur-lim` | `boolean` | false禁止故障指示灯（FLED）显示限流（Current Limit）；true允许显示限流。 |
+| `vdd-on-thr` | `boolean` | 为VDD和VDD_欠压监测（Undervoltage Monitoring）启用较高电压阈值。 |
+| `synch-wd-en` | `boolean` | SPI看门狗（Watchdog）启用时，SYNCH看门狗超时由WDTo[1:0]定义。当WDTo[1:0]=00，即SPI看门狗禁用时，若SYNCH看门狗启用，其超时为典型600ms。 |
+| `sht-vdd-thr` | `int` | 默认值来自器件文档。设置对VDD短路检测（Short-to-VDD Detection）电压阈值：0为典型9V，1为典型10V，2为典型12V，3为典型14V。；默认值：`0`；合法值：`0, 1, 2, 3` |
+| `ow-off-cs` | `int` | 默认值来自器件文档。设置断线和对VDD短路检测的上拉电流（Pull-up Current）：0为典型60μA，1为100μA，2为300μA，3为600μA。；默认值：`0`；合法值：`0, 1, 2, 3` |
+| `gpio-controller` | `boolean` | **必需**。表明此节点为GPIO控制器（GPIO Controller）。 |
+| `gpio-reserved-ranges` | `array` | 当 `ngpios = <N>` 的偏移0～N−1中并非全部GPIO可用时，此属性用额外的元组（Tuples）声明不可用范围的起始偏移和长度。例如 `gpio-reserved-ranges = <3 2>, <10 1>;` 表示GPIO偏移3、4、10不可用，即使ngpios为18也一样。 |
+| `gpio-line-names` | `string-array` | 字符串数组（String Array），定义从GPIO控制器引出的各信号线名称（GPIO Line Names）。 |
+| `spi-max-frequency` | `int` | **必需**。设备SPI接口的最大时钟频率，单位Hz |
+| `duplex` | `int` | 双工模式（Duplex Mode），可为全双工或半双工。默认全双工，对应0，这是最常见模式。应使用宏而非原始枚举值，`dt-bindings/spi/spi.h` 定义的对应关系为0对应SPI_FULL_DUPLEX，2048对应SPI_HALF_DUPLEX；原始对照表见下文；默认值：`0`；合法值：`0, 2048` |
+| `frame-format` | `int` | Motorola或TI帧格式（Frame Format）。默认Motorola，对应0，这是最常见格式。应使用宏而非原始枚举值，`dt-bindings/spi/spi.h` 对应关系为0对应SPI_FRAME_FORMAT_MOTOROLA，32768对应SPI_FRAME_FORMAT_TI；原始对照表见下文；默认值：`0`；合法值：`0, 32768` |
+| `spi-cpol` | `boolean` | SPI时钟极性（Clock Polarity），指示时钟空闲状态；设置时空闲为逻辑高电平，否则为低电平 |
+| `spi-cpha` | `boolean` | SPI时钟相位（Clock Phase），决定采样边沿；设置时在第二个边沿采样，否则在第一个边沿采样 |
+| `spi-lsb-first` | `boolean` | 设备要求最低有效位优先（Least Significant Bit First，LSB-first）的数据模式 |
+| `spi-hold-cs` | `boolean` | 某些场景需由控制器通过软件管理SPI片选（Chip Select，CS），以连续执行多次SPI事务而不释放片选。典型情况为变长数据包：第一笔事务读取长度，第二笔读取该长度的字节数据 |
+| `spi-cs-high` | `boolean` | 设备要求片选高电平有效（Active High） |
+| `spi-interframe-delay-ns` | `int` | SPI字（Word）之间的延迟，单位纳秒。默认0是特殊值，表示SCK周期的一半；默认值：`0` |
+| `spi-cs-setup-delay-ns` | `int` | 片选置有效之后，由控制器引入的延迟，单位纳秒，也称使能前置时间（Enable Lead Time） |
+| `spi-cs-hold-delay-ns` | `int` | 片选释放之前，由控制器引入的延迟，单位纳秒，也称使能后置时间（Enable Lag Time） |
+| `supply-gpios` | `phandle-array` | 控制设备供电的GPIO说明符（Specifier）。设备有专用供电开关时提供此属性，供电状态完全由设备驱动负责；与vin-supply的共享稳压器方式相区别 |
+| `vin-supply` | `phandle` | 控制设备供电的稳压器引用，目标设备树节点必须使用稳压器兼容字符串。通过共享稳压器供电时应提供此属性，其供电状态取决于所有受电设备的请求状态。若同时提供supply-gpios，则必须先请求稳压器再将GPIO置为有效；释放稳压器前，必须先将GPIO置为无效 |
+
+本页没有已弃用的节点专用属性。
+
+## 5.2\_基础属性
+
+以下属性继承自基础绑定（Base Binding），定义可用于许多节点的通用属性，**并非全部一定适用于本兼容字符串**。
+
+涉及中断（Interrupt）、时钟（Clock）、直接存储器访问（Direct Memory Access，DMA）、输入输出（Input/Output，I/O）、邮箱（Mailbox，MBOX）、处理器间消息（Inter-Processor Messaging，IPM）、电源域（Power Domain）及硬件自旋锁（Hardware Spinlock）。
+
+| 属性 | 类型 | 中文说明与约束 |
+| --- | --- | --- |
+| `reg` | `array` | **必需**。给出寻址设备所需的信息，具体含义随设备及 `compatible` 而变化。通常是一组地址与长度对，每对称为寄存器块（Register Block），数值通常写为十六进制。参见规范v0.4第2.3.6节及[重要属性](../devicetree/P003_语法与结构.md#dt-important-props) |
+| `status` | `string` | 节点代表的硬件或其他资源的运行状态（Operational Status）。`okay` 表示资源可运行，例如可供驱动使用；`disabled` 表示资源不可运行，系统应将其视为不存在。参见《设备树规范》（Devicetree Specification）v0.4第2.3.4节；合法值：`okay, disabled, reserved, fail, fail-sss` |
+| `compatible` | `string-array` | **必需**。字符串列表定义节点代表的硬件或其他资源类型。设备驱动通过特定兼容字符串（Compatible String）寻找应由自身管理的设备。推荐格式为 `vendor,device`：前者是厂商简称，后者通常来自数据手册。多个值从最具体到最通用排列，让具体设备匹配当前可用的最具体驱动。参见规范v0.4第2.3.1节 |
+| `reg-names` | `string-array` | 为 `reg` 中每个寄存器块提供可选名称；原始例子及逐项说明见本层表后 |
+| `ranges` | `compound` | 定义总线子地址空间与总线节点父地址空间之间的映射或转换。通常为空，或由子总线地址、父总线地址、长度三元组组成。**空属性表示两侧地址空间相同、不需要转换；总线节点没有此属性则认为子、父地址空间之间不存在映射**。参见规范v0.4第2.3.8节 |
+| `interrupts` | `array` | 设备产生的中断，编码为一个或多个中断说明符；格式由设备在中断树中的位置决定，具有相同 `interrupt-parent` 的设备使用相同格式；中断（Interrupt）及中断映射见《设备树规范》v0.4第2.4节 |
+| `interrupts-extended` | `compound` | 扩展中断说明符，可替代 `interrupts`；中断（Interrupt）及中断映射见《设备树规范》v0.4第2.4节 |
+| `interrupt-names` | `string-array` | 设备各中断的可选名称；中断本身在 `interrupts` 或 `interrupts-extended` 中定义；中断（Interrupt）及中断映射见《设备树规范》v0.4第2.4节 |
+| `interrupt-parent` | `phandle` | 若存在，引用负责处理此设备所产生中断的节点；中断（Interrupt）及中断映射见《设备树规范》v0.4第2.4节 |
+| `label` | `string` | 描述设备的可读字符串；除逐案确有需要外，已不推荐使用此属性。参见规范 v0.4 第 4.1.2 节“其他属性” |
+| `clocks` | `phandle-array` | 设备的时钟提供者（Clock Provider）信息，通常应遵守[dt-schema时钟绑定约定](https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/clock/clock.yaml) |
+| `clock-names` | `string-array` | `clocks` 中各时钟提供者的名称；通用说明称其为可选名称，是否必须填写以本层的必需标记为准 |
+| `#address-cells` | `int` | 子节点 `reg` 地址字段所用的 `<u32>` 单元数量；`<u32>` 为32位无符号单元，参见《设备树规范》v0.4第2.3.5节 |
+| `#size-cells` | `int` | 子节点 `reg` 大小字段所用的 `<u32>` 单元数量；`<u32>` 为32位无符号单元，参见《设备树规范》v0.4第2.3.5节 |
+| `dma-coherent` | `boolean` | 表示设备支持一致性 DMA 操作，见规范 v0.4 第 2.3.10 节 |
+| `dmas` | `phandle-array` | 与设备相关的 DMA 通道说明符 |
+| `dma-names` | `string-array` | `dmas` 中各 DMA 通道说明符的可选名称 |
+| `dma-ranges` | `compound` | 定义总线物理地址空间与其父总线物理地址空间之间的映射或转换，见规范 v0.4 第 2.3.9 节 |
+| `io-channels` | `phandle-array` | 与设备相关的 I/O 通道说明符 |
+| `io-channel-names` | `string-array` | `io-channels` 中各通道说明符的可选名称 |
+| `mboxes` | `phandle-array` | 与设备相关的邮箱/IPM 通道说明符 |
+| `mbox-names` | `string-array` | `mboxes` 中各邮箱说明符的可选名称 |
+| `power-domains` | `phandle-array` | 与设备相关的电源域说明符 |
+| `power-domain-names` | `string-array` | `power-domains` 中各电源域说明符的可选名称 |
+| `#power-domain-cells` | `int` | `power-domains` 属性中的单元数量 |
+| `hwlocks` | `phandle-array` | 与设备相关的硬件自旋锁（Hardware Spinlock）标识 |
+| `hwlock-names` | `string-array` | `hwlocks` 中各锁说明符的可选名称 |
+| `zephyr,deferred-init` | `boolean` | 延迟初始化（Deferred Initialization）：启动时不自动初始化设备，应由应用使用 `device_init()` 手动初始化 |
+| `wakeup-source` | `boolean` | 标记设备可用作唤醒源（Wakeup Source）。设置该属性后，设备中会设置专门标志，通知系统此设备有唤醒能力。唤醒功能默认禁用，即中断不会唤醒系统；必要时可在运行期间启用 |
+| `zephyr,pm-device-runtime-auto` | `boolean` | 初始化函数执行后，自动为设备配置运行时电源管理（Runtime Power Management） |
+| `zephyr,disabling-power-states` | `phandles` | 会关闭该设备电源的电源状态（Power State）列表 |
+
+属性说明中的“重要属性”参见[设备树语法与结构](../devicetree/P003_语法与结构.md#dt-important-props)。
+
+<a id="child-node-properties"></a>
+
+## 子节点属性
+
+| 属性 | 类型 | 中文说明与约束 |
+| --- | --- | --- |
+| `gpio-hog` | `boolean` | **必需**。表明此节点为GPIO自动占用节点（GPIO Hog）。 |
+| `gpios` | `array` | **必需**。需要由Hog自动占用的GPIO说明符数组（GPIO Specifier Array），例如pin和flags。数组元素数必须是父GPIO控制器说明符单元数的整数倍。 |
+| `input` | `boolean` | 设置此属性会将GPIO配置为输入（Input），优先级高于output-low和output-high。 |
+| `output-low` | `boolean` | 设置此属性会将GPIO配置为输出并置为逻辑低（Logical Low），优先级高于output-high。 |
+| `output-high` | `boolean` | 设置此属性会将GPIO配置为输出并置为逻辑高（Logical High）。 |
+| `line-name` | `string` | 可选GPIO信号线名称（GPIO Line Name）。 |
+
+## SPI枚举原始对照 29
+
+```text
+  0    SPI_FULL_DUPLEX
+  2048 SPI_HALF_DUPLEX
+```
+
+## SPI枚举原始对照 30
+
+```text
+  0     SPI_FRAME_FORMAT_MOTOROLA
+  32768 SPI_FRAME_FORMAT_TI
+```
+
+## 5.3\_寄存器块命名原例
+
+以下设备树源码（Devicetree Source，DTS）演示 `reg-names` 命名；`uart` 指通用异步收发器（Universal Asynchronous Receiver/Transmitter，UART）。
+
+```dts
+  / {
+       soc {
+           #address-cells = <1>;
+           #size-cells = <1>;
+
+           uart@1000 {
+               reg = <0x1000 0x2000>, <0x3000 0x4000>;
+               reg-names = "foo", "bar";
+           };
+       };
+  };
+```
+
+`uart@1000` 节点有两个寄存器块（Register Block）：一个基址为 `0x1000`、大小为 `0x2000`、名称为 `foo`；另一个基址为 `0x3000`、大小为 `0x4000`、名称为 `bar`。
+
+<a id="specifier-cell-names"></a>
+
+## 说明符单元名称
+
+gpio cells：`pin`, `flags`。依次为引脚编号、配置标志。
+
+---
+
+[上一章](P004_adi_max14906-gpio.md) · [本册大纲](大纲.md) · [全站翻译进度](../PROGRESS.md) · [下一章](P006_adi_max14916-gpio.md)

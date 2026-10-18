@@ -1,0 +1,164 @@
+---
+id: learning.zephyr-docs.mipi-dbi-dsi-binding-reference.page-6
+title: raspberrypi_pico-mipi-dbi-pio
+kind: reference
+status: maintained
+domains: [zephyr, devicetree, display]
+source_url: https://docs.zephyrproject.org/latest/build/dts/api/bindings/mipi-dbi/raspberrypi,pico-mipi-dbi-pio.html
+---
+
+<!-- Copyright 2015-2026 Zephyr Project members and individual contributors. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<!-- 中文翻译；编号与导航为本地新增。 -->
+
+# 第6章\_raspberrypi_pico-mipi-dbi-pio
+
+原文：[官方页面](https://docs.zephyrproject.org/latest/build/dts/api/bindings/mipi-dbi/raspberrypi,pico-mipi-dbi-pio.html)。读取日期：2026-10-16；来源摘要见[来源记录](../SOURCES.md)。
+
+<a id="raspberrypi-pico-mipi-dbi-pio"></a>
+<a id="dtbinding-raspberrypi-pico-mipi-dbi-pio"></a>
+<a id="std-dtcompatible-raspberrypi-pico-mipi-dbi-pio"></a>
+
+兼容字符串（Compatible String）：`raspberrypi,pico-mipi-dbi-pio`。厂商：[ Raspberry Pi ](https://docs.zephyrproject.org/latest/build/dts/api/bindings.html#dt-vendor-raspberrypi)。
+
+采用此设备树绑定（Devicetree Binding）的开发板见[官方筛选目录](https://docs.zephyrproject.org/latest/boards/index.html#compatibles=raspberrypi,pico-mipi-dbi-pio)。
+
+驱动源码（Driver Source）：[drivers/mipi_dbi/mipi_dbi_rpi_pico_pio.c](https://github.com/zephyrproject-rtos/zephyr/blob/main/drivers/mipi_dbi/mipi_dbi_rpi_pico_pio.c)。
+
+<a id="description"></a>
+
+MIPI-DBI模式B控制器（Mode B Controller）。使用可编程输入输出（Programmable I/O，PIO）外设模拟MIPI DBI模式B，即8080并行接口（Parallel Interface）。
+
+<a id="properties"></a>
+
+属性类型：`int` 为整数，`boolean` 为布尔属性，`string` 为字符串，`string-array` 为字符串数组，`array` 为数值数组，`compound` 为复合类型；`phandle` 为节点引用（Phandle），`phandles` 为节点引用列表，`phandle-array` 为节点引用与说明符单元数组。
+
+## 6.1\_节点专用属性
+
+这些属性不继承自基础绑定文件。
+
+| 属性 | 类型 | 中文说明与约束 |
+| --- | --- | --- |
+| `dc-gpios` | `phandle-array` | **必需**。数据／命令GPIO引脚（Data/Command GPIO Pin）。发送命令时设为低电平，发送数据时设为高电平。 |
+| `reset-gpios` | `phandle-array` | **必需**。复位GPIO引脚（Reset GPIO Pin）。设为高电平以复位显示器。 |
+| `wr-gpios` | `phandle-array` | **必需**。类型B，即Intel 8080模式的写GPIO引脚（Write GPIO Pin）。 |
+| `cs-gpios` | `phandle-array` | **必需**。片选GPIO引脚（Chip-Select GPIO Pin）。 |
+| `data-pin-splits` | `phandle-array` | **必需**。并行数据总线引脚分配（Parallel Data Bus Pin Assignment）。引脚最多可分为4组，每组用起始引脚与连续引脚数表示；各组连续引脚数之和必须等于所选 `mipi-mode` 的位宽。原例将16位数据总线分为4组，起始引脚分别为2、12、20、25，连续引脚数分别为8、4、2、2；完整原例见后文。 |
+| `#data-pin-split-cells` | `int` | 原文没有提供文字说明；固定值：`2` |
+| `pio-clock-div` | `int` | PIO状态机的时钟分频系数（Clock Divisor），范围为 `[1, 65536]`。它不降低系统时钟本身，而是规定执行时将多少个系统时钟周期视为一个PIO周期，适用于需要降低时钟速率以满足规格的显示驱动。实现发送一位需要4条PIO指令，每条恰好占一个周期，因此显示驱动看到的时钟已是系统时钟除以4。位输出移位速率原式为 `Bit output shift rate [MHz] = system clock [MHz] / pio-clock-div / 4`。系统时钟为125 MHz、分频为1时，PIO与系统同频，每周期8 ns，每位4周期即32 ns，速率31.25 MHz；分频为2时，PIO为系统时钟一半，每周期16 ns，每位64 ns，速率15.625 MHz。；默认值：`1` |
+| `clock-frequency` | `int` | MIPI-DBI外设SCL信号的时钟频率（Clock Frequency），单位为Hz。原文将接口写作 `MBI-DBI`。 |
+| `pinctrl-0` | `phandles` | 第一个状态（State）的引脚配置（Pin Configuration），具体内容取决于所选引脚控制器驱动（Pin Controller Driver）的实现 |
+| `pinctrl-1` | `phandles` | 第二个状态的引脚配置，参见pinctrl-0 |
+| `pinctrl-2` | `phandles` | 第三个状态的引脚配置，参见pinctrl-0 |
+| `pinctrl-3` | `phandles` | 第四个状态的引脚配置，参见pinctrl-0 |
+| `pinctrl-4` | `phandles` | 第五个状态的引脚配置，参见pinctrl-0 |
+| `pinctrl-names` | `string-array` | 所提供状态的名称，名称数量必须与状态数量一致 |
+
+本页没有已弃用的节点专用属性。
+
+## 6.2\_基础属性
+
+以下属性继承自基础绑定（Base Binding），定义可用于许多节点的通用属性，**并非全部一定适用于本兼容字符串**。
+
+涉及中断（Interrupt）、时钟（Clock）、直接存储器访问（Direct Memory Access，DMA）、输入输出（Input/Output，I/O）、邮箱（Mailbox，MBOX）、处理器间消息（Inter-Processor Messaging，IPM）、电源域（Power Domain）及硬件自旋锁（Hardware Spinlock）。
+
+| 属性 | 类型 | 中文说明与约束 |
+| --- | --- | --- |
+| `#address-cells` | `int` | **必需**。子节点 `reg` 地址字段所用的 `<u32>` 单元数量；`<u32>` 为32位无符号单元，参见《设备树规范》v0.4第2.3.5节；固定值：`1` |
+| `#size-cells` | `int` | **必需**。子节点 `reg` 大小字段所用的 `<u32>` 单元数量；`<u32>` 为32位无符号单元，参见《设备树规范》v0.4第2.3.5节；固定值：`0` |
+| `status` | `string` | 节点代表的硬件或其他资源的运行状态（Operational Status）。`okay` 表示资源可运行，例如可供驱动使用；`disabled` 表示资源不可运行，系统应将其视为不存在。参见《设备树规范》（Devicetree Specification）v0.4第2.3.4节；合法值：`okay, disabled, reserved, fail, fail-sss` |
+| `compatible` | `string-array` | **必需**。字符串列表定义节点代表的硬件或其他资源类型。设备驱动通过特定兼容字符串（Compatible String）寻找应由自身管理的设备。推荐格式为 `vendor,device`：前者是厂商简称，后者通常来自数据手册。多个值从最具体到最通用排列，让具体设备匹配当前可用的最具体驱动。参见规范v0.4第2.3.1节 |
+| `reg` | `array` | 给出寻址设备所需的信息，具体含义随设备及 `compatible` 而变化。通常是一组地址与长度对，每对称为寄存器块（Register Block），数值通常写为十六进制。参见规范v0.4第2.3.6节及[重要属性](../devicetree/P003_语法与结构.md#dt-important-props) |
+| `reg-names` | `string-array` | 为 `reg` 中每个寄存器块提供可选名称；原始例子及逐项说明见本层表后 |
+| `ranges` | `compound` | 定义总线子地址空间与总线节点父地址空间之间的映射或转换。通常为空，或由子总线地址、父总线地址、长度三元组组成。**空属性表示两侧地址空间相同、不需要转换；总线节点没有此属性则认为子、父地址空间之间不存在映射**。参见规范v0.4第2.3.8节 |
+| `interrupts` | `array` | 设备产生的中断，编码为一个或多个中断说明符；格式由设备在中断树中的位置决定，具有相同 `interrupt-parent` 的设备使用相同格式；中断（Interrupt）及中断映射见《设备树规范》v0.4第2.4节 |
+| `interrupts-extended` | `compound` | 扩展中断说明符，可替代 `interrupts`；中断（Interrupt）及中断映射见《设备树规范》v0.4第2.4节 |
+| `interrupt-names` | `string-array` | 设备各中断的可选名称；中断本身在 `interrupts` 或 `interrupts-extended` 中定义；中断（Interrupt）及中断映射见《设备树规范》v0.4第2.4节 |
+| `interrupt-parent` | `phandle` | 若存在，引用负责处理此设备所产生中断的节点；中断（Interrupt）及中断映射见《设备树规范》v0.4第2.4节 |
+| `label` | `string` | 描述设备的可读字符串；除逐案确有需要外，已不推荐使用此属性。参见规范 v0.4 第 4.1.2 节“其他属性” |
+| `clocks` | `phandle-array` | 设备的时钟提供者（Clock Provider）信息，通常应遵守[dt-schema时钟绑定约定](https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/clock/clock.yaml) |
+| `clock-names` | `string-array` | `clocks` 中各时钟提供者的名称；通用说明称其为可选名称，是否必须填写以本层的必需标记为准 |
+| `dma-coherent` | `boolean` | 表示设备支持一致性 DMA 操作，见规范 v0.4 第 2.3.10 节 |
+| `dmas` | `phandle-array` | 与设备相关的 DMA 通道说明符 |
+| `dma-names` | `string-array` | `dmas` 中各 DMA 通道说明符的可选名称 |
+| `dma-ranges` | `compound` | 定义总线物理地址空间与其父总线物理地址空间之间的映射或转换，见规范 v0.4 第 2.3.9 节 |
+| `io-channels` | `phandle-array` | 与设备相关的 I/O 通道说明符 |
+| `io-channel-names` | `string-array` | `io-channels` 中各通道说明符的可选名称 |
+| `mboxes` | `phandle-array` | 与设备相关的邮箱/IPM 通道说明符 |
+| `mbox-names` | `string-array` | `mboxes` 中各邮箱说明符的可选名称 |
+| `power-domains` | `phandle-array` | 与设备相关的电源域说明符 |
+| `power-domain-names` | `string-array` | `power-domains` 中各电源域说明符的可选名称 |
+| `#power-domain-cells` | `int` | `power-domains` 属性中的单元数量 |
+| `hwlocks` | `phandle-array` | 与设备相关的硬件自旋锁（Hardware Spinlock）标识 |
+| `hwlock-names` | `string-array` | `hwlocks` 中各锁说明符的可选名称 |
+| `zephyr,deferred-init` | `boolean` | 延迟初始化（Deferred Initialization）：启动时不自动初始化设备，应由应用使用 `device_init()` 手动初始化 |
+| `wakeup-source` | `boolean` | 标记设备可用作唤醒源（Wakeup Source）。设置该属性后，设备中会设置专门标志，通知系统此设备有唤醒能力。唤醒功能默认禁用，即中断不会唤醒系统；必要时可在运行期间启用 |
+| `zephyr,pm-device-runtime-auto` | `boolean` | 初始化函数执行后，自动为设备配置运行时电源管理（Runtime Power Management） |
+| `zephyr,disabling-power-states` | `phandles` | 会关闭该设备电源的电源状态（Power State）列表 |
+
+属性说明中的“重要属性”参见[设备树语法与结构](../devicetree/P003_语法与结构.md#dt-important-props)。
+
+## 16位数据总线分组原例
+
+```dts
+mipi_dbi: mipi_dbi {
+  compatible = "raspberrypi,pico-mipi-dbi-pio";
+  ...
+  data-pin-splits = <&mipi_dbi  2 8>, // base pin =  2 consecutive pins = 8
+                    <&mipi_dbi 12 4>, // base pin = 12 consecutive pins = 4
+                    <&mipi_dbi 20 2>, // base pin = 20 consecutive pins = 2
+                    <&mipi_dbi 25 2>; // base pin = 25 consecutive pins = 2
+  ...
+  #data-pin-split-cells = <2>;
+};
+```
+
+## PIO速率原式与计算原例
+
+```text
+Bit output shift rate [MHz] = system clock [MHz] / pio-clock-div / 4
+```
+
+```text
+  system clock = 125 MHz
+  pio-clock-div = 1
+  The pios clock is as fast as the system clock. Each cycle takes 8ns.
+  Each bit takes 4 pio clock cycles, this results in 32ns or 31.25MHz
+
+  system clock = 125 MHz
+  pio-clock-div = 2
+  The pios clock is half the speed of the system clock. Each cycle takes 16ns.
+  Each bit takes 4 pio clock cycles, this results in 64ns or 15.625MHz
+```
+
+## 6.3\_寄存器块命名原例
+
+以下设备树源码（Devicetree Source，DTS）演示 `reg-names` 命名；`uart` 指通用异步收发器（Universal Asynchronous Receiver/Transmitter，UART）。
+
+```dts
+  / {
+       soc {
+           #address-cells = <1>;
+           #size-cells = <1>;
+
+           uart@1000 {
+               reg = <0x1000 0x2000>, <0x3000 0x4000>;
+               reg-names = "foo", "bar";
+           };
+       };
+  };
+```
+
+`uart@1000` 节点有两个寄存器块（Register Block）：一个基址为 `0x1000`、大小为 `0x2000`、名称为 `foo`；另一个基址为 `0x3000`、大小为 `0x4000`、名称为 `bar`。
+
+<a id="specifier-cell-names"></a>
+
+## 6.4\_说明符单元名称
+
+数据引脚分组说明符单元（Data-Pin-Split Specifier Cells）按原文顺序为：`base_pin`, `consecutive_pins`。
+
+名称对照：`base_pin` 为起始引脚；`consecutive_pins` 为连续引脚数。
+
+---
+
+[上一章](P005_nxp_mipi-dbi-flexio-lcdif.md) · [本册大纲](大纲.md) · [全站翻译进度](../PROGRESS.md) · [下一章](P007_renesas_smartbond-mipi-dbi.md)
