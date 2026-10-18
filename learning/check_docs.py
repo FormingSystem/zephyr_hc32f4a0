@@ -3,6 +3,7 @@
 """检查本仓库教材的本地链接、章节编号、元信息和实验源码语法。"""
 
 import ast
+import html
 import os
 import re
 import sys
@@ -13,6 +14,23 @@ from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parent.parent
 SKIP = {".git", ".work", "__pycache__", "build", "dist"}
+
+
+def absolute_local_target(target):
+    """链接须跟随文档迁移；盘符不能被 urlsplit 误认为可接受的协议。"""
+    target = html.unescape(unquote(target.strip().strip("<>")))
+    return (bool(re.match(r"^[A-Za-z]:", target))
+            or target.lower().startswith("file:")
+            or target.startswith(("/", "\\")))
+
+
+def nonportable_links(visible):
+    targets = re.findall(r"\]\(([^)]+)\)", visible)
+    # 引用式 Markdown 链接与 HTML 图片、动画、音视频附件也需要随仓库迁移。
+    targets += re.findall(r"^\s{0,3}\[[^\]\n]+\]:\s*(<[^>]+>|\S+)", visible, re.M)
+    targets += re.findall(r"\b(?:href|src|data|poster)\s*=\s*[\"']([^\"']+)[\"']",
+                          visible, re.I)
+    return sorted({target for target in targets if absolute_local_target(target)})
 
 
 def files():
@@ -89,6 +107,10 @@ def main():
             errors.append(f"{path.name}: 代码围栏未闭合")
         # 本仓库正文没有带括号的本地文件名；排除代码块中的说明性文本。
         visible = re.sub(r"```.*?```", "", body, flags=re.S)
+        if any(path.is_relative_to(ROOT / "learning" / folder)
+               for folder in ("zephyr_docs", "zephyr_project_notes")):
+            for target in nonportable_links(visible):
+                errors.append(f"{path.relative_to(ROOT)}: 本地链接必须使用相对路径 {target}")
         for target in re.findall(r"\]\(([^)]+)\)", visible):
             target = target.strip("<>")
             if urlsplit(target).scheme:
