@@ -1,0 +1,5 @@
+# Windows UCRT64；任意目录；只读检查，不下载。
+type -a cmake ninja python cygpath
+/ucrt64/bin/cmake --version
+/ucrt64/bin/ninja --version
+/ucrt64/bin/dtc --version

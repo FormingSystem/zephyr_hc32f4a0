@@ -1,0 +1,11 @@
+# Windows UCRT64；备用路线：复用已有 Git for Windows；粘贴真实 cmd 目录，不加引号。
+read -r -p 'Git for Windows 的 cmd 目录：' GIT_CMD_DIR
+if test -f "$(cygpath -u "$GIT_CMD_DIR")/git.exe"; then
+  export PATH="$(cygpath -u "$GIT_CMD_DIR"):$PATH"
+  hash -r
+else
+  printf '该目录没有 git.exe，停止模块下载并核对安装位置。\n' >&2
+fi
+unset GIT_CMD_DIR
+type -a git
+command -v git

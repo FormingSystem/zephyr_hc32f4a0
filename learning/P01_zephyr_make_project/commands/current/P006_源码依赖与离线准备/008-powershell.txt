@@ -1,0 +1,4 @@
+# Windows PowerShell；G:\zephyr_practice\zephyr-main；使用项目解释器。
+# 已核对上一组 list 输出；仅在需要取得模块且允许访问这些地址时执行。
+& .\.venv\Scripts\python.exe -m west update cmsis cmsis_6
+if ($LASTEXITCODE -ne 0) { throw '模块获取失败，保留日志，按网络或 Git 错误处理' }

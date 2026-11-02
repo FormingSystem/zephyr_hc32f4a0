@@ -1,0 +1,3 @@
+# 联网 Windows PowerShell；当前源码根，使用与离线机匹配的 Windows Python。
+& .\.venv\Scripts\python.exe -m pip download --only-binary=:all: --dest wheelhouse -r scripts/requirements-base.txt 'west==1.5.0'
+if ($LASTEXITCODE -ne 0) { throw '离线包集未准备完整；不要把部分下载当成成功' }

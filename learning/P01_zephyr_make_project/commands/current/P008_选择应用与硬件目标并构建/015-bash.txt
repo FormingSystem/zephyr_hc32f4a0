@@ -1,0 +1,22 @@
+# Windows UCRT64；已有有效 west 工作区和 Zephyr 扩展；模块与 SDK 已就绪。
+(
+set -e
+cd /g/zephyr_practice/zephyr-main
+SRC_WIN="$(cygpath -am "$PWD")"
+BUILD_WIN="$(cygpath -am build/learning-tools/sysbuild-ucrt-west)"
+SDK_WIN="$(cygpath -am ../zephyr-sdk-1.0.1)"
+PYTHON_WIN="$(cygpath -am .venv/Scripts/python.exe)"
+NINJA_WIN="$(cygpath -am /ucrt64/bin/ninja.exe)"
+CMSIS_WIN="$(cygpath -am ../modules/hal/cmsis)"
+CMSIS6_WIN="$(cygpath -am ../modules/hal/cmsis_6)"
+export ZEPHYR_BASE="$SRC_WIN"
+export PATH="/ucrt64/bin:$PATH"
+MSYS2_ARG_CONV_EXCL='*' .venv/Scripts/python.exe -m west build \
+  --sysbuild -b mps2/an386 "$SRC_WIN/samples/hello_world" -d "$BUILD_WIN" -- \
+  "-DZephyr_DIR=$SRC_WIN/share/zephyr-package/cmake" \
+  "-DPYTHON_EXECUTABLE=$PYTHON_WIN" "-DPython3_EXECUTABLE=$PYTHON_WIN" \
+  "-DCMAKE_MAKE_PROGRAM=$NINJA_WIN" "-DZEPHYR_SDK_INSTALL_DIR=$SDK_WIN" \
+  "-DZEPHYR_MODULES=$CMSIS_WIN;$CMSIS6_WIN"
+cat build/learning-tools/sysbuild-ucrt-west/domains.yaml
+test -s build/learning-tools/sysbuild-ucrt-west/hello_world/zephyr/zephyr.elf
+)

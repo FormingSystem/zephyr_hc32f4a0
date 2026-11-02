@@ -1,0 +1,6 @@
+# Windows UCRT64；上方配置成功；route 与上方保持相同。
+cd /g/zephyr_practice/zephyr-main
+route=zip
+BUILD_WIN="$(cygpath -am "build/learning-tools/first-ucrt-$route")"
+MSYS2_ARG_CONV_EXCL='*' /ucrt64/bin/cmake --build "$BUILD_WIN" &&
+test -s "build/learning-tools/first-ucrt-$route/zephyr/zephyr.elf"

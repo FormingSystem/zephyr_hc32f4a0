@@ -1,0 +1,3 @@
+# Linux/UCRT64 Bash；同一源码根，项目 .venv 已激活。
+# 已核对上一组 list 输出；仅在需要取得模块且允许访问这些地址时执行。
+python -m west update cmsis cmsis_6

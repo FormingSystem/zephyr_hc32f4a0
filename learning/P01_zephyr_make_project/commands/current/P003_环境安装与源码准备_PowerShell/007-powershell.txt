@@ -1,0 +1,7 @@
+# Windows PowerShell；源码根；能够访问所用 Python 包索引。
+& .\.venv\Scripts\python.exe -m pip install -r scripts/requirements-base.txt 'west==1.5.0'
+if ($LASTEXITCODE -ne 0) { throw '依赖安装失败；先读首个网络或依赖错误' }
+& .\.venv\Scripts\python.exe -m pip check
+if ($LASTEXITCODE -ne 0) { throw '依赖关系检查失败' }
+& .\.venv\Scripts\python.exe -m west --version
+& .\.venv\Scripts\python.exe -c 'import shutil; print(shutil.which("git"))'

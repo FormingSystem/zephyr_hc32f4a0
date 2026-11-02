@@ -1,0 +1,9 @@
+# 当前位置：任意目录；终端：UCRT64。
+git --version
+curl --version
+wget --version
+unzip -v
+tar --version
+xz --version
+type -a git
+command -v git

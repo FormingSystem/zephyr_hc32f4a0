@@ -1,0 +1,7 @@
+# Windows UCRT64；源码根；前提：上一块 configure/generate 正常结束。
+cd /g/zephyr_practice/zephyr-main
+if cmake --build build/learning-tools/cmake-native/out --parallel 4; then
+  ./build/learning-tools/cmake-native/out/my_app.exe
+else
+  printf '%s\n' '本次构建失败，先检查第一处编译或链接错误。'
+fi

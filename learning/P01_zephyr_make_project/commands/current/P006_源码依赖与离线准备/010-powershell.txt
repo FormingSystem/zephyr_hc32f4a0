@@ -1,0 +1,10 @@
+# Windows PowerShell；源码根；采用上方统一模块布局。
+Set-Location -LiteralPath 'G:\zephyr_practice\zephyr-main'
+foreach ($file in @(
+    '..\modules\hal\cmsis\zephyr\module.yml',
+    '..\modules\hal\cmsis_6\zephyr\module.yml',
+    '..\modules\hal\cmsis_6\CMSIS\Core\Include\core_cm4.h'
+)) {
+    if (-not (Test-Path -LiteralPath $file -PathType Leaf)) { throw "缺少 $file" }
+}
+'模块入口和本例 Core 头已存在；下一步仍须验证 CMake 发现结果。'

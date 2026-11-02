@@ -1,0 +1,3 @@
+# Windows UCRT64；9.2 已确认工作区根为 /g/zephyr_practice。
+cd /g/zephyr_practice/zephyr-main
+ls -l ../.west/config && cat ../.west/config

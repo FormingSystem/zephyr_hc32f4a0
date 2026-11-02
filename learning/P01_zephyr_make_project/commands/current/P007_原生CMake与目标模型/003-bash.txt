@@ -1,0 +1,22 @@
+# Windows UCRT64；源码根；前提：已确认主机 CMake、Ninja、GCC 可用。
+cd /g/zephyr_practice/zephyr-main
+if test -e build/learning-tools/cmake-native/source; then
+  printf '%s\n' '练习源码已存在，请先检查内容，不覆盖。'
+else
+  mkdir -p build/learning-tools/cmake-native/source
+  cat > build/learning-tools/cmake-native/source/main.c <<'EOF'
+#include <stdio.h>
+
+int main(void)
+{
+    puts("Hello from native CMake");
+    return 0;
+}
+EOF
+  cat > build/learning-tools/cmake-native/source/CMakeLists.txt <<'EOF'
+# 本教程自行创建的普通 CMake 工程，不是 Zephyr 官方文件。
+cmake_minimum_required(VERSION 3.28)
+project(native_demo LANGUAGES C)
+add_executable(my_app main.c)
+EOF
+fi

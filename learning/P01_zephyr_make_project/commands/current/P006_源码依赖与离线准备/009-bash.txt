@@ -1,0 +1,5 @@
+# Linux/UCRT64 Bash；源码根；以下采用上方统一模块布局。
+test -f ../modules/hal/cmsis/zephyr/module.yml &&
+test -f ../modules/hal/cmsis_6/zephyr/module.yml &&
+test -f ../modules/hal/cmsis_6/CMSIS/Core/Include/core_cm4.h &&
+printf '模块入口和本例 Core 头已存在；下一步仍须验证 CMake 发现结果。\n'

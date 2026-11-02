@@ -1,0 +1,6 @@
+# Windows UCRT64；独立路线；同版 ARM 包和 sha256.sum 已下载。
+cd /g/zephyr_practice
+grep -F ' toolchain_gnu_windows-x86_64_arm-zephyr-eabi.7z' sha256.sum |
+  sha256sum --check &&
+  test ! -e arm-zephyr-eabi &&
+  7z x toolchain_gnu_windows-x86_64_arm-zephyr-eabi.7z "-o$(cygpath -m "$PWD")"

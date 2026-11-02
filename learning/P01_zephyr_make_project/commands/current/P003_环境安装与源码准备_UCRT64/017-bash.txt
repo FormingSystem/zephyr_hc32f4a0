@@ -1,0 +1,7 @@
+# 当前位置：源码存放目录；终端：UCRT64。上一条 clone 已成功。
+cd zephyr-main
+git rev-parse --show-toplevel
+git rev-parse HEAD
+git status
+ls
+ls -al

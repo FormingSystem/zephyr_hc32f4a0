@@ -1,0 +1,4 @@
+# 当前位置：任意目录；终端：MSYS2 UCRT64 / CLANGARM64 的 Bash。只读检查。
+pacman-conf --repo msys Server
+pacman-conf --repo ucrt64 Server
+pacman-conf --repo clangarm64 Server

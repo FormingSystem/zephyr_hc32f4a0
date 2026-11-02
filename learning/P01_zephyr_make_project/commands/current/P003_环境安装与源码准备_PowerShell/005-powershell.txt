@@ -1,0 +1,5 @@
+# Windows PowerShell；最终源码根。
+Set-Location -LiteralPath 'G:\zephyr_practice\zephyr-main'
+Get-Content VERSION
+Get-Content SDK_VERSION
+Get-Item west.yml, samples/hello_world/CMakeLists.txt, boards/arm/mps2/board.yml

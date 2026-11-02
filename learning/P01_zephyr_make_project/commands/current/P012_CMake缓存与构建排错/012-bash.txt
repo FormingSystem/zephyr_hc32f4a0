@@ -1,0 +1,4 @@
+# Windows UCRT64；任意目录；只读查看所有同名程序。
+type -a cmake ninja python
+/ucrt64/bin/cmake --version
+/ucrt64/bin/ninja --version

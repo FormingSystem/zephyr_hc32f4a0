@@ -1,0 +1,2 @@
+# Windows UCRT64；任意目录；仅取消本终端的 SDK 环境输入。
+unset ZEPHYR_SDK_INSTALL_DIR

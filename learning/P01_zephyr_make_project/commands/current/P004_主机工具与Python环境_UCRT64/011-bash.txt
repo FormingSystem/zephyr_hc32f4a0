@@ -1,0 +1,4 @@
+# 当前位置：任意目录；终端：UCRT64。输入上游源码根目录。
+cd /g/zephyr_practice/zephyr-main
+# 当前位置：上游 Zephyr 源码根目录。
+ls VERSION SDK_VERSION scripts/requirements-base.txt

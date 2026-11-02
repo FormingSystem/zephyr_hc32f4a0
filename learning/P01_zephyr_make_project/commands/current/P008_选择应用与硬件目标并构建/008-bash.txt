@@ -1,0 +1,3 @@
+# Windows UCRT64；任意目录；仅缺少工具且允许访问软件仓库时执行。
+pacman -S --needed mingw-w64-ucrt-x86_64-cmake \
+  mingw-w64-ucrt-x86_64-ninja mingw-w64-ucrt-x86_64-dtc

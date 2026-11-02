@@ -1,0 +1,6 @@
+# 终端：Linux Bash；上一步 .venv 已激活。
+west init -m https://github.com/zephyrproject-rtos/zephyr ~/zephyrproject
+cd ~/zephyrproject/zephyr
+git rev-parse HEAD
+cat VERSION
+cat SDK_VERSION

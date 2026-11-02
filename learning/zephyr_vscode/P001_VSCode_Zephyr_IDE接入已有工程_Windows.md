@@ -159,7 +159,7 @@ G:/zephyr_practice/
     └── build/learning-tools/     # 后续构建生成产物
 ```
 
-源码、Python 或 SDK 尚未准备时，返回 [P001 终端与源码](../P01_zephyr_make_project/P001_准备UCRT64环境与下载Zephyr_Windows.md)、[P002 主机工具与 Python](../P01_zephyr_make_project/P002_主机工具与Python环境_Windows.md)、[P003 SDK](../P01_zephyr_make_project/P003_SDK准备与编译器选型_Windows.md)。这里不重复安装已有工具。
+源码、Python 或 SDK 尚未准备时，返回 [P003 终端与源码](../P01_zephyr_make_project/P003_环境安装与源码准备_UCRT64.md)、[P004 主机工具与 Python](../P01_zephyr_make_project/P004_主机工具与Python环境_UCRT64.md)、[P005 SDK](../P01_zephyr_make_project/P005_SDK准备与编译器选型.md)。这里不重复安装已有工具。
 
 先在文件资源管理器打开 `G:\zephyr_practice\.west`，检查 `config`。再在 **Windows UCRT64 Bash** 中运行只读检查；完整块见 [01-check-environment.txt](commands/01-check-environment.txt)。
 
@@ -226,7 +226,7 @@ cmake --build build/learning-tools/zephyr-vscode/hello_world-native
 
 ## 1.3\_查清可下载的包，再准备 CMSIS 与 HAL
 
-如果需要先建立原生工程认识，按 [P004 CMSIS](../P01_zephyr_make_project/P004_CMSIS选择与下载_Windows.md) → [P005 工程与驱动模型](../P01_zephyr_make_project/P005_Zephyr工程组织与驱动模型_Windows.md) → [P006 HC32 / DDL 与模块接入](../P01_zephyr_make_project/P006_HC32与外部源码模块接入_Windows.md) 阅读。本章是在这些原生规则上找到插件的操作入口；下面的 MPS2 主线先复用 CMSIS，只有选择 HC32 目标时才进入 HAL 分支。
+如果需要先建立原生工程认识，按 [P006 CMSIS](../P01_zephyr_make_project/P006_源码依赖与离线准备.md) → [P010 工程与驱动模型](../P01_zephyr_make_project/P010_工程分层与驱动模型.md) → [P014 HC32 / DDL 与模块接入](../P01_zephyr_make_project/P014_HC32与外部源码模块接入.md) 阅读。本章是在这些原生规则上找到插件的操作入口；下面的 MPS2 主线先复用 CMSIS，只有选择 HC32 目标时才进入 HAL 分支。
 
 先把本次 MPS2 工程的来源对齐：板、SoC 和 CMSDK 串口驱动来自已经下载的 `zephyr-main`；CMSIS Core 来自工作区中的 `modules/hal/cmsis_6`；编译器来自 SDK。下面的查询不是搜索一个万能包名，而是回答外部 CMSIS 的仓库地址、目标版本和落盘位置。HC32 的外部 HAL 在 1.3.3 单独处理，因为它有自己的源码来源和使用条件。
 
@@ -272,7 +272,7 @@ west update cmsis_6 && \
 
 本次 `west list` 没有 `hal_xhsc`，不能直接执行 `west update hal_xhsc`。主线已有源码根为 **`G:/zephyr_practice/hal_xhsc-zephyr`**，与 `zephyr-main` 同级。它是持续使用的工程依赖，不是构建输出或临时目录；目录名与模块名可以不同。
 
-缺少源码时，先读 [P006：HAL 查找与固定修订](../P01_zephyr_make_project/P006_HC32与外部源码模块接入_Windows.md#hal-origin)，从 Zephyr GitHub 组织仓库列表找到 [hal_xhsc](https://github.com/zephyrproject-rtos/hal_xhsc)，看 README 及对应源码。该章采用修订 `a84e04900616f68097d80cda2e89eaa8af3afadd`。这是教程准备路线的目标修订，不是对任意同名目录的鉴定结果。本次检查已有 `G:/zephyr_practice/hal_xhsc-zephyr` 没有 `.git` 元数据，因此不能用本地 `git rev-parse HEAD` 证明它已经对应这个 SHA；应保留下载来源/归档版本证据，或对照明确来源的内容核验。
+缺少源码时，先读 [P014：HAL 查找与固定修订](../P01_zephyr_make_project/P014_HC32与外部源码模块接入.md#hal-origin)，从 Zephyr GitHub 组织仓库列表找到 [hal_xhsc](https://github.com/zephyrproject-rtos/hal_xhsc)，看 README 及对应源码。该章采用修订 `a84e04900616f68097d80cda2e89eaa8af3afadd`。这是教程准备路线的目标修订，不是对任意同名目录的鉴定结果。本次检查已有 `G:/zephyr_practice/hal_xhsc-zephyr` 没有 `.git` 元数据，因此不能用本地 `git rev-parse HEAD` 证明它已经对应这个 SHA；应保留下载来源/归档版本证据，或对照明确来源的内容核验。
 
 P006 示例下载名为 `hal_xhsc`；已有目录名是 `hal_xhsc-zephyr` 时直接使用实际路径，不为教程改名或重复下载。
 
@@ -503,7 +503,7 @@ JSON 字段片段见 [18-sdk-cmake-args.json](commands/18-sdk-cmake-args.json)�
 
 ### 1.9.3\_按同一组输入，建立 HC32 的独立 Build
 
-这一分支的应用仍是 `samples/hello_world`，目标改为 `uyup_rpi_a/hc32f4a0pitb`。它采用本系列 P012 的 HC32F4A0 适配：厂商 HAL 提供设备/DDL 代码，`hc32_port` 提供 Zephyr 的板、SoC、设备树和驱动接入。只下载 HAL 不会生成这些硬件定义。先完成 [P012 的逐层建立](../P01_zephyr_make_project/P012_编译示例与新增开发板_Windows.md)，再把已有输入登记给 IDE。
+这一分支的应用仍是 `samples/hello_world`，目标改为 `uyup_rpi_a/hc32f4a0pitb`。它采用本系列 P012 的 HC32F4A0 适配：厂商 HAL 提供设备/DDL 代码，`hc32_port` 提供 Zephyr 的板、SoC、设备树和驱动接入。只下载 HAL 不会生成这些硬件定义。先完成 [P015 的逐层建立](../P01_zephyr_make_project/P015_新增开发板与芯片支持.md)，再把已有输入登记给 IDE。
 
 | 同一个问题 | MPS2 Build | 本系列 HC32 Build |
 | --- | --- | --- |
@@ -668,7 +668,7 @@ build:
 
 本系列曾遇到 `west update cmsis_6` 报 `...^commit: not a valid SHA1`，正确 Git 对象表达式应含 `^{commit}`。提交对象存在、直接 Git 检查成功，而 Windows Python 调用 MSYS2 Git 失败时，应优先核对 Git 实现与调用路径。切换原生 `/ucrt64/bin/git` 后该次更新成功，支持跨运行时调用兼容性的诊断；花括号丢失的具体环节尚未经进程跟踪定位。
 
-不要据此无依据地换 Zephyr 版本、改清单修订或代理。完整证据链与 Git 选择步骤见 [P004 的 west/Git 排错](../P01_zephyr_make_project/P004_CMSIS选择与下载_Windows.md#west-git-compat)。IDE 进程的 PATH 与 UCRT64 终端可能不同；插件内失败时要核对它使用的环境，不能只看另一个终端。
+不要据此无依据地换 Zephyr 版本、改清单修订或代理。完整证据链与 Git 选择步骤见 [P004 的 west/Git 排错](../P01_zephyr_make_project/reference/CMSIS来源与历史排错.md#west-git-compat)。IDE 进程的 PATH 与 UCRT64 终端可能不同；插件内失败时要核对它使用的环境，不能只看另一个终端。
 
 ### 1.11.3\_从 README 到实现的查证路线
 

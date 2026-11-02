@@ -1,0 +1,4 @@
+# 终端：Ubuntu 22.04 Bash；仅用于确认是旧 3.10 venv 的分支。
+# 若当前已激活环境，先执行 deactivate；备份名存在则先另选名称。
+test ! -e ~/zephyrproject/.venv-python310-backup && \
+  mv -T ~/zephyrproject/.venv ~/zephyrproject/.venv-python310-backup

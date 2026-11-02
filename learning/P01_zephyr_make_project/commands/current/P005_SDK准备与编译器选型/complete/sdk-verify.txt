@@ -1,0 +1,6 @@
+# Windows UCRT64；GNU 或 Minimal + ARM 均用相同目录核验。
+cd /g/zephyr_practice/zephyr-sdk-1.0.1
+cat sdk_version
+ls cmake/Zephyr-sdkConfig.cmake
+./gnu/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc.exe --version
+./gnu/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc.exe -dumpmachine

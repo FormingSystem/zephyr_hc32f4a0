@@ -1,0 +1,2 @@
+# Linux/UCRT64 Bash；当前源码根，已激活项目 .venv；确认上方没有可复用工作区。
+python -m west init -l .

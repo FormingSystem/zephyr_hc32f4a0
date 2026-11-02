@@ -1,0 +1,6 @@
+# Windows UCRT64；下载目录；已取得 GNU 包与同版 sha256.sum。
+cd /g/zephyr_practice
+# 必须输出 OK；失败就停止，不解压。
+grep -F ' zephyr-sdk-1.0.1_windows-x86_64_gnu.7z' sha256.sum |
+  sha256sum --check &&
+  7z x zephyr-sdk-1.0.1_windows-x86_64_gnu.7z "-o$(cygpath -m "$PWD")"

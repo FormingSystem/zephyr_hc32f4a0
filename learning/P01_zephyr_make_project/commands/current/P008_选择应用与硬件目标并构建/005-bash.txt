@@ -1,0 +1,5 @@
+# Linux Bash；上方配置成功；route 与上方保持相同。
+cd ~/zephyrproject/zephyr
+route=zip
+cmake --build "build/learning-tools/first-linux-$route" &&
+test -s "build/learning-tools/first-linux-$route/zephyr/zephyr.elf"

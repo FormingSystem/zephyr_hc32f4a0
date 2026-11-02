@@ -15,7 +15,7 @@ domains: [documentation]
 
 这里提供从零准备 Zephyr 环境、理解构建工具并逐步开展实验的 Markdown 笔记、PPT 和配套材料。Windows 主线使用读者自行选择的实验源码根目录；命令执行位置以各章说明为准，不要求固定盘符或作者目录。源码下载、依赖安装、编译、调试及后续移植都围绕这份源码展开。实验会逐步加入 HC32 板级支持、厂商模块、构建与调试工具和文档，最终形成能够独立开发和维护的完整工程。每个文件或工具都在对应实验中创建并解释，不要求起步时已经具备最终目录。
 
-环境材料统一目录，文件名后缀区分 [Windows](P01_zephyr_make_project/环境与依赖导航.md)与 [Linux](P01_zephyr_make_project/P001_官方环境安装与源码准备_Linux.md)，先查[官方工具依据](P01_zephyr_make_project/主机工具与官方安装来源.md)。Linux 教程使用 **Ubuntu 22.04 LTS**，按正文补齐工具版本并采用独立的官方工作区示例，不能照搬 Windows 盘符、UCRT64 路径或 venv 布局。PPT 的统一目录和最新文件名见[专题大纲](P01_zephyr_make_project/大纲.md)。
+首次学习 Zephyr，可从 [P001 认识 Zephyr 与技术选型](P01_zephyr_make_project/P001_认识Zephyr与技术选型.md)进入，再按[专题大纲](P01_zephyr_make_project/大纲.md)理解工程并准备环境。环境材料统一目录，文件名后缀区分 [Windows](P01_zephyr_make_project/环境与依赖导航.md)与 [Linux](P01_zephyr_make_project/P003_环境安装与源码准备_Linux.md)，安装依据见[官方工具来源](P01_zephyr_make_project/主机工具与官方安装来源.md)。Linux 教程使用 **Ubuntu 22.04 LTS**，按正文补齐工具版本并采用独立的官方工作区示例，不能照搬 Windows 盘符、UCRT64 路径或 venv 布局。
 
 默认使用 UCRT64 Bash，保持 Linux 命令习惯。只有 Zephyr 官方明确采用 PowerShell 的 Windows 下载/安装步骤，以及 setup.cmd 等 Windows 专用脚本和其 Windows 管理操作，才切换到 PowerShell。普通下载、摘要校验、解压、版本检查、Python/venv 与 CMake 工程操作仍用 UCRT64，不能仅因调用 Windows 可执行程序就整段改成 PowerShell。Ubuntu 22.04 使用原生 Linux Bash。每段标明终端和目录，切换时重新进入目录，临时变量不互相继承。
 
@@ -46,16 +46,17 @@ flowchart LR
 
 | 你遇到的问题 | 阅读路线 | 完成标志 |
 | --- | --- | --- |
+| Zephyr 是什么，是否值得用于自己的产品 | [P001 认识 Zephyr 与技术选型](P01_zephyr_make_project/P001_认识Zephyr与技术选型.md) | 能说明期望收益、适配成本与需要验证的产品条件 |
 | Windows 上怎样安装终端、国内换源并下载源码 | [Zephyr 下载与工程准备](P01_zephyr_make_project/大纲.md) | 工具可用、源码取得成功，能区分源码快照与 Git 历史 |
 | 源码下载后，怎样选 SDK 包并安装构建依赖 | [下载 SDK 与安装依赖包](P01_zephyr_make_project/环境与依赖导航.md) | 主机工具与 Python/venv、SDK、CMSIS/HAL 按依据取得并逐项核验 |
-| 从已知芯片确定 CMSIS | [P004 CMSIS 选择与下载](P01_zephyr_make_project/P004_CMSIS选择与下载_Windows.md) | 查询当前 SoC/架构接入，再按清单取得配套修订 |
-| 应用与芯片配置怎样接上驱动 | [P005 工程组织与驱动模型](P01_zephyr_make_project/P005_Zephyr工程组织与驱动模型_Windows.md) | 用 MPS2 追踪 DTS、Kconfig、CMake、设备实例与寄存器操作 |
-| 为什么引入 HC32 DDL，怎样加入工程 | [P006 HC32 与外部源码模块](P01_zephyr_make_project/P006_HC32与外部源码模块接入_Windows.md) | 厂商库与适配层分工、下载、模块发现及自建组件实验 |
-| CMake 怎样描述和构建一个程序 | [P007 原生 CMake](P01_zephyr_make_project/P007_原生CMake与目标模型_Windows.md) → [P008 Zephyr 应用](P01_zephyr_make_project/P008_Zephyr应用构建_Windows.md) | 先理解 target、配置/生成和后端，再完成官方应用的首次构建 |
-| west 怎样管理工作区，又怎样与 CMake 配合 | [P009 west 零基础与 Zephyr 构建](P01_zephyr_make_project/P009_west零基础与Zephyr构建_Windows.md) | 分清核心命令与 Zephyr 扩展，展开 west build 的调用和参数传递 |
-| Zephyr 怎样发现 SDK、模块并保存配置 | [P010 输入与依赖发现](P01_zephyr_make_project/P010_Zephyr的CMake输入与依赖发现_Windows.md) → [P011 缓存与排错](P01_zephyr_make_project/P011_CMake缓存与构建排错_Windows.md) | 沿输入、读取者和产物理解接口，按失败阶段定位问题 |
+| 从已知芯片确定 CMSIS | [P006 CMSIS 选择与下载](P01_zephyr_make_project/P006_源码依赖与离线准备.md) | 查询当前 SoC/架构接入，再按清单取得配套修订 |
+| 应用与芯片配置怎样接上驱动 | [P010 工程组织与驱动模型](P01_zephyr_make_project/P010_工程分层与驱动模型.md) | 用 MPS2 追踪 DTS、Kconfig、CMake、设备实例与寄存器操作 |
+| 为什么引入 HC32 DDL，怎样加入工程 | [P014 HC32 与外部源码模块](P01_zephyr_make_project/P014_HC32与外部源码模块接入.md) | 厂商库与适配层分工、下载、模块发现及自建组件实验 |
+| CMake 怎样描述和构建一个程序 | [P007 原生 CMake](P01_zephyr_make_project/P007_原生CMake与目标模型.md) → [P008 Zephyr 应用](P01_zephyr_make_project/P008_选择应用与硬件目标并构建.md) | 先理解 target、配置/生成和后端，再完成官方应用的首次构建 |
+| west 怎样管理工作区，又怎样与 CMake 配合 | [P009 west 零基础与 Zephyr 构建](P01_zephyr_make_project/P009_west工作区与构建入口.md) | 分清核心命令与 Zephyr 扩展，展开 west build 的调用和参数传递 |
+| Zephyr 怎样发现 SDK、模块并保存配置 | [P011 输入与依赖发现](P01_zephyr_make_project/P011_Zephyr的CMake输入与依赖发现.md) → [P012 缓存与排错](P01_zephyr_make_project/P012_CMake缓存与构建排错.md) | 沿输入、读取者和产物理解接口，按失败阶段定位问题 |
 | 怎样确认芯片型号及 CMSIS/HAL 下载依据 | [型号与依赖选择](P01_zephyr_make_project/环境与依赖导航.md#chip-selection) | 丝印/BOM/手册对应 board/SoC，区分官方清单依赖与新增移植依赖 |
-| 环境准备之后，怎样编译并新增开发板 | [编译示例与新增开发板](P01_zephyr_make_project/P012_编译示例与新增开发板_Windows.md) | 先认识并编译官方 MPS2，再逐文件新增 AN386 练习板、逐层接入 UYUP HC32 并核验 |
+| 环境准备之后，怎样编译并新增开发板 | [编译示例与新增开发板](P01_zephyr_make_project/P015_新增开发板与芯片支持.md) | 先认识并编译官方 MPS2，再逐文件新增 AN386 练习板、逐层接入 UYUP HC32 并核验 |
 | 不同项目需要不同 Python 包版本 | [venv 大纲](python/venv/大纲.md) | 两个环境同时运行不同版本，第三个环境可重建 |
 | 多个代码仓库必须使用配套版本 | [west 大纲](west/大纲.md) | 自建多仓库清单并写一个可运行的新命令 |
 | 新增 C 文件或可复用模块怎样参与编译 | [CMake 大纲](cmake/大纲.md) | 定位漏实现链接错误，验证模块开关 |

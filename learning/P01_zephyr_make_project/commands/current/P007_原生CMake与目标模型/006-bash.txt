@@ -1,0 +1,5 @@
+# Windows UCRT64；源码根；仅已手动加入上一段 option/if 后执行。
+cd /g/zephyr_practice/zephyr-main
+cmake -S build/learning-tools/cmake-native/source \
+  -B build/learning-tools/cmake-native/out -DDEMO_TRACE:BOOL=ON
+cmake -N -LAH build/learning-tools/cmake-native/out

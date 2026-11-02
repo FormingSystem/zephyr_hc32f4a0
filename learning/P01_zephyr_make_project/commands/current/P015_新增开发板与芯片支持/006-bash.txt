@@ -1,0 +1,3 @@
+# UCRT64；源码根；上一条配置已成功。
+cmake --build build/learning-tools/p003/build-mps2-sdk-auto
+ls -l build/learning-tools/p003/build-mps2-sdk-auto/zephyr/zephyr.elf

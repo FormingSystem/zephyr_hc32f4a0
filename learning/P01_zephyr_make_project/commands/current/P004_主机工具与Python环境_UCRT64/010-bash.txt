@@ -1,0 +1,3 @@
+# Windows UCRT64；任意目录；只用于 py 不存在但 python 可执行的分支。
+python --version
+python -m pip --version

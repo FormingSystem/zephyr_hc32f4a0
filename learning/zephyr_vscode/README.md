@@ -23,7 +23,7 @@ domains: [zephyr, vscode, tools]
 | 复制命令或配置 | [命令索引](commands/README.md)；先区分主线示例和历史诊断副本 |
 | 查哪些步骤有证据、哪些尚未实测 | [验证记录](VALIDATION.md) |
 
-原生工程的准备顺序是 [P004 CMSIS 选择与下载](../P01_zephyr_make_project/P004_CMSIS选择与下载_Windows.md) → [P005 工程组织与驱动模型](../P01_zephyr_make_project/P005_Zephyr工程组织与驱动模型_Windows.md) → [P006 HC32 / DDL 与外部模块](../P01_zephyr_make_project/P006_HC32与外部源码模块接入_Windows.md)。先理解输入与驱动责任，再在本教程中对应到插件操作。
+原生工程的准备顺序是 [P006 CMSIS 选择与下载](../P01_zephyr_make_project/P006_源码依赖与离线准备.md) → [P010 工程组织与驱动模型](../P01_zephyr_make_project/P010_工程分层与驱动模型.md) → [P014 HC32 / DDL 与外部模块](../P01_zephyr_make_project/P014_HC32与外部源码模块接入.md)。先理解输入与驱动责任，再在本教程中对应到插件操作。
 
 本教程只采用一组构建标识：应用 `samples/hello_world`、板 `mps2/an386`、Build 名 `ide-mps2`、输出 `build/learning-tools/zephyr-vscode/hello_world`。CMSIS 由已有 west 清单与模块发现接入；自有 HAL 放在 `G:/zephyr_practice/hal_xhsc-zephyr`，通过独立的模块接入示例说明。hello_world 的构建结果不代表 HC32 板级支持已经完成。
 

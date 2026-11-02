@@ -1,0 +1,3 @@
+# 终端：Linux Bash；任意目录。只读检查。
+cat /etc/os-release
+uname -m

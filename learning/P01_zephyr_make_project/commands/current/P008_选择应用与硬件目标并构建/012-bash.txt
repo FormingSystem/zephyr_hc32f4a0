@@ -1,0 +1,23 @@
+# Linux Bash；P003 Linux、P006 与 8.3 已完成；不下载依赖。
+(
+set -e
+cd ~/zephyrproject/zephyr
+source ../.venv/bin/activate
+SRC="$PWD"
+APP_REL=samples/hello_world
+BOARD_TARGET=mps2/an386
+BUILD="$SRC/build/learning-tools/sysbuild-linux-local"
+SDK="$HOME/zephyr-sdk-1.0.1"
+PY="$(python -c 'import sys; print(sys.executable)')"
+CMSIS="$(cd ../modules/hal/cmsis && pwd)"
+CMSIS6="$(cd ../modules/hal/cmsis_6 && pwd)"
+export ZEPHYR_BASE="$SRC"
+cmake -S "$SRC/share/sysbuild" -B "$BUILD" -G Ninja \
+  "-DAPP_DIR=$SRC/$APP_REL" "-DBOARD=$BOARD_TARGET" \
+  "-DZephyr_DIR=$SRC/share/zephyr-package/cmake" \
+  "-DPYTHON_EXECUTABLE=$PY" "-DPython3_EXECUTABLE=$PY" \
+  "-DZEPHYR_SDK_INSTALL_DIR=$SDK" "-DZEPHYR_MODULES=$CMSIS;$CMSIS6"
+cmake --build "$BUILD" --parallel 4
+cat "$BUILD/domains.yaml"
+test -s "$BUILD/hello_world/zephyr/zephyr.elf"
+)

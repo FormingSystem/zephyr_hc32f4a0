@@ -1,0 +1,42 @@
+# Windows UCRT64；项目 Windows venv、SDK 与 P006 模块已准备。
+(
+set -e
+cd /g/zephyr_practice/zephyr-main
+route=zip                        # 正确 west 工作区可改为 west
+SRC_WIN="$(cygpath -am "$PWD")"
+SDK_WIN="$(cygpath -am ../zephyr-sdk-1.0.1)"
+PYTHON_WIN="$(cygpath -am .venv/Scripts/python.exe)"
+BUILD_WIN="$(cygpath -am "build/learning-tools/first-ucrt-$route")"
+NINJA_WIN="$(cygpath -am /ucrt64/bin/ninja.exe)"
+export ZEPHYR_BASE="$SRC_WIN"
+test -f .venv/Scripts/python.exe
+test -f ../zephyr-sdk-1.0.1/cmake/Zephyr-sdkConfig.cmake
+.venv/Scripts/python.exe -c 'import sys; print(sys.executable); print(sys.platform)'
+.venv/Scripts/python.exe -m pip check
+../zephyr-sdk-1.0.1/gnu/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc.exe --version
+MODULE_ARGS=()
+case "$route" in
+  zip)
+    # 已有混合布局时，仅把下面路径改成实际模块根，不覆盖或搬动原件。
+    test -f ../modules/hal/cmsis/zephyr/module.yml
+    test -f ../modules/hal/cmsis_6/CMSIS/Core/Include/core_cm4.h
+    CMSIS_WIN="$(cygpath -am ../modules/hal/cmsis)"
+    CMSIS6_WIN="$(cygpath -am ../modules/hal/cmsis_6)"
+    MODULE_ARGS=("-DZEPHYR_MODULES=$CMSIS_WIN;$CMSIS6_WIN")
+    ;;
+  west)
+    .venv/Scripts/python.exe -m west topdir
+    .venv/Scripts/python.exe -m west list cmsis cmsis_6 -f '{name} {abspath}'
+    ;;
+  *) printf 'route 只能为 zip 或 west\n' >&2; exit 1 ;;
+esac
+# 所有路径已转换；仅此调用关闭 MSYS 自动参数转换，保留模块分号列表。
+MSYS2_ARG_CONV_EXCL='*' /ucrt64/bin/cmake \
+  -S "$SRC_WIN/samples/hello_world" -B "$BUILD_WIN" -G Ninja \
+  -DBOARD=mps2/an386 \
+  "-DZephyr_DIR=$SRC_WIN/share/zephyr-package/cmake" \
+  "-DPYTHON_EXECUTABLE=$PYTHON_WIN" "-DPython3_EXECUTABLE=$PYTHON_WIN" \
+  "-DCMAKE_MAKE_PROGRAM=$NINJA_WIN" \
+  "-DZEPHYR_SDK_INSTALL_DIR=$SDK_WIN" \
+  "${MODULE_ARGS[@]}" -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+)

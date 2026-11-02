@@ -1,0 +1,3 @@
+# 当前位置：任意目录；终端：重新打开的 UCRT64。
+py -3.12 --version
+py -3.12 -m pip --version

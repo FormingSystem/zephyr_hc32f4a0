@@ -1,0 +1,4 @@
+# Windows UCRT64；任意目录；诊断当前进程环境。
+env | grep -iE '^(http|https|all|no)_proxy='
+# 已在项目源码根且 venv 可用时，检查 pip 自己的配置来源。
+.venv/Scripts/python.exe -m pip config debug

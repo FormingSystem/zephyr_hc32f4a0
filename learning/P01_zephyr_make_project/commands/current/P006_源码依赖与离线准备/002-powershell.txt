@@ -1,0 +1,5 @@
+# Windows PowerShell；源码根；使用项目解释器，不依赖激活策略。
+Set-Location -LiteralPath 'G:\zephyr_practice\zephyr-main'
+& .\.venv\Scripts\python.exe -m west topdir
+& .\.venv\Scripts\python.exe -m west config manifest.path
+& .\.venv\Scripts\python.exe -m west config manifest.file

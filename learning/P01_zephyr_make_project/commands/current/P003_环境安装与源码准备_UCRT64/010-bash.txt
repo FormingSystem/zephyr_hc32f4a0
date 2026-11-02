@@ -1,0 +1,5 @@
+# 当前位置：任意目录；终端：UCRT64。此前已完成系统更新。
+pacman -S --needed curl wget unzip tar xz &&
+if ! test -x /ucrt64/bin/git.exe; then
+  pacman -S --needed mingw-w64-ucrt-x86_64-git
+fi

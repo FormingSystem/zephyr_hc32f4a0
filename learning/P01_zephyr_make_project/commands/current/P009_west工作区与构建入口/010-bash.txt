@@ -1,0 +1,8 @@
+# Windows UCRT64；源码根；west-demo 已成功配置，工具位置没有改变。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+# 直接 CMake 复用 west 创建的同一缓存和规则。
+cmake --build build/learning-tools/west-demo --parallel 4
+# 反向对照：仅 P008 UCRT64 的 route=zip 已成功配置时执行。
+# 如果当时选 route=west，则将末尾目录改为 first-ucrt-west。
+west build -d build/learning-tools/first-ucrt-zip

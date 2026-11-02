@@ -1,0 +1,8 @@
+# Windows PowerShell；Minimal 已解压，且尚未安装 ARM 工具链。
+Set-Location -LiteralPath 'G:\zephyr_practice\zephyr-sdk-1.0.1'
+Get-Command cmake, 7z -ErrorAction Stop
+if (Test-Path '.\gnu\arm-zephyr-eabi') {
+    throw '已有 ARM 目录，请先核验，不重复安装'
+}
+.\setup.cmd /t arm-zephyr-eabi
+if ($LASTEXITCODE -ne 0) { throw '安装失败，检查下载输出' }

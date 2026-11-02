@@ -1,0 +1,5 @@
+# Windows UCRT64；浏览器已解压到指定位置，检查官方源码入口。
+cd /g/zephyr_practice/zephyr-main
+ls VERSION SDK_VERSION west.yml boards samples
+# ZIP 无 .git 是预期结果；clone 路线应存在该目录。
+if [ -d .git ]; then git rev-parse HEAD; else printf 'ZIP snapshot: no Git metadata\n'; fi

@@ -1,0 +1,9 @@
+# Windows UCRT64；任意目录；原生 Git 已安装但当前窗口选错时使用。
+if test -x /ucrt64/bin/git.exe; then
+  export PATH="/ucrt64/bin:$PATH"
+  hash -r
+else
+  printf '未找到 UCRT64 原生 Git，返回本节安装步骤。\n' >&2
+fi
+type -a git
+command -v git

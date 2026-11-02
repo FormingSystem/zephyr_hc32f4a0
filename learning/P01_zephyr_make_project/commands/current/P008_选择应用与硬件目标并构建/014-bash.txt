@@ -1,0 +1,25 @@
+# Windows UCRT64；P005、P006 与 8.5 已完成；不下载依赖。
+(
+set -e
+cd /g/zephyr_practice/zephyr-main
+SRC_WIN="$(cygpath -am "$PWD")"
+APP_REL=samples/hello_world
+BOARD_TARGET=mps2/an386
+BUILD_WIN="$(cygpath -am build/learning-tools/sysbuild-ucrt-local)"
+SDK_WIN="$(cygpath -am ../zephyr-sdk-1.0.1)"
+PYTHON_WIN="$(cygpath -am .venv/Scripts/python.exe)"
+NINJA_WIN="$(cygpath -am /ucrt64/bin/ninja.exe)"
+CMSIS_WIN="$(cygpath -am ../modules/hal/cmsis)"
+CMSIS6_WIN="$(cygpath -am ../modules/hal/cmsis_6)"
+export ZEPHYR_BASE="$SRC_WIN"
+MSYS2_ARG_CONV_EXCL='*' /ucrt64/bin/cmake \
+  -S "$SRC_WIN/share/sysbuild" -B "$BUILD_WIN" -G Ninja \
+  "-DAPP_DIR=$SRC_WIN/$APP_REL" "-DBOARD=$BOARD_TARGET" \
+  "-DZephyr_DIR=$SRC_WIN/share/zephyr-package/cmake" \
+  "-DPYTHON_EXECUTABLE=$PYTHON_WIN" "-DPython3_EXECUTABLE=$PYTHON_WIN" \
+  "-DCMAKE_MAKE_PROGRAM=$NINJA_WIN" "-DZEPHYR_SDK_INSTALL_DIR=$SDK_WIN" \
+  "-DZEPHYR_MODULES=$CMSIS_WIN;$CMSIS6_WIN"
+MSYS2_ARG_CONV_EXCL='*' /ucrt64/bin/cmake --build "$BUILD_WIN" --parallel 4
+cat build/learning-tools/sysbuild-ucrt-local/domains.yaml
+test -s build/learning-tools/sysbuild-ucrt-local/hello_world/zephyr/zephyr.elf
+)

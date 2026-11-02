@@ -1,0 +1,46 @@
+# Windows PowerShell；P003 PowerShell、P005 和 P006 已完成。
+$ErrorActionPreference = 'Stop'
+Set-Location -LiteralPath 'G:\zephyr_practice\zephyr-main'
+$route = 'zip'                   # 正确 west 工作区可改为 west
+$src = (Get-Location).Path.Replace('\', '/')
+$sdk = 'G:/zephyr_practice/zephyr-sdk-1.0.1'
+$py = "$src/.venv/Scripts/python.exe"
+$build = "$src/build/learning-tools/first-powershell-$route"
+$env:ZEPHYR_BASE = $src
+$cmake = (Get-Command cmake -CommandType Application).Source
+$ninja = (Get-Command ninja -CommandType Application).Source
+foreach ($file in @("$src/samples/hello_world/CMakeLists.txt",
+                    "$sdk/cmake/Zephyr-sdkConfig.cmake", $py)) {
+    if (-not (Test-Path -LiteralPath $file -PathType Leaf)) { throw "缺少 $file" }
+}
+& "$sdk/gnu/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc.exe" --version
+if ($LASTEXITCODE -ne 0) { throw 'ARM 编译器未就绪' }
+& $py -m pip check
+if ($LASTEXITCODE -ne 0) { throw 'Python 依赖检查失败' }
+& $cmake --version
+& $ninja --version
+$moduleArgs = @()
+if ($route -eq 'zip') {
+    $cmsis = (Resolve-Path -LiteralPath '..\modules\hal\cmsis').Path.Replace('\', '/')
+    $cmsis6 = (Resolve-Path -LiteralPath '..\modules\hal\cmsis_6').Path.Replace('\', '/')
+    if (-not (Test-Path "$cmsis/zephyr/module.yml")) { throw 'CMSIS 入口缺失' }
+    if (-not (Test-Path "$cmsis6/CMSIS/Core/Include/core_cm4.h")) { throw 'Core 头缺失' }
+    $moduleArgs = @("-DZEPHYR_MODULES=$cmsis;$cmsis6")
+} elseif ($route -eq 'west') {
+    & $py -m west topdir
+    if ($LASTEXITCODE -ne 0) { throw '当前不是有效 west 工作区' }
+    & $py -m west list cmsis cmsis_6 -f '{name} {abspath}'
+    if ($LASTEXITCODE -ne 0) { throw '清单未解析成功' }
+} else {
+    throw 'route 只能为 zip 或 west'
+}
+$configureArgs = @(
+    '-S', "$src/samples/hello_world", '-B', $build, '-G', 'Ninja',
+    '-DBOARD=mps2/an386',
+    "-DZephyr_DIR=$src/share/zephyr-package/cmake",
+    "-DPYTHON_EXECUTABLE=$py", "-DPython3_EXECUTABLE=$py",
+    "-DCMAKE_MAKE_PROGRAM=$ninja", "-DZEPHYR_SDK_INSTALL_DIR=$sdk",
+    '-DCMAKE_EXPORT_COMPILE_COMMANDS=ON'
+) + $moduleArgs
+& $cmake @configureArgs
+if ($LASTEXITCODE -ne 0) { throw '配置失败；不继续构建，先查首个错误' }

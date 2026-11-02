@@ -1,0 +1,24 @@
+# Windows PowerShell；已下载官方 GNU 归档和同版校验清单。
+$ErrorActionPreference = 'Stop'
+$parent = 'G:\zephyr_practice'
+$version = (Get-Content -LiteralPath "$parent\zephyr-main\SDK_VERSION" -Raw).Trim()
+if ($version -ne '1.0.1') { throw '源码推荐版本已变化；按对应发行重新核对包名与目录' }
+$archive = Join-Path $parent ('zephyr-sdk-{0}_windows-x86_64_gnu.7z' -f $version)
+$sdkRoot = Join-Path $parent "zephyr-sdk-$version"
+if (Test-Path -LiteralPath $sdkRoot) { throw 'SDK 根已存在；先核验已有安装，不覆盖' }
+$sevenZip = (Get-Command 7z -ErrorAction Stop).Source
+$fileName = [IO.Path]::GetFileName($archive)
+$sumLines = @(Get-Content -LiteralPath "$parent\sha256.sum" |
+    Where-Object { $_ -match ('^[0-9a-fA-F]{64}\s+\*?' + [regex]::Escape($fileName) + '$') })
+if ($sumLines.Count -ne 1) { throw '清单中必须有唯一的本归档摘要' }
+$expected = ($sumLines[0] -split '\s+')[0]
+$actual = (Get-FileHash -LiteralPath $archive -Algorithm SHA256).Hash
+if ($actual -ne $expected) { throw '摘要不匹配；停止解压' }
+& $sevenZip x $archive "-o$parent"
+if ($LASTEXITCODE -ne 0) { throw 'SDK 解压失败' }
+Get-Content -LiteralPath "$sdkRoot\sdk_version"
+Get-Item -LiteralPath "$sdkRoot\cmake\Zephyr-sdkConfig.cmake"
+& "$sdkRoot\gnu\arm-zephyr-eabi\bin\arm-zephyr-eabi-gcc.exe" --version
+if ($LASTEXITCODE -ne 0) { throw 'ARM 编译器不可运行' }
+& "$sdkRoot\gnu\arm-zephyr-eabi\bin\arm-zephyr-eabi-gcc.exe" -dumpmachine
+if ($LASTEXITCODE -ne 0) { throw '目标架构查询失败' }

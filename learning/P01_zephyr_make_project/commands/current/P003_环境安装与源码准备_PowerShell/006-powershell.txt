@@ -1,0 +1,10 @@
+# Windows PowerShell；源码根；py -3.12 已检查通过。
+Set-Location -LiteralPath 'G:\zephyr_practice\zephyr-main'
+if (-not (Test-Path -LiteralPath '.venv')) {
+    py -3.12 -m venv .venv
+    if ($LASTEXITCODE -ne 0) { throw '创建 venv 失败' }
+}
+if (-not (Test-Path -LiteralPath '.venv\Scripts\python.exe')) {
+    throw '.venv 存在但不是可用的 Windows 环境；先核对来源'
+}
+& .\.venv\Scripts\python.exe -c 'import sys; print(sys.executable); print(sys.version); print(sys.platform)'

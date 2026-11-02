@@ -1,0 +1,4 @@
+# 离线 Linux/UCRT64 Bash；源码根，项目 venv 已激活，wheelhouse 已转入。
+python -m pip install --no-index --find-links=wheelhouse \
+  -r scripts/requirements-base.txt "west==1.5.0" &&
+python -m pip check

@@ -1,0 +1,4 @@
+# Windows UCRT64；进入已下载的 Zephyr 源码根。
+cd /g/zephyr_practice/zephyr-main
+cat VERSION
+cat SDK_VERSION

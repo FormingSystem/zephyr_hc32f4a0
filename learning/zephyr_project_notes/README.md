@@ -66,7 +66,7 @@ domains: [zephyr, documentation]
 
 [对应官方译文](../zephyr_docs/getting_started/P002_入门指南.md)
 
-> 译注：本节介绍官方工具自动安装路线，不是在辨别完整 SDK、Minimal SDK 与独立工具链归档。需要手动选包或复用已有 SDK 时，使用[既有 SDK 教程](../P01_zephyr_make_project/P003_SDK准备与编译器选型_Windows.md)中的分支；本次翻译没有执行安装。
+> 译注：本节介绍官方工具自动安装路线，不是在辨别完整 SDK、Minimal SDK 与独立工具链归档。需要手动选包或复用已有 SDK 时，使用[既有 SDK 教程](../P01_zephyr_make_project/P005_SDK准备与编译器选型.md)中的分支；本次翻译没有执行安装。
 
 ### P002_入门指南 · 补充 9
 

@@ -1,0 +1,6 @@
+# Windows UCRT64；下载目录；选择 Minimal 才执行。
+cd /g/zephyr_practice
+# 必须输出 OK；失败就停止，不解压。
+grep -F ' zephyr-sdk-1.0.1_windows-x86_64_minimal.7z' sha256.sum |
+  sha256sum --check &&
+  7z x zephyr-sdk-1.0.1_windows-x86_64_minimal.7z "-o$(cygpath -m "$PWD")"

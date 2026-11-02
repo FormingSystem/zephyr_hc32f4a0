@@ -60,7 +60,7 @@ SDK 提供目标编译器；CMSIS 是清单管理的源码模块；自有 HAL �
 
 JSON 参数数组里每项是一个字符串；向导或终端中的输入则是命令行文本。两种地方的引号规则不同，不能把用于 shell 的单引号不加区分地嵌入每个 JSON 数组项。修改后查看最终命令和 CMakeCache；新增或移除模块参数后，对已确认专用输出目录重新配置。
 
-如果 `west update cmsis_6` 报目标修订变成 `^commit` 而不是 `^{commit}`，按 [CMSIS 选择与下载教程](../P01_zephyr_make_project/P004_CMSIS选择与下载_Windows.md) 中的 Windows Python/MSYS2 Git 案例检查 Git 实现和调用路径。先核对提交及实际参数，不用修改清单版本来掩盖参数传递问题。
+如果 `west update cmsis_6` 报目标修订变成 `^commit` 而不是 `^{commit}`，按 [CMSIS 选择与下载教程](../P01_zephyr_make_project/P006_源码依赖与离线准备.md) 中的 Windows Python/MSYS2 Git 案例检查 Git 实现和调用路径。先核对提交及实际参数，不用修改清单版本来掩盖参数传递问题。
 
 ## 1.5\_点击 Build 后看证据，不只看状态灯
 

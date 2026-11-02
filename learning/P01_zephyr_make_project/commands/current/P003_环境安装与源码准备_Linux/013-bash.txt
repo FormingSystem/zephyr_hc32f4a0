@@ -1,0 +1,9 @@
+# Ubuntu 22.04 Bash；手动分支，浏览器已经下载并核对同版 SHA-256。
+cd ~/Downloads
+# SDK 根由解压生成；已有同名安装时先停止并核对。
+tar -xf zephyr-sdk-1.0.1_linux-x86_64_minimal.tar.xz -C "$HOME"
+cd ~/zephyr-sdk-1.0.1
+# 官方 setup.sh：-t 安装 ARM；-h 初始化主机工具；-c 保存用户包地址。
+./setup.sh -t arm-zephyr-eabi -h -c
+./gnu/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc --version
+test -d hosttools/sysroots && printf 'Linux SDK 主机工具已展开。\n'

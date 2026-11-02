@@ -1,0 +1,4 @@
+# 当前位置：任意目录；终端：UCRT64。只做源码下载时可以跳过。
+pacman -S --needed mingw-w64-ucrt-x86_64-gcc mingw-w64-ucrt-x86_64-gdb
+gcc --version
+gdb --version
