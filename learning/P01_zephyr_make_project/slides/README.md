@@ -10,33 +10,11 @@ domains: [zephyr, tools]
 
 # 第1章\_演示资料维护
 
-每个核心问题占一个连续三位章号；Windows 主线 P001—P012，另有 Linux P001，共 13 份正式 PPT。MD 与 PPT 同名配对，页码在各册内独立计数。
+本目录保存旧演示文稿及制作源，当前不维护其与正文的章节、页码对应表。Markdown 独立重构；待内容稳定后重新设计演示文稿，由演示文稿引用对应 Markdown 内容。旧文件保留用于复用图片、批注和版式资产，不作为正文结构依据。
 
-官方依据见[各章与官方译文的对应关系](../大纲.md#official-reference)。技术纠错以当前正式稿为基线，同步正文、可复制命令、幻灯片与备注，再更新原生重建源；保留固定源码版本与 `latest` 译文之间的区别。
+## 1.1\_制作资产与后续重构
 
-| 章号 | 完整正文 | 正式 PPT | 页数 |
-| --- | --- | --- | --- |
-| P001 | [准备UCRT64环境与下载Zephyr](../P001_准备UCRT64环境与下载Zephyr_Windows.md) | [PPT](P001_准备UCRT64环境与下载Zephyr_Windows.pptx) | 44 |
-| P002 | [主机工具与Python环境](../P002_主机工具与Python环境_Windows.md) | [PPT](P002_主机工具与Python环境_Windows.pptx) | 19 |
-| P003 | [SDK准备与编译器选型](../P003_SDK准备与编译器选型_Windows.md) | [PPT](P003_SDK准备与编译器选型_Windows.pptx) | 29 |
-| P004 | [CMSIS选择与下载](../P004_CMSIS选择与下载_Windows.md) | [PPT](P004_CMSIS选择与下载_Windows.pptx) | 30 |
-| P005 | [Zephyr工程组织与驱动模型](../P005_Zephyr工程组织与驱动模型_Windows.md) | [PPT](P005_Zephyr工程组织与驱动模型_Windows.pptx) | 42 |
-| P006 | [HC32与外部源码模块接入](../P006_HC32与外部源码模块接入_Windows.md) | [PPT](P006_HC32与外部源码模块接入_Windows.pptx) | 63 |
-| P007 | [原生CMake与目标模型](../P007_原生CMake与目标模型_Windows.md) | [PPT](P007_原生CMake与目标模型_Windows.pptx) | 24 |
-| P008 | [Zephyr应用构建](../P008_Zephyr应用构建_Windows.md) | [PPT](P008_Zephyr应用构建_Windows.pptx) | 20 |
-| P009 | [west零基础与Zephyr构建](../P009_west零基础与Zephyr构建_Windows.md) | [PPT](P009_west零基础与Zephyr构建_Windows.pptx) | 27 |
-| P010 | [Zephyr的CMake输入与依赖发现](../P010_Zephyr的CMake输入与依赖发现_Windows.md) | [PPT](P010_Zephyr的CMake输入与依赖发现_Windows.pptx) | 26 |
-| P011 | [CMake缓存与构建排错](../P011_CMake缓存与构建排错_Windows.md) | [PPT](P011_CMake缓存与构建排错_Windows.pptx) | 22 |
-| P012 | [编译示例与新增开发板](../P012_编译示例与新增开发板_Windows.md) | [PPT](P012_编译示例与新增开发板_Windows.pptx) | 54 |
-| Linux-P001 | [Ubuntu 22.04 环境准备](../P001_官方环境安装与源码准备_Linux.md) | [PPT](P001_官方环境安装与源码准备_Linux.pptx) | 23 |
-
-## 1.1\_阅读顺序与资料位置
-
-环境准备 P001—P003 → CMSIS 选择与下载 P004 → 工程组织与驱动模型 P005 → HC32 / DDL 与外部模块接入 P006 → 原生 CMake P007 → Zephyr 应用 P008 → west 入门与 CMake 搭配 P009 → 输入发现 P010 → 缓存排错 P011 → 新增板 P012。
-
-正式 PPT 放在 slides，正文放在上一级；各章完整命令放在 commands/Pxxx_Windows，Linux 使用 commands/P001_Linux。分发时保持 slides、commands 和正文的相邻位置。配套 labs/cmake_native 提供 P007 的普通主机 C 程序文件；它们由教程提供，不是官方 Zephyr 应用。
-
-P008/P012 沿用的 build/learning-tools/p003 与 labs/p003 是实验标识，改号不迁移已有产物。
+现有文件名、制作源和旧命令仅用于保留历史资产。后续重构重新确定演示章节、页码和引用，不沿用旧文稿到当前正文的映射。下列视觉规范作为制作参考保留。
 
 ## 1.2\_封面、页脚署名与页码
 
