@@ -1,0 +1,11 @@
+# Copyright The Zephyr HC32F4A0 Contributors
+# SPDX-License-Identifier: Apache-2.0
+
+config HWINFO_HC32
+	bool "HC32F4A0 device identifier"
+	default y
+	depends on SOC_SERIES_HC32F4A0
+	select HWINFO_HAS_DRIVER
+	help
+	  Read the 96-bit factory identifier from the EFM unique-ID registers.
+	  Reset-cause operations are not implemented by this driver.

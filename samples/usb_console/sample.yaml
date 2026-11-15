@@ -1,0 +1,14 @@
+# Copyright The Zephyr HC32F4A0 Contributors
+# SPDX-License-Identifier: Apache-2.0
+sample:
+  name: HC32F4A0 native USB CDC ACM log console
+common:
+  tags: [usb, uart]
+  platform_allow: uyup_rpi_a/hc32f4a0pitb
+tests:
+  sample.hc32.usb_console:
+    harness: console
+    harness_config:
+      type: one_line
+      regex:
+        - "USB1 CDC ACM heartbeat"

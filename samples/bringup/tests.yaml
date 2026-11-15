@@ -2,10 +2,19 @@
 # SPDX-License-Identifier: Apache-2.0
 
 sample:
-  name: HC32F4A0 port integration bringup
-  description: External module loading, console heartbeat, and optional LED0.
+  name: HC32F4A0 board bringup
+  description: Console heartbeat and LED0 on HC32, with a QEMU software regression.
 tests:
   sample.hc32f4a0.bringup:
+    build_only: true
+    tags:
+      - gpio
+      - serial
+    integration_platforms:
+      - uyup_rpi_a/hc32f4a0pitb
+    platform_allow:
+      - uyup_rpi_a/hc32f4a0pitb
+  sample.hc32f4a0.bringup.qemu:
     tags:
       - introduction
     integration_platforms:
@@ -16,4 +25,4 @@ tests:
     harness_config:
       type: one_line
       regex:
-        - "HC32F4A0 bringup module ready on mps2/an386"
+        - "HC32F4A0 bringup ready on mps2/an386"

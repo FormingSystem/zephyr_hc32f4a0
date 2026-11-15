@@ -1,0 +1,22 @@
+# Copyright The Zephyr HC32F4A0 Contributors
+# SPDX-License-Identifier: Apache-2.0
+
+description: HC32F4A0 USBFS controller with its internal full-speed PHY
+
+compatible: "xhsc,hc32f4a0-fsotg"
+
+include: snps,dwc2.yaml
+
+properties:
+  interrupt-source:
+    type: int
+    required: true
+    const: 399
+    description: USBFS global interrupt source selected by the HC32 INTC.
+
+  disable-vbus-sensing:
+    type: boolean
+    description: |
+      Override the VBUS-valid input when the board does not connect PA9 to
+      USB VBUS. Software treats the bus as powered while the controller is
+      enabled. Physical VBUS removal detection is unavailable in this mode.
