@@ -1,0 +1,12 @@
+# SPDX-FileCopyrightText: Copyright The zephyr_hc32f4a0 Contributors
+# SPDX-License-Identifier: Apache-2.0
+tests:
+  learning.first_evidence:
+    tags:
+      - learning
+      - evidence
+    platform_allow:
+      - mps2/an386
+    integration_platforms:
+      - mps2/an386
+    timeout: 15
