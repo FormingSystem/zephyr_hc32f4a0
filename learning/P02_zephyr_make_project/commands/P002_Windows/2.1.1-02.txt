@@ -1,0 +1,4 @@
+# P002 2.1.1：本系列实际主机工具安装命令。
+# Windows PowerShell 或 cmd.exe；P001 已准备原生 Git，Python 稍后单独准备。
+winget --version
+winget install Kitware.CMake Ninja-build.Ninja oss-winget.gperf oss-winget.dtc wget 7zip.7zip

@@ -1,0 +1,5 @@
+# Windows UCRT64；官方安装器已完整下载，尚未安装该版本。
+cd /g/zephyr_practice/downloads
+MSYS2_ARG_CONV_EXCL='*' ./python-3.12.10-amd64.exe \
+  /passive InstallAllUsers=0 PrependPath=1 \
+  Include_pip=1 Include_launcher=1 InstallLauncherAllUsers=0 Include_test=0

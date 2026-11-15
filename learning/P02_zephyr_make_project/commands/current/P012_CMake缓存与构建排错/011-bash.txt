@@ -1,0 +1,6 @@
+# Windows UCRT64；当前 Zephyr 源码根，Windows venv 已建立。
+PYTHON_WIN="$(cygpath -am .venv/Scripts/python.exe)"
+SCHEMA_WIN="$(cygpath -am scripts/schemas/build-schema.yaml)"
+MSYS2_ARG_CONV_EXCL='*' "$PYTHON_WIN" -c \
+  'import sys, pathlib; print(sys.executable); print(sys.argv[1]); print(pathlib.Path(sys.argv[1]).is_file())' \
+  "$SCHEMA_WIN"

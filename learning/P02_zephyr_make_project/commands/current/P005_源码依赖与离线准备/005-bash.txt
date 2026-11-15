@@ -1,0 +1,2 @@
+# Linux/UCRT64 Bash；同一源码根，项目 .venv 已激活；只读查询。
+python -m west list cmsis cmsis_6 -f '{name} {url} {revision} {abspath}'

@@ -1,0 +1,10 @@
+# P005 5.3.5：只读定位 MPS2 UART 硬件实现
+# 按正文前提选择本操作，不批量执行整个目录。
+# Windows UCRT64；P001 的官方源码根；只读定位 MPS2 的硬件实现。
+cd /g/zephyr_practice/zephyr-main
+grep -n 'mps2_base.dtsi' boards/arm/mps2/mps2_an386.dts
+grep -n -E 'zephyr,console|uart0:|arm,cmsdk-uart' boards/arm/mps2/mps2_base.dtsi
+cat drivers/serial/Kconfig.cmsdk_apb
+grep -n 'CONFIG_UART_CMSDK_APB' drivers/serial/CMakeLists.txt
+grep -n -E 'DT_DRV_COMPAT|struct uart_cmsdk_apb|uart_cmsdk_apb_poll_out|DT_INST_REG_ADDR' \
+  drivers/serial/uart_cmsdk_apb.c

@@ -1,0 +1,6 @@
+# Windows UCRT64；源码根；本节 cmake-demo 构建已成功。
+cd /g/zephyr_practice/zephyr-main
+grep -E 'CONFIG_BUILD_OUTPUT_(HEX|BIN)' \
+  build/learning-tools/p003/cmake-demo/zephyr/.config
+find build/learning-tools/p003/cmake-demo/zephyr -maxdepth 1 \
+  \( -name 'zephyr.elf' -o -name 'zephyr.hex' -o -name 'zephyr.bin' \) -print

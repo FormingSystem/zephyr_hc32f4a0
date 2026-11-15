@@ -1,0 +1,57 @@
+# P006 6.7.1：创建普通组件，已有目标不覆盖
+# 按正文前提选择本操作，不批量执行整个目录。
+# Windows UCRT64；创建本章自有组件，不修改Zephyr官方文件。
+# 本块在子shell中运行，任何失败立即停止；不会覆盖已存在的目标目录。
+(
+set -eu
+cd /g/zephyr_practice/zephyr-main
+if [ -e ../components/app_greeting ]; then
+  printf '%s\n' '../components/app_greeting 已存在，请先阅读现有文件，不覆盖。' >&2
+  exit 1
+fi
+mkdir -p ../components/app_greeting
+mkdir -p ../components/app_greeting/include/app_greeting
+mkdir -p ../components/app_greeting/src
+mkdir -p ../components/app_greeting/zephyr
+cat > ../components/app_greeting/zephyr/module.yml <<'P006_FILE_0'
+# SPDX-License-Identifier: Apache-2.0
+name: app_greeting
+build:
+  cmake: .
+  kconfig: Kconfig
+P006_FILE_0
+cat > ../components/app_greeting/Kconfig <<'P006_FILE_1'
+# SPDX-License-Identifier: Apache-2.0
+config APP_GREETING
+    bool "Application greeting component"
+    default n
+    help
+      Build the reusable greeting function for this application.
+P006_FILE_1
+cat > ../components/app_greeting/CMakeLists.txt <<'P006_FILE_2'
+# SPDX-License-Identifier: Apache-2.0
+if(CONFIG_APP_GREETING)
+  zephyr_library()
+  zephyr_library_sources(src/greeting.c)
+  zephyr_include_directories(include)
+endif()
+P006_FILE_2
+cat > ../components/app_greeting/include/app_greeting/greeting.h <<'P006_FILE_3'
+/* SPDX-License-Identifier: Apache-2.0 */
+#ifndef APP_GREETING_GREETING_H_
+#define APP_GREETING_GREETING_H_
+
+const char *app_greeting_message(void);
+
+#endif
+P006_FILE_3
+cat > ../components/app_greeting/src/greeting.c <<'P006_FILE_4'
+/* SPDX-License-Identifier: Apache-2.0 */
+#include <app_greeting/greeting.h>
+
+const char *app_greeting_message(void)
+{
+	return "Hello from app_greeting";
+}
+P006_FILE_4
+)

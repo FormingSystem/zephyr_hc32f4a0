@@ -1,0 +1,6 @@
+# Windows UCRT64；源码根；只检查，不安装或编译。
+cd /g/zephyr_practice/zephyr-main
+cmake --version
+ninja --version
+command -v gcc
+gcc -dumpmachine

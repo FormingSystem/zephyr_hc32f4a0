@@ -1,0 +1,10 @@
+# Windows PowerShell；当前目录任意；沿用 P003 PowerShell 的源码位置。
+$ErrorActionPreference = 'Stop'
+$zephyrSource = 'G:\zephyr_practice\zephyr-main'
+$exportScript = Join-Path $zephyrSource 'share\zephyr-package\cmake\zephyr_export.cmake'
+Get-Item -LiteralPath $exportScript | Out-Null
+$nativeCmake = (Get-Command cmake -ErrorAction Stop).Source
+& $nativeCmake -P $exportScript
+if ($LASTEXITCODE -ne 0) { throw 'Zephyr 包导出失败，先检查 CMake 和脚本路径' }
+reg.exe query 'HKCU\Software\Kitware\CMake\Packages\Zephyr'
+if ($LASTEXITCODE -ne 0) { throw '尚未读到 Zephyr 包记录，检查导出日志' }

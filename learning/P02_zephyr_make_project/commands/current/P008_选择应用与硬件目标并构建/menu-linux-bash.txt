@@ -1,0 +1,8 @@
+# Linux Bash；前提：8.3.1 的 first-linux-make 已构建成功。
+(
+set -e
+cd ~/zephyrproject/zephyr
+source ../.venv/bin/activate
+test -f build/learning-tools/first-linux-make/zephyr/.config
+cmake --build build/learning-tools/first-linux-make --target menuconfig
+)

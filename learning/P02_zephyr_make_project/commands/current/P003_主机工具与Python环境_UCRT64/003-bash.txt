@@ -1,0 +1,3 @@
+# Windows UCRT64；任意目录；先查看别名、函数和多个 Git 候选。
+type -a git
+command -v git

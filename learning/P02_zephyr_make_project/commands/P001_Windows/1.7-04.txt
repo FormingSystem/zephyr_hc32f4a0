@@ -1,0 +1,4 @@
+# P001_Windows / 1.7_排查_GitHub_连接与代理
+# 仅执行当前操作单元；替代路线二选一。先阅读正文前提与预期结果。
+# 当前位置：任意目录；终端：UCRT64。-c 仅覆盖本次命令的普通 HTTP 代理配置。
+git -c http.proxy= ls-remote https://github.com/zephyrproject-rtos/zephyr.git HEAD

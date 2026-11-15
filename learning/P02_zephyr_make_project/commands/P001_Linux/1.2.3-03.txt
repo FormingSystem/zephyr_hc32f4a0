@@ -1,0 +1,8 @@
+# P001_Linux / 1.2.3\_从 Python 官方源码安装 3.12.10
+# 只执行当前所选操作单元；先阅读正文前提。
+# 终端：Ubuntu 22.04 Bash；任意目录。
+# 使用已安装的带版本命令；不按教程自定义目录查找 Python。
+python3.12 --version
+python3.12 -c \
+  'import ssl, sqlite3, bz2, lzma, ctypes, venv; print(ssl.OPENSSL_VERSION)'
+python3.12 -m pip --version

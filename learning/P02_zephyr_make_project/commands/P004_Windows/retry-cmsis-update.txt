@@ -1,0 +1,9 @@
+# P004 4.4：Git 修正后重试更新并核对 revision
+# 按正文前提选择本操作，不批量执行整个目录。
+# Windows UCRT64；已确认原生 Git、正确工作区，模块本地修改已保存。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+west -v update cmsis_6 &&
+west list cmsis_6 -f '{revision}' &&
+git -C ../modules/hal/cmsis_6 rev-parse HEAD &&
+git -C ../modules/hal/cmsis_6 rev-parse manifest-rev

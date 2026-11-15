@@ -1,0 +1,6 @@
+# P004 4.3：核对已下载 CMSIS 的 HEAD 与 manifest-rev
+# 按正文前提选择本操作，不批量执行整个目录。
+# Windows UCRT64；源码根；模块已经由 west 下载，Windows 原生 Git 已选对。
+cd /g/zephyr_practice/zephyr-main
+git -C ../modules/hal/cmsis_6 rev-parse HEAD
+git -C ../modules/hal/cmsis_6 rev-parse manifest-rev

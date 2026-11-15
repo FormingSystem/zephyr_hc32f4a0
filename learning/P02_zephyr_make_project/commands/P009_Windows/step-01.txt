@@ -1,0 +1,6 @@
+# Windows UCRT64；进入 P001 的源码根，复用 P002 创建的环境。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+python --version
+west --version
+west --help

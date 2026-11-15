@@ -1,0 +1,4 @@
+# Windows UCRT64；下载目录；仅校验准备手动补装的 ARM 组件。
+cd /g/zephyr_practice
+grep -F ' toolchain_gnu_windows-x86_64_arm-zephyr-eabi.7z' sha256.sum |
+  sha256sum --check

@@ -1,0 +1,8 @@
+# Linux Bash；当前目录任意；沿用 P003 Linux 的源码位置。
+(
+set -e
+cd ~/zephyrproject/zephyr
+test -f share/zephyr-package/cmake/zephyr_export.cmake
+cmake -P "$PWD/share/zephyr-package/cmake/zephyr_export.cmake"
+grep -F "$PWD/share/zephyr-package/cmake" "$HOME/.cmake/packages/Zephyr/"*
+)

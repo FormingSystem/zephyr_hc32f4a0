@@ -1,0 +1,4 @@
+# Windows UCRT64；任意目录；DTC 缺少时补装并核验。
+pacman -S --needed mingw-w64-ucrt-x86_64-dtc &&
+/ucrt64/bin/dtc --version &&
+pacman -Q mingw-w64-ucrt-x86_64-dtc

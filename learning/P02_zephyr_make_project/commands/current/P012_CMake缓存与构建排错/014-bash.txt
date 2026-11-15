@@ -1,0 +1,4 @@
+# Windows UCRT64；任意目录；仅在需要编译缓存时执行，可跳过。
+pacman -S --needed mingw-w64-ucrt-x86_64-ccache &&
+/ucrt64/bin/ccache --version &&
+pacman -Q mingw-w64-ucrt-x86_64-ccache

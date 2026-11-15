@@ -1,0 +1,29 @@
+# Windows UCRT64；源码根；工作区正确，模块本地修改已保存。
+# P002 已核对原生 Git 来源；本块防止当前窗口选回 MSYS2 Git。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+type -a git
+if test "$(type -t git)" != file; then
+  printf 'Git 缺失或被别名/函数遮蔽，回到 P002 修复，不执行更新。\n' >&2
+elif python - <<'PY'
+import shutil
+import sys
+
+git_path = shutil.which("git")
+print("Python:", sys.executable)
+print("Git:", git_path)
+if not git_path:
+    raise SystemExit("找不到 Git，回到 P002 修复，不执行更新。")
+normalized = git_path.replace("\\", "/").casefold()
+if "/usr/bin/" in normalized:
+    raise SystemExit("选中了 MSYS2 Git，回到 P002 修复，不执行更新。")
+if not normalized.endswith(("/ucrt64/bin/git.exe", "/cmd/git.exe")):
+    raise SystemExit("路径不属于本教程已核对的两条入口，回到 P002 确认后再更新。")
+PY
+then
+  west update cmsis_6 &&
+  test -f ../modules/hal/cmsis_6/zephyr/module.yml &&
+  test -f ../modules/hal/cmsis_6/CMSIS/Core/Include/core_cm4.h &&
+  git -C ../modules/hal/cmsis_6 rev-parse HEAD &&
+  git -C ../modules/hal/cmsis_6 rev-parse manifest-rev
+fi

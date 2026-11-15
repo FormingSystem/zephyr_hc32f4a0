@@ -1,0 +1,8 @@
+# Windows UCRT64；任意目录；已完成系统更新，只安装缺失包。
+pacman -S --needed mingw-w64-ucrt-x86_64-cmake \
+  mingw-w64-ucrt-x86_64-ninja mingw-w64-ucrt-x86_64-dtc \
+  mingw-w64-ucrt-x86_64-gperf mingw-w64-ucrt-x86_64-7zip
+type -a cmake ninja dtc gperf 7z cygpath
+/ucrt64/bin/cmake --version
+/ucrt64/bin/ninja --version
+/ucrt64/bin/dtc --version

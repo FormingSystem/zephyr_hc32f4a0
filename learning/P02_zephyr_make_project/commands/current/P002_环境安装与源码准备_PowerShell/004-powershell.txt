@@ -1,0 +1,10 @@
+# Windows PowerShell；ZIP 已取得；示例文件名请改成实际文件名。
+$ErrorActionPreference = 'Stop'
+Set-Location -LiteralPath 'G:\zephyr_practice'
+$archive = '.\zephyr-source.zip'
+$unpack = '.\unpacked-zephyr'
+if (-not (Test-Path -LiteralPath $archive -PathType Leaf)) { throw '先取得源码归档并填写实际文件名' }
+if (Test-Path -LiteralPath $unpack) { throw '解压目标已存在；先检查，不合并覆盖' }
+Get-FileHash -LiteralPath $archive -Algorithm SHA256
+Expand-Archive -LiteralPath $archive -DestinationPath $unpack
+Get-ChildItem -LiteralPath $unpack -Directory

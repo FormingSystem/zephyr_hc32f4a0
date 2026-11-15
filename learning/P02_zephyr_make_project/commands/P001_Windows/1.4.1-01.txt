@@ -1,0 +1,4 @@
+# P001_Windows / 1.4.1_使用_Git_克隆
+# 仅执行当前操作单元；替代路线二选一。先阅读正文前提与预期结果。
+# 当前位置：/g/zephyr_practice；终端：UCRT64。目标 zephyr-main 应尚不存在。
+git clone https://github.com/zephyrproject-rtos/zephyr.git zephyr-main

@@ -1,0 +1,7 @@
+# Windows UCRT64；只读；从实验源码根定位官方已有的 MPS2 支持。
+cd /g/zephyr_practice/zephyr-main
+ls boards/arm/mps2
+cat boards/arm/mps2/board.yml
+cat boards/arm/mps2/Kconfig.mps2
+cat soc/arm/mps2/Kconfig
+cat soc/arm/mps2/CMakeLists.txt

@@ -1,0 +1,9 @@
+# P005 5.4.2：只读查看 board、SoC 与 CMSIS 接入原文件
+# 按正文前提选择本操作，不批量执行整个目录。
+# Windows UCRT64；源码根；按正文核对前提。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+cat boards/arm/mps2/board.yml
+cat soc/arm/mps2/Kconfig
+cat modules/cmsis_6/Kconfig
+cat modules/cmsis_6/CMakeLists.txt

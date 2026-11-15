@@ -1,0 +1,10 @@
+# P005 5.3.7：反查 MPS2 baseline 的硬件与源文件选择
+# 按正文前提选择本操作，不批量执行整个目录。
+# Windows UCRT64；只读反查官方baseline结果；前提：build-baseline-west.txt 已完成。
+cd /g/zephyr_practice/zephyr-main
+grep -E '^CONFIG_(BOARD_MPS2|SOC_AN386|ARM|CPU_CORTEX_M4|HAS_CMSIS_CORE|UART_CMSDK_APB|GPIO_CMSDK_AHB|GPIO_MMIO32|PINCTRL_ARM_MPS2|CORTEX_M_SYSTICK)=' \
+  build/learning-tools/p006/hello_world/zephyr/.config
+grep -F 'uart_cmsdk_apb.c' build/learning-tools/p006/hello_world/compile_commands.json
+grep -F 'CMSIS/Core/Include' build/learning-tools/p006/hello_world/compile_commands.json | head -n 2
+grep -E 'zephyr,console|arm,cmsdk-uart' build/learning-tools/p006/hello_world/zephyr/zephyr.dts
+# 这些记录来自同一次构建；不以其他目录旧日志代替当前结果。

@@ -1,0 +1,39 @@
+# Linux Bash；P003 Linux 与 P006 已完成；不在 UCRT64 执行。
+(
+set -e
+cd ~/zephyrproject/zephyr
+source ../.venv/bin/activate
+route=zip                       # 正确 west 工作区可改为 west
+SRC="$PWD"
+SDK="$HOME/zephyr-sdk-1.0.1"
+PY="$(python -c 'import sys; print(sys.executable)')"
+BUILD="$SRC/build/learning-tools/first-linux-$route"
+export ZEPHYR_BASE="$SRC"
+test -f "$SRC/samples/hello_world/CMakeLists.txt"
+test -f "$SDK/cmake/Zephyr-sdkConfig.cmake"
+"$SDK/gnu/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc" --version
+python -m pip check
+cmake --version
+ninja --version
+MODULE_ARGS=()
+case "$route" in
+  zip)
+    CMSIS="$(cd ../modules/hal/cmsis && pwd)"
+    CMSIS6="$(cd ../modules/hal/cmsis_6 && pwd)"
+    test -f "$CMSIS/zephyr/module.yml"
+    test -f "$CMSIS6/CMSIS/Core/Include/core_cm4.h"
+    MODULE_ARGS=("-DZEPHYR_MODULES=$CMSIS;$CMSIS6")
+    ;;
+  west)
+    python -m west topdir
+    python -m west list cmsis cmsis_6 -f '{name} {abspath}'
+    ;;
+  *) printf 'route 只能为 zip 或 west\n' >&2; exit 1 ;;
+esac
+cmake -S "$SRC/samples/hello_world" -B "$BUILD" -G Ninja \
+  -DBOARD=mps2/an386 \
+  "-DZephyr_DIR=$SRC/share/zephyr-package/cmake" \
+  "-DPYTHON_EXECUTABLE=$PY" "-DPython3_EXECUTABLE=$PY" \
+  "-DZEPHYR_SDK_INSTALL_DIR=$SDK" \
+  "${MODULE_ARGS[@]}" -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+)

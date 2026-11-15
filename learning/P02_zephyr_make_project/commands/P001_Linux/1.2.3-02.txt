@@ -1,0 +1,11 @@
+# P001_Linux / 1.2.3\_从 Python 官方源码安装 3.12.10
+# 只执行当前所选操作单元；先阅读正文前提。
+# 终端：Ubuntu 22.04 Bash；先进入 Python 下载目录。
+mkdir -p ~/zephyr-tools/src
+cd ~/zephyr-tools/src
+wget https://www.python.org/ftp/python/3.12.10/Python-3.12.10.tgz
+tar -xzf Python-3.12.10.tgz
+cd Python-3.12.10
+./configure --with-ensurepip=install
+make -j2
+sudo make altinstall

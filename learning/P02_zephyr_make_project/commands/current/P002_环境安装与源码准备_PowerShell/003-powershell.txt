@@ -1,0 +1,11 @@
+# Windows PowerShell；准备父目录；目标源码目录必须尚不存在。
+$ErrorActionPreference = 'Stop'
+New-Item -ItemType Directory -Force -Path 'G:\zephyr_practice' | Out-Null
+Set-Location -LiteralPath 'G:\zephyr_practice'
+if (Test-Path -LiteralPath 'zephyr-main') { throw '目录已存在；先核对并复用，不覆盖' }
+git clone https://github.com/zephyrproject-rtos/zephyr.git zephyr-main
+if ($LASTEXITCODE -ne 0) { throw '克隆失败；保留现场，检查网络或改走 ZIP' }
+Set-Location -LiteralPath '.\zephyr-main'
+git rev-parse HEAD
+Get-Content VERSION
+Get-Content SDK_VERSION

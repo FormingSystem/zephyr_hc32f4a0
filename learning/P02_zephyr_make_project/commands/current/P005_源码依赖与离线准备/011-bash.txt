@@ -1,0 +1,4 @@
+# 联网 Linux/UCRT64 Bash；当前源码根，匹配目标离线机的项目 venv 已激活。
+# wheelhouse 为本次创建的包归档目录；Windows 只能拿匹配 Windows 的 wheel。
+python -m pip download --only-binary=:all: --dest wheelhouse \
+  -r scripts/requirements-base.txt "west==1.5.0"

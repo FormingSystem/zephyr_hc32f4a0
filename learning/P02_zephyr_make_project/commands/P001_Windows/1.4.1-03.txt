@@ -1,0 +1,6 @@
+# P001_Windows / 1.4.1_使用_Git_克隆
+# 仅执行当前操作单元；替代路线二选一。先阅读正文前提与预期结果。
+# 当前位置：任意目录；终端：UCRT64。写入当前用户的 Git 配置。
+git config --global --replace-all http.proxy http://127.0.0.1:10808
+git config --show-origin --get-all http.proxy
+curl -I -x http://127.0.0.1:10808 https://github.com

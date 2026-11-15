@@ -1,0 +1,73 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="670" viewBox="0 0 800 670" role="img" aria-labelledby="title desc">
+<title id="title">独立计算例子：时间片只在有工作可做的线程之间轮转</title><desc id="desc">曲线与统计线程各有尚未算完的采样批次，本窗口持续就绪；它们不是等待报告的鼠标或键盘线程。时间片两 tick，不按中断扣除后的实际执行时间保证公平份额。</desc>
+<defs>
+<marker id="data" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#2563eb"/></marker>
+<marker id="control" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#7c3aed"/></marker>
+<marker id="save" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#b95309"/></marker>
+<marker id="restore" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#15804a"/></marker>
+<marker id="pointer" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#64748b"/></marker>
+</defs>
+<rect width="800" height="670" fill="#fff"/>
+<g font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" fill="#243447">
+<text x="20" y="28" font-size="16" fill="#243447" font-weight="600" text-anchor="start">另例：两个计算线程都有未完成工作，才讨论同级时间片</text>
+<text x="20" y="55" font-size="16" fill="#243447" font-weight="400" text-anchor="start">曲线与统计各有一批采样待算；tick = 1 ms，片 = 2 tick，起点对齐 0 ms。</text>
+<path d="M160.0 96V345" stroke="#cbd5e1" stroke-dasharray="2 4"/>
+<text x="160.0" y="88" font-size="16" fill="#243447" font-weight="400" text-anchor="middle">0</text>
+<path d="M280.0 96V345" stroke="#cbd5e1" stroke-dasharray="2 4"/>
+<text x="280.0" y="88" font-size="16" fill="#243447" font-weight="400" text-anchor="middle">0.5</text>
+<path d="M400.0 96V345" stroke="#cbd5e1" stroke-dasharray="2 4"/>
+<text x="400.0" y="88" font-size="16" fill="#243447" font-weight="400" text-anchor="middle">1</text>
+<path d="M520.0 96V345" stroke="#cbd5e1" stroke-dasharray="2 4"/>
+<text x="520.0" y="88" font-size="16" fill="#243447" font-weight="400" text-anchor="middle">1.5</text>
+<path d="M640.0 96V345" stroke="#cbd5e1" stroke-dasharray="2 4"/>
+<text x="640.0" y="88" font-size="16" fill="#243447" font-weight="400" text-anchor="middle">2</text>
+<path d="M760.0 96V345" stroke="#cbd5e1" stroke-dasharray="2 4"/>
+<text x="760.0" y="88" font-size="16" fill="#243447" font-weight="400" text-anchor="middle">2.5</text>
+<text x="20" y="88" font-size="16" fill="#243447" font-weight="400" text-anchor="start">时间 / ms</text>
+<text x="20" y="129" font-size="16" fill="#243447" font-weight="600" text-anchor="start">CPU 总览</text>
+<rect x="160" y="108" width="600" height="28" fill="#e5e7eb"/>
+<rect x="160.0000" y="108" width="144.0000" height="28" fill="#efca7d"/>
+<rect x="304.0000" y="108" width="48.0000" height="28" fill="#8b5fc0"/>
+<rect x="352.0000" y="108" width="48.0000" height="28" fill="#efca7d"/>
+<rect x="400.0000" y="108" width="4.8000" height="28" fill="#8b5fc0"/>
+<rect x="404.8000" y="108" width="235.2000" height="28" fill="#efca7d"/>
+<rect x="640.0000" y="108" width="4.8000" height="28" fill="#8b5fc0"/>
+<rect x="644.8000" y="108" width="7.2000" height="28" fill="#46566c"/>
+<rect x="652.0000" y="108" width="108.0000" height="28" fill="#528fca"/>
+<text x="20" y="191" font-size="16" fill="#243447" font-weight="400" text-anchor="start">曲线线程</text>
+<rect x="160" y="170" width="600" height="28" fill="#e5e7eb"/>
+<rect x="160.0000" y="170" width="144.0000" height="28" fill="#efca7d"/>
+<rect x="352.0000" y="170" width="48.0000" height="28" fill="#efca7d"/>
+<rect x="404.8000" y="170" width="235.2000" height="28" fill="#efca7d"/>
+<text x="20" y="247" font-size="16" fill="#243447" font-weight="400" text-anchor="start">统计线程</text>
+<rect x="160" y="226" width="600" height="28" fill="#e5e7eb"/>
+<rect x="652.0000" y="226" width="108.0000" height="28" fill="#528fca"/>
+<text x="20" y="303" font-size="16" fill="#243447" font-weight="400" text-anchor="start">ISR / 切换</text>
+<rect x="160" y="282" width="600" height="28" fill="#e5e7eb"/>
+<rect x="304.0000" y="282" width="48.0000" height="28" fill="#8b5fc0"/>
+<rect x="400.0000" y="282" width="4.8000" height="28" fill="#8b5fc0"/>
+<rect x="640.0000" y="282" width="4.8000" height="28" fill="#8b5fc0"/>
+<rect x="644.8000" y="282" width="7.2000" height="28" fill="#46566c"/>
+<path d="M400 96V345" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="4 3"/>
+<path d="M640 96V345" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="4 3"/>
+<text x="400" y="367" font-size="16" fill="#7c3aed" font-weight="400" text-anchor="middle">第 1 tick：片未到期</text>
+<text x="640" y="392" font-size="16" fill="#7c3aed" font-weight="400" text-anchor="middle">第 2 tick：片到期，准备轮转</text>
+<text x="20" y="427" font-size="16" fill="#243447" font-weight="400" text-anchor="start">0.60–0.80 ms 为设备 ISR；1.00–1.02 ms 为系统时钟 ISR。</text>
+<text x="20" y="454" font-size="16" fill="#243447" font-weight="400" text-anchor="start">名义 2 ms 片内，曲线实际执行 0.60 + 0.20 + 0.98 = 1.78 ms。</text>
+<text x="20" y="481" font-size="16" fill="#243447" font-weight="400" text-anchor="start">2.00–2.02 ms 处理时钟，2.02–2.05 ms 切换，随后统计线程运行。</text>
+<text x="20" y="514" font-size="16" fill="#243447" font-weight="600" text-anchor="start">若工作提前完成且没有新数据，立即阻塞；不必凑满 2 tick。</text>
+<rect x="20" y="539" width="16" height="16" fill="#efca7d"/>
+<text x="43" y="552" font-size="16" fill="#243447" font-weight="400" text-anchor="start">黄：曲线计算</text>
+<rect x="212" y="539" width="16" height="16" fill="#528fca"/>
+<text x="235" y="552" font-size="16" fill="#243447" font-weight="400" text-anchor="start">蓝：统计计算</text>
+<rect x="404" y="539" width="16" height="16" fill="#8b5fc0"/>
+<text x="427" y="552" font-size="16" fill="#243447" font-weight="400" text-anchor="start">紫：设备/时钟 ISR</text>
+<rect x="596" y="539" width="16" height="16" fill="#46566c"/>
+<text x="619" y="552" font-size="16" fill="#243447" font-weight="400" text-anchor="start">深灰：调度切换</text>
+<rect x="20" y="567" width="16" height="16" fill="#e5e7eb"/>
+<text x="43" y="580" font-size="16" fill="#243447" font-weight="400" text-anchor="start">浅灰：本事务未执行</text>
+<text x="20" y="610" font-size="16" fill="#243447" font-weight="400" text-anchor="start">紫色竖虚线标出 tick 边界。灰段内可能就绪、被中断或阻塞，须结合文字。</text>
+<text x="20" y="635" font-size="16" fill="#243447" font-weight="400" text-anchor="start">若没有其他同级就绪线程，片到期也可继续当前线程。</text>
+<text x="20" y="659" font-size="16" fill="#243447" font-weight="400" text-anchor="start">独立教学例子，非实测；不与鼠标、键盘的事件响应时间混算。</text>
+</g></svg>

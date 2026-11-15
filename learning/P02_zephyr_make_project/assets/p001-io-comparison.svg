@@ -1,0 +1,115 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="584" viewBox="0 0 800 584" role="img" aria-labelledby="title desc">
+<title id="title">事件到达才处理，队列为空就阻塞</title><desc id="desc">三条 CPU 行为同一单核的互斥方案。鼠标只处理一份位置报告，键盘只处理一份按键报告；显示收尾在传输完成后进行。曲线只计算零时刻已有的一批采样，全部无工作时 CPU 空闲。</desc>
+<defs>
+<marker id="data" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#2563eb"/></marker>
+<marker id="control" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#7c3aed"/></marker>
+<marker id="save" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#b95309"/></marker>
+<marker id="restore" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#15804a"/></marker>
+<marker id="pointer" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#64748b"/></marker>
+</defs>
+<rect width="800" height="584" fill="#fff"/>
+<g font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" fill="#243447">
+<text x="20" y="28" font-size="16" fill="#243447" font-weight="600" text-anchor="start">同一颗 CPU 的三个替代方案：有实际工作才运行</text>
+<path d="M160.0 74V329" stroke="#cbd5e1" stroke-dasharray="2 4"/>
+<text x="160.0" y="66" font-size="16" fill="#243447" font-weight="400" text-anchor="middle">0</text>
+<path d="M206.15384615384616 74V329" stroke="#cbd5e1" stroke-dasharray="2 4"/>
+<text x="206.15384615384616" y="66" font-size="16" fill="#243447" font-weight="400" text-anchor="middle">1</text>
+<path d="M252.30769230769232 74V329" stroke="#cbd5e1" stroke-dasharray="2 4"/>
+<text x="252.30769230769232" y="66" font-size="16" fill="#243447" font-weight="400" text-anchor="middle">2</text>
+<path d="M298.46153846153845 74V329" stroke="#cbd5e1" stroke-dasharray="2 4"/>
+<text x="298.46153846153845" y="66" font-size="16" fill="#243447" font-weight="400" text-anchor="middle">3</text>
+<path d="M344.61538461538464 74V329" stroke="#cbd5e1" stroke-dasharray="2 4"/>
+<text x="344.61538461538464" y="66" font-size="16" fill="#243447" font-weight="400" text-anchor="middle">4</text>
+<path d="M390.7692307692308 74V329" stroke="#cbd5e1" stroke-dasharray="2 4"/>
+<text x="390.7692307692308" y="66" font-size="16" fill="#243447" font-weight="400" text-anchor="middle">5</text>
+<path d="M436.9230769230769 74V329" stroke="#cbd5e1" stroke-dasharray="2 4"/>
+<text x="436.9230769230769" y="66" font-size="16" fill="#243447" font-weight="400" text-anchor="middle">6</text>
+<path d="M483.0769230769231 74V329" stroke="#cbd5e1" stroke-dasharray="2 4"/>
+<text x="483.0769230769231" y="66" font-size="16" fill="#243447" font-weight="400" text-anchor="middle">7</text>
+<path d="M529.2307692307693 74V329" stroke="#cbd5e1" stroke-dasharray="2 4"/>
+<text x="529.2307692307693" y="66" font-size="16" fill="#243447" font-weight="400" text-anchor="middle">8</text>
+<path d="M575.3846153846154 74V329" stroke="#cbd5e1" stroke-dasharray="2 4"/>
+<text x="575.3846153846154" y="66" font-size="16" fill="#243447" font-weight="400" text-anchor="middle">9</text>
+<path d="M621.5384615384615 74V329" stroke="#cbd5e1" stroke-dasharray="2 4"/>
+<text x="621.5384615384615" y="66" font-size="16" fill="#243447" font-weight="400" text-anchor="middle">10</text>
+<path d="M667.6923076923076 74V329" stroke="#cbd5e1" stroke-dasharray="2 4"/>
+<text x="667.6923076923076" y="66" font-size="16" fill="#243447" font-weight="400" text-anchor="middle">11</text>
+<path d="M713.8461538461538 74V329" stroke="#cbd5e1" stroke-dasharray="2 4"/>
+<text x="713.8461538461538" y="66" font-size="16" fill="#243447" font-weight="400" text-anchor="middle">12</text>
+<path d="M760.0 74V329" stroke="#cbd5e1" stroke-dasharray="2 4"/>
+<text x="760.0" y="66" font-size="16" fill="#243447" font-weight="400" text-anchor="middle">13</text>
+<text x="20" y="66" font-size="16" fill="#243447" font-weight="400" text-anchor="start">时间 / ms</text>
+<text x="20" y="118" font-size="16" fill="#243447" font-weight="600" text-anchor="start">① 忙等主循环</text>
+<rect x="160" y="98" width="600" height="28" fill="#e5e7eb"/>
+<rect x="160.0000" y="98" width="46.1538" height="28" fill="#e7a09a"/>
+<rect x="206.1538" y="98" width="0.9231" height="28" fill="#8b5fc0"/>
+<rect x="207.0769" y="98" width="45.2308" height="28" fill="#e7a09a"/>
+<rect x="252.3077" y="98" width="0.9231" height="28" fill="#8b5fc0"/>
+<rect x="253.2308" y="98" width="276.0000" height="28" fill="#e7a09a"/>
+<rect x="529.2308" y="98" width="0.9231" height="28" fill="#8b5fc0"/>
+<rect x="530.1538" y="98" width="4.6154" height="28" fill="#219d9b"/>
+<rect x="534.7692" y="98" width="184.6154" height="28" fill="#efca7d"/>
+<rect x="719.3846" y="98" width="9.2308" height="28" fill="#55a580"/>
+<rect x="728.6154" y="98" width="9.2308" height="28" fill="#528fca"/>
+<rect x="737.8462" y="98" width="22.1538" height="28" fill="#e5e7eb"/>
+<text x="160" y="149" font-size="16" fill="#243447" font-weight="400" text-anchor="start">先忙等显示；完成收尾后才计算曲线、处理输入。</text>
+<text x="20" y="202" font-size="16" fill="#243447" font-weight="600" text-anchor="start">② 事件循环</text>
+<rect x="160" y="182" width="600" height="28" fill="#e5e7eb"/>
+<rect x="160.0000" y="182" width="46.1538" height="28" fill="#efca7d"/>
+<rect x="206.1538" y="182" width="0.9231" height="28" fill="#8b5fc0"/>
+<rect x="207.0769" y="182" width="45.2308" height="28" fill="#efca7d"/>
+<rect x="252.3077" y="182" width="0.9231" height="28" fill="#8b5fc0"/>
+<rect x="253.2308" y="182" width="93.2308" height="28" fill="#efca7d"/>
+<rect x="346.4615" y="182" width="9.2308" height="28" fill="#55a580"/>
+<rect x="355.6923" y="182" width="9.2308" height="28" fill="#528fca"/>
+<rect x="364.9231" y="182" width="164.3077" height="28" fill="#e5e7eb"/>
+<rect x="529.2308" y="182" width="0.9231" height="28" fill="#8b5fc0"/>
+<rect x="530.1538" y="182" width="4.6154" height="28" fill="#219d9b"/>
+<rect x="534.7692" y="182" width="225.2308" height="28" fill="#e5e7eb"/>
+<text x="160" y="233" font-size="16" fill="#243447" font-weight="400" text-anchor="start">先算完一批曲线才处理输入；无事件时进入空闲等待。</text>
+<text x="20" y="286" font-size="16" fill="#243447" font-weight="600" text-anchor="start">③ RTOS 抢占</text>
+<rect x="160" y="266" width="600" height="28" fill="#e5e7eb"/>
+<rect x="160.0000" y="266" width="46.1538" height="28" fill="#efca7d"/>
+<rect x="206.1538" y="266" width="0.9231" height="28" fill="#8b5fc0"/>
+<rect x="207.0769" y="266" width="1.3846" height="28" fill="#46566c"/>
+<rect x="208.4615" y="266" width="9.2308" height="28" fill="#55a580"/>
+<rect x="217.6923" y="266" width="1.3846" height="28" fill="#46566c"/>
+<rect x="219.0769" y="266" width="33.2308" height="28" fill="#efca7d"/>
+<rect x="252.3077" y="266" width="0.9231" height="28" fill="#8b5fc0"/>
+<rect x="253.2308" y="266" width="1.3846" height="28" fill="#46566c"/>
+<rect x="254.6154" y="266" width="9.2308" height="28" fill="#528fca"/>
+<rect x="263.8462" y="266" width="1.3846" height="28" fill="#46566c"/>
+<rect x="265.2308" y="266" width="105.2308" height="28" fill="#efca7d"/>
+<rect x="370.4615" y="266" width="158.7692" height="28" fill="#e5e7eb"/>
+<rect x="529.2308" y="266" width="0.9231" height="28" fill="#8b5fc0"/>
+<rect x="530.1538" y="266" width="1.3846" height="28" fill="#46566c"/>
+<rect x="531.5385" y="266" width="4.6154" height="28" fill="#219d9b"/>
+<rect x="536.1538" y="266" width="1.3846" height="28" fill="#46566c"/>
+<rect x="537.5385" y="266" width="222.4615" height="28" fill="#e5e7eb"/>
+<text x="160" y="317" font-size="16" fill="#243447" font-weight="400" text-anchor="start">输入处理完即阻塞；4.56–8 ms 全部业务无工作，CPU 空闲。</text>
+<path d="M20 347H780" stroke="#94a3b8" stroke-width="2"/>
+<text x="20" y="375" font-size="16" fill="#243447" font-weight="600" text-anchor="start">独立外设硬件</text>
+<rect x="160" y="356" width="369.2308" height="28" fill="#d5e7f8"/>
+<text x="176" y="376" font-size="16" fill="#243447" font-weight="400" text-anchor="start">DMA / SPI：0–8 ms（三个方案相同）</text>
+<text x="160" y="410" font-size="16" fill="#243447" font-weight="400" text-anchor="start">RTOS 显示线程等待传输；8.05–8.15 ms 收尾，然后再次阻塞。</text>
+<text x="20" y="444" font-size="16" fill="#243447" font-weight="400" text-anchor="start">下方浅蓝带是外设传输；不是额外一颗 CPU，也不是线程忙等。</text>
+<rect x="20" y="466" width="16" height="16" fill="#e7a09a"/>
+<text x="43" y="479" font-size="16" fill="#243447" font-weight="400" text-anchor="start">红：忙等</text>
+<rect x="212" y="466" width="16" height="16" fill="#efca7d"/>
+<text x="235" y="479" font-size="16" fill="#243447" font-weight="400" text-anchor="start">黄：曲线计算</text>
+<rect x="404" y="466" width="16" height="16" fill="#55a580"/>
+<text x="427" y="479" font-size="16" fill="#243447" font-weight="400" text-anchor="start">绿：鼠标报告</text>
+<rect x="596" y="466" width="16" height="16" fill="#528fca"/>
+<text x="619" y="479" font-size="16" fill="#243447" font-weight="400" text-anchor="start">蓝：键盘报告</text>
+<rect x="20" y="494" width="16" height="16" fill="#219d9b"/>
+<text x="43" y="507" font-size="16" fill="#243447" font-weight="400" text-anchor="start">青：显示收尾</text>
+<rect x="212" y="494" width="16" height="16" fill="#8b5fc0"/>
+<text x="235" y="507" font-size="16" fill="#243447" font-weight="400" text-anchor="start">紫：设备 ISR</text>
+<rect x="404" y="494" width="16" height="16" fill="#46566c"/>
+<text x="427" y="507" font-size="16" fill="#243447" font-weight="400" text-anchor="start">深灰：调度切换</text>
+<rect x="596" y="494" width="16" height="16" fill="#e5e7eb"/>
+<text x="619" y="507" font-size="16" fill="#243447" font-weight="400" text-anchor="start">浅灰：CPU 空闲</text>
+<text x="20" y="548" font-size="16" fill="#243447" font-weight="400" text-anchor="start">每份输入只需 0.20 ms；这是实际业务工作量，不是 1 ms 配额。</text>
+<text x="20" y="572" font-size="16" fill="#243447" font-weight="400" text-anchor="start">教学数值，非实测；时钟及其他中断开销未计入，设备 ISR 和切换已计入。</text>
+</g></svg>

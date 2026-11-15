@@ -1,0 +1,8 @@
+# P001_Windows / 1.9_在仓库内配置_Git_提交身份
+# 仅执行当前操作单元；替代路线二选一。先阅读正文前提与预期结果。
+# 当前位置：已建立 Git 仓库的源码根目录；终端：UCRT64。
+git rev-parse --show-toplevel
+git config --local user.email "xxx@yy.com"
+git config --local user.name "xxx"
+git config --local --get user.email
+git config --local --get user.name

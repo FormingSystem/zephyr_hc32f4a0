@@ -1,0 +1,13 @@
+# P004 4.1.1：下载依赖前只读查询已知 SoC 与官方板目标
+# 按正文前提选择本操作，不批量执行整个目录。
+# Windows UCRT64；Zephyr 主仓与 P002 .venv 已准备；只读查询。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+python scripts/list_hardware.py --soc-root . --soc hc32f4a0pitb \
+  --format '{type}: {name} | {dir}'
+python scripts/list_hardware.py --soc-root . --soc hc32f4a0 \
+  --format '{type}: {name} | {dir}'
+python scripts/list_hardware.py --soc-root . --soc an386 \
+  --format '{type}: {name} | {dir}'
+python scripts/list_boards.py --board-root . --soc-root . --arch-root . \
+  --board mps2 --cmakeformat '{NAME} {SOCS} {QUALIFIERS}'

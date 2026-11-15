@@ -1,0 +1,6 @@
+# Windows UCRT64；源码根；P002 环境已经存在。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+west topdir
+west config manifest.path
+west config manifest.file

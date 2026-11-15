@@ -1,0 +1,10 @@
+# P002 2.2.1：首次创建项目 .venv；已有环境直接按 2.2.2 恢复。
+# Windows UCRT64；上游 Zephyr 源码根；基础 Python 3.12.10 已确认。
+py -3.12 -m venv .venv
+source .venv/Scripts/activate
+python --version
+python -m pip --version
+python -c "import sys; print(sys.executable)"
+python -c "import shutil; print(shutil.which('git'))"
+# Python 应属于本项目 .venv；Git 为 ucrt64/bin/git.exe 或已核对的 cmd/git.exe。
+# None 或 usr/bin/git.exe：停止 west 模块下载，回到 2.1.1 修复。

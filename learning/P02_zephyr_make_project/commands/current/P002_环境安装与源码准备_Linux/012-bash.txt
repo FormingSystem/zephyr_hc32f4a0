@@ -1,0 +1,5 @@
+# 终端：Linux Bash；位置：~/zephyrproject/zephyr；.venv 已激活。
+west packages pip --install
+west zephyr-export
+west sdk install --help
+west sdk install --gnu-toolchains arm-zephyr-eabi

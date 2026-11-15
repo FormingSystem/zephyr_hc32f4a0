@@ -1,0 +1,4 @@
+# Windows UCRT64；独立 ARM 工具链根；解压完成后只读核验。
+cd /g/zephyr_practice/arm-zephyr-eabi
+./bin/arm-zephyr-eabi-gcc.exe --version
+./bin/arm-zephyr-eabi-gcc.exe -dumpmachine

@@ -1,0 +1,26 @@
+# P005 5.5：只读核对 Kconfig 来源、生成宏与编译命令
+# 按正文前提选择本操作，不批量执行整个目录。
+# Windows UCRT64；前提：5.3.3 baseline 已产生配置与编译数据库。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+python - <<'PY'
+import json
+from pathlib import Path
+
+build = Path('build/learning-tools/p006/hello_world')
+for rel in ('zephyr/.config', 'zephyr/include/generated/zephyr/autoconf.h'):
+    print('\n' + rel)
+    for line in (build / rel).read_text(encoding='utf-8').splitlines():
+        if 'CONFIG_UART_CMSDK_APB' in line or 'CONFIG_UART_INTERRUPT_DRIVEN' in line:
+            print(line)
+sources = (build / 'zephyr/kconfig/sources.txt').read_text(encoding='utf-8')
+print('\nKconfig.cmsdk_apb 已被读取:', 'Kconfig.cmsdk_apb' in sources)
+entries = json.loads((build / 'compile_commands.json').read_text(encoding='utf-8'))
+for entry in entries:
+    if Path(entry['file']).name == 'uart_cmsdk_apb.c':
+        print('已选驱动:', entry['file'])
+        print('编译命令含 -imacros:', '-imacros' in entry['command'])
+        print('编译命令含 autoconf.h:', 'autoconf.h' in entry['command'])
+print('设备树生成头存在:',
+      (build / 'zephyr/include/generated/zephyr/devicetree_generated.h').is_file())
+PY

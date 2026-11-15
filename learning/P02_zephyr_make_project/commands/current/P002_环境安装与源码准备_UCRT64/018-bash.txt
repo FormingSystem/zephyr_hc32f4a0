@@ -1,0 +1,4 @@
+# 当前位置：任意目录；终端：UCRT64。写入当前用户的 Git 配置。
+git config --global --replace-all http.proxy http://127.0.0.1:10808
+git config --show-origin --get-all http.proxy
+curl -I -x http://127.0.0.1:10808 https://github.com

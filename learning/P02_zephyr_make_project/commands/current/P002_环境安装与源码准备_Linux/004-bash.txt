@@ -1,0 +1,10 @@
+# 终端：Ubuntu 22.04 Bash；上一步密钥已取得。
+echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ jammy main' | \
+  sudo tee /etc/apt/sources.list.d/kitware.list >/dev/null
+sudo apt-get update
+test -f /usr/share/doc/kitware-archive-keyring/copyright || \
+  sudo rm /usr/share/keyrings/kitware-archive-keyring.gpg
+sudo apt-get install kitware-archive-keyring
+sudo apt-get install cmake
+cmake --version
+apt-cache policy cmake

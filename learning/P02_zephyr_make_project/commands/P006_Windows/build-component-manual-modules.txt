@@ -1,0 +1,16 @@
+# P006 6.7.11：显式提供完整模块列表的 CMake 分支
+# 按正文前提选择本操作，不批量执行整个目录。
+# 可选分支：Windows UCRT64；完全明确列出本应用模块，直接调用CMake/Ninja。
+# 前提：CMSIS_6、app_greeting、应用、SDK和Python构建依赖已准备，不负责下载。
+# 本最小应用列表不适用于任意板/功能；其他需求须补全所需模块。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+export ZEPHYR_BASE='G:/zephyr_practice/zephyr-main'
+cmake -S G:/zephyr_practice/applications/component_hello \
+  -B build/learning-tools/p006/component_hello-manual -G Ninja \
+  -DBOARD=mps2/an386 \
+  -DZEPHYR_SDK_INSTALL_DIR=G:/zephyr_practice/zephyr-sdk-1.0.1 \
+  '-DZEPHYR_MODULES=G:/zephyr_practice/modules/hal/cmsis_6;G:/zephyr_practice/components/app_greeting' \
+  -DCMAKE_EXPORT_COMPILE_COMMANDS=ON && \
+cmake --build build/learning-tools/p006/component_hello-manual
+# 不要求卸载west或删除.west；只是由调用方提供完整模块列表。

@@ -1,0 +1,6 @@
+# P001_Windows / 1.4_下载_Zephyr_源码
+# 仅执行当前操作单元；替代路线二选一。先阅读正文前提与预期结果。
+# 当前位置：任意目录；终端：Windows 的 UCRT64 Bash。
+mkdir -p /g/zephyr_practice
+cd /g/zephyr_practice
+pwd

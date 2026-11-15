@@ -1,0 +1,6 @@
+# UCRT64；源码根；重开终端时重新执行本块。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+export ZEPHYR_BASE="$(cygpath -m "$PWD")"
+unset ZEPHYR_MODULES EXTRA_ZEPHYR_MODULES ZEPHYR_EXTRA_MODULES
+python -m pip check

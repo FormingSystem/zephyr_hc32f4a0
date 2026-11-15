@@ -1,0 +1,9 @@
+# Windows UCRT64；Minimal 已解压；ARM 包来自同版 Release。
+cd /g/zephyr_practice
+# 摘要须输出 OK；归档从 arm-zephyr-eabi/ 开始。
+grep -F ' toolchain_gnu_windows-x86_64_arm-zephyr-eabi.7z' sha256.sum |
+  sha256sum --check &&
+  test -f zephyr-sdk-1.0.1/cmake/Zephyr-sdkConfig.cmake &&
+  test ! -e zephyr-sdk-1.0.1/gnu/arm-zephyr-eabi &&
+  7z x toolchain_gnu_windows-x86_64_arm-zephyr-eabi.7z \
+    "-o$(cygpath -m "$PWD/zephyr-sdk-1.0.1/gnu")"

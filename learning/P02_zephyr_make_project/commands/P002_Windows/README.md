@@ -1,0 +1,27 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+
+# P002_Windows 可复制操作
+
+> 历史命令附件：保留原编号与实验记录。Markdown 已重排，当前操作从 [大纲](../../大纲.md) 和 [当前命令索引](../current/README.md) 进入。
+
+对应 [正文](../../P003_主机工具与Python环境_UCRT64.md)。按正文的前提、分支和预期结果选择操作，不批量执行所有文件。`step` 文件按正文操作块排列；小节编号文件保留历史入口，同一操作可能有两个入口。Bash、PowerShell 分别在正文指定的终端执行，不能把全部文件视为同一终端脚本。
+
+| 完整操作单元 | 对应正文小节 | 代码语言 |
+| --- | --- | --- |
+| [2.1-01.txt](2.1-01.txt) | 2.1 安装官方工具并回到 UCRT64 | bash |
+| [2.1.1-01.txt](2.1.1-01.txt) | 2.1.1 官方原文对照，不与主线重复执行 | powershell |
+| [2.1.1-02.txt](2.1.1-02.txt) | 2.1.1 本系列实际安装：Git 与 Python 已另行准备 | powershell |
+| [2.1.1-03.txt](2.1.1-03.txt) | 2.1.1 按官方 Windows 步骤安装主机工具 | bash |
+| [2.1.1-04.txt](2.1.1-04.txt) | 2.1.1 按官方 Windows 步骤安装主机工具 | bash |
+| [git-native-check.txt](git-native-check.txt) | 2.1.1 原生 Git 缺失补装与 PATH 复核 | bash |
+| [2.1.1-05.txt](2.1.1-05.txt) | 2.1.1 按官方 Windows 步骤安装主机工具 | bash |
+| [2.1.2-01.txt](2.1.2-01.txt) | 2.1.2 固定 Windows Python 3.12.10 | bash |
+| [2.1.3-01.txt](2.1.3-01.txt) | 2.1.3 从 UCRT64 下载并安装官方 Python | bash |
+| [2.1.3-02.txt](2.1.3-02.txt) | 2.1.3 从 UCRT64 下载并安装官方 Python | bash |
+| [2.1.4-01.txt](2.1.4-01.txt) | 2.1.4 用版本选择解释器，再交给虚拟环境 | bash |
+| [2.1.4-02.txt](2.1.4-02.txt) | 2.1.4 用版本选择解释器，再交给虚拟环境 | bash |
+| [2.2.1-01.txt](2.2.1-01.txt) | 2.2.1 上一期下载的是上游 Zephyr 源码 | bash |
+| [2.2.1-02.txt](2.2.1-02.txt) | 2.2.1 上一期下载的是上游 Zephyr 源码 | bash |
+| [git-python-check.txt](git-python-check.txt) | 2.2.1 激活已有 venv 后检查 Python 与 Git 路径 | bash |
+| [2.2.1-03.txt](2.2.1-03.txt) | 2.2.1 上一期下载的是上游 Zephyr 源码 | bash |
+| [2.2.2-01.txt](2.2.2-01.txt) | 2.2.2 重新打开终端后恢复环境 | bash |

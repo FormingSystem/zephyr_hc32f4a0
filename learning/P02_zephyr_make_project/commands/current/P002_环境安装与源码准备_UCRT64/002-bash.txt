@@ -1,0 +1,7 @@
+# 当前位置：任意目录；终端：MSYS2 UCRT64 / CLANGARM64 的 Bash。
+if [ ! -e /etc/pacman.d/mirrorlist.msys.before-cn ]; then
+    cp /etc/pacman.d/mirrorlist.msys /etc/pacman.d/mirrorlist.msys.before-cn
+fi
+if [ ! -e /etc/pacman.d/mirrorlist.mingw.before-cn ]; then
+    cp /etc/pacman.d/mirrorlist.mingw /etc/pacman.d/mirrorlist.mingw.before-cn
+fi

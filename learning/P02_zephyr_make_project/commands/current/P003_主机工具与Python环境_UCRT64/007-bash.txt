@@ -1,0 +1,5 @@
+# Windows UCRT64；仅在没有官方 3.12.10 安装器时下载。
+mkdir -p /g/zephyr_practice/downloads
+cd /g/zephyr_practice/downloads
+curl -fL https://www.python.org/ftp/python/3.12.10/python-3.12.10-amd64.exe \
+  -o python-3.12.10-amd64.exe

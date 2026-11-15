@@ -1,0 +1,33 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="190" viewBox="0 0 800 190" role="img" aria-labelledby="title desc"><title id="title">SDK 从下载到工程发现</title><desc id="desc">本章完成选包、下载校验、解压补装和核验，最后选择发现方式。完整应用配置在 P008 执行。</desc><defs>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#2563eb"/></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#b95309"/></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#7c3aed"/></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#64748b"/></marker>
+</defs><rect width="800" height="190" fill="#fff"/><g font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="16" fill="#243447">
+<rect x="16" y="34" width="140" height="88" rx="7" fill="#edf4ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="86" y="62" font-weight="600" fill="#243447" text-anchor="middle">① 选包</text>
+<text x="86" y="84" font-weight="400" fill="#243447" text-anchor="middle">版本 / 主机</text>
+<text x="86" y="106" font-weight="400" fill="#243447" text-anchor="middle">GNU / 包含范围</text>
+<path d="M156 78h17" fill="none" stroke="#2563eb" stroke-width="2" marker-end="url(#blue)"/>
+<rect x="173" y="34" width="140" height="88" rx="7" fill="#edf4ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="243" y="62" font-weight="600" fill="#243447" text-anchor="middle">② 下载、校验</text>
+<text x="243" y="84" font-weight="400" fill="#243447" text-anchor="middle">浏览器取附件</text>
+<text x="243" y="106" font-weight="400" fill="#243447" text-anchor="middle">核对 SHA256</text>
+<path d="M313 78h17" fill="none" stroke="#2563eb" stroke-width="2" marker-end="url(#blue)"/>
+<rect x="330" y="34" width="140" height="88" rx="7" fill="#edf4ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="400" y="62" font-weight="600" fill="#243447" text-anchor="middle">③ 解压、补装</text>
+<text x="400" y="84" font-weight="400" fill="#243447" text-anchor="middle">7-Zip 解压</text>
+<text x="400" y="106" font-weight="400" fill="#243447" text-anchor="middle">Minimal 再补 ARM</text>
+<path d="M470 78h17" fill="none" stroke="#2563eb" stroke-width="2" marker-end="url(#blue)"/>
+<rect x="487" y="34" width="140" height="88" rx="7" fill="#edf4ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="557" y="62" font-weight="600" fill="#243447" text-anchor="middle">④ 核验</text>
+<text x="557" y="84" font-weight="400" fill="#243447" text-anchor="middle">确认目录层级</text>
+<text x="557" y="106" font-weight="400" fill="#243447" text-anchor="middle">运行 GCC 查询</text>
+<path d="M627 78h17" fill="none" stroke="#2563eb" stroke-width="2" marker-end="url(#blue)"/>
+<rect x="644" y="34" width="140" height="88" rx="7" fill="#edf8f0" stroke="#15804a" stroke-width="1.5"/>
+<text x="714" y="62" font-weight="600" fill="#243447" text-anchor="middle">⑤ 选择发现方式</text>
+<text x="714" y="84" font-weight="400" fill="#243447" text-anchor="middle">注册或显式路径</text>
+<text x="714" y="106" font-weight="400" fill="#243447" text-anchor="middle">P008 配置应用</text>
+<text x="18" y="154" font-weight="400" fill="#243447" text-anchor="start">蓝色箭头：准备顺序。绿色框：把已安装的工具交给后续工程配置。</text>
+</g></svg>

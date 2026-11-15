@@ -1,0 +1,86 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="706" viewBox="0 0 800 706" role="img" aria-labelledby="title desc">
+<title id="title">I/O 线程阻塞等待新报告，处理完立即再次等待</title><desc id="desc">零点九至二点四毫秒的同一 CPU 放大记录。颜色只表示执行；文字区分阻塞与就绪。显示一直等待传输完成，鼠标和键盘只有收到各自报告才就绪，分别运行零点二毫秒后阻塞。</desc>
+<defs>
+<marker id="data" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#2563eb"/></marker>
+<marker id="control" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#7c3aed"/></marker>
+<marker id="save" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#b95309"/></marker>
+<marker id="restore" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#15804a"/></marker>
+<marker id="pointer" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#64748b"/></marker>
+</defs>
+<rect width="800" height="706" fill="#fff"/>
+<g font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" fill="#243447">
+<text x="20" y="28" font-size="16" fill="#243447" font-weight="600" text-anchor="start">报告到达才唤醒；处理完已有数据就阻塞，不等时间片耗尽</text>
+<text x="20" y="55" font-size="16" fill="#243447" font-weight="400" text-anchor="start">彩色 = 正在用 CPU；浅灰 = 该事务未执行。状态另用文字说明。</text>
+<path d="M160.0 92V546" stroke="#cbd5e1" stroke-dasharray="2 4"/>
+<text x="160.0" y="84" font-size="16" fill="#243447" font-weight="400" text-anchor="middle">0.9</text>
+<path d="M200.0 92V546" stroke="#cbd5e1" stroke-dasharray="2 4"/>
+<text x="200.0" y="84" font-size="16" fill="#243447" font-weight="400" text-anchor="middle">1</text>
+<path d="M300.0 92V546" stroke="#cbd5e1" stroke-dasharray="2 4"/>
+<text x="300.0" y="84" font-size="16" fill="#243447" font-weight="400" text-anchor="middle">1.25</text>
+<path d="M400.0 92V546" stroke="#cbd5e1" stroke-dasharray="2 4"/>
+<text x="400.0" y="84" font-size="16" fill="#243447" font-weight="400" text-anchor="middle">1.5</text>
+<path d="M500.0 92V546" stroke="#cbd5e1" stroke-dasharray="2 4"/>
+<text x="500.0" y="84" font-size="16" fill="#243447" font-weight="400" text-anchor="middle">1.75</text>
+<path d="M600.0 92V546" stroke="#cbd5e1" stroke-dasharray="2 4"/>
+<text x="600.0" y="84" font-size="16" fill="#243447" font-weight="400" text-anchor="middle">2</text>
+<path d="M700.0 92V546" stroke="#cbd5e1" stroke-dasharray="2 4"/>
+<text x="700.0" y="84" font-size="16" fill="#243447" font-weight="400" text-anchor="middle">2.25</text>
+<path d="M760.0 92V546" stroke="#cbd5e1" stroke-dasharray="2 4"/>
+<text x="760.0" y="84" font-size="16" fill="#243447" font-weight="400" text-anchor="middle">2.4</text>
+<text x="20" y="84" font-size="16" fill="#243447" font-weight="400" text-anchor="start">时间 / ms</text>
+<text x="20" y="127" font-size="16" fill="#243447" font-weight="600" text-anchor="start">CPU 总览</text>
+<rect x="160" y="106" width="600" height="28" fill="#e5e7eb"/>
+<rect x="160.0000" y="106" width="40.0000" height="28" fill="#efca7d"/>
+<rect x="200.0000" y="106" width="8.0000" height="28" fill="#8b5fc0"/>
+<rect x="208.0000" y="106" width="12.0000" height="28" fill="#46566c"/>
+<rect x="220.0000" y="106" width="80.0000" height="28" fill="#55a580"/>
+<rect x="300.0000" y="106" width="12.0000" height="28" fill="#46566c"/>
+<rect x="312.0000" y="106" width="288.0000" height="28" fill="#efca7d"/>
+<rect x="600.0000" y="106" width="8.0000" height="28" fill="#8b5fc0"/>
+<rect x="608.0000" y="106" width="12.0000" height="28" fill="#46566c"/>
+<rect x="620.0000" y="106" width="80.0000" height="28" fill="#528fca"/>
+<rect x="700.0000" y="106" width="12.0000" height="28" fill="#46566c"/>
+<rect x="712.0000" y="106" width="48.0000" height="28" fill="#efca7d"/>
+<text x="20" y="195" font-size="16" fill="#243447" font-weight="400" text-anchor="start">设备 ISR</text>
+<rect x="160" y="174" width="600" height="28" fill="#e5e7eb"/>
+<rect x="200.0000" y="174" width="8.0000" height="28" fill="#8b5fc0"/>
+<rect x="600.0000" y="174" width="8.0000" height="28" fill="#8b5fc0"/>
+<text x="20" y="251" font-size="16" fill="#243447" font-weight="400" text-anchor="start">调度 / 切换</text>
+<rect x="160" y="230" width="600" height="28" fill="#e5e7eb"/>
+<rect x="208.0000" y="230" width="12.0000" height="28" fill="#46566c"/>
+<rect x="300.0000" y="230" width="12.0000" height="28" fill="#46566c"/>
+<rect x="608.0000" y="230" width="12.0000" height="28" fill="#46566c"/>
+<rect x="700.0000" y="230" width="12.0000" height="28" fill="#46566c"/>
+<text x="20" y="307" font-size="16" fill="#243447" font-weight="400" text-anchor="start">曲线线程</text>
+<rect x="160" y="286" width="600" height="28" fill="#e5e7eb"/>
+<rect x="160.0000" y="286" width="40.0000" height="28" fill="#efca7d"/>
+<rect x="312.0000" y="286" width="288.0000" height="28" fill="#efca7d"/>
+<rect x="712.0000" y="286" width="48.0000" height="28" fill="#efca7d"/>
+<text x="20" y="379" font-size="16" fill="#243447" font-weight="400" text-anchor="start">鼠标线程</text>
+<rect x="160" y="358" width="600" height="28" fill="#e5e7eb"/>
+<rect x="220.0000" y="358" width="80.0000" height="28" fill="#55a580"/>
+<text x="20" y="451" font-size="16" fill="#243447" font-weight="400" text-anchor="start">键盘线程</text>
+<rect x="160" y="430" width="600" height="28" fill="#e5e7eb"/>
+<rect x="620.0000" y="430" width="80.0000" height="28" fill="#528fca"/>
+<text x="20" y="523" font-size="16" fill="#243447" font-weight="400" text-anchor="start">显示线程</text>
+<rect x="160" y="502" width="600" height="28" fill="#e5e7eb"/>
+<text x="160" y="338" font-size="16" fill="#243447" font-weight="400" text-anchor="start">已有一批采样待算；被抢占时仍有剩余计算，保持就绪。</text>
+<text x="160" y="410" font-size="16" fill="#243447" font-weight="400" text-anchor="start">等报告 → 1.02 就绪 → 1.05–1.25 处理 → 队列空，再阻塞</text>
+<text x="160" y="482" font-size="16" fill="#243447" font-weight="400" text-anchor="start">等报告 → 2.02 就绪 → 2.05–2.25 处理 → 队列空，再阻塞</text>
+<text x="160" y="554" font-size="16" fill="#243447" font-weight="400" text-anchor="start">本窗口一直阻塞：传输到 8 ms 才完成，此时没有显示收尾工作。</text>
+<rect x="20" y="581" width="16" height="16" fill="#efca7d"/>
+<text x="43" y="594" font-size="16" fill="#243447" font-weight="400" text-anchor="start">黄：曲线计算</text>
+<rect x="212" y="581" width="16" height="16" fill="#55a580"/>
+<text x="235" y="594" font-size="16" fill="#243447" font-weight="400" text-anchor="start">绿：鼠标处理</text>
+<rect x="404" y="581" width="16" height="16" fill="#528fca"/>
+<text x="427" y="594" font-size="16" fill="#243447" font-weight="400" text-anchor="start">蓝：键盘处理</text>
+<rect x="596" y="581" width="16" height="16" fill="#8b5fc0"/>
+<text x="619" y="594" font-size="16" fill="#243447" font-weight="400" text-anchor="start">紫：设备 ISR</text>
+<rect x="20" y="609" width="16" height="16" fill="#46566c"/>
+<text x="43" y="622" font-size="16" fill="#243447" font-weight="400" text-anchor="start">深灰：调度切换</text>
+<rect x="212" y="609" width="16" height="16" fill="#e5e7eb"/>
+<text x="235" y="622" font-size="16" fill="#243447" font-weight="400" text-anchor="start">浅灰：本事务未执行</text>
+<text x="20" y="656" font-size="16" fill="#243447" font-weight="400" text-anchor="start">1.25 ms 鼠标已无数据，立即交回 CPU；1.28 ms 曲线继续，不等到 2 ms。</text>
+<text x="20" y="686" font-size="16" fill="#243447" font-weight="400" text-anchor="start">就绪不等于已执行；本图按事件抢占，关闭同优先级时间片。教学数值，非实测。</text>
+</g></svg>

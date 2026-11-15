@@ -1,0 +1,12 @@
+# P006 6.7.10：保留开启版，独立构建关闭组件的应用
+# 按正文前提选择本操作，不批量执行整个目录。
+# Windows UCRT64；前提：模块/应用仍存在；off.conf 是创建应用时提供的附加配置。
+# 使用独立输出目录保留ON结果，只改变本次配置的APP_GREETING开关。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+export ZEPHYR_BASE='G:/zephyr_practice/zephyr-main'
+west build -b mps2/an386 G:/zephyr_practice/applications/component_hello \
+  -d build/learning-tools/p006/component_hello-off \
+  -- -DEXTRA_ZEPHYR_MODULES=G:/zephyr_practice/components/app_greeting \
+  -DEXTRA_CONF_FILE=G:/zephyr_practice/applications/component_hello/off.conf \
+  -DCMAKE_EXPORT_COMPILE_COMMANDS=ON

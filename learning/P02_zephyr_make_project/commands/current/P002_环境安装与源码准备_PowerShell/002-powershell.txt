@@ -1,0 +1,2 @@
+# Windows PowerShell；任意目录；按检查结果安装缺少的工具。
+winget install Kitware.CMake Ninja-build.Ninja Python.Python.3.12 Git.Git 7zip.7zip oss-winget.dtc oss-winget.gperf

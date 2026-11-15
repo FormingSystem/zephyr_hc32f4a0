@@ -1,0 +1,5 @@
+# Linux Bash：~/zephyrproject/zephyr；或 UCRT64：/g/zephyr_practice/zephyr-main。
+# 先在对应准备章激活 .venv，再进入该源码根。
+python -m west topdir
+python -m west config manifest.path
+python -m west config manifest.file

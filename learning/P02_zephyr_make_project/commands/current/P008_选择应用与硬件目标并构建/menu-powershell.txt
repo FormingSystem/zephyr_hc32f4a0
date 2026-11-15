@@ -1,0 +1,7 @@
+# Windows PowerShell；前提：8.4 的 zip 分支已构建成功。
+Set-Location G:\zephyr_practice\zephyr-main
+if (-not (Test-Path 'build/learning-tools/first-powershell-zip/zephyr/.config')) {
+    throw '请先完成 P008 8.4 对应分支的构建'
+}
+cmake --build build/learning-tools/first-powershell-zip --target menuconfig
+if ($LASTEXITCODE -ne 0) { throw '菜单启动失败，请检查实际 Python 与终端依赖' }

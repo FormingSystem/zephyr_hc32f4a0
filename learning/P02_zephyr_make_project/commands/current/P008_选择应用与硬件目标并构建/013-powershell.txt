@@ -1,0 +1,27 @@
+# Windows PowerShell；P005、P006 与 8.4 已完成；不下载依赖。
+$ErrorActionPreference = 'Stop'
+Set-Location -LiteralPath 'G:\zephyr_practice\zephyr-main'
+$src = (Get-Location).Path.Replace('\', '/')
+$appRel = 'samples/hello_world'
+$boardTarget = 'mps2/an386'
+$build = "$src/build/learning-tools/sysbuild-powershell-local"
+$sdk = 'G:/zephyr_practice/zephyr-sdk-1.0.1'
+$py = "$src/.venv/Scripts/python.exe"
+$cmsis = (Resolve-Path '..\modules\hal\cmsis').Path.Replace('\', '/')
+$cmsis6 = (Resolve-Path '..\modules\hal\cmsis_6').Path.Replace('\', '/')
+$ninja = (Get-Command ninja -CommandType Application).Source
+$env:ZEPHYR_BASE = $src
+$argsCmake = @(
+    '-S', "$src/share/sysbuild", '-B', $build, '-G', 'Ninja',
+    "-DAPP_DIR=$src/$appRel", "-DBOARD=$boardTarget",
+    "-DZephyr_DIR=$src/share/zephyr-package/cmake",
+    "-DPYTHON_EXECUTABLE=$py", "-DPython3_EXECUTABLE=$py",
+    "-DCMAKE_MAKE_PROGRAM=$ninja", "-DZEPHYR_SDK_INSTALL_DIR=$sdk",
+    "-DZEPHYR_MODULES=$cmsis;$cmsis6"
+)
+cmake @argsCmake
+if ($LASTEXITCODE -ne 0) { throw '系统配置失败，不继续构建' }
+cmake --build $build --parallel 4
+if ($LASTEXITCODE -ne 0) { throw '系统构建失败，检查失败域的日志' }
+Get-Content -LiteralPath "$build/domains.yaml"
+Get-Item -LiteralPath "$build/hello_world/zephyr/zephyr.elf" -ErrorAction Stop

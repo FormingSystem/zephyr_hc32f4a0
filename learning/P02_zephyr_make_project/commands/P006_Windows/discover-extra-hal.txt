@@ -1,0 +1,12 @@
+# P006 6.5.5：在已核验 HAL 后检查额外模块发现
+# 按正文前提选择本操作，不批量执行整个目录。
+# Windows UCRT64；仅用于已完成 P006 6.3 HC32 HAL 准备的分支。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+hal_module_root=/g/zephyr_practice/hal_xhsc
+mkdir -p build/learning-tools/p002
+test -f "$hal_module_root/zephyr/module.yml" &&
+python scripts/zephyr_module.py --zephyr-base . \
+  --extra-modules "$(cygpath -m "$hal_module_root")" \
+  --cmake-out build/learning-tools/p002/zephyr_modules_hc32.txt &&
+cat build/learning-tools/p002/zephyr_modules_hc32.txt

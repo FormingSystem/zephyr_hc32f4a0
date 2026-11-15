@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="475" viewBox="0 0 760 475" role="img" aria-labelledby="title desc">
+<title id="title">源码模块工具和构建产物是四类不同对象</title>
+<desc id="desc">源码模块工具和构建产物是四类不同对象。原创教学示意；箭头与颜色含义见图内图例和正文。</desc>
+<defs>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1769aa"/></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7540a0"/></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#b45b13"/></marker>
+<marker id="green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#217346"/></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#667080"/></marker>
+</defs>
+<rect width="760" height="100%" fill="#fff"/>
+<g font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="16" fill="#243447">
+<rect x="20" y="30" width="330" height="120" rx="8" fill="#e8f2fc" stroke="#1769aa" stroke-width="1.5"/>
+<text x="185.0" y="72.0" text-anchor="middle" font-weight="700">① Zephyr 主源码</text>
+<text x="185.0" y="96.0" text-anchor="middle">应用 / 内核 / 硬件支持</text>
+<text x="185.0" y="120.0" text-anchor="middle">west.yml 与模块接入规则</text>
+<rect x="410" y="30" width="330" height="120" rx="8" fill="#e8f5ec" stroke="#217346" stroke-width="1.5"/>
+<text x="575.0" y="72.0" text-anchor="middle" font-weight="700">② 外部模块源码</text>
+<text x="575.0" y="96.0" text-anchor="middle">例如 modules/hal/cmsis_6</text>
+<text x="575.0" y="120.0" text-anchor="middle">按清单取得匹配修订</text>
+<rect x="20" y="265" width="330" height="120" rx="8" fill="#fff0df" stroke="#b45b13" stroke-width="1.5"/>
+<text x="185.0" y="307.0" text-anchor="middle" font-weight="700">③ 主机工具与 SDK</text>
+<text x="185.0" y="331.0" text-anchor="middle">Python / CMake / Ninja</text>
+<text x="185.0" y="355.0" text-anchor="middle">SDK 提供目标编译工具</text>
+<rect x="410" y="265" width="330" height="120" rx="8" fill="#f1eafa" stroke="#7540a0" stroke-width="1.5"/>
+<text x="575.0" y="307.0" text-anchor="middle" font-weight="700">④ 独立构建输出目录</text>
+<text x="575.0" y="331.0" text-anchor="middle">CMakeCache.txt / 生成头</text>
+<text x="575.0" y="355.0" text-anchor="middle">对象文件 / zephyr.elf</text>
+<polyline points="350,90 380,90 380,300 410,300" fill="none" stroke="#1769aa" stroke-width="2" marker-end="url(#blue)"/>
+<polyline points="575,150 575,265" fill="none" stroke="#217346" stroke-width="2" marker-end="url(#green)"/>
+<text x="595" y="213" text-anchor="start" fill="#217346">源码输入</text>
+<polyline points="350,325 410,325" fill="none" stroke="#b45b13" stroke-width="2" marker-end="url(#orange)"/>
+<text x="25" y="421" text-anchor="start">这是职责分组，不规定目录嵌套；源码和工具不会因 build 目录存在而齐全。</text>
+<line x1="24" y1="448" x2="48" y2="448" stroke="#1769aa"/>
+<text x="54" y="453" text-anchor="start">主仓输入</text>
+<line x1="140" y1="448" x2="164" y2="448" stroke="#217346"/>
+<text x="170" y="453" text-anchor="start">模块输入</text>
+<line x1="256" y1="448" x2="280" y2="448" stroke="#b45b13"/>
+<text x="286" y="453" text-anchor="start">执行工具</text>
+<line x1="372" y1="448" x2="396" y2="448" stroke="#7540a0"/>
+<text x="402" y="453" text-anchor="start">生成结果</text>
+</g></svg>

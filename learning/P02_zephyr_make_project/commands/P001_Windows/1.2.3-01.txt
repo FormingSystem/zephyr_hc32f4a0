@@ -1,0 +1,6 @@
+# P001_Windows / 1.2.3_检查_pacman_实际使用的地址
+# 仅执行当前操作单元；替代路线二选一。先阅读正文前提与预期结果。
+# 当前位置：任意目录；终端：MSYS2 UCRT64 / CLANGARM64 的 Bash。只读检查。
+echo "$MSYSTEM"
+pacman-conf Architecture
+pacman-conf --repo-list

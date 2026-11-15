@@ -1,0 +1,5 @@
+# Windows UCRT64；源码根；west-demo 已成功配置，工具位置没有改变。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+# 直接 CMake 复用 west 创建的同一缓存和规则。
+cmake --build build/learning-tools/west-demo --parallel 4

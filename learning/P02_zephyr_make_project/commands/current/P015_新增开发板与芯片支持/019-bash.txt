@@ -1,0 +1,4 @@
+# UCRT64；源码根；查询只检查发现关系，不编译驱动。
+python scripts/list_boards.py --board-root build/learning-tools/p003/hc32_port \
+  --soc-root build/learning-tools/p003/hc32_port \
+  --board uyup_rpi_a --cmakeformat '{NAME};{DIR};{QUALIFIERS}'

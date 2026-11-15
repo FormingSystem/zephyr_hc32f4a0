@@ -1,0 +1,9 @@
+# P002 2.2.1：已创建的项目 venv 与其实际找到的 Git。
+# Windows UCRT64；源码根；.venv 已存在，本块不重新创建环境。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+python -c "import sys; print(sys.executable)"
+python -c "import shutil; print(shutil.which('git'))"
+# Python 应属于本项目 .venv/Scripts；Git 应为 ucrt64/bin/git.exe，
+# 或 P002 已核对来源的 Git for Windows cmd/git.exe。
+# 若为 None 或 usr/bin/git.exe，停止 west 模块下载，回到 2.1.1 修复后再查。

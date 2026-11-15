@@ -1,0 +1,7 @@
+# Windows PowerShell；上方配置成功；route 与上方保持相同。
+Set-Location -LiteralPath 'G:\zephyr_practice\zephyr-main'
+$route = 'zip'
+$build = "build/learning-tools/first-powershell-$route"
+cmake --build $build
+if ($LASTEXITCODE -ne 0) { throw '编译或链接失败' }
+Get-Item -LiteralPath "$build/zephyr/zephyr.elf" -ErrorAction Stop

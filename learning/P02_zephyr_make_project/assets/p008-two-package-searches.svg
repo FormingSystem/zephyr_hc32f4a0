@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="440" viewBox="0 0 760 440" role="img" aria-labelledby="title desc">
+<title id="title">Zephyr 源码包与 SDK 包是两次不同的查找</title>
+<desc id="desc">Zephyr 源码包与 SDK 包是两次不同的查找。原创教学示意；箭头与颜色含义见图内图例和正文。</desc>
+<defs>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1769aa"/></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7540a0"/></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#b45b13"/></marker>
+<marker id="green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#217346"/></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#667080"/></marker>
+</defs>
+<rect width="760" height="100%" fill="#fff"/>
+<g font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="16" fill="#243447">
+<rect x="20" y="25" width="320" height="70" rx="8" fill="#e8f2fc" stroke="#1769aa" stroke-width="1.5"/>
+<text x="180.0" y="54.0" text-anchor="middle" font-weight="700">应用 CMakeLists.txt</text>
+<text x="180.0" y="78.0" text-anchor="middle">find_package(Zephyr ...)</text>
+<rect x="420" y="25" width="320" height="100" rx="8" fill="#f1eafa" stroke="#7540a0" stroke-width="1.5"/>
+<text x="580.0" y="57.0" text-anchor="middle" font-weight="700">① Zephyr 包入口</text>
+<text x="580.0" y="81.0" text-anchor="middle">源码根/share/</text>
+<text x="580.0" y="105.0" text-anchor="middle">zephyr-package/cmake</text>
+<polyline points="340,60 420,60" fill="none" stroke="#7540a0" stroke-width="2" marker-end="url(#purple)"/>
+<rect x="420" y="200" width="320" height="100" rx="8" fill="#fff0df" stroke="#b45b13" stroke-width="1.5"/>
+<text x="580.0" y="232.0" text-anchor="middle" font-weight="700">② Zephyr-sdk 包入口</text>
+<text x="580.0" y="256.0" text-anchor="middle">SDK 根/cmake</text>
+<text x="580.0" y="280.0" text-anchor="middle">加载目标工具链规则</text>
+<polyline points="580,125 580,200" fill="none" stroke="#b45b13" stroke-width="2" marker-end="url(#orange)"/>
+<text x="405" y="168" text-anchor="start" fill="#b45b13">构建规则继续查找</text>
+<rect x="20" y="200" width="320" height="100" rx="8" fill="#e8f5ec" stroke="#217346" stroke-width="1.5"/>
+<text x="180.0" y="232.0" text-anchor="middle" font-weight="700">两份各自独立的定位信息</text>
+<text x="180.0" y="256.0" text-anchor="middle">注册记录 或 显式目录</text>
+<text x="180.0" y="280.0" text-anchor="middle">指定一个不会创建另一个</text>
+<polyline points="340,250 420,250" fill="none" stroke="#217346" stroke-width="2" marker-end="url(#green)"/>
+<text x="25" y="359" text-anchor="start">Zephyr_DIR 定位系统源码规则；SDK 根用于定位编译工具。</text>
+<text x="25" y="386" text-anchor="start">注册记录保存位置，不会下载源码、安装 SDK 或准备模块。</text>
+<line x1="24" y1="413" x2="48" y2="413" stroke="#1769aa"/>
+<text x="54" y="418" text-anchor="start">应用调用</text>
+<line x1="140" y1="413" x2="164" y2="413" stroke="#7540a0"/>
+<text x="170" y="418" text-anchor="start">源码包</text>
+<line x1="240" y1="413" x2="264" y2="413" stroke="#b45b13"/>
+<text x="270" y="418" text-anchor="start">SDK 包</text>
+<line x1="372" y1="413" x2="396" y2="413" stroke="#217346"/>
+<text x="402" y="418" text-anchor="start">定位方式</text>
+</g></svg>

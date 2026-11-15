@@ -1,0 +1,9 @@
+# 当前位置：任意目录；终端：UCRT64。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+python --version
+python -m pip --version
+python -m pip check
+python -m west --version
+python -c "import sys; print(sys.executable)"
+python -c "import shutil; print(shutil.which('git'))"

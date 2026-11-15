@@ -1,0 +1,18 @@
+# Windows UCRT64；源码根；随附 learning 已放入源码根。
+(
+set -eu
+cd /g/zephyr_practice/zephyr-main
+if test -e build/learning-tools/p003/hc32_port; then
+  printf '%s\n' '工作模块已存在；若由 P014 创建，跳过本节复制块并转到 15.6.5 比较。' >&2
+  exit 1
+fi
+mkdir -p build/learning-tools/p003
+test -f learning/board/labs/hc32_port/zephyr/module.yml
+mkdir build/learning-tools/p003/hc32_port
+mkdir -p build/learning-tools/p003/hc32_port/soc/xhsc/hc32f4a0
+cp -R learning/board/labs/hc32_port/zephyr build/learning-tools/p003/hc32_port/
+cp learning/board/labs/hc32_port/Kconfig learning/board/labs/hc32_port/CMakeLists.txt \
+  build/learning-tools/p003/hc32_port/
+cp learning/board/labs/hc32_port/soc/xhsc/hc32f4a0/{soc.yml,Kconfig.soc,Kconfig,Kconfig.defconfig} \
+  build/learning-tools/p003/hc32_port/soc/xhsc/hc32f4a0/
+)

@@ -1,0 +1,9 @@
+# P006 6.5.5：读取默认 west 项目的模块发现结果
+# 按正文前提选择本操作，不批量执行整个目录。
+# Windows UCRT64；源码根；P002 的 .venv 和 P004 的 west/CMSIS 已就绪。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+mkdir -p build/learning-tools/p002
+python scripts/zephyr_module.py --zephyr-base . \
+  --cmake-out build/learning-tools/p002/zephyr_modules.txt &&
+cat build/learning-tools/p002/zephyr_modules.txt

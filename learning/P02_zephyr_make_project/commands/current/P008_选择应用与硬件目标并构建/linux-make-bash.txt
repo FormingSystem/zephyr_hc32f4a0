@@ -1,0 +1,28 @@
+# Linux Bash；沿用 P003 Linux 的 SDK 与 P006 模块位置。
+(
+set -e
+cd ~/zephyrproject/zephyr
+source ../.venv/bin/activate
+SRC="$PWD"
+SDK="$HOME/zephyr-sdk-1.0.1"
+PY="$(python -c 'import sys; print(sys.executable)')"
+BUILD="$SRC/build/learning-tools/first-linux-make"
+export ZEPHYR_BASE="$SRC"
+make --version
+test -f "$SDK/cmake/Zephyr-sdkConfig.cmake"
+CMSIS="$(cd ../modules/hal/cmsis && pwd)"
+CMSIS6="$(cd ../modules/hal/cmsis_6 && pwd)"
+test -f "$CMSIS/zephyr/module.yml"
+test -f "$CMSIS6/CMSIS/Core/Include/core_cm4.h"
+cmake -S "$SRC/samples/hello_world" -B "$BUILD" -G "Unix Makefiles" \
+  -DBOARD=mps2/an386 \
+  "-DZephyr_DIR=$SRC/share/zephyr-package/cmake" \
+  "-DPYTHON_EXECUTABLE=$PY" "-DPython3_EXECUTABLE=$PY" \
+  "-DZEPHYR_SDK_INSTALL_DIR=$SDK" \
+  "-DZEPHYR_MODULES=$CMSIS;$CMSIS6" \
+  -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+test -f "$BUILD/Makefile"
+grep '^CMAKE_GENERATOR:' "$BUILD/CMakeCache.txt"
+cmake --build "$BUILD" --parallel 4
+test -s "$BUILD/zephyr/zephyr.elf"
+)

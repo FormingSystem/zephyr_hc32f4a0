@@ -1,0 +1,9 @@
+# P002_Windows / 2.1.1\_按官方 Windows 步骤安装主机工具
+# 先核对正文的终端、目录与前提，再执行此完整操作单元。
+# 终端：重新打开的 Windows UCRT64；任意目录。
+type -a cmake ninja dtc gperf 7z
+cmake --version
+ninja --version
+dtc --version
+gperf --version
+7z i

@@ -1,0 +1,4 @@
+# Windows PowerShell；任意目录；只读检查。
+Get-Command cmake, ninja, py, git, 7z, dtc, gperf -ErrorAction SilentlyContinue |
+    Select-Object Name, Source
+py -3.12 --version

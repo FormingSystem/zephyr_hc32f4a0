@@ -1,0 +1,17 @@
+{
+  "version": 3,
+  "configurePresets": [{
+    "name": "learning-mps2",
+    "generator": "Ninja",
+    "binaryDir": "${sourceDir}/../../build/learning-tools/cmake-presets",
+    "cacheVariables": {
+      "BOARD": "mps2/an386",
+      "Zephyr_DIR": "${sourceDir}/../../share/zephyr-package/cmake",
+      "Python3_EXECUTABLE": "${sourceDir}/../../.venv/Scripts/python.exe"
+    }
+  }],
+  "buildPresets": [{
+    "name": "learning-mps2",
+    "configurePreset": "learning-mps2"
+  }]
+}

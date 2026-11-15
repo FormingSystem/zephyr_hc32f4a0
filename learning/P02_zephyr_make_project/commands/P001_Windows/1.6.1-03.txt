@@ -1,0 +1,6 @@
+# P001_Windows / 1.6.1_获取历史并验证深度
+# 仅执行当前操作单元；替代路线二选一。先阅读正文前提与预期结果。
+# 当前位置：zephyr-main 源码根目录；终端：UCRT64。
+git rev-parse --is-shallow-repository
+git rev-list --count HEAD
+git log --oneline --decorate -20

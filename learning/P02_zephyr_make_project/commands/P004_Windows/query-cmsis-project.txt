@@ -1,0 +1,6 @@
+# P004 4.2：只读查询 CMSIS 项目的仓库、修订和目录
+# 按正文前提选择本操作，不批量执行整个目录。
+# Windows UCRT64；P004 4.2 已核对工作区；只读查询，不下载。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+west list cmsis_6 -f '{name} | {url} | {revision} | {abspath}'

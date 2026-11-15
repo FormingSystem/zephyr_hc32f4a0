@@ -1,0 +1,6 @@
+# P005 5.4.1：只读对照完整清单与 CMSIS 的实际项目身份
+# Windows UCRT64；P004 工作区与 CMSIS 已就绪；不下载、不改清单。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+west list -f '{name}: {path} @ {revision}'
+west list cmsis_6 -f '{name} {revision} {path} {url}'

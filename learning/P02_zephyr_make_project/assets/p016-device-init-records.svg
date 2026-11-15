@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="550" viewBox="0 0 760 550" role="img" aria-labelledby="title desc">
+<title id="title">构建时登记初始化记录运行时调用后检查设备状态</title>
+<desc id="desc">构建时登记初始化记录运行时调用后检查设备状态。原创教学示意；箭头与颜色含义见图内图例和正文。</desc>
+<defs>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1769aa"/></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7540a0"/></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#b45b13"/></marker>
+<marker id="green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#217346"/></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#667080"/></marker>
+</defs>
+<rect width="760" height="100%" fill="#fff"/>
+<g font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="16" fill="#243447">
+<rect x="20" y="25" width="320" height="90" rx="8" fill="#e8f2fc" stroke="#1769aa" stroke-width="1.5"/>
+<text x="180.0" y="52.0" text-anchor="middle" font-weight="700">构建阶段：设备定义与初始化宏</text>
+<text x="180.0" y="76.0" text-anchor="middle">生成设备对象及初始化记录</text>
+<text x="180.0" y="100.0" text-anchor="middle">链接规则组织这些记录</text>
+<rect x="420" y="25" width="320" height="90" rx="8" fill="#f1eafa" stroke="#7540a0" stroke-width="1.5"/>
+<text x="580.0" y="52.0" text-anchor="middle" font-weight="700">镜像中保存的记录</text>
+<text x="580.0" y="76.0" text-anchor="middle">初始化函数 / 对象关联</text>
+<text x="580.0" y="100.0" text-anchor="middle">按级别 / 优先级排好位置</text>
+<polyline points="340,70 420,70" fill="none" stroke="#7540a0" stroke-width="2" marker-end="url(#purple)"/>
+<rect x="420" y="205" width="320" height="90" rx="8" fill="#fff0df" stroke="#b45b13" stroke-width="1.5"/>
+<text x="580.0" y="232.0" text-anchor="middle" font-weight="700">启动阶段：内核遍历记录</text>
+<text x="580.0" y="256.0" text-anchor="middle">按阶段与顺序调用初始化</text>
+<text x="580.0" y="280.0" text-anchor="middle">保存本设备的初始化结果</text>
+<polyline points="580,115 580,205" fill="none" stroke="#b45b13" stroke-width="2" marker-end="url(#orange)"/>
+<rect x="20" y="205" width="320" height="90" rx="8" fill="#fff0df" stroke="#b45b13" stroke-width="1.5"/>
+<text x="180.0" y="232.0" text-anchor="middle" font-weight="700">多线程主线：主线程入口</text>
+<text x="180.0" y="256.0" text-anchor="middle">运行后期初始化</text>
+<text x="180.0" y="280.0" text-anchor="middle">再调用应用 main</text>
+<polyline points="420,250 340,250" fill="none" stroke="#b45b13" stroke-width="2" marker-end="url(#orange)"/>
+<rect x="20" y="385" width="320" height="70" rx="8" fill="#e8f2fc" stroke="#1769aa" stroke-width="1.5"/>
+<text x="180.0" y="414.0" text-anchor="middle" font-weight="700">应用获得设备指针</text>
+<text x="180.0" y="438.0" text-anchor="middle">device_is_ready(dev)</text>
+<rect x="420" y="385" width="320" height="70" rx="8" fill="#e8f5ec" stroke="#217346" stroke-width="1.5"/>
+<text x="580.0" y="414.0" text-anchor="middle" font-weight="700">就绪：调用设备 API</text>
+<text x="580.0" y="438.0" text-anchor="middle">未就绪：定位失败或延迟初始化</text>
+<polyline points="180,295 180,385" fill="none" stroke="#1769aa" stroke-width="2" marker-end="url(#blue)"/>
+<polyline points="340,420 420,420" fill="none" stroke="#217346" stroke-width="2" marker-end="url(#green)"/>
+<text x="25" y="493" text-anchor="start">初始化优先级 ≠ 线程优先级；进入 main ≠ 所有设备都初始化成功。</text>
+<line x1="24" y1="523" x2="48" y2="523" stroke="#1769aa"/>
+<text x="54" y="528" text-anchor="start">构建/查询</text>
+<line x1="156" y1="523" x2="180" y2="523" stroke="#7540a0"/>
+<text x="186" y="528" text-anchor="start">镜像记录</text>
+<line x1="272" y1="523" x2="296" y2="523" stroke="#b45b13"/>
+<text x="302" y="528" text-anchor="start">启动执行</text>
+<line x1="388" y1="523" x2="412" y2="523" stroke="#217346"/>
+<text x="418" y="528" text-anchor="start">按状态使用</text>
+</g></svg>

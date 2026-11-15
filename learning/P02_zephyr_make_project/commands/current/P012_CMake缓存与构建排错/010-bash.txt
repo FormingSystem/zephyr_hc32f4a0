@@ -1,0 +1,3 @@
+# Windows UCRT64；仅在确认可以直连且要取消当前窗口代理时执行。
+unset HTTP_PROXY HTTPS_PROXY ALL_PROXY
+unset http_proxy https_proxy all_proxy

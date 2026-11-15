@@ -1,0 +1,5 @@
+# Windows PowerShell；新窗口；恢复当前位置并检查项目环境。
+Set-Location -LiteralPath 'G:\zephyr_practice\zephyr-main'
+& .\.venv\Scripts\python.exe --version
+& .\.venv\Scripts\python.exe -m pip check
+& .\.venv\Scripts\python.exe -m west --version

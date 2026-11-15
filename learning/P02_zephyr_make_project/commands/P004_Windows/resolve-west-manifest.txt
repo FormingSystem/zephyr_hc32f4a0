@@ -1,0 +1,6 @@
+# P004 4.2：只读展开当前清单的 imports
+# 按正文前提选择本操作，不批量执行整个目录。
+# Windows UCRT64；主线源码根；只读查看导入展开后的完整清单。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+west manifest --resolve

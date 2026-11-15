@@ -1,0 +1,3 @@
+# Windows PowerShell；G:\zephyr_practice\zephyr-main；只读查询。
+& .\.venv\Scripts\python.exe -m west list cmsis cmsis_6 -f '{name} {url} {revision} {abspath}'
+if ($LASTEXITCODE -ne 0) { throw '当前清单未解析成功，先检查清单和源码版本' }

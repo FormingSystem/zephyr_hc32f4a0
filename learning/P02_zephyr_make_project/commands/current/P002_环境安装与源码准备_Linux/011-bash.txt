@@ -1,0 +1,7 @@
+# Ubuntu 22.04 Bash；已有本节的官方工作区，venv 已激活。
+cd ~/zephyrproject/zephyr
+west topdir &&
+west list cmsis cmsis_6 -f '{url} {revision} {abspath}' &&
+west update cmsis cmsis_6 &&
+test -f ../modules/hal/cmsis_6/CMSIS/Core/Include/core_cm4.h &&
+cat ../modules/hal/cmsis_6/zephyr/module.yml

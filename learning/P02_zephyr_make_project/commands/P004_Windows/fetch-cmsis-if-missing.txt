@@ -1,0 +1,8 @@
+# P004 4.3.1：仅 CMSIS 缺失时获取源码的恢复块
+# 按正文前提选择本操作，不批量执行整个目录。
+# 仅CMSIS尚未按当前清单准备时执行；Windows UCRT64；有网络访问。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+west list cmsis_6 -f '{url} {revision} {abspath}' && \
+west update cmsis_6 && \
+test -f ../modules/hal/cmsis_6/CMSIS/Core/Include/core_cm4.h

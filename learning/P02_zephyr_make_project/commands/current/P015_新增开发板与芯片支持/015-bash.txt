@@ -1,0 +1,5 @@
+# Windows UCRT64；源码根 /g/zephyr_practice/zephyr-main；根 .venv 已激活。
+cmake --build build/learning-tools/p003/build-practice-sdk-auto
+grep -E '^CONFIG_(BOARD|SOC|CPU_CORTEX_M4)' \
+  build/learning-tools/p003/build-practice-sdk-auto/zephyr/.config
+ls -l build/learning-tools/p003/build-practice-sdk-auto/zephyr/zephyr.elf

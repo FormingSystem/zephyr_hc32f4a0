@@ -1,0 +1,9 @@
+# Windows UCRT64；前提：8.5 的 zip 分支已构建成功。
+(
+set -e
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+test -f build/learning-tools/first-ucrt-zip/zephyr/.config
+MENU_BUILD="$(cygpath -am build/learning-tools/first-ucrt-zip)"
+MSYS2_ARG_CONV_EXCL='*' /ucrt64/bin/cmake --build "$MENU_BUILD" --target menuconfig
+)

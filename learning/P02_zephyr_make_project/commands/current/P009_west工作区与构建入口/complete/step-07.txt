@@ -1,0 +1,5 @@
+# Windows UCRT64；源码根；工作区检查已通过。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+west help build
+west build --help

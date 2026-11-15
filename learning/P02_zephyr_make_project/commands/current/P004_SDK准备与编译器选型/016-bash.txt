@@ -1,0 +1,4 @@
+# Windows UCRT64；下载目录；只校验，随后用 7-Zip 界面解压。
+cd /g/zephyr_practice
+archive=zephyr-sdk-1.0.1_windows-x86_64_gnu.7z
+grep -F " $archive" sha256.sum | sha256sum --check

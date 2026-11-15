@@ -1,0 +1,6 @@
+# Windows UCRT64；源码根；P008 对应路线已配置成功。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+# 反向对照：仅 P008 UCRT64 的 route=zip 已成功配置时执行。
+# 如果当时选 route=west，则将末尾目录改为 first-ucrt-west。
+west build -d build/learning-tools/first-ucrt-zip

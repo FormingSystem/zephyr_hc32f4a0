@@ -1,0 +1,7 @@
+# P003_Windows / 3.5.2；转入 P004 前检查。
+# Windows UCRT64；实验源码根；先激活 P002 创建的 Windows Python 环境。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+type -a git
+python -c "import sys, shutil; print(sys.executable); print(shutil.which('git'))"
+git --version
