@@ -146,17 +146,7 @@ py -3.12 --version
 
 Windows 图形安装：仅在尚未安装所需版本时，打开上述发行页，在 **Files** 表选择 **Windows installer (64-bit)**，文件名为 `python-3.12.10-amd64.exe`。`amd64` 也适用于 Intel x64 电脑。默认安装位置即可；选择 Customize installation 时也可以保留自己已有的工具目录。保留 pip 和 Python Launcher；Python Launcher（`py`）可用于发现解释器，Add python.exe to PATH 则控制命令搜索路径，两者作用不同。安装完成后重开 UCRT64。不要下载源码包或 embeddable package 来替代完整安装器。
 
-![下载到的 Python 安装程序](assets/p002-python-download-file.png)
-
-![安装首页的自定义安装入口](assets/p002-python-installer-start.png)
-
-以下两张为保留的 Windows Python 安装截图。目录示范是 `E:\python\python3_12`，不是必选路径；调试符号和调试二进制是可选项，Zephyr 基础环境不要求勾选。
-
-![Windows Python 的 pip 和 Launcher 组件](assets/p002-python-features-annotated.png)
-
-![Windows Python 自定义安装位置](assets/p002-python-location-annotated.png)
-
-![Windows Python 安装完成](assets/p002-python-install-success.png)
+![图片1](./assets/图片1.png)
 
 <a id="section-3-1-3"></a>
 
