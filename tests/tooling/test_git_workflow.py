@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 """Exercise the actual Git hook and reject accidental configuration of a parent."""
 
+import hashlib
 import os
 from pathlib import Path
 import shutil
@@ -14,9 +15,10 @@ import unittest
 project_root = Path(__file__).resolve().parents[2]
 framework_files = (
     ".githooks/commit-msg",
-    "scripts/check_commit_message.py",
+    ".githooks/upstream/commit-msg",
     "scripts/git_setup.py",
     "governance/templates/git_commit_message.txt",
+    "governance/templates/upstream/git_commit_message.txt",
 )
 
 
@@ -78,14 +80,14 @@ class git_workflow_test(unittest.TestCase):
             "commit", "--allow-empty", "--file", str(message_file), expected=0 if accepted else 1
         )
 
-    def test_hook_accepts_supported_subjects_and_trailers(self):
+    def test_hook_accepts_source_subjects_and_list_bodies(self):
         messages = (
-            "docs: 补充使用说明\n",
-            "feat(board/uyup): 增加启动配置\n",
+            "docs: 补充使用说明\n\n- 说明初始化命令与输出目录\n",
+            "feat(board/uyup): 增加启动配置\n\n- 指定目标芯片与板级默认值\n",
             "fix(时钟/配置)!: 修正频率\n\n- 采用12MHz外部晶振\n",
-            "build(toolchain): 增加工具链检查\n\nSigned-off-by: Human Author <author@example.invalid>\n",
-            "test(git): 验证提交钩子\n\n- 实际执行提交校验\n\nAssisted-by: TestAgent:test-model\n",
-            "docs: 补充检查步骤\n\nAssisted-by: TestAgent:test-model checker\nSigned-off-by: Human Author <author@example.invalid>\n",
+            "content(knowledge/kernel): 解释线程等待与唤醒\n\n- 对照可运行用例说明阻塞与就绪状态\n",
+            "docs(repository/git): 补齐提交粒度规则\n\n- 独立治理政策与知识正文分别提交\n",
+            "test(git): 验证提交钩子\n\n# 模板注释不会成为正文\n- 实际执行来源校验\n",
         )
         for message in messages:
             with self.subTest(subject=message.splitlines()[0]):
@@ -93,12 +95,14 @@ class git_workflow_test(unittest.TestCase):
 
     def test_hook_rejects_invalid_messages_without_committing(self):
         messages = (
+            "docs: 只有标题\n",
+            "feat(board/uyup): 只有空行\n\n\n",
+            "docs: 只有注释\n\n# - 这不是实际正文\n",
+            "docs: 只有空白明细\n\n-    \n",
             "update: 增加配置\n",
             "feat(board/uyup/uart): 增加串口\n",
             "feat(board uyup): 增加配置\n",
             "feat: add configuration\n",
-            "feat: café\n",
-            "feat: ✅\n",
             "feat: 增加配置\n正文没有使用列表\n",
             "feat: 增加配置\n\nAssisted-by: Agent:first\nAssisted-by: Agent:second\n",
             "feat: 增加配置\n\nAssisted-by: missing-model\n",
@@ -107,12 +111,41 @@ class git_workflow_test(unittest.TestCase):
             "feat: 增加配置\n\nAssisted-by: Agent:model\n\nSigned-off-by: Human <human@example.invalid>\n",
             "feat: 增加配置\n\nAssisted-by: Agent:model\n- 尾注后追加正文\n",
             "feat: 增加配置\n\nCo-authored-by: Agent <agent@example.invalid>\n",
+            "docs: 补充工程介绍与Zephyr学习实验路线\n\n- 新增四篇工程入门介绍\n\nAssisted-by: Codex:gpt-6\n",
+            "build(toolchain): 增加工具链检查\n\nSigned-off-by: Human Author <author@example.invalid>\n",
+            "content: \n",
+            "docs(repository:git): 更新规范\n",
+            "docs(repository/git/extra): 更新规范\n",
+            "docs: 更新规范\n\n- \n",
         )
         for message in messages:
             with self.subTest(message=message):
                 self.commit_message(message, accepted=False)
         result = self.run_git("rev-parse", "--verify", "HEAD", expected=128)
         self.assertNotEqual(result.returncode, 0)
+
+    def test_inherited_hook_and_template_match_source_baseline(self):
+        expected_hashes = {
+            ".githooks/upstream/commit-msg": "83b0c6db5d93ca5e3c11c7004094c96d29116f050ecd2c25c2d710b53690c78b",
+            "governance/templates/upstream/git_commit_message.txt": "bee96272811082c7312b15322d641c43bc67ee5442c7f7c3231be1ffe90b5193",
+        }
+        for relative_path, expected_hash in expected_hashes.items():
+            with self.subTest(path=relative_path):
+                lines = (self.repo_root / relative_path).read_text(encoding="utf-8").splitlines(keepends=True)
+                # 只去掉本项目补充的许可和来源注释，行为正文应与来源逐字一致。
+                source = "".join(line for line in lines if not line.startswith((
+                    "# SPDX-FileCopyrightText:", "# SPDX-License-Identifier:",
+                    "# Inherited verbatim from linux-note ",
+                )))
+                self.assertEqual(hashlib.sha256(source.encode("utf-8")).hexdigest(), expected_hash)
+
+    def test_project_requires_details_while_source_baseline_remains_unchanged(self):
+        message = "docs: 补充工程说明\n"
+        message_file = self.repo_root / ".git/source_message.txt"
+        message_file.write_text(message, encoding="utf-8")
+        self.run_command("sh", str(self.repo_root / ".githooks/upstream/commit-msg"),
+                         str(message_file), cwd=self.repo_root)
+        self.commit_message(message, accepted=False)
 
     def test_setup_is_idempotent_and_preserves_identity_and_remote(self):
         self.run_git("remote", "add", "origin", "https://example.invalid/unchanged.git")

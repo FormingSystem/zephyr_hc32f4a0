@@ -1,33 +1,18 @@
 #!/bin/sh
 # SPDX-FileCopyrightText: Copyright (c) 2026 FormingSystem
 # SPDX-License-Identifier: GPL-2.0-only
-# Derived from linux-note's commit-msg policy; see framework_provenance.md.
+# Preserve the inherited validator, then enforce the project detail policy.
 
-set -eu
+msg_file="$1"
+sh "$(dirname "$0")/upstream/commit-msg" "$msg_file" || exit $?
 
-repo_root=$(git rev-parse --show-toplevel)
-
-# A Zephyr workspace may provide Python above this independent repository.
-for environment_root in \
-    "${VIRTUAL_ENV:-}" \
-    "$repo_root/.venv" \
-    "$repo_root/../.venv" \
-    "$repo_root/../../.venv"; do
-    [ -n "$environment_root" ] || continue
-    for executable in "$environment_root/Scripts/python.exe" "$environment_root/bin/python"; do
-        if [ -x "$executable" ] && \
-           "$executable" -c 'import sys; sys.exit(sys.version_info < (3, 10))' >/dev/null 2>&1; then
-            exec "$executable" "$repo_root/scripts/check_commit_message.py" "$1"
-        fi
-    done
-done
-
-for executable in python python3; do
-    if command -v "$executable" >/dev/null 2>&1 && \
-       "$executable" -c 'import sys; sys.exit(sys.version_info < (3, 10))' >/dev/null 2>&1; then
-        exec "$executable" "$repo_root/scripts/check_commit_message.py" "$1"
-    fi
-done
-
-printf '%s\n' '提交检查需要 Python 3.10+；请先激活 Zephyr 工作区或仓库的 .venv。' >&2
-exit 1
+body_lines="$(tail -n +2 "$msg_file" | grep -Ev '^[[:space:]]*(#.*)?$' || true)"
+if ! printf '%s\n' "$body_lines" | grep -Eq '^- [^[:space:]]'; then
+  printf '%s\n' '本项目每条提交必须包含至少一行“- 具体明细”，不能只写标题。' >&2
+  exit 1
+fi
+if printf '%s\n' "$body_lines" | grep -Eq '^- [[:space:]]*$'; then
+  printf '%s\n' '提交明细不能为空或只有空白。' >&2
+  exit 1
+fi
+exit 0

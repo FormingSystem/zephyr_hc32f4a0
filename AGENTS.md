@@ -1,196 +1,134 @@
-<!--
-SPDX-FileCopyrightText: Copyright The Zephyr Project Contributors
-SPDX-License-Identifier: Apache-2.0
--->
+<!-- SPDX-FileCopyrightText: Copyright The zephyr_hc32f4a0 Contributors -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
 
-# Zephyr RTOS: instructions for AI coding agents
+# 项目协作约定
 
-This file is for coding agents, and for the humans driving them, working in this repository.
-It is a digest of `doc/contribute/` plus the things CI and maintainers reject most often. Where
-it is silent or disagrees with the documentation, the documentation wins:
-`doc/contribute/guidelines.rst` (process, DCO, AI-assistant policy),
-`doc/contribute/contributor_expectations.rst` (PR shape), `doc/contribute/style/` (C, Kconfig,
-CMake, Doxygen and devicetree style) and `doc/contribute/coding_guidelines/index.rst` (the
-MISRA-C subset). Read the relevant page before working in an area you have not touched before;
-do not rely on this digest or on training data alone.
+本项目的独立开发仓库名为 `zephyr_hc32f4a0`，远程为
+`git@github.com:FormingSystem/zephyr_hc32f4a0.git`。
+执行任何 Git 写操作前，核对 `git rev-parse --show-toplevel` 和远程地址，确认操作的是当前项目克隆。
+本机开发目录与官方源码参考目录的确切位置见下方私人环境配置；官方参考目录不是本项目的构建依赖。
+本仓库直接包含完整 Zephyr 源码，以及构建 HC32 所需的 CMSIS_6、厂商 HAL。
+单独 clone 本仓库后应能使用已安装工具链构建，不能偷偷回退到旁边的官方目录。
 
-## Rules for agents
+先读 `README.md`、`project-docs/architecture.md`、`project-docs/hardware.md` 和
+`governance/conventions/git_guide.md`。硬件事实以 `project-docs/hardware.md` 为唯一项目记录。
 
-- Never add a `Signed-off-by:` line: only the human submitter may sign off (DCO). Never add
-  `Co-authored-by:`. Do not put "Generated with ...", session links or any other mention of AI
-  tools in commit messages, PR bodies, issues or comments. The `Assisted-by:` trailer below is
-  the only place AI involvement is recorded.
-- Add exactly one `Assisted-by: <Agent>:<model-version> [tool ...]` trailer, for example
-  `Assisted-by: Claude:claude-opus-4.6 coccinelle`, naming the tool actually used. Replace it
-  rather than stacking when a different model amends the commit. `checkpatch.pl` validates the
-  format; basic tools (git, gcc, cmake, editors) are not listed.
-- The human reviews and tests every change before it is submitted. State what you did not do
-  (not built, not run, not run on hardware, no reproducer) instead of implying it was done.
-- Review comments written with AI help are verified by the human before posting; never post raw
-  model output (`doc/contribute/reviewer_expectations.rst`).
-- Commit messages, code comments, Kconfig help texts and docs describe the tree as it is: no
-  references to prompts, plans, sessions, "the rework" or "as requested". Write tersely and
-  concretely; maintainers reject verbose, hedging or self-congratulatory prose. No emoji.
-- Change what the task needs, which can mean refactoring the code a fix touches, but keep
-  unrelated reformatting, renames and cleanups out of the change; style is enforced on new or
-  modified lines only. A wider cleanup is a separate PR.
+## 私人环境配置（仅本机，不纳入 Git）
 
-## Build and test
+新窗口开始工作时，若 [私人环境配置](.local/PRIVATE_ENVIRONMENT.md) 存在，先读取它确认本机目录、
+工具位置、芯片资料缓存和厂商示例入口。这个链接指向本机私人配置文档，不是可移植的公共开发说明。
 
-- Zephyr builds only inside a west workspace: from the parent directory of the clone,
-  `west init -l <zephyr-dir> && west update` (most boards need HAL and module repositories from
-  `west.yml`). Build with `west build -b <board> <app-dir>`; `native_sim` runs on the host.
-  See `doc/develop/west/workspaces.rst`.
-- Tests and samples are run by twister: `west twister -p native_sim -T <test-dir>` or
-  `-s <test-dir>/<scenario-id>`; `--build-only` skips execution; `-i` prints failing logs.
-  Suites whose `tests.yaml` lists `unit_testing` as platform need `-p unit_testing`. See
-  `doc/develop/twister/index.rst`.
-- In a `git worktree`, export `ZEPHYR_BASE=<worktree>` for `west build` and twister; otherwise
-  the workspace's registered checkout is built silently instead of your tree.
-- Every commit in a series must build and pass its tests on its own (bisectability).
+- `.local/PRIVATE_ENVIRONMENT.md` 和 `.cache/` 均由 Git 忽略；私人文档与资料本体不暂存、不提交。
+- 芯片手册、厂商 DDL 和示例缓存在 `.cache/hc32f4a0/`，具体来源、版本、文件校验及检索入口在私人配置中。
+- 缓存用于核对实现和依据，不作为构建依赖。新克隆没有私人文件或缓存是正常情况，公共构建入口仍按 README 执行。
+- P01 的 H743 实际工程、官方 PDF/TXT、编译器及图形验收环境记录在本机 [.local/AGENTS.md](.local/AGENTS.md)。维护 P01 前读取该文件；外部工程只读，新增 PDF 先提取带页码的 UTF-8 TXT，再检索并回查原页，区分手册版本、源码配置与历史构建产物。
+- 参考示例的评估板、晶振、封装和中断框架可能与本项目不同；移植结论核对后写入公共硬件记录和受控源码。
 
-## Checks to run before pushing
+## 文档发布与从零实验的边界
 
-CI runs the same checks (`.github/workflows/compliance.yml`); each failure costs a full round
-trip. Fix the cause, never work around a check.
+- P01 的前八章先建立寄存器、寻址与访问宽度、自然对齐、栈堆、向量表和编译链接的关系，再进入外设及工具实验。结构、地址布局、状态变化与执行链优先用图建立模型，正文沿图中对象、颜色与箭头解释；每张图就地附图例和必要名称注释，并安排具体数值或代码的预测与验证。
+- 学习主线 P01 为计算机组成与 MCU 架构，目录 `learning/P01_computer_architecture`，以 STM32H743 贯穿数字电路、CPU、存储、总线、外设、中断、汇编、芯片启动与现场切换。上电复位到 main 与运行期异常进入/返回分别讲解，教学接线不冒充实板连接，编译验证不冒充实板运行。Zephyr 工程准备与构建使用 P02，即 `learning/P02_zephyr_make_project`。专题内的 P001、P002 等章节编号独立计数；导航只为已有正文提供链接。
+- 评审、验收日志、进度流水、迁移记录等过程文件只保存在被忽略的 `.cache/`，不进入任何正式目录、阅读导航、Git 提交或历史。修改说明、验证结果与未执行范围写入提交正文；正式资料只保留读者需要的现行事实与适用边界。提交前检查暂存路径，不能用一次删除提交代替用户明确要求的历史清理。
+- `learning/P02_zephyr_make_project` 按 2026-10-27 用户要求，以 Markdown 独立组织技术内容；正文、导航与命令索引不保留 PPT 链接、页码映射或 slides 状态字段。Markdown 稳定后重新设计 PPT，由 PPT 关联 Markdown；本专题当前维护不受下方历史 MD/PPT 同步规则约束。既有 PPT 和制作源保留为资产，正文重构不得按旧课件布局裁剪。
+- 本仓库维护和推送文档、PPT、环境资料及移植记录。保留的 Zephyr 源码与已完成 HC32F4A0 移植用于故障对照和文件差异分析。
+- 用户指定本次文档仓库为 `F:\git_storage\zephyr_hc32f4a0`；从零复现实验在 `G:\zephyr_practice\zephyr-main`。不要把应用保存的同名旧目录当成当前文档仓库。
+- `learning/` 的正文、目录、PPT、备注与材料说明面向 G 盘实验。不得要求读者切回文档仓库，或默认已拥有 HC32 支持。G 盘工程须随实验逐步形成与 F 盘一致的结构；构建和环境脚本在对应章节创建、解释并验证之后可以使用，不得提前引用尚不存在的入口。法律署名保持原样。
+- 仓库用途、参照实现及其专用环境放在根说明和 `project-docs/`；设计与验证记录可保留历史执行位置，但不得将旧位置的成功结果记作 G 盘从零复现通过。
+- 以下完整源码工程规则适用于维护参照实现，不构成 `learning/` 的实验前提。
+- 两个目录的详细定义见 `project-docs/workspace-roles.md`。官方源码更新与 `learning` 材料同步的 Git 原则尚未确定；用户后续补充之前，不实现同步脚本，不迁移历史，不自动同步驱动提交。此前讨论的浅克隆和重放提交均非最终方案。
 
-- `pip install -r scripts/requirements-compliance.txt`, then
-  `./scripts/ci/check_compliance.py --parallel -c upstream/main..HEAD` (`upstream` being the
-  zephyrproject-rtos remote, `origin` in a plain clone; the same below). `-l` lists the checks
-  (Checkpatch, Gitlint, KconfigBasic, CMakeStyle, DevicetreeBindings, Ruff, Pylint, YAMLLint,
-  SphinxLint, KeepSorted, ...); `-m <Check>` runs one.
-- checkpatch on one commit: `git format-patch -1 --stdout <sha> | ./scripts/checkpatch.pl -`.
-  Piping `git show` instead produces bogus `BAD_SIGN_OFF` errors.
-- ClangFormat is advisory (`.clang-format`). Apply it to your own hunks only and skip hunks
-  where it reflows surrounding macro tables; never run it on whole files.
-- CMake style (`doc/contribute/style/cmake.rst`) is checked on touched lines only and old files
-  are grandfathered: copying an old `CMakeLists.txt` as a template can fail CI although the
-  original passes. The same holds for any in-tree file you copy: check it against the current
-  style page, not only against its neighbors.
+## 工程边界
 
-## Commits
+- 本仓库是完整 Zephyr 源码工程，板级与 SoC 支持直接集成到树内，使用硬件模型 v2。
+- 所有自研板级支持、SoC、设备树、驱动、示例、工具和文档都在本仓库中维护。
+- Zephyr、CMSIS 和厂商 HAL 源码纳入版本控制；SDK/Python 是外部主机工具。
+  源码基线见 `dependencies.lock.json`，导入代码保留原许可证；不要提交依赖仓库的 `.git`。
+- 当前开发环境使用根目录 `.venv`，通过 `scripts/setup_environment.py` 安装、`scripts/project_env.py` 执行工程命令。
+  west 本机配置由 `scripts/configure_west.py` 在仓库父目录生成，选择 `project-west.yml`；根上游 `west.yml` 不作为当前项目活动清单。
+- 构建产物仅进入被忽略的 `build/`，本机配置进入 `.local/`，外部参考资料进入 `.cache/`。不得提交绝对路径、
+  虚拟环境、缓存、固件产物、凭据或未经确认许可的资料。
+- 厂商 HAL 的集成修正在树内 SoC/驱动中处理；不修改已安装的 Python 包。
+- 不能创建虚假的可用 HC32 board/SoC，也不能把 QEMU 成功称作 HC32 实板验证。
+- 工程介绍、移植记录和 Zephyr 学习资料维护在 `project-docs/`，目录入口为 `project-docs/README.md`。
+- 个人学习笔记、配套演示资料与独立工具实验维护在根目录 `learning/`，面向已有嵌入式经验、初次接触相应专题的读者。
+  `project-docs/` 保留项目事实与实际用法；新增通用教程不在两处重复维护。主线采用 UCRT64 Bash，
+  示例明确以实验源码根解析相对路径；实验生成数据进入该源码根的 `build/learning-tools/`，不提交环境或临时 Git 历史。
+- `learning/` 的 Markdown、PPT 正文、讲解备注及生成源码统一称受众为“读者”，不称“学生”“学员”或“同学”，
+  不预设作者与读者之间的师生关系。资料定位为个人学习笔记和演示资料；涉及讲解时使用“本期”“本章”“讲解”“自查”，
+  避免“本课”“课堂”“授课”等课堂身份表述。保留必要的教学方法说明、技术语义与逐步实验，不改写历史原话或第三方引用。
+- 系统学习与实验按 [专题蓝图](project-docs/learning/专题蓝图.md) 分批建设，执行
+  [实验约定](project-docs/learning/实验规范.md)。阅读入口只登记真实文章；文档、构建、模拟运行和实板验证分别记录状态。
+- 每次交付在 Git 提交正文中说明完成范围、验证方法与尚未执行的硬件步骤；详细过程与原始输出只放入被忽略的 `.cache/`。
+- 自有 Markdown 遵循从 linux-note 继承的 [文档格式规范](governance/conventions/markdown_guide.md)，采用分级阅读序号、标题下划线转义和稳定元数据。仅在本次授权的自有文档范围内整理，禁止为统一格式修改 Zephyr 原生 Markdown 或其他第三方文档。
 
-    area: subarea: imperative summary (75 columns max, no trailing period)
+## learning 资料的强制讲解与交付要求
 
-    Body wrapped at 75 columns: what the change does, why this approach,
-    which assumptions were made and how it was tested. Never empty.
+以下要求适用于全部 learning Markdown、PPT、讲解备注及生成源码。读者按专题初学者对待，保留其编程基础，不预设其已理解 Zephyr 的目录、模块、工具链和构建规则。
 
-    Fixes #12345
+- 先讲当前任务、为什么需要新概念、它与已有对象的关系，再给操作。每个操作单元必须交代前提、执行系统与终端、当前位置、动作、可观察结果和失败时返回哪一步。不能把命令清单、参数表、术语表或官方链接本身当成讲解完成。
+- 明确区分下载、解压/安装、让工程发现依赖、配置、编译、运行与实板验证。SDK 发行版本、主机平台、目标架构、GNU/LLVM 与 Minimal 是不同选择维度；Minimal 不含目标工具链，完整 GNU 包包含多种目标的工具链，不是同一编译器的多个版本。说明 setup 的实际动作和版本边界，不能用“配置”含糊代替下载安装。
+- SDK 讲解必须区分完整 SDK 归档、Minimal SDK 归档与独立目标工具链归档；分别说明安装前后目录，再讲两种 SDK 包共用的工程接入接口。新增芯片支持、补装已发布工具链、使用外部编译器、维护 SDK 发行与引入源码模块分开说明，不把任意目录复制等同于完成接入。
+- P003 限定 SDK 下载、安装与 zephyr-main 发现 SDK / 交叉编译器，总计不超过 30 页（含封面）。融合参考稿时提取有用的关系与依据，不顺次拼接重复页面；通用 CMake、west、SDK 自行发行的深入内容留给对应专题或 MD。Minimal 补齐工具链后可注册或显式传根，不能把 setup /c 写成必做收尾；不注册的完整应用配置例子须同时说明依赖前提与成功判断。
+- 工具链接入分别讲完整 GNU SDK、Minimal SDK 加目标组件、独立目标工具链三条路线。前两条用 SDK 根与 SDK 自带 CMake 接口，第三条说明 Zephyr 源码中的 cross-compile 规则如何读取 CROSS_COMPILE；不可把 toolchain_gnu 单组件叫作 Minimal SDK，也不可因没有 SDK cmake 文件就要求读者手建。区分主机 cmake.exe 与接入脚本，说明目标库、CPU/FPU 参数、旧环境与缓存的影响，实际编译验证放在编译章节。
+- 下载依赖必须教会读者查依据：从当前源码/清单或芯片资料确认对象与版本，解释官方清单、仓库或发行附件如何确定版本；官方工具支持的依赖获取优先使用官方工具，核对实际目录和关键文件，再说明如何接入。CMSIS 已由 west 清单管理时，使用 west 解析、下载与版本核验，不要求手动 ZIP、改名或自建来源 JSON。网页用于查证，手动下载只作为离线或工具不可用的补充；清单外依赖单独说明，不冒充官方清单项。CMSIS 原始包、Zephyr 配套模块、厂商例程所带 CMSIS、HAL/DDL 与板/SoC 适配须分别说明，不能因头文件同名就直接替换。
+- P002 处理主机工具与 Python，P003 处理 SDK；P004 从源码证据确认 CMSIS 需求并下载，P005 解释应用、板、SoC、架构、驱动和配置如何组织，P006 再讲 HC32 与外部 HAL/DDL 接入。之后进入 P007 原生 CMake、P008 Zephyr 应用构建、P009 west 零基础与 Zephyr 构建、P010 输入发现、P011 缓存排错，P012 进行新增板实验。west 独立册须从核心工作区/清单讲到 Zephyr 扩展来源，再用同一应用展开 CMake 配置和后端调用；清单编写与多仓库进阶实验链接 learning/west。官方 west.yml 摘录须在正文、PPT 和代码块内明确“只读原文件，不新建或替换”；初始化必须给出复用分支，不能让读者无条件重复 west init，更不能因 already initialized 删除已有 .west。讲解厂商 CMSIS 时区分通用 Core、设备头、system/startup 与 HAL，说明哪些是原包文件、哪些是移植者新增的模块/SoC/驱动接入。
+- 用户反馈真实命令错误时，在对应操作块就地补齐终端切换、工具选择和失败停止条件，不只让读者回看前文。P001 准备 UCRT64 原生 Git，P002 激活 Windows Python 环境后检查其实际找到的 Git；已有 Git for Windows 可作为备选，不以版本字符串中的 .windows. 作为准入条件。若仍选中 MSYS2 的 usr/bin/git 或找不到 Git，先修复再下载 west 模块。完整 GNU SDK 已有 ARM 工具链时跳过 Minimal 的补装分支。
+- 引用清单外厂商模块时，交代仓库查找路线、README/源码与上游申请或 PR 依据；区分仓库建立、维护权限、清单收录、模块发现与芯片/板支持。PR 的 Closed 不等于 Merged，状态注明核对日期。逐项说明 module.yml 相对路径、实际 CMake/Kconfig 入口与本系列适配差异，不把模块存在写成主线支持已完成。
+- 每个文件和目录首次使用时标明来源与状态：官方原有、官方外部下载、教程随附、自行创建或工具生成。说明由哪个动作产生、何时应该存在、应创建文件还是目录。尤其不得把 learning 配套材料、来源 JSON、练习板、构建缓存当成官方源码原本已有的文件。新增板/芯片按官方样式逐文件对照，说明名称、内容和发现关系。
+- 终端规则：默认使用 UCRT64 Bash，保持 Linux 命令习惯。只有 Zephyr 官方明确采用 PowerShell 的 Windows 下载/安装步骤，以及 setup.cmd 等 Windows 专用脚本和其 Windows 管理操作，才切换到 PowerShell。普通下载、摘要校验、解压、版本检查、Python/venv 与 CMake 工程操作仍用 UCRT64，不能仅因调用 Windows 可执行程序就整段改成 PowerShell。Ubuntu 22.04 使用原生 Linux Bash。每段标明终端和目录，切换时重新进入目录，临时变量不互相继承。 MD、PPT、备注和配套命令必须同步，禁止擅自扩大 PowerShell 的适用范围。
+- 每段可执行命令必须能完整复制，块内注释注明终端、工作目录与必要前提。变量就地定义，或在使用处指出定义小节、用途及所属工具；优先使用原生接口，避免新增无必要的路径别名。首次展示的配置样例明确写入文件的位置与创建方式，不能让读者猜是执行命令还是文件内容。
+- Python 环境按“检查已有安装/下载 → 必要时安装 → 按版本选择 → 创建或激活 .venv”推进。Windows 优先 py -3.12，Linux 使用 python3.12；激活后统一 python。不得把基础解释器放在工程 build/测试目录，或把作者的绝对位置核验、路径变量与 PATH 拼接变成必做实验。路径输出只用于必要排错，明确无需匹配作者目录；已有环境优先复用。
+- 解释环境/工程配置时必须说明写入位置、读取程序、作用对象、有效期限、取消与更新方法。明确区分当前 shell 环境、CMake 构建缓存、工程预设、当前用户包注册表和 Python venv；不得用“登记”“永久配置”代替这些事实。SDK 接入用真实应用演示，不为查位置另建与主线无关的测试工程。
+- PPT 命令使用一个连续、可编辑的代码区保存完整操作单元，不把命令拆为词语文本框、图片或不可直接执行的省略片段。长命令合理拆为有前后关系的操作页；无法完整展示时提供明确可打开复制的配套纯文本命令文件及正文定位。检查导出后复制的文本仍保留换行、引号、续行符与注释。仅“看起来像代码”不算通过。
+- 保留用户已有的语义配色，重排、重写或重建时不能把标注统一抹成单色。浅色 PPT 中变量/参数用深橙色 #B84E00，文件/路径用蓝色 #0070C0，接口函数用深绿色 #087B3D，终端命令用紫色 #A02B93；正文、代码及图示中的同类对象保持一致，并给出颜色图例。按上下文识别对象，不能把 cmake 目录标成终端命令，也不能把 Kconfig 配置系统一律标成文件。用同一文本框内的富文本着色，保持命令连续可复制；颜色只辅助理解，正文仍须说清对象类型。MD 保留行内代码与带语言的代码块，配色跟随阅读器主题，不用固定 HTML 文字色破坏明暗主题。
+- MD 承担完整解释、分支、操作、输出判断与恢复；PPT 按相同顺序精讲关系和关键动作，支持视频跟随和复习。长文件可以按完整认知阶段/实验拆分，更新导航和交叉引用，不得靠压缩字号或删前提解决篇幅问题。
+- 独立核心主题拆分后直接递增三位主序号（P001、P002、P003……），后续章顺延；禁止用 P002_01 等二级文件序号代替递增。MD/PPT 同名，正文小节、封面、备注、导航、命令目录和原生重建入口同步改号。实验目录与产物不因文档改号而强制迁移，必要时说明旧目录标识的用途。
+- 按核心主题组织独立小模块，每模块明确前置输入、当前任务、完成产物和下一模块；不因沿用旧文件名而把工具安装、SDK 选型、源码下载、工程模块发现都塞进一份长文稿。MD 与 PPT 同名对应，入口只导航，专题内容只在所属模块维护；拆分同时迁移命令索引、页码、原生重建源和手工批注。
+- CMake 与 west 按完整认知阶段拆为连续小册并各自维护同名 MD/PPT；各专题只回顾相关接口，然后讲自己的模块模型和实际组合。新增独立章按阅读顺序递增编号，后续文件、正文、备注、命令、导航与重建入口同步顺延，禁止把接口总论重新塞回 SDK 或编译章节。
+- Zephyr 的 CMake 扩展接口须说明读取者、默认行为、值的形态、保存范围和使用组合，区分 CMake 原生接口、Zephyr 输入与派生输出。先演示已注册 SDK 的自动发现，不把 ZEPHYR_TOOLCHAIN_VARIANT=zephyr 或手填 SDK 根写成必做步骤；主动换类型、固定 SDK、独立工具链、追加模块与替换模块列表分别讲清。标量选择与 MERGE 列表行为不可混用；新芯片不等于新工具链类型，TOOLCHAIN_ROOT 不等于 SDK 根。
+- 工程接入必须从调用方讲起：读者把什么路径交给哪一次 CMake 配置，保存到哪里；应用怎样加载 Zephyr，哪段 Zephyr 原有代码读取输入、调用发现脚本、读取 module.yml、生成记录并设置变量；最后才讲模块内部 CMake/Kconfig。不得从“目录里有 module.yml”直接跳到“自动生成 ZEPHYR_*_MODULE_DIR”。SDK 路径发现与 BOARD/SoC 到架构、编译器前缀、CPU/FPU 参数的映射同样给出调用依据和实际工程验证。
+- CMake 体系先用普通 C 程序建立 source/build tree、configure/generate/build、target 与使用要求模型，再从真实官方应用讲起，交代 CMake、Zephyr 脚本、west、Ninja、Kconfig、Devicetree 和编译器的职责，再展开接口；用输入、读取者、输出和可观察产物串成闭环，不能用变量罗列代替架构讲解。
+- 每个关键机制同时给出官方说明的网页入口、仓库文档路径和实际读取代码的文件/函数定位；链接靠近对应讲解，固定源码依据与 latest 网页分清。不能要求初学者先做全仓搜索来补足正文，也不能只把一组官方链接作为教材。
+- 按关系选择图：思维导图说明组成，流程图说明处理顺序，时序图说明调用与返回；图前说明问题、图后解释输入和结果。时序图须标明同一进程内的脚本调用与独立工具边界，避免把文件画成独立服务。MD 保留可维护的 Mermaid 源码，PPT 同步相应图示；检查明暗主题对比度和最终渲染，图不能替代必要解释。
+- 优先用 Mermaid 展示总阶段，并在阶段切换时沿用同一编号和突出当前位置。目录树注明来源及生成阶段。正文图同时考虑明暗主题，PPT 图在固定画布上检查对比度。
+- PPT 正文、代码、表格及图内多行文字采用 1.2 倍行距，使用段落多倍行距属性；段间留白通过段前/段后控制，不靠空白段落模拟。调整后保持现有字号和语义配色，检查框高、图节点、表格行高及页脚留白；必要时重排或拆页，不压回单倍或缩小字体。代码空行与换行完整保留，封面、标题和单行页脚沿用系列版式。
+- 更新必须覆盖所有受影响的正式 PPT 与配套 MD。保留用户截图、批注、芯片背景系列封面、主讲人 lizhaojun 和每页页脚署名。先备份当前文件，保留手工修改，再同步原生重建源码，禁止用旧生成器覆盖新内容。
+- PPT 每页使用母版中的横向页脚署名 lizhaojun，统一放在左下角非正文区域，取消正文上的斜向大水印。正文、图片、代码、表格和链接须避开署名保留区；不把署名叠在正文顶层。所有正文与封面母版均覆盖，新页面自动继承，逐页清理重复署名；浅色正文与深色封面分别保证对比度。只对署名关闭拼写检查。正文自动页码统一右下角，封面不显示页码；具体样式与坐标以 learning/P02_zephyr_make_project/slides/README.md 为准。
+- 交付前按初学者视角从头走读每份材料，验证操作前文件确实存在或已明确创建、网页下载路线完整、命令可复制且前提齐全。实际可执行环境中验证修改的操作单元；未实测的平台明确记录。渲染与 PowerPoint 原生打开检查、链接/语法测试不能替代内容闭环验收。
+- 收到全局批注时，把意见落实到实际正文和全部受影响文稿，不只补规则、备注或验证记录。技能的默认篇幅/简化建议不得覆盖用户要求；若规则已具备仍未落实，应修复执行与验收，不把问题归咎于技能。
 
-    Assisted-by: Claude:claude-opus-4.6
-    Signed-off-by: Full Name <email@example.com>
+## 硬件约束
 
-- `area:` is the prefix the file's recent history uses: `git log --format=%s -20 -- <path>`.
-  Examples: `Bluetooth: Host:`, `drivers: i2c: nrfx:`, `dts: arm: st:`, `boards: nordic:`,
-  `kernel:`, `doc:`, `.github:`. Never `subsys:` or `treewide:`, never `WIP`.
-- Trailers (`Assisted-by`, `Signed-off-by`, `Link:`, `(cherry picked from commit ...)`) form one
-  block as the last paragraph. `Fixes #N` goes in its own paragraph directly before that
-  block. Reference other commits as `commit <12-char sha> ("subject")`.
-- One `Signed-off-by:` line must match the commit `Author:` name and e-mail; never remove an
-  existing sign-off. Verify with `git log -1 --format='%an <%ae>%n%b'`.
-- One logical change per commit: a fix, its tests and its docs may be separate commits, but one
-  commit never mixes unrelated changes. No fixup, squash or merge commits in a PR: fold review
-  fixes into the commit that owns the lines. Without an interactive terminal:
-  `git commit --fixup=<sha>`, then
-  `GIT_SEQUENCE_EDITOR=true GIT_EDITOR=true git rebase -i --autosquash <base>`.
-- Update a branch with `git rebase upstream/main`, never by merging `main` into it.
-- Stage explicit paths (`git add <file>`); never `git add -A`, `git add .` or `commit -a`, which
-  pick up build directories, notes and reports. Before pushing, review
-  `git show --stat upstream/main..HEAD`.
+- HC32F4A0PITB，LQFP100，2 MiB Flash、512 KiB 主 SRAM，另有 4 KiB 备份 SRAM。
+- 主 SRAM 从 `0x1FFE0000` 开始；12 MHz 实装晶振，PLL、总线和 Flash 等待周期必须重算。
+- 芯片没有的引脚按 NC 处理；通用兼容原理图的符号名不能替代 HC32 物理脚号。
+- 板载 CMSIS-DAP 默认 2.x / WinUSB，支持 10 MHz SWD；一根 USB 可调试和输出串口。
+- 使用外部探针前按硬件文档停用板载 DAP。BOOT 擦除是恢复步骤，不是日常构建或检测动作。
 
-## Pull requests
+## 代码与 Git
 
-- A PR is one self-contained change. Reviewers are assigned from the `MAINTAINERS.yml` areas of
-  the touched files (`./scripts/get_maintainer.py path <files>` lists them), so when a change
-  spans several areas and splits cleanly, split it so each part gets the right reviewers.
-  Small PRs get reviewed; large changes start as an RFC issue
-  (`doc/contribute/proposals_and_rfcs.rst`).
-- The PR description summarizes the change and its rationale and carries the `Fixes #N` line
-  when the change addresses an issue.
-  It is rendered as Markdown: unwrap paragraphs instead of pasting hard-wrapped commit text.
-  Keep title and description in sync with the commits after every force-push.
-- Breaking changes to stable APIs are described in the migration guide; new, deprecated and
-  removed APIs are listed in the release notes. Both go in the same PR as the
-  change: `doc/releases/migration-guide-X.Y.rst` and `doc/releases/release-notes-X.Y.rst`, where
-  `X.Y` is the next release (`VERSION` shows `X.(Y-1).99` during development). Stable APIs
-  follow `doc/develop/api/api_lifecycle.rst`.
-- Backports to `v*-branch` are opened by a bot when a maintainer adds `backport vX.Y-branch`
-  labels after merge. Do not open manual backport PRs unless the bot failed. Every backport PR
-  body must contain a `Fixes #N` line resolving to a real issue
-  (`.github/workflows/backport_issue_check.yml`), so bug fixes that may be backported need a
-  public issue.
-- Issues use a GitHub issue type (Bug, Feature, Enhancement, RFC, Task) and the templates in
-  `.github/ISSUE_TEMPLATE/`, not a `bug` label: `gh issue create --type Bug ...`.
-- Security: never file a public issue or PR describing an undisclosed vulnerability, and never
-  reference an unpublished advisory (GHSA/CVE) in a commit, PR or issue. See
-  `.github/SECURITY.md`.
-- When reviewing, remember that CI tests the PR rebased onto current `main`. Reproduce the same
-  way before reporting a failure or claiming what `main` does or does not contain:
-  `git fetch upstream main && git fetch upstream pull/<N>/head && git checkout --detach
-  FETCH_HEAD && git rebase upstream/main` (two fetches: after a multi-ref fetch `FETCH_HEAD` is
-  the first ref, `main`).
-
-## Code rules agents get wrong most often
-
-Complete lists: `doc/contribute/style/code.rst`, `doc/contribute/coding_guidelines/index.rst`.
-
-- Linux kernel style: 8-column tabs, 100-column lines, braces on every `if`/`else`/loop body,
-  `/* */` comments only (no `//`), `snake_case`, no binary literals; non-ASCII symbols only
-  where they significantly improve clarity, emoji never.
-- Explicit comparisons: `if (err != 0)`, `if (ptr == NULL)`, `if (len > 0)`. Controlling
-  expressions must be essentially Boolean (coding guideline rule 85); `if (!err)` on an
-  integer is not allowed.
-- Fixed-width types (`uint8_t`, `int32_t`) for numeric data and `size_t` for sizes instead of
-  bare `int`, `short` or `long` (Dir 4.6; `char` stays for text); `U` suffix on unsigned
-  constants; no octal constants.
-- No commented-out code; check every return value that carries an error; include guards in
-  every header.
-- Dynamic allocation: the coding guidelines list MISRA Dir 4.12 (no dynamic allocation) and
-  Rule 21.3 (no `<stdlib.h>` allocators) as required, while Rule A.4 allows the libc allocators
-  in the kernel and subsystems use `k_malloc()`, `k_heap`, slabs and `net_buf` pools. Follow the
-  surrounding subsystem: do not "fix" existing allocation, and do not add a heap where a static
-  pool fits.
-- Prefer `if (IS_ENABLED(CONFIG_FOO)) { ... }` to `#ifdef CONFIG_FOO` for code paths. Both
-  branches must compile, so declarations in headers stay unconditional (guideline Rule A.1).
-  Use the preprocessor only for real memory or ABI differences, and follow the surrounding
-  file's pattern for small edits.
-- Public symbols carry their subsystem prefix (`k_`, `sys_`, `net_`, `bt_`, `i2c_`, ...). Public
-  functions have Doxygen with a brief description, `@param` and `@retval <value> <text>` for
-  each discrete return value, success first and a value repeated when different conditions
-  produce it: `@retval -EINVAL Invalid argument`, not "if the argument is invalid"
-  (`doc/contribute/style/doxygen.rst`).
-- Every `CONFIG_` symbol referenced in code or Kconfig must be defined in the tree (KconfigBasic
-  check). Symbol naming and `menuconfig`/`if` structure: `doc/contribute/style/kconfig.rst`;
-  `select` versus `depends on`: `doc/build/kconfig/tips.rst`.
-- New original files start with the two SPDX header lines in the file's comment syntax: the
-  copyright text (`Copyright The Zephyr Project Contributors`, or the actual holder) and the
-  `Apache-2.0` license identifier; the top of this file shows the Markdown form. Code imported
-  under another license keeps its own headers, needs the approval described in
-  `doc/contribute/guidelines.rst` (Components using other Licenses) and an annotation in
-  `REUSE.toml`; never rewrite existing license metadata.
-- Test and sample metadata lives in `tests.yaml`; `sample.yaml` and `testcase.yaml` are legacy
-  names CI rejects for new files. Scripts that twister executes directly, such as bsim
-  `tests_scripts/*.sh`, must be committed with mode `100755`.
-- Blocks delimited by `zephyr-keep-sorted` start/stop marker comments stay sorted (KeepSorted
-  check). No binary files except images under `doc/`, `boards/` and `samples/` within the
-  size limits (the BinaryFiles check holds the exact allow-list).
-- Devicetree: a compatible for a vendor's device is `<vendor>,<device>` with the vendor listed
-  in `dts/bindings/vendor-prefixes.txt`; generic hardware such as `gpio-leds` gets no invented
-  prefix. Every new compatible needs a binding under `dts/bindings/`. See
-  `doc/contribute/style/devicetree.rst` and `doc/build/dts/bindings-upstream.rst`.
-- Documentation under `doc/` is reStructuredText in American English, 100 columns (URLs
-  excepted): `doc/contribute/documentation/guidelines.rst`.
-
-## Finding things
-
-- Subsystems: `subsys/`; drivers: `drivers/<class>/`; public API headers: `include/zephyr/` and
-  the APIs defined under `lib/` (a subsystem's own `include/zephyr/`, such as ztest's, is not
-  public API); kernel: `kernel/`; boards: `boards/<vendor>/`; SoCs: `soc/`; devicetree: `dts/`;
-  tests: `tests/`; samples: `samples/`; tooling: `scripts/`.
-- `MAINTAINERS.yml` maps paths to areas and people. The recent history of a path is the best
-  guide to its local conventions: `git log --oneline -20 -- <path>`.
-- The documentation source is `doc/`, published at https://docs.zephyrproject.org/latest/. The
-  published docs, the source tree and the last six months of issues and PRs are also searchable
-  through the project's MCP server, `https://zephyrproject.mcp.kapa.ai`
-  (`doc/develop/tools/kapa_ai.rst`); its answers are generated and must be verified against the
-  tree.
+- C、Kconfig、CMake 和设备树遵循当前 Zephyr 对应风格规范；新文件保留 SPDX。
+  具体规范见 `doc/contribute/style/`；上游原文件的许可证和作者记录保持不变。
+- Git 规则继承 linux-note 的固定来源节点，完整规则与核对范围见
+  [Git 规范](governance/conventions/git_guide.md)和[继承记录](governance/architecture/framework_provenance.md)。
+  不得自行简化规则、添加尾注例外，或仅以钩子通过代替规则审查。2026-09-19 按用户要求增加本项目强制正文规则，
+  原始来源钩子和模板保存在各自 upstream 子目录，当前入口在来源校验后执行项目附加检查。
+- 提交标题使用 `<类型>[(项目[/模块])]!?: <中文结果>`。知识正文/研究内容用 `content`，
+  使用说明/设计/治理文档用 `docs`；其他类型按规范的用途选择，不能按文件后缀分类。
+- 范围语法可选，允许任意语言的一到两层，不设范围白名单。需要定位归属时，按照本次修改的真实对象自由填写；
+  变更横跨整个仓库且不存在准确范围时可以省略。语法允许省略范围不代替对实际归属和提交粒度的审查。
+- 一个提交只形成一个可独立审查和回退的结果。实现所需测试与文档随实现；独立治理政策、
+  知识内容和发布动作分别提交，不按扩展名分组，也不因用户说“全部提交”就合并无关结果。
+- 每条提交必须在标题后补充至少一条具体正文，标题后空一行，各条明细分别以 `- 描述` 换行列出。
+  正文是给其他维护者看的修改总结：说明解决的问题、采用的改动以及改动后的行为或使用效果。
+  不把修改文件清单、编辑步骤或测试数量当作总结；路径只在理解变化确有必要时提及。
+  每条表达一个有意义的变化，必要时说明限制；不能只重复标题或用占位文字凑数。
+  继承的钩子不接受独立 `Assisted-by`、`Signed-off-by` 或 `Co-authored-by` 尾注；不得代造人工签署。
+- 主线为 `master`，只接受验证通过的快进更新。已交付或推送历史用 revert 撤销，不擅自改写。
+  只有开发者明确授权的仓库级历史迁移，才可在创建并验证完整 bundle 备份后使用 `--force-with-lease`。
+- 明确列出暂存路径并检查暂存区。本项目附加的执行限制：禁止 `git add .`、`git add -A` 或提交依赖仓库。
+- 日常提交保持已有历史中的作者、签署和提交消息原样；显式授权的历史迁移按上方备份与保护约定执行。
+  不得在提交中声称未执行的硬件验证；迁移备份与操作日志只保存在被忽略的 `.cache/`。
+- 本地初始化使用 `python scripts/git_setup.py`；检查使用 `python scripts/project.py check`。
+  修改模块或示例后再运行 `python scripts/project.py build` 和 `python scripts/project.py test`。
+- 本项目附加的发布约定：未获推送指令时只建立和验证本地提交，不自动发布到远端。

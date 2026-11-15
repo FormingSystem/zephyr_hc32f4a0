@@ -5,6 +5,7 @@
 *.a
 *.d
 *.cmd
+!/setup-windows.cmd
 *.log
 *.pyc
 *.swp
@@ -22,6 +23,7 @@ build*/
 !scripts/pylib/build_helpers
 cscope.*
 .dir
+.assert/
 
 /*.patch
 
@@ -59,6 +61,9 @@ doc/doc.warnings
 hide-defaults-note
 venv
 .venv
+# These are tutorial source directories, not Python environments.
+!/learning/python/venv/
+!/project-docs/python/venv/
 .envrc
 .DS_Store
 .clangd
@@ -131,3 +136,61 @@ node_modules
 
 # Log file from mplab_ipe runner
 MPLABXLog.xml
+
+# HC32 project local files.
+# SPDX-FileCopyrightText: Copyright (c) 2026 FormingSystem
+# SPDX-License-Identifier: Apache-2.0
+# Reproducible build output and local dependency installations.
+/build/
+/build-*/
+/build_*/
+/twister-out*/
+/.venv/
+/.west/
+/.cache/
+/.local/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+compile_commands.json
+
+# Firmware, debug sessions, logs, and editor state.
+*.elf
+*.hex
+*.bin
+*.map
+*.log
+*.bak
+*.swp
+*.swo
+/.vscode/
+/.idea/
+.DS_Store
+Thumbs.db
+
+# Keep machine paths, local SDK configuration and credentials out of Git.
+.env
+.env.*
+!.env.example
+*.local.json
+*.local.yaml
+*.local.yml
+
+# Editorial process records belong only in ignored .cache/.
+/governance/architecture/git_history_details_20260919.md
+/governance/architecture/git_history_repair_20260911.md
+/learning/BUILD_BOARD_DESIGN.md
+/learning/BUILD_BOARD_VALIDATION.md
+/learning/DESIGN.md
+/learning/P02_zephyr_make_project/reference/术语与阅读风险复核.md
+/learning/REVIEW.md
+/learning/VALIDATION.md
+/learning/download_zephyr/VALIDATION.md
+/learning/zephyr_docs/PROGRESS.md
+/learning/zephyr_docs/VALIDATION.md
+/learning/zephyr_vscode/VALIDATION.md
+/project-docs/learning/第一组验收记录.md
+/project-docs/porting-status.md
+/learning/P02_zephyr_make_project/REVIEW_2026-10-21.md
+/learning/P02_zephyr_make_project/VALIDATION.md
