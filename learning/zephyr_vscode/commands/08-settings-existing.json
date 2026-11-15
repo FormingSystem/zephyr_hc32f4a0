@@ -1,0 +1,7 @@
+{
+  "zephyr-ide.venvFolder": "G:/zephyr_practice/zephyr-main/.venv",
+  "zephyr-ide.toolchainDirectory": "G:/zephyr_practice",
+  "zephyr-ide.useClangd": false,
+  "C_Cpp.intelliSenseEngine": "default",
+  "cmake.configureOnOpen": false
+}

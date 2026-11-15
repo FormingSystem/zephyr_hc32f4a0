@@ -1,0 +1,16 @@
+{
+  "ide-hc32": {
+    "name": "ide-hc32",
+    "relPath": "build/learning-tools/zephyr-vscode/hello_world-hc32",
+    "board": "uyup_rpi_a/hc32f4a0pitb",
+    "westBuildArgs": [],
+    "westBuildCMakeArgs": [
+      "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+      "-DEXTRA_ZEPHYR_MODULES=G:/zephyr_practice/hal_xhsc-zephyr;G:/zephyr_practice/zephyr-main/build/learning-tools/p003/hc32_port"
+    ],
+    "confFiles": {
+      "config": [],
+      "overlay": []
+    }
+  }
+}

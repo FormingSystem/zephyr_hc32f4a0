@@ -1,0 +1,14 @@
+# 独立分支：Windows UCRT64 Bash；直接 CMake/Ninja，不执行 west。
+# 前提：hello_world、mps2/an386、CMSIS_6、SDK 和 Python 构建依赖已准备好。
+# 显式只列 cmsis_6 仅用于此最小应用；其他板/功能必须列全需要的模块。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+export ZEPHYR_BASE='G:/zephyr_practice/zephyr-main'
+cmake -S samples/hello_world \
+  -B build/learning-tools/zephyr-vscode/hello_world-native -G Ninja \
+  -DBOARD=mps2/an386 \
+  -DZEPHYR_SDK_INSTALL_DIR=G:/zephyr_practice/zephyr-sdk-1.0.1 \
+  -DZEPHYR_MODULES=G:/zephyr_practice/modules/hal/cmsis_6 \
+  -DCMAKE_EXPORT_COMPILE_COMMANDS=ON && \
+cmake --build build/learning-tools/zephyr-vscode/hello_world-native
+# 本分支不要求卸载 west 或删除 .west；IDE Build 自身仍调用 west。

@@ -1,0 +1,14 @@
+# Windows UCRT64 Bash；只有确认尚无 west 工作区时，才运行初始化分支。
+# 前提：zephyr-main/west.yml 存在，zephyr-main/.venv 已安装 west。
+cd /g/zephyr_practice
+source zephyr-main/.venv/Scripts/activate
+if west topdir >/dev/null 2>&1; then
+  printf '%s\n' '已有 west 工作区，保留并核对，不重复初始化：'
+  west topdir
+  west config manifest.path
+else
+  west init -l zephyr-main
+  west topdir
+  west config manifest.path
+fi
+# 成功应产生 G:/zephyr_practice/.west/config；初始化不会下载所有模块。

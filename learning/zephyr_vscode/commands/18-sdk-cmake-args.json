@@ -1,0 +1,6 @@
+{
+  "westBuildCMakeArgs": [
+    "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+    "-DZEPHYR_SDK_INSTALL_DIR=G:/zephyr_practice/zephyr-sdk-1.0.1"
+  ]
+}

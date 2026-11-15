@@ -1,0 +1,7 @@
+{
+  "zephyr-ide.venvFolder": "G:/zephyr_practice/zephyr-main/.venv",
+  "zephyr-ide.toolchainDirectory": "G:/zephyr_practice",
+  "terminal.integrated.defaultProfile.windows": "Zephyr IDE Terminal",
+  "C_Cpp.default.compileCommands": "${workspaceFolder}/.vscode/compile_commands.json",
+  "cmake.configureOnOpen": false
+}

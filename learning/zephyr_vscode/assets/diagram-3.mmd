@@ -1,0 +1,12 @@
+sequenceDiagram
+    participant U as VS Code 中的构建按钮
+    participant I as Zephyr IDE 扩展
+    participant W as west 进程
+    participant C as CMake 进程
+    participant N as Ninja 与编译器
+    U->>I: 当前 Project 与 Build
+    I->>W: 应用、板、输出目录和 CMake 参数
+    W->>C: 配置应用并加载 Zephyr 脚本
+    C-->>W: build.ninja 与编译数据库
+    W->>N: 编译和链接
+    N-->>U: 构建退出码与 zephyr.elf

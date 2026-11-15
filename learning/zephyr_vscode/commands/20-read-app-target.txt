@@ -1,0 +1,7 @@
+# Windows UCRT64；只读官方应用与板输入，不创建项目、不编译。
+cd /g/zephyr_practice/zephyr-main
+cat samples/hello_world/CMakeLists.txt
+cat samples/hello_world/prj.conf
+cat samples/hello_world/src/main.c
+cat boards/arm/mps2/board.yml
+cat boards/arm/mps2/mps2_an386_defconfig

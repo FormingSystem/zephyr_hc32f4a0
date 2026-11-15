@@ -1,0 +1,5 @@
+flowchart TD
+    A["从桌面打开 VS Code"] --> B["settings.json 指向已有 venv 与 SDK 父目录"]
+    B --> C["登记 west 根，跳过安装"]
+    C --> D["Configure Existing Environment 扫描已有环境"]
+    D --> E["保存环境记录，Add Project 后构建"]
