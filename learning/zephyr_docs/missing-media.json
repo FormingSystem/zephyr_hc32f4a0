@@ -1,0 +1,268 @@
+{
+  "checked": "2026-10-18",
+  "scope": "Full fixed-snapshot official translations; unavailable originals are not claimed as delivered.",
+  "unavailable_files": 8,
+  "references": [
+    {
+      "page": "boards/cytron/motion_2350_pro/doc/index.html",
+      "translation": "boards_pending_media/P001_Motion_2350_Pro.md",
+      "source_url": "https://static.cytron.io/image/catalog/products/MOTION-2350-PRO/pinout-diagram-motion-2350-pro3.png",
+      "status": "unavailable",
+      "reason": "HTTP 403"
+    },
+    {
+      "page": "boards/longan/canbed_rp2040/doc/index.html",
+      "translation": "boards_pending_media/P002_CANBed_RP2040.md",
+      "source_url": "https://www.longan-labs.cc/media/wysiwyg/CAN-Bus/CANBed/Details_of_CANBed-04.png",
+      "status": "unavailable",
+      "reason": "HTTP 404"
+    },
+    {
+      "page": "doxygen/html/bmp581_8h.html",
+      "translation": "api_pending_media_reference/P001_BMP581设备树常量头文件参考.md",
+      "source_url": "https://docs.zephyrproject.org/latest/doxygen/html/form_1.png",
+      "status": "unavailable",
+      "reason": "HTTP 404"
+    },
+    {
+      "page": "doxygen/html/bmp581_8h.html",
+      "translation": "api_pending_media_reference/P001_BMP581设备树常量头文件参考.md",
+      "source_url": "https://docs.zephyrproject.org/latest/doxygen/html/form_2.png",
+      "status": "unavailable",
+      "reason": "HTTP 404"
+    },
+    {
+      "page": "doxygen/html/bmp581_8h.html",
+      "translation": "api_pending_media_reference/P001_BMP581设备树常量头文件参考.md",
+      "source_url": "https://docs.zephyrproject.org/latest/doxygen/html/form_3.png",
+      "status": "unavailable",
+      "reason": "HTTP 404"
+    },
+    {
+      "page": "doxygen/html/bmp581_8h.html",
+      "translation": "api_pending_media_reference/P001_BMP581设备树常量头文件参考.md",
+      "source_url": "https://docs.zephyrproject.org/latest/doxygen/html/form_4.png",
+      "status": "unavailable",
+      "reason": "HTTP 404"
+    },
+    {
+      "page": "doxygen/html/bmp581_8h.html",
+      "translation": "api_pending_media_reference/P001_BMP581设备树常量头文件参考.md",
+      "source_url": "https://docs.zephyrproject.org/latest/doxygen/html/form_5.png",
+      "status": "unavailable",
+      "reason": "HTTP 404"
+    },
+    {
+      "page": "doxygen/html/group__bmp581__interface.html",
+      "translation": "api_pending_media_reference/P002_BMP581扩展传感器接口.md",
+      "source_url": "https://docs.zephyrproject.org/latest/doxygen/html/form_1.png",
+      "status": "unavailable",
+      "reason": "HTTP 404"
+    },
+    {
+      "page": "doxygen/html/group__bmp581__interface.html",
+      "translation": "api_pending_media_reference/P002_BMP581扩展传感器接口.md",
+      "source_url": "https://docs.zephyrproject.org/latest/doxygen/html/form_2.png",
+      "status": "unavailable",
+      "reason": "HTTP 404"
+    },
+    {
+      "page": "doxygen/html/group__bmp581__interface.html",
+      "translation": "api_pending_media_reference/P002_BMP581扩展传感器接口.md",
+      "source_url": "https://docs.zephyrproject.org/latest/doxygen/html/form_3.png",
+      "status": "unavailable",
+      "reason": "HTTP 404"
+    },
+    {
+      "page": "doxygen/html/group__bmp581__interface.html",
+      "translation": "api_pending_media_reference/P002_BMP581扩展传感器接口.md",
+      "source_url": "https://docs.zephyrproject.org/latest/doxygen/html/form_4.png",
+      "status": "unavailable",
+      "reason": "HTTP 404"
+    },
+    {
+      "page": "doxygen/html/group__bmp581__interface.html",
+      "translation": "api_pending_media_reference/P002_BMP581扩展传感器接口.md",
+      "source_url": "https://docs.zephyrproject.org/latest/doxygen/html/form_5.png",
+      "status": "unavailable",
+      "reason": "HTTP 404"
+    },
+    {
+      "page": "doxygen/html/group__scd4x__interface.html",
+      "translation": "api_pending_media_reference/P003_SCD4X扩展传感器接口.md",
+      "source_url": "https://docs.zephyrproject.org/latest/doxygen/html/form_0.png",
+      "status": "unavailable",
+      "reason": "HTTP 404"
+    }
+  ],
+  "retrieval_checks": [
+    {
+      "url": "https://docs.zephyrproject.org/latest/doxygen/html/form_0.png",
+      "status": 404,
+      "final_url": "https://docs.zephyrproject.org/latest/doxygen/html/form_0.png",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://docs.zephyrproject.org/latest/doxygen/html/form_1.png",
+      "status": 404,
+      "final_url": "https://docs.zephyrproject.org/latest/doxygen/html/form_1.png",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://docs.zephyrproject.org/latest/doxygen/html/form_2.png",
+      "status": 404,
+      "final_url": "https://docs.zephyrproject.org/latest/doxygen/html/form_2.png",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://docs.zephyrproject.org/latest/doxygen/html/form_3.png",
+      "status": 404,
+      "final_url": "https://docs.zephyrproject.org/latest/doxygen/html/form_3.png",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://docs.zephyrproject.org/latest/doxygen/html/form_4.png",
+      "status": 404,
+      "final_url": "https://docs.zephyrproject.org/latest/doxygen/html/form_4.png",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://docs.zephyrproject.org/latest/doxygen/html/form_5.png",
+      "status": 404,
+      "final_url": "https://docs.zephyrproject.org/latest/doxygen/html/form_5.png",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://static.cytron.io/image/catalog/products/MOTION-2350-PRO/pinout-diagram-motion-2350-pro3.png",
+      "status": 403,
+      "final_url": "https://static.cytron.io/image/catalog/products/MOTION-2350-PRO/pinout-diagram-motion-2350-pro3.png",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "url": "https://www.longan-labs.cc/media/wysiwyg/CAN-Bus/CANBed/Details_of_CANBed-04.png",
+      "status": 404,
+      "final_url": "https://longan-labs.cc/media/wysiwyg/CAN-Bus/CANBed/Details_of_CANBed-04.png",
+      "error": "HTTP Error 404: Not Found"
+    }
+  ],
+  "resolved_originals": [
+    {
+      "path": "boards_pending_media/images/Kfisher_bot_specs.png",
+      "source_url": "https://elinux.org/images/0/06/Kfisher_bot_specs.png",
+      "source_pages": [
+        "https://docs.zephyrproject.org/latest/boards/renesas/rcar_h3ulcb/doc/index.html"
+      ],
+      "translations": [
+        "boards_pending_media/P003_R-Car_H3ULCB.md"
+      ],
+      "bytes": 2998594,
+      "sha256": "f55585af4f9caba51a6753700b5fb15316592c84d87a76e549c85f49dc30d140",
+      "downloaded": "2026-10-18",
+      "modified": false,
+      "animated": false,
+      "width": 1569,
+      "height": 1204,
+      "retrieval_method": "browser original-media download"
+    },
+    {
+      "path": "boards_pending_media/images/Kfisher_top_specs.png",
+      "source_url": "https://elinux.org/images/0/08/Kfisher_top_specs.png",
+      "source_pages": [
+        "https://docs.zephyrproject.org/latest/boards/renesas/rcar_h3ulcb/doc/index.html"
+      ],
+      "translations": [
+        "boards_pending_media/P003_R-Car_H3ULCB.md"
+      ],
+      "bytes": 2789363,
+      "sha256": "b1260a025a93ae37045d86c5d6a5ae0981e803e9eb8d1edf1a313a511c4f2daf",
+      "downloaded": "2026-10-18",
+      "modified": false,
+      "animated": false,
+      "width": 1569,
+      "height": 1232,
+      "retrieval_method": "browser original-media download"
+    },
+    {
+      "path": "boards_pending_media/images/R-Car-H3-topview.jpg",
+      "source_url": "https://elinux.org/images/1/1f/R-Car-H3-topview.jpg",
+      "source_pages": [
+        "https://docs.zephyrproject.org/latest/boards/renesas/rcar_h3ulcb/doc/index.html"
+      ],
+      "translations": [
+        "boards_pending_media/P003_R-Car_H3ULCB.md"
+      ],
+      "bytes": 71197,
+      "sha256": "3494a698db6f9aa2c1ceda0ca7c8fbe16bf53fb002794a0c37677cf7a14524ea",
+      "downloaded": "2026-10-18",
+      "modified": false,
+      "animated": false,
+      "width": 734,
+      "height": 445,
+      "retrieval_method": "browser original-media download"
+    },
+    {
+      "path": "boards_pending_media/images/R-Car-H3-bottomview.jpg",
+      "source_url": "https://elinux.org/images/c/c2/R-Car-H3-bottomview.jpg",
+      "source_pages": [
+        "https://docs.zephyrproject.org/latest/boards/renesas/rcar_h3ulcb/doc/index.html"
+      ],
+      "translations": [
+        "boards_pending_media/P003_R-Car_H3ULCB.md"
+      ],
+      "bytes": 69302,
+      "sha256": "056fc9db5432aae639565571554acd15f6547c18395f714abe7f7faf1e5cacfb",
+      "downloaded": "2026-10-18",
+      "modified": false,
+      "animated": false,
+      "width": 713,
+      "height": 373,
+      "retrieval_method": "browser original-media download"
+    },
+    {
+      "path": "boards_pending_media/images/Rcar_s4_spider_breakout_board.jpg",
+      "source_url": "https://elinux.org/images/2/29/Rcar_s4_spider_breakout_board.jpg",
+      "source_pages": [
+        "https://docs.zephyrproject.org/latest/boards/renesas/rcar_spider_s4/doc/index.html"
+      ],
+      "translations": [
+        "boards_pending_media/P004_R-Car_Spider.md"
+      ],
+      "bytes": 1700934,
+      "sha256": "2ea0a326dd2899c5b2eb6552490cc7e0ce9c1664ccf8c8c887d866a67633f0e8",
+      "downloaded": "2026-10-18",
+      "modified": false,
+      "animated": false,
+      "width": 4919,
+      "height": 2285,
+      "retrieval_method": "browser original-media download"
+    },
+    {
+      "path": "boards_pending_media/images/Rcar_s4_spider_cpu_board.jpg",
+      "source_url": "https://elinux.org/images/6/6d/Rcar_s4_spider_cpu_board.jpg",
+      "source_pages": [
+        "https://docs.zephyrproject.org/latest/boards/renesas/rcar_spider_s4/doc/index.html"
+      ],
+      "translations": [
+        "boards_pending_media/P004_R-Car_Spider.md"
+      ],
+      "bytes": 1363998,
+      "sha256": "9ac4d84c0d04f2461e13042efe6d5475618f7611e9cd5796d1faedd82ef9ce62",
+      "downloaded": "2026-10-18",
+      "modified": false,
+      "animated": false,
+      "width": 5674,
+      "height": 1912,
+      "retrieval_method": "browser original-media download"
+    }
+  ],
+  "browser_checks": [
+    {
+      "url": "https://static.cytron.io/image/catalog/products/MOTION-2350-PRO/pinout-diagram-motion-2350-pro3.png",
+      "result": "Security verification page remained; no image obtained."
+    },
+    {
+      "url": "https://www.longan-labs.cc/media/wysiwyg/CAN-Bus/CANBed/Details_of_CANBed-04.png",
+      "result": "ERR_HTTP_RESPONSE_CODE_FAILURE; no image obtained."
+    }
+  ]
+}

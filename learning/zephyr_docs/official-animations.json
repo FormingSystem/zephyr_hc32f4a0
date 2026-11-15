@@ -1,0 +1,48 @@
+{
+  "description": "官方HTML/CSS动画原始片段及独立播放文件；所有本地路径相对于本翻译集。",
+  "sources": [
+    {
+      "source_url": "https://docs.zephyrproject.org/latest/samples/drivers/display/README.html",
+      "source_kind": "inline_html_css_animation",
+      "source_path": "samples/drivers/display/README.html",
+      "translation": "hardware/P171_显示驱动示例.md",
+      "path": "hardware/images/display-animations.original.html",
+      "bytes": 7864,
+      "sha256": "ffc7b349d4992c39e0b85f30fb0e82a5534a1d2aa35326e44414c9c865c3bad6",
+      "modified": false,
+      "downloaded": "2026-10-13",
+      "style_sha256": "f56dbe4898593a1d5a5002ee0485f9a81b7841b8577b970954da77b070c2d5e9",
+      "standalone_change": "仅添加HTML文档外壳；逐字节保留官方style和各figure，包括原始动画时长、关键帧及图注。",
+      "animations": [
+        {
+          "variant": "rgb",
+          "path": "hardware/images/display-rgb.html",
+          "bytes": 2544,
+          "sha256": "1748535eaa5be3c24a24958e79f7ff7798ee0a7d93bba508e3ad3d0071ab9011",
+          "figure_sha256": "f241997e8b22d3a6e67ed7b2278601aec27b01343b361cfdf9db0bb0e5b076f0"
+        },
+        {
+          "variant": "xalign",
+          "path": "hardware/images/display-xalign.html",
+          "bytes": 2355,
+          "sha256": "b6bc323a9689fcd307baa76773bc9081c418a2a42856db6d7bd2a145d2c48170",
+          "figure_sha256": "6cd4aafd0cce234521d29100784b22368e03a77f434854c3d337eaf02427edaf"
+        },
+        {
+          "variant": "mono",
+          "path": "hardware/images/display-mono.html",
+          "bytes": 2429,
+          "sha256": "23eac570f6d407380d2048da158d9892b66494a37d91563b345ffb547051764d",
+          "figure_sha256": "2c6c8218d939ba13803c1a915211a00650c252fa3fa66f6188e65f1fca4255cc"
+        },
+        {
+          "variant": "1bpp",
+          "path": "hardware/images/display-1bpp.html",
+          "bytes": 2505,
+          "sha256": "45524e85a6ab8c1f0bbda00274f080dc68818db7adfafc1a49dbabcd2f8fb394",
+          "figure_sha256": "d6371612e03a4b9fdfdbff5e9f5cca8a6096202c9d40dda1e9ea3ba636ae1e0b"
+        }
+      ]
+    }
+  ]
+}

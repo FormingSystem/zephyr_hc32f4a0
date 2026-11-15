@@ -1,0 +1,90 @@
+[
+  {
+    "page": "doxygen/html/bmp581_8h.html",
+    "source_url": "https://docs.zephyrproject.org/latest/doxygen/html/form_1.png",
+    "original_alt": "\\‍[  data_n = \\frac{data_{n-1} \\times filtercoefficient + data_{in}}{filtercoefficient + 1}\n\\‍]",
+    "latex": "data_n = \\frac{data_{n-1} \\times filtercoefficient + data_{in}}{filtercoefficient + 1}",
+    "source_html_sha256": "7a7e777713712ca4083c1752cd802147cedf096b9e0082eb85982de7bf0fe332",
+    "original_png_downloaded": false
+  },
+  {
+    "page": "doxygen/html/bmp581_8h.html",
+    "source_url": "https://docs.zephyrproject.org/latest/doxygen/html/form_2.png",
+    "original_alt": "$ data_n $",
+    "latex": "data_n",
+    "source_html_sha256": "7a7e777713712ca4083c1752cd802147cedf096b9e0082eb85982de7bf0fe332",
+    "original_png_downloaded": false
+  },
+  {
+    "page": "doxygen/html/bmp581_8h.html",
+    "source_url": "https://docs.zephyrproject.org/latest/doxygen/html/form_3.png",
+    "original_alt": "$ data_{n-1} $",
+    "latex": "data_{n-1}",
+    "source_html_sha256": "7a7e777713712ca4083c1752cd802147cedf096b9e0082eb85982de7bf0fe332",
+    "original_png_downloaded": false
+  },
+  {
+    "page": "doxygen/html/bmp581_8h.html",
+    "source_url": "https://docs.zephyrproject.org/latest/doxygen/html/form_4.png",
+    "original_alt": "$ data_{in} $",
+    "latex": "data_{in}",
+    "source_html_sha256": "7a7e777713712ca4083c1752cd802147cedf096b9e0082eb85982de7bf0fe332",
+    "original_png_downloaded": false
+  },
+  {
+    "page": "doxygen/html/bmp581_8h.html",
+    "source_url": "https://docs.zephyrproject.org/latest/doxygen/html/form_5.png",
+    "original_alt": "$ filtercoefficient $",
+    "latex": "filtercoefficient",
+    "source_html_sha256": "7a7e777713712ca4083c1752cd802147cedf096b9e0082eb85982de7bf0fe332",
+    "original_png_downloaded": false
+  },
+  {
+    "page": "doxygen/html/group__bmp581__interface.html",
+    "source_url": "https://docs.zephyrproject.org/latest/doxygen/html/form_1.png",
+    "original_alt": "\\‍[  data_n = \\frac{data_{n-1} \\times filtercoefficient + data_{in}}{filtercoefficient + 1}\n\\‍]",
+    "latex": "data_n = \\frac{data_{n-1} \\times filtercoefficient + data_{in}}{filtercoefficient + 1}",
+    "source_html_sha256": "000e8ed277668d4f86d95839f94d1e40275de771ea76a8417047e74196dc5079",
+    "original_png_downloaded": false
+  },
+  {
+    "page": "doxygen/html/group__bmp581__interface.html",
+    "source_url": "https://docs.zephyrproject.org/latest/doxygen/html/form_2.png",
+    "original_alt": "$ data_n $",
+    "latex": "data_n",
+    "source_html_sha256": "000e8ed277668d4f86d95839f94d1e40275de771ea76a8417047e74196dc5079",
+    "original_png_downloaded": false
+  },
+  {
+    "page": "doxygen/html/group__bmp581__interface.html",
+    "source_url": "https://docs.zephyrproject.org/latest/doxygen/html/form_3.png",
+    "original_alt": "$ data_{n-1} $",
+    "latex": "data_{n-1}",
+    "source_html_sha256": "000e8ed277668d4f86d95839f94d1e40275de771ea76a8417047e74196dc5079",
+    "original_png_downloaded": false
+  },
+  {
+    "page": "doxygen/html/group__bmp581__interface.html",
+    "source_url": "https://docs.zephyrproject.org/latest/doxygen/html/form_4.png",
+    "original_alt": "$ data_{in} $",
+    "latex": "data_{in}",
+    "source_html_sha256": "000e8ed277668d4f86d95839f94d1e40275de771ea76a8417047e74196dc5079",
+    "original_png_downloaded": false
+  },
+  {
+    "page": "doxygen/html/group__bmp581__interface.html",
+    "source_url": "https://docs.zephyrproject.org/latest/doxygen/html/form_5.png",
+    "original_alt": "$ filtercoefficient $",
+    "latex": "filtercoefficient",
+    "source_html_sha256": "000e8ed277668d4f86d95839f94d1e40275de771ea76a8417047e74196dc5079",
+    "original_png_downloaded": false
+  },
+  {
+    "page": "doxygen/html/group__scd4x__interface.html",
+    "source_url": "https://docs.zephyrproject.org/latest/doxygen/html/form_0.png",
+    "original_alt": "\\‍[T_{offset\\_actual} = T_{scd4x} - T_{reference} + T_{offset\\_previous}\n\\‍]",
+    "latex": "T_{offset\\_actual} = T_{scd4x} - T_{reference} + T_{offset\\_previous}",
+    "source_html_sha256": "7fd8171e2f2e579d7585414c785fcc64d75a178aaf7dae0adf5cf4ba8e7138f3",
+    "original_png_downloaded": false
+  }
+]

@@ -1,0 +1,1765 @@
+---
+id: learning.zephyr-docs.api-file-reference.page-169
+title: zephyr__dt-bindings__reset__intel_socfpga_reset.h_文件参考
+kind: reference
+status: maintained
+domains: [zephyr, drivers, api]
+source_url: https://docs.zephyrproject.org/latest/doxygen/html/intel__socfpga__reset_8h.html
+---
+
+<!-- Copyright 2015-2026 Zephyr Project members and individual contributors. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<!-- 中文翻译；编号、导航和明确标注的译注为本地新增。 -->
+
+# 第169章\_zephyr\_\_dt-bindings\_\_reset\_\_intel\_socfpga\_reset.h\_文件参考
+
+原文：[官方页面](https://docs.zephyrproject.org/latest/doxygen/html/intel__socfpga__reset_8h.html)。读取日期：2026-10-17；来源摘要见[来源记录](../SOURCES.md)。
+
+查看此文件的源码。
+
+<a id="header-define-members"></a>
+<a id="define-members"></a>
+
+## 169.1\_宏定义（Macros）
+
+<a id="r_a585154051b7dbf46359c3b343cb88ee7"></a>
+
+```c
+#define RSTMGR_SDMCOLDRST_RSTLINE 0
+```
+
+相关声明：[RSTMGR_SDMCOLDRST_RSTLINE](#a585154051b7dbf46359c3b343cb88ee7)。
+
+<a id="r_ada7dd08adc2fe898fb18b4a0c7caa3e6"></a>
+
+```c
+#define RSTMGR_SDMWARMRST_RSTLINE 1
+```
+
+相关声明：[RSTMGR_SDMWARMRST_RSTLINE](#ada7dd08adc2fe898fb18b4a0c7caa3e6)。
+
+<a id="r_acc2a4393193216677993aac2c3e39383"></a>
+
+```c
+#define RSTMGR_SDMLASTPORRST_RSTLINE 2
+```
+
+相关声明：[RSTMGR_SDMLASTPORRST_RSTLINE](#acc2a4393193216677993aac2c3e39383)。
+
+<a id="r_ad7b55a6c11754a4117571a4b0bfcce03"></a>
+
+```c
+#define RSTMGR_L4WD0RST_RSTLINE 16
+```
+
+相关声明：[RSTMGR_L4WD0RST_RSTLINE](#ad7b55a6c11754a4117571a4b0bfcce03)。
+
+<a id="r_af88c555204bfbf0e2e4e63dbbe617b25"></a>
+
+```c
+#define RSTMGR_L4WD1RST_RSTLINE 17
+```
+
+相关声明：[RSTMGR_L4WD1RST_RSTLINE](#af88c555204bfbf0e2e4e63dbbe617b25)。
+
+<a id="r_addee8be9550973555759a27863beda6d"></a>
+
+```c
+#define RSTMGR_L4WD2RST_RSTLINE 18
+```
+
+相关声明：[RSTMGR_L4WD2RST_RSTLINE](#addee8be9550973555759a27863beda6d)。
+
+<a id="r_a472aa6066e3e72e141a7ad16874b82ed"></a>
+
+```c
+#define RSTMGR_L4WD3RST_RSTLINE 19
+```
+
+相关声明：[RSTMGR_L4WD3RST_RSTLINE](#a472aa6066e3e72e141a7ad16874b82ed)。
+
+<a id="r_a0b7857fa4ead0b712de1797e3c9665ea"></a>
+
+```c
+#define RSTMGR_L4WD4RST_RSTLINE 20
+```
+
+相关声明：[RSTMGR_L4WD4RST_RSTLINE](#a0b7857fa4ead0b712de1797e3c9665ea)。
+
+<a id="r_af11cd90de5c492cc39b6abe79e35cca3"></a>
+
+```c
+#define RSTMGR_DEBUGRST_RSTLINE 21
+```
+
+相关声明：[RSTMGR_DEBUGRST_RSTLINE](#af11cd90de5c492cc39b6abe79e35cca3)。
+
+<a id="r_a5c0bd4df44114d9a568944da9c2fe572"></a>
+
+```c
+#define RSTMGR_CSDAPRST_RSTLINE 22
+```
+
+相关声明：[RSTMGR_CSDAPRST_RSTLINE](#a5c0bd4df44114d9a568944da9c2fe572)。
+
+<a id="r_a2c4c744fcd15f30aa79f156a6b1f9e1f"></a>
+
+```c
+#define RSTMGR_EMIFTIMEOUT_RSTLINE 64
+```
+
+相关声明：[RSTMGR_EMIFTIMEOUT_RSTLINE](#a2c4c744fcd15f30aa79f156a6b1f9e1f)。
+
+<a id="r_a23e3f86776c276a5e5f005e0f1066e98"></a>
+
+```c
+#define RSTMGR_FPGAHSTIMEOUT_RSTLINE 66
+```
+
+相关声明：[RSTMGR_FPGAHSTIMEOUT_RSTLINE](#a23e3f86776c276a5e5f005e0f1066e98)。
+
+<a id="r_a4c6cc335ac18aeae909288259d26cb7d"></a>
+
+```c
+#define RSTMGR_ETRSTALLTIMEOUT_RSTLINE 67
+```
+
+相关声明：[RSTMGR_ETRSTALLTIMEOUT_RSTLINE](#a4c6cc335ac18aeae909288259d26cb7d)。
+
+<a id="r_ac7d848a04958359fb8a8061721dea09d"></a>
+
+```c
+#define RSTMGR_LWSOC2FPGATIMEOUT_RSTLINE 72
+```
+
+相关声明：[RSTMGR_LWSOC2FPGATIMEOUT_RSTLINE](#ac7d848a04958359fb8a8061721dea09d)。
+
+<a id="r_ae522b9b126638e62fd5dc897e4dda03f"></a>
+
+```c
+#define RSTMGR_SOC2FPGATIMEOUT_RSTLINE 73
+```
+
+相关声明：[RSTMGR_SOC2FPGATIMEOUT_RSTLINE](#ae522b9b126638e62fd5dc897e4dda03f)。
+
+<a id="r_a422d06dce0174ecc0fea6abab12d2498"></a>
+
+```c
+#define RSTMGR_F2SDRAMTIMEOUT_RSTLINE 74
+```
+
+相关声明：[RSTMGR_F2SDRAMTIMEOUT_RSTLINE](#a422d06dce0174ecc0fea6abab12d2498)。
+
+<a id="r_a03a7ba7ad57b2c7473475ab6ac48b8a6"></a>
+
+```c
+#define RSTMGR_F2STIMEOUT_RSTLINE 75
+```
+
+相关声明：[RSTMGR_F2STIMEOUT_RSTLINE](#a03a7ba7ad57b2c7473475ab6ac48b8a6)。
+
+<a id="r_a24b92f54005d6700167970a6b6c9c38d"></a>
+
+```c
+#define RSTMGR_L3NOCDBGTIMEOUT_RSTLINE 79
+```
+
+相关声明：[RSTMGR_L3NOCDBGTIMEOUT_RSTLINE](#a24b92f54005d6700167970a6b6c9c38d)。
+
+<a id="r_aa1be8f78e28752fa2476bbe8601d721e"></a>
+
+```c
+#define RSTMGR_DEBUGL3NOCTIMEOUT_RSTLINE 80
+```
+
+相关声明：[RSTMGR_DEBUGL3NOCTIMEOUT_RSTLINE](#aa1be8f78e28752fa2476bbe8601d721e)。
+
+<a id="r_acc85e22aefcbec3c832e79bca5d445db"></a>
+
+```c
+#define RSTMGR_EMIF_FLUSH_RSTLINE 128
+```
+
+相关声明：[RSTMGR_EMIF_FLUSH_RSTLINE](#acc85e22aefcbec3c832e79bca5d445db)。
+
+<a id="r_a6fc00e0e6d64b312f5db809e2501aa8c"></a>
+
+```c
+#define RSTMGR_FPGAHSEN_RSTLINE 130
+```
+
+相关声明：[RSTMGR_FPGAHSEN_RSTLINE](#a6fc00e0e6d64b312f5db809e2501aa8c)。
+
+<a id="r_aec42bb3bf9fb43332139e56601a1f717"></a>
+
+```c
+#define RSTMGR_ETRSTALLEN_RSTLINE 131
+```
+
+相关声明：[RSTMGR_ETRSTALLEN_RSTLINE](#aec42bb3bf9fb43332139e56601a1f717)。
+
+<a id="r_a4f8d4aae414244c763e942863e6327b4"></a>
+
+```c
+#define RSTMGR_LWSOC2FPGA_FLUSH_RSTLINE 137
+```
+
+相关声明：[RSTMGR_LWSOC2FPGA_FLUSH_RSTLINE](#a4f8d4aae414244c763e942863e6327b4)。
+
+<a id="r_a974e4413029a0bd76fa3a72fb23ce424"></a>
+
+```c
+#define RSTMGR_SOC2FPGA_FLUSH_RSTLINE 138
+```
+
+相关声明：[RSTMGR_SOC2FPGA_FLUSH_RSTLINE](#a974e4413029a0bd76fa3a72fb23ce424)。
+
+<a id="r_a1c9dad218dbbc504fb64d023319c0153"></a>
+
+```c
+#define RSTMGR_F2SDRAM_FLUSH_RSTLINE 139
+```
+
+相关声明：[RSTMGR_F2SDRAM_FLUSH_RSTLINE](#a1c9dad218dbbc504fb64d023319c0153)。
+
+<a id="r_a22ed34d72d389c7952a411f0a6039fae"></a>
+
+```c
+#define RSTMGR_F2SOC_FLUSH_RSTLINE 140
+```
+
+相关声明：[RSTMGR_F2SOC_FLUSH_RSTLINE](#a22ed34d72d389c7952a411f0a6039fae)。
+
+<a id="r_a027d4f38ff1e47e66566b1de4e8607ed"></a>
+
+```c
+#define RSTMGR_L3NOC_DBG_RSTLINE 144
+```
+
+相关声明：[RSTMGR_L3NOC_DBG_RSTLINE](#a027d4f38ff1e47e66566b1de4e8607ed)。
+
+<a id="r_a65ce5421ecd5257a9bbd9859a5327c41"></a>
+
+```c
+#define RSTMGR_DEBUG_L3NOC_RSTLINE 145
+```
+
+相关声明：[RSTMGR_DEBUG_L3NOC_RSTLINE](#a65ce5421ecd5257a9bbd9859a5327c41)。
+
+<a id="r_a096df778de6c181e296007f6bf7ae72c"></a>
+
+```c
+#define RSTMGR_EMIF_FLUSH_REQ_RSTLINE 160
+```
+
+相关声明：[RSTMGR_EMIF_FLUSH_REQ_RSTLINE](#a096df778de6c181e296007f6bf7ae72c)。
+
+<a id="r_a53fb988dc2177ca3b9de2873d8ba78f2"></a>
+
+```c
+#define RSTMGR_FPGAHSREQ_RSTLINE 162
+```
+
+相关声明：[RSTMGR_FPGAHSREQ_RSTLINE](#a53fb988dc2177ca3b9de2873d8ba78f2)。
+
+<a id="r_ae6381d91677b3668876d3d9960fdeaea"></a>
+
+```c
+#define RSTMGR_ETRSTALLREQ_RSTLINE 163
+```
+
+相关声明：[RSTMGR_ETRSTALLREQ_RSTLINE](#ae6381d91677b3668876d3d9960fdeaea)。
+
+<a id="r_a06462a7bbd730d88f4f5af956d9c6145"></a>
+
+```c
+#define RSTMGR_LWSOC2FPGA_FLUSH_REQ_RSTLINE 169
+```
+
+相关声明：[RSTMGR_LWSOC2FPGA_FLUSH_REQ_RSTLINE](#a06462a7bbd730d88f4f5af956d9c6145)。
+
+<a id="r_a25371eb9f5dc642190275bc609344993"></a>
+
+```c
+#define RSTMGR_SOC2FPGA_FLUSH_REQ_RSTLINE 170
+```
+
+相关声明：[RSTMGR_SOC2FPGA_FLUSH_REQ_RSTLINE](#a25371eb9f5dc642190275bc609344993)。
+
+<a id="r_a74a9a1a964ff55c2dda03bab20504d32"></a>
+
+```c
+#define RSTMGR_F2SDRAM_FLUSH_REQ_RSTLINE 171
+```
+
+相关声明：[RSTMGR_F2SDRAM_FLUSH_REQ_RSTLINE](#a74a9a1a964ff55c2dda03bab20504d32)。
+
+<a id="r_a5181d95163350f63dd84d2c8d2eea563"></a>
+
+```c
+#define RSTMGR_F2S_FLUSH_REQ_RSTLINE 172
+```
+
+相关声明：[RSTMGR_F2S_FLUSH_REQ_RSTLINE](#a5181d95163350f63dd84d2c8d2eea563)。
+
+<a id="r_acfaf0bc836199746c9e9a2fbc6f10ba7"></a>
+
+```c
+#define RSTMGR_L3NOC_DBG_REQ_RSTLINE 176
+```
+
+相关声明：[RSTMGR_L3NOC_DBG_REQ_RSTLINE](#acfaf0bc836199746c9e9a2fbc6f10ba7)。
+
+<a id="r_af5061586441dc39e84f43efea93edb9e"></a>
+
+```c
+#define RSTMGR_DEBUG_L3NOC_REQ_RSTLINE 177
+```
+
+相关声明：[RSTMGR_DEBUG_L3NOC_REQ_RSTLINE](#af5061586441dc39e84f43efea93edb9e)。
+
+<a id="r_a8c7db588d809ed729a14abd9d14e6d72"></a>
+
+```c
+#define RSTMGR_EMIF_FLUSH_ACK_RSTLINE 192
+```
+
+相关声明：[RSTMGR_EMIF_FLUSH_ACK_RSTLINE](#a8c7db588d809ed729a14abd9d14e6d72)。
+
+<a id="r_a38d45c134a0a6d7f5a341bacb3587f9b"></a>
+
+```c
+#define RSTMGR_FPGAHSACK_RSTLINE 194
+```
+
+相关声明：[RSTMGR_FPGAHSACK_RSTLINE](#a38d45c134a0a6d7f5a341bacb3587f9b)。
+
+<a id="r_ab89f7f3813a6f9328e490fc73b60ca98"></a>
+
+```c
+#define RSTMGR_ETRSTALLACK_RSTLINE 195
+```
+
+相关声明：[RSTMGR_ETRSTALLACK_RSTLINE](#ab89f7f3813a6f9328e490fc73b60ca98)。
+
+<a id="r_a9dcc6361c91e5574cfb59ddac8f6fd0a"></a>
+
+```c
+#define RSTMGR_LWSOC2FPGA_FLUSH_ACK_RSTLINE 201
+```
+
+相关声明：[RSTMGR_LWSOC2FPGA_FLUSH_ACK_RSTLINE](#a9dcc6361c91e5574cfb59ddac8f6fd0a)。
+
+<a id="r_abfb876a63a51e4af7c3e41595c49f95e"></a>
+
+```c
+#define RSTMGR_SOC2FPGA_FLUSH_ACK_RSTLINE 202
+```
+
+相关声明：[RSTMGR_SOC2FPGA_FLUSH_ACK_RSTLINE](#abfb876a63a51e4af7c3e41595c49f95e)。
+
+<a id="r_a847f55a29c0c71b8823d752b6772542d"></a>
+
+```c
+#define RSTMGR_F2SDRAM_FLUSH_ACK_RSTLINE 203
+```
+
+相关声明：[RSTMGR_F2SDRAM_FLUSH_ACK_RSTLINE](#a847f55a29c0c71b8823d752b6772542d)。
+
+<a id="r_a22d82b4660a71d349ef7f6d51b4ea84d"></a>
+
+```c
+#define RSTMGR_F2S_FLUSH_ACK_RSTLINE 204
+```
+
+相关声明：[RSTMGR_F2S_FLUSH_ACK_RSTLINE](#a22d82b4660a71d349ef7f6d51b4ea84d)。
+
+<a id="r_a7e28c0b94a3642b5a9bcc6578507baaf"></a>
+
+```c
+#define RSTMGR_L3NOC_DBG_ACK_RSTLINE 208
+```
+
+相关声明：[RSTMGR_L3NOC_DBG_ACK_RSTLINE](#a7e28c0b94a3642b5a9bcc6578507baaf)。
+
+<a id="r_a8b9fff3b2d2ee11f86830b7960c14fdc"></a>
+
+```c
+#define RSTMGR_DEBUG_L3NOC_ACK_RSTLINE 209
+```
+
+相关声明：[RSTMGR_DEBUG_L3NOC_ACK_RSTLINE](#a8b9fff3b2d2ee11f86830b7960c14fdc)。
+
+<a id="r_a5986c0861bbd91a277c86e35ad7c2697"></a>
+
+```c
+#define RSTMGR_ETRSTALLWARMRST_RSTLINE 224
+```
+
+相关声明：[RSTMGR_ETRSTALLWARMRST_RSTLINE](#a5986c0861bbd91a277c86e35ad7c2697)。
+
+<a id="r_abc19e710d19fa723ed961d603c0ee481"></a>
+
+```c
+#define RSTMGR_TSN0_RSTLINE 288
+```
+
+相关声明：[RSTMGR_TSN0_RSTLINE](#abc19e710d19fa723ed961d603c0ee481)。
+
+<a id="r_ac54f3d8be989467a8c2614f7cbd258d8"></a>
+
+```c
+#define RSTMGR_TSN1_RSTLINE 289
+```
+
+相关声明：[RSTMGR_TSN1_RSTLINE](#ac54f3d8be989467a8c2614f7cbd258d8)。
+
+<a id="r_a07e5632d3587678a19a236cb0555583f"></a>
+
+```c
+#define RSTMGR_TSN2_RSTLINE 290
+```
+
+相关声明：[RSTMGR_TSN2_RSTLINE](#a07e5632d3587678a19a236cb0555583f)。
+
+<a id="r_ad8fdc2c3565845ec0ed24f1037d4fe54"></a>
+
+```c
+#define RSTMGR_USB0_RSTLINE 291
+```
+
+相关声明：[RSTMGR_USB0_RSTLINE](#ad8fdc2c3565845ec0ed24f1037d4fe54)。
+
+<a id="r_a29719d049694afd1eb3ffba4c20f0dc2"></a>
+
+```c
+#define RSTMGR_USB1_RSTLINE 292
+```
+
+相关声明：[RSTMGR_USB1_RSTLINE](#a29719d049694afd1eb3ffba4c20f0dc2)。
+
+<a id="r_afbe21f3e39f5f7c608dbb141f9d08939"></a>
+
+```c
+#define RSTMGR_NAND_RSTLINE 293
+```
+
+相关声明：[RSTMGR_NAND_RSTLINE](#afbe21f3e39f5f7c608dbb141f9d08939)。
+
+<a id="r_a4cb58de3422e1c6ce0b3faacefe68588"></a>
+
+```c
+#define RSTMGR_SOFTPHY_RSTLINE 294
+```
+
+相关声明：[RSTMGR_SOFTPHY_RSTLINE](#a4cb58de3422e1c6ce0b3faacefe68588)。
+
+<a id="r_ac33b56c9e2df3e00e926f0f61fa54790"></a>
+
+```c
+#define RSTMGR_SDMMC_RSTLINE 295
+```
+
+相关声明：[RSTMGR_SDMMC_RSTLINE](#ac33b56c9e2df3e00e926f0f61fa54790)。
+
+<a id="r_a623bbf4826b0e39a7901dae99182b3c8"></a>
+
+```c
+#define RSTMGR_TSN0ECC_RSTLINE 296
+```
+
+相关声明：[RSTMGR_TSN0ECC_RSTLINE](#a623bbf4826b0e39a7901dae99182b3c8)。
+
+<a id="r_a7ed105f6e6e568d49c92f312409ea854"></a>
+
+```c
+#define RSTMGR_TSN1ECC_RSTLINE 297
+```
+
+相关声明：[RSTMGR_TSN1ECC_RSTLINE](#a7ed105f6e6e568d49c92f312409ea854)。
+
+<a id="r_a84f5dc45defb0ab93134a96730bbb6aa"></a>
+
+```c
+#define RSTMGR_TSN2ECC_RSTLINE 298
+```
+
+相关声明：[RSTMGR_TSN2ECC_RSTLINE](#a84f5dc45defb0ab93134a96730bbb6aa)。
+
+<a id="r_acf82c79cb3f5673427cd59424e60dac0"></a>
+
+```c
+#define RSTMGR_USB0ECC_RSTLINE 299
+```
+
+相关声明：[RSTMGR_USB0ECC_RSTLINE](#acf82c79cb3f5673427cd59424e60dac0)。
+
+<a id="r_abacded7d156188a657baccef36dc8352"></a>
+
+```c
+#define RSTMGR_USB1ECC_RSTLINE 300
+```
+
+相关声明：[RSTMGR_USB1ECC_RSTLINE](#abacded7d156188a657baccef36dc8352)。
+
+<a id="r_a75c819e461a1e16a8b1550d11d32bdbe"></a>
+
+```c
+#define RSTMGR_NANDECC_RSTLINE 301
+```
+
+相关声明：[RSTMGR_NANDECC_RSTLINE](#a75c819e461a1e16a8b1550d11d32bdbe)。
+
+<a id="r_a52b788acab6b89ab6ab866a52a34123c"></a>
+
+```c
+#define RSTMGR_SDMMCECC_RSTLINE 303
+```
+
+相关声明：[RSTMGR_SDMMCECC_RSTLINE](#a52b788acab6b89ab6ab866a52a34123c)。
+
+<a id="r_a9c60e629df27657e03d783ad28dc4536"></a>
+
+```c
+#define RSTMGR_DMA_RSTLINE 304
+```
+
+相关声明：[RSTMGR_DMA_RSTLINE](#a9c60e629df27657e03d783ad28dc4536)。
+
+<a id="r_ad90b8ac65d4a01685cef402a578005e2"></a>
+
+```c
+#define RSTMGR_SPIM0_RSTLINE 305
+```
+
+相关声明：[RSTMGR_SPIM0_RSTLINE](#ad90b8ac65d4a01685cef402a578005e2)。
+
+<a id="r_af7dd0bbe30d752d9daa5055eef861429"></a>
+
+```c
+#define RSTMGR_SPIM1_RSTLINE 306
+```
+
+相关声明：[RSTMGR_SPIM1_RSTLINE](#af7dd0bbe30d752d9daa5055eef861429)。
+
+<a id="r_ab15b14a102bb406da22d0e44b5101791"></a>
+
+```c
+#define RSTMGR_SPIS0_RSTLINE 307
+```
+
+相关声明：[RSTMGR_SPIS0_RSTLINE](#ab15b14a102bb406da22d0e44b5101791)。
+
+<a id="r_a23cdb6b512cfcddaae83ea80f40911c3"></a>
+
+```c
+#define RSTMGR_SPIS1_RSTLINE 308
+```
+
+相关声明：[RSTMGR_SPIS1_RSTLINE](#a23cdb6b512cfcddaae83ea80f40911c3)。
+
+<a id="r_a4e5975d01bc4247b2a07779a7482faff"></a>
+
+```c
+#define RSTMGR_DMAECC_RSTLINE 309
+```
+
+相关声明：[RSTMGR_DMAECC_RSTLINE](#a4e5975d01bc4247b2a07779a7482faff)。
+
+<a id="r_a67704f9262daf85de0ceda0f5c65036b"></a>
+
+```c
+#define RSTMGR_EMACPTP_RSTLINE 310
+```
+
+相关声明：[RSTMGR_EMACPTP_RSTLINE](#a67704f9262daf85de0ceda0f5c65036b)。
+
+<a id="r_a06f828739e22a4a483148daa9310d87d"></a>
+
+```c
+#define RSTMGR_DMAIF0_RSTLINE 312
+```
+
+相关声明：[RSTMGR_DMAIF0_RSTLINE](#a06f828739e22a4a483148daa9310d87d)。
+
+<a id="r_a58d59e581e7cbf360e59c3955051136b"></a>
+
+```c
+#define RSTMGR_DMAIF1_RSTLINE 313
+```
+
+相关声明：[RSTMGR_DMAIF1_RSTLINE](#a58d59e581e7cbf360e59c3955051136b)。
+
+<a id="r_a4197cf59b7f126eb8b95347ff154bed0"></a>
+
+```c
+#define RSTMGR_DMAIF2_RSTLINE 314
+```
+
+相关声明：[RSTMGR_DMAIF2_RSTLINE](#a4197cf59b7f126eb8b95347ff154bed0)。
+
+<a id="r_a56d5e8d6a269c3cc5385c9f1c4a7222a"></a>
+
+```c
+#define RSTMGR_DMAIF3_RSTLINE 315
+```
+
+相关声明：[RSTMGR_DMAIF3_RSTLINE](#a56d5e8d6a269c3cc5385c9f1c4a7222a)。
+
+<a id="r_a32b19baf7eb10fce4dd52d62dcfe7d2e"></a>
+
+```c
+#define RSTMGR_DMAIF4_RSTLINE 316
+```
+
+相关声明：[RSTMGR_DMAIF4_RSTLINE](#a32b19baf7eb10fce4dd52d62dcfe7d2e)。
+
+<a id="r_a2fd7c7028304ed477884717e3b29f444"></a>
+
+```c
+#define RSTMGR_DMAIF5_RSTLINE 317
+```
+
+相关声明：[RSTMGR_DMAIF5_RSTLINE](#a2fd7c7028304ed477884717e3b29f444)。
+
+<a id="r_a622d9a32d696e344579d0d9c700eb408"></a>
+
+```c
+#define RSTMGR_DMAIF6_RSTLINE 318
+```
+
+相关声明：[RSTMGR_DMAIF6_RSTLINE](#a622d9a32d696e344579d0d9c700eb408)。
+
+<a id="r_ab5a70171fcfda89bc574a306abc9514a"></a>
+
+```c
+#define RSTMGR_DMAIF7_RSTLINE 319
+```
+
+相关声明：[RSTMGR_DMAIF7_RSTLINE](#ab5a70171fcfda89bc574a306abc9514a)。
+
+<a id="r_a962c8dc409b32c05461410fd1432b63d"></a>
+
+```c
+#define RSTMGR_WATCHDOG0_RSTLINE 320
+```
+
+相关声明：[RSTMGR_WATCHDOG0_RSTLINE](#a962c8dc409b32c05461410fd1432b63d)。
+
+<a id="r_a27b2ce66bf0b781bc332637a5839fc7e"></a>
+
+```c
+#define RSTMGR_WATCHDOG1_RSTLINE 321
+```
+
+相关声明：[RSTMGR_WATCHDOG1_RSTLINE](#a27b2ce66bf0b781bc332637a5839fc7e)。
+
+<a id="r_a57a5b6d287582da91705ec9dca7cb748"></a>
+
+```c
+#define RSTMGR_WATCHDOG2_RSTLINE 322
+```
+
+相关声明：[RSTMGR_WATCHDOG2_RSTLINE](#a57a5b6d287582da91705ec9dca7cb748)。
+
+<a id="r_a16d59d153db75024d08f029705bb2113"></a>
+
+```c
+#define RSTMGR_WATCHDOG3_RSTLINE 323
+```
+
+相关声明：[RSTMGR_WATCHDOG3_RSTLINE](#a16d59d153db75024d08f029705bb2113)。
+
+<a id="r_aae8be8b5bf8ba79acafac67bca76fd07"></a>
+
+```c
+#define RSTMGR_L4SYSTIMER0_RSTLINE 324
+```
+
+相关声明：[RSTMGR_L4SYSTIMER0_RSTLINE](#aae8be8b5bf8ba79acafac67bca76fd07)。
+
+<a id="r_ad7d6087df511622d34696bf032db2217"></a>
+
+```c
+#define RSTMGR_L4SYSTIMER1_RSTLINE 325
+```
+
+相关声明：[RSTMGR_L4SYSTIMER1_RSTLINE](#ad7d6087df511622d34696bf032db2217)。
+
+<a id="r_a532716c0bcf0535be451a35762479995"></a>
+
+```c
+#define RSTMGR_SPTIMER0_RSTLINE 326
+```
+
+相关声明：[RSTMGR_SPTIMER0_RSTLINE](#a532716c0bcf0535be451a35762479995)。
+
+<a id="r_a8af37e22b5a8a9191de46925aab13ef1"></a>
+
+```c
+#define RSTMGR_SPTIMER1_RSTLINE 327
+```
+
+相关声明：[RSTMGR_SPTIMER1_RSTLINE](#a8af37e22b5a8a9191de46925aab13ef1)。
+
+<a id="r_ac57c12e78099bad648343fc04886b01d"></a>
+
+```c
+#define RSTMGR_I2C0_RSTLINE 328
+```
+
+相关声明：[RSTMGR_I2C0_RSTLINE](#ac57c12e78099bad648343fc04886b01d)。
+
+<a id="r_a10bb94717d19bd42e0c6093fcbfd09ba"></a>
+
+```c
+#define RSTMGR_I2C1_RSTLINE 329
+```
+
+相关声明：[RSTMGR_I2C1_RSTLINE](#a10bb94717d19bd42e0c6093fcbfd09ba)。
+
+<a id="r_a5d3606f401130658eb815ab59190b455"></a>
+
+```c
+#define RSTMGR_I2C2_RSTLINE 330
+```
+
+相关声明：[RSTMGR_I2C2_RSTLINE](#a5d3606f401130658eb815ab59190b455)。
+
+<a id="r_a796b1b1b385333d7a4a0a3c4d4468fc5"></a>
+
+```c
+#define RSTMGR_I2C3_RSTLINE 331
+```
+
+相关声明：[RSTMGR_I2C3_RSTLINE](#a796b1b1b385333d7a4a0a3c4d4468fc5)。
+
+<a id="r_a72b79a6cb15ef7f14d87ec52306bd801"></a>
+
+```c
+#define RSTMGR_I2C4_RSTLINE 332
+```
+
+相关声明：[RSTMGR_I2C4_RSTLINE](#a72b79a6cb15ef7f14d87ec52306bd801)。
+
+<a id="r_a38f86cb0db46703c94f48610f47daed8"></a>
+
+```c
+#define RSTMGR_I3C0_RSTLINE 333
+```
+
+相关声明：[RSTMGR_I3C0_RSTLINE](#a38f86cb0db46703c94f48610f47daed8)。
+
+<a id="r_a81880e530aec6268f1cbe5498d1e982a"></a>
+
+```c
+#define RSTMGR_I3C1_RSTLINE 334
+```
+
+相关声明：[RSTMGR_I3C1_RSTLINE](#a81880e530aec6268f1cbe5498d1e982a)。
+
+<a id="r_a577f1885fe5bc1d6fc32c3f861494d46"></a>
+
+```c
+#define RSTMGR_UART0_RSTLINE 336
+```
+
+相关声明：[RSTMGR_UART0_RSTLINE](#a577f1885fe5bc1d6fc32c3f861494d46)。
+
+<a id="r_ac516c17df2e2f6e28224696b52a273c4"></a>
+
+```c
+#define RSTMGR_UART1_RSTLINE 337
+```
+
+相关声明：[RSTMGR_UART1_RSTLINE](#ac516c17df2e2f6e28224696b52a273c4)。
+
+<a id="r_af53b30d174c00f5d155a1b0d3d6ed120"></a>
+
+```c
+#define RSTMGR_GPIO0_RSTLINE 344
+```
+
+相关声明：[RSTMGR_GPIO0_RSTLINE](#af53b30d174c00f5d155a1b0d3d6ed120)。
+
+<a id="r_aaa2d5d32ae7be05e2f6d536b9a8cf383"></a>
+
+```c
+#define RSTMGR_GPIO1_RSTLINE 345
+```
+
+相关声明：[RSTMGR_GPIO1_RSTLINE](#aaa2d5d32ae7be05e2f6d536b9a8cf383)。
+
+<a id="r_a8fffd79b568e69beb85783c25ebb637a"></a>
+
+```c
+#define RSTMGR_WATCHDOG4_RSTLINE 346
+```
+
+相关声明：[RSTMGR_WATCHDOG4_RSTLINE](#a8fffd79b568e69beb85783c25ebb637a)。
+
+<a id="r_a8c4197983db16222334c196115ab2646"></a>
+
+```c
+#define RSTMGR_SOC2FPGA_RSTLINE 352
+```
+
+相关声明：[RSTMGR_SOC2FPGA_RSTLINE](#a8c4197983db16222334c196115ab2646)。
+
+<a id="r_afcd4d63727fe68dd63a521675f296d71"></a>
+
+```c
+#define RSTMGR_LWSOC2FPGA_RSTLINE 353
+```
+
+相关声明：[RSTMGR_LWSOC2FPGA_RSTLINE](#afcd4d63727fe68dd63a521675f296d71)。
+
+<a id="r_a39fa1dafa254c587b03cabd52c3da0d3"></a>
+
+```c
+#define RSTMGR_FPGA2SOC_RSTLINE 354
+```
+
+相关声明：[RSTMGR_FPGA2SOC_RSTLINE](#a39fa1dafa254c587b03cabd52c3da0d3)。
+
+<a id="r_a38d72a8a1d40aac1902ca01d6983e8bd"></a>
+
+```c
+#define RSTMGR_FPGA2SDRAM_RSTLINE 355
+```
+
+相关声明：[RSTMGR_FPGA2SDRAM_RSTLINE](#a38d72a8a1d40aac1902ca01d6983e8bd)。
+
+<a id="r_a2fc735d622800d0c1bfb3f927db8b200"></a>
+
+```c
+#define RSTMGR_MPFE_RSTLINE 358
+```
+
+相关声明：[RSTMGR_MPFE_RSTLINE](#a2fc735d622800d0c1bfb3f927db8b200)。
+
+<a id="r_ae921296149380455af880518dbd3f175"></a>
+
+```c
+#define RSTMGR_DBG_RST_RSTLINE 480
+```
+
+相关声明：[RSTMGR_DBG_RST_RSTLINE](#ae921296149380455af880518dbd3f175)。
+
+<a id="r_a0ab33f9e850b87fab5fe5774b3997d8b"></a>
+
+```c
+#define RSTMGR_SOC2FPGA_WARM_RSTLINE 608
+```
+
+相关声明：[RSTMGR_SOC2FPGA_WARM_RSTLINE](#a0ab33f9e850b87fab5fe5774b3997d8b)。
+
+<a id="r_a8e103cc2f9b39cb20f8daca553d0c7c3"></a>
+
+```c
+#define RSTMGR_LWSOC2FPGA_WARM_RSTLINE 609
+```
+
+相关声明：[RSTMGR_LWSOC2FPGA_WARM_RSTLINE](#a8e103cc2f9b39cb20f8daca553d0c7c3)。
+
+<a id="r_a651a172ba0de8436a11e88a362cf4371"></a>
+
+```c
+#define RSTMGR_FPGA2SOC_WARM_RSTLINE 610
+```
+
+相关声明：[RSTMGR_FPGA2SOC_WARM_RSTLINE](#a651a172ba0de8436a11e88a362cf4371)。
+
+<a id="r_a4fac58bc49b6dc627e23c899816265fa"></a>
+
+```c
+#define RSTMGR_FPGA2SDRAM_WARM_RSTLINE 611
+```
+
+相关声明：[RSTMGR_FPGA2SDRAM_WARM_RSTLINE](#a4fac58bc49b6dc627e23c899816265fa)。
+
+<a id="r_afa1b7ebd62f41bf5745871580c393f9e"></a>
+
+```c
+#define RSTMGR_MPFE_WARM_RSTLINE 614
+```
+
+相关声明：[RSTMGR_MPFE_WARM_RSTLINE](#afa1b7ebd62f41bf5745871580c393f9e)。
+
+## 169.2\_详细说明（Detailed Documentation）
+
+<a id="a5c0bd4df44114d9a568944da9c2fe572"></a>
+
+### `RSTMGR_CSDAPRST_RSTLINE`
+
+```c
+#define RSTMGR_CSDAPRST_RSTLINE 22
+```
+
+<a id="ae921296149380455af880518dbd3f175"></a>
+
+### `RSTMGR_DBG_RST_RSTLINE`
+
+```c
+#define RSTMGR_DBG_RST_RSTLINE 480
+```
+
+<a id="a8b9fff3b2d2ee11f86830b7960c14fdc"></a>
+
+### `RSTMGR_DEBUG_L3NOC_ACK_RSTLINE`
+
+```c
+#define RSTMGR_DEBUG_L3NOC_ACK_RSTLINE 209
+```
+
+<a id="af5061586441dc39e84f43efea93edb9e"></a>
+
+### `RSTMGR_DEBUG_L3NOC_REQ_RSTLINE`
+
+```c
+#define RSTMGR_DEBUG_L3NOC_REQ_RSTLINE 177
+```
+
+<a id="a65ce5421ecd5257a9bbd9859a5327c41"></a>
+
+### `RSTMGR_DEBUG_L3NOC_RSTLINE`
+
+```c
+#define RSTMGR_DEBUG_L3NOC_RSTLINE 145
+```
+
+<a id="aa1be8f78e28752fa2476bbe8601d721e"></a>
+
+### `RSTMGR_DEBUGL3NOCTIMEOUT_RSTLINE`
+
+```c
+#define RSTMGR_DEBUGL3NOCTIMEOUT_RSTLINE 80
+```
+
+<a id="af11cd90de5c492cc39b6abe79e35cca3"></a>
+
+### `RSTMGR_DEBUGRST_RSTLINE`
+
+```c
+#define RSTMGR_DEBUGRST_RSTLINE 21
+```
+
+<a id="a9c60e629df27657e03d783ad28dc4536"></a>
+
+### `RSTMGR_DMA_RSTLINE`
+
+```c
+#define RSTMGR_DMA_RSTLINE 304
+```
+
+<a id="a4e5975d01bc4247b2a07779a7482faff"></a>
+
+### `RSTMGR_DMAECC_RSTLINE`
+
+```c
+#define RSTMGR_DMAECC_RSTLINE 309
+```
+
+<a id="a06f828739e22a4a483148daa9310d87d"></a>
+
+### `RSTMGR_DMAIF0_RSTLINE`
+
+```c
+#define RSTMGR_DMAIF0_RSTLINE 312
+```
+
+<a id="a58d59e581e7cbf360e59c3955051136b"></a>
+
+### `RSTMGR_DMAIF1_RSTLINE`
+
+```c
+#define RSTMGR_DMAIF1_RSTLINE 313
+```
+
+<a id="a4197cf59b7f126eb8b95347ff154bed0"></a>
+
+### `RSTMGR_DMAIF2_RSTLINE`
+
+```c
+#define RSTMGR_DMAIF2_RSTLINE 314
+```
+
+<a id="a56d5e8d6a269c3cc5385c9f1c4a7222a"></a>
+
+### `RSTMGR_DMAIF3_RSTLINE`
+
+```c
+#define RSTMGR_DMAIF3_RSTLINE 315
+```
+
+<a id="a32b19baf7eb10fce4dd52d62dcfe7d2e"></a>
+
+### `RSTMGR_DMAIF4_RSTLINE`
+
+```c
+#define RSTMGR_DMAIF4_RSTLINE 316
+```
+
+<a id="a2fd7c7028304ed477884717e3b29f444"></a>
+
+### `RSTMGR_DMAIF5_RSTLINE`
+
+```c
+#define RSTMGR_DMAIF5_RSTLINE 317
+```
+
+<a id="a622d9a32d696e344579d0d9c700eb408"></a>
+
+### `RSTMGR_DMAIF6_RSTLINE`
+
+```c
+#define RSTMGR_DMAIF6_RSTLINE 318
+```
+
+<a id="ab5a70171fcfda89bc574a306abc9514a"></a>
+
+### `RSTMGR_DMAIF7_RSTLINE`
+
+```c
+#define RSTMGR_DMAIF7_RSTLINE 319
+```
+
+<a id="a67704f9262daf85de0ceda0f5c65036b"></a>
+
+### `RSTMGR_EMACPTP_RSTLINE`
+
+```c
+#define RSTMGR_EMACPTP_RSTLINE 310
+```
+
+<a id="a8c7db588d809ed729a14abd9d14e6d72"></a>
+
+### `RSTMGR_EMIF_FLUSH_ACK_RSTLINE`
+
+```c
+#define RSTMGR_EMIF_FLUSH_ACK_RSTLINE 192
+```
+
+<a id="a096df778de6c181e296007f6bf7ae72c"></a>
+
+### `RSTMGR_EMIF_FLUSH_REQ_RSTLINE`
+
+```c
+#define RSTMGR_EMIF_FLUSH_REQ_RSTLINE 160
+```
+
+<a id="acc85e22aefcbec3c832e79bca5d445db"></a>
+
+### `RSTMGR_EMIF_FLUSH_RSTLINE`
+
+```c
+#define RSTMGR_EMIF_FLUSH_RSTLINE 128
+```
+
+<a id="a2c4c744fcd15f30aa79f156a6b1f9e1f"></a>
+
+### `RSTMGR_EMIFTIMEOUT_RSTLINE`
+
+```c
+#define RSTMGR_EMIFTIMEOUT_RSTLINE 64
+```
+
+<a id="ab89f7f3813a6f9328e490fc73b60ca98"></a>
+
+### `RSTMGR_ETRSTALLACK_RSTLINE`
+
+```c
+#define RSTMGR_ETRSTALLACK_RSTLINE 195
+```
+
+<a id="aec42bb3bf9fb43332139e56601a1f717"></a>
+
+### `RSTMGR_ETRSTALLEN_RSTLINE`
+
+```c
+#define RSTMGR_ETRSTALLEN_RSTLINE 131
+```
+
+<a id="ae6381d91677b3668876d3d9960fdeaea"></a>
+
+### `RSTMGR_ETRSTALLREQ_RSTLINE`
+
+```c
+#define RSTMGR_ETRSTALLREQ_RSTLINE 163
+```
+
+<a id="a4c6cc335ac18aeae909288259d26cb7d"></a>
+
+### `RSTMGR_ETRSTALLTIMEOUT_RSTLINE`
+
+```c
+#define RSTMGR_ETRSTALLTIMEOUT_RSTLINE 67
+```
+
+<a id="a5986c0861bbd91a277c86e35ad7c2697"></a>
+
+### `RSTMGR_ETRSTALLWARMRST_RSTLINE`
+
+```c
+#define RSTMGR_ETRSTALLWARMRST_RSTLINE 224
+```
+
+<a id="a22d82b4660a71d349ef7f6d51b4ea84d"></a>
+
+### `RSTMGR_F2S_FLUSH_ACK_RSTLINE`
+
+```c
+#define RSTMGR_F2S_FLUSH_ACK_RSTLINE 204
+```
+
+<a id="a5181d95163350f63dd84d2c8d2eea563"></a>
+
+### `RSTMGR_F2S_FLUSH_REQ_RSTLINE`
+
+```c
+#define RSTMGR_F2S_FLUSH_REQ_RSTLINE 172
+```
+
+<a id="a847f55a29c0c71b8823d752b6772542d"></a>
+
+### `RSTMGR_F2SDRAM_FLUSH_ACK_RSTLINE`
+
+```c
+#define RSTMGR_F2SDRAM_FLUSH_ACK_RSTLINE 203
+```
+
+<a id="a74a9a1a964ff55c2dda03bab20504d32"></a>
+
+### `RSTMGR_F2SDRAM_FLUSH_REQ_RSTLINE`
+
+```c
+#define RSTMGR_F2SDRAM_FLUSH_REQ_RSTLINE 171
+```
+
+<a id="a1c9dad218dbbc504fb64d023319c0153"></a>
+
+### `RSTMGR_F2SDRAM_FLUSH_RSTLINE`
+
+```c
+#define RSTMGR_F2SDRAM_FLUSH_RSTLINE 139
+```
+
+<a id="a422d06dce0174ecc0fea6abab12d2498"></a>
+
+### `RSTMGR_F2SDRAMTIMEOUT_RSTLINE`
+
+```c
+#define RSTMGR_F2SDRAMTIMEOUT_RSTLINE 74
+```
+
+<a id="a22ed34d72d389c7952a411f0a6039fae"></a>
+
+### `RSTMGR_F2SOC_FLUSH_RSTLINE`
+
+```c
+#define RSTMGR_F2SOC_FLUSH_RSTLINE 140
+```
+
+<a id="a03a7ba7ad57b2c7473475ab6ac48b8a6"></a>
+
+### `RSTMGR_F2STIMEOUT_RSTLINE`
+
+```c
+#define RSTMGR_F2STIMEOUT_RSTLINE 75
+```
+
+<a id="a38d72a8a1d40aac1902ca01d6983e8bd"></a>
+
+### `RSTMGR_FPGA2SDRAM_RSTLINE`
+
+```c
+#define RSTMGR_FPGA2SDRAM_RSTLINE 355
+```
+
+<a id="a4fac58bc49b6dc627e23c899816265fa"></a>
+
+### `RSTMGR_FPGA2SDRAM_WARM_RSTLINE`
+
+```c
+#define RSTMGR_FPGA2SDRAM_WARM_RSTLINE 611
+```
+
+<a id="a39fa1dafa254c587b03cabd52c3da0d3"></a>
+
+### `RSTMGR_FPGA2SOC_RSTLINE`
+
+```c
+#define RSTMGR_FPGA2SOC_RSTLINE 354
+```
+
+<a id="a651a172ba0de8436a11e88a362cf4371"></a>
+
+### `RSTMGR_FPGA2SOC_WARM_RSTLINE`
+
+```c
+#define RSTMGR_FPGA2SOC_WARM_RSTLINE 610
+```
+
+<a id="a38d45c134a0a6d7f5a341bacb3587f9b"></a>
+
+### `RSTMGR_FPGAHSACK_RSTLINE`
+
+```c
+#define RSTMGR_FPGAHSACK_RSTLINE 194
+```
+
+<a id="a6fc00e0e6d64b312f5db809e2501aa8c"></a>
+
+### `RSTMGR_FPGAHSEN_RSTLINE`
+
+```c
+#define RSTMGR_FPGAHSEN_RSTLINE 130
+```
+
+<a id="a53fb988dc2177ca3b9de2873d8ba78f2"></a>
+
+### `RSTMGR_FPGAHSREQ_RSTLINE`
+
+```c
+#define RSTMGR_FPGAHSREQ_RSTLINE 162
+```
+
+<a id="a23e3f86776c276a5e5f005e0f1066e98"></a>
+
+### `RSTMGR_FPGAHSTIMEOUT_RSTLINE`
+
+```c
+#define RSTMGR_FPGAHSTIMEOUT_RSTLINE 66
+```
+
+<a id="af53b30d174c00f5d155a1b0d3d6ed120"></a>
+
+### `RSTMGR_GPIO0_RSTLINE`
+
+```c
+#define RSTMGR_GPIO0_RSTLINE 344
+```
+
+<a id="aaa2d5d32ae7be05e2f6d536b9a8cf383"></a>
+
+### `RSTMGR_GPIO1_RSTLINE`
+
+```c
+#define RSTMGR_GPIO1_RSTLINE 345
+```
+
+<a id="ac57c12e78099bad648343fc04886b01d"></a>
+
+### `RSTMGR_I2C0_RSTLINE`
+
+```c
+#define RSTMGR_I2C0_RSTLINE 328
+```
+
+<a id="a10bb94717d19bd42e0c6093fcbfd09ba"></a>
+
+### `RSTMGR_I2C1_RSTLINE`
+
+```c
+#define RSTMGR_I2C1_RSTLINE 329
+```
+
+<a id="a5d3606f401130658eb815ab59190b455"></a>
+
+### `RSTMGR_I2C2_RSTLINE`
+
+```c
+#define RSTMGR_I2C2_RSTLINE 330
+```
+
+<a id="a796b1b1b385333d7a4a0a3c4d4468fc5"></a>
+
+### `RSTMGR_I2C3_RSTLINE`
+
+```c
+#define RSTMGR_I2C3_RSTLINE 331
+```
+
+<a id="a72b79a6cb15ef7f14d87ec52306bd801"></a>
+
+### `RSTMGR_I2C4_RSTLINE`
+
+```c
+#define RSTMGR_I2C4_RSTLINE 332
+```
+
+<a id="a38f86cb0db46703c94f48610f47daed8"></a>
+
+### `RSTMGR_I3C0_RSTLINE`
+
+```c
+#define RSTMGR_I3C0_RSTLINE 333
+```
+
+<a id="a81880e530aec6268f1cbe5498d1e982a"></a>
+
+### `RSTMGR_I3C1_RSTLINE`
+
+```c
+#define RSTMGR_I3C1_RSTLINE 334
+```
+
+<a id="a7e28c0b94a3642b5a9bcc6578507baaf"></a>
+
+### `RSTMGR_L3NOC_DBG_ACK_RSTLINE`
+
+```c
+#define RSTMGR_L3NOC_DBG_ACK_RSTLINE 208
+```
+
+<a id="acfaf0bc836199746c9e9a2fbc6f10ba7"></a>
+
+### `RSTMGR_L3NOC_DBG_REQ_RSTLINE`
+
+```c
+#define RSTMGR_L3NOC_DBG_REQ_RSTLINE 176
+```
+
+<a id="a027d4f38ff1e47e66566b1de4e8607ed"></a>
+
+### `RSTMGR_L3NOC_DBG_RSTLINE`
+
+```c
+#define RSTMGR_L3NOC_DBG_RSTLINE 144
+```
+
+<a id="a24b92f54005d6700167970a6b6c9c38d"></a>
+
+### `RSTMGR_L3NOCDBGTIMEOUT_RSTLINE`
+
+```c
+#define RSTMGR_L3NOCDBGTIMEOUT_RSTLINE 79
+```
+
+<a id="aae8be8b5bf8ba79acafac67bca76fd07"></a>
+
+### `RSTMGR_L4SYSTIMER0_RSTLINE`
+
+```c
+#define RSTMGR_L4SYSTIMER0_RSTLINE 324
+```
+
+<a id="ad7d6087df511622d34696bf032db2217"></a>
+
+### `RSTMGR_L4SYSTIMER1_RSTLINE`
+
+```c
+#define RSTMGR_L4SYSTIMER1_RSTLINE 325
+```
+
+<a id="ad7b55a6c11754a4117571a4b0bfcce03"></a>
+
+### `RSTMGR_L4WD0RST_RSTLINE`
+
+```c
+#define RSTMGR_L4WD0RST_RSTLINE 16
+```
+
+<a id="af88c555204bfbf0e2e4e63dbbe617b25"></a>
+
+### `RSTMGR_L4WD1RST_RSTLINE`
+
+```c
+#define RSTMGR_L4WD1RST_RSTLINE 17
+```
+
+<a id="addee8be9550973555759a27863beda6d"></a>
+
+### `RSTMGR_L4WD2RST_RSTLINE`
+
+```c
+#define RSTMGR_L4WD2RST_RSTLINE 18
+```
+
+<a id="a472aa6066e3e72e141a7ad16874b82ed"></a>
+
+### `RSTMGR_L4WD3RST_RSTLINE`
+
+```c
+#define RSTMGR_L4WD3RST_RSTLINE 19
+```
+
+<a id="a0b7857fa4ead0b712de1797e3c9665ea"></a>
+
+### `RSTMGR_L4WD4RST_RSTLINE`
+
+```c
+#define RSTMGR_L4WD4RST_RSTLINE 20
+```
+
+<a id="a9dcc6361c91e5574cfb59ddac8f6fd0a"></a>
+
+### `RSTMGR_LWSOC2FPGA_FLUSH_ACK_RSTLINE`
+
+```c
+#define RSTMGR_LWSOC2FPGA_FLUSH_ACK_RSTLINE 201
+```
+
+<a id="a06462a7bbd730d88f4f5af956d9c6145"></a>
+
+### `RSTMGR_LWSOC2FPGA_FLUSH_REQ_RSTLINE`
+
+```c
+#define RSTMGR_LWSOC2FPGA_FLUSH_REQ_RSTLINE 169
+```
+
+<a id="a4f8d4aae414244c763e942863e6327b4"></a>
+
+### `RSTMGR_LWSOC2FPGA_FLUSH_RSTLINE`
+
+```c
+#define RSTMGR_LWSOC2FPGA_FLUSH_RSTLINE 137
+```
+
+<a id="afcd4d63727fe68dd63a521675f296d71"></a>
+
+### `RSTMGR_LWSOC2FPGA_RSTLINE`
+
+```c
+#define RSTMGR_LWSOC2FPGA_RSTLINE 353
+```
+
+<a id="a8e103cc2f9b39cb20f8daca553d0c7c3"></a>
+
+### `RSTMGR_LWSOC2FPGA_WARM_RSTLINE`
+
+```c
+#define RSTMGR_LWSOC2FPGA_WARM_RSTLINE 609
+```
+
+<a id="ac7d848a04958359fb8a8061721dea09d"></a>
+
+### `RSTMGR_LWSOC2FPGATIMEOUT_RSTLINE`
+
+```c
+#define RSTMGR_LWSOC2FPGATIMEOUT_RSTLINE 72
+```
+
+<a id="a2fc735d622800d0c1bfb3f927db8b200"></a>
+
+### `RSTMGR_MPFE_RSTLINE`
+
+```c
+#define RSTMGR_MPFE_RSTLINE 358
+```
+
+<a id="afa1b7ebd62f41bf5745871580c393f9e"></a>
+
+### `RSTMGR_MPFE_WARM_RSTLINE`
+
+```c
+#define RSTMGR_MPFE_WARM_RSTLINE 614
+```
+
+<a id="afbe21f3e39f5f7c608dbb141f9d08939"></a>
+
+### `RSTMGR_NAND_RSTLINE`
+
+```c
+#define RSTMGR_NAND_RSTLINE 293
+```
+
+<a id="a75c819e461a1e16a8b1550d11d32bdbe"></a>
+
+### `RSTMGR_NANDECC_RSTLINE`
+
+```c
+#define RSTMGR_NANDECC_RSTLINE 301
+```
+
+<a id="a585154051b7dbf46359c3b343cb88ee7"></a>
+
+### `RSTMGR_SDMCOLDRST_RSTLINE`
+
+```c
+#define RSTMGR_SDMCOLDRST_RSTLINE 0
+```
+
+<a id="acc2a4393193216677993aac2c3e39383"></a>
+
+### `RSTMGR_SDMLASTPORRST_RSTLINE`
+
+```c
+#define RSTMGR_SDMLASTPORRST_RSTLINE 2
+```
+
+<a id="ac33b56c9e2df3e00e926f0f61fa54790"></a>
+
+### `RSTMGR_SDMMC_RSTLINE`
+
+```c
+#define RSTMGR_SDMMC_RSTLINE 295
+```
+
+<a id="a52b788acab6b89ab6ab866a52a34123c"></a>
+
+### `RSTMGR_SDMMCECC_RSTLINE`
+
+```c
+#define RSTMGR_SDMMCECC_RSTLINE 303
+```
+
+<a id="ada7dd08adc2fe898fb18b4a0c7caa3e6"></a>
+
+### `RSTMGR_SDMWARMRST_RSTLINE`
+
+```c
+#define RSTMGR_SDMWARMRST_RSTLINE 1
+```
+
+<a id="abfb876a63a51e4af7c3e41595c49f95e"></a>
+
+### `RSTMGR_SOC2FPGA_FLUSH_ACK_RSTLINE`
+
+```c
+#define RSTMGR_SOC2FPGA_FLUSH_ACK_RSTLINE 202
+```
+
+<a id="a25371eb9f5dc642190275bc609344993"></a>
+
+### `RSTMGR_SOC2FPGA_FLUSH_REQ_RSTLINE`
+
+```c
+#define RSTMGR_SOC2FPGA_FLUSH_REQ_RSTLINE 170
+```
+
+<a id="a974e4413029a0bd76fa3a72fb23ce424"></a>
+
+### `RSTMGR_SOC2FPGA_FLUSH_RSTLINE`
+
+```c
+#define RSTMGR_SOC2FPGA_FLUSH_RSTLINE 138
+```
+
+<a id="a8c4197983db16222334c196115ab2646"></a>
+
+### `RSTMGR_SOC2FPGA_RSTLINE`
+
+```c
+#define RSTMGR_SOC2FPGA_RSTLINE 352
+```
+
+<a id="a0ab33f9e850b87fab5fe5774b3997d8b"></a>
+
+### `RSTMGR_SOC2FPGA_WARM_RSTLINE`
+
+```c
+#define RSTMGR_SOC2FPGA_WARM_RSTLINE 608
+```
+
+<a id="ae522b9b126638e62fd5dc897e4dda03f"></a>
+
+### `RSTMGR_SOC2FPGATIMEOUT_RSTLINE`
+
+```c
+#define RSTMGR_SOC2FPGATIMEOUT_RSTLINE 73
+```
+
+<a id="a4cb58de3422e1c6ce0b3faacefe68588"></a>
+
+### `RSTMGR_SOFTPHY_RSTLINE`
+
+```c
+#define RSTMGR_SOFTPHY_RSTLINE 294
+```
+
+<a id="ad90b8ac65d4a01685cef402a578005e2"></a>
+
+### `RSTMGR_SPIM0_RSTLINE`
+
+```c
+#define RSTMGR_SPIM0_RSTLINE 305
+```
+
+<a id="af7dd0bbe30d752d9daa5055eef861429"></a>
+
+### `RSTMGR_SPIM1_RSTLINE`
+
+```c
+#define RSTMGR_SPIM1_RSTLINE 306
+```
+
+<a id="ab15b14a102bb406da22d0e44b5101791"></a>
+
+### `RSTMGR_SPIS0_RSTLINE`
+
+```c
+#define RSTMGR_SPIS0_RSTLINE 307
+```
+
+<a id="a23cdb6b512cfcddaae83ea80f40911c3"></a>
+
+### `RSTMGR_SPIS1_RSTLINE`
+
+```c
+#define RSTMGR_SPIS1_RSTLINE 308
+```
+
+<a id="a532716c0bcf0535be451a35762479995"></a>
+
+### `RSTMGR_SPTIMER0_RSTLINE`
+
+```c
+#define RSTMGR_SPTIMER0_RSTLINE 326
+```
+
+<a id="a8af37e22b5a8a9191de46925aab13ef1"></a>
+
+### `RSTMGR_SPTIMER1_RSTLINE`
+
+```c
+#define RSTMGR_SPTIMER1_RSTLINE 327
+```
+
+<a id="abc19e710d19fa723ed961d603c0ee481"></a>
+
+### `RSTMGR_TSN0_RSTLINE`
+
+```c
+#define RSTMGR_TSN0_RSTLINE 288
+```
+
+<a id="a623bbf4826b0e39a7901dae99182b3c8"></a>
+
+### `RSTMGR_TSN0ECC_RSTLINE`
+
+```c
+#define RSTMGR_TSN0ECC_RSTLINE 296
+```
+
+<a id="ac54f3d8be989467a8c2614f7cbd258d8"></a>
+
+### `RSTMGR_TSN1_RSTLINE`
+
+```c
+#define RSTMGR_TSN1_RSTLINE 289
+```
+
+<a id="a7ed105f6e6e568d49c92f312409ea854"></a>
+
+### `RSTMGR_TSN1ECC_RSTLINE`
+
+```c
+#define RSTMGR_TSN1ECC_RSTLINE 297
+```
+
+<a id="a07e5632d3587678a19a236cb0555583f"></a>
+
+### `RSTMGR_TSN2_RSTLINE`
+
+```c
+#define RSTMGR_TSN2_RSTLINE 290
+```
+
+<a id="a84f5dc45defb0ab93134a96730bbb6aa"></a>
+
+### `RSTMGR_TSN2ECC_RSTLINE`
+
+```c
+#define RSTMGR_TSN2ECC_RSTLINE 298
+```
+
+<a id="a577f1885fe5bc1d6fc32c3f861494d46"></a>
+
+### `RSTMGR_UART0_RSTLINE`
+
+```c
+#define RSTMGR_UART0_RSTLINE 336
+```
+
+<a id="ac516c17df2e2f6e28224696b52a273c4"></a>
+
+### `RSTMGR_UART1_RSTLINE`
+
+```c
+#define RSTMGR_UART1_RSTLINE 337
+```
+
+<a id="ad8fdc2c3565845ec0ed24f1037d4fe54"></a>
+
+### `RSTMGR_USB0_RSTLINE`
+
+```c
+#define RSTMGR_USB0_RSTLINE 291
+```
+
+<a id="acf82c79cb3f5673427cd59424e60dac0"></a>
+
+### `RSTMGR_USB0ECC_RSTLINE`
+
+```c
+#define RSTMGR_USB0ECC_RSTLINE 299
+```
+
+<a id="a29719d049694afd1eb3ffba4c20f0dc2"></a>
+
+### `RSTMGR_USB1_RSTLINE`
+
+```c
+#define RSTMGR_USB1_RSTLINE 292
+```
+
+<a id="abacded7d156188a657baccef36dc8352"></a>
+
+### `RSTMGR_USB1ECC_RSTLINE`
+
+```c
+#define RSTMGR_USB1ECC_RSTLINE 300
+```
+
+<a id="a962c8dc409b32c05461410fd1432b63d"></a>
+
+### `RSTMGR_WATCHDOG0_RSTLINE`
+
+```c
+#define RSTMGR_WATCHDOG0_RSTLINE 320
+```
+
+<a id="a27b2ce66bf0b781bc332637a5839fc7e"></a>
+
+### `RSTMGR_WATCHDOG1_RSTLINE`
+
+```c
+#define RSTMGR_WATCHDOG1_RSTLINE 321
+```
+
+<a id="a57a5b6d287582da91705ec9dca7cb748"></a>
+
+### `RSTMGR_WATCHDOG2_RSTLINE`
+
+```c
+#define RSTMGR_WATCHDOG2_RSTLINE 322
+```
+
+<a id="a16d59d153db75024d08f029705bb2113"></a>
+
+### `RSTMGR_WATCHDOG3_RSTLINE`
+
+```c
+#define RSTMGR_WATCHDOG3_RSTLINE 323
+```
+
+<a id="a8fffd79b568e69beb85783c25ebb637a"></a>
+
+### `RSTMGR_WATCHDOG4_RSTLINE`
+
+```c
+#define RSTMGR_WATCHDOG4_RSTLINE 346
+```
+
+
+## 169.3\_原页交叉引用（Cross References）
+
+- [查看此文件的源码。](../api_source_configuration_reference/P041_intel_socfpga_reset.h_源码浏览.md)
+
+<a id="doc-define-members"></a>
+<a id="header-doc-define-members"></a>
+
+---
+
+[上一章](P168_zephyr__dt-bindings__clock__intel_socfpga_clock.h_文件参考.md) · [返回大纲](大纲.md) · [下一章](P170_____w__zephyr__zephyr__subsys__testsuite__include__zephyr__interrupt_util.h_文件参考.md)

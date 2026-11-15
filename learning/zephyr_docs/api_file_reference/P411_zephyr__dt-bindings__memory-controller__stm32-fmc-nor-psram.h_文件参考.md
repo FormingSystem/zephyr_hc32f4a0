@@ -1,0 +1,693 @@
+---
+id: learning.zephyr-docs.api-file-reference.page-411
+title: zephyr__dt-bindings__memory-controller__stm32-fmc-nor-psram.h_文件参考
+kind: reference
+status: maintained
+domains: [zephyr, drivers, api]
+source_url: https://docs.zephyrproject.org/latest/doxygen/html/stm32-fmc-nor-psram_8h.html
+---
+
+<!-- Copyright 2015-2026 Zephyr Project members and individual contributors. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<!-- 中文翻译；编号、导航和明确标注的译注为本地新增。 -->
+
+# 第411章\_zephyr\_\_dt-bindings\_\_memory-controller\_\_stm32-fmc-nor-psram.h\_文件参考
+
+原文：[官方页面](https://docs.zephyrproject.org/latest/doxygen/html/stm32-fmc-nor-psram_8h.html)。读取日期：2026-10-17；来源摘要见[来源记录](../SOURCES.md)。
+
+查看此文件的源码。
+
+<a id="header-define-members"></a>
+<a id="define-members"></a>
+
+## 411.1\_宏定义（Macros）
+
+<a id="r_adccc95ab8b8e5d30b6b1307e515a7d01"></a>
+
+```c
+#define STM32_FMC_NORSRAM_BANK1 0x00000000UL
+```
+
+相关声明：[STM32_FMC_NORSRAM_BANK1](#adccc95ab8b8e5d30b6b1307e515a7d01)。
+
+<a id="r_aca108ad9f58489a486654132e37d3373"></a>
+
+```c
+#define STM32_FMC_NORSRAM_BANK2 0x00000002UL
+```
+
+相关声明：[STM32_FMC_NORSRAM_BANK2](#aca108ad9f58489a486654132e37d3373)。
+
+<a id="r_a12c94a4f13b4fa568af647e351ef1cfa"></a>
+
+```c
+#define STM32_FMC_NORSRAM_BANK3 0x00000004UL
+```
+
+相关声明：[STM32_FMC_NORSRAM_BANK3](#a12c94a4f13b4fa568af647e351ef1cfa)。
+
+<a id="r_a1a3faa2668fa95174d672059df235332"></a>
+
+```c
+#define STM32_FMC_NORSRAM_BANK4 0x00000006UL
+```
+
+相关声明：[STM32_FMC_NORSRAM_BANK4](#a1a3faa2668fa95174d672059df235332)。
+
+<a id="r_ab49545823d378c30d0b2054275dd5316"></a>
+
+```c
+#define STM32_FMC_DATA_ADDRESS_MUX_DISABLE 0x00000000UL
+```
+
+相关声明：[STM32_FMC_DATA_ADDRESS_MUX_DISABLE](#ab49545823d378c30d0b2054275dd5316)。
+
+<a id="r_a7318079a6d6cf395a48d8a9b3b573965"></a>
+
+```c
+#define STM32_FMC_DATA_ADDRESS_MUX_ENABLE 0x00000002UL
+```
+
+相关声明：[STM32_FMC_DATA_ADDRESS_MUX_ENABLE](#a7318079a6d6cf395a48d8a9b3b573965)。
+
+<a id="r_ae41ef04358fa9521f97c47a72bbb1c86"></a>
+
+```c
+#define STM32_FMC_MEMORY_TYPE_SRAM 0x00000000UL
+```
+
+相关声明：[STM32_FMC_MEMORY_TYPE_SRAM](#ae41ef04358fa9521f97c47a72bbb1c86)。
+
+<a id="r_a11c633811ebce988518c1aafc828eb23"></a>
+
+```c
+#define STM32_FMC_MEMORY_TYPE_PSRAM 0x00000004UL
+```
+
+相关声明：[STM32_FMC_MEMORY_TYPE_PSRAM](#a11c633811ebce988518c1aafc828eb23)。
+
+<a id="r_a61a73700a6c8e70fde4530e4f3db90be"></a>
+
+```c
+#define STM32_FMC_MEMORY_TYPE_NOR 0x00000008UL
+```
+
+相关声明：[STM32_FMC_MEMORY_TYPE_NOR](#a61a73700a6c8e70fde4530e4f3db90be)。
+
+<a id="r_a806afc07795847549ae10e20228de965"></a>
+
+```c
+#define STM32_FMC_NORSRAM_MEM_BUS_WIDTH_8 0x00000000UL
+```
+
+相关声明：[STM32_FMC_NORSRAM_MEM_BUS_WIDTH_8](#a806afc07795847549ae10e20228de965)。
+
+<a id="r_add91fa155ec311548bd135b230ef2915"></a>
+
+```c
+#define STM32_FMC_NORSRAM_MEM_BUS_WIDTH_16 0x00000010UL
+```
+
+相关声明：[STM32_FMC_NORSRAM_MEM_BUS_WIDTH_16](#add91fa155ec311548bd135b230ef2915)。
+
+<a id="r_a582648a2c62410d398b13e519ec37baf"></a>
+
+```c
+#define STM32_FMC_NORSRAM_MEM_BUS_WIDTH_32 0x00000020UL
+```
+
+相关声明：[STM32_FMC_NORSRAM_MEM_BUS_WIDTH_32](#a582648a2c62410d398b13e519ec37baf)。
+
+<a id="r_a527403ad639bbd6c5680d56de37c4e4e"></a>
+
+```c
+#define STM32_FMC_BURST_ACCESS_MODE_DISABLE 0x00000000UL
+```
+
+相关声明：[STM32_FMC_BURST_ACCESS_MODE_DISABLE](#a527403ad639bbd6c5680d56de37c4e4e)。
+
+<a id="r_a75ba9ce1a097c82d7f9527b4b8a08928"></a>
+
+```c
+#define STM32_FMC_BURST_ACCESS_MODE_ENABLE 0x00000100UL
+```
+
+相关声明：[STM32_FMC_BURST_ACCESS_MODE_ENABLE](#a75ba9ce1a097c82d7f9527b4b8a08928)。
+
+<a id="r_af6b0ada2448b137cab429b6a47a5b516"></a>
+
+```c
+#define STM32_FMC_WAIT_SIGNAL_POLARITY_LOW 0x00000000UL
+```
+
+相关声明：[STM32_FMC_WAIT_SIGNAL_POLARITY_LOW](#af6b0ada2448b137cab429b6a47a5b516)。
+
+<a id="r_a88b374fdbb484ab559e56c415c2c12ca"></a>
+
+```c
+#define STM32_FMC_WAIT_SIGNAL_POLARITY_HIGH 0x00000200UL
+```
+
+相关声明：[STM32_FMC_WAIT_SIGNAL_POLARITY_HIGH](#a88b374fdbb484ab559e56c415c2c12ca)。
+
+<a id="r_add819f0ba699002506392a0bd9f91337"></a>
+
+```c
+#define STM32_FMC_WAIT_TIMING_BEFORE_WS 0x00000000UL
+```
+
+相关声明：[STM32_FMC_WAIT_TIMING_BEFORE_WS](#add819f0ba699002506392a0bd9f91337)。
+
+<a id="r_ae1788e8b88e3e22547aa9aa8948f6570"></a>
+
+```c
+#define STM32_FMC_WAIT_TIMING_DURING_WS 0x00000800UL
+```
+
+相关声明：[STM32_FMC_WAIT_TIMING_DURING_WS](#ae1788e8b88e3e22547aa9aa8948f6570)。
+
+<a id="r_aca93e3b2ae199989d555125c4acf334f"></a>
+
+```c
+#define STM32_FMC_WRITE_OPERATION_DISABLE 0x00000000UL
+```
+
+相关声明：[STM32_FMC_WRITE_OPERATION_DISABLE](#aca93e3b2ae199989d555125c4acf334f)。
+
+<a id="r_aa17046722e4d9583d2d6b2142d5e8026"></a>
+
+```c
+#define STM32_FMC_WRITE_OPERATION_ENABLE 0x00001000UL
+```
+
+相关声明：[STM32_FMC_WRITE_OPERATION_ENABLE](#aa17046722e4d9583d2d6b2142d5e8026)。
+
+<a id="r_a18e24d58c88346b52f9602c6d7017e8d"></a>
+
+```c
+#define STM32_FMC_WAIT_SIGNAL_DISABLE 0x00000000UL
+```
+
+相关声明：[STM32_FMC_WAIT_SIGNAL_DISABLE](#a18e24d58c88346b52f9602c6d7017e8d)。
+
+<a id="r_a6e5fb677427ede2899684fdcce7e1500"></a>
+
+```c
+#define STM32_FMC_WAIT_SIGNAL_ENABLE 0x00002000UL
+```
+
+相关声明：[STM32_FMC_WAIT_SIGNAL_ENABLE](#a6e5fb677427ede2899684fdcce7e1500)。
+
+<a id="r_aab24ca64ba4b6065108d29b699bff5e0"></a>
+
+```c
+#define STM32_FMC_EXTENDED_MODE_DISABLE 0x00000000UL
+```
+
+相关声明：[STM32_FMC_EXTENDED_MODE_DISABLE](#aab24ca64ba4b6065108d29b699bff5e0)。
+
+<a id="r_a86b2a55f428d5413f6d7ea4d3263da6d"></a>
+
+```c
+#define STM32_FMC_EXTENDED_MODE_ENABLE 0x00004000UL
+```
+
+相关声明：[STM32_FMC_EXTENDED_MODE_ENABLE](#a86b2a55f428d5413f6d7ea4d3263da6d)。
+
+<a id="r_a32371c9989a20cb2fdbc354af6839637"></a>
+
+```c
+#define STM32_FMC_ASYNCHRONOUS_WAIT_DISABLE 0x00000000UL
+```
+
+相关声明：[STM32_FMC_ASYNCHRONOUS_WAIT_DISABLE](#a32371c9989a20cb2fdbc354af6839637)。
+
+<a id="r_a49857e48048dcc5758dad37507d501c8"></a>
+
+```c
+#define STM32_FMC_ASYNCHRONOUS_WAIT_ENABLE 0x00008000UL
+```
+
+相关声明：[STM32_FMC_ASYNCHRONOUS_WAIT_ENABLE](#a49857e48048dcc5758dad37507d501c8)。
+
+<a id="r_aca6157135cdd3caa7c26d7f90bd324db"></a>
+
+```c
+#define STM32_FMC_WRITE_BURST_DISABLE 0x00000000UL
+```
+
+相关声明：[STM32_FMC_WRITE_BURST_DISABLE](#aca6157135cdd3caa7c26d7f90bd324db)。
+
+<a id="r_ab87a4ac9a4a867920569ba3a48df4967"></a>
+
+```c
+#define STM32_FMC_WRITE_BURST_ENABLE 0x00080000UL
+```
+
+相关声明：[STM32_FMC_WRITE_BURST_ENABLE](#ab87a4ac9a4a867920569ba3a48df4967)。
+
+<a id="r_aeafacbe30f5a783ab9df44da90d095be"></a>
+
+```c
+#define STM32_FMC_CONTINUOUS_CLOCK_SYNC_ONLY 0x00000000UL
+```
+
+相关声明：[STM32_FMC_CONTINUOUS_CLOCK_SYNC_ONLY](#aeafacbe30f5a783ab9df44da90d095be)。
+
+<a id="r_a505d16591d41726a4012a51de973c2aa"></a>
+
+```c
+#define STM32_FMC_CONTINUOUS_CLOCK_SYNC_ASYNC 0x00100000UL
+```
+
+相关声明：[STM32_FMC_CONTINUOUS_CLOCK_SYNC_ASYNC](#a505d16591d41726a4012a51de973c2aa)。
+
+<a id="r_ab203835e4cff8a22243715cd93a9194f"></a>
+
+```c
+#define STM32_FMC_WRITE_FIFO_DISABLE 0x00200000UL
+```
+
+相关声明：[STM32_FMC_WRITE_FIFO_DISABLE](#ab203835e4cff8a22243715cd93a9194f)。
+
+<a id="r_a1f68faf14d41d1f272302b0e88b879da"></a>
+
+```c
+#define STM32_FMC_WRITE_FIFO_ENABLE 0x00000000UL
+```
+
+相关声明：[STM32_FMC_WRITE_FIFO_ENABLE](#a1f68faf14d41d1f272302b0e88b879da)。
+
+<a id="r_a1455eadceb4c7fe93775bd25b7d73bc4"></a>
+
+```c
+#define STM32_FMC_PAGE_SIZE_NONE 0x00000000UL
+```
+
+相关声明：[STM32_FMC_PAGE_SIZE_NONE](#a1455eadceb4c7fe93775bd25b7d73bc4)。
+
+<a id="r_ab218cd22286f68b776becba79b429179"></a>
+
+```c
+#define STM32_FMC_PAGE_SIZE_128 0x00010000UL
+```
+
+相关声明：[STM32_FMC_PAGE_SIZE_128](#ab218cd22286f68b776becba79b429179)。
+
+<a id="r_a1c2636c154fc9fd120f8cd4663e8cf7e"></a>
+
+```c
+#define STM32_FMC_PAGE_SIZE_256 0x00020000UL
+```
+
+相关声明：[STM32_FMC_PAGE_SIZE_256](#a1c2636c154fc9fd120f8cd4663e8cf7e)。
+
+<a id="r_a93eef275a4b8a11a5167ef94085e21fa"></a>
+
+```c
+#define STM32_FMC_PAGE_SIZE_512 0x00030000UL
+```
+
+相关声明：[STM32_FMC_PAGE_SIZE_512](#a93eef275a4b8a11a5167ef94085e21fa)。
+
+<a id="r_ad6476a3ef69c624fb9046d1cae4d26fa"></a>
+
+```c
+#define STM32_FMC_PAGE_SIZE_1024 0x00040000UL
+```
+
+相关声明：[STM32_FMC_PAGE_SIZE_1024](#ad6476a3ef69c624fb9046d1cae4d26fa)。
+
+<a id="r_a4733d2c4e687c821921f710c1154e9b5"></a>
+
+```c
+#define STM32_FMC_ACCESS_MODE_A 0x00000000UL
+```
+
+相关声明：[STM32_FMC_ACCESS_MODE_A](#a4733d2c4e687c821921f710c1154e9b5)。
+
+<a id="r_a58dff9715cadd3b5ce6236f253578e9f"></a>
+
+```c
+#define STM32_FMC_ACCESS_MODE_B 0x10000000UL
+```
+
+相关声明：[STM32_FMC_ACCESS_MODE_B](#a58dff9715cadd3b5ce6236f253578e9f)。
+
+<a id="r_a4fd51f5975ad4abe6e94a4696a372475"></a>
+
+```c
+#define STM32_FMC_ACCESS_MODE_C 0x20000000UL
+```
+
+相关声明：[STM32_FMC_ACCESS_MODE_C](#a4fd51f5975ad4abe6e94a4696a372475)。
+
+<a id="r_ab5715e383c55c6660e1b7da618eed346"></a>
+
+```c
+#define STM32_FMC_ACCESS_MODE_D 0x30000000UL
+```
+
+相关声明：[STM32_FMC_ACCESS_MODE_D](#ab5715e383c55c6660e1b7da618eed346)。
+
+## 411.2\_详细说明（Detailed Documentation）
+
+<a id="a4733d2c4e687c821921f710c1154e9b5"></a>
+
+### `STM32_FMC_ACCESS_MODE_A`
+
+```c
+#define STM32_FMC_ACCESS_MODE_A 0x00000000UL
+```
+
+<a id="a58dff9715cadd3b5ce6236f253578e9f"></a>
+
+### `STM32_FMC_ACCESS_MODE_B`
+
+```c
+#define STM32_FMC_ACCESS_MODE_B 0x10000000UL
+```
+
+<a id="a4fd51f5975ad4abe6e94a4696a372475"></a>
+
+### `STM32_FMC_ACCESS_MODE_C`
+
+```c
+#define STM32_FMC_ACCESS_MODE_C 0x20000000UL
+```
+
+<a id="ab5715e383c55c6660e1b7da618eed346"></a>
+
+### `STM32_FMC_ACCESS_MODE_D`
+
+```c
+#define STM32_FMC_ACCESS_MODE_D 0x30000000UL
+```
+
+<a id="a32371c9989a20cb2fdbc354af6839637"></a>
+
+### `STM32_FMC_ASYNCHRONOUS_WAIT_DISABLE`
+
+```c
+#define STM32_FMC_ASYNCHRONOUS_WAIT_DISABLE 0x00000000UL
+```
+
+<a id="a49857e48048dcc5758dad37507d501c8"></a>
+
+### `STM32_FMC_ASYNCHRONOUS_WAIT_ENABLE`
+
+```c
+#define STM32_FMC_ASYNCHRONOUS_WAIT_ENABLE 0x00008000UL
+```
+
+<a id="a527403ad639bbd6c5680d56de37c4e4e"></a>
+
+### `STM32_FMC_BURST_ACCESS_MODE_DISABLE`
+
+```c
+#define STM32_FMC_BURST_ACCESS_MODE_DISABLE 0x00000000UL
+```
+
+<a id="a75ba9ce1a097c82d7f9527b4b8a08928"></a>
+
+### `STM32_FMC_BURST_ACCESS_MODE_ENABLE`
+
+```c
+#define STM32_FMC_BURST_ACCESS_MODE_ENABLE 0x00000100UL
+```
+
+<a id="a505d16591d41726a4012a51de973c2aa"></a>
+
+### `STM32_FMC_CONTINUOUS_CLOCK_SYNC_ASYNC`
+
+```c
+#define STM32_FMC_CONTINUOUS_CLOCK_SYNC_ASYNC 0x00100000UL
+```
+
+<a id="aeafacbe30f5a783ab9df44da90d095be"></a>
+
+### `STM32_FMC_CONTINUOUS_CLOCK_SYNC_ONLY`
+
+```c
+#define STM32_FMC_CONTINUOUS_CLOCK_SYNC_ONLY 0x00000000UL
+```
+
+<a id="ab49545823d378c30d0b2054275dd5316"></a>
+
+### `STM32_FMC_DATA_ADDRESS_MUX_DISABLE`
+
+```c
+#define STM32_FMC_DATA_ADDRESS_MUX_DISABLE 0x00000000UL
+```
+
+<a id="a7318079a6d6cf395a48d8a9b3b573965"></a>
+
+### `STM32_FMC_DATA_ADDRESS_MUX_ENABLE`
+
+```c
+#define STM32_FMC_DATA_ADDRESS_MUX_ENABLE 0x00000002UL
+```
+
+<a id="aab24ca64ba4b6065108d29b699bff5e0"></a>
+
+### `STM32_FMC_EXTENDED_MODE_DISABLE`
+
+```c
+#define STM32_FMC_EXTENDED_MODE_DISABLE 0x00000000UL
+```
+
+<a id="a86b2a55f428d5413f6d7ea4d3263da6d"></a>
+
+### `STM32_FMC_EXTENDED_MODE_ENABLE`
+
+```c
+#define STM32_FMC_EXTENDED_MODE_ENABLE 0x00004000UL
+```
+
+<a id="a61a73700a6c8e70fde4530e4f3db90be"></a>
+
+### `STM32_FMC_MEMORY_TYPE_NOR`
+
+```c
+#define STM32_FMC_MEMORY_TYPE_NOR 0x00000008UL
+```
+
+<a id="a11c633811ebce988518c1aafc828eb23"></a>
+
+### `STM32_FMC_MEMORY_TYPE_PSRAM`
+
+```c
+#define STM32_FMC_MEMORY_TYPE_PSRAM 0x00000004UL
+```
+
+<a id="ae41ef04358fa9521f97c47a72bbb1c86"></a>
+
+### `STM32_FMC_MEMORY_TYPE_SRAM`
+
+```c
+#define STM32_FMC_MEMORY_TYPE_SRAM 0x00000000UL
+```
+
+<a id="adccc95ab8b8e5d30b6b1307e515a7d01"></a>
+
+### `STM32_FMC_NORSRAM_BANK1`
+
+```c
+#define STM32_FMC_NORSRAM_BANK1 0x00000000UL
+```
+
+<a id="aca108ad9f58489a486654132e37d3373"></a>
+
+### `STM32_FMC_NORSRAM_BANK2`
+
+```c
+#define STM32_FMC_NORSRAM_BANK2 0x00000002UL
+```
+
+<a id="a12c94a4f13b4fa568af647e351ef1cfa"></a>
+
+### `STM32_FMC_NORSRAM_BANK3`
+
+```c
+#define STM32_FMC_NORSRAM_BANK3 0x00000004UL
+```
+
+<a id="a1a3faa2668fa95174d672059df235332"></a>
+
+### `STM32_FMC_NORSRAM_BANK4`
+
+```c
+#define STM32_FMC_NORSRAM_BANK4 0x00000006UL
+```
+
+<a id="add91fa155ec311548bd135b230ef2915"></a>
+
+### `STM32_FMC_NORSRAM_MEM_BUS_WIDTH_16`
+
+```c
+#define STM32_FMC_NORSRAM_MEM_BUS_WIDTH_16 0x00000010UL
+```
+
+<a id="a582648a2c62410d398b13e519ec37baf"></a>
+
+### `STM32_FMC_NORSRAM_MEM_BUS_WIDTH_32`
+
+```c
+#define STM32_FMC_NORSRAM_MEM_BUS_WIDTH_32 0x00000020UL
+```
+
+<a id="a806afc07795847549ae10e20228de965"></a>
+
+### `STM32_FMC_NORSRAM_MEM_BUS_WIDTH_8`
+
+```c
+#define STM32_FMC_NORSRAM_MEM_BUS_WIDTH_8 0x00000000UL
+```
+
+<a id="ad6476a3ef69c624fb9046d1cae4d26fa"></a>
+
+### `STM32_FMC_PAGE_SIZE_1024`
+
+```c
+#define STM32_FMC_PAGE_SIZE_1024 0x00040000UL
+```
+
+<a id="ab218cd22286f68b776becba79b429179"></a>
+
+### `STM32_FMC_PAGE_SIZE_128`
+
+```c
+#define STM32_FMC_PAGE_SIZE_128 0x00010000UL
+```
+
+<a id="a1c2636c154fc9fd120f8cd4663e8cf7e"></a>
+
+### `STM32_FMC_PAGE_SIZE_256`
+
+```c
+#define STM32_FMC_PAGE_SIZE_256 0x00020000UL
+```
+
+<a id="a93eef275a4b8a11a5167ef94085e21fa"></a>
+
+### `STM32_FMC_PAGE_SIZE_512`
+
+```c
+#define STM32_FMC_PAGE_SIZE_512 0x00030000UL
+```
+
+<a id="a1455eadceb4c7fe93775bd25b7d73bc4"></a>
+
+### `STM32_FMC_PAGE_SIZE_NONE`
+
+```c
+#define STM32_FMC_PAGE_SIZE_NONE 0x00000000UL
+```
+
+<a id="a18e24d58c88346b52f9602c6d7017e8d"></a>
+
+### `STM32_FMC_WAIT_SIGNAL_DISABLE`
+
+```c
+#define STM32_FMC_WAIT_SIGNAL_DISABLE 0x00000000UL
+```
+
+<a id="a6e5fb677427ede2899684fdcce7e1500"></a>
+
+### `STM32_FMC_WAIT_SIGNAL_ENABLE`
+
+```c
+#define STM32_FMC_WAIT_SIGNAL_ENABLE 0x00002000UL
+```
+
+<a id="a88b374fdbb484ab559e56c415c2c12ca"></a>
+
+### `STM32_FMC_WAIT_SIGNAL_POLARITY_HIGH`
+
+```c
+#define STM32_FMC_WAIT_SIGNAL_POLARITY_HIGH 0x00000200UL
+```
+
+<a id="af6b0ada2448b137cab429b6a47a5b516"></a>
+
+### `STM32_FMC_WAIT_SIGNAL_POLARITY_LOW`
+
+```c
+#define STM32_FMC_WAIT_SIGNAL_POLARITY_LOW 0x00000000UL
+```
+
+<a id="add819f0ba699002506392a0bd9f91337"></a>
+
+### `STM32_FMC_WAIT_TIMING_BEFORE_WS`
+
+```c
+#define STM32_FMC_WAIT_TIMING_BEFORE_WS 0x00000000UL
+```
+
+<a id="ae1788e8b88e3e22547aa9aa8948f6570"></a>
+
+### `STM32_FMC_WAIT_TIMING_DURING_WS`
+
+```c
+#define STM32_FMC_WAIT_TIMING_DURING_WS 0x00000800UL
+```
+
+<a id="aca6157135cdd3caa7c26d7f90bd324db"></a>
+
+### `STM32_FMC_WRITE_BURST_DISABLE`
+
+```c
+#define STM32_FMC_WRITE_BURST_DISABLE 0x00000000UL
+```
+
+<a id="ab87a4ac9a4a867920569ba3a48df4967"></a>
+
+### `STM32_FMC_WRITE_BURST_ENABLE`
+
+```c
+#define STM32_FMC_WRITE_BURST_ENABLE 0x00080000UL
+```
+
+<a id="ab203835e4cff8a22243715cd93a9194f"></a>
+
+### `STM32_FMC_WRITE_FIFO_DISABLE`
+
+```c
+#define STM32_FMC_WRITE_FIFO_DISABLE 0x00200000UL
+```
+
+<a id="a1f68faf14d41d1f272302b0e88b879da"></a>
+
+### `STM32_FMC_WRITE_FIFO_ENABLE`
+
+```c
+#define STM32_FMC_WRITE_FIFO_ENABLE 0x00000000UL
+```
+
+<a id="aca93e3b2ae199989d555125c4acf334f"></a>
+
+### `STM32_FMC_WRITE_OPERATION_DISABLE`
+
+```c
+#define STM32_FMC_WRITE_OPERATION_DISABLE 0x00000000UL
+```
+
+<a id="aa17046722e4d9583d2d6b2142d5e8026"></a>
+
+### `STM32_FMC_WRITE_OPERATION_ENABLE`
+
+```c
+#define STM32_FMC_WRITE_OPERATION_ENABLE 0x00001000UL
+```
+
+
+## 411.3\_原页交叉引用（Cross References）
+
+- [查看此文件的源码。](https://docs.zephyrproject.org/latest/doxygen/html/stm32-fmc-nor-psram_8h_source.html)
+
+<a id="doc-define-members"></a>
+<a id="header-doc-define-members"></a>
+
+---
+
+[上一章](P410_____w__zephyr__zephyr__lib__libc__minimal__include__stdlib.h_文件参考.md) · [返回大纲](大纲.md) · [下一章](P412_zephyr__dt-bindings__memory-controller__stm32-fmc-sdram.h_文件参考.md)

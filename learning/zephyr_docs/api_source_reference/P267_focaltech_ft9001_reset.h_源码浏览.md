@@ -1,0 +1,327 @@
+---
+id: learning.zephyr-docs.api-source-reference.page-267
+title: focaltech_ft9001_reset.h_源码浏览
+kind: reference
+status: maintained
+domains: [zephyr, drivers, api]
+source_url: https://docs.zephyrproject.org/latest/doxygen/html/focaltech__ft9001__reset_8h_source.html
+---
+
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<!-- 中文翻译；编号、导航和明确标注的译注为本地新增。 -->
+
+# 第267章\_focaltech\_ft9001\_reset.h\_源码浏览
+
+原文：[官方源码浏览页](https://docs.zephyrproject.org/latest/doxygen/html/focaltech__ft9001__reset_8h_source.html)。读取日期：2026-10-17；来源摘要见[来源记录](../SOURCES.md)。
+
+本页保留官方 Doxygen 源码浏览页的全部可见代码与注释，仅去除展示行号、还原展示用不换行空格并清除行尾空白。Doxygen 会省略已用于生成接口说明的部分文档注释，因此原行号可能跳跃。下方译文覆盖本页全部可见注释；函数、参数、返回值及宏定义说明见[对应文件参考](https://docs.zephyrproject.org/latest/doxygen/html/focaltech__ft9001__reset_8h.html)。
+
+## 267.1\_原始可见代码（Source Code）
+
+<a id="l00001"></a>
+<a id="l00002"></a>
+<a id="l00003"></a>
+<a id="l00004"></a>
+<a id="l00005"></a>
+<a id="l00006"></a>
+<a id="l00012"></a>
+<a id="l00013"></a>
+<a id="l00014"></a>
+<a id="l00015"></a>
+<a id="l00038"></a>
+<a id="l00040"></a>
+<a id="l00047"></a>
+<a id="l00048"></a>
+<a id="l00049"></a>
+<a id="l00050"></a>
+<a id="l00051"></a>
+<a id="l00052"></a>
+<a id="l00053"></a>
+<a id="l00055"></a>
+<a id="l00057"></a>
+<a id="l00064"></a>
+<a id="l00066"></a>
+<a id="l00068"></a>
+<a id="l00070"></a>
+<a id="l00072"></a>
+<a id="l00074"></a>
+<a id="l00076"></a>
+<a id="l00077"></a>
+<a id="l00079"></a>
+<a id="l00086"></a>
+<a id="l00093"></a>
+<a id="l00095"></a>
+<a id="l00097"></a>
+<a id="l00099"></a>
+<a id="l00101"></a>
+<a id="l00103"></a>
+<a id="l00105"></a>
+<a id="l00107"></a>
+<a id="l00109"></a>
+<a id="l00111"></a>
+<a id="l00113"></a>
+<a id="l00114"></a>
+<a id="l00116"></a>
+<a id="l00123"></a>
+<a id="l00125"></a>
+<a id="l00127"></a>
+<a id="l00129"></a>
+<a id="l00131"></a>
+<a id="l00133"></a>
+<a id="l00135"></a>
+<a id="l00137"></a>
+<a id="l00139"></a>
+<a id="l00141"></a>
+<a id="l00143"></a>
+<a id="l00145"></a>
+<a id="l00147"></a>
+<a id="l00149"></a>
+<a id="l00151"></a>
+<a id="l00153"></a>
+<a id="l00155"></a>
+<a id="l00156"></a>
+<a id="l00158"></a>
+<a id="l00165"></a>
+<a id="l00167"></a>
+<a id="l00169"></a>
+<a id="l00171"></a>
+<a id="l00173"></a>
+<a id="l00175"></a>
+<a id="l00177"></a>
+<a id="l00179"></a>
+<a id="l00181"></a>
+<a id="l00183"></a>
+<a id="l00185"></a>
+<a id="l00187"></a>
+<a id="l00189"></a>
+<a id="l00191"></a>
+<a id="l00193"></a>
+<a id="l00194"></a>
+<a id="l00196"></a>
+<a id="l00203"></a>
+<a id="l00205"></a>
+<a id="l00207"></a>
+<a id="l00209"></a>
+<a id="l00211"></a>
+<a id="l00213"></a>
+<a id="l00215"></a>
+<a id="l00217"></a>
+<a id="l00219"></a>
+<a id="l00220"></a>
+<a id="l00222"></a>
+<a id="l00229"></a>
+<a id="l00231"></a>
+<a id="l00233"></a>
+<a id="l00235"></a>
+<a id="l00237"></a>
+<a id="l00239"></a>
+<a id="l00241"></a>
+<a id="l00243"></a>
+<a id="l00245"></a>
+<a id="l00247"></a>
+<a id="l00249"></a>
+<a id="l00251"></a>
+<a id="l00252"></a>
+<a id="l00254"></a>
+<a id="l00261"></a>
+<a id="l00263"></a>
+<a id="l00265"></a>
+<a id="l00267"></a>
+<a id="l00269"></a>
+<a id="l00271"></a>
+<a id="l00273"></a>
+<a id="l00275"></a>
+<a id="l00277"></a>
+<a id="l00279"></a>
+<a id="l00281"></a>
+<a id="l00283"></a>
+<a id="l00285"></a>
+<a id="l00287"></a>
+<a id="l00289"></a>
+<a id="l00291"></a>
+<a id="l00293"></a>
+<a id="l00295"></a>
+<a id="l00297"></a>
+<a id="l00299"></a>
+<a id="l00301"></a>
+<a id="l00303"></a>
+<a id="l00305"></a>
+<a id="l00307"></a>
+<a id="l00309"></a>
+<a id="l00311"></a>
+<a id="l00313"></a>
+<a id="l00315"></a>
+<a id="l00317"></a>
+<a id="l00319"></a>
+<a id="l00321"></a>
+<a id="l00323"></a>
+<a id="l00324"></a>
+<a id="l00326"></a>
+<a id="l00328"></a>
+<a id="l00330"></a>
+<a id="l00331"></a>
+
+```c
+/*
+ * Copyright (c) 2025, FocalTech Systems CO.,Ltd
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+
+#ifndef ZEPHYR_INCLUDE_DT_BINDINGS_RESET_FOCALTECH_FT9001_RESET_H_
+#define ZEPHYR_INCLUDE_DT_BINDINGS_RESET_FOCALTECH_FT9001_RESET_H_
+
+
+
+
+#define FOCALTECH_RESET_SHIFT 6U
+#define FOCALTECH_RESET_MASK  ((1U << FOCALTECH_RESET_SHIFT) - 1U)
+
+#define FOCALTECH_RESET_CONFIG(reg, bit)                                                           \
+        (((FOCALTECH_##reg##_OFFSET) << FOCALTECH_RESET_SHIFT) | ((bit) & FOCALTECH_RESET_MASK))
+
+
+
+
+#define FOCALTECH_EPORTRSTCR_OFFSET 0x88U
+#define FOCALTECH_MULTIRSTCR_OFFSET 0xACU
+#define FOCALTECH_SYSRSTCR_OFFSET   0xB0U
+#define FOCALTECH_AHB3RSTCR_OFFSET  0xB4U
+#define FOCALTECH_ARITHRSTCR_OFFSET 0xB8U
+#define FOCALTECH_IPSRSTCR_OFFSET   0xBCU
+
+
+
+
+#define FOCALTECH_RESET_EPORT0 FOCALTECH_RESET_CONFIG(EPORTRSTCR, 0U)
+#define FOCALTECH_RESET_EPORT1 FOCALTECH_RESET_CONFIG(EPORTRSTCR, 1U)
+#define FOCALTECH_RESET_EPORT2 FOCALTECH_RESET_CONFIG(EPORTRSTCR, 2U)
+#define FOCALTECH_RESET_EPORT3 FOCALTECH_RESET_CONFIG(EPORTRSTCR, 3U)
+#define FOCALTECH_RESET_EPORT4 FOCALTECH_RESET_CONFIG(EPORTRSTCR, 4U)
+#define FOCALTECH_RESET_EPORT5 FOCALTECH_RESET_CONFIG(EPORTRSTCR, 5U)
+#define FOCALTECH_RESET_EPORT6 FOCALTECH_RESET_CONFIG(EPORTRSTCR, 6U)
+#define FOCALTECH_RESET_EPORT7 FOCALTECH_RESET_CONFIG(EPORTRSTCR, 7U)
+#define FOCALTECH_RESET_ACMP1  FOCALTECH_RESET_CONFIG(EPORTRSTCR, 8U)
+#define FOCALTECH_RESET_ACMP2  FOCALTECH_RESET_CONFIG(EPORTRSTCR, 9U)
+
+
+
+#define FOCALTECH_RESET_OTP_AHB   FOCALTECH_RESET_CONFIG(MULTIRSTCR, 0U)
+#define FOCALTECH_RESET_MCC       FOCALTECH_RESET_CONFIG(MULTIRSTCR, 1U)
+#define FOCALTECH_RESET_MCCADR    FOCALTECH_RESET_CONFIG(MULTIRSTCR, 2U)
+#define FOCALTECH_RESET_ADC       FOCALTECH_RESET_CONFIG(MULTIRSTCR, 3U)
+#define FOCALTECH_RESET_MESH      FOCALTECH_RESET_CONFIG(MULTIRSTCR, 4U)
+#define FOCALTECH_RESET_TC        FOCALTECH_RESET_CONFIG(MULTIRSTCR, 5U)
+#define FOCALTECH_RESET_CLKOUT    FOCALTECH_RESET_CONFIG(MULTIRSTCR, 6U)
+#define FOCALTECH_RESET_KEY_CTRL  FOCALTECH_RESET_CONFIG(MULTIRSTCR, 7U)
+#define FOCALTECH_RESET_CCM_RESET FOCALTECH_RESET_CONFIG(MULTIRSTCR, 8U)
+#define FOCALTECH_RESET_OTP_IPS   FOCALTECH_RESET_CONFIG(MULTIRSTCR, 9U)
+#define FOCALTECH_RESET_CPM_IPS   FOCALTECH_RESET_CONFIG(MULTIRSTCR, 10U)
+#define FOCALTECH_RESET_TRACE     FOCALTECH_RESET_CONFIG(MULTIRSTCR, 11U)
+#define FOCALTECH_RESET_I2S_M     FOCALTECH_RESET_CONFIG(MULTIRSTCR, 12U)
+#define FOCALTECH_RESET_I2S_S     FOCALTECH_RESET_CONFIG(MULTIRSTCR, 13U)
+#define FOCALTECH_RESET_CRC0      FOCALTECH_RESET_CONFIG(MULTIRSTCR, 14U)
+#define FOCALTECH_RESET_CRC1      FOCALTECH_RESET_CONFIG(MULTIRSTCR, 15U)
+
+
+
+#define FOCALTECH_RESET_SSISLV1   FOCALTECH_RESET_CONFIG(SYSRSTCR, 0U)
+#define FOCALTECH_RESET_DMAC1     FOCALTECH_RESET_CONFIG(SYSRSTCR, 1U)
+#define FOCALTECH_RESET_DMAC2     FOCALTECH_RESET_CONFIG(SYSRSTCR, 2U)
+#define FOCALTECH_RESET_AHB2_MUX  FOCALTECH_RESET_CONFIG(SYSRSTCR, 3U)
+#define FOCALTECH_RESET_PXLP1_AHB FOCALTECH_RESET_CONFIG(SYSRSTCR, 10U)
+#define FOCALTECH_RESET_PXLP2_AHB FOCALTECH_RESET_CONFIG(SYSRSTCR, 11U)
+#define FOCALTECH_RESET_SRAMD     FOCALTECH_RESET_CONFIG(SYSRSTCR, 12U)
+#define FOCALTECH_RESET_SRAM0     FOCALTECH_RESET_CONFIG(SYSRSTCR, 13U)
+#define FOCALTECH_RESET_SRAM1     FOCALTECH_RESET_CONFIG(SYSRSTCR, 14U)
+#define FOCALTECH_RESET_SRAM2     FOCALTECH_RESET_CONFIG(SYSRSTCR, 15U)
+#define FOCALTECH_RESET_SRAM3_4   FOCALTECH_RESET_CONFIG(SYSRSTCR, 16U)
+#define FOCALTECH_RESET_SSI4      FOCALTECH_RESET_CONFIG(SYSRSTCR, 17U)
+#define FOCALTECH_RESET_SSI5      FOCALTECH_RESET_CONFIG(SYSRSTCR, 18U)
+#define FOCALTECH_RESET_SSI6      FOCALTECH_RESET_CONFIG(SYSRSTCR, 19U)
+
+
+
+#define FOCALTECH_RESET_ROM         FOCALTECH_RESET_CONFIG(AHB3RSTCR, 0U)
+#define FOCALTECH_RESET_ROM_OTP_MUX FOCALTECH_RESET_CONFIG(AHB3RSTCR, 1U)
+#define FOCALTECH_RESET_AHB3_MUX    FOCALTECH_RESET_CONFIG(AHB3RSTCR, 2U)
+#define FOCALTECH_RESET_USBC        FOCALTECH_RESET_CONFIG(AHB3RSTCR, 3U)
+#define FOCALTECH_RESET_PXLP1_APB   FOCALTECH_RESET_CONFIG(AHB3RSTCR, 4U)
+#define FOCALTECH_RESET_PXLP2_APB   FOCALTECH_RESET_CONFIG(AHB3RSTCR, 5U)
+#define FOCALTECH_RESET_I2S1        FOCALTECH_RESET_CONFIG(AHB3RSTCR, 6U)
+#define FOCALTECH_RESET_I2S2        FOCALTECH_RESET_CONFIG(AHB3RSTCR, 7U)
+
+
+
+#define FOCALTECH_RESET_AES        FOCALTECH_RESET_CONFIG(ARITHRSTCR, 1U)
+#define FOCALTECH_RESET_SM4        FOCALTECH_RESET_CONFIG(ARITHRSTCR, 2U)
+#define FOCALTECH_RESET_RF_AES_SM4 FOCALTECH_RESET_CONFIG(ARITHRSTCR, 4U)
+#define FOCALTECH_RESET_CRYPTO     FOCALTECH_RESET_CONFIG(ARITHRSTCR, 5U)
+#define FOCALTECH_RESET_SHA        FOCALTECH_RESET_CONFIG(ARITHRSTCR, 6U)
+#define FOCALTECH_RESET_EDMAC0     FOCALTECH_RESET_CONFIG(ARITHRSTCR, 7U)
+#define FOCALTECH_RESET_DES        FOCALTECH_RESET_CONFIG(ARITHRSTCR, 8U)
+#define FOCALTECH_RESET_ZUC        FOCALTECH_RESET_CONFIG(ARITHRSTCR, 9U)
+#define FOCALTECH_RESET_AHB2MLB    FOCALTECH_RESET_CONFIG(ARITHRSTCR, 10U)
+#define FOCALTECH_RESET_AHB2IPS2   FOCALTECH_RESET_CONFIG(ARITHRSTCR, 11U)
+#define FOCALTECH_RESET_TRNG       FOCALTECH_RESET_CONFIG(ARITHRSTCR, 12U)
+
+
+
+#define FOCALTECH_RESET_IO_CTRL FOCALTECH_RESET_CONFIG(IPSRSTCR, 0U)
+#define FOCALTECH_RESET_WDT     FOCALTECH_RESET_CONFIG(IPSRSTCR, 1U)
+#define FOCALTECH_RESET_RTC     FOCALTECH_RESET_CONFIG(IPSRSTCR, 2U)
+#define FOCALTECH_RESET_PIT1    FOCALTECH_RESET_CONFIG(IPSRSTCR, 3U)
+#define FOCALTECH_RESET_PIT2    FOCALTECH_RESET_CONFIG(IPSRSTCR, 4U)
+#define FOCALTECH_RESET_USI1    FOCALTECH_RESET_CONFIG(IPSRSTCR, 5U)
+#define FOCALTECH_RESET_EDMAC1  FOCALTECH_RESET_CONFIG(IPSRSTCR, 6U)
+#define FOCALTECH_RESET_SPI1    FOCALTECH_RESET_CONFIG(IPSRSTCR, 7U)
+#define FOCALTECH_RESET_SPI2    FOCALTECH_RESET_CONFIG(IPSRSTCR, 8U)
+#define FOCALTECH_RESET_SPI3    FOCALTECH_RESET_CONFIG(IPSRSTCR, 9U)
+#define FOCALTECH_RESET_SCI1    FOCALTECH_RESET_CONFIG(IPSRSTCR, 10U)
+#define FOCALTECH_RESET_SCI2    FOCALTECH_RESET_CONFIG(IPSRSTCR, 11U)
+#define FOCALTECH_RESET_USI2    FOCALTECH_RESET_CONFIG(IPSRSTCR, 12U)
+#define FOCALTECH_RESET_CAN1    FOCALTECH_RESET_CONFIG(IPSRSTCR, 13U)
+#define FOCALTECH_RESET_I2C1    FOCALTECH_RESET_CONFIG(IPSRSTCR, 14U)
+#define FOCALTECH_RESET_PWM0    FOCALTECH_RESET_CONFIG(IPSRSTCR, 15U)
+#define FOCALTECH_RESET_I2C2    FOCALTECH_RESET_CONFIG(IPSRSTCR, 16U)
+#define FOCALTECH_RESET_CAN2    FOCALTECH_RESET_CONFIG(IPSRSTCR, 17U)
+#define FOCALTECH_RESET_SCI3    FOCALTECH_RESET_CONFIG(IPSRSTCR, 18U)
+#define FOCALTECH_RESET_QADC    FOCALTECH_RESET_CONFIG(IPSRSTCR, 20U)
+#define FOCALTECH_RESET_DAC     FOCALTECH_RESET_CONFIG(IPSRSTCR, 21U)
+#define FOCALTECH_RESET_MCC_IPS FOCALTECH_RESET_CONFIG(IPSRSTCR, 22U)
+#define FOCALTECH_RESET_PWMT1   FOCALTECH_RESET_CONFIG(IPSRSTCR, 23U)
+#define FOCALTECH_RESET_LD      FOCALTECH_RESET_CONFIG(IPSRSTCR, 24U)
+#define FOCALTECH_RESET_PWMT2   FOCALTECH_RESET_CONFIG(IPSRSTCR, 25U)
+#define FOCALTECH_RESET_PGD     FOCALTECH_RESET_CONFIG(IPSRSTCR, 26U)
+#define FOCALTECH_RESET_SEC_DET FOCALTECH_RESET_CONFIG(IPSRSTCR, 27U)
+#define FOCALTECH_RESET_PCI     FOCALTECH_RESET_CONFIG(IPSRSTCR, 28U)
+#define FOCALTECH_RESET_PMURTC  FOCALTECH_RESET_CONFIG(IPSRSTCR, 29U)
+#define FOCALTECH_RESET_AHB2IPS FOCALTECH_RESET_CONFIG(IPSRSTCR, 30U)
+#define FOCALTECH_RESET_PWMT3   FOCALTECH_RESET_CONFIG(IPSRSTCR, 31U)
+
+
+
+
+#endif /* ZEPHYR_INCLUDE_DT_BINDINGS_RESET_FOCALTECH_FT9001_RESET_H_ */
+```
+
+## 267.2\_可见注释译文（Comments）
+
+### 注释 1：原第 1 行
+
+版权（Copyright）：© 2025, FocalTech Systems CO.,Ltd。
+
+SPDX 许可证标识（License Identifier）：`Apache-2.0`。
+
+### 注释 2：原第 331 行
+
+头文件保护宏（Header guard）标记：`ZEPHYR_INCLUDE_DT_BINDINGS_RESET_FOCALTECH_FT9001_RESET_H_`。
+
+## 267.3\_原页交叉引用（Cross References）
+
+- [查看此文件的参考说明](https://docs.zephyrproject.org/latest/doxygen/html/focaltech__ft9001__reset_8h.html)
+
+---
+
+[上一章](P266_focaltech_ft9001_clocks.h_源码浏览.md) · [返回大纲](大纲.md) · [下一章](P268_formatter.h_源码浏览.md)

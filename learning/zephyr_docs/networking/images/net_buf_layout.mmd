@@ -1,0 +1,13 @@
+
+        block-beta
+  %% The widest label per column sets the text size, so the long labels span several columns
+  columns 16
+  space:2 size<["size"]>(x):12 space:2
+  space:2 headroom["headroom"]:3 len["len"]:5 tailroom["tailroom"]:4 space:2
+  p0["__buf"]:4 p1["data"]:2 space:2 p2["data + len"]:4 p3["__buf + size"]:4
+
+  classDef ptr fill:none,stroke:none
+  classDef free stroke-dasharray:5,fill-opacity:0.3
+  class p0,p1,p2,p3 ptr
+  class headroom,tailroom free
+    

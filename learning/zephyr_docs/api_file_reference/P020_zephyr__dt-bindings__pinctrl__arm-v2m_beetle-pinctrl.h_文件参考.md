@@ -1,0 +1,574 @@
+---
+id: learning.zephyr-docs.api-file-reference.page-20
+title: zephyr__dt-bindings__pinctrl__arm-v2m_beetle-pinctrl.h_文件参考
+kind: reference
+status: maintained
+domains: [zephyr, drivers, api]
+source_url: https://docs.zephyrproject.org/latest/doxygen/html/arm-v2m__beetle-pinctrl_8h.html
+---
+
+<!-- Copyright 2015-2026 Zephyr Project members and individual contributors. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<!-- 中文翻译；编号、导航和明确标注的译注为本地新增。 -->
+
+# 第20章\_zephyr\_\_dt-bindings\_\_pinctrl\_\_arm-v2m\_beetle-pinctrl.h\_文件参考
+
+原文：[官方页面](https://docs.zephyrproject.org/latest/doxygen/html/arm-v2m__beetle-pinctrl_8h.html)。读取日期：2026-10-17；来源摘要见[来源记录](../SOURCES.md)。
+
+查看此文件的源码。
+
+<a id="header-define-members"></a>
+<a id="define-members"></a>
+
+## 20.1\_宏定义（Macros）
+
+<a id="r_a4d45c8721029feeca3d1959350be7cdb"></a>
+
+```c
+#define V2M_BEETLE_ALT_FUNC_POS 0
+```
+
+相关声明：[V2M_BEETLE_ALT_FUNC_POS](#a4d45c8721029feeca3d1959350be7cdb)。
+
+<a id="r_a3519227256ace189f093cc0fd02d6d9b"></a>
+
+```c
+#define V2M_BEETLE_ALT_FUNC_MASK 0x7
+```
+
+相关声明：[V2M_BEETLE_ALT_FUNC_MASK](#a3519227256ace189f093cc0fd02d6d9b)。
+
+<a id="r_a00493ab00f529a1434e963a5e23c2254"></a>
+
+```c
+#define V2M_BEETLE_EXP_NUM_POS 3
+```
+
+相关声明：[V2M_BEETLE_EXP_NUM_POS](#a00493ab00f529a1434e963a5e23c2254)。
+
+<a id="r_ac813f27b4634c45f01b6cdbf8b02a32d"></a>
+
+```c
+#define V2M_BEETLE_EXP_NUM_MASK 0x1F8
+```
+
+相关声明：[V2M_BEETLE_EXP_NUM_MASK](#ac813f27b4634c45f01b6cdbf8b02a32d)。
+
+<a id="r_a5327a4bbbcbc2476488a0cd0f3c13070"></a>
+
+```c
+#define V2M_BEETLE_PINCTRL_FUNC_UART 0
+```
+
+相关声明：[V2M_BEETLE_PINCTRL_FUNC_UART](#a5327a4bbbcbc2476488a0cd0f3c13070)。
+
+<a id="r_a2a2d0a5be6132e815212772d900eecb8"></a>
+
+```c
+#define V2M_BEETLE_PINCTRL_FUNC_GPIO 1
+```
+
+相关声明：[V2M_BEETLE_PINCTRL_FUNC_GPIO](#a2a2d0a5be6132e815212772d900eecb8)。
+
+<a id="r_a5114f026181617cf4a9f6f4a8dd714d0"></a>
+
+```c
+#define V2M_BEETLE_PINCTRL_FUNC_I2C 2
+```
+
+相关声明：[V2M_BEETLE_PINCTRL_FUNC_I2C](#a5114f026181617cf4a9f6f4a8dd714d0)。
+
+<a id="r_a57a16dc76ecc4a21ab4fc765bff9c829"></a>
+
+```c
+#define V2M_BEETLE_PINCTRL_FUNC_SPI 3
+```
+
+相关声明：[V2M_BEETLE_PINCTRL_FUNC_SPI](#a57a16dc76ecc4a21ab4fc765bff9c829)。
+
+<a id="r_ac40b2ed7fcb2585dd2735705db9871bf"></a>
+
+```c
+#define V2M_BEETLE_PINCTRL_FUNC_QSPI 4
+```
+
+相关声明：[V2M_BEETLE_PINCTRL_FUNC_QSPI](#ac40b2ed7fcb2585dd2735705db9871bf)。
+
+<a id="r_ab203c77381bb94d20180804cc0cde072"></a>
+
+```c
+#define V2M_BEETLE_PINMUX(alt_func, exp_num)
+```
+
+相关声明：[V2M_BEETLE_PINMUX](#ab203c77381bb94d20180804cc0cde072)。
+
+<a id="r_a0dad432d22c364a59b07d3743e503603"></a>
+
+```c
+#define UART0_RXD_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_UART, 0)
+```
+
+相关声明：[UART0_RXD_EXP](#a0dad432d22c364a59b07d3743e503603)、[V2M_BEETLE_PINMUX](#ab203c77381bb94d20180804cc0cde072)、[V2M_BEETLE_PINCTRL_FUNC_UART](#a5327a4bbbcbc2476488a0cd0f3c13070)。
+
+<a id="r_ab987c26da052b07e7db9b1954209616d"></a>
+
+```c
+#define UART0_TXD_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_UART, 1)
+```
+
+相关声明：[UART0_TXD_EXP](#ab987c26da052b07e7db9b1954209616d)、[V2M_BEETLE_PINMUX](#ab203c77381bb94d20180804cc0cde072)、[V2M_BEETLE_PINCTRL_FUNC_UART](#a5327a4bbbcbc2476488a0cd0f3c13070)。
+
+<a id="r_af0727866d5c48f3b1cd2c9383929b1a1"></a>
+
+```c
+#define SPI0_SS_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_SPI, 10)
+```
+
+相关声明：[SPI0_SS_EXP](#af0727866d5c48f3b1cd2c9383929b1a1)、[V2M_BEETLE_PINMUX](#ab203c77381bb94d20180804cc0cde072)、[V2M_BEETLE_PINCTRL_FUNC_SPI](#a57a16dc76ecc4a21ab4fc765bff9c829)。
+
+<a id="r_a02ab28fc35a282d7b7839707fd0afed8"></a>
+
+```c
+#define SPI0_MOSI_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_SPI, 11)
+```
+
+相关声明：[SPI0_MOSI_EXP](#a02ab28fc35a282d7b7839707fd0afed8)、[V2M_BEETLE_PINMUX](#ab203c77381bb94d20180804cc0cde072)、[V2M_BEETLE_PINCTRL_FUNC_SPI](#a57a16dc76ecc4a21ab4fc765bff9c829)。
+
+<a id="r_ac6071179ce140b6174432836b52bc6d0"></a>
+
+```c
+#define SPI0_MISO_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_SPI, 12)
+```
+
+相关声明：[SPI0_MISO_EXP](#ac6071179ce140b6174432836b52bc6d0)、[V2M_BEETLE_PINMUX](#ab203c77381bb94d20180804cc0cde072)、[V2M_BEETLE_PINCTRL_FUNC_SPI](#a57a16dc76ecc4a21ab4fc765bff9c829)。
+
+<a id="r_a9956a46d931b038e35d49ea8fbef264f"></a>
+
+```c
+#define SPI0_SCK_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_SPI, 13)
+```
+
+相关声明：[SPI0_SCK_EXP](#a9956a46d931b038e35d49ea8fbef264f)、[V2M_BEETLE_PINMUX](#ab203c77381bb94d20180804cc0cde072)、[V2M_BEETLE_PINCTRL_FUNC_SPI](#a57a16dc76ecc4a21ab4fc765bff9c829)。
+
+<a id="r_aca1f71982f2db9090ba8bc263c3715c2"></a>
+
+```c
+#define SBCON0_SDA_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_I2C, 14)
+```
+
+相关声明：[SBCON0_SDA_EXP](#aca1f71982f2db9090ba8bc263c3715c2)、[V2M_BEETLE_PINMUX](#ab203c77381bb94d20180804cc0cde072)、[V2M_BEETLE_PINCTRL_FUNC_I2C](#a5114f026181617cf4a9f6f4a8dd714d0)。
+
+<a id="r_a8b5d683cf0d16eb4a93b60edb0d72db8"></a>
+
+```c
+#define SBCON0_SCL_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_I2C, 15)
+```
+
+相关声明：[SBCON0_SCL_EXP](#a8b5d683cf0d16eb4a93b60edb0d72db8)、[V2M_BEETLE_PINMUX](#ab203c77381bb94d20180804cc0cde072)、[V2M_BEETLE_PINCTRL_FUNC_I2C](#a5114f026181617cf4a9f6f4a8dd714d0)。
+
+<a id="r_a554686dd42decffbdbe18b3c5f47977a"></a>
+
+```c
+#define UART1_RXD_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_UART, 16)
+```
+
+相关声明：[UART1_RXD_EXP](#a554686dd42decffbdbe18b3c5f47977a)、[V2M_BEETLE_PINMUX](#ab203c77381bb94d20180804cc0cde072)、[V2M_BEETLE_PINCTRL_FUNC_UART](#a5327a4bbbcbc2476488a0cd0f3c13070)。
+
+<a id="r_aec12e8c4da51b0ae607b339d26815347"></a>
+
+```c
+#define UART1_TXD_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_UART, 17)
+```
+
+相关声明：[UART1_TXD_EXP](#aec12e8c4da51b0ae607b339d26815347)、[V2M_BEETLE_PINMUX](#ab203c77381bb94d20180804cc0cde072)、[V2M_BEETLE_PINCTRL_FUNC_UART](#a5327a4bbbcbc2476488a0cd0f3c13070)。
+
+<a id="r_a17f827e6dcc9ae2463d6bcd94f8ba037"></a>
+
+```c
+#define SPI1_SS_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_SPI, 18)
+```
+
+相关声明：[SPI1_SS_EXP](#a17f827e6dcc9ae2463d6bcd94f8ba037)、[V2M_BEETLE_PINMUX](#ab203c77381bb94d20180804cc0cde072)、[V2M_BEETLE_PINCTRL_FUNC_SPI](#a57a16dc76ecc4a21ab4fc765bff9c829)。
+
+<a id="r_a8f68d50b9c3f09f0ffe77a987823f93e"></a>
+
+```c
+#define SPI1_MOSI_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_SPI, 19)
+```
+
+相关声明：[SPI1_MOSI_EXP](#a8f68d50b9c3f09f0ffe77a987823f93e)、[V2M_BEETLE_PINMUX](#ab203c77381bb94d20180804cc0cde072)、[V2M_BEETLE_PINCTRL_FUNC_SPI](#a57a16dc76ecc4a21ab4fc765bff9c829)。
+
+<a id="r_a8157da231573f62c43ffcebbcedd05da"></a>
+
+```c
+#define SPI1_MISO_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_SPI, 20)
+```
+
+相关声明：[SPI1_MISO_EXP](#a8157da231573f62c43ffcebbcedd05da)、[V2M_BEETLE_PINMUX](#ab203c77381bb94d20180804cc0cde072)、[V2M_BEETLE_PINCTRL_FUNC_SPI](#a57a16dc76ecc4a21ab4fc765bff9c829)。
+
+<a id="r_a084304a2cf66e2fe433da0608f42e5ab"></a>
+
+```c
+#define SPI1_SCK_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_SPI, 21)
+```
+
+相关声明：[SPI1_SCK_EXP](#a084304a2cf66e2fe433da0608f42e5ab)、[V2M_BEETLE_PINMUX](#ab203c77381bb94d20180804cc0cde072)、[V2M_BEETLE_PINCTRL_FUNC_SPI](#a57a16dc76ecc4a21ab4fc765bff9c829)。
+
+<a id="r_a2c977cc24d8b14abab79d0f448bc7b44"></a>
+
+```c
+#define SBCON1_SDA_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_I2C, 22)
+```
+
+相关声明：[SBCON1_SDA_EXP](#a2c977cc24d8b14abab79d0f448bc7b44)、[V2M_BEETLE_PINMUX](#ab203c77381bb94d20180804cc0cde072)、[V2M_BEETLE_PINCTRL_FUNC_I2C](#a5114f026181617cf4a9f6f4a8dd714d0)。
+
+<a id="r_a8b9dd6b30421420c05d12acc0914dfd8"></a>
+
+```c
+#define SBCON1_SCL_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_I2C, 23)
+```
+
+相关声明：[SBCON1_SCL_EXP](#a8b9dd6b30421420c05d12acc0914dfd8)、[V2M_BEETLE_PINMUX](#ab203c77381bb94d20180804cc0cde072)、[V2M_BEETLE_PINCTRL_FUNC_I2C](#a5114f026181617cf4a9f6f4a8dd714d0)。
+
+<a id="r_af510dd775ec30cc3ceb8c68c47fe4b22"></a>
+
+```c
+#define QSPI_CS2_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_QSPI, 24)
+```
+
+相关声明：[QSPI_CS2_EXP](#af510dd775ec30cc3ceb8c68c47fe4b22)、[V2M_BEETLE_PINMUX](#ab203c77381bb94d20180804cc0cde072)、[V2M_BEETLE_PINCTRL_FUNC_QSPI](#ac40b2ed7fcb2585dd2735705db9871bf)。
+
+<a id="r_a4ea213a977a5cb15e946fe6fbc7ba09a"></a>
+
+```c
+#define QSPI_CS1_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_QSPI, 25)
+```
+
+相关声明：[QSPI_CS1_EXP](#a4ea213a977a5cb15e946fe6fbc7ba09a)、[V2M_BEETLE_PINMUX](#ab203c77381bb94d20180804cc0cde072)、[V2M_BEETLE_PINCTRL_FUNC_QSPI](#ac40b2ed7fcb2585dd2735705db9871bf)。
+
+<a id="r_a012803411d173f382177b751d3f8026f"></a>
+
+```c
+#define QSPI_IOF0_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_QSPI, 26)
+```
+
+相关声明：[QSPI_IOF0_EXP](#a012803411d173f382177b751d3f8026f)、[V2M_BEETLE_PINMUX](#ab203c77381bb94d20180804cc0cde072)、[V2M_BEETLE_PINCTRL_FUNC_QSPI](#ac40b2ed7fcb2585dd2735705db9871bf)。
+
+<a id="r_af238b53e6959f12a79aeac8eb3a65b44"></a>
+
+```c
+#define QSPI_IOF1_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_QSPI, 27)
+```
+
+相关声明：[QSPI_IOF1_EXP](#af238b53e6959f12a79aeac8eb3a65b44)、[V2M_BEETLE_PINMUX](#ab203c77381bb94d20180804cc0cde072)、[V2M_BEETLE_PINCTRL_FUNC_QSPI](#ac40b2ed7fcb2585dd2735705db9871bf)。
+
+<a id="r_aab4ad8f508a988e4bced0f54de8f78cd"></a>
+
+```c
+#define QSPI_IOF2_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_QSPI, 28)
+```
+
+相关声明：[QSPI_IOF2_EXP](#aab4ad8f508a988e4bced0f54de8f78cd)、[V2M_BEETLE_PINMUX](#ab203c77381bb94d20180804cc0cde072)、[V2M_BEETLE_PINCTRL_FUNC_QSPI](#ac40b2ed7fcb2585dd2735705db9871bf)。
+
+<a id="r_a50ec2d09cffaee393178776d1e71fc03"></a>
+
+```c
+#define QSPI_IOF3_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_QSPI, 29)
+```
+
+相关声明：[QSPI_IOF3_EXP](#a50ec2d09cffaee393178776d1e71fc03)、[V2M_BEETLE_PINMUX](#ab203c77381bb94d20180804cc0cde072)、[V2M_BEETLE_PINCTRL_FUNC_QSPI](#ac40b2ed7fcb2585dd2735705db9871bf)。
+
+<a id="r_acf11fd281d37f262aabec2842292a40d"></a>
+
+```c
+#define QSPI_SCK_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_QSPI, 30)
+```
+
+相关声明：[QSPI_SCK_EXP](#acf11fd281d37f262aabec2842292a40d)、[V2M_BEETLE_PINMUX](#ab203c77381bb94d20180804cc0cde072)、[V2M_BEETLE_PINCTRL_FUNC_QSPI](#ac40b2ed7fcb2585dd2735705db9871bf)。
+
+## 20.2\_详细说明（Detailed Documentation）
+
+<a id="a4ea213a977a5cb15e946fe6fbc7ba09a"></a>
+
+### `QSPI_CS1_EXP`
+
+```c
+#define QSPI_CS1_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_QSPI, 25)
+```
+
+<a id="af510dd775ec30cc3ceb8c68c47fe4b22"></a>
+
+### `QSPI_CS2_EXP`
+
+```c
+#define QSPI_CS2_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_QSPI, 24)
+```
+
+<a id="a012803411d173f382177b751d3f8026f"></a>
+
+### `QSPI_IOF0_EXP`
+
+```c
+#define QSPI_IOF0_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_QSPI, 26)
+```
+
+<a id="af238b53e6959f12a79aeac8eb3a65b44"></a>
+
+### `QSPI_IOF1_EXP`
+
+```c
+#define QSPI_IOF1_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_QSPI, 27)
+```
+
+<a id="aab4ad8f508a988e4bced0f54de8f78cd"></a>
+
+### `QSPI_IOF2_EXP`
+
+```c
+#define QSPI_IOF2_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_QSPI, 28)
+```
+
+<a id="a50ec2d09cffaee393178776d1e71fc03"></a>
+
+### `QSPI_IOF3_EXP`
+
+```c
+#define QSPI_IOF3_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_QSPI, 29)
+```
+
+<a id="acf11fd281d37f262aabec2842292a40d"></a>
+
+### `QSPI_SCK_EXP`
+
+```c
+#define QSPI_SCK_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_QSPI, 30)
+```
+
+<a id="a8b5d683cf0d16eb4a93b60edb0d72db8"></a>
+
+### `SBCON0_SCL_EXP`
+
+```c
+#define SBCON0_SCL_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_I2C, 15)
+```
+
+<a id="aca1f71982f2db9090ba8bc263c3715c2"></a>
+
+### `SBCON0_SDA_EXP`
+
+```c
+#define SBCON0_SDA_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_I2C, 14)
+```
+
+<a id="a8b9dd6b30421420c05d12acc0914dfd8"></a>
+
+### `SBCON1_SCL_EXP`
+
+```c
+#define SBCON1_SCL_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_I2C, 23)
+```
+
+<a id="a2c977cc24d8b14abab79d0f448bc7b44"></a>
+
+### `SBCON1_SDA_EXP`
+
+```c
+#define SBCON1_SDA_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_I2C, 22)
+```
+
+<a id="ac6071179ce140b6174432836b52bc6d0"></a>
+
+### `SPI0_MISO_EXP`
+
+```c
+#define SPI0_MISO_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_SPI, 12)
+```
+
+<a id="a02ab28fc35a282d7b7839707fd0afed8"></a>
+
+### `SPI0_MOSI_EXP`
+
+```c
+#define SPI0_MOSI_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_SPI, 11)
+```
+
+<a id="a9956a46d931b038e35d49ea8fbef264f"></a>
+
+### `SPI0_SCK_EXP`
+
+```c
+#define SPI0_SCK_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_SPI, 13)
+```
+
+<a id="af0727866d5c48f3b1cd2c9383929b1a1"></a>
+
+### `SPI0_SS_EXP`
+
+```c
+#define SPI0_SS_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_SPI, 10)
+```
+
+<a id="a8157da231573f62c43ffcebbcedd05da"></a>
+
+### `SPI1_MISO_EXP`
+
+```c
+#define SPI1_MISO_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_SPI, 20)
+```
+
+<a id="a8f68d50b9c3f09f0ffe77a987823f93e"></a>
+
+### `SPI1_MOSI_EXP`
+
+```c
+#define SPI1_MOSI_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_SPI, 19)
+```
+
+<a id="a084304a2cf66e2fe433da0608f42e5ab"></a>
+
+### `SPI1_SCK_EXP`
+
+```c
+#define SPI1_SCK_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_SPI, 21)
+```
+
+<a id="a17f827e6dcc9ae2463d6bcd94f8ba037"></a>
+
+### `SPI1_SS_EXP`
+
+```c
+#define SPI1_SS_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_SPI, 18)
+```
+
+<a id="a0dad432d22c364a59b07d3743e503603"></a>
+
+### `UART0_RXD_EXP`
+
+```c
+#define UART0_RXD_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_UART, 0)
+```
+
+<a id="ab987c26da052b07e7db9b1954209616d"></a>
+
+### `UART0_TXD_EXP`
+
+```c
+#define UART0_TXD_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_UART, 1)
+```
+
+<a id="a554686dd42decffbdbe18b3c5f47977a"></a>
+
+### `UART1_RXD_EXP`
+
+```c
+#define UART1_RXD_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_UART, 16)
+```
+
+<a id="aec12e8c4da51b0ae607b339d26815347"></a>
+
+### `UART1_TXD_EXP`
+
+```c
+#define UART1_TXD_EXP V2M_BEETLE_PINMUX(V2M_BEETLE_PINCTRL_FUNC_UART, 17)
+```
+
+<a id="a3519227256ace189f093cc0fd02d6d9b"></a>
+
+### `V2M_BEETLE_ALT_FUNC_MASK`
+
+```c
+#define V2M_BEETLE_ALT_FUNC_MASK 0x7
+```
+
+<a id="a4d45c8721029feeca3d1959350be7cdb"></a>
+
+### `V2M_BEETLE_ALT_FUNC_POS`
+
+```c
+#define V2M_BEETLE_ALT_FUNC_POS 0
+```
+
+<a id="ac813f27b4634c45f01b6cdbf8b02a32d"></a>
+
+### `V2M_BEETLE_EXP_NUM_MASK`
+
+```c
+#define V2M_BEETLE_EXP_NUM_MASK 0x1F8
+```
+
+<a id="a00493ab00f529a1434e963a5e23c2254"></a>
+
+### `V2M_BEETLE_EXP_NUM_POS`
+
+```c
+#define V2M_BEETLE_EXP_NUM_POS 3
+```
+
+<a id="a2a2d0a5be6132e815212772d900eecb8"></a>
+
+### `V2M_BEETLE_PINCTRL_FUNC_GPIO`
+
+```c
+#define V2M_BEETLE_PINCTRL_FUNC_GPIO 1
+```
+
+<a id="a5114f026181617cf4a9f6f4a8dd714d0"></a>
+
+### `V2M_BEETLE_PINCTRL_FUNC_I2C`
+
+```c
+#define V2M_BEETLE_PINCTRL_FUNC_I2C 2
+```
+
+<a id="ac40b2ed7fcb2585dd2735705db9871bf"></a>
+
+### `V2M_BEETLE_PINCTRL_FUNC_QSPI`
+
+```c
+#define V2M_BEETLE_PINCTRL_FUNC_QSPI 4
+```
+
+<a id="a57a16dc76ecc4a21ab4fc765bff9c829"></a>
+
+### `V2M_BEETLE_PINCTRL_FUNC_SPI`
+
+```c
+#define V2M_BEETLE_PINCTRL_FUNC_SPI 3
+```
+
+<a id="a5327a4bbbcbc2476488a0cd0f3c13070"></a>
+
+### `V2M_BEETLE_PINCTRL_FUNC_UART`
+
+```c
+#define V2M_BEETLE_PINCTRL_FUNC_UART 0
+```
+
+<a id="ab203c77381bb94d20180804cc0cde072"></a>
+
+### `V2M_BEETLE_PINMUX`
+
+```c
+#define V2M_BEETLE_PINMUX ( alt_func, exp_num )
+```
+
+展开值（Value）：
+
+```c
+(exp_num << V2M_BEETLE_EXP_NUM_POS | \
+alt_func << V2M_BEETLE_ALT_FUNC_POS)
+```
+
+
+## 20.3\_原页交叉引用（Cross References）
+
+- [查看此文件的源码。](../api_source_configuration_reference/P007_arm-v2m_beetle-pinctrl.h_源码浏览.md)
+
+<a id="doc-define-members"></a>
+<a id="header-doc-define-members"></a>
+<a id="aarm-v2m__beetle-pinctrl_8h_html_a00493ab00f529a1434e963a5e23c2254"></a>
+<a id="aarm-v2m__beetle-pinctrl_8h_html_a4d45c8721029feeca3d1959350be7cdb"></a>
+
+---
+
+[上一章](P019_zephyr__dt-bindings__pinctrl__arm-mps4-pinctrl.h_文件参考.md) · [返回大纲](大纲.md) · [下一章](P021_zephyr__dt-bindings__clock__ast10x0_clock.h_文件参考.md)

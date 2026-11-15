@@ -1,0 +1,20 @@
+{
+  "images": [
+    {
+      "path": "boards_pending_media/images/manufacturer_Motion2350_pinout.png",
+      "source_url": "https://raw.githubusercontent.com/CytronTechnologies/Cytron-MOTION-2350-PRO/main/images/Pinout_Diagram_MOTION-2350-Pro.png",
+      "bytes": 1614089,
+      "sha256": "34a865c41d2734616960a6a241248eabe3bbf67d8020a5baec2ec2ba53089416",
+      "modified": false,
+      "note": "厂商官方仓库提供的同型号原始文件；未验证与Zephyr引用的失效文件逐字节相同，不计作缺失原件已恢复。"
+    },
+    {
+      "path": "boards_pending_media/images/manufacturer_CANBed_RP2040_hw.png",
+      "source_url": "https://raw.githubusercontent.com/Longan-Labs/docs_mkdocs/master/docs/images/1030018/hw.png",
+      "bytes": 832580,
+      "sha256": "342f5071ce7e3888d2ceff410bd453e796971488f6228d8be639e346cf588c39",
+      "modified": false,
+      "note": "厂商官方仓库提供的同型号原始文件；未验证与Zephyr引用的失效文件逐字节相同，不计作缺失原件已恢复。"
+    }
+  ]
+}

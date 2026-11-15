@@ -1,0 +1,1890 @@
+---
+id: learning.zephyr-docs.api-file-reference.page-36
+title: zephyr__dt-bindings__pinctrl__ch32v003-pinctrl.h_文件参考
+kind: reference
+status: maintained
+domains: [zephyr, drivers, api]
+source_url: https://docs.zephyrproject.org/latest/doxygen/html/ch32v003-pinctrl_8h.html
+---
+
+<!-- Copyright 2015-2026 Zephyr Project members and individual contributors. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<!-- 中文翻译；编号、导航和明确标注的译注为本地新增。 -->
+
+# 第36章\_zephyr\_\_dt-bindings\_\_pinctrl\_\_ch32v003-pinctrl.h\_文件参考
+
+原文：[官方页面](https://docs.zephyrproject.org/latest/doxygen/html/ch32v003-pinctrl_8h.html)。读取日期：2026-10-17；来源摘要见[来源记录](../SOURCES.md)。
+
+查看此文件的源码。
+
+<a id="header-define-members"></a>
+<a id="define-members"></a>
+
+## 36.1\_宏定义（Macros）
+
+<a id="r_a73b9b98140a920f01ff107f619bbadef"></a>
+
+```c
+#define CH32V003_PINMUX_PORT_PA 0
+```
+
+相关声明：[CH32V003_PINMUX_PORT_PA](#a73b9b98140a920f01ff107f619bbadef)。
+
+<a id="r_af72b85c1893c333d3b21eaa27b146a1c"></a>
+
+```c
+#define CH32V003_PINMUX_PORT_PC 1
+```
+
+相关声明：[CH32V003_PINMUX_PORT_PC](#af72b85c1893c333d3b21eaa27b146a1c)。
+
+<a id="r_a066fe7e8e9084cf9c6f3993b4aae6c22"></a>
+
+```c
+#define CH32V003_PINMUX_PORT_PD 2
+```
+
+相关声明：[CH32V003_PINMUX_PORT_PD](#a066fe7e8e9084cf9c6f3993b4aae6c22)。
+
+<a id="r_a1d0ba39590b0b1e9f3db8b7b1f7b54a3"></a>
+
+```c
+#define CH32V003_PINMUX_SPI1_RM 0
+```
+
+相关声明：[CH32V003_PINMUX_SPI1_RM](#a1d0ba39590b0b1e9f3db8b7b1f7b54a3)。
+
+<a id="r_a84b0e49d38b922ede48903b68425ac73"></a>
+
+```c
+#define CH32V003_PINMUX_I2C1_RM 1
+```
+
+相关声明：[CH32V003_PINMUX_I2C1_RM](#a84b0e49d38b922ede48903b68425ac73)。
+
+<a id="r_a02e3f8788ca416bc4ce8a43b4589f81a"></a>
+
+```c
+#define CH32V003_PINMUX_I2C1_RM1 22
+```
+
+相关声明：[CH32V003_PINMUX_I2C1_RM1](#a02e3f8788ca416bc4ce8a43b4589f81a)。
+
+<a id="r_ac410ae2f3987bdc8198efc171f970379"></a>
+
+```c
+#define CH32V003_PINMUX_USART1_RM 2
+```
+
+相关声明：[CH32V003_PINMUX_USART1_RM](#ac410ae2f3987bdc8198efc171f970379)。
+
+<a id="r_a48852ab43f4fe43f7a1123b6269d822f"></a>
+
+```c
+#define CH32V003_PINMUX_USART1_RM1 21
+```
+
+相关声明：[CH32V003_PINMUX_USART1_RM1](#a48852ab43f4fe43f7a1123b6269d822f)。
+
+<a id="r_a5b7ade9390f25703260f9f5537aaeab0"></a>
+
+```c
+#define CH32V003_PINMUX_TIM1_RM 6
+```
+
+相关声明：[CH32V003_PINMUX_TIM1_RM](#a5b7ade9390f25703260f9f5537aaeab0)。
+
+<a id="r_af957fdf856a748cda3f919e20c795fea"></a>
+
+```c
+#define CH32V003_PINMUX_TIM1_RM1 23
+```
+
+相关声明：[CH32V003_PINMUX_TIM1_RM1](#af957fdf856a748cda3f919e20c795fea)。
+
+<a id="r_ac9376922827828ef4221ebe34ed84f31"></a>
+
+```c
+#define CH32V003_PINMUX_TIM2_RM 8
+```
+
+相关声明：[CH32V003_PINMUX_TIM2_RM](#ac9376922827828ef4221ebe34ed84f31)。
+
+<a id="r_a41e982abb9e2f06cb38d6db1dd515aeb"></a>
+
+```c
+#define CH32V003_PINMUX_ADC1_RM 3
+```
+
+相关声明：[CH32V003_PINMUX_ADC1_RM](#a41e982abb9e2f06cb38d6db1dd515aeb)。
+
+<a id="r_a8361e90734d6a8c2204e90994e964750"></a>
+
+```c
+#define CH32V003_PINCTRL_PORT_SHIFT 0
+```
+
+相关声明：[CH32V003_PINCTRL_PORT_SHIFT](#a8361e90734d6a8c2204e90994e964750)。
+
+<a id="r_a7c7781f10005a95f1fb3ce7b9b131d79"></a>
+
+```c
+#define CH32V003_PINCTRL_PIN_SHIFT 2
+```
+
+相关声明：[CH32V003_PINCTRL_PIN_SHIFT](#a7c7781f10005a95f1fb3ce7b9b131d79)。
+
+<a id="r_ae2ffdb9baf945a13f8627f6a88796a25"></a>
+
+```c
+#define CH32V003_PINCTRL_RM_BASE_SHIFT 6
+```
+
+相关声明：[CH32V003_PINCTRL_RM_BASE_SHIFT](#ae2ffdb9baf945a13f8627f6a88796a25)。
+
+<a id="r_ac9858731c817ed3625f227cf7a5b0303"></a>
+
+```c
+#define CH32V003_PINCTRL_RM_SHIFT 11
+```
+
+相关声明：[CH32V003_PINCTRL_RM_SHIFT](#ac9858731c817ed3625f227cf7a5b0303)。
+
+<a id="r_a6f7ab1cd86bfcc0c5a46cb339bfab711"></a>
+
+```c
+#define CH32V003_PINMUX_DEFINE(port, pin, rm, remapping)
+```
+
+相关声明：[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a8fca20f25cd86b6185a1c2674342bc48"></a>
+
+```c
+#define TIM1_ETR_PC5_0 CH32V003_PINMUX_DEFINE(PC, 5, TIM1, 0)
+```
+
+相关声明：[TIM1_ETR_PC5_0](#a8fca20f25cd86b6185a1c2674342bc48)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a8097f0831dae5ba45acc1d603b7392b3"></a>
+
+```c
+#define TIM1_ETR_PC5_1 CH32V003_PINMUX_DEFINE(PC, 5, TIM1, 1)
+```
+
+相关声明：[TIM1_ETR_PC5_1](#a8097f0831dae5ba45acc1d603b7392b3)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a4fd62189c16e9c3343815fb2651bf2de"></a>
+
+```c
+#define TIM1_ETR_PD4_2 CH32V003_PINMUX_DEFINE(PD, 4, TIM1, 2)
+```
+
+相关声明：[TIM1_ETR_PD4_2](#a4fd62189c16e9c3343815fb2651bf2de)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_af03e0801b80f311ffa8ff53f71e895b6"></a>
+
+```c
+#define TIM1_ETR_PC2_3 CH32V003_PINMUX_DEFINE(PC, 2, TIM1, 3)
+```
+
+相关声明：[TIM1_ETR_PC2_3](#af03e0801b80f311ffa8ff53f71e895b6)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a0358320b2a97250777a32de61ac74e11"></a>
+
+```c
+#define TIM1_CH1_PD2_0 CH32V003_PINMUX_DEFINE(PD, 2, TIM1, 0)
+```
+
+相关声明：[TIM1_CH1_PD2_0](#a0358320b2a97250777a32de61ac74e11)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_aeb3ca54192f611cbb2b54dffb8d584e0"></a>
+
+```c
+#define TIM1_CH1_PC6_1 CH32V003_PINMUX_DEFINE(PC, 6, TIM1, 1)
+```
+
+相关声明：[TIM1_CH1_PC6_1](#aeb3ca54192f611cbb2b54dffb8d584e0)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a57bc64aaf6b5b8592155e059809e09ab"></a>
+
+```c
+#define TIM1_CH1_PD2_2 CH32V003_PINMUX_DEFINE(PD, 2, TIM1, 2)
+```
+
+相关声明：[TIM1_CH1_PD2_2](#a57bc64aaf6b5b8592155e059809e09ab)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_aa4f03f6f1206146731ed38b33fec5c99"></a>
+
+```c
+#define TIM1_CH1_PC4_3 CH32V003_PINMUX_DEFINE(PC, 4, TIM1, 3)
+```
+
+相关声明：[TIM1_CH1_PC4_3](#aa4f03f6f1206146731ed38b33fec5c99)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_ab154f084c5ca48b3010e6e7744b03d3c"></a>
+
+```c
+#define TIM1_CH2_PA1_0 CH32V003_PINMUX_DEFINE(PA, 1, TIM1, 0)
+```
+
+相关声明：[TIM1_CH2_PA1_0](#ab154f084c5ca48b3010e6e7744b03d3c)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_aca101f937848de3650d9507f92004722"></a>
+
+```c
+#define TIM1_CH2_PC7_1 CH32V003_PINMUX_DEFINE(PC, 7, TIM1, 1)
+```
+
+相关声明：[TIM1_CH2_PC7_1](#aca101f937848de3650d9507f92004722)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_abaa1896f6ae82bea5d73141d95d55cbe"></a>
+
+```c
+#define TIM1_CH2_PA1_2 CH32V003_PINMUX_DEFINE(PA, 1, TIM1, 2)
+```
+
+相关声明：[TIM1_CH2_PA1_2](#abaa1896f6ae82bea5d73141d95d55cbe)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_ac062779803078d0f4398dc9979ab09c6"></a>
+
+```c
+#define TIM1_CH2_PC7_3 CH32V003_PINMUX_DEFINE(PC, 7, TIM1, 3)
+```
+
+相关声明：[TIM1_CH2_PC7_3](#ac062779803078d0f4398dc9979ab09c6)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a8c34342b714e0bb8fc5dbffbbba87a98"></a>
+
+```c
+#define TIM1_CH3_PC3_0 CH32V003_PINMUX_DEFINE(PC, 3, TIM1, 0)
+```
+
+相关声明：[TIM1_CH3_PC3_0](#a8c34342b714e0bb8fc5dbffbbba87a98)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a02b8f96cc2781928ca020bffd48f405b"></a>
+
+```c
+#define TIM1_CH3_PC0_1 CH32V003_PINMUX_DEFINE(PC, 0, TIM1, 1)
+```
+
+相关声明：[TIM1_CH3_PC0_1](#a02b8f96cc2781928ca020bffd48f405b)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a582541ebbcb8086dbbbdd75ea2f7456c"></a>
+
+```c
+#define TIM1_CH3_PC3_2 CH32V003_PINMUX_DEFINE(PC, 3, TIM1, 2)
+```
+
+相关声明：[TIM1_CH3_PC3_2](#a582541ebbcb8086dbbbdd75ea2f7456c)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_ac0ef4ba763211a0f47cdbc4f1ec3891f"></a>
+
+```c
+#define TIM1_CH3_PC5_3 CH32V003_PINMUX_DEFINE(PC, 5, TIM1, 3)
+```
+
+相关声明：[TIM1_CH3_PC5_3](#ac0ef4ba763211a0f47cdbc4f1ec3891f)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a6da952b7542e4fa5027cdf978e9251cb"></a>
+
+```c
+#define TIM1_CH4_PC4_0 CH32V003_PINMUX_DEFINE(PC, 4, TIM1, 0)
+```
+
+相关声明：[TIM1_CH4_PC4_0](#a6da952b7542e4fa5027cdf978e9251cb)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_ae81545a359b7a03a974e9c7681aee96b"></a>
+
+```c
+#define TIM1_CH4_PD3_1 CH32V003_PINMUX_DEFINE(PD, 3, TIM1, 1)
+```
+
+相关声明：[TIM1_CH4_PD3_1](#ae81545a359b7a03a974e9c7681aee96b)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_ace9184ed08afd1dc25d4a2e8a3857d16"></a>
+
+```c
+#define TIM1_CH4_PC4_2 CH32V003_PINMUX_DEFINE(PC, 4, TIM1, 2)
+```
+
+相关声明：[TIM1_CH4_PC4_2](#ace9184ed08afd1dc25d4a2e8a3857d16)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a9ee2b1bcdf2de7573f121736348d7774"></a>
+
+```c
+#define TIM1_CH4_PD4_3 CH32V003_PINMUX_DEFINE(PD, 4, TIM1, 3)
+```
+
+相关声明：[TIM1_CH4_PD4_3](#a9ee2b1bcdf2de7573f121736348d7774)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a0dd235ad3e6100a470c4d94140a24492"></a>
+
+```c
+#define TIM1_BKIN_PC2_0 CH32V003_PINMUX_DEFINE(PC, 2, TIM1, 0)
+```
+
+相关声明：[TIM1_BKIN_PC2_0](#a0dd235ad3e6100a470c4d94140a24492)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_ab258912675d0d72f6f0ae88f791b3214"></a>
+
+```c
+#define TIM1_BKIN_PC1_1 CH32V003_PINMUX_DEFINE(PC, 1, TIM1, 1)
+```
+
+相关声明：[TIM1_BKIN_PC1_1](#ab258912675d0d72f6f0ae88f791b3214)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a64d6bc945102a8efe9cef5839d4512f2"></a>
+
+```c
+#define TIM1_BKIN_PC2_2 CH32V003_PINMUX_DEFINE(PC, 2, TIM1, 2)
+```
+
+相关声明：[TIM1_BKIN_PC2_2](#a64d6bc945102a8efe9cef5839d4512f2)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_ac62dec76593bb03d91e786fb1c4ce044"></a>
+
+```c
+#define TIM1_BKIN_PC1_3 CH32V003_PINMUX_DEFINE(PC, 1, TIM1, 3)
+```
+
+相关声明：[TIM1_BKIN_PC1_3](#ac62dec76593bb03d91e786fb1c4ce044)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_ae46dd3d78d8130e198f788e1fef871f4"></a>
+
+```c
+#define TIM1_CH1N_PD0_0 CH32V003_PINMUX_DEFINE(PD, 0, TIM1, 0)
+```
+
+相关声明：[TIM1_CH1N_PD0_0](#ae46dd3d78d8130e198f788e1fef871f4)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a74bc58abfd757c0f41a5c7cb4e1f5ba2"></a>
+
+```c
+#define TIM1_CH1N_PC3_1 CH32V003_PINMUX_DEFINE(PC, 3, TIM1, 1)
+```
+
+相关声明：[TIM1_CH1N_PC3_1](#a74bc58abfd757c0f41a5c7cb4e1f5ba2)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a15992dd4e2325f7338f84292c71ed247"></a>
+
+```c
+#define TIM1_CH1N_PD0_2 CH32V003_PINMUX_DEFINE(PD, 0, TIM1, 2)
+```
+
+相关声明：[TIM1_CH1N_PD0_2](#a15992dd4e2325f7338f84292c71ed247)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_aeb3bff0dbfa45aed7b63fd2a2979f3ec"></a>
+
+```c
+#define TIM1_CH1N_PC3_3 CH32V003_PINMUX_DEFINE(PC, 3, TIM1, 3)
+```
+
+相关声明：[TIM1_CH1N_PC3_3](#aeb3bff0dbfa45aed7b63fd2a2979f3ec)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a092da60f0a9603ec8c1553008a78d8f3"></a>
+
+```c
+#define TIM1_CH2N_PA2_0 CH32V003_PINMUX_DEFINE(PA, 2, TIM1, 0)
+```
+
+相关声明：[TIM1_CH2N_PA2_0](#a092da60f0a9603ec8c1553008a78d8f3)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a890ee3c33e3eb0db9fdc836246eec67d"></a>
+
+```c
+#define TIM1_CH2N_PC4_1 CH32V003_PINMUX_DEFINE(PC, 4, TIM1, 1)
+```
+
+相关声明：[TIM1_CH2N_PC4_1](#a890ee3c33e3eb0db9fdc836246eec67d)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a11664966fcc0da0bc7dd0a053ae2fe8f"></a>
+
+```c
+#define TIM1_CH2N_PA2_2 CH32V003_PINMUX_DEFINE(PA, 2, TIM1, 2)
+```
+
+相关声明：[TIM1_CH2N_PA2_2](#a11664966fcc0da0bc7dd0a053ae2fe8f)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_aa193ff08432db07685ca309f0e8b9e66"></a>
+
+```c
+#define TIM1_CH2N_PD2_3 CH32V003_PINMUX_DEFINE(PD, 2, TIM1, 3)
+```
+
+相关声明：[TIM1_CH2N_PD2_3](#aa193ff08432db07685ca309f0e8b9e66)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a26b5659eb69c2b6f1b79497901a6bf32"></a>
+
+```c
+#define TIM1_CH3N_PD1_0 CH32V003_PINMUX_DEFINE(PD, 1, TIM1, 0)
+```
+
+相关声明：[TIM1_CH3N_PD1_0](#a26b5659eb69c2b6f1b79497901a6bf32)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_ad1c9dee54a8043b519176d67c14d949d"></a>
+
+```c
+#define TIM1_CH3N_PD1_1 CH32V003_PINMUX_DEFINE(PD, 1, TIM1, 1)
+```
+
+相关声明：[TIM1_CH3N_PD1_1](#ad1c9dee54a8043b519176d67c14d949d)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_ad986d12a63211d622c2debcecd7984e0"></a>
+
+```c
+#define TIM1_CH3N_PD1_2 CH32V003_PINMUX_DEFINE(PD, 1, TIM1, 2)
+```
+
+相关声明：[TIM1_CH3N_PD1_2](#ad986d12a63211d622c2debcecd7984e0)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_aceeee0e77912b38e24bda43ab6819516"></a>
+
+```c
+#define TIM1_CH3N_PC6_3 CH32V003_PINMUX_DEFINE(PC, 6, TIM1, 3)
+```
+
+相关声明：[TIM1_CH3N_PC6_3](#aceeee0e77912b38e24bda43ab6819516)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a43c2c900f95d5f44905e65ddaa4cc0ef"></a>
+
+```c
+#define TIM2_ETR_PD4_0 CH32V003_PINMUX_DEFINE(PD, 4, TIM2, 0)
+```
+
+相关声明：[TIM2_ETR_PD4_0](#a43c2c900f95d5f44905e65ddaa4cc0ef)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_ab7ff09228a91baca59402066969d8bcb"></a>
+
+```c
+#define TIM2_ETR_PC5_1 CH32V003_PINMUX_DEFINE(PC, 5, TIM2, 1)
+```
+
+相关声明：[TIM2_ETR_PC5_1](#ab7ff09228a91baca59402066969d8bcb)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_adeda50d5fc444c26c47f4455ae749fea"></a>
+
+```c
+#define TIM2_ETR_PC1_2 CH32V003_PINMUX_DEFINE(PC, 1, TIM2, 2)
+```
+
+相关声明：[TIM2_ETR_PC1_2](#adeda50d5fc444c26c47f4455ae749fea)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_afe0830763b0bd0a6784e10a6f4b3f89d"></a>
+
+```c
+#define TIM2_ETR_PC1_3 CH32V003_PINMUX_DEFINE(PC, 1, TIM2, 3)
+```
+
+相关声明：[TIM2_ETR_PC1_3](#afe0830763b0bd0a6784e10a6f4b3f89d)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a321ccc1d95043b1c49086c450ca0ea7e"></a>
+
+```c
+#define TIM2_CH1_PD4_0 CH32V003_PINMUX_DEFINE(PD, 4, TIM2, 0)
+```
+
+相关声明：[TIM2_CH1_PD4_0](#a321ccc1d95043b1c49086c450ca0ea7e)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a10660c2b96f1dd971a66dc8b54810264"></a>
+
+```c
+#define TIM2_CH1_PC5_1 CH32V003_PINMUX_DEFINE(PC, 5, TIM2, 1)
+```
+
+相关声明：[TIM2_CH1_PC5_1](#a10660c2b96f1dd971a66dc8b54810264)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a2d3e2b36f703aae3fc09361ddff744b7"></a>
+
+```c
+#define TIM2_CH1_PC1_2 CH32V003_PINMUX_DEFINE(PC, 1, TIM2, 2)
+```
+
+相关声明：[TIM2_CH1_PC1_2](#a2d3e2b36f703aae3fc09361ddff744b7)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_aa9887268c3ecfe994f570285ced244d7"></a>
+
+```c
+#define TIM2_CH1_PC1_3 CH32V003_PINMUX_DEFINE(PC, 1, TIM2, 3)
+```
+
+相关声明：[TIM2_CH1_PC1_3](#aa9887268c3ecfe994f570285ced244d7)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a3d7058511a77c977c3ae54e9fb9ca4c2"></a>
+
+```c
+#define TIM2_CH2_PD3_0 CH32V003_PINMUX_DEFINE(PD, 3, TIM2, 0)
+```
+
+相关声明：[TIM2_CH2_PD3_0](#a3d7058511a77c977c3ae54e9fb9ca4c2)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a43be38ba579105e38e0cf1019fb297d2"></a>
+
+```c
+#define TIM2_CH2_PC2_1 CH32V003_PINMUX_DEFINE(PC, 2, TIM2, 1)
+```
+
+相关声明：[TIM2_CH2_PC2_1](#a43be38ba579105e38e0cf1019fb297d2)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_ab4aec37da1d48283b1a63ab50955e20b"></a>
+
+```c
+#define TIM2_CH2_PD3_2 CH32V003_PINMUX_DEFINE(PD, 3, TIM2, 2)
+```
+
+相关声明：[TIM2_CH2_PD3_2](#ab4aec37da1d48283b1a63ab50955e20b)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a4f93f520fe35543b5af8f4b000902937"></a>
+
+```c
+#define TIM2_CH2_PC7_3 CH32V003_PINMUX_DEFINE(PC, 7, TIM2, 3)
+```
+
+相关声明：[TIM2_CH2_PC7_3](#a4f93f520fe35543b5af8f4b000902937)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_aa81c6b179d7f6a05448f9e48af7fd7db"></a>
+
+```c
+#define TIM2_CH3_PC0_0 CH32V003_PINMUX_DEFINE(PC, 0, TIM2, 0)
+```
+
+相关声明：[TIM2_CH3_PC0_0](#aa81c6b179d7f6a05448f9e48af7fd7db)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a5e5d6ba19041389bfa608bf68884ab8e"></a>
+
+```c
+#define TIM2_CH3_PD2_1 CH32V003_PINMUX_DEFINE(PD, 2, TIM2, 1)
+```
+
+相关声明：[TIM2_CH3_PD2_1](#a5e5d6ba19041389bfa608bf68884ab8e)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a7e154ea1339ff107f23f42b3e522ce54"></a>
+
+```c
+#define TIM2_CH3_PC0_2 CH32V003_PINMUX_DEFINE(PC, 0, TIM2, 2)
+```
+
+相关声明：[TIM2_CH3_PC0_2](#a7e154ea1339ff107f23f42b3e522ce54)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a75e6de87ea2b60d8652b87150344f170"></a>
+
+```c
+#define TIM2_CH3_PD6_3 CH32V003_PINMUX_DEFINE(PD, 6, TIM2, 3)
+```
+
+相关声明：[TIM2_CH3_PD6_3](#a75e6de87ea2b60d8652b87150344f170)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_acde18507b0874abe39c646ec52fe1444"></a>
+
+```c
+#define TIM2_CH4_PD7_0 CH32V003_PINMUX_DEFINE(PD, 7, TIM2, 0)
+```
+
+相关声明：[TIM2_CH4_PD7_0](#acde18507b0874abe39c646ec52fe1444)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_af1612eee34a95dd9ae6a847dbba2a5d7"></a>
+
+```c
+#define TIM2_CH4_PC1_1 CH32V003_PINMUX_DEFINE(PC, 1, TIM2, 1)
+```
+
+相关声明：[TIM2_CH4_PC1_1](#af1612eee34a95dd9ae6a847dbba2a5d7)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a4e88cbcceb55ce6ef56b81907085b140"></a>
+
+```c
+#define TIM2_CH4_PD7_2 CH32V003_PINMUX_DEFINE(PD, 7, TIM2, 2)
+```
+
+相关声明：[TIM2_CH4_PD7_2](#a4e88cbcceb55ce6ef56b81907085b140)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_aabc5e55cfb4e46ef7108b3794e7559ff"></a>
+
+```c
+#define TIM2_CH4_PD5_3 CH32V003_PINMUX_DEFINE(PD, 5, TIM2, 3)
+```
+
+相关声明：[TIM2_CH4_PD5_3](#aabc5e55cfb4e46ef7108b3794e7559ff)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a76a08ca323361b2969198e52087dc661"></a>
+
+```c
+#define USART1_CK_PD4_0 CH32V003_PINMUX_DEFINE(PD, 4, USART1, 0)
+```
+
+相关声明：[USART1_CK_PD4_0](#a76a08ca323361b2969198e52087dc661)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_adb37e0851fffd73b326ee485d601a9d2"></a>
+
+```c
+#define USART1_CK_PD7_1 CH32V003_PINMUX_DEFINE(PD, 7, USART1, 1)
+```
+
+相关声明：[USART1_CK_PD7_1](#adb37e0851fffd73b326ee485d601a9d2)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_ad5c5dbb7f8ea68016fc1b4f60f0f40e0"></a>
+
+```c
+#define USART1_CK_PD7_2 CH32V003_PINMUX_DEFINE(PD, 7, USART1, 2)
+```
+
+相关声明：[USART1_CK_PD7_2](#ad5c5dbb7f8ea68016fc1b4f60f0f40e0)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a170ca844d386de37151a12da88acd2ed"></a>
+
+```c
+#define USART1_CK_PC5_3 CH32V003_PINMUX_DEFINE(PC, 5, USART1, 3)
+```
+
+相关声明：[USART1_CK_PC5_3](#a170ca844d386de37151a12da88acd2ed)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_ab7c3bcaa4f01310261473cb734aeba23"></a>
+
+```c
+#define USART1_TX_PD5_0 CH32V003_PINMUX_DEFINE(PD, 5, USART1, 0)
+```
+
+相关声明：[USART1_TX_PD5_0](#ab7c3bcaa4f01310261473cb734aeba23)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_aaf33551f8c8a5368423f6efa2b79c11e"></a>
+
+```c
+#define USART1_TX_PD0_1 CH32V003_PINMUX_DEFINE(PD, 0, USART1, 1)
+```
+
+相关声明：[USART1_TX_PD0_1](#aaf33551f8c8a5368423f6efa2b79c11e)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a9be3010f6f4684fc381f56bc7941d63f"></a>
+
+```c
+#define USART1_TX_PD6_2 CH32V003_PINMUX_DEFINE(PD, 6, USART1, 2)
+```
+
+相关声明：[USART1_TX_PD6_2](#a9be3010f6f4684fc381f56bc7941d63f)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_ada26f8c1b5c0e9d74bc82ac68b836382"></a>
+
+```c
+#define USART1_TX_PC0_3 CH32V003_PINMUX_DEFINE(PC, 0, USART1, 3)
+```
+
+相关声明：[USART1_TX_PC0_3](#ada26f8c1b5c0e9d74bc82ac68b836382)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a0f6ad0455dc48303bde7bc475f7215de"></a>
+
+```c
+#define USART1_RX_PD6_0 CH32V003_PINMUX_DEFINE(PD, 6, USART1, 0)
+```
+
+相关声明：[USART1_RX_PD6_0](#a0f6ad0455dc48303bde7bc475f7215de)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a5b07d6fd5e9a434a611836fd061f62b0"></a>
+
+```c
+#define USART1_RX_PD1_1 CH32V003_PINMUX_DEFINE(PD, 1, USART1, 1)
+```
+
+相关声明：[USART1_RX_PD1_1](#a5b07d6fd5e9a434a611836fd061f62b0)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a81e8896f6f0540d0ca3c038c6b50fe32"></a>
+
+```c
+#define USART1_RX_PD5_2 CH32V003_PINMUX_DEFINE(PD, 5, USART1, 2)
+```
+
+相关声明：[USART1_RX_PD5_2](#a81e8896f6f0540d0ca3c038c6b50fe32)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a61ec872334034b3d83feacf87a71ee51"></a>
+
+```c
+#define USART1_RX_PC1_3 CH32V003_PINMUX_DEFINE(PC, 1, USART1, 3)
+```
+
+相关声明：[USART1_RX_PC1_3](#a61ec872334034b3d83feacf87a71ee51)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a5b33948c25cf17dc8d9cad67866087d1"></a>
+
+```c
+#define USART1_CTS_PD3_0 CH32V003_PINMUX_DEFINE(PD, 3, USART1, 0)
+```
+
+相关声明：[USART1_CTS_PD3_0](#a5b33948c25cf17dc8d9cad67866087d1)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a4f6981ce1d5ba13ac3c8e70722ea3cd7"></a>
+
+```c
+#define USART1_CTS_PC3_1 CH32V003_PINMUX_DEFINE(PC, 3, USART1, 1)
+```
+
+相关声明：[USART1_CTS_PC3_1](#a4f6981ce1d5ba13ac3c8e70722ea3cd7)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_acc4dbd64ddcc674f8324ca74ad8186b5"></a>
+
+```c
+#define USART1_CTS_PC6_2 CH32V003_PINMUX_DEFINE(PC, 6, USART1, 2)
+```
+
+相关声明：[USART1_CTS_PC6_2](#acc4dbd64ddcc674f8324ca74ad8186b5)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a337b56d0fed1c6d90d391005f0247711"></a>
+
+```c
+#define USART1_CTS_PC6_3 CH32V003_PINMUX_DEFINE(PC, 6, USART1, 3)
+```
+
+相关声明：[USART1_CTS_PC6_3](#a337b56d0fed1c6d90d391005f0247711)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a2815ef4f646852914ddd2b8e8b7badef"></a>
+
+```c
+#define USART1_RTS_PC2_0 CH32V003_PINMUX_DEFINE(PC, 2, USART1, 0)
+```
+
+相关声明：[USART1_RTS_PC2_0](#a2815ef4f646852914ddd2b8e8b7badef)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_acb58672fee8bb17631aee31f9b89ec12"></a>
+
+```c
+#define USART1_RTS_PC2_1 CH32V003_PINMUX_DEFINE(PC, 2, USART1, 1)
+```
+
+相关声明：[USART1_RTS_PC2_1](#acb58672fee8bb17631aee31f9b89ec12)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_ad7a5ccac4c964c54422fe97bd0b3128f"></a>
+
+```c
+#define USART1_RTS_PC7_2 CH32V003_PINMUX_DEFINE(PC, 7, USART1, 2)
+```
+
+相关声明：[USART1_RTS_PC7_2](#ad7a5ccac4c964c54422fe97bd0b3128f)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_ae8804a9a24491c2f723261061f783375"></a>
+
+```c
+#define USART1_RTS_PC7_3 CH32V003_PINMUX_DEFINE(PC, 7, USART1, 3)
+```
+
+相关声明：[USART1_RTS_PC7_3](#ae8804a9a24491c2f723261061f783375)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a58c3e7301808054c6f9dd6fcc6ca7f62"></a>
+
+```c
+#define SPI1_NSS_PC1_0 CH32V003_PINMUX_DEFINE(PC, 1, SPI1, 0)
+```
+
+相关声明：[SPI1_NSS_PC1_0](#a58c3e7301808054c6f9dd6fcc6ca7f62)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a1332cb377a889a8f4847dae6ba3bc8c2"></a>
+
+```c
+#define SPI1_NSS_PC0_1 CH32V003_PINMUX_DEFINE(PC, 0, SPI1, 1)
+```
+
+相关声明：[SPI1_NSS_PC0_1](#a1332cb377a889a8f4847dae6ba3bc8c2)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a98dcc6496a51b59ab09423625e3b85ec"></a>
+
+```c
+#define SPI1_SCK_PC5_0 CH32V003_PINMUX_DEFINE(PC, 5, SPI1, 0)
+```
+
+相关声明：[SPI1_SCK_PC5_0](#a98dcc6496a51b59ab09423625e3b85ec)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_ab64b8359184eeb5453bd4fa9b3f69dcc"></a>
+
+```c
+#define SPI1_SCK_PC5_1 CH32V003_PINMUX_DEFINE(PC, 5, SPI1, 1)
+```
+
+相关声明：[SPI1_SCK_PC5_1](#ab64b8359184eeb5453bd4fa9b3f69dcc)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a134d2e821fef85267e11d36daa50c621"></a>
+
+```c
+#define SPI1_MISO_PC7_0 CH32V003_PINMUX_DEFINE(PC, 7, SPI1, 0)
+```
+
+相关声明：[SPI1_MISO_PC7_0](#a134d2e821fef85267e11d36daa50c621)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a921212305fac7d0cdeb3903ff2a724a2"></a>
+
+```c
+#define SPI1_MISO_PC7_1 CH32V003_PINMUX_DEFINE(PC, 7, SPI1, 1)
+```
+
+相关声明：[SPI1_MISO_PC7_1](#a921212305fac7d0cdeb3903ff2a724a2)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a76fe4ef21032a97eec11fe128e833986"></a>
+
+```c
+#define SPI1_MOSI_PC6_0 CH32V003_PINMUX_DEFINE(PC, 6, SPI1, 0)
+```
+
+相关声明：[SPI1_MOSI_PC6_0](#a76fe4ef21032a97eec11fe128e833986)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a20d9d1bf8c95947a905c8e2ccc86b124"></a>
+
+```c
+#define SPI1_MOSI_PC6_1 CH32V003_PINMUX_DEFINE(PC, 6, SPI1, 1)
+```
+
+相关声明：[SPI1_MOSI_PC6_1](#a20d9d1bf8c95947a905c8e2ccc86b124)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a67a11ecb19690536672833e7d53c491a"></a>
+
+```c
+#define I2C1_SCL_PC2_0 CH32V003_PINMUX_DEFINE(PC, 2, I2C1, 0)
+```
+
+相关声明：[I2C1_SCL_PC2_0](#a67a11ecb19690536672833e7d53c491a)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_acdd92bea3d3473ee4ea99aa63344b2ad"></a>
+
+```c
+#define I2C1_SCL_PD1_1 CH32V003_PINMUX_DEFINE(PD, 1, I2C1, 1)
+```
+
+相关声明：[I2C1_SCL_PD1_1](#acdd92bea3d3473ee4ea99aa63344b2ad)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a603f2282e70d445edd7c1d9e45fe0750"></a>
+
+```c
+#define I2C1_SCL_PC5_2 CH32V003_PINMUX_DEFINE(PC, 5, I2C1, 2)
+```
+
+相关声明：[I2C1_SCL_PC5_2](#a603f2282e70d445edd7c1d9e45fe0750)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a7cbade793a166dacc06ec69353913e49"></a>
+
+```c
+#define I2C1_SDA_PC1_0 CH32V003_PINMUX_DEFINE(PC, 1, I2C1, 0)
+```
+
+相关声明：[I2C1_SDA_PC1_0](#a7cbade793a166dacc06ec69353913e49)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a097905ef14012784d810f485210bdad9"></a>
+
+```c
+#define I2C1_SDA_PD0_1 CH32V003_PINMUX_DEFINE(PD, 0, I2C1, 1)
+```
+
+相关声明：[I2C1_SDA_PD0_1](#a097905ef14012784d810f485210bdad9)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a90e0117d875929fb2baa388ed06f085d"></a>
+
+```c
+#define I2C1_SDA_PC6_2 CH32V003_PINMUX_DEFINE(PC, 6, I2C1, 2)
+```
+
+相关声明：[I2C1_SDA_PC6_2](#a90e0117d875929fb2baa388ed06f085d)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_ac3955385eaa780b98f8c5c833decfa3e"></a>
+
+```c
+#define ADC1_A0_PA2_0 CH32V003_PINMUX_DEFINE(PA, 2, ADC1, 0)
+```
+
+相关声明：[ADC1_A0_PA2_0](#ac3955385eaa780b98f8c5c833decfa3e)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a032b8876958b4cd17568f703b9a7fc99"></a>
+
+```c
+#define ADC1_A1_PA1_0 CH32V003_PINMUX_DEFINE(PA, 1, ADC1, 0)
+```
+
+相关声明：[ADC1_A1_PA1_0](#a032b8876958b4cd17568f703b9a7fc99)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_ae3ff9e2eec9959fa927c23e65cd3f344"></a>
+
+```c
+#define ADC1_A2_PC4_0 CH32V003_PINMUX_DEFINE(PC, 4, ADC1, 0)
+```
+
+相关声明：[ADC1_A2_PC4_0](#ae3ff9e2eec9959fa927c23e65cd3f344)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_ad6b654c58f6b089b948e51a34d6b8972"></a>
+
+```c
+#define ADC1_A4_PD3_0 CH32V003_PINMUX_DEFINE(PD, 3, ADC1, 0)
+```
+
+相关声明：[ADC1_A4_PD3_0](#ad6b654c58f6b089b948e51a34d6b8972)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_afa9a9f8a91f44f2ecdf85e44bec9a4c4"></a>
+
+```c
+#define ADC1_A3_PD2_0 CH32V003_PINMUX_DEFINE(PD, 2, ADC1, 0)
+```
+
+相关声明：[ADC1_A3_PD2_0](#afa9a9f8a91f44f2ecdf85e44bec9a4c4)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_af1ea5db4972bdb7b5b09e541d4571955"></a>
+
+```c
+#define ADC1_A5_PD5_0 CH32V003_PINMUX_DEFINE(PD, 5, ADC1, 0)
+```
+
+相关声明：[ADC1_A5_PD5_0](#af1ea5db4972bdb7b5b09e541d4571955)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a2e712445ffab15d63f4f215b2659e203"></a>
+
+```c
+#define ADC1_A7_PD4_0 CH32V003_PINMUX_DEFINE(PD, 4, ADC1, 0)
+```
+
+相关声明：[ADC1_A7_PD4_0](#a2e712445ffab15d63f4f215b2659e203)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+<a id="r_a18cf4281e4ea1f6039412d0f15f80194"></a>
+
+```c
+#define ADC1_A6_PD6_0 CH32V003_PINMUX_DEFINE(PD, 6, ADC1, 0)
+```
+
+相关声明：[ADC1_A6_PD6_0](#a18cf4281e4ea1f6039412d0f15f80194)、[CH32V003_PINMUX_DEFINE](#a6f7ab1cd86bfcc0c5a46cb339bfab711)。
+
+## 36.2\_详细说明（Detailed Documentation）
+
+<a id="ac3955385eaa780b98f8c5c833decfa3e"></a>
+
+### `ADC1_A0_PA2_0`
+
+```c
+#define ADC1_A0_PA2_0 CH32V003_PINMUX_DEFINE(PA, 2, ADC1, 0)
+```
+
+<a id="a032b8876958b4cd17568f703b9a7fc99"></a>
+
+### `ADC1_A1_PA1_0`
+
+```c
+#define ADC1_A1_PA1_0 CH32V003_PINMUX_DEFINE(PA, 1, ADC1, 0)
+```
+
+<a id="ae3ff9e2eec9959fa927c23e65cd3f344"></a>
+
+### `ADC1_A2_PC4_0`
+
+```c
+#define ADC1_A2_PC4_0 CH32V003_PINMUX_DEFINE(PC, 4, ADC1, 0)
+```
+
+<a id="afa9a9f8a91f44f2ecdf85e44bec9a4c4"></a>
+
+### `ADC1_A3_PD2_0`
+
+```c
+#define ADC1_A3_PD2_0 CH32V003_PINMUX_DEFINE(PD, 2, ADC1, 0)
+```
+
+<a id="ad6b654c58f6b089b948e51a34d6b8972"></a>
+
+### `ADC1_A4_PD3_0`
+
+```c
+#define ADC1_A4_PD3_0 CH32V003_PINMUX_DEFINE(PD, 3, ADC1, 0)
+```
+
+<a id="af1ea5db4972bdb7b5b09e541d4571955"></a>
+
+### `ADC1_A5_PD5_0`
+
+```c
+#define ADC1_A5_PD5_0 CH32V003_PINMUX_DEFINE(PD, 5, ADC1, 0)
+```
+
+<a id="a18cf4281e4ea1f6039412d0f15f80194"></a>
+
+### `ADC1_A6_PD6_0`
+
+```c
+#define ADC1_A6_PD6_0 CH32V003_PINMUX_DEFINE(PD, 6, ADC1, 0)
+```
+
+<a id="a2e712445ffab15d63f4f215b2659e203"></a>
+
+### `ADC1_A7_PD4_0`
+
+```c
+#define ADC1_A7_PD4_0 CH32V003_PINMUX_DEFINE(PD, 4, ADC1, 0)
+```
+
+<a id="a7c7781f10005a95f1fb3ce7b9b131d79"></a>
+
+### `CH32V003_PINCTRL_PIN_SHIFT`
+
+```c
+#define CH32V003_PINCTRL_PIN_SHIFT 2
+```
+
+<a id="a8361e90734d6a8c2204e90994e964750"></a>
+
+### `CH32V003_PINCTRL_PORT_SHIFT`
+
+```c
+#define CH32V003_PINCTRL_PORT_SHIFT 0
+```
+
+<a id="ae2ffdb9baf945a13f8627f6a88796a25"></a>
+
+### `CH32V003_PINCTRL_RM_BASE_SHIFT`
+
+```c
+#define CH32V003_PINCTRL_RM_BASE_SHIFT 6
+```
+
+<a id="ac9858731c817ed3625f227cf7a5b0303"></a>
+
+### `CH32V003_PINCTRL_RM_SHIFT`
+
+```c
+#define CH32V003_PINCTRL_RM_SHIFT 11
+```
+
+<a id="a41e982abb9e2f06cb38d6db1dd515aeb"></a>
+
+### `CH32V003_PINMUX_ADC1_RM`
+
+```c
+#define CH32V003_PINMUX_ADC1_RM 3
+```
+
+<a id="a6f7ab1cd86bfcc0c5a46cb339bfab711"></a>
+
+### `CH32V003_PINMUX_DEFINE`
+
+```c
+#define CH32V003_PINMUX_DEFINE ( port, pin, rm, remapping )
+```
+
+展开值（Value）：
+
+```c
+((CH32V003_PINMUX_PORT_##port << CH32V003_PINCTRL_PORT_SHIFT) |                            \
+ (pin << CH32V003_PINCTRL_PIN_SHIFT) |                                                     \
+ (CH32V003_PINMUX_##rm##_RM << CH32V003_PINCTRL_RM_BASE_SHIFT) |                           \
+ (remapping << CH32V003_PINCTRL_RM_SHIFT))
+```
+
+<a id="a84b0e49d38b922ede48903b68425ac73"></a>
+
+### `CH32V003_PINMUX_I2C1_RM`
+
+```c
+#define CH32V003_PINMUX_I2C1_RM 1
+```
+
+<a id="a02e3f8788ca416bc4ce8a43b4589f81a"></a>
+
+### `CH32V003_PINMUX_I2C1_RM1`
+
+```c
+#define CH32V003_PINMUX_I2C1_RM1 22
+```
+
+<a id="a73b9b98140a920f01ff107f619bbadef"></a>
+
+### `CH32V003_PINMUX_PORT_PA`
+
+```c
+#define CH32V003_PINMUX_PORT_PA 0
+```
+
+<a id="af72b85c1893c333d3b21eaa27b146a1c"></a>
+
+### `CH32V003_PINMUX_PORT_PC`
+
+```c
+#define CH32V003_PINMUX_PORT_PC 1
+```
+
+<a id="a066fe7e8e9084cf9c6f3993b4aae6c22"></a>
+
+### `CH32V003_PINMUX_PORT_PD`
+
+```c
+#define CH32V003_PINMUX_PORT_PD 2
+```
+
+<a id="a1d0ba39590b0b1e9f3db8b7b1f7b54a3"></a>
+
+### `CH32V003_PINMUX_SPI1_RM`
+
+```c
+#define CH32V003_PINMUX_SPI1_RM 0
+```
+
+<a id="a5b7ade9390f25703260f9f5537aaeab0"></a>
+
+### `CH32V003_PINMUX_TIM1_RM`
+
+```c
+#define CH32V003_PINMUX_TIM1_RM 6
+```
+
+<a id="af957fdf856a748cda3f919e20c795fea"></a>
+
+### `CH32V003_PINMUX_TIM1_RM1`
+
+```c
+#define CH32V003_PINMUX_TIM1_RM1 23
+```
+
+<a id="ac9376922827828ef4221ebe34ed84f31"></a>
+
+### `CH32V003_PINMUX_TIM2_RM`
+
+```c
+#define CH32V003_PINMUX_TIM2_RM 8
+```
+
+<a id="ac410ae2f3987bdc8198efc171f970379"></a>
+
+### `CH32V003_PINMUX_USART1_RM`
+
+```c
+#define CH32V003_PINMUX_USART1_RM 2
+```
+
+<a id="a48852ab43f4fe43f7a1123b6269d822f"></a>
+
+### `CH32V003_PINMUX_USART1_RM1`
+
+```c
+#define CH32V003_PINMUX_USART1_RM1 21
+```
+
+<a id="a67a11ecb19690536672833e7d53c491a"></a>
+
+### `I2C1_SCL_PC2_0`
+
+```c
+#define I2C1_SCL_PC2_0 CH32V003_PINMUX_DEFINE(PC, 2, I2C1, 0)
+```
+
+<a id="a603f2282e70d445edd7c1d9e45fe0750"></a>
+
+### `I2C1_SCL_PC5_2`
+
+```c
+#define I2C1_SCL_PC5_2 CH32V003_PINMUX_DEFINE(PC, 5, I2C1, 2)
+```
+
+<a id="acdd92bea3d3473ee4ea99aa63344b2ad"></a>
+
+### `I2C1_SCL_PD1_1`
+
+```c
+#define I2C1_SCL_PD1_1 CH32V003_PINMUX_DEFINE(PD, 1, I2C1, 1)
+```
+
+<a id="a7cbade793a166dacc06ec69353913e49"></a>
+
+### `I2C1_SDA_PC1_0`
+
+```c
+#define I2C1_SDA_PC1_0 CH32V003_PINMUX_DEFINE(PC, 1, I2C1, 0)
+```
+
+<a id="a90e0117d875929fb2baa388ed06f085d"></a>
+
+### `I2C1_SDA_PC6_2`
+
+```c
+#define I2C1_SDA_PC6_2 CH32V003_PINMUX_DEFINE(PC, 6, I2C1, 2)
+```
+
+<a id="a097905ef14012784d810f485210bdad9"></a>
+
+### `I2C1_SDA_PD0_1`
+
+```c
+#define I2C1_SDA_PD0_1 CH32V003_PINMUX_DEFINE(PD, 0, I2C1, 1)
+```
+
+<a id="a134d2e821fef85267e11d36daa50c621"></a>
+
+### `SPI1_MISO_PC7_0`
+
+```c
+#define SPI1_MISO_PC7_0 CH32V003_PINMUX_DEFINE(PC, 7, SPI1, 0)
+```
+
+<a id="a921212305fac7d0cdeb3903ff2a724a2"></a>
+
+### `SPI1_MISO_PC7_1`
+
+```c
+#define SPI1_MISO_PC7_1 CH32V003_PINMUX_DEFINE(PC, 7, SPI1, 1)
+```
+
+<a id="a76fe4ef21032a97eec11fe128e833986"></a>
+
+### `SPI1_MOSI_PC6_0`
+
+```c
+#define SPI1_MOSI_PC6_0 CH32V003_PINMUX_DEFINE(PC, 6, SPI1, 0)
+```
+
+<a id="a20d9d1bf8c95947a905c8e2ccc86b124"></a>
+
+### `SPI1_MOSI_PC6_1`
+
+```c
+#define SPI1_MOSI_PC6_1 CH32V003_PINMUX_DEFINE(PC, 6, SPI1, 1)
+```
+
+<a id="a1332cb377a889a8f4847dae6ba3bc8c2"></a>
+
+### `SPI1_NSS_PC0_1`
+
+```c
+#define SPI1_NSS_PC0_1 CH32V003_PINMUX_DEFINE(PC, 0, SPI1, 1)
+```
+
+<a id="a58c3e7301808054c6f9dd6fcc6ca7f62"></a>
+
+### `SPI1_NSS_PC1_0`
+
+```c
+#define SPI1_NSS_PC1_0 CH32V003_PINMUX_DEFINE(PC, 1, SPI1, 0)
+```
+
+<a id="a98dcc6496a51b59ab09423625e3b85ec"></a>
+
+### `SPI1_SCK_PC5_0`
+
+```c
+#define SPI1_SCK_PC5_0 CH32V003_PINMUX_DEFINE(PC, 5, SPI1, 0)
+```
+
+<a id="ab64b8359184eeb5453bd4fa9b3f69dcc"></a>
+
+### `SPI1_SCK_PC5_1`
+
+```c
+#define SPI1_SCK_PC5_1 CH32V003_PINMUX_DEFINE(PC, 5, SPI1, 1)
+```
+
+<a id="ab258912675d0d72f6f0ae88f791b3214"></a>
+
+### `TIM1_BKIN_PC1_1`
+
+```c
+#define TIM1_BKIN_PC1_1 CH32V003_PINMUX_DEFINE(PC, 1, TIM1, 1)
+```
+
+<a id="ac62dec76593bb03d91e786fb1c4ce044"></a>
+
+### `TIM1_BKIN_PC1_3`
+
+```c
+#define TIM1_BKIN_PC1_3 CH32V003_PINMUX_DEFINE(PC, 1, TIM1, 3)
+```
+
+<a id="a0dd235ad3e6100a470c4d94140a24492"></a>
+
+### `TIM1_BKIN_PC2_0`
+
+```c
+#define TIM1_BKIN_PC2_0 CH32V003_PINMUX_DEFINE(PC, 2, TIM1, 0)
+```
+
+<a id="a64d6bc945102a8efe9cef5839d4512f2"></a>
+
+### `TIM1_BKIN_PC2_2`
+
+```c
+#define TIM1_BKIN_PC2_2 CH32V003_PINMUX_DEFINE(PC, 2, TIM1, 2)
+```
+
+<a id="aa4f03f6f1206146731ed38b33fec5c99"></a>
+
+### `TIM1_CH1_PC4_3`
+
+```c
+#define TIM1_CH1_PC4_3 CH32V003_PINMUX_DEFINE(PC, 4, TIM1, 3)
+```
+
+<a id="aeb3ca54192f611cbb2b54dffb8d584e0"></a>
+
+### `TIM1_CH1_PC6_1`
+
+```c
+#define TIM1_CH1_PC6_1 CH32V003_PINMUX_DEFINE(PC, 6, TIM1, 1)
+```
+
+<a id="a0358320b2a97250777a32de61ac74e11"></a>
+
+### `TIM1_CH1_PD2_0`
+
+```c
+#define TIM1_CH1_PD2_0 CH32V003_PINMUX_DEFINE(PD, 2, TIM1, 0)
+```
+
+<a id="a57bc64aaf6b5b8592155e059809e09ab"></a>
+
+### `TIM1_CH1_PD2_2`
+
+```c
+#define TIM1_CH1_PD2_2 CH32V003_PINMUX_DEFINE(PD, 2, TIM1, 2)
+```
+
+<a id="a74bc58abfd757c0f41a5c7cb4e1f5ba2"></a>
+
+### `TIM1_CH1N_PC3_1`
+
+```c
+#define TIM1_CH1N_PC3_1 CH32V003_PINMUX_DEFINE(PC, 3, TIM1, 1)
+```
+
+<a id="aeb3bff0dbfa45aed7b63fd2a2979f3ec"></a>
+
+### `TIM1_CH1N_PC3_3`
+
+```c
+#define TIM1_CH1N_PC3_3 CH32V003_PINMUX_DEFINE(PC, 3, TIM1, 3)
+```
+
+<a id="ae46dd3d78d8130e198f788e1fef871f4"></a>
+
+### `TIM1_CH1N_PD0_0`
+
+```c
+#define TIM1_CH1N_PD0_0 CH32V003_PINMUX_DEFINE(PD, 0, TIM1, 0)
+```
+
+<a id="a15992dd4e2325f7338f84292c71ed247"></a>
+
+### `TIM1_CH1N_PD0_2`
+
+```c
+#define TIM1_CH1N_PD0_2 CH32V003_PINMUX_DEFINE(PD, 0, TIM1, 2)
+```
+
+<a id="ab154f084c5ca48b3010e6e7744b03d3c"></a>
+
+### `TIM1_CH2_PA1_0`
+
+```c
+#define TIM1_CH2_PA1_0 CH32V003_PINMUX_DEFINE(PA, 1, TIM1, 0)
+```
+
+<a id="abaa1896f6ae82bea5d73141d95d55cbe"></a>
+
+### `TIM1_CH2_PA1_2`
+
+```c
+#define TIM1_CH2_PA1_2 CH32V003_PINMUX_DEFINE(PA, 1, TIM1, 2)
+```
+
+<a id="aca101f937848de3650d9507f92004722"></a>
+
+### `TIM1_CH2_PC7_1`
+
+```c
+#define TIM1_CH2_PC7_1 CH32V003_PINMUX_DEFINE(PC, 7, TIM1, 1)
+```
+
+<a id="ac062779803078d0f4398dc9979ab09c6"></a>
+
+### `TIM1_CH2_PC7_3`
+
+```c
+#define TIM1_CH2_PC7_3 CH32V003_PINMUX_DEFINE(PC, 7, TIM1, 3)
+```
+
+<a id="a092da60f0a9603ec8c1553008a78d8f3"></a>
+
+### `TIM1_CH2N_PA2_0`
+
+```c
+#define TIM1_CH2N_PA2_0 CH32V003_PINMUX_DEFINE(PA, 2, TIM1, 0)
+```
+
+<a id="a11664966fcc0da0bc7dd0a053ae2fe8f"></a>
+
+### `TIM1_CH2N_PA2_2`
+
+```c
+#define TIM1_CH2N_PA2_2 CH32V003_PINMUX_DEFINE(PA, 2, TIM1, 2)
+```
+
+<a id="a890ee3c33e3eb0db9fdc836246eec67d"></a>
+
+### `TIM1_CH2N_PC4_1`
+
+```c
+#define TIM1_CH2N_PC4_1 CH32V003_PINMUX_DEFINE(PC, 4, TIM1, 1)
+```
+
+<a id="aa193ff08432db07685ca309f0e8b9e66"></a>
+
+### `TIM1_CH2N_PD2_3`
+
+```c
+#define TIM1_CH2N_PD2_3 CH32V003_PINMUX_DEFINE(PD, 2, TIM1, 3)
+```
+
+<a id="a02b8f96cc2781928ca020bffd48f405b"></a>
+
+### `TIM1_CH3_PC0_1`
+
+```c
+#define TIM1_CH3_PC0_1 CH32V003_PINMUX_DEFINE(PC, 0, TIM1, 1)
+```
+
+<a id="a8c34342b714e0bb8fc5dbffbbba87a98"></a>
+
+### `TIM1_CH3_PC3_0`
+
+```c
+#define TIM1_CH3_PC3_0 CH32V003_PINMUX_DEFINE(PC, 3, TIM1, 0)
+```
+
+<a id="a582541ebbcb8086dbbbdd75ea2f7456c"></a>
+
+### `TIM1_CH3_PC3_2`
+
+```c
+#define TIM1_CH3_PC3_2 CH32V003_PINMUX_DEFINE(PC, 3, TIM1, 2)
+```
+
+<a id="ac0ef4ba763211a0f47cdbc4f1ec3891f"></a>
+
+### `TIM1_CH3_PC5_3`
+
+```c
+#define TIM1_CH3_PC5_3 CH32V003_PINMUX_DEFINE(PC, 5, TIM1, 3)
+```
+
+<a id="aceeee0e77912b38e24bda43ab6819516"></a>
+
+### `TIM1_CH3N_PC6_3`
+
+```c
+#define TIM1_CH3N_PC6_3 CH32V003_PINMUX_DEFINE(PC, 6, TIM1, 3)
+```
+
+<a id="a26b5659eb69c2b6f1b79497901a6bf32"></a>
+
+### `TIM1_CH3N_PD1_0`
+
+```c
+#define TIM1_CH3N_PD1_0 CH32V003_PINMUX_DEFINE(PD, 1, TIM1, 0)
+```
+
+<a id="ad1c9dee54a8043b519176d67c14d949d"></a>
+
+### `TIM1_CH3N_PD1_1`
+
+```c
+#define TIM1_CH3N_PD1_1 CH32V003_PINMUX_DEFINE(PD, 1, TIM1, 1)
+```
+
+<a id="ad986d12a63211d622c2debcecd7984e0"></a>
+
+### `TIM1_CH3N_PD1_2`
+
+```c
+#define TIM1_CH3N_PD1_2 CH32V003_PINMUX_DEFINE(PD, 1, TIM1, 2)
+```
+
+<a id="a6da952b7542e4fa5027cdf978e9251cb"></a>
+
+### `TIM1_CH4_PC4_0`
+
+```c
+#define TIM1_CH4_PC4_0 CH32V003_PINMUX_DEFINE(PC, 4, TIM1, 0)
+```
+
+<a id="ace9184ed08afd1dc25d4a2e8a3857d16"></a>
+
+### `TIM1_CH4_PC4_2`
+
+```c
+#define TIM1_CH4_PC4_2 CH32V003_PINMUX_DEFINE(PC, 4, TIM1, 2)
+```
+
+<a id="ae81545a359b7a03a974e9c7681aee96b"></a>
+
+### `TIM1_CH4_PD3_1`
+
+```c
+#define TIM1_CH4_PD3_1 CH32V003_PINMUX_DEFINE(PD, 3, TIM1, 1)
+```
+
+<a id="a9ee2b1bcdf2de7573f121736348d7774"></a>
+
+### `TIM1_CH4_PD4_3`
+
+```c
+#define TIM1_CH4_PD4_3 CH32V003_PINMUX_DEFINE(PD, 4, TIM1, 3)
+```
+
+<a id="af03e0801b80f311ffa8ff53f71e895b6"></a>
+
+### `TIM1_ETR_PC2_3`
+
+```c
+#define TIM1_ETR_PC2_3 CH32V003_PINMUX_DEFINE(PC, 2, TIM1, 3)
+```
+
+<a id="a8fca20f25cd86b6185a1c2674342bc48"></a>
+
+### `TIM1_ETR_PC5_0`
+
+```c
+#define TIM1_ETR_PC5_0 CH32V003_PINMUX_DEFINE(PC, 5, TIM1, 0)
+```
+
+<a id="a8097f0831dae5ba45acc1d603b7392b3"></a>
+
+### `TIM1_ETR_PC5_1`
+
+```c
+#define TIM1_ETR_PC5_1 CH32V003_PINMUX_DEFINE(PC, 5, TIM1, 1)
+```
+
+<a id="a4fd62189c16e9c3343815fb2651bf2de"></a>
+
+### `TIM1_ETR_PD4_2`
+
+```c
+#define TIM1_ETR_PD4_2 CH32V003_PINMUX_DEFINE(PD, 4, TIM1, 2)
+```
+
+<a id="a2d3e2b36f703aae3fc09361ddff744b7"></a>
+
+### `TIM2_CH1_PC1_2`
+
+```c
+#define TIM2_CH1_PC1_2 CH32V003_PINMUX_DEFINE(PC, 1, TIM2, 2)
+```
+
+<a id="aa9887268c3ecfe994f570285ced244d7"></a>
+
+### `TIM2_CH1_PC1_3`
+
+```c
+#define TIM2_CH1_PC1_3 CH32V003_PINMUX_DEFINE(PC, 1, TIM2, 3)
+```
+
+<a id="a10660c2b96f1dd971a66dc8b54810264"></a>
+
+### `TIM2_CH1_PC5_1`
+
+```c
+#define TIM2_CH1_PC5_1 CH32V003_PINMUX_DEFINE(PC, 5, TIM2, 1)
+```
+
+<a id="a321ccc1d95043b1c49086c450ca0ea7e"></a>
+
+### `TIM2_CH1_PD4_0`
+
+```c
+#define TIM2_CH1_PD4_0 CH32V003_PINMUX_DEFINE(PD, 4, TIM2, 0)
+```
+
+<a id="a43be38ba579105e38e0cf1019fb297d2"></a>
+
+### `TIM2_CH2_PC2_1`
+
+```c
+#define TIM2_CH2_PC2_1 CH32V003_PINMUX_DEFINE(PC, 2, TIM2, 1)
+```
+
+<a id="a4f93f520fe35543b5af8f4b000902937"></a>
+
+### `TIM2_CH2_PC7_3`
+
+```c
+#define TIM2_CH2_PC7_3 CH32V003_PINMUX_DEFINE(PC, 7, TIM2, 3)
+```
+
+<a id="a3d7058511a77c977c3ae54e9fb9ca4c2"></a>
+
+### `TIM2_CH2_PD3_0`
+
+```c
+#define TIM2_CH2_PD3_0 CH32V003_PINMUX_DEFINE(PD, 3, TIM2, 0)
+```
+
+<a id="ab4aec37da1d48283b1a63ab50955e20b"></a>
+
+### `TIM2_CH2_PD3_2`
+
+```c
+#define TIM2_CH2_PD3_2 CH32V003_PINMUX_DEFINE(PD, 3, TIM2, 2)
+```
+
+<a id="aa81c6b179d7f6a05448f9e48af7fd7db"></a>
+
+### `TIM2_CH3_PC0_0`
+
+```c
+#define TIM2_CH3_PC0_0 CH32V003_PINMUX_DEFINE(PC, 0, TIM2, 0)
+```
+
+<a id="a7e154ea1339ff107f23f42b3e522ce54"></a>
+
+### `TIM2_CH3_PC0_2`
+
+```c
+#define TIM2_CH3_PC0_2 CH32V003_PINMUX_DEFINE(PC, 0, TIM2, 2)
+```
+
+<a id="a5e5d6ba19041389bfa608bf68884ab8e"></a>
+
+### `TIM2_CH3_PD2_1`
+
+```c
+#define TIM2_CH3_PD2_1 CH32V003_PINMUX_DEFINE(PD, 2, TIM2, 1)
+```
+
+<a id="a75e6de87ea2b60d8652b87150344f170"></a>
+
+### `TIM2_CH3_PD6_3`
+
+```c
+#define TIM2_CH3_PD6_3 CH32V003_PINMUX_DEFINE(PD, 6, TIM2, 3)
+```
+
+<a id="af1612eee34a95dd9ae6a847dbba2a5d7"></a>
+
+### `TIM2_CH4_PC1_1`
+
+```c
+#define TIM2_CH4_PC1_1 CH32V003_PINMUX_DEFINE(PC, 1, TIM2, 1)
+```
+
+<a id="aabc5e55cfb4e46ef7108b3794e7559ff"></a>
+
+### `TIM2_CH4_PD5_3`
+
+```c
+#define TIM2_CH4_PD5_3 CH32V003_PINMUX_DEFINE(PD, 5, TIM2, 3)
+```
+
+<a id="acde18507b0874abe39c646ec52fe1444"></a>
+
+### `TIM2_CH4_PD7_0`
+
+```c
+#define TIM2_CH4_PD7_0 CH32V003_PINMUX_DEFINE(PD, 7, TIM2, 0)
+```
+
+<a id="a4e88cbcceb55ce6ef56b81907085b140"></a>
+
+### `TIM2_CH4_PD7_2`
+
+```c
+#define TIM2_CH4_PD7_2 CH32V003_PINMUX_DEFINE(PD, 7, TIM2, 2)
+```
+
+<a id="adeda50d5fc444c26c47f4455ae749fea"></a>
+
+### `TIM2_ETR_PC1_2`
+
+```c
+#define TIM2_ETR_PC1_2 CH32V003_PINMUX_DEFINE(PC, 1, TIM2, 2)
+```
+
+<a id="afe0830763b0bd0a6784e10a6f4b3f89d"></a>
+
+### `TIM2_ETR_PC1_3`
+
+```c
+#define TIM2_ETR_PC1_3 CH32V003_PINMUX_DEFINE(PC, 1, TIM2, 3)
+```
+
+<a id="ab7ff09228a91baca59402066969d8bcb"></a>
+
+### `TIM2_ETR_PC5_1`
+
+```c
+#define TIM2_ETR_PC5_1 CH32V003_PINMUX_DEFINE(PC, 5, TIM2, 1)
+```
+
+<a id="a43c2c900f95d5f44905e65ddaa4cc0ef"></a>
+
+### `TIM2_ETR_PD4_0`
+
+```c
+#define TIM2_ETR_PD4_0 CH32V003_PINMUX_DEFINE(PD, 4, TIM2, 0)
+```
+
+<a id="a170ca844d386de37151a12da88acd2ed"></a>
+
+### `USART1_CK_PC5_3`
+
+```c
+#define USART1_CK_PC5_3 CH32V003_PINMUX_DEFINE(PC, 5, USART1, 3)
+```
+
+<a id="a76a08ca323361b2969198e52087dc661"></a>
+
+### `USART1_CK_PD4_0`
+
+```c
+#define USART1_CK_PD4_0 CH32V003_PINMUX_DEFINE(PD, 4, USART1, 0)
+```
+
+<a id="adb37e0851fffd73b326ee485d601a9d2"></a>
+
+### `USART1_CK_PD7_1`
+
+```c
+#define USART1_CK_PD7_1 CH32V003_PINMUX_DEFINE(PD, 7, USART1, 1)
+```
+
+<a id="ad5c5dbb7f8ea68016fc1b4f60f0f40e0"></a>
+
+### `USART1_CK_PD7_2`
+
+```c
+#define USART1_CK_PD7_2 CH32V003_PINMUX_DEFINE(PD, 7, USART1, 2)
+```
+
+<a id="a4f6981ce1d5ba13ac3c8e70722ea3cd7"></a>
+
+### `USART1_CTS_PC3_1`
+
+```c
+#define USART1_CTS_PC3_1 CH32V003_PINMUX_DEFINE(PC, 3, USART1, 1)
+```
+
+<a id="acc4dbd64ddcc674f8324ca74ad8186b5"></a>
+
+### `USART1_CTS_PC6_2`
+
+```c
+#define USART1_CTS_PC6_2 CH32V003_PINMUX_DEFINE(PC, 6, USART1, 2)
+```
+
+<a id="a337b56d0fed1c6d90d391005f0247711"></a>
+
+### `USART1_CTS_PC6_3`
+
+```c
+#define USART1_CTS_PC6_3 CH32V003_PINMUX_DEFINE(PC, 6, USART1, 3)
+```
+
+<a id="a5b33948c25cf17dc8d9cad67866087d1"></a>
+
+### `USART1_CTS_PD3_0`
+
+```c
+#define USART1_CTS_PD3_0 CH32V003_PINMUX_DEFINE(PD, 3, USART1, 0)
+```
+
+<a id="a2815ef4f646852914ddd2b8e8b7badef"></a>
+
+### `USART1_RTS_PC2_0`
+
+```c
+#define USART1_RTS_PC2_0 CH32V003_PINMUX_DEFINE(PC, 2, USART1, 0)
+```
+
+<a id="acb58672fee8bb17631aee31f9b89ec12"></a>
+
+### `USART1_RTS_PC2_1`
+
+```c
+#define USART1_RTS_PC2_1 CH32V003_PINMUX_DEFINE(PC, 2, USART1, 1)
+```
+
+<a id="ad7a5ccac4c964c54422fe97bd0b3128f"></a>
+
+### `USART1_RTS_PC7_2`
+
+```c
+#define USART1_RTS_PC7_2 CH32V003_PINMUX_DEFINE(PC, 7, USART1, 2)
+```
+
+<a id="ae8804a9a24491c2f723261061f783375"></a>
+
+### `USART1_RTS_PC7_3`
+
+```c
+#define USART1_RTS_PC7_3 CH32V003_PINMUX_DEFINE(PC, 7, USART1, 3)
+```
+
+<a id="a61ec872334034b3d83feacf87a71ee51"></a>
+
+### `USART1_RX_PC1_3`
+
+```c
+#define USART1_RX_PC1_3 CH32V003_PINMUX_DEFINE(PC, 1, USART1, 3)
+```
+
+<a id="a5b07d6fd5e9a434a611836fd061f62b0"></a>
+
+### `USART1_RX_PD1_1`
+
+```c
+#define USART1_RX_PD1_1 CH32V003_PINMUX_DEFINE(PD, 1, USART1, 1)
+```
+
+<a id="a81e8896f6f0540d0ca3c038c6b50fe32"></a>
+
+### `USART1_RX_PD5_2`
+
+```c
+#define USART1_RX_PD5_2 CH32V003_PINMUX_DEFINE(PD, 5, USART1, 2)
+```
+
+<a id="a0f6ad0455dc48303bde7bc475f7215de"></a>
+
+### `USART1_RX_PD6_0`
+
+```c
+#define USART1_RX_PD6_0 CH32V003_PINMUX_DEFINE(PD, 6, USART1, 0)
+```
+
+<a id="ada26f8c1b5c0e9d74bc82ac68b836382"></a>
+
+### `USART1_TX_PC0_3`
+
+```c
+#define USART1_TX_PC0_3 CH32V003_PINMUX_DEFINE(PC, 0, USART1, 3)
+```
+
+<a id="aaf33551f8c8a5368423f6efa2b79c11e"></a>
+
+### `USART1_TX_PD0_1`
+
+```c
+#define USART1_TX_PD0_1 CH32V003_PINMUX_DEFINE(PD, 0, USART1, 1)
+```
+
+<a id="ab7c3bcaa4f01310261473cb734aeba23"></a>
+
+### `USART1_TX_PD5_0`
+
+```c
+#define USART1_TX_PD5_0 CH32V003_PINMUX_DEFINE(PD, 5, USART1, 0)
+```
+
+<a id="a9be3010f6f4684fc381f56bc7941d63f"></a>
+
+### `USART1_TX_PD6_2`
+
+```c
+#define USART1_TX_PD6_2 CH32V003_PINMUX_DEFINE(PD, 6, USART1, 2)
+```
+
+
+## 36.3\_原页交叉引用（Cross References）
+
+- [查看此文件的源码。](https://docs.zephyrproject.org/latest/doxygen/html/ch32v003-pinctrl_8h_source.html)
+
+<a id="doc-define-members"></a>
+<a id="header-doc-define-members"></a>
+<a id="ach32v003-pinctrl_8h_html_a7c7781f10005a95f1fb3ce7b9b131d79"></a>
+<a id="ach32v003-pinctrl_8h_html_a8361e90734d6a8c2204e90994e964750"></a>
+<a id="ach32v003-pinctrl_8h_html_ac9858731c817ed3625f227cf7a5b0303"></a>
+<a id="ach32v003-pinctrl_8h_html_ae2ffdb9baf945a13f8627f6a88796a25"></a>
+
+---
+
+[上一章](P035_zephyr__dt-bindings__dma__ch32v003-dma.h_文件参考.md) · [返回大纲](大纲.md) · [下一章](P037_zephyr__dt-bindings__clock__ch32v00x-clocks.h_文件参考.md)

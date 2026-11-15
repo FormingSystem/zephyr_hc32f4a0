@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<!-- Copyright 2015-2026 Zephyr Project members and individual contributors. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<title>Zephyr original display animation</title>
+<style>
+  .zephyr-display-sample {
+    position: relative;
+    width: 320px;
+    height: 240px;
+    margin: auto;
+    background: white;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+
+  .zephyr-display-sample .corner {
+    position: absolute;
+    width: 80px;
+    height: 40px;
+  }
+
+  .zephyr-display-sample .tl { top: 0; left: 0; }
+  .zephyr-display-sample .tr { top: 0; right: 0; }
+  .zephyr-display-sample .br { bottom: 0; right: 0; }
+  .zephyr-display-sample .bl {
+    bottom: 0;
+    left: 0;
+    animation: zephyr-display-bw-toggle 3s linear infinite;
+  }
+
+  /* RGB variant */
+  .zephyr-display-sample--rgb .tl { background: red; }
+  .zephyr-display-sample--rgb .tr { background: lime; }
+  .zephyr-display-sample--rgb .br { background: blue; }
+
+  /* X-align variant */
+  .zephyr-display-sample--xalign .bar {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 40px;
+  }
+  .zephyr-display-sample--xalign .bar-top    { top: 0; background: lime; }
+  .zephyr-display-sample--xalign .bar-bottom {
+    bottom: 0;
+    animation: zephyr-display-bw-toggle 3s linear infinite;
+  }
+
+  /* Mono variant */
+  .zephyr-display-sample--mono .tl { background: black; }
+  .zephyr-display-sample--mono .tr { background: #e0e0e0; }
+  .zephyr-display-sample--mono .br { background: #888; }
+
+  /* 1bpp variant */
+  .zephyr-display-sample--1bpp .tl,
+  .zephyr-display-sample--1bpp .tr,
+  .zephyr-display-sample--1bpp .br { background: black; }
+  .zephyr-display-sample--1bpp .bl {
+    animation: zephyr-display-bw-toggle 0.2s steps(2, jump-none) infinite;
+  }
+
+  @keyframes zephyr-display-bw-toggle {
+    from { background-color: black; }
+    to   { background-color: white; }
+  }
+</style>
+</head><body>
+<figure class="zephyr-display-sample-wrap">
+  <div class="zephyr-display-sample zephyr-display-sample--xalign" aria-hidden="true">
+    <div class="bar bar-top"></div>
+    <div class="bar bar-bottom"></div>
+  </div>
+  <figcaption>
+    <p>
+      <span class="caption-text">
+       Full-width bands: green at the top, animated grey at the bottom.
+      </span>
+    </p>
+  </figcaption>
+</figure>
+</body></html>

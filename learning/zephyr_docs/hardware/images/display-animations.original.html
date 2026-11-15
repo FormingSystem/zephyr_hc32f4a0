@@ -1,0 +1,138 @@
+<style>
+  .zephyr-display-sample {
+    position: relative;
+    width: 320px;
+    height: 240px;
+    margin: auto;
+    background: white;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+
+  .zephyr-display-sample .corner {
+    position: absolute;
+    width: 80px;
+    height: 40px;
+  }
+
+  .zephyr-display-sample .tl { top: 0; left: 0; }
+  .zephyr-display-sample .tr { top: 0; right: 0; }
+  .zephyr-display-sample .br { bottom: 0; right: 0; }
+  .zephyr-display-sample .bl {
+    bottom: 0;
+    left: 0;
+    animation: zephyr-display-bw-toggle 3s linear infinite;
+  }
+
+  /* RGB variant */
+  .zephyr-display-sample--rgb .tl { background: red; }
+  .zephyr-display-sample--rgb .tr { background: lime; }
+  .zephyr-display-sample--rgb .br { background: blue; }
+
+  /* X-align variant */
+  .zephyr-display-sample--xalign .bar {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 40px;
+  }
+  .zephyr-display-sample--xalign .bar-top    { top: 0; background: lime; }
+  .zephyr-display-sample--xalign .bar-bottom {
+    bottom: 0;
+    animation: zephyr-display-bw-toggle 3s linear infinite;
+  }
+
+  /* Mono variant */
+  .zephyr-display-sample--mono .tl { background: black; }
+  .zephyr-display-sample--mono .tr { background: #e0e0e0; }
+  .zephyr-display-sample--mono .br { background: #888; }
+
+  /* 1bpp variant */
+  .zephyr-display-sample--1bpp .tl,
+  .zephyr-display-sample--1bpp .tr,
+  .zephyr-display-sample--1bpp .br { background: black; }
+  .zephyr-display-sample--1bpp .bl {
+    animation: zephyr-display-bw-toggle 0.2s steps(2, jump-none) infinite;
+  }
+
+  @keyframes zephyr-display-bw-toggle {
+    from { background-color: black; }
+    to   { background-color: white; }
+  }
+</style><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">RGB</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">Alignment width</button><button aria-controls="panel-0-0-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-2" name="0-2" role="tab" tabindex="-1">Grayscale</button><button aria-controls="panel-0-0-3" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-3" name="0-3" role="tab" tabindex="-1">1 bpp</button><button aria-controls="panel-0-0-4" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-4" name="0-4" role="tab" tabindex="-1">E-paper</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><figure class="zephyr-display-sample-wrap">
+  <div class="zephyr-display-sample zephyr-display-sample--rgb" aria-hidden="true">
+    <div class="corner tl"></div>
+    <div class="corner tr"></div>
+    <div class="corner br"></div>
+    <div class="corner bl"></div>
+  </div>
+  <figcaption>
+    <p>
+      <span class="caption-text">
+       Typical RGB output at 320x240: red, green, and blue corners (clockwise from
+       top left); bottom left animates from black to white. Corner sizes scale with
+       resolution on real hardware.
+      </span>
+    </p>
+  </figcaption>
+</figure></div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><p>On displays where it is only possible to draw full lines at a time (see
+<a class="reference internal" href="../../../doxygen/html/group__display__interface.html#gga23030b6c27446c4579103fe38e821341a1c51db66639919571af38bbc91eb28c1" title=""><code class="xref c c-enumerator docutils literal notranslate"><span class="pre">SCREEN_INFO_X_ALIGNMENT_WIDTH</span></code></a>), such as those using the
+<a class="reference internal" href="../../../build/dts/api/bindings/display/sharp%2Cls0xx.html#std-dtcompatible-sharp-ls0xx"><code class="xref std std-dtcompatible docutils literal notranslate"><span class="pre">sharp,ls0xx</span></code></a> driver, the rectangles described in the RGB tab will be replaced
+with bars that take up the entire width of the display.</p>
+<p>Only the green and grey bars will be visible (each corner draw uses the full width, so the
+top-left and top-right draws overlap at the top, and the bottom-right and bottom-left draws
+overlap at the bottom).</p>
+<figure class="zephyr-display-sample-wrap">
+  <div class="zephyr-display-sample zephyr-display-sample--xalign" aria-hidden="true">
+    <div class="bar bar-top"></div>
+    <div class="bar bar-bottom"></div>
+  </div>
+  <figcaption>
+    <p>
+      <span class="caption-text">
+       Full-width bands: green at the top, animated grey at the bottom.
+      </span>
+    </p>
+  </figcaption>
+</figure></div><div aria-labelledby="tab-0-0-2" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-2" name="0-2" role="tabpanel" tabindex="0"><p>On displays using a multi-bit luminance format (for example <a class="reference internal" href="../../../doxygen/html/group__display__interface.html#ggac346bc56771052a8fe919c3ec23d7c9ca14f33dfec4a630f5be50622a535434df" title=""><code class="xref c c-enumerator docutils literal notranslate"><span class="pre">PIXEL_FORMAT_L_8</span></code></a>),
+each corner is a different grey level; the bottom-left patch still animates from black to
+white. Other multi-bit monochrome formats behave similarly (different greys per corner).</p>
+<figure class="zephyr-display-sample-wrap">
+  <div class="zephyr-display-sample zephyr-display-sample--mono" aria-hidden="true">
+    <div class="corner tl"></div>
+    <div class="corner tr"></div>
+    <div class="corner br"></div>
+    <div class="corner bl"></div>
+  </div>
+  <figcaption>
+    <p>
+      <span class="caption-text">
+       Grayscale-style corners; bottom left animates through grey levels toward white.
+      </span>
+    </p>
+  </figcaption>
+</figure></div><div aria-labelledby="tab-0-0-3" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-3" name="0-3" role="tabpanel" tabindex="0"><p>On displays with 1 bit per pixel, the greyscale animation of the bottom rectangle (or bar)
+will appear as flickering between black and white. Other corners stay at a fixed color that
+matches the display background for the active pixel format.</p>
+<figure class="zephyr-display-sample-wrap">
+  <div class="zephyr-display-sample zephyr-display-sample--1bpp" aria-hidden="true">
+    <div class="corner tl"></div>
+    <div class="corner tr"></div>
+    <div class="corner br"></div>
+    <div class="corner bl"></div>
+  </div>
+ <figcaption>
+    <p>
+      <span class="caption-text">
+      1 bpp: three corners stay at the background color (black for <code>MONO01</code>,
+      white for <code>MONO10</code> on a black screen); bottom-left toggles.
+      </span>
+    </p>
+ </figcaption>
+</figure></div><div aria-labelledby="tab-0-0-4" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-4" name="0-4" role="tabpanel" tabindex="0"><p>By querying the display controller’s capabilities, it is possible to determine if the display
+is an e-paper display by checking if the <a class="reference internal" href="../../../doxygen/html/group__display__interface.html#gga23030b6c27446c4579103fe38e821341ac65e80206de09cb63e871ce18deefb85" title=""><code class="xref c c-enumerator docutils literal notranslate"><span class="pre">SCREEN_INFO_EPD</span></code></a> bit is set in the
+<a class="reference internal" href="../../../doxygen/html/structdisplay__capabilities.html#ac4a9098db4c2f721fa550c6142f541a9" title=""><code class="xref c c-member docutils literal notranslate"><span class="pre">display_capabilities.screen_info</span></code></a>.</p>
+<p>For such displays, the color of the bottom-left corner will change at a much slower rate than
+on a typical LCD, to align with the typical refresh rate of e-ink technologies.</p>
+</div></div>

@@ -1,0 +1,751 @@
+---
+id: learning.zephyr-docs.api-file-reference.page-219
+title: zephyr__drivers__mfd__max31790.h_文件参考
+kind: reference
+status: maintained
+domains: [zephyr, drivers, api]
+source_url: https://docs.zephyrproject.org/latest/doxygen/html/mfd_2max31790_8h.html
+---
+
+<!-- Copyright 2015-2026 Zephyr Project members and individual contributors. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<!-- 中文翻译；编号、导航和明确标注的译注为本地新增。 -->
+
+# 第219章\_zephyr\_\_drivers\_\_mfd\_\_max31790.h\_文件参考
+
+原文：[官方页面](https://docs.zephyrproject.org/latest/doxygen/html/mfd_2max31790_8h.html)。读取日期：2026-10-17；来源摘要见[来源记录](../SOURCES.md)。
+
+```c
+#include <zephyr/sys/util.h>
+#include <zephyr/sys/util_macro.h>
+```
+
+查看此文件的源码。
+
+<a id="header-define-members"></a>
+<a id="define-members"></a>
+
+## 219.1\_宏定义（Macros）
+
+<a id="r_ae5fed0d740da265773590505f125d70e"></a>
+
+```c
+#define MAX31790_OSCILLATOR_FREQUENCY_IN_HZ 32768
+```
+
+相关声明：[MAX31790_OSCILLATOR_FREQUENCY_IN_HZ](#ae5fed0d740da265773590505f125d70e)。
+
+<a id="r_ae14582ece74d327eff808620e527d7cb"></a>
+
+```c
+#define MAX31790_PWMTARGETDUTYCYCLE_MAXIMUM ((1 << 9) - 1)
+```
+
+相关声明：[MAX31790_PWMTARGETDUTYCYCLE_MAXIMUM](#ae14582ece74d327eff808620e527d7cb)。
+
+<a id="r_affd80afa9fb791aea7a7ae5e3d261033"></a>
+
+```c
+#define MAX31790_TACHTARGETCOUNT_MAXIMUM ((1 << 11) - 1)
+```
+
+相关声明：[MAX31790_TACHTARGETCOUNT_MAXIMUM](#affd80afa9fb791aea7a7ae5e3d261033)。
+
+<a id="r_aa2296e329256b7db47df9240850d5a7f"></a>
+
+```c
+#define MAX31790_CHANNEL_COUNT 6
+```
+
+相关声明：[MAX31790_CHANNEL_COUNT](#aa2296e329256b7db47df9240850d5a7f)。
+
+<a id="r_a58d5cf0f543a2fbe5c150dd8474674ba"></a>
+
+```c
+#define MAX31790_RESET_TIMEOUT_IN_US 1000
+```
+
+相关声明：[MAX31790_RESET_TIMEOUT_IN_US](#a58d5cf0f543a2fbe5c150dd8474674ba)。
+
+<a id="r_af354fb2cc5a5487c7440ba432a309045"></a>
+
+```c
+#define MAX37190_REGISTER_GLOBALCONFIGURATION 0x00
+```
+
+相关声明：[MAX37190_REGISTER_GLOBALCONFIGURATION](#af354fb2cc5a5487c7440ba432a309045)。
+
+<a id="r_a31a38a4d45793b9078f2dd5bbd9fa6b4"></a>
+
+```c
+#define MAX37190_REGISTER_PWMFREQUENCY 0x01
+```
+
+相关声明：[MAX37190_REGISTER_PWMFREQUENCY](#a31a38a4d45793b9078f2dd5bbd9fa6b4)。
+
+<a id="r_a4ce5f929c130ff08fa1d898501b8e003"></a>
+
+```c
+#define MAX37190_REGISTER_FANCONFIGURATION(channel)
+```
+
+相关声明：[MAX37190_REGISTER_FANCONFIGURATION](#a4ce5f929c130ff08fa1d898501b8e003)。
+
+<a id="r_a68fb4bc7b0c014d1b73df1df26ecc979"></a>
+
+```c
+#define MAX31790_REGISTER_FANDYNAMICS(channel)
+```
+
+相关声明：[MAX31790_REGISTER_FANDYNAMICS](#a68fb4bc7b0c014d1b73df1df26ecc979)。
+
+<a id="r_adc57b84207c5019fd1bffe1c2d841ed7"></a>
+
+```c
+#define MAX37190_REGISTER_FANFAULTSTATUS1 0x11
+```
+
+相关声明：[MAX37190_REGISTER_FANFAULTSTATUS1](#adc57b84207c5019fd1bffe1c2d841ed7)。
+
+<a id="r_a68db057fbca6a556b79dabaa68e79bd4"></a>
+
+```c
+#define MAX37190_REGISTER_TACHCOUNTMSB(channel)
+```
+
+相关声明：[MAX37190_REGISTER_TACHCOUNTMSB](#a68db057fbca6a556b79dabaa68e79bd4)。
+
+<a id="r_a0de3d55bc6a52f0b2a2dee30c70c28a3"></a>
+
+```c
+#define MAX31790_REGISTER_PWMOUTTARGETDUTYCYCLEMSB(channel)
+```
+
+相关声明：[MAX31790_REGISTER_PWMOUTTARGETDUTYCYCLEMSB](#a0de3d55bc6a52f0b2a2dee30c70c28a3)。
+
+<a id="r_af164463eeb1965c4a7f7d2f44d789231"></a>
+
+```c
+#define MAX31790_REGISTER_TACHTARGETCOUNTMSB(channel)
+```
+
+相关声明：[MAX31790_REGISTER_TACHTARGETCOUNTMSB](#af164463eeb1965c4a7f7d2f44d789231)。
+
+<a id="r_aa73142b4a1929bb159f67f46df1a3ff6"></a>
+
+```c
+#define MAX37190_GLOBALCONFIGURATION_STANDBY_BIT BIT(7)
+```
+
+相关声明：[MAX37190_GLOBALCONFIGURATION_STANDBY_BIT](#aa73142b4a1929bb159f67f46df1a3ff6)、[BIT](../util_reference/P001_通用工具公共接口.md#ga3a8ea58898cb58fc96013383d39f482c)。
+
+<a id="r_a56c608781593127abb13e7fecde64ba8"></a>
+
+```c
+#define MAX37190_GLOBALCONFIGURATION_RESET_BIT BIT(6)
+```
+
+相关声明：[MAX37190_GLOBALCONFIGURATION_RESET_BIT](#a56c608781593127abb13e7fecde64ba8)、[BIT](../util_reference/P001_通用工具公共接口.md#ga3a8ea58898cb58fc96013383d39f482c)。
+
+<a id="r_a11e8be09ed8e55d36aa2e58d944b9b8c"></a>
+
+```c
+#define MAX37190_GLOBALCONFIGURATION_BUSTIMEOUT_BIT BIT(5)
+```
+
+相关声明：[MAX37190_GLOBALCONFIGURATION_BUSTIMEOUT_BIT](#a11e8be09ed8e55d36aa2e58d944b9b8c)、[BIT](../util_reference/P001_通用工具公共接口.md#ga3a8ea58898cb58fc96013383d39f482c)。
+
+<a id="r_af6daa57b1530d54044883bf59d8609a0"></a>
+
+```c
+#define MAX37190_GLOBALCONFIGURATION_OSCILLATORSELECTION_BIT BIT(3)
+```
+
+相关声明：[MAX37190_GLOBALCONFIGURATION_OSCILLATORSELECTION_BIT](#af6daa57b1530d54044883bf59d8609a0)、[BIT](../util_reference/P001_通用工具公共接口.md#ga3a8ea58898cb58fc96013383d39f482c)。
+
+<a id="r_a236623c229d9c55e67ed4192ff81952a"></a>
+
+```c
+#define MAX37190_GLOBALCONFIGURATION_I2CWATCHDOGSTATUS_BIT BIT(0)
+```
+
+相关声明：[MAX37190_GLOBALCONFIGURATION_I2CWATCHDOGSTATUS_BIT](#a236623c229d9c55e67ed4192ff81952a)、[BIT](../util_reference/P001_通用工具公共接口.md#ga3a8ea58898cb58fc96013383d39f482c)。
+
+<a id="r_ab05280b191880887b89c8d516a9c7076"></a>
+
+```c
+#define MAX37190_FANXCONFIGURATION_MONITOR_BIT BIT(4)
+```
+
+相关声明：[MAX37190_FANXCONFIGURATION_MONITOR_BIT](#ab05280b191880887b89c8d516a9c7076)、[BIT](../util_reference/P001_通用工具公共接口.md#ga3a8ea58898cb58fc96013383d39f482c)。
+
+<a id="r_a965be0964c446f1a8daf7181c3b67cf1"></a>
+
+```c
+#define MAX37190_FANXCONFIGURATION_TACHINPUTENABLED_BIT BIT(3)
+```
+
+相关声明：[MAX37190_FANXCONFIGURATION_TACHINPUTENABLED_BIT](#a965be0964c446f1a8daf7181c3b67cf1)、[BIT](../util_reference/P001_通用工具公共接口.md#ga3a8ea58898cb58fc96013383d39f482c)。
+
+<a id="r_a03552c9c58c2828d522106db520df2c9"></a>
+
+```c
+#define MAX37190_FANXCONFIGURATION_LOCKEDROTOR_BIT BIT(2)
+```
+
+相关声明：[MAX37190_FANXCONFIGURATION_LOCKEDROTOR_BIT](#a03552c9c58c2828d522106db520df2c9)、[BIT](../util_reference/P001_通用工具公共接口.md#ga3a8ea58898cb58fc96013383d39f482c)。
+
+<a id="r_ac9a0ff4ed53dc93b23eb06a03c9c8286"></a>
+
+```c
+#define MAX37190_FANXCONFIGURATION_LOCKEDROTORPOLARITY_BIT BIT(1)
+```
+
+相关声明：[MAX37190_FANXCONFIGURATION_LOCKEDROTORPOLARITY_BIT](#ac9a0ff4ed53dc93b23eb06a03c9c8286)、[BIT](../util_reference/P001_通用工具公共接口.md#ga3a8ea58898cb58fc96013383d39f482c)。
+
+<a id="r_af09f61c8628b881d43671378d5da6437"></a>
+
+```c
+#define MAX37190_FANXCONFIGURATION_TACH_BIT BIT(0)
+```
+
+相关声明：[MAX37190_FANXCONFIGURATION_TACH_BIT](#af09f61c8628b881d43671378d5da6437)、[BIT](../util_reference/P001_通用工具公共接口.md#ga3a8ea58898cb58fc96013383d39f482c)。
+
+<a id="r_acbdb281979590cdf2ea9de2faa7d61b7"></a>
+
+```c
+#define MAX37190_FANXCONFIGURATION_MODE_BIT BIT(7)
+```
+
+相关声明：[MAX37190_FANXCONFIGURATION_MODE_BIT](#acbdb281979590cdf2ea9de2faa7d61b7)、[BIT](../util_reference/P001_通用工具公共接口.md#ga3a8ea58898cb58fc96013383d39f482c)。
+
+<a id="r_aa30bb353147d8bfcb0f8a87d5be1e74f"></a>
+
+```c
+#define MAX37190_FANXDYNAMICS_ASYMMETRICRATEOFCHANGE_BIT BIT(1)
+```
+
+相关声明：[MAX37190_FANXDYNAMICS_ASYMMETRICRATEOFCHANGE_BIT](#aa30bb353147d8bfcb0f8a87d5be1e74f)、[BIT](../util_reference/P001_通用工具公共接口.md#ga3a8ea58898cb58fc96013383d39f482c)。
+
+<a id="r_a3483de4d41712dcefb96f4ce3c4edb0e"></a>
+
+```c
+#define MAX37190_GLOBALCONFIGURATION_I2CWATCHDOG_LENGTH 2
+```
+
+相关声明：[MAX37190_GLOBALCONFIGURATION_I2CWATCHDOG_LENGTH](#a3483de4d41712dcefb96f4ce3c4edb0e)。
+
+<a id="r_a49f9da4e5e7756385a36562d03d1cf59"></a>
+
+```c
+#define MAX37190_GLOBALCONFIGURATION_I2CWATCHDOG_POS 1
+```
+
+相关声明：[MAX37190_GLOBALCONFIGURATION_I2CWATCHDOG_POS](#a49f9da4e5e7756385a36562d03d1cf59)。
+
+<a id="r_ad0cf619f51bca4e6fd91855b64212d5e"></a>
+
+```c
+#define MAX37190_FANXDYNAMICS_SPEEDRANGE_LENGTH 3
+```
+
+相关声明：[MAX37190_FANXDYNAMICS_SPEEDRANGE_LENGTH](#ad0cf619f51bca4e6fd91855b64212d5e)。
+
+<a id="r_adaa109abb10f018f613dfac5b216a478"></a>
+
+```c
+#define MAX37190_FANXDYNAMICS_SPEEDRANGE_POS 5
+```
+
+相关声明：[MAX37190_FANXDYNAMICS_SPEEDRANGE_POS](#adaa109abb10f018f613dfac5b216a478)。
+
+<a id="r_a424bfe56954395beb60beb1d67d7ae8f"></a>
+
+```c
+#define MAX37190_FANXDYNAMICS_PWMRATEOFCHANGE_LENGTH 3
+```
+
+相关声明：[MAX37190_FANXDYNAMICS_PWMRATEOFCHANGE_LENGTH](#a424bfe56954395beb60beb1d67d7ae8f)。
+
+<a id="r_aa46bbaa55f777628c5807f4de3db1da5"></a>
+
+```c
+#define MAX37190_FANXDYNAMICS_PWMRATEOFCHANGE_POS 2
+```
+
+相关声明：[MAX37190_FANXDYNAMICS_PWMRATEOFCHANGE_POS](#aa46bbaa55f777628c5807f4de3db1da5)。
+
+<a id="r_aa40c731487c98aa4f18cf5e8fe4b8771"></a>
+
+```c
+#define MAX37190_PWMFREQUENCY_PWM_LENGTH 4
+```
+
+相关声明：[MAX37190_PWMFREQUENCY_PWM_LENGTH](#aa40c731487c98aa4f18cf5e8fe4b8771)。
+
+<a id="r_a6df41c1d7985909810898aa3fa3b8ffe"></a>
+
+```c
+#define MAX37190_PWMFREQUENCY_PWM4TO6_POS 4
+```
+
+相关声明：[MAX37190_PWMFREQUENCY_PWM4TO6_POS](#a6df41c1d7985909810898aa3fa3b8ffe)。
+
+<a id="r_a0182972221f91730b5f4ef4a88dd24fb"></a>
+
+```c
+#define MAX37190_PWMFREQUENCY_PWM1TO3_LENGTH 4
+```
+
+相关声明：[MAX37190_PWMFREQUENCY_PWM1TO3_LENGTH](#a0182972221f91730b5f4ef4a88dd24fb)。
+
+<a id="r_ab1a48fb687581e4b9a67c5163ac8ac1d"></a>
+
+```c
+#define MAX37190_PWMFREQUENCY_PWM1TO3_POS 0
+```
+
+相关声明：[MAX37190_PWMFREQUENCY_PWM1TO3_POS](#ab1a48fb687581e4b9a67c5163ac8ac1d)。
+
+<a id="r_a952fff3b1e33284235bc294b42487985"></a>
+
+```c
+#define MAX37190_FANXCONFIGURATION_SPINUP_LENGTH 2
+```
+
+相关声明：[MAX37190_FANXCONFIGURATION_SPINUP_LENGTH](#a952fff3b1e33284235bc294b42487985)。
+
+<a id="r_ad6976812ea2691993b99f7b8ac435b0b"></a>
+
+```c
+#define MAX37190_FANXCONFIGURATION_SPINUP_POS 5
+```
+
+相关声明：[MAX37190_FANXCONFIGURATION_SPINUP_POS](#ad6976812ea2691993b99f7b8ac435b0b)。
+
+<a id="r_a7b13e7c7267b18871a26f790cedd9292"></a>
+
+```c
+#define MAX31790_FANXDYNAMCIS_SPEED_RANGE_GET(value)
+```
+
+相关声明：[MAX31790_FANXDYNAMCIS_SPEED_RANGE_GET](#a7b13e7c7267b18871a26f790cedd9292)。
+
+<a id="r_a524c1e10c36b05ef239ab0c74ac5e7bd"></a>
+
+```c
+#define MAX31790_FLAG_SPEED_RANGE_GET(flags)
+```
+
+相关声明：[MAX31790_FLAG_SPEED_RANGE_GET](#a524c1e10c36b05ef239ab0c74ac5e7bd)、[flags](P290_zephyr__net__http__parser.h_文件参考.md#ab6b306ef981f5e21bb41ea2c2dbe8cd9)。
+
+<a id="r_adb1bec197b3ecc7f29cf266d9a7efe17"></a>
+
+```c
+#define MAX31790_FLAG_PWM_RATE_OF_CHANGE_GET(flags)
+```
+
+相关声明：[MAX31790_FLAG_PWM_RATE_OF_CHANGE_GET](#adb1bec197b3ecc7f29cf266d9a7efe17)、[flags](P290_zephyr__net__http__parser.h_文件参考.md#ab6b306ef981f5e21bb41ea2c2dbe8cd9)。
+
+## 219.2\_详细说明（Detailed Documentation）
+
+<a id="aa2296e329256b7db47df9240850d5a7f"></a>
+
+### `MAX31790_CHANNEL_COUNT`
+
+```c
+#define MAX31790_CHANNEL_COUNT 6
+```
+
+<a id="a7b13e7c7267b18871a26f790cedd9292"></a>
+
+### `MAX31790_FANXDYNAMCIS_SPEED_RANGE_GET`
+
+```c
+#define MAX31790_FANXDYNAMCIS_SPEED_RANGE_GET ( value)
+```
+
+展开值（Value）：
+
+```c
+FIELD_GET(GENMASK(MAX37190_FANXDYNAMICS_SPEEDRANGE_LENGTH +                                \
+                          MAX37190_FANXDYNAMICS_SPEEDRANGE_POS - 1,                        \
+                  MAX37190_FANXDYNAMICS_SPEEDRANGE_POS),                                   \
+          value)
+```
+
+<a id="adb1bec197b3ecc7f29cf266d9a7efe17"></a>
+
+### `MAX31790_FLAG_PWM_RATE_OF_CHANGE_GET`
+
+```c
+#define MAX31790_FLAG_PWM_RATE_OF_CHANGE_GET ( flags)
+```
+
+展开值（Value）：
+
+```c
+FIELD_GET(GENMASK(MAX37190_FANXDYNAMICS_PWMRATEOFCHANGE_LENGTH +                           \
+                          PWM_MAX31790_FLAG_PWM_RATE_OF_CHANGE_POS - 1,                    \
+                  PWM_MAX31790_FLAG_PWM_RATE_OF_CHANGE_POS),                               \
+          flags)
+```
+
+<a id="a524c1e10c36b05ef239ab0c74ac5e7bd"></a>
+
+### `MAX31790_FLAG_SPEED_RANGE_GET`
+
+```c
+#define MAX31790_FLAG_SPEED_RANGE_GET ( flags)
+```
+
+展开值（Value）：
+
+```c
+FIELD_GET(GENMASK(MAX37190_FANXDYNAMICS_SPEEDRANGE_LENGTH +                                \
+                          PWM_MAX31790_FLAG_SPEED_RANGE_POS - 1,                           \
+                  PWM_MAX31790_FLAG_SPEED_RANGE_POS),                                      \
+          flags)
+```
+
+<a id="ae5fed0d740da265773590505f125d70e"></a>
+
+### `MAX31790_OSCILLATOR_FREQUENCY_IN_HZ`
+
+```c
+#define MAX31790_OSCILLATOR_FREQUENCY_IN_HZ 32768
+```
+
+<a id="ae14582ece74d327eff808620e527d7cb"></a>
+
+### `MAX31790_PWMTARGETDUTYCYCLE_MAXIMUM`
+
+```c
+#define MAX31790_PWMTARGETDUTYCYCLE_MAXIMUM ((1 << 9) - 1)
+```
+
+<a id="a68fb4bc7b0c014d1b73df1df26ecc979"></a>
+
+### `MAX31790_REGISTER_FANDYNAMICS`
+
+```c
+#define MAX31790_REGISTER_FANDYNAMICS ( channel)
+```
+
+展开值（Value）：
+
+```c
+(0x08 + channel)
+```
+
+<a id="a0de3d55bc6a52f0b2a2dee30c70c28a3"></a>
+
+### `MAX31790_REGISTER_PWMOUTTARGETDUTYCYCLEMSB`
+
+```c
+#define MAX31790_REGISTER_PWMOUTTARGETDUTYCYCLEMSB ( channel)
+```
+
+展开值（Value）：
+
+```c
+(0x40 + 2 * channel)
+```
+
+<a id="af164463eeb1965c4a7f7d2f44d789231"></a>
+
+### `MAX31790_REGISTER_TACHTARGETCOUNTMSB`
+
+```c
+#define MAX31790_REGISTER_TACHTARGETCOUNTMSB ( channel)
+```
+
+展开值（Value）：
+
+```c
+(0x50 + 2 * channel)
+```
+
+<a id="a58d5cf0f543a2fbe5c150dd8474674ba"></a>
+
+### `MAX31790_RESET_TIMEOUT_IN_US`
+
+```c
+#define MAX31790_RESET_TIMEOUT_IN_US 1000
+```
+
+<a id="affd80afa9fb791aea7a7ae5e3d261033"></a>
+
+### `MAX31790_TACHTARGETCOUNT_MAXIMUM`
+
+```c
+#define MAX31790_TACHTARGETCOUNT_MAXIMUM ((1 << 11) - 1)
+```
+
+<a id="a03552c9c58c2828d522106db520df2c9"></a>
+
+### `MAX37190_FANXCONFIGURATION_LOCKEDROTOR_BIT`
+
+```c
+#define MAX37190_FANXCONFIGURATION_LOCKEDROTOR_BIT BIT(2)
+```
+
+<a id="ac9a0ff4ed53dc93b23eb06a03c9c8286"></a>
+
+### `MAX37190_FANXCONFIGURATION_LOCKEDROTORPOLARITY_BIT`
+
+```c
+#define MAX37190_FANXCONFIGURATION_LOCKEDROTORPOLARITY_BIT BIT(1)
+```
+
+<a id="acbdb281979590cdf2ea9de2faa7d61b7"></a>
+
+### `MAX37190_FANXCONFIGURATION_MODE_BIT`
+
+```c
+#define MAX37190_FANXCONFIGURATION_MODE_BIT BIT(7)
+```
+
+<a id="ab05280b191880887b89c8d516a9c7076"></a>
+
+### `MAX37190_FANXCONFIGURATION_MONITOR_BIT`
+
+```c
+#define MAX37190_FANXCONFIGURATION_MONITOR_BIT BIT(4)
+```
+
+<a id="a952fff3b1e33284235bc294b42487985"></a>
+
+### `MAX37190_FANXCONFIGURATION_SPINUP_LENGTH`
+
+```c
+#define MAX37190_FANXCONFIGURATION_SPINUP_LENGTH 2
+```
+
+<a id="ad6976812ea2691993b99f7b8ac435b0b"></a>
+
+### `MAX37190_FANXCONFIGURATION_SPINUP_POS`
+
+```c
+#define MAX37190_FANXCONFIGURATION_SPINUP_POS 5
+```
+
+<a id="af09f61c8628b881d43671378d5da6437"></a>
+
+### `MAX37190_FANXCONFIGURATION_TACH_BIT`
+
+```c
+#define MAX37190_FANXCONFIGURATION_TACH_BIT BIT(0)
+```
+
+<a id="a965be0964c446f1a8daf7181c3b67cf1"></a>
+
+### `MAX37190_FANXCONFIGURATION_TACHINPUTENABLED_BIT`
+
+```c
+#define MAX37190_FANXCONFIGURATION_TACHINPUTENABLED_BIT BIT(3)
+```
+
+<a id="aa30bb353147d8bfcb0f8a87d5be1e74f"></a>
+
+### `MAX37190_FANXDYNAMICS_ASYMMETRICRATEOFCHANGE_BIT`
+
+```c
+#define MAX37190_FANXDYNAMICS_ASYMMETRICRATEOFCHANGE_BIT BIT(1)
+```
+
+<a id="a424bfe56954395beb60beb1d67d7ae8f"></a>
+
+### `MAX37190_FANXDYNAMICS_PWMRATEOFCHANGE_LENGTH`
+
+```c
+#define MAX37190_FANXDYNAMICS_PWMRATEOFCHANGE_LENGTH 3
+```
+
+<a id="aa46bbaa55f777628c5807f4de3db1da5"></a>
+
+### `MAX37190_FANXDYNAMICS_PWMRATEOFCHANGE_POS`
+
+```c
+#define MAX37190_FANXDYNAMICS_PWMRATEOFCHANGE_POS 2
+```
+
+<a id="ad0cf619f51bca4e6fd91855b64212d5e"></a>
+
+### `MAX37190_FANXDYNAMICS_SPEEDRANGE_LENGTH`
+
+```c
+#define MAX37190_FANXDYNAMICS_SPEEDRANGE_LENGTH 3
+```
+
+<a id="adaa109abb10f018f613dfac5b216a478"></a>
+
+### `MAX37190_FANXDYNAMICS_SPEEDRANGE_POS`
+
+```c
+#define MAX37190_FANXDYNAMICS_SPEEDRANGE_POS 5
+```
+
+<a id="a11e8be09ed8e55d36aa2e58d944b9b8c"></a>
+
+### `MAX37190_GLOBALCONFIGURATION_BUSTIMEOUT_BIT`
+
+```c
+#define MAX37190_GLOBALCONFIGURATION_BUSTIMEOUT_BIT BIT(5)
+```
+
+<a id="a3483de4d41712dcefb96f4ce3c4edb0e"></a>
+
+### `MAX37190_GLOBALCONFIGURATION_I2CWATCHDOG_LENGTH`
+
+```c
+#define MAX37190_GLOBALCONFIGURATION_I2CWATCHDOG_LENGTH 2
+```
+
+<a id="a49f9da4e5e7756385a36562d03d1cf59"></a>
+
+### `MAX37190_GLOBALCONFIGURATION_I2CWATCHDOG_POS`
+
+```c
+#define MAX37190_GLOBALCONFIGURATION_I2CWATCHDOG_POS 1
+```
+
+<a id="a236623c229d9c55e67ed4192ff81952a"></a>
+
+### `MAX37190_GLOBALCONFIGURATION_I2CWATCHDOGSTATUS_BIT`
+
+```c
+#define MAX37190_GLOBALCONFIGURATION_I2CWATCHDOGSTATUS_BIT BIT(0)
+```
+
+<a id="af6daa57b1530d54044883bf59d8609a0"></a>
+
+### `MAX37190_GLOBALCONFIGURATION_OSCILLATORSELECTION_BIT`
+
+```c
+#define MAX37190_GLOBALCONFIGURATION_OSCILLATORSELECTION_BIT BIT(3)
+```
+
+<a id="a56c608781593127abb13e7fecde64ba8"></a>
+
+### `MAX37190_GLOBALCONFIGURATION_RESET_BIT`
+
+```c
+#define MAX37190_GLOBALCONFIGURATION_RESET_BIT BIT(6)
+```
+
+<a id="aa73142b4a1929bb159f67f46df1a3ff6"></a>
+
+### `MAX37190_GLOBALCONFIGURATION_STANDBY_BIT`
+
+```c
+#define MAX37190_GLOBALCONFIGURATION_STANDBY_BIT BIT(7)
+```
+
+<a id="a0182972221f91730b5f4ef4a88dd24fb"></a>
+
+### `MAX37190_PWMFREQUENCY_PWM1TO3_LENGTH`
+
+```c
+#define MAX37190_PWMFREQUENCY_PWM1TO3_LENGTH 4
+```
+
+<a id="ab1a48fb687581e4b9a67c5163ac8ac1d"></a>
+
+### `MAX37190_PWMFREQUENCY_PWM1TO3_POS`
+
+```c
+#define MAX37190_PWMFREQUENCY_PWM1TO3_POS 0
+```
+
+<a id="a6df41c1d7985909810898aa3fa3b8ffe"></a>
+
+### `MAX37190_PWMFREQUENCY_PWM4TO6_POS`
+
+```c
+#define MAX37190_PWMFREQUENCY_PWM4TO6_POS 4
+```
+
+<a id="aa40c731487c98aa4f18cf5e8fe4b8771"></a>
+
+### `MAX37190_PWMFREQUENCY_PWM_LENGTH`
+
+```c
+#define MAX37190_PWMFREQUENCY_PWM_LENGTH 4
+```
+
+<a id="a4ce5f929c130ff08fa1d898501b8e003"></a>
+
+### `MAX37190_REGISTER_FANCONFIGURATION`
+
+```c
+#define MAX37190_REGISTER_FANCONFIGURATION ( channel)
+```
+
+展开值（Value）：
+
+```c
+(0x02 + channel)
+```
+
+<a id="adc57b84207c5019fd1bffe1c2d841ed7"></a>
+
+### `MAX37190_REGISTER_FANFAULTSTATUS1`
+
+```c
+#define MAX37190_REGISTER_FANFAULTSTATUS1 0x11
+```
+
+<a id="af354fb2cc5a5487c7440ba432a309045"></a>
+
+### `MAX37190_REGISTER_GLOBALCONFIGURATION`
+
+```c
+#define MAX37190_REGISTER_GLOBALCONFIGURATION 0x00
+```
+
+<a id="a31a38a4d45793b9078f2dd5bbd9fa6b4"></a>
+
+### `MAX37190_REGISTER_PWMFREQUENCY`
+
+```c
+#define MAX37190_REGISTER_PWMFREQUENCY 0x01
+```
+
+<a id="a68db057fbca6a556b79dabaa68e79bd4"></a>
+
+### `MAX37190_REGISTER_TACHCOUNTMSB`
+
+```c
+#define MAX37190_REGISTER_TACHCOUNTMSB ( channel)
+```
+
+展开值（Value）：
+
+```c
+(0x18 + 2 * channel)
+```
+
+
+## 219.3\_原页交叉引用（Cross References）
+
+- [zephyr/sys/util.h](../util_reference/P003_通用工具头文件源码.md)
+- [zephyr/sys/util_macro.h](../util_reference/P005_宏工具头文件源码.md)
+- [查看此文件的源码。](../api_source_reference/P517_max31790.h_源码浏览.md)
+- [BIT](../util_reference/P001_通用工具公共接口.md#ga3a8ea58898cb58fc96013383d39f482c)
+- [flags](P290_zephyr__net__http__parser.h_文件参考.md#ab6b306ef981f5e21bb41ea2c2dbe8cd9)
+- [FIELD_GET](P394_zephyr__dt-bindings__pinctrl__silabs-pinctrl-siwx91x.h_文件参考.md#aa49a456f06f7bdbedfcf3517e461947e)
+- [GENMASK](../util_reference/P001_通用工具公共接口.md#ga58530d20924859d16358c7400c37738d)
+
+<a id="doc-define-members"></a>
+<a id="header-doc-define-members"></a>
+<a id="agroup__sys-util_html_ga58530d20924859d16358c7400c37738d"></a>
+<a id="amfd_2max31790_8h_html_ad0cf619f51bca4e6fd91855b64212d5e"></a>
+<a id="amfd_2max31790_8h_html_adaa109abb10f018f613dfac5b216a478"></a>
+<a id="asilabs-pinctrl-siwx91x_8h_html_aa49a456f06f7bdbedfcf3517e461947e"></a>
+<a id="amfd_2max31790_8h_html_a424bfe56954395beb60beb1d67d7ae8f"></a>
+<a id="aparser_8h_html_ab6b306ef981f5e21bb41ea2c2dbe8cd9"></a>
+
+---
+
+[上一章](P218_zephyr__bluetooth__mesh.h_文件参考.md) · [返回大纲](大纲.md) · [下一章](P220_zephyr__drivers__mfd__mfd_ite_it8801.h_文件参考.md)

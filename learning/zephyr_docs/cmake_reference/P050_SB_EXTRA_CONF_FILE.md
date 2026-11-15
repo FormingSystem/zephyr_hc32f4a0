@@ -1,0 +1,43 @@
+---
+id: learning.zephyr-docs.cmake-reference.variable.sb_extra_conf_file
+title: SB_EXTRA_CONF_FILE
+kind: reference
+status: maintained
+domains: [zephyr, cmake]
+source_url: https://docs.zephyrproject.org/latest/build/cmake-ref/variable/SB_EXTRA_CONF_FILE.html
+---
+
+<!-- Copyright 2015-2026 Zephyr Project members and individual contributors. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<!-- 中文翻译；编号、导航和明确标注的译注为本地新增。 -->
+
+# 第50章\_SB_EXTRA_CONF_FILE
+
+原文：[SB_EXTRA_CONF_FILE](https://docs.zephyrproject.org/latest/build/cmake-ref/variable/SB_EXTRA_CONF_FILE.html)。本次读取日期：2026-10-14；基线为保存的 `latest` 页面，HTML 摘要见[来源记录](../SOURCES.md)。
+
+<a id="variable:SB_EXTRA_CONF_FILE"></a>
+
+在 `SB_CONF_FILE` 之上应用的额外 Sysbuild Kconfig 配置片段（Kconfig Fragment）。路径相对于 `APP_DIR`。
+
+另见 `sysbuild_kconfig`、`APP_DIR` 和 `SB_CONF_FILE`。
+
+## 50.1\_原文相关链接
+
+- [variable:SB_CONF_FILE](P049_SB_CONF_FILE.md#variable:SB_CONF_FILE)
+- [variable:APP_DIR](P023_APP_DIR.md#variable:APP_DIR)
+- [module:sysbuild_kconfig](P011_sysbuild_kconfig.md#module:sysbuild_kconfig)
+
+<!-- reading-navigation:start -->
+
+**主线阅读**
+
+[上一篇：SB_CONF_FILE](P049_SB_CONF_FILE.md) · [本模块主线目录](../reading/cmake_reference.md) · [全部主线](../reading/README.md) · [下一篇：SB_SNIPPET](P051_SB_SNIPPET.md)
+
+<details>
+<summary>原册编号导航（含扩展参考）</summary>
+
+[上一章](P049_SB_CONF_FILE.md) · [返回大纲](大纲.md) · [下一章](P051_SB_SNIPPET.md)
+
+</details>
+
+<!-- reading-navigation:end -->
