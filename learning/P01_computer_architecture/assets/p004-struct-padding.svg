@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="405" viewBox="0 0 760 405" role="img" aria-labelledby="title desc">
+<title id="title">结构体数组怎样通过填充保持字段自然对齐</title>
+<desc id="desc">结构体数组怎样通过填充保持字段自然对齐。原创教学示意；箭头与颜色含义见图内图例和正文。</desc>
+<defs>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1769aa"/></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7540a0"/></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#b45b13"/></marker>
+<marker id="green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#217346"/></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#667080"/></marker>
+</defs>
+<rect width="760" height="100%" fill="#fff"/>
+<g font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="16" fill="#243447">
+<text x="25" y="40" text-anchor="start" font-weight="700">① records[0]：起点 +0</text>
+<rect x="25" y="60" width="84" height="70" rx="8" fill="#e8f2fc" stroke="#1769aa" stroke-width="1.5"/>
+<text x="67.0" y="89.0" text-anchor="middle" font-weight="700">+0</text>
+<text x="67.0" y="113.0" text-anchor="middle">state</text>
+<rect x="113" y="60" width="84" height="70" rx="8" fill="#eef0f3" stroke="#667080" stroke-width="1.5"/>
+<text x="155.0" y="89.0" text-anchor="middle" font-weight="700">+1</text>
+<text x="155.0" y="113.0" text-anchor="middle">填充</text>
+<rect x="201" y="60" width="84" height="70" rx="8" fill="#eef0f3" stroke="#667080" stroke-width="1.5"/>
+<text x="243.0" y="89.0" text-anchor="middle" font-weight="700">+2</text>
+<text x="243.0" y="113.0" text-anchor="middle">填充</text>
+<rect x="289" y="60" width="84" height="70" rx="8" fill="#eef0f3" stroke="#667080" stroke-width="1.5"/>
+<text x="331.0" y="89.0" text-anchor="middle" font-weight="700">+3</text>
+<text x="331.0" y="113.0" text-anchor="middle">填充</text>
+<rect x="377" y="60" width="84" height="70" rx="8" fill="#e8f5ec" stroke="#217346" stroke-width="1.5"/>
+<text x="419.0" y="89.0" text-anchor="middle" font-weight="700">+4</text>
+<text x="419.0" y="113.0" text-anchor="middle">count</text>
+<rect x="465" y="60" width="84" height="70" rx="8" fill="#e8f5ec" stroke="#217346" stroke-width="1.5"/>
+<text x="507.0" y="89.0" text-anchor="middle" font-weight="700">+5</text>
+<text x="507.0" y="113.0" text-anchor="middle">count</text>
+<rect x="553" y="60" width="84" height="70" rx="8" fill="#e8f5ec" stroke="#217346" stroke-width="1.5"/>
+<text x="595.0" y="89.0" text-anchor="middle" font-weight="700">+6</text>
+<text x="595.0" y="113.0" text-anchor="middle">count</text>
+<rect x="641" y="60" width="84" height="70" rx="8" fill="#e8f5ec" stroke="#217346" stroke-width="1.5"/>
+<text x="683.0" y="89.0" text-anchor="middle" font-weight="700">+7</text>
+<text x="683.0" y="113.0" text-anchor="middle">count</text>
+<text x="25" y="160" text-anchor="start">state 占 1 字节；count 占 4 字节；每个记录跨 8 字节。</text>
+<text x="25" y="200" text-anchor="start" font-weight="700">② records[1]：起点 +8</text>
+<rect x="25" y="220" width="84" height="70" rx="8" fill="#e8f2fc" stroke="#1769aa" stroke-width="1.5"/>
+<text x="67.0" y="249.0" text-anchor="middle" font-weight="700">+8</text>
+<text x="67.0" y="273.0" text-anchor="middle">state</text>
+<rect x="113" y="220" width="84" height="70" rx="8" fill="#eef0f3" stroke="#667080" stroke-width="1.5"/>
+<text x="155.0" y="249.0" text-anchor="middle" font-weight="700">+9</text>
+<text x="155.0" y="273.0" text-anchor="middle">填充</text>
+<rect x="201" y="220" width="84" height="70" rx="8" fill="#eef0f3" stroke="#667080" stroke-width="1.5"/>
+<text x="243.0" y="249.0" text-anchor="middle" font-weight="700">+10</text>
+<text x="243.0" y="273.0" text-anchor="middle">填充</text>
+<rect x="289" y="220" width="84" height="70" rx="8" fill="#eef0f3" stroke="#667080" stroke-width="1.5"/>
+<text x="331.0" y="249.0" text-anchor="middle" font-weight="700">+11</text>
+<text x="331.0" y="273.0" text-anchor="middle">填充</text>
+<rect x="377" y="220" width="84" height="70" rx="8" fill="#e8f5ec" stroke="#217346" stroke-width="1.5"/>
+<text x="419.0" y="249.0" text-anchor="middle" font-weight="700">+12</text>
+<text x="419.0" y="273.0" text-anchor="middle">count</text>
+<rect x="465" y="220" width="84" height="70" rx="8" fill="#e8f5ec" stroke="#217346" stroke-width="1.5"/>
+<text x="507.0" y="249.0" text-anchor="middle" font-weight="700">+13</text>
+<text x="507.0" y="273.0" text-anchor="middle">count</text>
+<rect x="553" y="220" width="84" height="70" rx="8" fill="#e8f5ec" stroke="#217346" stroke-width="1.5"/>
+<text x="595.0" y="249.0" text-anchor="middle" font-weight="700">+14</text>
+<text x="595.0" y="273.0" text-anchor="middle">count</text>
+<rect x="641" y="220" width="84" height="70" rx="8" fill="#e8f5ec" stroke="#217346" stroke-width="1.5"/>
+<text x="683.0" y="249.0" text-anchor="middle" font-weight="700">+15</text>
+<text x="683.0" y="273.0" text-anchor="middle">count</text>
+<text x="25" y="320" text-anchor="start">state 占 1 字节；count 占 4 字节；每个记录跨 8 字节。</text>
+<line x1="24" y1="378" x2="48" y2="378" stroke="#1769aa"/>
+<text x="54" y="383" text-anchor="start">1 字节字段</text>
+<line x1="172" y1="378" x2="196" y2="378" stroke="#667080"/>
+<text x="202" y="383" text-anchor="start">3 字节填充</text>
+<line x1="320" y1="378" x2="344" y2="378" stroke="#217346"/>
+<text x="350" y="383" text-anchor="start">4 字节字段</text>
+</g></svg>

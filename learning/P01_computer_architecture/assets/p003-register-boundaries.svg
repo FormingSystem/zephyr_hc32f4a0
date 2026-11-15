@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="505" viewBox="0 0 760 505" role="img" aria-labelledby="title desc">
+<title id="title">CPU 寄存器与 RAM 外设的真实边界</title>
+<desc id="desc">CPU 寄存器与 RAM 外设的真实边界。原创教学示意；箭头与颜色含义见图内图例和正文。</desc>
+<defs>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1769aa"/></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7540a0"/></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#b45b13"/></marker>
+<marker id="green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#217346"/></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#667080"/></marker>
+</defs>
+<rect width="760" height="100%" fill="#fff"/>
+<g font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="16" fill="#243447">
+<rect x="20" y="20" width="465" height="390" rx="8" fill="#e8f2fc" stroke="#1769aa" stroke-width="1.5"/>
+<text x="38" y="46" text-anchor="start" font-weight="700">Cortex-M7 CPU 内部（教学裁剪）</text>
+<rect x="40" y="70" width="235" height="80" rx="8" fill="#e8f2fc" stroke="#1769aa" stroke-width="1.5"/>
+<text x="157.5" y="104.0" text-anchor="middle" font-weight="700">通用寄存器 r0–r12</text>
+<text x="157.5" y="128.0" text-anchor="middle">32 位数值 / 地址</text>
+<rect x="305" y="70" width="160" height="80" rx="8" fill="#e8f2fc" stroke="#1769aa" stroke-width="1.5"/>
+<text x="385.0" y="104.0" text-anchor="middle" font-weight="700">xPSR</text>
+<text x="385.0" y="128.0" text-anchor="middle">条件 / 状态</text>
+<rect x="40" y="190" width="235" height="95" rx="8" fill="#e8f2fc" stroke="#1769aa" stroke-width="1.5"/>
+<text x="157.5" y="219.5" text-anchor="middle" font-weight="700">PC：执行位置</text>
+<text x="157.5" y="243.5" text-anchor="middle">SP：栈地址</text>
+<text x="157.5" y="267.5" text-anchor="middle">LR：返回信息</text>
+<rect x="305" y="205" width="160" height="65" rx="8" fill="#fff0df" stroke="#b45b13" stroke-width="1.5"/>
+<text x="385.0" y="231.5" text-anchor="middle" font-weight="700">ALU</text>
+<text x="385.0" y="255.5" text-anchor="middle">计算并产生标志</text>
+<rect x="305" y="325" width="160" height="55" rx="8" fill="#e8f5ec" stroke="#217346" stroke-width="1.5"/>
+<text x="385.0" y="358.5" text-anchor="middle" font-weight="700">加载 / 存储接口</text>
+<rect x="545" y="70" width="190" height="80" rx="8" fill="#e8f5ec" stroke="#217346" stroke-width="1.5"/>
+<text x="640.0" y="104.0" text-anchor="middle" font-weight="700">SRAM 中的对象</text>
+<text x="640.0" y="128.0" text-anchor="middle">数组 / 变量 / 栈</text>
+<rect x="545" y="285" width="190" height="80" rx="8" fill="#e8f5ec" stroke="#217346" stroke-width="1.5"/>
+<text x="640.0" y="319.0" text-anchor="middle" font-weight="700">GPIO 外设寄存器</text>
+<text x="640.0" y="343.0" text-anchor="middle">配置 / 引脚状态</text>
+<polyline points="275,110 290,110 290,235 305,235" fill="none" stroke="#1769aa" stroke-width="2" marker-end="url(#blue)"/>
+<polyline points="385,205 385,150" fill="none" stroke="#7540a0" stroke-width="2" marker-end="url(#purple)"/>
+<polyline points="275,237 305,237" fill="none" stroke="#7540a0" stroke-width="2" marker-end="url(#purple)"/>
+<polyline points="385,270 385,325" fill="none" stroke="#217346" stroke-width="2" marker-end="url(#green)"/>
+<polyline points="465,352 515,352 515,110 545,110" fill="none" stroke="#217346" stroke-width="2" marker-end="url(#green)"/>
+<polyline points="515,325 545,325" fill="none" stroke="#217346" stroke-width="2" marker-end="url(#green)"/>
+<text x="24" y="445" text-anchor="start">CPU 外部 ≠ 芯片外部；栈数据在 RAM，SP 地址在 CPU。</text>
+<line x1="24" y1="478" x2="48" y2="478" stroke="#1769aa"/>
+<text x="54" y="483" text-anchor="start">核心状态</text>
+<line x1="140" y1="478" x2="164" y2="478" stroke="#7540a0"/>
+<text x="170" y="483" text-anchor="start">控制</text>
+<line x1="224" y1="478" x2="248" y2="478" stroke="#217346"/>
+<text x="254" y="483" text-anchor="start">存储/外设访问</text>
+</g></svg>

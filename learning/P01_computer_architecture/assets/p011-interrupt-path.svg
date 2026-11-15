@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="480" viewBox="0 0 760 480" role="img" aria-labelledby="title desc">
+<title id="title">GPIO 外部事件到 NVIC 与 CPU 处理的路径</title>
+<desc id="desc">GPIO 外部事件到 NVIC 与 CPU 处理的路径。原创教学示意；箭头与颜色含义见图内图例和正文。</desc>
+<defs>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1769aa"/></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7540a0"/></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#b45b13"/></marker>
+<marker id="green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#217346"/></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#667080"/></marker>
+</defs>
+<rect width="760" height="100%" fill="#fff"/>
+<g font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="16" fill="#243447">
+<rect x="20" y="35" width="210" height="65" rx="8" fill="#eef0f3" stroke="#667080" stroke-width="1.5"/>
+<text x="125.0" y="61.5" text-anchor="middle" font-weight="700">初始化代码</text>
+<text x="125.0" y="85.5" text-anchor="middle">选来源 / 边沿 / 优先级</text>
+<rect x="20" y="165" width="125" height="80" rx="8" fill="#e8f2fc" stroke="#1769aa" stroke-width="1.5"/>
+<text x="82.5" y="199.0" text-anchor="middle" font-weight="700">PC13</text>
+<text x="82.5" y="223.0" text-anchor="middle">按钮边沿</text>
+<rect x="195" y="165" width="145" height="80" rx="8" fill="#f1eafa" stroke="#7540a0" stroke-width="1.5"/>
+<text x="267.5" y="199.0" text-anchor="middle" font-weight="700">EXTI13</text>
+<text x="267.5" y="223.0" text-anchor="middle">锁存 / 允许</text>
+<rect x="390" y="165" width="140" height="80" rx="8" fill="#f1eafa" stroke="#7540a0" stroke-width="1.5"/>
+<text x="460.0" y="199.0" text-anchor="middle" font-weight="700">NVIC IRQ40</text>
+<text x="460.0" y="223.0" text-anchor="middle">挂起 / 仲裁</text>
+<rect x="580" y="165" width="160" height="80" rx="8" fill="#fff0df" stroke="#b45b13" stroke-width="1.5"/>
+<text x="660.0" y="199.0" text-anchor="middle" font-weight="700">CPU 执行 ISR</text>
+<text x="660.0" y="223.0" text-anchor="middle">读来源、确认</text>
+<polyline points="145,205 195,205" fill="none" stroke="#1769aa" stroke-width="2" marker-end="url(#blue)"/>
+<polyline points="340,205 390,205" fill="none" stroke="#7540a0" stroke-width="2" marker-end="url(#purple)"/>
+<polyline points="530,205 580,205" fill="none" stroke="#7540a0" stroke-width="2" marker-end="url(#purple)"/>
+<polyline points="125,100 125,125 267,125 267,165" fill="none" stroke="#667080" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#gray)"/>
+<polyline points="190,100 190,115 460,115 460,165" fill="none" stroke="#667080" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#gray)"/>
+<rect x="440" y="320" width="260" height="70" rx="8" fill="#fff0df" stroke="#b45b13" stroke-width="1.5"/>
+<text x="570.0" y="349.0" text-anchor="middle" font-weight="700">内存中的待处理状态/数据</text>
+<text x="570.0" y="373.0" text-anchor="middle">由 ISR 写，普通执行流读取</text>
+<polyline points="660,245 660,320" fill="none" stroke="#b45b13" stroke-width="2" marker-end="url(#orange)"/>
+<text x="670" y="285" text-anchor="start" fill="#b45b13">写数据</text>
+<text x="24" y="294" text-anchor="start">SYSCFG 选择 PC13 → EXTI13</text>
+<text x="24" y="418" text-anchor="start">中断请求负责通知；字节或按键内容仍须由代码取得。</text>
+<line x1="24" y1="453" x2="48" y2="453" stroke="#1769aa"/>
+<text x="54" y="458" text-anchor="start">信号/数据</text>
+<line x1="156" y1="453" x2="180" y2="453" stroke="#7540a0"/>
+<text x="186" y="458" text-anchor="start">请求</text>
+<line x1="240" y1="453" x2="264" y2="453" stroke="#b45b13"/>
+<text x="270" y="458" text-anchor="start">处理结果</text>
+<line x1="356" y1="453" x2="380" y2="453" stroke="#667080"/>
+<text x="386" y="458" text-anchor="start">配置</text>
+</g></svg>

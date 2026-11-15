@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="450" viewBox="0 0 760 450" role="img" aria-labelledby="title desc">
+<title id="title">CPU 数据通路与控制通路</title>
+<desc id="desc">CPU 数据通路与控制通路。原创教学示意；箭头与颜色含义见图内图例和正文。</desc>
+<defs>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1769aa"/></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7540a0"/></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#b45b13"/></marker>
+<marker id="green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#217346"/></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#667080"/></marker>
+</defs>
+<rect width="760" height="100%" fill="#fff"/>
+<g font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="16" fill="#243447">
+<rect x="25" y="30" width="130" height="65" rx="8" fill="#e8f2fc" stroke="#1769aa" stroke-width="1.5"/>
+<text x="90.0" y="56.5" text-anchor="middle" font-weight="700">PC</text>
+<text x="90.0" y="80.5" text-anchor="middle">取指位置</text>
+<rect x="225" y="30" width="170" height="65" rx="8" fill="#e8f2fc" stroke="#1769aa" stroke-width="1.5"/>
+<text x="310.0" y="56.5" text-anchor="middle" font-weight="700">指令存储器</text>
+<text x="310.0" y="80.5" text-anchor="middle">返回指令编码</text>
+<rect x="480" y="30" width="250" height="65" rx="8" fill="#f1eafa" stroke="#7540a0" stroke-width="1.5"/>
+<text x="605.0" y="56.5" text-anchor="middle" font-weight="700">译码与控制</text>
+<text x="605.0" y="80.5" text-anchor="middle">选择来源、操作、目的</text>
+<polyline points="155,62 225,62" fill="none" stroke="#1769aa" stroke-width="2" marker-end="url(#blue)"/>
+<polyline points="395,62 480,62" fill="none" stroke="#1769aa" stroke-width="2" marker-end="url(#blue)"/>
+<rect x="25" y="220" width="210" height="90" rx="8" fill="#e8f2fc" stroke="#1769aa" stroke-width="1.5"/>
+<text x="130.0" y="259.0" text-anchor="middle" font-weight="700">寄存器组</text>
+<text x="130.0" y="283.0" text-anchor="middle">r0、r1 等保存操作数</text>
+<rect x="315" y="220" width="180" height="90" rx="8" fill="#e8f2fc" stroke="#1769aa" stroke-width="1.5"/>
+<text x="405.0" y="259.0" text-anchor="middle" font-weight="700">ALU</text>
+<text x="405.0" y="283.0" text-anchor="middle">加减 / 逻辑</text>
+<rect x="575" y="220" width="155" height="90" rx="8" fill="#e8f5ec" stroke="#217346" stroke-width="1.5"/>
+<text x="652.5" y="259.0" text-anchor="middle" font-weight="700">结果</text>
+<text x="652.5" y="283.0" text-anchor="middle">写回目标</text>
+<polyline points="235,265 315,265" fill="none" stroke="#1769aa" stroke-width="2" marker-end="url(#blue)"/>
+<text x="242" y="250" text-anchor="start" fill="#1769aa">读数值</text>
+<polyline points="495,265 575,265" fill="none" stroke="#1769aa" stroke-width="2" marker-end="url(#blue)"/>
+<polyline points="605,95 605,150 405,150 405,220" fill="none" stroke="#7540a0" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#purple)"/>
+<polyline points="560,95 560,125 130,125 130,220" fill="none" stroke="#7540a0" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#purple)"/>
+<polyline points="650,310 650,360 130,360 130,310" fill="none" stroke="#217346" stroke-width="2" marker-end="url(#green)"/>
+<text x="350" y="349" text-anchor="start" fill="#217346">写回</text>
+<text x="25" y="396" text-anchor="start">取指 → 译码 → 执行是功能顺序，不是固定逐拍计时。</text>
+<line x1="24" y1="423" x2="48" y2="423" stroke="#1769aa"/>
+<text x="54" y="428" text-anchor="start">指令/数值</text>
+<line x1="156" y1="423" x2="180" y2="423" stroke="#7540a0"/>
+<text x="186" y="428" text-anchor="start">控制选择</text>
+<line x1="272" y1="423" x2="296" y2="423" stroke="#217346"/>
+<text x="302" y="428" text-anchor="start">结果写回</text>
+</g></svg>

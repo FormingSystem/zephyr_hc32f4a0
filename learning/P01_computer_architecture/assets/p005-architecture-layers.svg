@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="455" viewBox="0 0 760 455" role="img" aria-labelledby="title desc">
+<title id="title">架构规则到处理器核再到 H743 与开发板</title>
+<desc id="desc">架构规则到处理器核再到 H743 与开发板。原创教学示意；箭头与颜色含义见图内图例和正文。</desc>
+<defs>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1769aa"/></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7540a0"/></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#b45b13"/></marker>
+<marker id="green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#217346"/></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#667080"/></marker>
+</defs>
+<rect width="760" height="100%" fill="#fff"/>
+<g font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="16" fill="#243447">
+<rect x="25" y="25" width="710" height="60" rx="8" fill="#f1eafa" stroke="#7540a0" stroke-width="1.5"/>
+<text x="380.0" y="61.0" text-anchor="middle" font-weight="700">Armv7E-M：指令、寄存器、异常等软件可见规则</text>
+<rect x="25" y="125" width="710" height="60" rx="8" fill="#e8f2fc" stroke="#1769aa" stroke-width="1.5"/>
+<text x="380.0" y="161.0" text-anchor="middle" font-weight="700">Cortex-M7：用执行单元、流水线、缓存等实现规则</text>
+<rect x="25" y="225" width="710" height="60" rx="8" fill="#e8f5ec" stroke="#217346" stroke-width="1.5"/>
+<text x="380.0" y="261.0" text-anchor="middle" font-weight="700">STM32H743：集成 M7、Flash、RAM、互连与外设</text>
+<rect x="25" y="325" width="710" height="60" rx="8" fill="#fff0df" stroke="#b45b13" stroke-width="1.5"/>
+<text x="380.0" y="361.0" text-anchor="middle" font-weight="700">开发板：连接供电、晶振、按钮、显示器与调试接口</text>
+<polyline points="380,85 380,125" fill="none" stroke="#7540a0" stroke-width="2" marker-end="url(#purple)"/>
+<text x="405" y="111" text-anchor="start">实现</text>
+<polyline points="380,185 380,225" fill="none" stroke="#7540a0" stroke-width="2" marker-end="url(#purple)"/>
+<text x="405" y="211" text-anchor="start">芯片集成</text>
+<polyline points="380,285 380,325" fill="none" stroke="#7540a0" stroke-width="2" marker-end="url(#purple)"/>
+<text x="405" y="311" text-anchor="start">板级连接</text>
+<line x1="24" y1="428" x2="48" y2="428" stroke="#7540a0"/>
+<text x="54" y="433" text-anchor="start">架构/实现关系</text>
+<line x1="188" y1="428" x2="212" y2="428" stroke="#1769aa"/>
+<text x="218" y="433" text-anchor="start">处理器核</text>
+<line x1="304" y1="428" x2="328" y2="428" stroke="#217346"/>
+<text x="334" y="433" text-anchor="start">芯片</text>
+<line x1="388" y1="428" x2="412" y2="428" stroke="#b45b13"/>
+<text x="418" y="433" text-anchor="start">开发板</text>
+</g></svg>

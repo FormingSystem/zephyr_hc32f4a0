@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="500" viewBox="0 0 760 500" role="img" aria-labelledby="title desc">
+<title id="title">异常返回恢复基本帧</title>
+<desc id="desc">异常返回恢复基本帧。原创教学示意；箭头与颜色含义见图内图例和正文。</desc>
+<defs>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1769aa"/></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7540a0"/></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#b45b13"/></marker>
+<marker id="green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#217346"/></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#667080"/></marker>
+</defs>
+<rect width="760" height="100%" fill="#fff"/>
+<g font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="16" fill="#243447">
+<rect x="25" y="40" width="250" height="220" rx="8" fill="#e8f2fc" stroke="#1769aa" stroke-width="1.5"/>
+<text x="150.0" y="120.0" text-anchor="middle" font-weight="700">CPU 当前寄存器</text>
+<text x="150.0" y="144.0" text-anchor="middle">r0、r1、r2、r3</text>
+<text x="150.0" y="168.0" text-anchor="middle">r12、LR</text>
+<text x="150.0" y="192.0" text-anchor="middle">PC、xPSR</text>
+<rect x="455" y="40" width="275" height="280" rx="8" fill="#e8f2fc" stroke="#1769aa" stroke-width="1.5"/>
+<text x="592.5" y="90.0" text-anchor="middle" font-weight="700">被打断上下文的栈</text>
+<text x="592.5" y="114.0" text-anchor="middle">+0x00  r0</text>
+<text x="592.5" y="138.0" text-anchor="middle">+0x04  r1</text>
+<text x="592.5" y="162.0" text-anchor="middle">+0x08  r2</text>
+<text x="592.5" y="186.0" text-anchor="middle">+0x0C  r3</text>
+<text x="592.5" y="210.0" text-anchor="middle">+0x10  r12</text>
+<text x="592.5" y="234.0" text-anchor="middle">+0x14  原 LR</text>
+<text x="592.5" y="258.0" text-anchor="middle">+0x18  返回 PC</text>
+<text x="592.5" y="282.0" text-anchor="middle">+0x1C  xPSR</text>
+<polyline points="455,165 275,165" fill="none" stroke="#217346" stroke-width="2" marker-end="url(#green)"/>
+<text x="326" y="151" text-anchor="start" fill="#217346">硬件恢复</text>
+<rect x="25" y="355" width="705" height="70" rx="8" fill="#f1eafa" stroke="#7540a0" stroke-width="1.5"/>
+<text x="377.5" y="384.0" text-anchor="middle" font-weight="700">返回：解释 EXC_RETURN，选择栈并恢复执行流</text>
+<text x="377.5" y="408.0" text-anchor="middle">基本帧 32 字节；实际还可能有对齐填充或浮点扩展</text>
+<polyline points="150,355 150,260" fill="none" stroke="#7540a0" stroke-width="2" marker-end="url(#purple)"/>
+<line x1="24" y1="473" x2="48" y2="473" stroke="#217346"/>
+<text x="54" y="478" text-anchor="start">恢复</text>
+<line x1="108" y1="473" x2="132" y2="473" stroke="#1769aa"/>
+<text x="138" y="478" text-anchor="start">原程序现场</text>
+<line x1="240" y1="473" x2="264" y2="473" stroke="#7540a0"/>
+<text x="270" y="478" text-anchor="start">控制转移</text>
+</g></svg>

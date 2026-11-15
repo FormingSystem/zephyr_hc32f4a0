@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="520" viewBox="0 0 760 520" role="img" aria-labelledby="title desc">
+<title id="title">显示与按钮两份 TCB 和线程栈共享一个 CPU</title>
+<desc id="desc">显示与按钮两份 TCB 和线程栈共享一个 CPU。原创教学示意；箭头与颜色含义见图内图例和正文。</desc>
+<defs>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1769aa"/></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7540a0"/></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#b45b13"/></marker>
+<marker id="green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#217346"/></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#667080"/></marker>
+</defs>
+<rect width="760" height="100%" fill="#fff"/>
+<g font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="16" fill="#243447">
+<rect x="20" y="30" width="215" height="90" rx="8" fill="#fff0df" stroke="#b45b13" stroke-width="1.5"/>
+<text x="127.5" y="57.0" text-anchor="middle" font-weight="700">显示线程 TCB</text>
+<text x="127.5" y="81.0" text-anchor="middle">状态 / 优先级</text>
+<text x="127.5" y="105.0" text-anchor="middle">保存的栈指针</text>
+<rect x="525" y="30" width="215" height="90" rx="8" fill="#e8f5ec" stroke="#217346" stroke-width="1.5"/>
+<text x="632.5" y="57.0" text-anchor="middle" font-weight="700">按钮线程 TCB</text>
+<text x="632.5" y="81.0" text-anchor="middle">状态 / 优先级</text>
+<text x="632.5" y="105.0" text-anchor="middle">保存的栈指针</text>
+<rect x="20" y="210" width="215" height="160" rx="8" fill="#fff0df" stroke="#b45b13" stroke-width="1.5"/>
+<text x="127.5" y="260.0" text-anchor="middle" font-weight="700">显示线程栈</text>
+<text x="127.5" y="284.0" text-anchor="middle">软件保存：r4–r11 等</text>
+<text x="127.5" y="308.0" text-anchor="middle">硬件基本帧</text>
+<text x="127.5" y="332.0" text-anchor="middle">局部变量 / 调用帧</text>
+<rect x="525" y="210" width="215" height="160" rx="8" fill="#e8f5ec" stroke="#217346" stroke-width="1.5"/>
+<text x="632.5" y="260.0" text-anchor="middle" font-weight="700">按钮线程栈</text>
+<text x="632.5" y="284.0" text-anchor="middle">软件保存：r4–r11 等</text>
+<text x="632.5" y="308.0" text-anchor="middle">硬件基本帧</text>
+<text x="632.5" y="332.0" text-anchor="middle">局部变量 / 调用帧</text>
+<rect x="285" y="220" width="190" height="130" rx="8" fill="#e8f2fc" stroke="#1769aa" stroke-width="1.5"/>
+<text x="380.0" y="267.0" text-anchor="middle" font-weight="700">唯一 CPU</text>
+<text x="380.0" y="291.0" text-anchor="middle">当前寄存器</text>
+<text x="380.0" y="315.0" text-anchor="middle">当前 PSP</text>
+<rect x="285" y="30" width="190" height="90" rx="8" fill="#f1eafa" stroke="#7540a0" stroke-width="1.5"/>
+<text x="380.0" y="69.0" text-anchor="middle" font-weight="700">调度器</text>
+<text x="380.0" y="93.0" text-anchor="middle">选择就绪线程</text>
+<polyline points="125,120 125,210" fill="none" stroke="#667080" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#gray)"/>
+<polyline points="630,120 630,210" fill="none" stroke="#667080" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#gray)"/>
+<polyline points="285,275 235,275" fill="none" stroke="#b45b13" stroke-width="2" marker-end="url(#orange)"/>
+<polyline points="525,310 475,310" fill="none" stroke="#217346" stroke-width="2" marker-end="url(#green)"/>
+<polyline points="475,75 525,75" fill="none" stroke="#7540a0" stroke-width="2" marker-end="url(#purple)"/>
+<polyline points="380,120 380,220" fill="none" stroke="#7540a0" stroke-width="2" marker-end="url(#purple)"/>
+<text x="258" y="261" text-anchor="middle" fill="#b45b13">保存</text>
+<text x="500" y="335" text-anchor="middle" fill="#217346">恢复</text>
+<text x="25" y="425" text-anchor="start">① 保存显示现场与 SP  →  ② 选按钮 TCB  →  ③ 恢复按钮现场</text>
+<text x="25" y="458" text-anchor="start">两个栈一直在 RAM；CPU 当前只执行一条线程。</text>
+<line x1="24" y1="493" x2="48" y2="493" stroke="#b45b13"/>
+<text x="54" y="498" text-anchor="start">保存</text>
+<line x1="108" y1="493" x2="132" y2="493" stroke="#217346"/>
+<text x="138" y="498" text-anchor="start">恢复</text>
+<line x1="192" y1="493" x2="216" y2="493" stroke="#7540a0"/>
+<text x="222" y="498" text-anchor="start">调度选择</text>
+<line x1="308" y1="493" x2="332" y2="493" stroke="#667080"/>
+<text x="338" y="498" text-anchor="start">栈引用</text>
+</g></svg>

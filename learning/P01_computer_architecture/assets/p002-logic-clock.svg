@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="410" viewBox="0 0 760 410" role="img" aria-labelledby="title desc">
+<title id="title">组合逻辑传播与时钟边沿保存状态</title>
+<desc id="desc">组合逻辑传播与时钟边沿保存状态。原创教学示意；箭头与颜色含义见图内图例和正文。</desc>
+<defs>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1769aa"/></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7540a0"/></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#b45b13"/></marker>
+<marker id="green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#217346"/></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#667080"/></marker>
+</defs>
+<rect width="760" height="100%" fill="#fff"/>
+<g font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="16" fill="#243447">
+<rect x="30" y="25" width="180" height="70" rx="8" fill="#e8f2fc" stroke="#1769aa" stroke-width="1.5"/>
+<text x="120.0" y="54.0" text-anchor="middle" font-weight="700">旧状态寄存器</text>
+<text x="120.0" y="78.0" text-anchor="middle">当前 count</text>
+<rect x="290" y="25" width="180" height="70" rx="8" fill="#e8f2fc" stroke="#1769aa" stroke-width="1.5"/>
+<text x="380.0" y="54.0" text-anchor="middle" font-weight="700">MUX / ALU</text>
+<text x="380.0" y="78.0" text-anchor="middle">选择并计算下一值</text>
+<rect x="550" y="25" width="180" height="70" rx="8" fill="#e8f5ec" stroke="#217346" stroke-width="1.5"/>
+<text x="640.0" y="54.0" text-anchor="middle" font-weight="700">目标寄存器</text>
+<text x="640.0" y="78.0" text-anchor="middle">边沿到来时保存</text>
+<polyline points="210,60 290,60" fill="none" stroke="#1769aa" stroke-width="2" marker-end="url(#blue)"/>
+<polyline points="470,60 550,60" fill="none" stroke="#1769aa" stroke-width="2" marker-end="url(#blue)"/>
+<text x="30" y="160" text-anchor="start">组合输出</text>
+<rect x="170" y="136" width="235" height="36" rx="8" fill="#eef0f3" stroke="#667080" stroke-width="1.5"/>
+<rect x="405" y="136" width="310" height="36" rx="8" fill="#e8f2fc" stroke="#1769aa" stroke-width="1.5"/>
+<text x="185" y="160" text-anchor="start">传播中：尚未稳定</text>
+<text x="430" y="160" text-anchor="start">已稳定的下一值</text>
+<text x="30" y="225" text-anchor="start">时钟 CLK</text>
+<path d="M170 230 H510 V195 H595 V230 H715" fill="none" stroke="#667080" stroke-width="2"/>
+<line x1="510" y1="120" x2="510" y2="310" stroke="#217346" stroke-dasharray="4 4"/>
+<text x="30" y="290" text-anchor="start">保存状态</text>
+<rect x="170" y="267" width="340" height="36" rx="8" fill="#eef0f3" stroke="#667080" stroke-width="1.5"/>
+<rect x="510" y="267" width="205" height="36" rx="8" fill="#e8f5ec" stroke="#217346" stroke-width="1.5"/>
+<text x="190" y="291" text-anchor="start">保持旧值</text>
+<text x="535" y="291" text-anchor="start">保存新值</text>
+<text x="30" y="345" text-anchor="start">示意：先留出传播与稳定时间，再在有效边沿采样。</text>
+<line x1="24" y1="383" x2="48" y2="383" stroke="#1769aa"/>
+<text x="54" y="388" text-anchor="start">稳定数据</text>
+<line x1="140" y1="383" x2="164" y2="383" stroke="#217346"/>
+<text x="170" y="388" text-anchor="start">边沿后保存</text>
+<line x1="272" y1="383" x2="296" y2="383" stroke="#667080"/>
+<text x="302" y="388" text-anchor="start">未更新/传播</text>
+</g></svg>

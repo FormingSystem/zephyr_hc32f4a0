@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="395" viewBox="0 0 760 395" role="img"><title>同一个字节分别按无符号和有符号方式加载</title><desc>原创教学关系图；颜色与箭头含义见本图图例和正文，不代表物理布局或实测周期。</desc><defs>
+<marker id="a1469aa" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8Z" fill="#1469aa"/></marker>
+<marker id="a7944ad" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8Z" fill="#7944ad"/></marker>
+<marker id="a22764a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8Z" fill="#22764a"/></marker>
+<marker id="aae5711" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8Z" fill="#ae5711"/></marker>
+<marker id="a607181" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8Z" fill="#607181"/></marker>
+</defs>
+<rect width="760" height="395" fill="white"/>
+<g font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="16" fill="#203347">
+<text x="380" y="28" text-anchor="middle" font-weight="700">教学地址：samples = 0x20000000；访问 samples[1]</text>
+<rect x="24" y="52" width="166" height="76" rx="6" fill="#f3f5f7" stroke="#607181" stroke-width="1.5"/>
+<text x="107.0" y="84.0" text-anchor="middle" font-weight="700">地址 +0</text>
+<text x="107.0" y="108.0" text-anchor="middle">字节 0x00</text>
+<rect x="208" y="52" width="166" height="76" rx="6" fill="#fff2e6" stroke="#ae5711" stroke-width="1.5"/>
+<text x="291.0" y="84.0" text-anchor="middle" font-weight="700">地址 +1</text>
+<text x="291.0" y="108.0" text-anchor="middle">字节 0xFE</text>
+<rect x="392" y="52" width="166" height="76" rx="6" fill="#f3f5f7" stroke="#607181" stroke-width="1.5"/>
+<text x="475.0" y="84.0" text-anchor="middle" font-weight="700">地址 +2</text>
+<text x="475.0" y="108.0" text-anchor="middle">字节 0x12</text>
+<rect x="576" y="52" width="166" height="76" rx="6" fill="#f3f5f7" stroke="#607181" stroke-width="1.5"/>
+<text x="659.0" y="84.0" text-anchor="middle" font-weight="700">地址 +3</text>
+<text x="659.0" y="108.0" text-anchor="middle">字节 0x34</text>
+<path d="M291 128 V164 H190 V200" fill="none" stroke="#1469aa" stroke-width="2" marker-end="url(#a1469aa)"/>
+<path d="M291 164 H570 V200" fill="none" stroke="#7944ad" stroke-width="2" marker-end="url(#a7944ad)"/>
+<rect x="24" y="200" width="332" height="104" rx="6" fill="#eaf3ff" stroke="#1469aa" stroke-width="1.5"/>
+<text x="190.0" y="234.0" text-anchor="middle" font-weight="700">LDRB：零扩展</text>
+<text x="190.0" y="258.0" text-anchor="middle">r0 = 0x000000FE</text>
+<text x="190.0" y="282.0" text-anchor="middle">uint32_t 值为 254</text>
+<rect x="404" y="200" width="332" height="104" rx="6" fill="#f3edfa" stroke="#7944ad" stroke-width="1.5"/>
+<text x="570.0" y="234.0" text-anchor="middle" font-weight="700">LDRSB：符号扩展</text>
+<text x="570.0" y="258.0" text-anchor="middle">r0 = 0xFFFFFFFE</text>
+<text x="570.0" y="282.0" text-anchor="middle">int32_t 值为 −2</text>
+<text x="24" y="340" text-anchor="start">只读取 +1 的一个字节；没有要求先把四个字节作为 C 的 uint32_t 读取。</text>
+<text x="24" y="380" text-anchor="start">橙：被访问的字节　灰：未访问的邻居　蓝：零扩展　紫：符号扩展</text>
+</g></svg>

@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="495" viewBox="0 0 760 495" role="img"><title>状态寄存器怎样连接比较与分支</title><desc>原创教学关系图；颜色与箭头含义见本图图例和正文，不代表物理布局或实测周期。</desc><defs>
+<marker id="a1469aa" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8Z" fill="#1469aa"/></marker>
+<marker id="a7944ad" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8Z" fill="#7944ad"/></marker>
+<marker id="a22764a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8Z" fill="#22764a"/></marker>
+<marker id="aae5711" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8Z" fill="#ae5711"/></marker>
+<marker id="a607181" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8Z" fill="#607181"/></marker>
+</defs>
+<rect width="760" height="495" fill="white"/>
+<g font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="16" fill="#203347">
+<text x="380" y="28" text-anchor="middle" font-weight="700">xPSR 的三个视图：状态字段的组合，不是三份独立副本</text>
+<rect x="24" y="50" width="226" height="124" rx="6" fill="#fff2e6" stroke="#ae5711" stroke-width="1.5"/>
+<text x="137.0" y="94.0" text-anchor="middle" font-weight="700">APSR：运算状态</text>
+<text x="137.0" y="118.0" text-anchor="middle">N Z C V：位 31–28</text>
+<text x="137.0" y="142.0" text-anchor="middle">Q：27；GE：19–16</text>
+<rect x="267" y="50" width="226" height="124" rx="6" fill="#f3edfa" stroke="#7944ad" stroke-width="1.5"/>
+<text x="380.0" y="94.0" text-anchor="middle" font-weight="700">EPSR：执行状态</text>
+<text x="380.0" y="118.0" text-anchor="middle">T：24（Thumb）</text>
+<text x="380.0" y="142.0" text-anchor="middle">IT：26–25、15–10</text>
+<rect x="510" y="50" width="226" height="124" rx="6" fill="#eaf3ff" stroke="#1469aa" stroke-width="1.5"/>
+<text x="623.0" y="94.0" text-anchor="middle" font-weight="700">IPSR：异常身份</text>
+<text x="623.0" y="118.0" text-anchor="middle">异常号：8–0</text>
+<text x="623.0" y="142.0" text-anchor="middle">普通 Thread 模式为 0</text>
+<text x="24" y="202" text-anchor="start">本图只列已解释字段；未列位不表示可以任意写入。</text>
+<rect x="24" y="238" width="220" height="90" rx="6" fill="#eaf3ff" stroke="#1469aa" stroke-width="1.5"/>
+<text x="134.0" y="265.0" text-anchor="middle" font-weight="700">CMP r0, r1</text>
+<text x="134.0" y="289.0" text-anchor="middle">做减法以产生标志</text>
+<text x="134.0" y="313.0" text-anchor="middle">不把差值写回 r0</text>
+<rect x="295" y="238" width="190" height="90" rx="6" fill="#fff2e6" stroke="#ae5711" stroke-width="1.5"/>
+<text x="390.0" y="265.0" text-anchor="middle" font-weight="700">APSR.NZCV</text>
+<text x="390.0" y="289.0" text-anchor="middle">锁存比较结果</text>
+<text x="390.0" y="313.0" text-anchor="middle">下一条条件指令读取</text>
+<path d="M244 283 H295" fill="none" stroke="#ae5711" stroke-width="2" marker-end="url(#aae5711)"/>
+<rect x="540" y="221" width="196" height="68" rx="6" fill="#eaf5ed" stroke="#22764a" stroke-width="1.5"/>
+<text x="638.0" y="249.0" text-anchor="middle" font-weight="700">无符号 HI / LS</text>
+<text x="638.0" y="273.0" text-anchor="middle">读取 C、Z</text>
+<rect x="540" y="318" width="196" height="68" rx="6" fill="#eaf5ed" stroke="#22764a" stroke-width="1.5"/>
+<text x="638.0" y="346.0" text-anchor="middle" font-weight="700">有符号 GT / LE</text>
+<text x="638.0" y="370.0" text-anchor="middle">读取 N、V、Z</text>
+<path d="M485 267 H540" fill="none" stroke="#22764a" stroke-width="2" marker-end="url(#a22764a)"/>
+<path d="M485 302 H510 V352 H540" fill="none" stroke="#22764a" stroke-width="2" marker-end="url(#a22764a)"/>
+<text x="24" y="422" text-anchor="start">例：0xFFFFFFFF 与 1 比较 → N=1，Z=0，C=1，V=0</text>
+<text x="24" y="449" text-anchor="start">无符号判断为大于；有符号判断为小于。寄存器比特没有改变。</text>
+<text x="24" y="480" text-anchor="start">蓝：输入 / 身份　橙：运算标志　紫：执行状态　绿：条件判断</text>
+</g></svg>

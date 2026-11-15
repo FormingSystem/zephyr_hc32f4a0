@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="580" viewBox="0 0 760 580" role="img"><title>Cortex-M7 核心寄存器编号与分工</title><desc>原创教学关系图；颜色与箭头含义见本图图例和正文，不代表物理布局或实测周期。</desc><defs>
+<marker id="a1469aa" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8Z" fill="#1469aa"/></marker>
+<marker id="a7944ad" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8Z" fill="#7944ad"/></marker>
+<marker id="a22764a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8Z" fill="#22764a"/></marker>
+<marker id="aae5711" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8Z" fill="#ae5711"/></marker>
+<marker id="a607181" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8Z" fill="#607181"/></marker>
+</defs>
+<rect width="760" height="580" fill="white"/>
+<g font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="16" fill="#203347">
+<text x="380" y="27" text-anchor="middle" font-weight="700">核心整数寄存器视图：每项 32 位；名称是指令操作数，不是地址</text>
+<rect x="24" y="45" width="336" height="37" rx="6" fill="#eaf3ff" stroke="#1469aa" stroke-width="1.5"/>
+<text x="192.0" y="69.5" text-anchor="middle" font-weight="700">r0  参数 / 返回值 / 临时值</text>
+<rect x="24" y="90" width="336" height="37" rx="6" fill="#eaf3ff" stroke="#1469aa" stroke-width="1.5"/>
+<text x="192.0" y="114.5" text-anchor="middle" font-weight="700">r1  参数 / 临时值</text>
+<rect x="24" y="135" width="336" height="37" rx="6" fill="#eaf3ff" stroke="#1469aa" stroke-width="1.5"/>
+<text x="192.0" y="159.5" text-anchor="middle" font-weight="700">r2  参数 / 临时值</text>
+<rect x="24" y="180" width="336" height="37" rx="6" fill="#eaf3ff" stroke="#1469aa" stroke-width="1.5"/>
+<text x="192.0" y="204.5" text-anchor="middle" font-weight="700">r3  参数 / 临时值</text>
+<rect x="24" y="225" width="336" height="37" rx="6" fill="#eaf5ed" stroke="#22764a" stroke-width="1.5"/>
+<text x="192.0" y="249.5" text-anchor="middle" font-weight="700">r4  常用保存寄存器</text>
+<rect x="24" y="270" width="336" height="37" rx="6" fill="#eaf5ed" stroke="#22764a" stroke-width="1.5"/>
+<text x="192.0" y="294.5" text-anchor="middle" font-weight="700">r5  常用保存寄存器</text>
+<rect x="24" y="315" width="336" height="37" rx="6" fill="#eaf5ed" stroke="#22764a" stroke-width="1.5"/>
+<text x="192.0" y="339.5" text-anchor="middle" font-weight="700">r6  常用保存寄存器</text>
+<rect x="24" y="360" width="336" height="37" rx="6" fill="#eaf5ed" stroke="#22764a" stroke-width="1.5"/>
+<text x="192.0" y="384.5" text-anchor="middle" font-weight="700">r7  常用保存寄存器</text>
+<rect x="400" y="45" width="336" height="37" rx="6" fill="#eaf5ed" stroke="#22764a" stroke-width="1.5"/>
+<text x="568.0" y="69.5" text-anchor="middle" font-weight="700">r8  常用保存寄存器</text>
+<rect x="400" y="90" width="336" height="37" rx="6" fill="#eaf5ed" stroke="#22764a" stroke-width="1.5"/>
+<text x="568.0" y="114.5" text-anchor="middle" font-weight="700">r9  用途取决于平台约定</text>
+<rect x="400" y="135" width="336" height="37" rx="6" fill="#eaf5ed" stroke="#22764a" stroke-width="1.5"/>
+<text x="568.0" y="159.5" text-anchor="middle" font-weight="700">r10  常用保存寄存器</text>
+<rect x="400" y="180" width="336" height="37" rx="6" fill="#eaf5ed" stroke="#22764a" stroke-width="1.5"/>
+<text x="568.0" y="204.5" text-anchor="middle" font-weight="700">r11  常用保存寄存器</text>
+<rect x="400" y="225" width="336" height="37" rx="6" fill="#eaf3ff" stroke="#1469aa" stroke-width="1.5"/>
+<text x="568.0" y="249.5" text-anchor="middle" font-weight="700">r12  调用间临时值</text>
+<rect x="400" y="270" width="336" height="37" rx="6" fill="#f3edfa" stroke="#7944ad" stroke-width="1.5"/>
+<text x="568.0" y="294.5" text-anchor="middle" font-weight="700">r13 / SP  当前使用的栈指针</text>
+<rect x="400" y="315" width="336" height="37" rx="6" fill="#f3edfa" stroke="#7944ad" stroke-width="1.5"/>
+<text x="568.0" y="339.5" text-anchor="middle" font-weight="700">r14 / LR  普通调用返回信息</text>
+<rect x="400" y="360" width="336" height="37" rx="6" fill="#f3edfa" stroke="#7944ad" stroke-width="1.5"/>
+<text x="568.0" y="384.5" text-anchor="middle" font-weight="700">r15 / PC  指令执行位置</text>
+<rect x="24" y="422" width="336" height="75" rx="6" fill="#f3edfa" stroke="#7944ad" stroke-width="1.5"/>
+<text x="192.0" y="453.5" text-anchor="middle" font-weight="700">xPSR / CONTROL / 屏蔽状态</text>
+<text x="192.0" y="477.5" text-anchor="middle">用状态操作与 MRS / MSR 访问</text>
+<rect x="400" y="422" width="336" height="75" rx="6" fill="#fff2e6" stroke="#ae5711" stroke-width="1.5"/>
+<text x="568.0" y="453.5" text-anchor="middle" font-weight="700">浮点视图：s0–s31 / d0–d15</text>
+<text x="568.0" y="477.5" text-anchor="middle">两种宽度别名，共享数据存储</text>
+<text x="24" y="526" text-anchor="start">r4 等保存责任属于调用约定；硬件不会阻止错误代码覆盖它们。</text>
+<text x="24" y="558" text-anchor="start">蓝：调用临时数据　绿：保存 / 平台约定　紫：执行控制　橙：浮点</text>
+</g></svg>

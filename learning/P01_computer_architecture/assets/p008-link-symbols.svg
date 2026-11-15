@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="425" viewBox="0 0 760 425" role="img" aria-labelledby="title desc">
+<title id="title">两个目标文件通过符号和重定位组成调用</title>
+<desc id="desc">两个目标文件通过符号和重定位组成调用。原创教学示意；箭头与颜色含义见图内图例和正文。</desc>
+<defs>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1769aa"/></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7540a0"/></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#b45b13"/></marker>
+<marker id="green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#217346"/></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#667080"/></marker>
+</defs>
+<rect width="760" height="100%" fill="#fff"/>
+<g font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="16" fill="#243447">
+<rect x="25" y="25" width="310" height="115" rx="8" fill="#e8f2fc" stroke="#1769aa" stroke-width="1.5"/>
+<text x="180.0" y="64.5" text-anchor="middle" font-weight="700">调用者 .o</text>
+<text x="180.0" y="88.5" text-anchor="middle">已编码的调用指令</text>
+<text x="180.0" y="112.5" text-anchor="middle">目标位置尚待链接</text>
+<rect x="425" y="25" width="310" height="115" rx="8" fill="#e8f2fc" stroke="#1769aa" stroke-width="1.5"/>
+<text x="580.0" y="64.5" text-anchor="middle" font-weight="700">被调函数 .o</text>
+<text x="580.0" y="88.5" text-anchor="middle">convert_sample 符号</text>
+<text x="580.0" y="112.5" text-anchor="middle">对应机器码</text>
+<rect x="190" y="245" width="380" height="90" rx="8" fill="#e8f5ec" stroke="#217346" stroke-width="1.5"/>
+<text x="380.0" y="272.0" text-anchor="middle" font-weight="700">链接后的 ELF</text>
+<text x="380.0" y="296.0" text-anchor="middle">分配函数地址，修正调用目标</text>
+<text x="380.0" y="320.0" text-anchor="middle">保留符号用于调试</text>
+<polyline points="180,140 180,195 285,195 285,245" fill="none" stroke="#7540a0" stroke-width="2" marker-end="url(#purple)"/>
+<polyline points="580,140 580,195 475,195 475,245" fill="none" stroke="#7540a0" stroke-width="2" marker-end="url(#purple)"/>
+<text x="270" y="185" text-anchor="start" fill="#7540a0">匹配符号与引用</text>
+<line x1="24" y1="398" x2="48" y2="398" stroke="#1769aa"/>
+<text x="54" y="403" text-anchor="start">对象文件</text>
+<line x1="140" y1="398" x2="164" y2="398" stroke="#7540a0"/>
+<text x="170" y="403" text-anchor="start">解析/修正</text>
+<line x1="272" y1="398" x2="296" y2="398" stroke="#217346"/>
+<text x="302" y="403" text-anchor="start">最终布局</text>
+</g></svg>

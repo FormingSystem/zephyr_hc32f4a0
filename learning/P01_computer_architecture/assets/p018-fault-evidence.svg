@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="455" viewBox="0 0 760 455" role="img" aria-labelledby="title desc">
+<title id="title">故障诊断先确认状态有效再关联可信现场</title>
+<desc id="desc">故障诊断先确认状态有效再关联可信现场。原创教学示意；箭头与颜色含义见图内图例和正文。</desc>
+<defs>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1769aa"/></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7540a0"/></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#b45b13"/></marker>
+<marker id="green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#217346"/></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#667080"/></marker>
+</defs>
+<rect width="760" height="100%" fill="#fff"/>
+<g font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="16" fill="#243447">
+<rect x="225" y="20" width="310" height="60" rx="8" fill="#f1eafa" stroke="#7540a0" stroke-width="1.5"/>
+<text x="380.0" y="44.0" text-anchor="middle" font-weight="700">CPU 停在处理程序</text>
+<text x="380.0" y="68.0" text-anchor="middle">同一停点不等于同一种原因</text>
+<rect x="20" y="145" width="330" height="80" rx="8" fill="#e8f2fc" stroke="#1769aa" stroke-width="1.5"/>
+<text x="185.0" y="179.0" text-anchor="middle" font-weight="700">① 读异常编号和故障状态</text>
+<text x="185.0" y="203.0" text-anchor="middle">CFSR / HFSR：类型与升级</text>
+<rect x="410" y="145" width="330" height="80" rx="8" fill="#fff0df" stroke="#b45b13" stroke-width="1.5"/>
+<text x="575.0" y="179.0" text-anchor="middle" font-weight="700">② 检查栈与异常帧</text>
+<text x="575.0" y="203.0" text-anchor="middle">栈有效？入栈成功？帧类型？</text>
+<polyline points="300,80 300,110 185,110 185,145" fill="none" stroke="#1769aa" stroke-width="2" marker-end="url(#blue)"/>
+<polyline points="460,80 460,110 575,110 575,145" fill="none" stroke="#b45b13" stroke-width="2" marker-end="url(#orange)"/>
+<rect x="20" y="275" width="330" height="75" rx="8" fill="#e8f2fc" stroke="#1769aa" stroke-width="1.5"/>
+<text x="185.0" y="294.5" text-anchor="middle" font-weight="700">地址有效标志为 1 才用故障地址</text>
+<text x="185.0" y="318.5" text-anchor="middle">MMARVALID → MMFAR</text>
+<text x="185.0" y="342.5" text-anchor="middle">BFARVALID → BFAR</text>
+<rect x="410" y="275" width="330" height="75" rx="8" fill="#fff0df" stroke="#b45b13" stroke-width="1.5"/>
+<text x="575.0" y="306.5" text-anchor="middle" font-weight="700">确认帧可靠才取保存的 PC</text>
+<text x="575.0" y="330.5" text-anchor="middle">用 ELF / 反汇编查对应代码</text>
+<polyline points="185,225 185,275" fill="none" stroke="#1769aa" stroke-width="2" marker-end="url(#blue)"/>
+<polyline points="575,225 575,275" fill="none" stroke="#b45b13" stroke-width="2" marker-end="url(#orange)"/>
+<text x="25" y="392" text-anchor="start">不精确故障：保存的 PC 可能晚于最初出错访问；先保存证据再清状态。</text>
+<line x1="24" y1="428" x2="48" y2="428" stroke="#7540a0"/>
+<text x="54" y="433" text-anchor="start">观察起点</text>
+<line x1="140" y1="428" x2="164" y2="428" stroke="#1769aa"/>
+<text x="170" y="433" text-anchor="start">故障状态证据</text>
+<line x1="288" y1="428" x2="312" y2="428" stroke="#b45b13"/>
+<text x="318" y="433" text-anchor="start">现场可靠性</text>
+</g></svg>

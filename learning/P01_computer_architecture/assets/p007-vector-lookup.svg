@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="485" viewBox="0 0 760 485" role="img" aria-labelledby="title desc">
+<title id="title">IRQ40 到向量槽位再到函数入口</title>
+<desc id="desc">IRQ40 到向量槽位再到函数入口。原创教学示意；箭头与颜色含义见图内图例和正文。</desc>
+<defs>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1769aa"/></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7540a0"/></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#b45b13"/></marker>
+<marker id="green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#217346"/></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#667080"/></marker>
+</defs>
+<rect width="760" height="100%" fill="#fff"/>
+<g font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="16" fill="#243447">
+<rect x="20" y="30" width="200" height="70" rx="8" fill="#f1eafa" stroke="#7540a0" stroke-width="1.5"/>
+<text x="120.0" y="59.0" text-anchor="middle" font-weight="700">NVIC 请求候选</text>
+<text x="120.0" y="83.0" text-anchor="middle">外部 IRQ40</text>
+<rect x="280" y="30" width="210" height="70" rx="8" fill="#f1eafa" stroke="#7540a0" stroke-width="1.5"/>
+<text x="385.0" y="59.0" text-anchor="middle" font-weight="700">核心槽位 +16</text>
+<text x="385.0" y="83.0" text-anchor="middle">异常编号 = 56</text>
+<rect x="550" y="30" width="190" height="70" rx="8" fill="#e8f2fc" stroke="#1769aa" stroke-width="1.5"/>
+<text x="645.0" y="59.0" text-anchor="middle" font-weight="700">表项偏移</text>
+<text x="645.0" y="83.0" text-anchor="middle">56 × 4 = 0xE0</text>
+<polyline points="220,65 280,65" fill="none" stroke="#7540a0" stroke-width="2" marker-end="url(#purple)"/>
+<polyline points="490,65 550,65" fill="none" stroke="#1769aa" stroke-width="2" marker-end="url(#blue)"/>
+<rect x="20" y="180" width="280" height="70" rx="8" fill="#e8f2fc" stroke="#1769aa" stroke-width="1.5"/>
+<text x="160.0" y="209.0" text-anchor="middle" font-weight="700">VTOR 表基址</text>
+<text x="160.0" y="233.0" text-anchor="middle">0x08000000</text>
+<rect x="430" y="180" width="310" height="70" rx="8" fill="#e8f2fc" stroke="#1769aa" stroke-width="1.5"/>
+<text x="585.0" y="209.0" text-anchor="middle" font-weight="700">读取表项 @ 0x080000E0</text>
+<text x="585.0" y="233.0" text-anchor="middle">得到入口值 0x08001201</text>
+<polyline points="645,100 645,180" fill="none" stroke="#1769aa" stroke-width="2" marker-end="url(#blue)"/>
+<polyline points="300,215 430,215" fill="none" stroke="#1769aa" stroke-width="2" marker-end="url(#blue)"/>
+<text x="330" y="200" text-anchor="start" fill="#1769aa">加偏移</text>
+<rect x="430" y="335" width="310" height="65" rx="8" fill="#e8f5ec" stroke="#217346" stroke-width="1.5"/>
+<text x="585.0" y="373.5" text-anchor="middle" font-weight="700">到 0x08001200 执行 ISR</text>
+<polyline points="585,250 585,335" fill="none" stroke="#217346" stroke-width="2" marker-end="url(#green)"/>
+<text x="25" y="333" text-anchor="start">数据仍在外设 / 缓冲区；</text>
+<text x="25" y="361" text-anchor="start">向量表只负责定位入口。</text>
+<line x1="24" y1="458" x2="48" y2="458" stroke="#7540a0"/>
+<text x="54" y="463" text-anchor="start">编号选择</text>
+<line x1="140" y1="458" x2="164" y2="458" stroke="#1769aa"/>
+<text x="170" y="463" text-anchor="start">表项读取</text>
+<line x1="256" y1="458" x2="280" y2="458" stroke="#217346"/>
+<text x="286" y="463" text-anchor="start">控制转移</text>
+</g></svg>

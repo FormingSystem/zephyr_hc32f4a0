@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="390" viewBox="0 0 760 390" role="img" aria-labelledby="title desc">
+<title id="title">data 初始化内容复制与 bss 清零</title>
+<desc id="desc">data 初始化内容复制与 bss 清零。原创教学示意；箭头与颜色含义见图内图例和正文。</desc>
+<defs>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1769aa"/></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7540a0"/></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#b45b13"/></marker>
+<marker id="green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#217346"/></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#667080"/></marker>
+</defs>
+<rect width="760" height="100%" fill="#fff"/>
+<g font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="16" fill="#243447">
+<rect x="25" y="45" width="280" height="110" rx="8" fill="#e8f2fc" stroke="#1769aa" stroke-width="1.5"/>
+<text x="165.0" y="82.0" text-anchor="middle" font-weight="700">Flash：镜像中的内容</text>
+<text x="165.0" y="106.0" text-anchor="middle">.data 初始内容 = 7</text>
+<text x="165.0" y="130.0" text-anchor="middle">LMA：初始化内容位置</text>
+<rect x="445" y="45" width="285" height="110" rx="8" fill="#e8f5ec" stroke="#217346" stroke-width="1.5"/>
+<text x="587.5" y="82.0" text-anchor="middle" font-weight="700">RAM：.data 运行位置</text>
+<text x="587.5" y="106.0" text-anchor="middle">initial_value = 7</text>
+<text x="587.5" y="130.0" text-anchor="middle">VMA：程序访问位置</text>
+<rect x="445" y="225" width="285" height="70" rx="8" fill="#e8f5ec" stroke="#217346" stroke-width="1.5"/>
+<text x="587.5" y="254.0" text-anchor="middle" font-weight="700">RAM：.bss 运行位置</text>
+<text x="587.5" y="278.0" text-anchor="middle">loop_count = 0</text>
+<polyline points="305,100 445,100" fill="none" stroke="#b45b13" stroke-width="2" marker-end="url(#orange)"/>
+<text x="327" y="87" text-anchor="start" fill="#b45b13">启动时复制</text>
+<rect x="25" y="225" width="280" height="70" rx="8" fill="#fff0df" stroke="#b45b13" stroke-width="1.5"/>
+<text x="165.0" y="254.0" text-anchor="middle" font-weight="700">CPU 执行清零循环</text>
+<text x="165.0" y="278.0" text-anchor="middle">从起点到结束边界写 0</text>
+<polyline points="305,260 445,260" fill="none" stroke="#b45b13" stroke-width="2" marker-end="url(#orange)"/>
+<text x="348" y="247" text-anchor="start" fill="#b45b13">写入 0</text>
+<line x1="24" y1="363" x2="48" y2="363" stroke="#1769aa"/>
+<text x="54" y="368" text-anchor="start">Flash 内容</text>
+<line x1="204" y1="363" x2="228" y2="363" stroke="#b45b13"/>
+<text x="234" y="368" text-anchor="start">启动动作</text>
+<line x1="320" y1="363" x2="344" y2="363" stroke="#217346"/>
+<text x="350" y="368" text-anchor="start">RAM 初值</text>
+</g></svg>

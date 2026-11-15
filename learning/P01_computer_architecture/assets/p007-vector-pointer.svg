@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="355" viewBox="0 0 760 355" role="img" aria-labelledby="title desc">
+<title id="title">向量表项地址与入口值指向的代码位置</title>
+<desc id="desc">向量表项地址与入口值指向的代码位置。原创教学示意；箭头与颜色含义见图内图例和正文。</desc>
+<defs>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1769aa"/></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7540a0"/></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#b45b13"/></marker>
+<marker id="green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#217346"/></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#667080"/></marker>
+</defs>
+<rect width="760" height="100%" fill="#fff"/>
+<g font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="16" fill="#243447">
+<rect x="20" y="35" width="340" height="105" rx="8" fill="#e8f2fc" stroke="#1769aa" stroke-width="1.5"/>
+<text x="190.0" y="69.5" text-anchor="middle" font-weight="700">表项所在位置</text>
+<text x="190.0" y="93.5" text-anchor="middle">0x080000E0</text>
+<text x="190.0" y="117.5" text-anchor="middle">内容：0x08001201</text>
+<rect x="450" y="190" width="290" height="85" rx="8" fill="#e8f5ec" stroke="#217346" stroke-width="1.5"/>
+<text x="595.0" y="226.5" text-anchor="middle" font-weight="700">处理程序代码</text>
+<text x="595.0" y="250.5" text-anchor="middle">0x08001200 起的指令</text>
+<polyline points="360,88 400,88 400,232 450,232" fill="none" stroke="#7540a0" stroke-width="2" marker-end="url(#purple)"/>
+<text x="420" y="75" text-anchor="start" fill="#7540a0">取出入口值</text>
+<text x="25" y="230" text-anchor="start">表项不是指令；</text>
+<text x="25" y="258" text-anchor="start">入口最低位 1 表示 Thumb 状态。</text>
+<line x1="24" y1="328" x2="48" y2="328" stroke="#1769aa"/>
+<text x="54" y="333" text-anchor="start">表项位置</text>
+<line x1="140" y1="328" x2="164" y2="328" stroke="#7540a0"/>
+<text x="170" y="333" text-anchor="start">入口值</text>
+<line x1="240" y1="328" x2="264" y2="328" stroke="#217346"/>
+<text x="270" y="333" text-anchor="start">目标代码</text>
+</g></svg>

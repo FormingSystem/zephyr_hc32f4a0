@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="575" viewBox="0 0 760 575" role="img" aria-labelledby="title desc">
+<title id="title">H743 从供电复位选择启动区域到 main</title>
+<desc id="desc">H743 从供电复位选择启动区域到 main。原创教学示意；箭头与颜色含义见图内图例和正文。</desc>
+<defs>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1769aa"/></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7540a0"/></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#b45b13"/></marker>
+<marker id="green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#217346"/></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#667080"/></marker>
+</defs>
+<rect width="760" height="100%" fill="#fff"/>
+<g font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="16" fill="#243447">
+<rect x="20" y="25" width="300" height="65" rx="8" fill="#e8f2fc" stroke="#1769aa" stroke-width="1.5"/>
+<text x="170.0" y="51.5" text-anchor="middle" font-weight="700">① 供电 / 时钟 / 复位条件</text>
+<text x="170.0" y="75.5" text-anchor="middle">硬件满足释放条件</text>
+<rect x="20" y="135" width="300" height="65" rx="8" fill="#e8f2fc" stroke="#1769aa" stroke-width="1.5"/>
+<text x="170.0" y="161.5" text-anchor="middle" font-weight="700">② BOOT 与选项配置</text>
+<text x="170.0" y="185.5" text-anchor="middle">选择启动向量区域</text>
+<rect x="20" y="265" width="300" height="80" rx="8" fill="#e8f2fc" stroke="#1769aa" stroke-width="1.5"/>
+<text x="170.0" y="299.0" text-anchor="middle" font-weight="700">③ 用户 Flash 向量</text>
+<text x="170.0" y="323.0" text-anchor="middle">读取初始 MSP 与复位入口</text>
+<rect x="430" y="135" width="300" height="65" rx="8" fill="#f1eafa" stroke="#7540a0" stroke-width="1.5"/>
+<text x="580.0" y="161.5" text-anchor="middle" font-weight="700">另一选择：系统 Bootloader</text>
+<text x="580.0" y="185.5" text-anchor="middle">CPU 执行厂商预置程序</text>
+<rect x="430" y="265" width="300" height="80" rx="8" fill="#fff0df" stroke="#b45b13" stroke-width="1.5"/>
+<text x="580.0" y="299.0" text-anchor="middle" font-weight="700">④ Reset_Handler</text>
+<text x="580.0" y="323.0" text-anchor="middle">建立运行期向量定位</text>
+<rect x="430" y="390" width="300" height="65" rx="8" fill="#fff0df" stroke="#b45b13" stroke-width="1.5"/>
+<text x="580.0" y="416.5" text-anchor="middle" font-weight="700">⑤ 初始化 .data / .bss</text>
+<text x="580.0" y="440.5" text-anchor="middle">按链接布局复制 / 清零</text>
+<rect x="430" y="495" width="300" height="50" rx="8" fill="#e8f5ec" stroke="#217346" stroke-width="1.5"/>
+<text x="580.0" y="526.0" text-anchor="middle" font-weight="700">⑥ 调用 main</text>
+<polyline points="170,90 170,135" fill="none" stroke="#1769aa" stroke-width="2" marker-end="url(#blue)"/>
+<polyline points="170,200 170,265" fill="none" stroke="#1769aa" stroke-width="2" marker-end="url(#blue)"/>
+<text x="30" y="237" text-anchor="start" fill="#1769aa">本例选择用户 Flash</text>
+<polyline points="320,167 430,167" fill="none" stroke="#7540a0" stroke-width="2" marker-end="url(#purple)"/>
+<polyline points="320,305 430,305" fill="none" stroke="#1769aa" stroke-width="2" marker-end="url(#blue)"/>
+<polyline points="580,345 580,390" fill="none" stroke="#b45b13" stroke-width="2" marker-end="url(#orange)"/>
+<polyline points="580,455 580,495" fill="none" stroke="#217346" stroke-width="2" marker-end="url(#green)"/>
+<text x="25" y="400" text-anchor="start">Boot ROM 与用户 Flash</text>
+<text x="25" y="425" text-anchor="start">是启动目标选择，</text>
+<text x="25" y="450" text-anchor="start">不是每次必经的两级流程。</text>
+<line x1="24" y1="548" x2="48" y2="548" stroke="#1769aa"/>
+<text x="54" y="553" text-anchor="start">硬件启动</text>
+<line x1="140" y1="548" x2="164" y2="548" stroke="#b45b13"/>
+<text x="170" y="553" text-anchor="start">用户启动代码</text>
+<line x1="288" y1="548" x2="312" y2="548" stroke="#217346"/>
+<text x="318" y="553" text-anchor="start">应用</text>
+</g></svg>

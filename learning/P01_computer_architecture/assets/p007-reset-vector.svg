@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="395" viewBox="0 0 760 395" role="img" aria-labelledby="title desc">
+<title id="title">初始栈顶与复位入口分别建立 CPU 状态</title>
+<desc id="desc">初始栈顶与复位入口分别建立 CPU 状态。原创教学示意；箭头与颜色含义见图内图例和正文。</desc>
+<defs>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1769aa"/></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7540a0"/></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#b45b13"/></marker>
+<marker id="green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#217346"/></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#667080"/></marker>
+</defs>
+<rect width="760" height="100%" fill="#fff"/>
+<g font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="16" fill="#243447">
+<text x="25" y="35" text-anchor="start" font-weight="700">假设启动选择已指向本例用户 Flash 镜像</text>
+<rect x="25" y="75" width="325" height="90" rx="8" fill="#e8f2fc" stroke="#1769aa" stroke-width="1.5"/>
+<text x="187.5" y="114.0" text-anchor="middle" font-weight="700">第 0 项 @ 0x08000000</text>
+<text x="187.5" y="138.0" text-anchor="middle">内容 = 0x20020000</text>
+<rect x="25" y="220" width="325" height="90" rx="8" fill="#e8f2fc" stroke="#1769aa" stroke-width="1.5"/>
+<text x="187.5" y="259.0" text-anchor="middle" font-weight="700">第 1 项 @ 0x08000004</text>
+<text x="187.5" y="283.0" text-anchor="middle">内容 = 0x08000299</text>
+<rect x="470" y="75" width="265" height="90" rx="8" fill="#e8f5ec" stroke="#217346" stroke-width="1.5"/>
+<text x="602.5" y="114.0" text-anchor="middle" font-weight="700">建立 MSP</text>
+<text x="602.5" y="138.0" text-anchor="middle">栈从 0x20020000 向下</text>
+<rect x="470" y="220" width="265" height="90" rx="8" fill="#e8f5ec" stroke="#217346" stroke-width="1.5"/>
+<text x="602.5" y="259.0" text-anchor="middle" font-weight="700">建立复位入口 / 状态</text>
+<text x="602.5" y="283.0" text-anchor="middle">从 0x08000298 取指</text>
+<polyline points="350,120 470,120" fill="none" stroke="#7540a0" stroke-width="2" marker-end="url(#purple)"/>
+<polyline points="350,265 470,265" fill="none" stroke="#7540a0" stroke-width="2" marker-end="url(#purple)"/>
+<line x1="24" y1="368" x2="48" y2="368" stroke="#1769aa"/>
+<text x="54" y="373" text-anchor="start">镜像数据</text>
+<line x1="140" y1="368" x2="164" y2="368" stroke="#7540a0"/>
+<text x="170" y="373" text-anchor="start">硬件读取</text>
+<line x1="256" y1="368" x2="280" y2="368" stroke="#217346"/>
+<text x="286" y="373" text-anchor="start">初始状态</text>
+</g></svg>
