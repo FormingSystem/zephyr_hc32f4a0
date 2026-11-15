@@ -1,0 +1,139 @@
+# SPDX-FileCopyrightText: Copyright The zephyr_hc32f4a0 Contributors
+# SPDX-License-Identifier: Apache-2.0
+"""检查本仓库教材的本地链接、章节编号、元信息和实验源码语法。"""
+
+import ast
+import html
+import os
+import re
+import sys
+import tomllib
+from pathlib import Path
+from urllib.parse import unquote, urlsplit
+
+
+ROOT = Path(__file__).resolve().parent.parent
+SKIP = {".git", ".work", "__pycache__", "build", "dist"}
+
+
+def absolute_local_target(target):
+    """链接须跟随文档迁移；盘符不能被 urlsplit 误认为可接受的协议。"""
+    target = html.unescape(unquote(target.strip().strip("<>")))
+    return (bool(re.match(r"^[A-Za-z]:", target))
+            or target.lower().startswith("file:")
+            or target.startswith(("/", "\\")))
+
+
+def nonportable_links(visible):
+    targets = re.findall(r"\]\(([^)]+)\)", visible)
+    # 引用式 Markdown 链接与 HTML 图片、动画、音视频附件也需要随仓库迁移。
+    targets += re.findall(r"^\s{0,3}\[[^\]\n]+\]:\s*(<[^>]+>|\S+)", visible, re.M)
+    targets += re.findall(r"\b(?:href|src|data|poster)\s*=\s*[\"']([^\"']+)[\"']",
+                          visible, re.I)
+    return sorted({target for target in targets if absolute_local_target(target)})
+
+
+def files():
+    for relative in ("README.md", "project-docs/README.md", "project-docs/development.md",
+                     "project-docs/environment.md", "project-docs/distribution.md",
+                     "project-docs/python/venv/README.md", "project-docs/west/README.md",
+                     "project-docs/learning/environment/P01_可复现的开发环境.md"):
+        yield ROOT / relative
+    for directory, names, filenames in os.walk(ROOT / "learning"):
+        names[:] = [name for name in names if name not in SKIP and not name.endswith(".egg-info")]
+        for name in filenames:
+            yield Path(directory) / name
+
+
+def main():
+    errors = []
+    identifiers = {}
+    documents = 0
+    sources = 0
+    chapters = 0
+    for path in files():
+        if path.suffix == ".py":
+            sources += 1
+            try:
+                ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
+            except SyntaxError as error:
+                errors.append(f"{path.relative_to(ROOT)}: {error}")
+        if path.suffix == ".toml":
+            tomllib.loads(path.read_text(encoding="utf-8"))
+        if path.suffix != ".md":
+            continue
+        documents += 1
+        body = path.read_text(encoding="utf-8")
+        chapter = re.match(r"P(\d+)_", path.name) if path.is_relative_to(ROOT / "learning") else None
+        if chapter:
+            chapters += 1
+            if not re.match(r"P\d{3}_", path.name):
+                errors.append(f"{path.name}: 章节文件使用三位编号 P000/P001")
+            number = int(chapter.group(1))
+            if not re.search(rf"^# (?:{number}\. |第{number}章\\_)\S", body, re.M):
+                errors.append(f"{path.name}: 章编号与文件名不一致")
+            sections = re.findall(rf"^## {number}\.(\d+)(?: |\\_)", body, re.M)
+            if re.match(r"P\d{3}_\d{2}_", path.name):
+                errors.append(f"{path.name}: 独立主题须递增三位章号，不使用二级文件序号")
+            if list(map(int, sections)) != list(range(1, len(sections) + 1)):
+                errors.append(f"{path.name}: 小节编号不连续")
+            for key in ("id", "title", "kind", "status", "domains"):
+                if not re.search(rf"^{key}: .+", body, re.M):
+                    errors.append(f"{path.name}: 缺少 {key}")
+            if number > 0:
+                # Platform suffixes share one directory but have independent reading order.
+                def platform(document):
+                    match = re.search(r"_(Windows|Linux)$", document.stem)
+                    return match.group(1) if match else ""
+
+                siblings = sorted(document for document in path.parent.glob("P[0-9][0-9][0-9]_*.md")
+                                  if platform(document) == platform(path))
+                position = siblings.index(path)
+                for neighbor in (position - 1, position + 1):
+                    if 0 <= neighbor < len(siblings) and f"]({siblings[neighbor].name})" not in body:
+                        errors.append(f"{path.name}: 缺少相邻章节链接 {siblings[neighbor].name}")
+            slides = re.search(r"^slides: (.+)$", body, re.M)
+            if slides:
+                deck = path.parent / slides.group(1).strip()
+                if not deck.is_file() or deck.stem != path.stem:
+                    errors.append(f"{path.name}: 配套 PPT 必须存在且与正文同名")
+        match = re.search(r"^id: (.+)$", body, re.M)
+        if match:
+            identifier = match.group(1)
+            if identifier in identifiers:
+                errors.append(f"{path.name}: id 重复 {identifier}")
+            identifiers[identifier] = path
+        if len(re.findall(r"^```", body, re.M)) % 2:
+            errors.append(f"{path.name}: 代码围栏未闭合")
+        # 本仓库正文没有带括号的本地文件名；排除代码块中的说明性文本。
+        visible = re.sub(r"```.*?```", "", body, flags=re.S)
+        if any(path.is_relative_to(ROOT / "learning" / folder)
+               for folder in ("zephyr_docs", "zephyr_project_notes")):
+            for target in nonportable_links(visible):
+                errors.append(f"{path.relative_to(ROOT)}: 本地链接必须使用相对路径 {target}")
+        for target in re.findall(r"\]\(([^)]+)\)", visible):
+            target = target.strip("<>")
+            if urlsplit(target).scheme:
+                continue
+            filename, _, anchor = unquote(target).partition("#")
+            linked = path.parent / filename if filename else path
+            if not linked.exists():
+                errors.append(f"{path.relative_to(ROOT)}: 失效链接 {target}")
+            elif anchor and linked.suffix == ".md":
+                linked_body = linked.read_text(encoding="utf-8")
+                headings = re.findall(r"^#+ (.+)$", linked_body, re.M)
+                explicit_ids = re.findall(r'<a\s+id=[\"\x27]([^\"\x27]+)[\"\x27]', linked_body)
+                if anchor not in headings and anchor not in explicit_ids:
+                    errors.append(f"{path.name}: 无目标标题 {target}")
+        for line_number, line in enumerate(body.splitlines(), 1):
+            if line.rstrip() != line and not line.endswith("  "):
+                errors.append(f"{path.name}:{line_number}: 意外行末空白")
+    print(f"documents={documents}, chapters={chapters}, python_sources={sources}, ids={len(identifiers)}")
+    for error in errors:
+        print(f"ERROR {error}")
+    print(f"errors={len(errors)}")
+    return bool(errors)
+
+
+if __name__ == "__main__":
+    sys.exit(main())

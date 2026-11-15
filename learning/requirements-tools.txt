@@ -1,0 +1,5 @@
+# SPDX-FileCopyrightText: Copyright The zephyr_hc32f4a0 Contributors
+# SPDX-License-Identifier: Apache-2.0
+# 经本次实验验证的工具直接依赖版本；这不是完整的传递依赖锁文件。
+west==1.5.0
+setuptools==80.9.0

@@ -1,0 +1,103 @@
+---
+id: learning.readme
+title: 学习中心
+kind: reference
+status: maintained
+domains: [documentation]
+---
+
+<!-- SPDX-FileCopyrightText: Copyright The zephyr_hc32f4a0 Contributors -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+
+# 学习中心
+
+只阅读官网资料时，从[Zephyr 官方主线阅读](zephyr_docs/reading/README.md)进入；具体 API、芯片绑定、开发板和示例收在[官方扩展参考](zephyr_docs/reference_library/README.md)。本学习中心其余教程属于仓库自有材料，分出的环境说明见[项目实验补充](zephyr_project_notes/README.md)。
+
+这里提供从零准备 Zephyr 环境、理解构建工具并逐步开展实验的 Markdown 笔记、PPT 和配套材料。Windows 主线使用读者自行选择的实验源码根目录；命令执行位置以各章说明为准，不要求固定盘符或作者目录。源码下载、依赖安装、编译、调试及后续移植都围绕这份源码展开。实验会逐步加入 HC32 板级支持、厂商模块、构建与调试工具和文档，最终形成能够独立开发和维护的完整工程。每个文件或工具都在对应实验中创建并解释，不要求起步时已经具备最终目录。
+
+学习主线按“先认识 MCU 硬件，再学习 Zephyr 工程”组织：
+
+| 专题编号 | 内容 | 阅读入口与状态 |
+| --- | --- | --- |
+| P01 | 计算机组成与 MCU 架构：先用图与实例讲通 CPU 寄存器、寻址对齐、栈堆、向量和编译，再走到 H743 外设、中断、启动和线程现场 | [专题大纲](P01_computer_architecture/大纲.md) |
+| P02 | Zephyr 工程准备与构建：认识 RTOS 与 Zephyr，准备环境和源码，再完成构建与移植实验 | [专题大纲](P02_zephyr_make_project/大纲.md) |
+
+目录的 P01、P02 是专题编号；专题内部的 P001、P002 等是章节编号，分别计数。刚接触芯片架构的读者先从 [P01 的按键与指示灯](P01_computer_architecture/P001_从按键和指示灯认识计算机.md)开始；已有相关基础的读者可直接阅读 P02。
+
+首次学习 Zephyr，可从 P02 专题的 [P001 认识 Zephyr 与技术选型](P02_zephyr_make_project/P001_认识Zephyr与技术选型.md)进入，再按[专题大纲](P02_zephyr_make_project/大纲.md)准备环境与源码，再对照实际文件理解工程。环境材料统一目录，文件名后缀区分 [Windows](P02_zephyr_make_project/环境与依赖导航.md)与 [Linux](P02_zephyr_make_project/P002_环境安装与源码准备_Linux.md)，安装依据见[官方工具来源](P02_zephyr_make_project/主机工具与官方安装来源.md)。Linux 教程使用 **Ubuntu 22.04 LTS**，按正文补齐工具版本并采用独立的官方工作区示例，不能照搬 Windows 盘符、UCRT64 路径或 venv 布局。
+
+默认使用 UCRT64 Bash，保持 Linux 命令习惯。只有 Zephyr 官方明确采用 PowerShell 的 Windows 下载/安装步骤，以及 setup.cmd 等 Windows 专用脚本和其 Windows 管理操作，才切换到 PowerShell。普通下载、摘要校验、解压、版本检查、Python/venv 与 CMake 工程操作仍用 UCRT64，不能仅因调用 Windows 可执行程序就整段改成 PowerShell。Ubuntu 22.04 使用原生 Linux Bash。每段标明终端和目录，切换时重新进入目录，临时变量不互相继承。
+
+## 怎样使用正文、PPT 和视频
+
+需要对照官方英文文档时，打开 [Zephyr 官方文档中文翻译集](zephyr_docs/README.md)。翻译范围包括整站指南、API、开发板和示例；现有 16336 个适用官方页面的中文译文，覆盖入门、工具链、west、应用开发、Kconfig、设备树、硬件移植、驱动及内核基础，正文翻译已全部完成，剩余原图交付单独记录。完整交付状态见[全站覆盖状态](zephyr_docs/COVERAGE.md)。官方示例布局与项目实验布局分别说明，不混用初始化命令。
+
+本次官方清单的 16336 个适用页面正文均已译完；完整交付为 16331 页，另 5 页缺少 8 个原始图片文件，见[缺项与译文入口](zephyr_docs/MISSING_MEDIA.md)。
+
+阅读带动图的译文时，可使用我们的 [Typora Code](https://github.com/FormingSystem/typora_code)，在正文、图片链接预览和全屏查看器中观看 GIF 动画；Markdown、原图与动画文件需一并保留。
+
+第一次学习时按 Markdown 的章节导航阅读，在正文指定位置完成实验并检查结果。PPT 用于配合视频讲清关键关系、复习阶段与典型操作；安装分支、完整命令、输出解释和排错细节以 Markdown 为完整入口。没有配套 PPT 的专题仍可按正文独立学习，不用等待演示材料。
+
+```mermaid
+flowchart LR
+    A["读 MD<br/>理解前提"] --> B["按正文操作<br/>核对结果"]
+    B --> C["看 PPT 和视频<br/>复盘重点"]
+    C --> D["回到正文<br/>查细节与排错"]
+```
+
+文件统一三位编号，配套 Markdown/PPT 同编号同题名；平台差异使用文件名后缀。章节内的导航对应实验阶段，目录中不另分 Windows/Linux 文件夹。维护规则见[资料编写约定](资料编写约定.md)。
+
+## 从哪里开始
+
+每个专题按章节顺序阅读，讲解和本单元实验都在正文内。源码、配置与测试原件放在各主题 labs，供复制和对照；不再另设一条综合实训路线。
+
+面向已有 C/C++ 和嵌入式开发经验、尚未系统使用 Python 环境隔离与 west 的读者。“从零”针对专题知识，不要求重学编程语法。先核对[实验准备](P000_实验准备.md)，然后根据任务选择：
+
+| 你遇到的问题 | 阅读路线 | 完成标志 |
+| --- | --- | --- |
+| Zephyr 是什么，是否值得用于自己的产品 | [P001 认识 Zephyr 与技术选型](P02_zephyr_make_project/P001_认识Zephyr与技术选型.md) | 能说明期望收益、适配成本与需要验证的产品条件 |
+| Windows 上怎样安装终端、国内换源并下载源码 | [Zephyr 下载与工程准备](P02_zephyr_make_project/大纲.md) | 工具可用、源码取得成功，能区分源码快照与 Git 历史 |
+| 源码下载后，怎样选 SDK 包并安装构建依赖 | [下载 SDK 与安装依赖包](P02_zephyr_make_project/环境与依赖导航.md) | 主机工具与 Python/venv、SDK、CMSIS/HAL 按依据取得并逐项核验 |
+| 从已知芯片确定 CMSIS | [P005 CMSIS 选择与下载](P02_zephyr_make_project/P005_源码依赖与离线准备.md) | 查询当前 SoC/架构接入，再按清单取得配套修订 |
+| 应用与芯片配置怎样接上驱动 | [P010 工程组织与驱动模型](P02_zephyr_make_project/P010_工程分层与驱动模型.md) | 用 MPS2 追踪 DTS、Kconfig、CMake、设备实例与寄存器操作 |
+| 为什么引入 HC32 DDL，怎样加入工程 | [P014 HC32 与外部源码模块](P02_zephyr_make_project/P014_HC32与外部源码模块接入.md) | 厂商库与适配层分工、下载、模块发现及自建组件实验 |
+| CMake 怎样描述和构建一个程序 | [P007 原生 CMake](P02_zephyr_make_project/P007_原生CMake与目标模型.md) → [P008 Zephyr 应用](P02_zephyr_make_project/P008_选择应用与硬件目标并构建.md) | 先理解 target、配置/生成和后端，再完成官方应用的首次构建 |
+| west 怎样管理工作区，又怎样与 CMake 配合 | [P009 west 零基础与 Zephyr 构建](P02_zephyr_make_project/P009_west工作区与构建入口.md) | 分清核心命令与 Zephyr 扩展，展开 west build 的调用和参数传递 |
+| Zephyr 怎样发现 SDK、模块并保存配置 | [P011 输入与依赖发现](P02_zephyr_make_project/P011_Zephyr的CMake输入与依赖发现.md) → [P012 缓存与排错](P02_zephyr_make_project/P012_CMake缓存与构建排错.md) | 沿输入、读取者和产物理解接口，按失败阶段定位问题 |
+| 怎样确认芯片型号及 CMSIS/HAL 下载依据 | [型号与依赖选择](P02_zephyr_make_project/环境与依赖导航.md#chip-selection) | 丝印/BOM/手册对应 board/SoC，区分官方清单依赖与新增移植依赖 |
+| 环境准备之后，怎样编译并新增开发板 | [编译示例与新增开发板](P02_zephyr_make_project/P015_新增开发板与芯片支持.md) | 先认识并编译官方 MPS2，再逐文件新增 AN386 练习板、逐层接入 UYUP HC32 并核验 |
+| 不同项目需要不同 Python 包版本 | [venv 大纲](python/venv/大纲.md) | 两个环境同时运行不同版本，第三个环境可重建 |
+| 多个代码仓库必须使用配套版本 | [west 大纲](west/大纲.md) | 自建多仓库清单并写一个可运行的新命令 |
+| 新增 C 文件或可复用模块怎样参与编译 | [CMake 大纲](cmake/大纲.md) | 定位漏实现链接错误，验证模块开关 |
+| VS Code 怎样构建、打断点和单步 | [编辑器与调试大纲](vscode/大纲.md) | 用 GDB 观察变量变化，理解实板调试链路 |
+| 已有实验环境怎样接入 Zephyr IDE 插件 | [Zephyr IDE 手把手教程](zephyr_vscode/README.md) | 复用 SDK/venv、添加应用与 Build、构建并配置源码浏览，附 61 页 PPT |
+| 怎样选芯片、适配 PCB 接线并验证 | [板级配置大纲](board/大纲.md) | 找到 Kconfig/DTS 输入，区分编译、模拟与实板证据 |
+
+west 安装承接 venv 前两章的环境与 pip 知识；已经掌握这些方法的读者可直接读 west。
+CMake 主机实验先于 VS Code 单步；板级 P001、P002、P003 依次学习，P003 的模块运行实验还承接 CMake P002 中已讲过的源码。Zephyr 模块与板级实验先完成准备章中的项目工具准备。
+先完成原生 `mps2/an386` 编译，确认工具、源码和模块能配合，再开展 HC32 移植。板级 P001/P002 属于移植完成后的配置练习，进入条件写在章节开头；原生源码下载成功不等于已经具备 HC32 支持。
+
+## 文件放在哪里
+
+```text
+learning/
+  P01_computer_architecture/  计算机组成、H743 架构、中断、汇编与启动实验
+  P02_zephyr_make_project/  Windows/Linux 环境、共用实验、截图和演示文稿源码
+  download_zephyr/      下载方案参考草稿，版本与命令待进一步核验
+  python/venv/          教程、大纲、labs 实验源码
+  west/                教程、大纲、labs 实验源码
+  cmake/               源文件、普通库与 Zephyr 模块实验
+  vscode/              主机调试工作区与 GDB 命令文件
+  zephyr_vscode/       IDE for Zephyr 接入已有工程的 PPT、MD、命令和图源
+  board/               Kconfig、设备树、Twister/QEMU 教程与配置片段
+  requirements-tools.txt  已验证的工具直接依赖版本
+  check_labs.py        自动验收主线及关键失败场景
+```
+
+配套材料按[实验准备](P000_实验准备.md)放入实验源码目录下的 `learning/`。练习副本与运行证据放在 实验源码根目录下的 `build/learning-tools/`；SDK 保存在源码外的工具目录。资料保存位置不决定实验命令的执行位置。
+
+新主题使用英文目录名，正文用 `P001_中文主题.md`，大纲说明先后顺序；可执行源文件放到主题的 `labs/`。需要分析特定版本的第三方源码时，再创建该主题的 `source_reading/`，注明版本、出处和修改边界。不要把实验产物、环境目录、个人凭据混进学习资料。
+
+每个实验至少给出：目的、前提、当前位置、命令、预期输出、失败原因、修改挑战和清理范围。脚本辅助建立重复数据，关键工具命令仍由读者亲手执行。
+
+当前工具路线的准备章及 venv、west、CMake、VS Code、板级配置正文均已按逐步教学方式整理：操作块标出位置，代码与配置配有注释，路线图帮助接回当前步骤。实际实验结果区分主机检查、编译、模拟和实板；已写明的图形操作或实板流程不自动表示维护者已经实测。
