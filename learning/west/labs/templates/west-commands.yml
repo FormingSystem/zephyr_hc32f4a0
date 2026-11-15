@@ -1,0 +1,8 @@
+# SPDX-FileCopyrightText: Copyright The zephyr_hc32f4a0 Contributors
+# SPDX-License-Identifier: Apache-2.0
+west-commands:
+  - file: commands/inventory.py
+    commands:
+      - name: inventory
+        class: Inventory
+        help: Show the active repositories in this workspace.

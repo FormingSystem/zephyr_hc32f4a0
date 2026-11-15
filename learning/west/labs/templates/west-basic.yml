@@ -1,0 +1,14 @@
+# SPDX-License-Identifier: Apache-2.0
+manifest:
+  version: "1.2"
+  projects:
+    - name: app
+      url: ../../remotes/app
+      revision: v1.0
+      path: app
+    - name: arithmetic
+      url: ../../../remotes/arithmetic
+      revision: v1.0
+      path: libs/arithmetic
+  self:
+    path: manifest
