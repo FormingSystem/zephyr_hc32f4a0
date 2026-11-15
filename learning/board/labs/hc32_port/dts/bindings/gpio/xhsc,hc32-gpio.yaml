@@ -1,0 +1,28 @@
+# Copyright The zephyr_hc32f4a0 Contributors
+# SPDX-License-Identifier: Apache-2.0
+
+description: Xiaohua HC32 GPIO port
+
+compatible: "xhsc,hc32-gpio"
+
+include: [gpio-controller.yaml, base.yaml]
+
+properties:
+  reg:
+    required: true
+
+  port-index:
+    type: int
+    required: true
+    enum: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+    description: GPIO port number, where zero is port A and eight is port I.
+
+  ngpios:
+    const: 16
+
+  "#gpio-cells":
+    const: 2
+
+gpio-cells:
+  - pin
+  - flags

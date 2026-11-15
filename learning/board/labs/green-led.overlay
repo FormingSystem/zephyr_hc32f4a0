@@ -1,0 +1,7 @@
+/* SPDX-License-Identifier: Apache-2.0 */
+/ {
+    aliases {
+        /* 只覆盖应用别名，不改变 green_led 的接线描述。 */
+        led0 = &green_led;
+    };
+};

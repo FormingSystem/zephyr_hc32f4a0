@@ -1,0 +1,6 @@
+/* SPDX-License-Identifier: Apache-2.0 */
+/ {
+    aliases {
+        led0 = &blue_led;
+    };
+};

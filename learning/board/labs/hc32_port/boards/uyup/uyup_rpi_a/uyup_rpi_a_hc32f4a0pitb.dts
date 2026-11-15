@@ -1,0 +1,96 @@
+/*
+ * Copyright The zephyr_hc32f4a0 Contributors
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+/dts-v1/;
+
+#include <xhsc/hc32f4a0pitb.dtsi>
+#include <zephyr/dt-bindings/input/input-event-codes.h>
+
+/ {
+	model = "UYUP-RPI-A-2.5 HC32F4A0PITB";
+	compatible = "uyup,uyup-rpi-a";
+
+	chosen {
+		zephyr,sram = &sram0;
+		zephyr,flash = &flash0;
+		zephyr,console = &usart1;
+		zephyr,shell-uart = &usart1;
+	};
+
+	/* The fitted 12 MHz crystal directly clocks the CPU; no PLL is used. */
+	xtal: xtal-clock {
+		compatible = "fixed-clock";
+		#clock-cells = <0>;
+		clock-frequency = <DT_FREQ_M(12)>;
+		status = "okay";
+	};
+
+	leds {
+		compatible = "gpio-leds";
+
+		blue_led: led-0 {
+			gpios = <&gpiod 10 GPIO_ACTIVE_LOW>;
+			label = "LED3 blue";
+		};
+
+		green_led: led-1 {
+			gpios = <&gpioe 15 GPIO_ACTIVE_LOW>;
+			label = "LED4 green";
+		};
+	};
+
+	buttons {
+		compatible = "gpio-keys";
+		polling-mode;
+
+		button0: button-0 {
+			gpios = <&gpioa 3 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+			label = "SW3";
+			zephyr,code = <INPUT_KEY_0>;
+		};
+
+		button1: button-1 {
+			gpios = <&gpioe 2 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+			label = "SW4";
+			zephyr,code = <INPUT_KEY_1>;
+		};
+	};
+
+	aliases {
+		led0 = &blue_led;
+		led1 = &green_led;
+		sw0 = &button0;
+		sw1 = &button1;
+	};
+};
+
+&gpioa {
+	status = "okay";
+};
+
+&gpiob {
+	status = "okay";
+};
+
+&gpioc {
+	status = "okay";
+};
+
+&gpiod {
+	status = "okay";
+};
+
+&gpioe {
+	status = "okay";
+};
+
+&usart1 {
+	status = "okay";
+	current-speed = <115200>;
+	tx-port = <&gpioa>;
+	tx-pin = <9>;
+	rx-port = <&gpioa>;
+	rx-pin = <10>;
+};

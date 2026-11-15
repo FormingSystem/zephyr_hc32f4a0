@@ -1,0 +1,32 @@
+/*
+ * Copyright The zephyr_hc32f4a0 Contributors
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+#include <xhsc/hc32f4a0.dtsi>
+
+&flash0 {
+	reg = <0x00000000 DT_SIZE_M(2)>;
+};
+
+&sram0 {
+	/* SRAMH + SRAM1..4 form one contiguous 512 KiB range. */
+	reg = <0x1ffe0000 DT_SIZE_K(512)>;
+};
+
+/* DS Rev1.60, table 2-3: LQFP100 exposes PA..PE, PH0/1 and PI13. */
+&gpiof {
+	gpio-reserved-ranges = <0 16>;
+};
+
+&gpiog {
+	gpio-reserved-ranges = <0 16>;
+};
+
+&gpioh {
+	gpio-reserved-ranges = <2 14>;
+};
+
+&gpioi {
+	gpio-reserved-ranges = <0 13>, <14 2>;
+};
