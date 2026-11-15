@@ -2,19 +2,23 @@
   "zephyr": {
     "url": "https://github.com/zephyrproject-rtos/zephyr.git",
     "revision": "f19d03c78ba70a670e3dadc2121523d33984a5c7",
-    "version": "4.4.99"
+    "version": "4.4.99",
+    "source_path": ".",
+    "tracked_source_files": 66244
   },
   "sdk": { "version": "1.0.1", "toolchain": "arm-zephyr-eabi" },
   "python": { "minimum": "3.12", "verified": "3.12.10" },
   "hal_xhsc": {
     "url": "https://github.com/zephyrproject-rtos/hal_xhsc.git",
     "revision": "a84e04900616f68097d80cda2e89eaa8af3afadd",
-    "workspace_path": "modules/hal/xhsc",
-    "enabled_for_hardware": false
+    "source_path": "modules/hal/xhsc",
+    "tracked_source_files": 224,
+    "enabled_for_hardware": true
   },
   "cmsis_6": {
-    "workspace_path": "modules/hal/cmsis_6",
-    "revision": "b2dfbe1a20bbd49c2d2c605073799671074bbb30"
+    "source_path": "modules/hal/cmsis_6",
+    "revision": "b2dfbe1a20bbd49c2d2c605073799671074bbb30",
+    "tracked_source_files": 793
   },
   "pyocd": "0.45.1"
 }
