@@ -1,0 +1,4 @@
+# SPDX-FileCopyrightText: Copyright The zephyr_hc32f4a0 Contributors
+# SPDX-License-Identifier: Apache-2.0
+# 教学包来自本地 wheelhouse，不上传公共包索引。
+lab-greeting==1.0.0
