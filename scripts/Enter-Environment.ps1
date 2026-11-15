@@ -7,20 +7,24 @@ $ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path -Parent $PSScriptRoot
 $dependencyLock = Get-Content -LiteralPath (Join-Path $projectRoot 'dependencies.lock.json') -Raw |
     ConvertFrom-Json
-$zephyrRoot = $env:ZEPHYR_BASE
-if (-not $zephyrRoot) { $zephyrRoot = Split-Path -Parent $projectRoot }
+$localEnvironment = $null
+$localEnvironmentFile = Join-Path $projectRoot '.local/environment.json'
+if (Test-Path -LiteralPath $localEnvironmentFile) {
+    $localEnvironment = Get-Content -LiteralPath $localEnvironmentFile -Raw | ConvertFrom-Json
+}
+$zephyrRoot = $projectRoot
 if (-not (Test-Path -LiteralPath (Join-Path $zephyrRoot 'VERSION'))) {
-    throw 'Set ZEPHYR_BASE to the prepared Zephyr source directory.'
+    throw 'The project checkout is missing its Zephyr source.'
 }
 $zephyrRoot = (Resolve-Path -LiteralPath $zephyrRoot).Path
 $westWorkspace = Split-Path -Parent $zephyrRoot
-$pythonEnvironment = $env:VIRTUAL_ENV
-if (-not $pythonEnvironment) { $pythonEnvironment = Join-Path $westWorkspace '.venv' }
+$pythonEnvironment = Join-Path $projectRoot '.venv'
 $pythonScripts = Join-Path $pythonEnvironment 'Scripts'
 if (-not (Test-Path -LiteralPath (Join-Path $pythonScripts 'python.exe'))) {
-    throw 'Set VIRTUAL_ENV to a Python environment containing Zephyr dependencies.'
+    throw 'Create the repository .venv using scripts/setup_environment.py first.'
 }
 $sdkRoot = $env:ZEPHYR_SDK_INSTALL_DIR
+if (-not $sdkRoot -and $localEnvironment) { $sdkRoot = $localEnvironment.sdk_root }
 if (-not $sdkRoot) {
     $sdkRoot = Join-Path (Split-Path -Parent $westWorkspace) ('zephyr-sdk-' + $dependencyLock.sdk.version)
 }
@@ -39,11 +43,16 @@ $env:PYTHONUTF8 = '1'
 $env:ZEPHYR_BASE = $zephyrRoot
 $env:ZEPHYR_SDK_INSTALL_DIR = (Resolve-Path -LiteralPath $sdkRoot).Path
 $env:ZEPHYR_TOOLCHAIN_VARIANT = 'zephyr'
-# Use Zephyr's current variable name; preserve other user-selected extra modules.
-$extraModules = @($projectRoot) + ($env:EXTRA_ZEPHYR_MODULES -split ';')
-$env:EXTRA_ZEPHYR_MODULES = ($extraModules | Where-Object { $_ } | Select-Object -Unique) -join ';'
+# This checkout contains all target modules; never discover a sibling workspace.
+$env:ZEPHYR_MODULES = (@(
+    (Join-Path $projectRoot 'modules/hal/cmsis_6'),
+    (Join-Path $projectRoot 'modules/hal/xhsc')
+) -join ';').Replace('\', '/')
+foreach ($moduleVariable in @('EXTRA_ZEPHYR_MODULES', 'ZEPHYR_EXTRA_MODULES')) {
+    [Environment]::SetEnvironmentVariable($moduleVariable, $null, 'Process')
+}
 Set-Location -LiteralPath $projectRoot
 Write-Host "Development repository: $projectRoot"
-Write-Host "Zephyr dependency:      $env:ZEPHYR_BASE"
+Write-Host "Zephyr source:          $env:ZEPHYR_BASE"
 Write-Host "SDK:                    $env:ZEPHYR_SDK_INSTALL_DIR"
 Write-Host 'Commands: python scripts/project.py doctor | check | build | test | debug'
