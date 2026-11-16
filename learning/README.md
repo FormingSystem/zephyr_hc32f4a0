@@ -22,7 +22,7 @@ domains: [documentation]
 | P01 | 计算机组成与 MCU 架构：先用图与实例讲通 CPU 寄存器、寻址对齐、栈堆、向量和编译，再走到 H743 外设、中断、启动和线程现场 | [专题大纲](P01_computer_architecture/大纲.md) |
 | P02 | Zephyr 工程准备与构建：认识 RTOS 与 Zephyr，准备环境和源码，再完成构建与移植实验 | [专题大纲](P02_zephyr_make_project/大纲.md) |
 
-目录的 P01、P02 是学习主线编号。P01 下的 P001—P019 是独立专题目录，各含关系与模型、原理与实现、案例与推演三篇正文；P02 中 P001、P002 等仍为章节编号，独立计数。刚接触芯片架构的读者先从 [P01 的按键与指示灯](P01_computer_architecture/P001_input_output/大纲.md)开始；已有相关基础的读者可直接阅读 P02。
+目录的 P01、P02 是学习主线编号。P01 下的 P001—P019 是独立专题目录，按机制依赖组织具名正文与案例，各专题篇数由内容决定；P02 中 P001、P002 等仍为章节编号，独立计数。刚接触芯片架构的读者先从 [P01 的按键与指示灯](P01_computer_architecture/P001_input_output/P001_电平怎样变成一次按键操作.md)开始；已有相关基础的读者可直接阅读 P02。
 
 首次学习 Zephyr，可从 P02 专题的 [P001 认识 Zephyr 与技术选型](P02_zephyr_make_project/P001_认识Zephyr与技术选型.md)进入，再按[专题大纲](P02_zephyr_make_project/大纲.md)准备环境与源码，再对照实际文件理解工程。环境材料统一目录，文件名后缀区分 [Windows](P02_zephyr_make_project/环境与依赖导航.md)与 [Linux](P02_zephyr_make_project/P002_环境安装与源码准备_Linux.md)，安装依据见[官方工具来源](P02_zephyr_make_project/主机工具与官方安装来源.md)。Linux 教程使用 **Ubuntu 22.04 LTS**，按正文补齐工具版本并采用独立的官方工作区示例，不能照搬 Windows 盘符、UCRT64 路径或 venv 布局。
 
