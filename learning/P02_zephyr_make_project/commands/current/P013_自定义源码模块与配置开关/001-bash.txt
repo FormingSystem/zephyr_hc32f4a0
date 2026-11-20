@@ -1,11 +1,11 @@
 # P013 13.1.7：构建启用 app_greeting 的应用
-# 按正文前提选择本操作，不批量执行整个目录。
+# 起点为当前终端 ZEPHYR_BASE 指向的 Zephyr 源码根。
 # Windows UCRT64；前提：组件与应用创建步骤已完成；CMSIS、SDK、Python依赖齐全。
-cd /g/zephyr_practice/zephyr-main
+cd "$ZEPHYR_BASE"
 source .venv/Scripts/activate
-export ZEPHYR_BASE="$(cygpath -m /g/zephyr_practice/zephyr-main)"
-west build -b mps2/an386 "$(cygpath -m /g/zephyr_practice/applications/component_hello)" \
+export ZEPHYR_BASE="$PWD"
+west build -b mps2/an386 ../applications/component_hello \
   -d build/learning-tools/p006/component_hello \
-  -- "-DEXTRA_ZEPHYR_MODULES=$(cygpath -m /g/zephyr_practice/components/app_greeting)" \
+  -- "-DEXTRA_ZEPHYR_MODULES=$PWD/../components/app_greeting" \
   -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 # 默认west发现CMSIS；额外路径只追加app_greeting，不替换默认模块列表。

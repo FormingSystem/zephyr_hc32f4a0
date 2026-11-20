@@ -1,2 +1,46 @@
-<!-- SPDX-License-Identifier: Apache-2.0 -->
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="226" viewBox="0 0 800 226" role="img" aria-labelledby="title desc"><title id="title">调用链怎样把目录变成源文件</title><desc id="desc">调用链怎样把目录变成源文件</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10Z" fill="#66788a"/></marker></defs><rect width="800" height="226" fill="white"/><g font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" fill="#243447"><rect x="20" y="20" width="240" height="68" rx="7" fill="#eaf2fc" stroke="#66788a"/><text x="140" y="48.5" font-size="16" text-anchor="middle"><tspan x="140" dy="0">配置输入</tspan><tspan x="140" dy="23">EXTRA_ZEPHYR_MODULES</tspan></text><rect x="280" y="20" width="240" height="68" rx="7" fill="#eaf2fc" stroke="#66788a"/><text x="400" y="48.5" font-size="16" text-anchor="middle"><tspan x="400" dy="0">发现module.yml</tspan><tspan x="400" dy="23">身份与入口</tspan></text><path d="M260 54 H280" fill="none" stroke="#66788a" stroke-width="1.5" marker-end="url(#arrow)"/><rect x="540" y="20" width="240" height="68" rx="7" fill="#eaf2fc" stroke="#66788a"/><text x="660" y="48.5" font-size="16" text-anchor="middle"><tspan x="660" dy="0">Kconfig定义</tspan><tspan x="660" dy="23">+应用prj.conf</tspan></text><path d="M520 54 H540" fill="none" stroke="#66788a" stroke-width="1.5" marker-end="url(#arrow)"/><rect x="540" y="138" width="240" height="68" rx="7" fill="#eaf2fc" stroke="#66788a"/><text x="660" y="178" font-size="16" text-anchor="middle"><tspan x="660" dy="0">CONFIG_APP_GREETING=y</tspan></text><path d="M660 88 V138" fill="none" stroke="#66788a" stroke-width="1.5" marker-end="url(#arrow)"/><rect x="280" y="138" width="240" height="68" rx="7" fill="#eaf2fc" stroke="#66788a"/><text x="400" y="166.5" font-size="16" text-anchor="middle"><tspan x="400" dy="0">组件CMake</tspan><tspan x="400" dy="23">选择greeting.c/include</tspan></text><path d="M540 172 H520" fill="none" stroke="#66788a" stroke-width="1.5" marker-end="url(#arrow)"/><rect x="20" y="138" width="240" height="68" rx="7" fill="#eaf2fc" stroke="#66788a"/><text x="140" y="166.5" font-size="16" text-anchor="middle"><tspan x="140" dy="0">Ninja编译链接</tspan><tspan x="140" dy="23">应用调用函数</tspan></text><path d="M280 172 H260" fill="none" stroke="#66788a" stroke-width="1.5" marker-end="url(#arrow)"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="386" viewBox="0 0 800 386" role="img" aria-labelledby="title desc">
+  <title id="title">一个模块怎样同时出现在发现记录和编译清单中</title>
+  <desc id="desc">component_hello 示例 · 从模块根读取入口声明。关闭版仍会读取 module.yml，所以发现记录里仍有 app_greeting。改变的是 .config 里的开关和编译清单里的 greeting.c。</desc>
+  <rect width="800" height="386" fill="#ffffff"/>
+  <path d="M400 86 V103 M137.333 103 H662.667" fill="none" stroke="#6c808a" stroke-width="2"/>
+  <path d="M137.333 103 V124" fill="none" stroke="#6c808a" stroke-width="2"/>
+  <path d="M137.333 170 V187" fill="none" stroke="#25618b" stroke-width="2"/>
+  <path d="M137.333 233 V250" fill="none" stroke="#25618b" stroke-width="2"/>
+  <path d="M400 103 V124" fill="none" stroke="#6c808a" stroke-width="2"/>
+  <path d="M400 170 V187" fill="none" stroke="#705197" stroke-width="2"/>
+  <path d="M400 233 V250" fill="none" stroke="#705197" stroke-width="2"/>
+  <path d="M662.667 103 V124" fill="none" stroke="#6c808a" stroke-width="2"/>
+  <path d="M662.667 170 V187" fill="none" stroke="#207767" stroke-width="2"/>
+  <path d="M662.667 233 V250" fill="none" stroke="#207767" stroke-width="2"/>
+  <g text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif">
+  <rect x="14" y="12" width="772" height="74" rx="8" fill="#edf3f6" stroke="#37586a" stroke-width="1.5"/>
+  <text x="400" y="37" font-size="16" font-weight="400" fill="#435f70">component_hello 示例 · 从模块根读取入口声明</text>
+  <text x="400" y="64" font-size="17" font-weight="700" fill="#172d3e">app_greeting/zephyr/module.yml</text>
+  <rect x="14" y="124" width="246.667" height="46" rx="8" fill="#e9f4fb" stroke="#25618b" stroke-width="1.5"/>
+  <text x="137.333" y="152" font-size="17" font-weight="700" fill="#25618b">模块名</text>
+  <rect x="14" y="187" width="246.667" height="46" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="137.333" y="215" font-size="16" font-weight="400" fill="#182e3d">name: app_greeting</text>
+  <rect x="14" y="250" width="246.667" height="94" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="137.333" y="278" font-size="16" font-weight="400" fill="#182e3d">向构建提供模块根后，</text>
+  <text x="137.333" y="302" font-size="16" font-weight="400" fill="#182e3d">zephyr_modules.txt 记录已识</text>
+  <text x="137.333" y="326" font-size="16" font-weight="400" fill="#182e3d">别的模块</text>
+  <rect x="276.667" y="124" width="246.667" height="46" rx="8" fill="#f4eff9" stroke="#705197" stroke-width="1.5"/>
+  <text x="400" y="152" font-size="17" font-weight="700" fill="#705197">功能开关</text>
+  <rect x="276.667" y="187" width="246.667" height="46" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="400" y="215" font-size="16" font-weight="400" fill="#182e3d">build.kconfig: Kconfig</text>
+  <rect x="276.667" y="250" width="246.667" height="118" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="400" y="278" font-size="16" font-weight="400" fill="#182e3d">应用 prj.conf 开启</text>
+  <text x="400" y="302" font-size="16" font-weight="400" fill="#182e3d">APP_GREETING；off.conf 将</text>
+  <text x="400" y="326" font-size="16" font-weight="400" fill="#182e3d">它关闭。结果记录在</text>
+  <text x="400" y="350" font-size="16" font-weight="400" fill="#182e3d">zephyr/.config</text>
+  <rect x="539.333" y="124" width="246.667" height="46" rx="8" fill="#e9f6f2" stroke="#207767" stroke-width="1.5"/>
+  <text x="662.667" y="152" font-size="17" font-weight="700" fill="#207767">条件选源</text>
+  <rect x="539.333" y="187" width="246.667" height="46" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="662.667" y="215" font-size="16" font-weight="400" fill="#182e3d">build.cmake: .</text>
+  <rect x="539.333" y="250" width="246.667" height="118" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="662.667" y="278" font-size="16" font-weight="400" fill="#182e3d">根 CMakeLists.txt 在开关开启</text>
+  <text x="662.667" y="302" font-size="16" font-weight="400" fill="#182e3d">时加入 src/greeting.c 和</text>
+  <text x="662.667" y="326" font-size="16" font-weight="400" fill="#182e3d">include；在编译清单核对</text>
+  <text x="662.667" y="350" font-size="16" font-weight="400" fill="#182e3d">greeting.c</text>
+  </g>
+</svg>
