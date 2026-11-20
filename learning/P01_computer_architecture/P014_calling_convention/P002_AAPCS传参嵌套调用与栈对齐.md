@@ -71,7 +71,7 @@ domains: [computer-architecture, assembly, abi]
 
 ## 2.3\_亲手写一个会嵌套调用的汇编函数
 
-在第12专题的练习目录创建 `calls.S`，或复制 [配套原件](../labs/calls.S)。以下是完整的两个函数与必要指示语句：
+在[已配置 Arm 工具的练习目录](../P012_assembly_tools/P002_安装工具并保留各阶段产物.md#section-2)创建 `calls.S`，或复制 [配套原件](../labs/calls.S)。以下是完整的两个函数与必要指示语句：
 
 ```asm
 .syntax unified
@@ -134,10 +134,15 @@ add_then_accumulate:
 在工具路径已设置的同一 Bash、练习目录中运行：
 
 ```bash
-# UCRT64 或 Linux Bash；mcu_arch_lab；calls.S 已保存。
+# UCRT64 或 Linux Bash；在保存本节源文件的练习目录执行。
+(
+set -e
+cd "${MCU_ARCH_LAB:-$HOME/mcu_arch_lab}"
+mkdir -p build
 arm-none-eabi-gcc -mcpu=cortex-m7 -mthumb -mfloat-abi=soft \
   -c calls.S -o build/calls.o
 arm-none-eabi-objdump -dr build/calls.o
+)
 ```
 
 输出应出现 `push`、`bl` 和 `pop`。本机结果中 `BL` 使用 32 位编码，在 `-r` 输出里还能看到与 `add_one` 对应的调用重定位。目标文件里的临时分支编码不是最终固件地址，链接器会根据最终布局完成相关修正。
