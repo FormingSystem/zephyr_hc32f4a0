@@ -3,7 +3,6 @@
 set -e
 cd /g/zephyr_practice/zephyr-main
 test -f share/zephyr-package/cmake/zephyr_export.cmake
-export_script_win="$(cygpath -am "$PWD/share/zephyr-package/cmake/zephyr_export.cmake")"
-MSYS2_ARG_CONV_EXCL='*' /ucrt64/bin/cmake -P "$export_script_win"
-MSYS2_ARG_CONV_EXCL='*' reg.exe query 'HKCU\Software\Kitware\CMake\Packages\Zephyr'
+cmake -P share/zephyr-package/cmake/zephyr_export.cmake
+reg.exe query 'HKCU\Software\Kitware\CMake\Packages\Zephyr'
 )

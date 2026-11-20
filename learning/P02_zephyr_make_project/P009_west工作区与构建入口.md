@@ -10,11 +10,11 @@ domains: [zephyr, west, cmake]
 
 # 第9章\_west零基础与Zephyr构建
 
-前面已经用官方 `hello_world + mps2/an386` 完成第一次构建。准备依赖时，[P005 的工作区与清单准备](P005_源码依赖与离线准备.md#section-5-1)说明了 init 与 update；P008 又让 CMake 通过 west 查询本地模块，或直接接收模块路径。现在已经有实际目录和构建结果，可以继续追问：同一个 west，为什么既能管理仓库，又能提供 `west build -b mps2/an386` 这样的构建命令？
+当 `west update` 准备源码时，west 根据工作区里指定的清单找到各仓库和修订。当 `west build` 构建应用时，同一个程序却要接受应用目录、板目标和输出目录，还会启动 CMake。为什么管理源码的工具也认识构建命令？区别在于命令由谁提供：west 自带工作区管理命令，Zephyr 仓库另外向它登记了构建扩展。下面沿这两次调用各走一遍。[工作区与清单的准备实验](P005_源码依赖与离线准备.md#section-5-1)
 
 本章沿同一工程逐步查看 `.west/config`、官方清单、CMSIS 项目和 Zephyr 扩展声明，再把 west 的构建调用与 P008 的直接 CMake 调用对照。前半章把已经用过的操作对应到具体文件，后半章才展开扩展加载和构建参数；已有正确工作区的读者只做查询，不重新 init 或 update。自定义源码组件还没有引入，将在 P013 基于这里建立的认识继续。
 
-本章以现有官方清单作为文件对照，不新建、删改或替换 `zephyr-main/west.yml`；公司清单的差异在 9.2.1 解释。采用归档和显式模块路径、暂时不需要 west 工作区的读者，可以阅读机制而跳过工作区操作，P008 的构建结果仍然有效。另一个 [west 专题](../west/大纲.md) 提供独立多仓库实验、清单编写与自定义扩展；它是后续练习，不是当前编译的前置条件。
+本章沿用 `zephyr-main/west.yml` 和已有工作区。9.2.1 节介绍项目自行维护清单时的目录关系。采用源码归档和显式模块路径的工程可继续使用 P008 的构建目录。
 
 ![west零基础与Zephyr构建](assets/p009-diagram-01.svg)
 
@@ -24,7 +24,7 @@ domains: [zephyr, west, cmake]
 
 上图串起工具的职责，不表示每次构建都要重复六个阶段。材料已经齐全时，第三步直接核对现有源码；禁止访问 GitHub 的环境中，下载仍受 P005 的来源条件约束。下面看到官方 URL 是在识别这份清单的内容，不是要求内部 Git 用户改回官方服务器。
 
-**官方译文对照：** [工作区](../zephyr_docs/west/P004_工作区.md)、[内置命令](../zephyr_docs/west/P011_内置命令.md)、[扩展命令机制](../zephyr_docs/west/P012_扩展命令机制.md)与 [构建、烧录和调试](../zephyr_docs/west/P007_构建烧录与调试.md)。工作区与项目下载遵循 west 核心规则，`build` 的具体参数和执行流程由当前 Zephyr 扩展决定。
+west 核心管理工作区和清单中的项目。`west build` 则由当前 Zephyr 源码提供的扩展实现，因此构建命令的选项随这份源码确定。
 
 **复制命令：** [当前命令索引](commands/current/P009_west工作区与构建入口/README.md)。按正文选择分支，不把整个目录的命令依次执行。
 
@@ -82,7 +82,7 @@ west --help
     └── cmsis_6/
 ```
 
-这里的 `.west/config` 从工作区根解析，UCRT64 中的完整位置是 `/g/zephyr_practice/.west/config`。当前终端位于其下一层 zephyr-main，所以相对路径写作 `../.west/config`：`..` 先回到父目录，再进入 .west，最后找到名为 config 的文件。config 本身就是配置文件，没有扩展名，也不是里面还装着其他文件的目录。
+从 Zephyr 源码根打开 `../.west/config`，可读到工作区选择的清单仓库和清单文件。
 
 **终端显示示例**：第 1 行是带提示符的读取命令，第 2—4 行是返回的文件内容，不要把输出一起当作命令执行。
 
@@ -95,9 +95,9 @@ file = west.yml
 
 west 从当前目录向上寻找 `.west`；找到后读取 config 中的 `manifest.path` 和 `manifest.file`，组合成活动清单位置。找不到时还有 `ZEPHYR_BASE` 等回退行为，详见官方 Basics；教程明确进入源码根，避免依赖无意继承的旧环境。
 
-![工作区怎样找到正确的清单](assets/p009-diagram-02.svg)
+![从当前工作区找到活动的 west.yml](assets/p009-diagram-02.svg)
 
-图例与读图：蓝框是定位过程中的目录与配置，绿框是最终读取的活动清单，灰箭头表示查找关系。先找到 .west/config，再按其中的路径和文件名定位清单，不能只按当前目录名猜。
+三项结果按“工作区根、清单项目目录、文件名”拼合。本例中 `manifest.path` 相对于工作区根，`manifest.file` 相对于清单项目目录。
 
 先做只读检查，不无条件执行 init：
 
@@ -110,7 +110,7 @@ west config manifest.path
 west config manifest.file
 ```
 
-本系列预期依次为工作区根、`zephyr-main`、`west.yml`。Windows Python 运行的 west 可能把第一项打印成 `G:/zephyr_practice`；在 UCRT64 中进入同一位置时使用 `/g/zephyr_practice`。若一致，直接复用。`already initialized in G:\zephyr_practice` 表示工作区已经存在，不是需要删除 `.west` 的理由。若指向其他目录，先核对当前所在位置与已有配置，不能继续下载到错误工作区。
+本系列预期依次为工作区根、`zephyr-main`、`west.yml`。若一致，直接复用。`already initialized in G:\zephyr_practice` 表示工作区已经存在，不是需要删除 `.west` 的理由。若指向其他目录，先核对当前所在位置与已有配置，不能继续下载到错误工作区。
 
 **只有 topdir 明确报告当前没有工作区**，并确认这个源码目录中有 P002 下载的完整 `west.yml` 时，才使用本地清单初始化：
 
@@ -142,7 +142,9 @@ file = west.yml
 
 `[manifest]` 是配置节，里面的 path 和 file 分别对应 `west config manifest.path`、`west config manifest.file` 查询的名字。path 相对工作区根解析，file 相对清单目录解析，因此在 UCRT64 中，最终清单的位置是 `/g/zephyr_practice/zephyr-main/west.yml`。`.west/config` 保存“到哪里找清单”，west.yml 才保存“有哪些项目和版本”；初始化没有把 west.yml 复制进 config。
 
-### 9.2.1\_沿用官方清单、自己维护清单与导入清单
+<a id="downstream-manifest"></a>
+
+### 9.2.1\_官方清单与下游清单
 
 现在就能理解 P005 提到的“自己初始化”和“沿用官方配置”。**初始化工作区**决定本机从哪里读清单；**编写或复用清单**决定读到哪些项目。二者不是同一个选择：官方 west.yml 已在本机时，可以自己执行本地 init；公司自己编写的清单，也可以通过远程 init 从内部 Git 取得。
 
@@ -156,7 +158,7 @@ file = west.yml
 
 导入还涉及“读哪个版本”。从项目导入时，west 通常读取该项目 `manifest-rev` 所指提交中的清单；`manifest-rev` 是 west 在项目仓库中维护的修订引用。直接修改该项目工作树里的 west.yml，不等于修改了被导入的内容。若提供导入内容的仓库或对应 Git 对象尚未在本机，普通清单查询可能失败；应先根据公司交付安排从允许的来源补齐。已有导入材料时，`west manifest --resolve` 可显示展开后的清单，用来核对最终项目来源，而不把 init 成功当成全部依赖已就绪。
 
-本节解释现有工作区为什么这样运行，不要求读者现在新建另一份清单。需要实际编写时，继续阅读本仓库官方译文[west 清单文件](../zephyr_docs/west/P013_west清单文件.md)中的 Projects、Manifest Imports 和 Resolving Manifests，以及[工作区](../zephyr_docs/west/P004_工作区.md)中的布局说明；动手练习见独立 [west 专题](../west/大纲.md)。当前只有完整源码快照的读者，仍可以保持 P008 的显式路径构建。
+本例的清单仓库就是 `zephyr-main`。`west update` 读取其中的 `west.yml`，据此取得 CMSIS 等项目。用归档准备依赖时，可将对应版本的模块目录直接传给 P008 的构建命令。
 
 <a id="west-download"></a>
 
@@ -248,9 +250,9 @@ west-commands: scripts/west-commands.yml
 
 上面的字段位于 `self`，是因为官方让 Zephyr 自己兼任清单仓库。若公司使用独立清单仓库，Zephyr 是 `projects` 中的一个项目，那么这个项目项需要保留相应的 `west-commands: scripts/west-commands.yml` 声明；从上游导入或覆盖项目时也要核对它。只有仓库 URL 和 revision，不能保证 west 知道该项目提供 build 命令。缺少声明时，init/list 等核心命令可能仍能运行，而 build 不可用；这不代表本地源码不能用 P008 的直接 CMake 入口构建。
 
-![只读：scripts/west-commands.yml 中 build 的原有声明。](assets/p009-diagram-03.svg)
+![west 到哪里寻找 build 的实现](assets/p009-diagram-03.svg)
 
-图例与读图：蓝框是 west 核心、清单声明、命令元数据和实现类，灰箭头表示发现与加载。build 命令的实现来自 Zephyr 扩展，不是每份 pip 安装的 west 都自带相同构建逻辑。
+从 `west build --help` 里的 `build` 可以追到清单、命令声明和 `Build` 类。换一份 Zephyr 源码，这条查找路径会带到那份源码提供的实现。
 
 ```bash
 # Windows UCRT64；源码根；工作区检查已通过。
@@ -328,54 +330,16 @@ sequenceDiagram
 用新的 `west-demo` 目录对照 P008 UCRT64 路线的 `first-ucrt-zip`（显式模块）或 `first-ucrt-west`（工作区发现）。两份缓存独立，应用和板目标相同；继续使用同一 SDK、Python 和配套模块，才能比较构建入口的差异。目录是教程选择的输出位置，由工具创建，不是官方原有文件。
 
 ```bash
-# Windows UCRT64；P008 已确认工具、SDK、cmsis 和 cmsis_6；有效工作区已就绪。
-(
-set -e
-cd /g/zephyr_practice/zephyr-main
-SRC_WIN="$(cygpath -am "$PWD")"
-PYTHON_WIN="$(cygpath -am .venv/Scripts/python.exe)"
-SDK_WIN="$(cygpath -am ../zephyr-sdk-1.0.1)"
-NINJA_WIN="$(cygpath -am /ucrt64/bin/ninja.exe)"
-CMSIS_WIN="$(cygpath -am ../modules/hal/cmsis)"
-CMSIS6_WIN="$(cygpath -am ../modules/hal/cmsis_6)"
-BUILD_WIN="$(cygpath -am build/learning-tools/west-demo)"
-export ZEPHYR_BASE="$SRC_WIN"
-export PATH="/ucrt64/bin:$PATH"
-MSYS2_ARG_CONV_EXCL='*' .venv/Scripts/python.exe -m west -v build \
-  --no-sysbuild \
-  --cmake-only \
-  -b mps2/an386 \
-  -d "$BUILD_WIN" \
-  "$SRC_WIN/samples/hello_world" -- \
-  "-DZephyr_DIR=$SRC_WIN/share/zephyr-package/cmake" \
-  "-DPYTHON_EXECUTABLE=$PYTHON_WIN" "-DPython3_EXECUTABLE=$PYTHON_WIN" \
-  "-DCMAKE_MAKE_PROGRAM=$NINJA_WIN" \
-  "-DZEPHYR_SDK_INSTALL_DIR=$SDK_WIN" \
-  "-DZEPHYR_MODULES=$CMSIS_WIN;$CMSIS6_WIN"
-)
+# UCRT64；已完成 P008 的环境准备，当前工作区已有清单指定的 CMSIS。
+cd "$ZEPHYR_BASE"
+west -v build --no-sysbuild --cmake-only -b mps2/an386 \
+  -d build/learning-tools/west-demo samples/hello_world -- \
+  -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 ```
 
-沿上方代码从 west 入口读到 CMake 参数。下表行号从代码块第一行注释起算，注释和空行计入，显示器上的自动折行不另计；参数片段可直接在代码中找到。
+`-v` 显示 west 发起的 CMake 调用。其中 `-b` 对应 `BOARD`，`-d` 对应构建目录，应用目录对应 CMake 的 `-S`。`--` 后的选项使 CMake 同时生成编译命令清单。SDK 与 Python 沿用 P008 的环境，CMSIS 来自已有工作区。
 
-<!-- parameter-lines:start -->
-| 块内行号 | 原样参数片段 | 读取者与作用 |
-| --- | --- | --- |
-| 14 | `MSYS2_ARG_CONV_EXCL='*'`、`-m west -v build` | MSYS2 对本次调用禁用参数路径转换；Windows Python 加载 west；west 的全局 `-v` 放在 build 前，输出实际工具调用 |
-| 15 | `--no-sysbuild` | Zephyr Build 扩展选择普通单应用入口，覆盖已有 sysbuild 默认设置 |
-| 16 | `--cmake-only` | Build 扩展只运行 CMake 配置和生成，本次不编译、链接固件 |
-| 17 | `-b mps2/an386` | Build 扩展将硬件目标作为 BOARD 传给 CMake |
-| 18 | `-d "$BUILD_WIN"` | Build 扩展选择构建目录，对应 CMake 的 -B |
-| 19 | `"$SRC_WIN/samples/hello_world"`、`--` | 前半项选择应用，对应 CMake 的 -S；分隔符之后的参数交给 CMake |
-| 20 | `-DZephyr_DIR=` | CMake 从指定位置加载这份 Zephyr 的包规则 |
-| 21 | `-DPYTHON_EXECUTABLE=`、`-DPython3_EXECUTABLE=` | 固定构建脚本及相关查找使用的项目 Python |
-| 22 | `-DCMAKE_MAKE_PROGRAM=` | 固定 Ninja 程序路径；本例生成器沿用 west 默认 Ninja，已有其他生成器设置时应先核对 |
-| 23 | `-DZEPHYR_SDK_INSTALL_DIR=` | Zephyr 从 P008 已验证的 SDK 根选择工具链 |
-| 24 | `-DZEPHYR_MODULES=` | 把 cmsis 与 cmsis_6 根作为同一个分号列表传入，替代默认模块发现列表 |
-<!-- parameter-lines:end -->
-
-第 5—11 行先把源目录、工具和模块位置转换成 Windows 路径，再由第 14—24 行使用。**把本条命令的终端输出与参数对照：** 第 14 行 `-v` 打印实际 CMake 调用；在该调用中核对第 17 行所选的 `mps2/an386` 和第 23 行传入的 SDK 路径，再看后续板与工具链发现结果。最后出现 `Configuring done` / `Generating done`，才表示配置和生成完成。第 16 行限定了本次动作，所以此时不要求出现新 ELF；下一节再执行构建。找不到 SDK 时停在配置阶段，回 [P004 §4.2.4](P004_SDK准备与编译器选型.md#section-4-2-4) 核对第 23 行所传目录。
-
-第 15 行确定了单应用的输出层级，后续按 `构建目录/zephyr/zephyr.elf` 检查。需要系统构建时，按 [P008 8.8](P008_选择应用与硬件目标并构建.md#section-8-8) 改用 `--sysbuild`，并从 domains.yaml 找各域目录。显式指定 SDK、解释器和两个模块，是为了让这次 west 调用与 P008 使用相同材料，比较入口差异。
+`--no-sysbuild` 选择单镜像流程，`--cmake-only` 运行配置和生成。终端显示 `Configuring done` 和 `Generating done` 后，可以在 `west-demo` 查到配置记录；下一节再执行编译与链接。
 
 west 还会传 `WEST_PYTHON`、`WEST_TOPDIR`、`WEST_VERSION` 等来源信息，所以表中是核心等价关系，不是声称两条入口生成的所有命令字符完全相同。这些是扩展替读者传入的上下文，不要求初学者手动填写。具体依据是 `Build._run_cmake()` 组织参数，然后调用 `zcmake.run_cmake()`。
 
@@ -454,10 +418,8 @@ west build -d build/learning-tools/west-demo -t help
 west build -d build/learning-tools/west-demo -o=-j4
 ```
 
-**参数定位：上方代码块。** 行号从块内首行起算，注释和空行计入；自动折行不计。
-
 <!-- parameter-lines:start -->
-| 块内行号 | 原样参数片段 | 读取者与作用 |
+| 命令行号（含注释） | 参数 | 读取者与作用 |
 | --- | --- | --- |
 | 5 | `-d`、`-c`、`--cmake-only` | west 选择构建目录，对应 CMake 的 -B；west 强制重新运行 CMake 配置；west 本次只配置和生成，不编译固件 |
 | 7 | `-d`、`-t` | west 选择构建目录，对应 CMake 的 -B；west 选择后端构建目标，本例 help 列出目标 |

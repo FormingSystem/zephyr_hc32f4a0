@@ -1,2 +1,44 @@
-<!-- SPDX-License-Identifier: Apache-2.0 -->
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="332" viewBox="0 0 800 332" role="img" aria-labelledby="title desc"><title id="title">工作区怎样找到正确的清单</title><desc id="desc">west 从当前目录找到活动清单</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10Z" fill="#66788a"/></marker></defs><rect width="800" height="332" fill="white"/><g font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" fill="#243447"><rect x="20" y="20" width="230" height="64" rx="7" fill="#eaf2fc" stroke="#66788a"/><text x="135" y="58" font-size="16" text-anchor="middle"><tspan x="135" dy="0">当前目录 zephyr-main</tspan></text><rect x="285" y="20" width="230" height="64" rx="7" fill="#eaf2fc" stroke="#66788a"/><text x="400" y="58" font-size="16" text-anchor="middle"><tspan x="400" dy="0">向上定位 .west</tspan></text><rect x="550" y="20" width="230" height="64" rx="7" fill="#eaf2fc" stroke="#66788a"/><text x="665" y="58" font-size="16" text-anchor="middle"><tspan x="665" dy="0">.west/config</tspan></text><rect x="420" y="150" width="360" height="64" rx="7" fill="#eaf2fc" stroke="#66788a"/><text x="600" y="188" font-size="16" text-anchor="middle"><tspan x="600" dy="0">manifest.path = zephyr-main</tspan></text><rect x="20" y="150" width="340" height="64" rx="7" fill="#eaf2fc" stroke="#66788a"/><text x="190" y="188" font-size="16" text-anchor="middle"><tspan x="190" dy="0">manifest.file = west.yml</tspan></text><rect x="200" y="260" width="400" height="52" rx="7" fill="#e6f3ec" stroke="#66788a"/><text x="400" y="292" font-size="16" text-anchor="middle"><tspan x="400" dy="0">读取 zephyr-main/west.yml</tspan></text><path d="M250 52 H285" fill="none" stroke="#66788a" stroke-width="1.5" marker-end="url(#arrow)"/><path d="M515 52 H550" fill="none" stroke="#66788a" stroke-width="1.5" marker-end="url(#arrow)"/><path d="M665 84 V150" fill="none" stroke="#66788a" stroke-width="1.5" marker-end="url(#arrow)"/><path d="M665 84 V118 H190 V150" fill="none" stroke="#66788a" stroke-width="1.5" marker-end="url(#arrow)"/><path d="M190 214 V286 H200" fill="none" stroke="#66788a" stroke-width="1.5" marker-end="url(#arrow)"/><path d="M600 214 V236 H500 V260" fill="none" stroke="#66788a" stroke-width="1.5" marker-end="url(#arrow)"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="386" viewBox="0 0 800 386" role="img" aria-labelledby="title desc">
+  <title id="title">从当前工作区找到活动的 west.yml</title>
+  <desc id="desc">UCRT64 · 在 Zephyr 源码根执行本节的三条查询。三项结果按“工作区根、清单项目目录、文件名”拼合。本例中 manifest.path 相对于工作区根，manifest.file 相对于清单项目目录。</desc>
+  <rect width="800" height="386" fill="#ffffff"/>
+  <path d="M400 86 V103 M137.333 103 H662.667" fill="none" stroke="#6c808a" stroke-width="2"/>
+  <path d="M137.333 103 V124" fill="none" stroke="#6c808a" stroke-width="2"/>
+  <path d="M137.333 170 V187" fill="none" stroke="#25618b" stroke-width="2"/>
+  <path d="M137.333 233 V250" fill="none" stroke="#25618b" stroke-width="2"/>
+  <path d="M400 103 V124" fill="none" stroke="#6c808a" stroke-width="2"/>
+  <path d="M400 170 V187" fill="none" stroke="#705197" stroke-width="2"/>
+  <path d="M400 233 V250" fill="none" stroke="#705197" stroke-width="2"/>
+  <path d="M662.667 103 V124" fill="none" stroke="#6c808a" stroke-width="2"/>
+  <path d="M662.667 170 V187" fill="none" stroke="#207767" stroke-width="2"/>
+  <path d="M662.667 233 V250" fill="none" stroke="#207767" stroke-width="2"/>
+  <g text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif">
+  <rect x="14" y="12" width="772" height="74" rx="8" fill="#edf3f6" stroke="#37586a" stroke-width="1.5"/>
+  <text x="400" y="37" font-size="16" font-weight="400" fill="#435f70">UCRT64 · 在 Zephyr 源码根执行本节的三条查询</text>
+  <text x="400" y="64" font-size="17" font-weight="700" fill="#172d3e">west topdir &amp;&amp; west config manifest.path &amp;&amp; west config manifest.file</text>
+  <rect x="14" y="124" width="246.667" height="46" rx="8" fill="#e9f4fb" stroke="#25618b" stroke-width="1.5"/>
+  <text x="137.333" y="152" font-size="17" font-weight="700" fill="#25618b">工作区根</text>
+  <rect x="14" y="187" width="246.667" height="46" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="137.333" y="215" font-size="16" font-weight="400" fill="#182e3d">west topdir</text>
+  <rect x="14" y="250" width="246.667" height="70" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="137.333" y="278" font-size="16" font-weight="400" fill="#182e3d">沿当前目录向上定位 .west，取</text>
+  <text x="137.333" y="302" font-size="16" font-weight="400" fill="#182e3d">得工作区根</text>
+  <rect x="276.667" y="124" width="246.667" height="46" rx="8" fill="#f4eff9" stroke="#705197" stroke-width="1.5"/>
+  <text x="400" y="152" font-size="17" font-weight="700" fill="#705197">清单项目目录</text>
+  <rect x="276.667" y="187" width="246.667" height="46" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="400" y="215" font-size="16" font-weight="400" fill="#182e3d">manifest.path</text>
+  <rect x="276.667" y="250" width="246.667" height="118" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="400" y="278" font-size="16" font-weight="400" fill="#182e3d">读取 .west/config 中的</text>
+  <text x="400" y="302" font-size="16" font-weight="400" fill="#182e3d">[manifest] path</text>
+  <text x="400" y="326" font-size="16" font-weight="400" fill="#182e3d">本例为 zephyr-main</text>
+  <text x="400" y="350" font-size="16" font-weight="400" fill="#182e3d">相对于工作区根</text>
+  <rect x="539.333" y="124" width="246.667" height="46" rx="8" fill="#e9f6f2" stroke="#207767" stroke-width="1.5"/>
+  <text x="662.667" y="152" font-size="17" font-weight="700" fill="#207767">清单文件名</text>
+  <rect x="539.333" y="187" width="246.667" height="46" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="662.667" y="215" font-size="16" font-weight="400" fill="#182e3d">manifest.file</text>
+  <rect x="539.333" y="250" width="246.667" height="94" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="662.667" y="278" font-size="16" font-weight="400" fill="#182e3d">本例文件名为 west.yml；活动</text>
+  <text x="662.667" y="302" font-size="16" font-weight="400" fill="#182e3d">清单位于工作区根下的</text>
+  <text x="662.667" y="326" font-size="16" font-weight="400" fill="#182e3d">zephyr-main/west.yml</text>
+  </g>
+</svg>

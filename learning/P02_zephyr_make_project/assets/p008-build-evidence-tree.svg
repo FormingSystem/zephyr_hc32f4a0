@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="540" viewBox="0 0 800 540" role="img" aria-labelledby="title desc">
+  <title id="title">从一次 AN386 构建定位使用的工程材料</title>
+  <desc id="desc">UCRT64 · Zephyr 源码根，使用本实验的 cmake-demo 配置。从应用入口往下查，板、配置和模块决定有哪些输入；从输出目录往上查，则能由编译命令、设备树和配置结果反查同一次选择。</desc>
+  <rect width="800" height="540" fill="#ffffff"/>
+  <path d="M400 216 V233 M137.333 233 H662.667" fill="none" stroke="#6c808a" stroke-width="2"/>
+  <path d="M137.333 233 V254" fill="none" stroke="#6c808a" stroke-width="2"/>
+  <path d="M137.333 300 V317" fill="none" stroke="#25618b" stroke-width="2"/>
+  <path d="M137.333 363 V380" fill="none" stroke="#25618b" stroke-width="2"/>
+  <path d="M400 233 V254" fill="none" stroke="#6c808a" stroke-width="2"/>
+  <path d="M400 300 V317" fill="none" stroke="#705197" stroke-width="2"/>
+  <path d="M400 363 V380" fill="none" stroke="#705197" stroke-width="2"/>
+  <path d="M662.667 233 V254" fill="none" stroke="#6c808a" stroke-width="2"/>
+  <path d="M662.667 300 V317" fill="none" stroke="#207767" stroke-width="2"/>
+  <path d="M662.667 363 V380" fill="none" stroke="#207767" stroke-width="2"/>
+  <g text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif">
+  <rect x="14" y="12" width="772" height="204" rx="8" fill="#edf3f6" stroke="#37586a" stroke-width="1.5"/>
+  <text x="400" y="37" font-size="16" font-weight="400" fill="#435f70">UCRT64 · Zephyr 源码根，使用本实验的 cmake-demo 配置</text>
+  <text x="400" y="64" font-size="17" font-weight="700" fill="#172d3e">cmake -S samples/hello_world \</text>
+  <text x="400" y="90" font-size="17" font-weight="700" fill="#172d3e">-B build/learning-tools/p003/cmake-demo -G Ninja \</text>
+  <text x="400" y="116" font-size="17" font-weight="700" fill="#172d3e">-DBOARD=mps2/an386 \</text>
+  <text x="400" y="142" font-size="17" font-weight="700" fill="#172d3e">"-DZephyr_DIR=$ZEPHYR_BASE/share/zephyr-package/cmake" \</text>
+  <text x="400" y="168" font-size="17" font-weight="700" fill="#172d3e">"-DPython3_EXECUTABLE=$(cygpath -m "$(command -v python)")" \</text>
+  <text x="400" y="194" font-size="17" font-weight="700" fill="#172d3e">-DCMAKE_EXPORT_COMPILE_COMMANDS=ON</text>
+  <rect x="14" y="254" width="246.667" height="46" rx="8" fill="#e9f4fb" stroke="#25618b" stroke-width="1.5"/>
+  <text x="137.333" y="282" font-size="17" font-weight="700" fill="#25618b">工程与执行者</text>
+  <rect x="14" y="317" width="246.667" height="46" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="137.333" y="345" font-size="16" font-weight="400" fill="#182e3d">-S samples/hello_world</text>
+  <rect x="14" y="380" width="246.667" height="94" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="137.333" y="408" font-size="16" font-weight="400" fill="#182e3d">CMakeLists.txt 加载 Zephyr</text>
+  <text x="137.333" y="432" font-size="16" font-weight="400" fill="#182e3d">-G Ninja 选择规则后端</text>
+  <text x="137.333" y="456" font-size="16" font-weight="400" fill="#182e3d">SDK 提供交叉编译器</text>
+  <rect x="276.667" y="254" width="246.667" height="46" rx="8" fill="#f4eff9" stroke="#705197" stroke-width="1.5"/>
+  <text x="400" y="282" font-size="17" font-weight="700" fill="#705197">硬件、功能与模块</text>
+  <rect x="276.667" y="317" width="246.667" height="46" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="400" y="345" font-size="16" font-weight="400" fill="#182e3d">-DBOARD=mps2/an386</text>
+  <rect x="276.667" y="380" width="246.667" height="94" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="400" y="408" font-size="16" font-weight="400" fill="#182e3d">板与 SoC 提供 DTS 和默认配</text>
+  <text x="400" y="432" font-size="16" font-weight="400" fill="#182e3d">置，应用 prj.conf 指定功能；</text>
+  <text x="400" y="456" font-size="16" font-weight="400" fill="#182e3d">模块发现从工作区取得 CMSIS</text>
+  <rect x="539.333" y="254" width="246.667" height="46" rx="8" fill="#e9f6f2" stroke="#207767" stroke-width="1.5"/>
+  <text x="662.667" y="282" font-size="17" font-weight="700" fill="#207767">可核对的结果</text>
+  <rect x="539.333" y="317" width="246.667" height="46" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="662.667" y="345" font-size="16" font-weight="400" fill="#182e3d">-B 指定输出目录</text>
+  <rect x="539.333" y="380" width="246.667" height="142" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="662.667" y="408" font-size="16" font-weight="400" fill="#182e3d">zephyr/.config 和</text>
+  <text x="662.667" y="432" font-size="16" font-weight="400" fill="#182e3d">zephyr/zephyr.dts 给出配置</text>
+  <text x="662.667" y="456" font-size="16" font-weight="400" fill="#182e3d">与硬件；编译清单保存编译任</text>
+  <text x="662.667" y="480" font-size="16" font-weight="400" fill="#182e3d">务，构建后得到</text>
+  <text x="662.667" y="504" font-size="16" font-weight="400" fill="#182e3d">zephyr/zephyr.elf</text>
+  </g>
+</svg>

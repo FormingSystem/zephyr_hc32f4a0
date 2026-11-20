@@ -18,7 +18,7 @@ domains: [zephyr, cmake, tools]
 
 本文保留完整文件、操作、预期结果和排错方法。先得到一个可执行程序，再增加库，最后比较修改前后的构建关系。
 
-**官方译文对照：** [CMake 构建系统](../zephyr_docs/build_system/P001_CMake构建系统.md)说明 Zephyr 怎样使用库目标与构建阶段；[Zephyr CMake 包](../zephyr_docs/build_system/P002_Zephyr_CMake包.md)说明应用如何加载源码包。本章的 Windows 主机练习由教程自行设计，CMake 原生命令语义仍以各节引用的 CMake 手册为依据。
+本章用主机上的小程序观察 CMake 如何从源码生成库与可执行文件。Zephyr 应用沿用这一目标模型，并通过 `find_package(Zephyr)` 加载构建规则。
 
 **复制命令：** [当前命令索引](commands/current/P007_原生CMake与目标模型/README.md)。按正文选择分支，不把整个目录的命令依次执行。
 
@@ -159,9 +159,9 @@ fi
 
 下面是对象组成图，不表示执行顺序。它解释为什么现代 CMake 倾向于对指定目标调用 `target_*`，而不是把所有编译选项都写成全局变量。
 
-![目标是一组属性的归属点](assets/p007-diagram-02.svg)
+![库目标的源码和公开使用要求分别归谁](assets/p007-diagram-02.svg)
 
-图例与读图：蓝框是一个 CMake target 及其属性，灰箭头表示属性归属，不表示运行调用。先找到目标，再把源码、头文件路径和链接要求分别放回它的属性。
+沿 `PUBLIC` 这一支可以解释为什么 `main.c` 也能包含 `add.h`。编译宏、选项和链接选项同样可以挂在目标上，具体属性取决于调用的 `target_*` 命令。
 
 `target_sources` 添加源码，`target_include_directories` 添加头文件搜索目录，`target_compile_definitions` 添加宏定义，`target_compile_options` 添加编译选项，`target_link_libraries` 描述目标之间的链接和使用关系。文件出现在磁盘上，不会自动改变这些属性；例如新增一个 `foo.c`，还要通过适当接口把它加进目标。
 
@@ -179,7 +179,7 @@ target_sources(my_app PRIVATE main.c)
 
 ### 7.3.2\_加入一个库，观察关系如何传播
 
-现在让程序调用 `add(2, 3)`。这次由读者在练习 `source/` 下新建 `include/add.h` 和 `src/add.c`，并用下面的内容替换当前练习入口与 `main.c`。这是同一个练习的第二阶段，不修改 Zephyr 官方应用。先保存需要保留的个人练习改动；各文件内容可从配套 `labs/cmake_native/02_targets` 对照读取。
+现在让程序调用 `add(2, 3)`。这次由读者在练习 `source/` 下新建 `include/add.h` 和 `src/add.c`，并用下面的内容替换当前练习入口与 `main.c`。这是同一个练习的第二阶段，不修改 Zephyr 官方应用。先保存需要保留的个人练习改动；可直接打开[目标定义](labs/cmake_native/02_targets/CMakeLists.txt)、[调用端](labs/cmake_native/02_targets/main.c)、[声明](labs/cmake_native/02_targets/include/add.h)和[实现](labs/cmake_native/02_targets/src/add.c)，对照下面的编译与链接结果。
 
 ```text
 source/                    本章自行维护

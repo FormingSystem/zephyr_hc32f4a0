@@ -1,5 +1,9 @@
-# Windows UCRT64；任意目录；只读检查，不下载。
-type -a cmake ninja python cygpath
-/ucrt64/bin/cmake --version
-/ucrt64/bin/ninja --version
-/ucrt64/bin/dtc --version
+# UCRT64；从任意目录进入示例源码根，准备本次终端的工具环境。
+cd /g/zephyr_practice/zephyr-main
+source .venv/Scripts/activate
+export ZEPHYR_BASE="$PWD"
+export ZEPHYR_SDK_INSTALL_DIR="$PWD/../zephyr-sdk-1.0.1"
+type -a cmake ninja python
+cmake --version
+ninja --version
+dtc --version

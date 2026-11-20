@@ -1,2 +1,44 @@
-<!-- SPDX-License-Identifier: Apache-2.0 -->
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="452" viewBox="0 0 800 452" role="img" aria-labelledby="title desc"><title id="title">目标是一组属性的归属点</title><desc id="desc">一个 CMake target 组织的构建要求</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10Z" fill="#66788a"/></marker></defs><rect width="800" height="452" fill="white"/><g font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" fill="#243447"><rect x="20" y="180" width="250" height="82" rx="7" fill="#eaf2fc" stroke="#66788a"/><text x="145" y="215.5" font-size="16" text-anchor="middle"><tspan x="145" dy="0">my_app / arithmetic</tspan><tspan x="145" dy="23">CMake target</tspan></text><rect x="420" y="20" width="360" height="64" rx="7" fill="#eaf2fc" stroke="#66788a"/><text x="600" y="46.5" font-size="16" text-anchor="middle"><tspan x="600" dy="0">Sources</tspan><tspan x="600" dy="23">参与构建的源码</tspan></text><rect x="420" y="107" width="360" height="64" rx="7" fill="#eaf2fc" stroke="#66788a"/><text x="600" y="133.5" font-size="16" text-anchor="middle"><tspan x="600" dy="0">Include directories</tspan><tspan x="600" dy="23">头文件搜索目录</tspan></text><rect x="420" y="194" width="360" height="64" rx="7" fill="#eaf2fc" stroke="#66788a"/><text x="600" y="220.5" font-size="16" text-anchor="middle"><tspan x="600" dy="0">Compile definitions / options</tspan><tspan x="600" dy="23">宏与编译选项</tspan></text><rect x="420" y="281" width="360" height="64" rx="7" fill="#eaf2fc" stroke="#66788a"/><text x="600" y="307.5" font-size="16" text-anchor="middle"><tspan x="600" dy="0">Link libraries / options</tspan><tspan x="600" dy="23">链接关系与选项</tspan></text><rect x="420" y="368" width="360" height="64" rx="7" fill="#eaf2fc" stroke="#66788a"/><text x="600" y="394.5" font-size="16" text-anchor="middle"><tspan x="600" dy="0">Usage requirements</tspan><tspan x="600" dy="23">交给使用者的要求</tspan></text><path d="M270 221 H335 V52 H420" fill="none" stroke="#66788a" stroke-width="1.5" marker-end="url(#arrow)"/><path d="M335 221 V139 H420" fill="none" stroke="#66788a" stroke-width="1.5" marker-end="url(#arrow)"/><path d="M335 221 V226 H420" fill="none" stroke="#66788a" stroke-width="1.5" marker-end="url(#arrow)"/><path d="M335 221 V313 H420" fill="none" stroke="#66788a" stroke-width="1.5" marker-end="url(#arrow)"/><path d="M335 313 V400 H420" fill="none" stroke="#66788a" stroke-width="1.5" marker-end="url(#arrow)"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="386" viewBox="0 0 800 386" role="img" aria-labelledby="title desc">
+  <title id="title">库目标的源码和公开使用要求分别归谁</title>
+  <desc id="desc">本章原生 CMake 例子的 source/CMakeLists.txt。沿 PUBLIC 这一支可以解释为什么 main.c 也能包含 add.h。编译宏、选项和链接选项同样可以挂在目标上，具体属性取决于调用的 target_* 命令。</desc>
+  <rect width="800" height="386" fill="#ffffff"/>
+  <path d="M400 86 V103 M137.333 103 H662.667" fill="none" stroke="#6c808a" stroke-width="2"/>
+  <path d="M137.333 103 V124" fill="none" stroke="#6c808a" stroke-width="2"/>
+  <path d="M137.333 170 V187" fill="none" stroke="#25618b" stroke-width="2"/>
+  <path d="M137.333 257 V274" fill="none" stroke="#25618b" stroke-width="2"/>
+  <path d="M400 103 V124" fill="none" stroke="#6c808a" stroke-width="2"/>
+  <path d="M400 170 V187" fill="none" stroke="#705197" stroke-width="2"/>
+  <path d="M400 257 V274" fill="none" stroke="#705197" stroke-width="2"/>
+  <path d="M662.667 103 V124" fill="none" stroke="#6c808a" stroke-width="2"/>
+  <path d="M662.667 170 V187" fill="none" stroke="#207767" stroke-width="2"/>
+  <path d="M662.667 257 V274" fill="none" stroke="#207767" stroke-width="2"/>
+  <g text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif">
+  <rect x="14" y="12" width="772" height="74" rx="8" fill="#edf3f6" stroke="#37586a" stroke-width="1.5"/>
+  <text x="400" y="37" font-size="16" font-weight="400" fill="#435f70">本章原生 CMake 例子的 source/CMakeLists.txt</text>
+  <text x="400" y="64" font-size="17" font-weight="700" fill="#172d3e">add_library(arithmetic STATIC)</text>
+  <rect x="14" y="124" width="246.667" height="46" rx="8" fill="#e9f4fb" stroke="#25618b" stroke-width="1.5"/>
+  <text x="137.333" y="152" font-size="17" font-weight="700" fill="#25618b">库自身的源码</text>
+  <rect x="14" y="187" width="246.667" height="70" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="137.333" y="215" font-size="16" font-weight="400" fill="#182e3d">target_sources(arithmetic</text>
+  <text x="137.333" y="239" font-size="16" font-weight="400" fill="#182e3d">PRIVATE src/add.c)</text>
+  <rect x="14" y="274" width="246.667" height="46" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="137.333" y="302" font-size="16" font-weight="400" fill="#182e3d">编译 add.c，生成静态库</text>
+  <rect x="276.667" y="124" width="246.667" height="46" rx="8" fill="#f4eff9" stroke="#705197" stroke-width="1.5"/>
+  <text x="400" y="152" font-size="17" font-weight="700" fill="#705197">库及调用方的头文件</text>
+  <rect x="276.667" y="187" width="246.667" height="70" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="400" y="215" font-size="16" font-weight="400" fill="#182e3d">target_include_directories(</text>
+  <text x="400" y="239" font-size="16" font-weight="400" fill="#182e3d">arithmetic PUBLIC …)</text>
+  <rect x="276.667" y="274" width="246.667" height="70" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="400" y="302" font-size="16" font-weight="400" fill="#182e3d">include 下的 add.h 对库与使</text>
+  <text x="400" y="326" font-size="16" font-weight="400" fill="#182e3d">用库的目标都可见</text>
+  <rect x="539.333" y="124" width="246.667" height="46" rx="8" fill="#e9f6f2" stroke="#207767" stroke-width="1.5"/>
+  <text x="662.667" y="152" font-size="17" font-weight="700" fill="#207767">调用方的链接要求</text>
+  <rect x="539.333" y="187" width="246.667" height="70" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="662.667" y="215" font-size="16" font-weight="400" fill="#182e3d">target_link_libraries(my_app</text>
+  <text x="662.667" y="239" font-size="16" font-weight="400" fill="#182e3d">PRIVATE arithmetic)</text>
+  <rect x="539.333" y="274" width="246.667" height="94" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="662.667" y="302" font-size="16" font-weight="400" fill="#182e3d">my_app 编译 main.c 时取得公</text>
+  <text x="662.667" y="326" font-size="16" font-weight="400" fill="#182e3d">开头文件路径，链接时取得</text>
+  <text x="662.667" y="350" font-size="16" font-weight="400" fill="#182e3d">add 的实现</text>
+  </g>
+</svg>
