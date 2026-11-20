@@ -109,7 +109,7 @@ trigger_usage_fault:
 .size trigger_usage_fault, .-trigger_usage_fault
 ```
 
-先只把它保存为 `fault_demo.S`，使用第14专题相同方法编译为 `.o` 并反汇编，确认存在 `udf`。这一步不执行故障。若以后在已连接、可复位的实板实验中调用它，应先在故障处理入口设置断点，再观察：UsageFault 已允许时进入相应处理；未允许时可能升级到 HardFault，并在 HFSR/CFSR 中留下对应状态。
+保存上面的代码或取用 [fault_demo.S](../labs/fault_demo.S)。在[准备好 Arm 工具的终端](../P012_assembly_tools/P002_安装工具并保留各阶段产物.md#section-2)进入文件所在目录，执行 `arm-none-eabi-gcc -mcpu=cortex-m7 -mthumb -c fault_demo.S -o fault_demo.o`，再用 `arm-none-eabi-objdump -d fault_demo.o` 找到 `<trigger_usage_fault>` 下的 `udf`。这一步不执行故障。若以后在已连接、可复位的实板实验中调用它，应先在故障处理入口设置断点，再观察：UsageFault 已允许时进入相应处理；未允许时可能升级到 HardFault，并在 HFSR/CFSR 中留下对应状态。
 
 第15专题最小向量表把这些入口都指向默认循环，因此必须通过异常编号和状态寄存器区分原因，而不能因为停止位置相同就说它们是同一类故障。恢复实验时移除调用并重新构建、下载、复位，不在故障返回路径上盲目跳过未知长度指令。
 
