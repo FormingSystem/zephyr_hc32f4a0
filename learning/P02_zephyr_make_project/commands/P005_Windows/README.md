@@ -8,13 +8,13 @@
 
 | 完整操作 | 正文 | 用途 |
 | --- | --- | --- |
-| [check-baseline-inputs.txt](check-baseline-inputs.txt) | [10.3.3](../../P010_工程分层与驱动模型.md#section-10-3-3) | 只读核对官方 MPS2 baseline 的已有输入 |
-| [build-baseline-west.txt](build-baseline-west.txt) | [10.3.3](../../P010_工程分层与驱动模型.md#section-10-3-3) | 用 west 构建官方 hello_world 与 MPS2/AN386 |
-| [build-baseline-cmake.txt](build-baseline-cmake.txt) | [10.3.3](../../P010_工程分层与驱动模型.md#section-10-3-3) | 官方 MPS2 baseline 的直接 CMake 分支 |
+| [check-baseline-inputs.txt](check-baseline-inputs.txt) | [10.3.3](../../reference/MPS2串口构建与驱动源码实验.md#section-10-3-3) | 只读核对官方 MPS2 baseline 的已有输入 |
+| [build-baseline-west.txt](build-baseline-west.txt) | [10.3.3](../../reference/MPS2串口构建与驱动源码实验.md#section-10-3-3) | 用 west 构建官方 hello_world 与 MPS2/AN386 |
+| [build-baseline-cmake.txt](build-baseline-cmake.txt) | [10.3.3](../../reference/MPS2串口构建与驱动源码实验.md#section-10-3-3) | 官方 MPS2 baseline 的直接 CMake 分支 |
 | [trace-mps2-source.txt](trace-mps2-source.txt) | [10.3.5](../../P010_工程分层与驱动模型.md#section-10-3-5) | 只读定位 MPS2 UART 硬件实现 |
-| [read-cmsis-adapter.txt](read-cmsis-adapter.txt) | [10.4.2](../../P010_工程分层与驱动模型.md#section-10-4-2) | 只读查看 board、SoC 与 CMSIS 接入原文件 |
-| [inspect-manifest-selection.txt](inspect-manifest-selection.txt) | [10.4.1](../../P010_工程分层与驱动模型.md#section-10-4-1) | 对照完整清单与当前 CMSIS 项目的身份、版本和路径 |
-| [trace-baseline-build.txt](trace-baseline-build.txt) | [10.3.7](../../P010_工程分层与驱动模型.md#section-10-3-7) | 反查 MPS2 baseline 的硬件与源文件选择 |
+| [read-cmsis-adapter.txt](read-cmsis-adapter.txt) | [10.4.2](../../reference/MPS2串口构建与驱动源码实验.md#section-10-4-2) | 只读查看 board、SoC 与 CMSIS 接入原文件 |
+| [inspect-manifest-selection.txt](inspect-manifest-selection.txt) | [10.4.1](../../reference/MPS2串口构建与驱动源码实验.md#section-10-4-1) | 对照完整清单与当前 CMSIS 项目的身份、版本和路径 |
+| [trace-baseline-build.txt](trace-baseline-build.txt) | [10.3.7](../../reference/MPS2串口构建与驱动源码实验.md#section-10-3-7) | 反查 MPS2 baseline 的硬件与源文件选择 |
 | [check-driver-model-evidence.txt](check-driver-model-evidence.txt) | [10.5](../../P010_工程分层与驱动模型.md#section-10-5) | 只读核对 Kconfig 来源、生成宏与编译命令 |
 
 先核对 P001—P004 的输入，再选择 west 或 CMake baseline 构建入口。反查命令只读取已有输出。CMSDK 源文件读取与 CMSIS 接入规则读取不修改官方源码。

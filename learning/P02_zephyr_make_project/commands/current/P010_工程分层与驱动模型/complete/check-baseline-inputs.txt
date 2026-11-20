@@ -1,13 +1,7 @@
-# P010 10.3.3：只读核对官方 MPS2 baseline 的已有输入
-# 按正文前提选择本操作，不批量执行整个目录。
-# Windows UCRT64；只读核对。前提：P002—P005 的源码、venv、SDK、配套 CMSIS 模块已准备。
+# UCRT64；进入源码根，激活项目环境，检查两条路线共用的材料。
 cd /g/zephyr_practice/zephyr-main
 source .venv/Scripts/activate
-west topdir
-west config manifest.path
-west list cmsis_6 -f '{name} {revision} {path} {url}'
-test -f ../modules/hal/cmsis_6/zephyr/module.yml
-test -f ../modules/hal/cmsis_6/CMSIS/Core/Include/core_cm4.h
-west boards -f '{name}: {qualifiers}' | grep -F 'mps2'
-# 预期west根为G:/zephyr_practice，manifest.path为zephyr-main。
-# 缺CMSIS回P005核验材料；缺主机工具/SDK分别回P003/P004；不删除已有.west。
+export ZEPHYR_BASE="$PWD"
+export ZEPHYR_SDK_INSTALL_DIR="$PWD/../zephyr-sdk-1.0.1"
+ls samples/hello_world/src/main.c boards/arm/mps2/board.yml
+ls ../modules/hal/cmsis/zephyr/module.yml ../modules/hal/cmsis_6/CMSIS/Core/Include/core_cm4.h

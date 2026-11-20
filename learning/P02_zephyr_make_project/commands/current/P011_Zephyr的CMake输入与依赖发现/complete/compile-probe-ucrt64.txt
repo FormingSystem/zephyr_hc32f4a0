@@ -1,0 +1,5 @@
+# UCRT64；进入刚保存 probe.c 的目录，使用已选 SDK 的 GNU 工具。
+cd "$ZEPHYR_BASE/build/learning-tools/p011/probe"
+prefix="$ZEPHYR_SDK_INSTALL_DIR/gnu/arm-zephyr-eabi/bin/arm-zephyr-eabi-"
+"${prefix}gcc" -mcpu=cortex-m4 -mthumb -Os -c probe.c -o probe.o
+"${prefix}objdump" -d probe.o

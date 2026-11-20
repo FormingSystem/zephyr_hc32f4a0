@@ -1,14 +1,15 @@
-# Windows UCRT64；P008 的 first-ucrt-zip 已配置成功；只读生成结果。
-cd /g/zephyr_practice/zephyr-main
+# UCRT64；在已准备的 Zephyr 源码根读取一个 AN386 构建目录。
+cd "$ZEPHYR_BASE"
 source .venv/Scripts/activate
-python - <<'PY'
+python - "${AN386_BUILD_DIR:-build/learning-tools/p010/cmake-an386}" <<'PY'
+import sys
 from pathlib import Path
 import json
-build = Path('build/learning-tools/first-ucrt-zip')
+build = Path(sys.argv[1])
 required = ['CMakeCache.txt', 'zephyr/.config', 'zephyr_modules.txt', 'compile_commands.json']
 missing = [name for name in required if not (build / name).is_file()]
 if missing:
-    raise SystemExit('先完成 P008 配置，或核对构建目录：' + ', '.join(missing))
+    raise SystemExit('请核对所选 AN386 构建目录及其编译清单：' + ', '.join(missing))
 print('BUILD:', build.resolve())
 for line in (build / 'CMakeCache.txt').read_text(encoding='utf-8').splitlines():
     if line.startswith(('BOARD:', 'BOARD_DIR:', 'CMAKE_C_COMPILER:', 'ZEPHYR_SDK_INSTALL_DIR:', 'Zephyr-sdk_DIR:')):

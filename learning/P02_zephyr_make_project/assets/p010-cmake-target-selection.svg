@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1340" height="790" viewBox="0 0 1340 790" role="img" aria-labelledby="title desc">
+  <title id="title">直接 CMake 构建的参数与 Zephyr 工程文件</title>
+  <desc id="desc">配置命令从应用、板目标、本地模块和构建输出四个方向组建工程。应用入口加入 main.c，板目标选定 AN386 的 Cortex-M4，本地 CMSIS 模块提供内核头文件。CMake 为 Ninja 生成规则，随后 cmake --build 在同一目录完成编译与链接。</desc>
+  <defs>
+    <marker id="down" markerWidth="7" markerHeight="7" refX="5.5" refY="3.5" orient="auto"><path d="M0 0 L6 3.5 L0 7Z" fill="#586779"/></marker>
+    <style>
+      text{font:21px "Microsoft YaHei","Noto Sans CJK SC",sans-serif;fill:#182b3d}
+      .code{font-family:Consolas,"Microsoft YaHei",monospace}
+      .detail{font-size:19px}.bold{font-weight:bold}.tag{font-size:20px;font-weight:bold}
+      .app{fill:#184f80}.board{fill:#156048}.mod{fill:#604185}.out{fill:#78471b}
+      .edge{stroke:#586779;stroke-width:2.4;fill:none;marker-end:url(#down)}
+      .a{fill:#f3f8fd;stroke:#759bc0}.b{fill:#f0f8f4;stroke:#6a9c85}.m{fill:#f7f3fb;stroke:#a38bb9}.o{fill:#fdf8f1;stroke:#bc9469}
+      rect{stroke-width:1.5}
+    </style>
+  </defs>
+  <rect width="1340" height="790" fill="white"/>
+  <rect x="66" y="12" width="1208" height="166" rx="10" fill="#f3f5f8" stroke="#8996a6"/>
+  <text x="90" y="40" class="tag">在 Zephyr 源码根配置工程 · UCRT64 · hal_dir 为两个本地 CMSIS 模块的父目录</text>
+  <text x="90" y="73" class="code" xml:space="preserve">cmake <tspan class="app bold">-S samples/hello_world</tspan> <tspan class="out">-B build/learning-tools/p010/cmake-an386</tspan> \</text>
+  <text x="90" y="102" class="code" xml:space="preserve">  <tspan class="out">-G Ninja</tspan> <tspan class="board bold">-DBOARD=mps2/an386</tspan> \</text>
+  <text x="90" y="131" class="code mod" xml:space="preserve">  "-DZEPHYR_MODULES=$hal_dir/cmsis;$hal_dir/cmsis_6" \</text>
+  <text x="90" y="160" class="code out" xml:space="preserve">  -DCMAKE_EXPORT_COMPILE_COMMANDS=ON</text>
+
+  <path d="M670 179 V205 M149 205 H1195" stroke="#586779" stroke-width="2.4" fill="none"/>
+  <path class="edge" d="M149 205 V229"/><path class="edge" d="M467 205 V229"/><path class="edge" d="M839 205 V229"/><path class="edge" d="M1195 205 V229"/>
+
+  <rect class="a" x="13" y="235" width="272" height="83" rx="8"/>
+  <text x="149" y="266" text-anchor="middle" class="tag app">选择应用</text>
+  <text x="149" y="297" text-anchor="middle" class="code bold">-S samples/hello_world</text>
+  <path class="edge" d="M149 319 V346"/>
+  <rect class="a" x="13" y="352" width="272" height="112" rx="8"/>
+  <text x="149" y="384" text-anchor="middle" class="code">samples/hello_world/</text>
+  <text x="149" y="414" text-anchor="middle" class="code bold">CMakeLists.txt</text>
+  <text x="149" y="446" text-anchor="middle" class="detail">加载 Zephyr，加入应用源文件</text>
+  <path class="edge" d="M149 465 V492"/>
+  <rect class="a" x="13" y="498" width="272" height="78" rx="8"/>
+  <text x="149" y="530" text-anchor="middle" class="code bold">src/main.c</text>
+  <text x="149" y="557" text-anchor="middle">提供应用入口 main()</text>
+
+  <rect class="b" x="302" y="235" width="330" height="83" rx="8"/>
+  <text x="467" y="266" text-anchor="middle" class="tag board">选择板及其处理器系统</text>
+  <text x="467" y="297" text-anchor="middle" class="code bold">-DBOARD=mps2/an386</text>
+  <path class="edge" d="M467 319 V346"/>
+  <rect class="b" x="302" y="352" width="330" height="85" rx="8"/>
+  <text x="467" y="385" text-anchor="middle" class="code bold">boards/arm/mps2/board.yml</text>
+  <text x="467" y="415" text-anchor="middle" class="detail">板 mps2 登记了 an386</text>
+  <path class="edge" d="M467 438 V465"/>
+  <rect class="b" x="302" y="471" width="330" height="86" rx="8"/>
+  <text x="467" y="504" text-anchor="middle" class="code bold detail">boards/arm/mps2/Kconfig.mps2</text>
+  <text x="467" y="535" text-anchor="middle" class="detail">板目标选中 SOC_AN386</text>
+  <path class="edge" d="M467 558 V585"/>
+  <rect class="b" x="302" y="591" width="330" height="84" rx="8"/>
+  <text x="467" y="623" text-anchor="middle" class="code bold">soc/arm/mps2/Kconfig</text>
+  <text x="467" y="654" text-anchor="middle" class="detail">SoC 选中 CPU_CORTEX_M4</text>
+  <path class="edge" d="M467 676 V706"/>
+  <rect x="324" y="712" width="286" height="46" rx="23" fill="#d8eee2" stroke="#609877"/>
+  <text x="467" y="742" text-anchor="middle" class="bold board">目标内核为 Cortex-M4</text>
+
+  <rect class="m" x="650" y="235" width="378" height="83" rx="8"/>
+  <text x="839" y="266" text-anchor="middle" class="tag mod">接入本地模块</text>
+  <text x="839" y="297" text-anchor="middle" class="code bold">-DZEPHYR_MODULES=…</text>
+  <path class="edge" d="M839 319 V346"/>
+  <rect class="m" x="650" y="352" width="378" height="85" rx="8"/>
+  <text x="839" y="384" text-anchor="middle" class="code bold">cmsis 和 cmsis_6</text>
+  <text x="839" y="415" text-anchor="middle" class="detail">读取各模块根下的 zephyr/module.yml</text>
+  <path class="edge" d="M839 438 V465"/>
+  <rect class="m" x="650" y="471" width="378" height="86" rx="8"/>
+  <text x="839" y="504" text-anchor="middle" class="code bold">zephyr_modules.txt</text>
+  <text x="839" y="535" text-anchor="middle" class="detail">输出目录中登记模块名、位置和入口</text>
+  <path class="edge" d="M839 558 V585"/>
+  <rect class="m" x="650" y="591" width="378" height="84" rx="8"/>
+  <text x="839" y="623" text-anchor="middle" class="code bold detail">modules/cmsis_6/CMakeLists.txt</text>
+  <text x="839" y="654" text-anchor="middle" class="detail">将 CMSIS/Core/Include 加入头文件目录</text>
+  <path class="edge" d="M839 676 V706"/>
+  <rect x="662" y="712" width="354" height="46" rx="23" fill="#ece4f5" stroke="#a38bb9"/>
+  <text x="839" y="742" text-anchor="middle" class="bold mod">编译器可找到 core_cm4.h</text>
+
+  <rect class="o" x="1046" y="235" width="280" height="83" rx="8"/>
+  <text x="1186" y="266" text-anchor="middle" class="tag out">生成规则与构建固件</text>
+  <text x="1186" y="297" text-anchor="middle" class="detail">-B 目录、-G Ninja、导出选项</text>
+  <path class="edge" d="M1186 319 V346"/>
+  <rect class="o" x="1046" y="352" width="280" height="112" rx="8"/>
+  <text x="1186" y="383" text-anchor="middle" class="detail">-B 指定的目录中生成</text>
+  <text x="1186" y="414" text-anchor="middle" class="code bold">build.ninja</text>
+  <text x="1186" y="444" text-anchor="middle" class="code bold">compile_commands.json</text>
+  <path class="edge" d="M1186 465 V492"/>
+  <rect class="o" x="1046" y="498" width="280" height="84" rx="8"/>
+  <text x="1186" y="530" text-anchor="middle" class="code bold">cmake --build</text>
+  <text x="1186" y="561" text-anchor="middle" class="detail">指定同一目录，启动 Ninja</text>
+  <path class="edge" d="M1186 583 V609"/>
+  <rect class="o" x="1046" y="615" width="280" height="74" rx="8"/>
+  <text x="1186" y="659" text-anchor="middle" class="code bold">zephyr/zephyr.elf</text>
+</svg>

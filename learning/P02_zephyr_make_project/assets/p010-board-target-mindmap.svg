@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="770" height="602" viewBox="0 0 770 602" role="img" aria-labelledby="title desc">
+  <title id="title">west build 命令与 Zephyr 工程文件的对应关系（枝线版）</title>
+  <desc id="desc">从 west build 命令分出构建入口、应用、板目标和构建输出。板目标 mps2/an386 经板清单、板级规则和 SoC 规则选中 Cortex-M4。</desc>
+  <style>
+    text{font:16px "Microsoft YaHei","Noto Sans CJK SC",sans-serif;fill:#23354b}
+    .code{font-family:Consolas,"Microsoft YaHei",monospace}
+    .heading{font-size:17px;font-weight:bold}.hint{font-size:15px;fill:#435468}
+    .entry{fill:#614775}.app{fill:#245881}.board{fill:#21664a}.out{fill:#875119}
+  </style>
+  <rect width="770" height="602" rx="9" fill="white"/>
+  <path d="M38 89 V532" fill="none" stroke="#aab4c0" stroke-width="2"/>
+  <rect x="12" y="9" width="746" height="83" rx="9" fill="#f5f7fa" stroke="#9ba9b7"/>
+  <path d="M38 97 Q38 133 71 133 H241 M241 133 Q263 133 279 120 H748" fill="none" stroke="#9677a9" stroke-width="2" stroke-linecap="round"/>
+  <path d="M38 154 Q38 201 71 201 H241 M241 201 C261 201 262 177 282 177 H748 M241 201 C261 201 262 221 282 221 H748" fill="none" stroke="#729abe" stroke-width="2" stroke-linecap="round"/>
+  <path d="M38 242 Q38 324 71 324 H241 M241 324 C265 324 258 269 282 269 H748 M241 324 H748 M241 324 C265 324 258 380 282 380 H748" fill="none" stroke="#70a58a" stroke-width="2" stroke-linecap="round"/>
+  <path d="M38 413 Q38 453 71 453 H241 M241 453 Q262 453 280 442 H748 M38 483 Q38 533 71 533 H241 M241 533 Q262 533 280 519 H748" fill="none" stroke="#c09561" stroke-width="2" stroke-linecap="round"/>
+  <text x="26" y="32" class="hint" xml:space="preserve">UCRT64 · 在 Zephyr 源码根执行</text>
+  <text x="26" y="57" class="code" xml:space="preserve"><tspan class="entry">west build</tspan> <tspan class="board">-b mps2/an386</tspan> <tspan class="out">-d build/learning-tools/p010/west-an386</tspan> \</text>
+  <text x="26" y="79" class="code" xml:space="preserve">  <tspan class="app">samples/hello_world</tspan> <tspan class="out">-- -DCMAKE_EXPORT_COMPILE_COMMANDS=ON</tspan></text>
+  <text x="70" y="125" class="code heading entry" xml:space="preserve">west build</text>
+  <text x="285" y="114" class="code" xml:space="preserve">scripts/west_commands/build.py</text>
+  <text x="285" y="143" class="hint" xml:space="preserve">Build 扩展调用 CMake 配置工程，再启动构建。</text>
+  <text x="70" y="194" class="code heading app" xml:space="preserve">samples/hello_world</text>
+  <text x="70" y="223" class="hint" xml:space="preserve">应用目录 · CMake 的 -S</text>
+  <text x="288" y="171" class="code" xml:space="preserve">samples/hello_world/CMakeLists.txt</text>
+  <text x="288" y="214" class="" xml:space="preserve">其中的 <tspan class="code">target_sources</tspan> 加入 <tspan class="code">src/main.c</tspan>，提供 <tspan class="code">main()</tspan>。</text>
+  <text x="70" y="317" class="code heading board" xml:space="preserve">-b mps2/an386</text>
+  <text x="70" y="347" class="hint" xml:space="preserve">CMake：-DBOARD</text>
+  <text x="288" y="263" class="code" xml:space="preserve">boards/arm/mps2/board.yml</text>
+  <text x="288" y="290" class="hint" xml:space="preserve">板名 mps2 的 socs 列表中有 an386。</text>
+  <text x="288" y="318" class="code" xml:space="preserve">boards/arm/mps2/Kconfig.mps2</text>
+  <text x="288" y="346" class="hint" xml:space="preserve">板目标 BOARD_MPS2_AN386 选中 SOC_AN386。</text>
+  <text x="288" y="374" class="code" xml:space="preserve">soc/arm/mps2/Kconfig</text>
+  <text x="288" y="402" class="hint" xml:space="preserve">SOC_AN386 选中 CPU_CORTEX_M4，内核为 Cortex-M4。</text>
+  <text x="70" y="446" class="heading out" xml:space="preserve">-d　输出目录</text>
+  <text x="70" y="474" class="hint" xml:space="preserve">对应 CMake 的 -B</text>
+  <text x="286" y="436" class="code" xml:space="preserve">build/learning-tools/p010/west-an386/</text>
+  <text x="286" y="466" class="hint" xml:space="preserve">链接完成后，固件位于该目录下的 zephyr/zephyr.elf。</text>
+  <text x="70" y="526" class="heading out" xml:space="preserve">-- 后的 CMake 选项</text>
+  <text x="286" y="513" class="code" xml:space="preserve">CMAKE_EXPORT_COMPILE_COMMANDS=ON</text>
+  <text x="286" y="543" class="hint" xml:space="preserve">生成 compile_commands.json，记录各源文件的编译命令。</text>
+  <text x="26" y="581" class="hint" xml:space="preserve">枝线按命令成分分组：紫色为构建入口，蓝色为应用，绿色为硬件，棕色为输出。</text>
+</svg>

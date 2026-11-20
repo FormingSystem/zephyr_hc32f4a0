@@ -1,13 +1,12 @@
-# P010 10.5：只读核对 Kconfig 来源、生成宏与编译命令
-# 按正文前提选择本操作，不批量执行整个目录。
-# Windows UCRT64；前提：10.3.3 baseline 已产生配置与编译数据库。
-cd /g/zephyr_practice/zephyr-main
-source .venv/Scripts/activate
-python - <<'PY'
+# UCRT64；在源码根读取同一输出目录的驱动配置和编译清单。
+cd "$ZEPHYR_BASE"
+: "${AN386_BUILD_DIR:?请先设置本次 AN386 的输出目录}"
+python - "$AN386_BUILD_DIR" <<'PY'
+import sys
 import json
 from pathlib import Path
 
-build = Path('build/learning-tools/p006/hello_world')
+build = Path(sys.argv[1])
 for rel in ('zephyr/.config', 'zephyr/include/generated/zephyr/autoconf.h'):
     print('\n' + rel)
     for line in (build / rel).read_text(encoding='utf-8').splitlines():

@@ -1,0 +1,5 @@
+# PowerShell；已设置 ZEPHYR_BASE、ZEPHYR_SDK_INSTALL_DIR，并已保存 probe.c。
+Set-Location (Join-Path $env:ZEPHYR_BASE 'build/learning-tools/p011/probe')
+$prefix = Join-Path $env:ZEPHYR_SDK_INSTALL_DIR 'gnu/arm-zephyr-eabi/bin/arm-zephyr-eabi-'
+& "${prefix}gcc.exe" -mcpu=cortex-m4 -mthumb -Os -c probe.c -o probe.o
+& "${prefix}objdump.exe" -d probe.o

@@ -1,2 +1,44 @@
-<!-- SPDX-License-Identifier: Apache-2.0 -->
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="496" viewBox="0 0 800 496" role="img" aria-labelledby="title desc"><title id="title">有些接口文档为什么藏在 CMake 文件的注释里</title><desc id="desc">按失败阶段选择排查入口</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10Z" fill="#66788a"/></marker></defs><rect width="800" height="496" fill="white"/><g font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" fill="#243447"><text x="20" y="28" font-size="18" text-anchor="start" font-weight="600"><tspan x="20" dy="0">失败发生在哪里？沿对应行选择检查对象。</tspan></text><rect x="20" y="58" width="270" height="66" rx="7" fill="#eaf2fc" stroke="#66788a"/><text x="155" y="97" font-size="16" text-anchor="middle"><tspan x="155" dy="0">找不到包、模块、板</tspan></text><rect x="370" y="58" width="410" height="66" rx="7" fill="#eaf2fc" stroke="#66788a"/><text x="575" y="97" font-size="16" text-anchor="middle"><tspan x="575" dy="0">查来源、路径、版本与缓存</tspan></text><rect x="20" y="142" width="270" height="66" rx="7" fill="#eaf2fc" stroke="#66788a"/><text x="155" y="169.5" font-size="16" text-anchor="middle"><tspan x="155" dy="0">配置不满足</tspan><tspan x="155" dy="23">或设备树处理失败</tspan></text><rect x="370" y="142" width="410" height="66" rx="7" fill="#eaf2fc" stroke="#66788a"/><text x="575" y="169.5" font-size="16" text-anchor="middle"><tspan x="575" dy="0">查配置输入、依赖约束</tspan><tspan x="575" dy="23">以及最终硬件描述</tspan></text><rect x="20" y="226" width="270" height="66" rx="7" fill="#eaf2fc" stroke="#66788a"/><text x="155" y="265" font-size="16" text-anchor="middle"><tspan x="155" dy="0">C / 汇编编译失败</tspan></text><rect x="370" y="226" width="410" height="66" rx="7" fill="#eaf2fc" stroke="#66788a"/><text x="575" y="265" font-size="16" text-anchor="middle"><tspan x="575" dy="0">查首条错误、头文件和实际编译参数</tspan></text><rect x="20" y="310" width="270" height="66" rx="7" fill="#eaf2fc" stroke="#66788a"/><text x="155" y="349" font-size="16" text-anchor="middle"><tspan x="155" dy="0">链接失败</tspan></text><rect x="370" y="310" width="410" height="66" rx="7" fill="#eaf2fc" stroke="#66788a"/><text x="575" y="349" font-size="16" text-anchor="middle"><tspan x="575" dy="0">查符号、选源、内存区域和 map</tspan></text><rect x="20" y="394" width="270" height="66" rx="7" fill="#eaf2fc" stroke="#66788a"/><text x="155" y="433" font-size="16" text-anchor="middle"><tspan x="155" dy="0">运行无输出或行为异常</tspan></text><rect x="370" y="394" width="410" height="66" rx="7" fill="#eaf2fc" stroke="#66788a"/><text x="575" y="433" font-size="16" text-anchor="middle"><tspan x="575" dy="0">查加载目标、启动、设备就绪与连接</tspan></text><path d="M290 91 H370" fill="none" stroke="#66788a" stroke-width="1.5" marker-end="url(#arrow)"/><path d="M290 175 H370" fill="none" stroke="#66788a" stroke-width="1.5" marker-end="url(#arrow)"/><path d="M290 259 H370" fill="none" stroke="#66788a" stroke-width="1.5" marker-end="url(#arrow)"/><path d="M290 343 H370" fill="none" stroke="#66788a" stroke-width="1.5" marker-end="url(#arrow)"/><path d="M290 427 H370" fill="none" stroke="#66788a" stroke-width="1.5" marker-end="url(#arrow)"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="386" viewBox="0 0 800 386" role="img" aria-labelledby="title desc">
+  <title id="title">从最早出现的故障定位检查对象</title>
+  <desc id="desc">UCRT64 · 使用本次配置和构建的日志。先确定首条错误属于哪个阶段。编译阶段可在编译清单中重查同一源文件；已经成功链接却没有输出时，检查对象才转到镜像、启动和设备连接。</desc>
+  <rect width="800" height="386" fill="#ffffff"/>
+  <path d="M400 86 V103 M137.333 103 H662.667" fill="none" stroke="#6c808a" stroke-width="2"/>
+  <path d="M137.333 103 V124" fill="none" stroke="#6c808a" stroke-width="2"/>
+  <path d="M137.333 170 V187" fill="none" stroke="#25618b" stroke-width="2"/>
+  <path d="M137.333 233 V250" fill="none" stroke="#25618b" stroke-width="2"/>
+  <path d="M400 103 V124" fill="none" stroke="#6c808a" stroke-width="2"/>
+  <path d="M400 170 V187" fill="none" stroke="#705197" stroke-width="2"/>
+  <path d="M400 233 V250" fill="none" stroke="#705197" stroke-width="2"/>
+  <path d="M662.667 103 V124" fill="none" stroke="#6c808a" stroke-width="2"/>
+  <path d="M662.667 170 V187" fill="none" stroke="#207767" stroke-width="2"/>
+  <path d="M662.667 233 V250" fill="none" stroke="#207767" stroke-width="2"/>
+  <g text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif">
+  <rect x="14" y="12" width="772" height="74" rx="8" fill="#edf3f6" stroke="#37586a" stroke-width="1.5"/>
+  <text x="400" y="37" font-size="16" font-weight="400" fill="#435f70">UCRT64 · 使用本次配置和构建的日志</text>
+  <text x="400" y="64" font-size="17" font-weight="700" fill="#172d3e">本次操作最早在哪个阶段失败？</text>
+  <rect x="14" y="124" width="246.667" height="46" rx="8" fill="#e9f4fb" stroke="#25618b" stroke-width="1.5"/>
+  <text x="137.333" y="152" font-size="17" font-weight="700" fill="#25618b">配置或生成</text>
+  <rect x="14" y="187" width="246.667" height="46" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="137.333" y="215" font-size="16" font-weight="400" fill="#182e3d">包、模块或板查找失败</text>
+  <rect x="14" y="250" width="246.667" height="94" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="137.333" y="278" font-size="16" font-weight="400" fill="#182e3d">核对路径、版本、模块入口和</text>
+  <text x="137.333" y="302" font-size="16" font-weight="400" fill="#182e3d">缓存；遇到 Kconfig 或设备树</text>
+  <text x="137.333" y="326" font-size="16" font-weight="400" fill="#182e3d">诊断，回到指出的配置或节点</text>
+  <rect x="276.667" y="124" width="246.667" height="46" rx="8" fill="#f4eff9" stroke="#705197" stroke-width="1.5"/>
+  <text x="400" y="152" font-size="17" font-weight="700" fill="#705197">编译或链接</text>
+  <rect x="276.667" y="187" width="246.667" height="46" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="400" y="215" font-size="16" font-weight="400" fill="#182e3d">编译器报告错误</text>
+  <rect x="276.667" y="250" width="246.667" height="118" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="400" y="278" font-size="16" font-weight="400" fill="#182e3d">从首条诊断与</text>
+  <text x="400" y="302" font-size="16" font-weight="400" fill="#182e3d">compile_commands.json 查</text>
+  <text x="400" y="326" font-size="16" font-weight="400" fill="#182e3d">源文件和参数；未定义符号或</text>
+  <text x="400" y="350" font-size="16" font-weight="400" fill="#182e3d">段溢出则查选源与链接映射</text>
+  <rect x="539.333" y="124" width="246.667" height="46" rx="8" fill="#e9f6f2" stroke="#207767" stroke-width="1.5"/>
+  <text x="662.667" y="152" font-size="17" font-weight="700" fill="#207767">固件已经生成</text>
+  <rect x="539.333" y="187" width="246.667" height="46" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="662.667" y="215" font-size="16" font-weight="400" fill="#182e3d">下载后没有预期输出</text>
+  <rect x="539.333" y="250" width="246.667" height="70" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="662.667" y="278" font-size="16" font-weight="400" fill="#182e3d">确认下载目标和镜像、启动位</text>
+  <text x="662.667" y="302" font-size="16" font-weight="400" fill="#182e3d">置、控制台设备与物理连接</text>
+  </g>
+</svg>

@@ -1,7 +1,5 @@
-# Windows UCRT64；只读；从实验源码根定位官方已有的 MPS2 支持。
-cd /g/zephyr_practice/zephyr-main
-ls boards/arm/mps2
-cat boards/arm/mps2/board.yml
-cat boards/arm/mps2/Kconfig.mps2
-cat soc/arm/mps2/Kconfig
-cat soc/arm/mps2/CMakeLists.txt
+# UCRT64；从已设置的 Zephyr 源码根构建 samples/hello_world，使用 west 工作区。
+cd "$ZEPHYR_BASE"
+west list cmsis cmsis_6 -f '{name} {abspath}'
+west build -b mps2/an386 -d build/learning-tools/p010/west-an386 \
+  samples/hello_world -- -DCMAKE_EXPORT_COMPILE_COMMANDS=ON

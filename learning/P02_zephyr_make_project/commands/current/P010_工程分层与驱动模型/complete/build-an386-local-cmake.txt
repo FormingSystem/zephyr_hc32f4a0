@@ -1,0 +1,8 @@
+# UCRT64；从已设置的 Zephyr 源码根构建 samples/hello_world，模块已在本地解压。
+cd "$ZEPHYR_BASE"
+hal_dir="$(cygpath -am ../modules/hal)"
+cmake -S samples/hello_world -B build/learning-tools/p010/cmake-an386 \
+  -G Ninja -DBOARD=mps2/an386 \
+  "-DZEPHYR_MODULES=$hal_dir/cmsis;$hal_dir/cmsis_6" \
+  -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+cmake --build build/learning-tools/p010/cmake-an386

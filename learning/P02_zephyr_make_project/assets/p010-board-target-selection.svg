@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1220" height="726" viewBox="0 0 1220 726" role="img" aria-labelledby="title desc">
+  <title id="title">从 west build 命令向下查找应用、板目标和构建产物</title>
+  <desc id="desc">树根是一条完整的 west build 命令。左枝选择应用目录，由 CMakeLists.txt 加入 src/main.c。中枝从 mps2/an386 经 board.yml、板级 Kconfig 和 SoC Kconfig 选定 Cortex-M4。右枝分别说明输出目录与编译清单。</desc>
+  <defs>
+    <marker id="down" markerWidth="7" markerHeight="7" refX="5.5" refY="3.5" orient="auto"><path d="M0 0 L6 3.5 L0 7Z" fill="#586779"/></marker>
+    <style>
+      text{font:21px "Microsoft YaHei","Noto Sans CJK SC",sans-serif;fill:#182b3d}
+      .code{font-family:Consolas,"Microsoft YaHei",monospace}
+      .detail{font-size:19px}.bold{font-weight:bold}.tag{font-size:20px;font-weight:bold}
+      .app{fill:#184f80}.board{fill:#156048}.out{fill:#78471b}
+      .edge{stroke:#586779;stroke-width:2.4;fill:none;marker-end:url(#down)}
+      .a{fill:#f3f8fd;stroke:#759bc0}.b{fill:#f0f8f4;stroke:#6a9c85}.o{fill:#fdf8f1;stroke:#bc9469}
+      rect{stroke-width:1.5}
+    </style>
+  </defs>
+  <rect width="1220" height="726" fill="white"/>
+  <rect x="74" y="12" width="1072" height="119" rx="10" fill="#f3f5f8" stroke="#8996a6"/>
+  <text x="96" y="39" class="tag">在 Zephyr 源码根执行 · UCRT64</text>
+  <text x="96" y="76" class="code" xml:space="preserve">west build <tspan class="board bold">-b mps2/an386</tspan> <tspan class="out">-d build/learning-tools/p010/west-an386</tspan> \</text>
+  <text x="96" y="106" class="code" xml:space="preserve">  <tspan class="app bold">samples/hello_world</tspan> <tspan class="out">-- -DCMAKE_EXPORT_COMPILE_COMMANDS=ON</tspan></text>
+  <path d="M610 132 V157 M172 157 H1041" stroke="#586779" stroke-width="2.4" fill="none"/>
+  <path class="edge" d="M172 157 V180"/><path class="edge" d="M610 157 V180"/><path class="edge" d="M1041 157 V180"/>
+
+  <rect class="a" x="14" y="185" width="316" height="83" rx="8"/>
+  <text x="172" y="214" text-anchor="middle" class="tag app">选择应用</text>
+  <text x="172" y="246" text-anchor="middle" class="code bold">samples/hello_world</text>
+  <path class="edge" d="M172 269 V296"/>
+  <rect class="a" x="14" y="302" width="316" height="109" rx="8"/>
+  <text x="172" y="332" text-anchor="middle" class="code">samples/hello_world/</text>
+  <text x="172" y="361" text-anchor="middle" class="code bold">CMakeLists.txt</text>
+  <text x="172" y="391" text-anchor="middle" class="detail">target_sources 加入应用源文件</text>
+  <path class="edge" d="M172 412 V438"/>
+  <rect class="a" x="14" y="444" width="316" height="79" rx="8"/>
+  <text x="172" y="475" text-anchor="middle" class="code bold">src/main.c</text>
+  <text x="172" y="503" text-anchor="middle">提供应用入口 main()</text>
+
+  <rect class="b" x="351" y="185" width="518" height="83" rx="8"/>
+  <text x="610" y="214" text-anchor="middle" class="tag board">选择板及其处理器系统</text>
+  <text x="610" y="246" text-anchor="middle" class="code bold">-b mps2/an386</text>
+  <path class="edge" d="M610 269 V296"/>
+  <rect class="b" x="351" y="302" width="518" height="88" rx="8"/>
+  <text x="610" y="335" text-anchor="middle" class="code bold">boards/arm/mps2/board.yml</text>
+  <text x="610" y="368" text-anchor="middle">板 mps2 的 socs 列表包含 an385、an386 等</text>
+  <path class="edge" d="M610 391 V418"/>
+  <rect class="b" x="351" y="424" width="518" height="88" rx="8"/>
+  <text x="610" y="457" text-anchor="middle" class="code bold">boards/arm/mps2/Kconfig.mps2</text>
+  <text x="610" y="490" text-anchor="middle"><tspan class="code">BOARD_MPS2_AN386</tspan> 选中 <tspan class="code">SOC_AN386</tspan></text>
+  <path class="edge" d="M610 513 V540"/>
+  <rect class="b" x="351" y="546" width="518" height="88" rx="8"/>
+  <text x="610" y="579" text-anchor="middle" class="code bold">soc/arm/mps2/Kconfig</text>
+  <text x="610" y="612" text-anchor="middle"><tspan class="code">SOC_AN386</tspan> 选中 <tspan class="code">CPU_CORTEX_M4</tspan></text>
+  <path class="edge" d="M610 635 V662"/>
+  <rect x="412" y="668" width="396" height="45" rx="22" fill="#d8eee2" stroke="#609877"/>
+  <text x="610" y="698" text-anchor="middle" class="bold board">本次固件的目标内核为 Cortex-M4</text>
+
+  <rect class="o" x="890" y="185" width="302" height="83" rx="8"/>
+  <text x="1041" y="214" text-anchor="middle" class="tag out">指定构建输出</text>
+  <text x="1041" y="246" text-anchor="middle" class="detail">-d 目录 与 -- 后的选项</text>
+  <path d="M908 268 V500" stroke="#586779" stroke-width="2.4" fill="none"/>
+  <path class="edge" d="M908 342 H928"/><path class="edge" d="M908 500 H928"/>
+  <rect class="o" x="934" y="302" width="274" height="121" rx="8"/>
+  <text x="949" y="334" class="tag out">-d　构建目录</text>
+  <text x="949" y="366" class="detail">链接后，在该目录中生成</text>
+  <text x="949" y="398" class="code bold">zephyr/zephyr.elf</text>
+  <rect class="o" x="934" y="451" width="274" height="119" rx="8"/>
+  <text x="949" y="484" class="tag out">--　转交 CMake</text>
+  <text x="949" y="515" class="detail">本例启用编译命令导出，生成</text>
+  <text x="949" y="548" class="code bold">compile_commands.json</text>
+</svg>

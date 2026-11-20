@@ -4,20 +4,20 @@
 
 | 操作 | 终端 | 所属讲解 | 内容 |
 | --- | --- | --- | --- |
-| 001 | bash | [12.1.1_同一个名字为什么会有不同的保存范围](../../../P012_CMake缓存与构建排错.md#section-12-1-1) | [完整命令](001-bash.txt) |
-| 002 | bash | [12.1.1_同一个名字为什么会有不同的保存范围](../../../P012_CMake缓存与构建排错.md#section-12-1-1) | [完整命令](002-bash.txt) |
-| 003 | bash | [12.1.1_同一个名字为什么会有不同的保存范围](../../../P012_CMake缓存与构建排错.md#section-12-1-1) | [完整命令](003-bash.txt) |
-| 004 | bash | [12.1.1_同一个名字为什么会有不同的保存范围](../../../P012_CMake缓存与构建排错.md#section-12-1-1) | [完整命令](004-bash.txt) |
-| 005 | bash | [12.1.1_同一个名字为什么会有不同的保存范围](../../../P012_CMake缓存与构建排错.md#section-12-1-1) | [完整命令](005-bash.txt) |
-| 006 | bash | [12.1.1_同一个名字为什么会有不同的保存范围](../../../P012_CMake缓存与构建排错.md#section-12-1-1) | [完整命令](006-bash.txt) |
+| 001 | bash | [只读查询当前缓存](../../../reference/CMake缓存的设置与恢复实验.md#section-12-1-1-2) | [完整命令](001-bash.txt) |
+| 002 | bash | [设置日志级别](../../../reference/CMake缓存的设置与恢复实验.md#cache-step-3) | [完整命令](002-bash.txt) |
+| 003 | bash | [省略参数并复查](../../../reference/CMake缓存的设置与恢复实验.md#cache-step-3) | [完整命令](003-bash.txt) |
+| 004 | bash | [恢复原日志级别](../../../reference/CMake缓存的设置与恢复实验.md#cache-step-4) | [完整命令](004-bash.txt) |
+| 005 | bash | [清理与重建](../../../reference/CMake缓存的设置与恢复实验.md#section-12-1-1-5) | [完整命令](005-bash.txt) |
+| 006 | bash | [按预设配置应用](../../../reference/CMake缓存的设置与恢复实验.md#cache-step-6) | [完整命令](006-bash.txt) |
 | 007 | bash | [12.2.4_在本章构建目录完成自查与排错](../../../P012_CMake缓存与构建排错.md#cmake-result-check) | [完整命令](007-bash.txt) |
 | 008 | bash | [12.2.4_在本章构建目录完成自查与排错](../../../P012_CMake缓存与构建排错.md#cmake-result-check) | [完整命令](008-bash.txt) |
-| 009 | bash | [12.4.1_下载阶段的 407 先看代理，而不是改包版本](../../../P012_CMake缓存与构建排错.md#section-12-4-1) | [完整命令](009-bash.txt) |
-| 010 | bash | [12.4.1_下载阶段的 407 先看代理，而不是改包版本](../../../P012_CMake缓存与构建排错.md#section-12-4-1) | [完整命令](010-bash.txt) |
-| 011 | bash | [12.4.2_Python 找不到已有 YAML，先看它收到了哪种路径](../../../P012_CMake缓存与构建排错.md#section-12-4-2) | [完整命令](011-bash.txt) |
-| 012 | bash | [12.4.3_源码包路径被拼接时，核对 CMake 的来源](../../../P012_CMake缓存与构建排错.md#section-12-4-3) | [完整命令](012-bash.txt) |
-| 013 | bash | [12.4.5_DTC、Ccache 和 Git 警告分别判断](../../../P012_CMake缓存与构建排错.md#section-12-4-5) | [完整命令](013-bash.txt) |
-| 014 | bash | [12.4.5_DTC、Ccache 和 Git 警告分别判断](../../../P012_CMake缓存与构建排错.md#section-12-4-5) | [完整命令](014-bash.txt) |
+| 009 | bash | [12.4.1_下载时的 HTTP 407 代理认证错误](../../../reference/UCRT64构建故障与源码依据.md#section-12-4-1) | [完整命令](009-bash.txt) |
+| 010 | bash | [12.4.1_下载时的 HTTP 407 代理认证错误](../../../reference/UCRT64构建故障与源码依据.md#section-12-4-1) | [完整命令](010-bash.txt) |
+| 011 | bash | [12.4.2_Windows Python 无法打开 YAML 文件](../../../reference/UCRT64构建故障与源码依据.md#section-12-4-2) | [完整命令](011-bash.txt) |
+| 012 | bash | [12.4.3_源码包路径被拼接时，核对 CMake 的来源](../../../reference/UCRT64构建故障与源码依据.md#section-12-4-3) | [完整命令](012-bash.txt) |
+| 013 | bash | [12.4.5_DTC、Ccache 和 Git 警告分别判断](../../../reference/UCRT64构建故障与源码依据.md#section-12-4-5) | [完整命令](013-bash.txt) |
+| 014 | bash | [12.4.5_DTC、Ccache 和 Git 警告分别判断](../../../reference/UCRT64构建故障与源码依据.md#section-12-4-5) | [完整命令](014-bash.txt) |
 
 ## 配套完整操作
 

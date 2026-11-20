@@ -10,13 +10,11 @@ domains: [zephyr, cmake, tools]
 
 # 第12章\_CMake缓存与构建排错
 
-假设同一个应用昨天还能编译，今天换了模块路径却仍然引用旧位置。此时“包已经下载”与“本次构建使用了它”已经分开了。本章从 [P008 §8.5](P008_选择应用与硬件目标并构建.md#85_windows-ucrt64-明确工具和路径边界) 已成功配置、构建的 `first-ucrt-zip` 开始，只改变一个可撤销的日志选项，观察 CMake 如何保存选择，再把这个观察用于 SDK、CMSIS 和清单外组件的排错。
+昨天构建成功，今天把模块移到新目录，配置输出却还在引用旧位置。第一次配置时，CMake 已经把部分选择写进构建目录的 `CMakeCache.txt`。要找出旧值从哪里来，先分清三个时刻：启动进程时有哪些输入，配置时采用了哪个值，生成后哪条编译命令实际引用它。
 
-我们保留官方对照构建，用配置日志、模块记录和编译数据库判断变化发生在哪一层。这里的“配置日志”指执行 CMake 配置时的终端输出，“构建日志”指执行 `cmake --build` 或 `west build` 时的终端输出；本章没有把它们另存成固定文件。模块记录和编译数据库才是构建目录中的落盘文件。如果还没有成功的对照，先完成 P008 的配置与构建。下文默认使用 [P008 8.5](P008_选择应用与硬件目标并构建.md#85_windows-ucrt64-明确工具和路径边界) 显式模块路线的 `/g/zephyr_practice/zephyr-main/build/learning-tools/first-ucrt-zip`，文件表中的相对路径均从这个目录解析；选择 west 发现路线时，将查询位置统一换为实际生成的 `first-ucrt-west`。Linux、PowerShell 的查询位置取各自的 -B 目录，sysbuild 则先用 domains.yaml 进入待检查的域。后续每次换芯片、板或组件，都从这份已知输入开始比较。
+用 [P008 的首次构建](P008_选择应用与硬件目标并构建.md#section-8-6-1) 作对照。示例读取 `build/learning-tools/first-ucrt-zip`；其他单镜像路线使用各自的 `-B` 目录，sysbuild 从 `domains.yaml` 找对应域。本章的[缓存实验](reference/CMake缓存的设置与恢复实验.md)只改配置日志级别：先读原值，设置 `VERBOSE`，在下一次配置时省略该参数再查，最后恢复。若值仍在，便能把影响范围定位到这份构建目录。排查模块时，再沿[产物检查](#section-12-2-1)比较缓存、有效配置与编译数据库。
 
-源码依据为 `25c8f4a23988dd3b2cfb463613622738298c2d6c`；网页 latest 用于阅读，固定提交用于核对。Windows 命令默认 UCRT64，实验根为 `/g/zephyr_practice/zephyr-main`。
-
-**官方译文对照：** [应用开发](../zephyr_docs/application/P001_应用开发.md)的缓存、重建与清理说明，[west 构建](../zephyr_docs/west/P007_构建烧录与调试.md)的 pristine 说明，以及 [CMake 扩展接口](../zephyr_docs/cmake_reference/P008_extensions.md)的 `zephyr_get()` 规则。CMake 原生的 `-N`、`-U`、`--fresh` 与预设仍以本章所引 CMake 手册为依据。
+以下示例沿用同一份应用源码，比较复用构建目录和另建目录时，CMake 怎样处理 SDK、板目标和应用配置。
 
 **复制命令：** [当前命令索引](commands/current/P012_CMake缓存与构建排错/README.md)。按正文选择分支，不把整个目录的命令依次执行。
 
@@ -30,7 +28,7 @@ domains: [zephyr, cmake, tools]
 
 <a id="section-12-1-1"></a>
 
-### 12.1.1\_同一个名字为什么会有不同的保存范围
+### 12.1.1\_终端变量、工程预设与构建缓存
 
 现在才讨论范围，是因为已经知道 BOARD、SDK 根和模块列表各自交给谁。以固定 SDK 根为例，Bash 的 `export` 把值放进当前进程环境，后续启动的 CMake 可以读取；命令行 `-D` 把值交给某一个构建目录的 CMake 缓存；CMake 文件中的 `set` 默认创建普通变量。这三种容器互相独立。
 
@@ -44,217 +42,17 @@ domains: [zephyr, cmake, tools]
 
 预设属于 CMake 功能，是保存参数组合的方式，不是另一套 Zephyr 工具链。`.venv` 解决 Python 包隔离，不能称为 SDK 的永久工程配置；本系列不修改自动生成的 activate 脚本来暗中固定 SDK。依据：[CMake 变量读取规则](https://cmake.org/cmake/help/latest/manual/cmake-language.7.html#variables)（原件 `CMake 变量与作用域`）；[CMake 工程预设](https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html)（原件 `CMakePresets.json / CMakeUserPresets.json`）；[SDK 输入与默认查找分支](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/cmake/modules/FindZephyr-sdk.cmake#L44)（原件 `cmake/modules/FindZephyr-sdk.cmake`，第 44 行附近）。
 
-<a id="cmake-cache-practice"></a>
-
-#### 12.1.1.1\_一份构建目录里的三类状态
-
-现在回到 8.5 的 `first-ucrt-zip`。第一次配置后能直接执行 build，是因为选择与规则已经保存。第二次不再写所有 `-D`，CMake 也能从同一构建目录加载已有缓存。
-
-![一份构建目录里的三类状态](assets/p012-diagram-01.svg)
-
-图例与读图：蓝框是输入、生成规则和执行任务，橙色是会被下次读取的缓存，绿框是构建产物，灰箭头表示保存与使用。先区分缓存值和生成规则，才能解释为什么修改环境后仍用旧输入。
-
-缓存保存变量与探测结果，`build.ninja` 保存怎样执行任务，对象文件则是已经编译出的结果。它们是三类状态。缓存里的 `BOARD` 不等于编译好的代码；删掉对象文件也不等于清空了板和工具链选择。Ninja 还维护自己的依赖与执行记录，不能把所有增量行为都归因于 CMakeCache.txt。
-
-例如，配置、构建、未改输入时再次构建之后：缓存仍描述同一组选择，规则仍描述同一组任务，第二次构建则可能复用先前产物而不再调用编译器。clean 主要针对后端管理的构建产物；换一个 -B 则从另一套配置状态开始。这两个动作解决的问题不同。
-
-`CMakeCache.txt` 由 CMake 创建，通常一行是 `名字:类型=值`，例如 `CMAKE_MESSAGE_LOG_LEVEL:STRING=VERBOSE`。这是文件内容的形态，不是 Bash 命令。普通 CMake 变量未必写入缓存，Kconfig 的有效结果主要在 `zephyr/.config`，Zephyr 的模块记录又在 `zephyr_modules.txt`。缓存不是“所有构建变量的总表”，也不要手工编辑生成文件作为长期配置方案。依据：官方 `doc/develop/application/index.rst` 的 `CMakeCache.txt` 小节及 [CMake 用户交互指南](https://cmake.org/cmake/help/latest/guide/user-interaction/index.html#setting-build-variables)。
-
-<a id="cmake-cache-types"></a>
-
-冒号后的类型描述缓存项怎样表示值，并不决定这个名字属于哪个工具。一个 STRING 可以由 CMake 自身读取，也可以由 Zephyr 脚本读取；先看名字对应的接口说明，不能仅凭类型猜作用。
-
-| 缓存里看到的类型 | 应怎样理解 |
-| --- | --- |
-| BOOL | 开关值，常见为 ON/OFF 或 TRUE/FALSE |
-| STRING | 文本值，如板名称或配置日志级别；是否允许列表由读取者决定 |
-| PATH | 目录路径，例如 SDK 根；不是“当前工作目录”的别名 |
-| FILEPATH | 单个文件路径，例如编译器程序；不表示文件已经执行成功 |
-| INTERNAL | 构建系统内部保存的状态，一般不作为读者手工维护的输入 |
-
-本例 Python 路径可能显示为 `Python3_EXECUTABLE:UNINITIALIZED=...`。这是因为命令行未显式写缓存类型，且该项尚未被脚本赋予类型；**不表示 Python 没安装或虚拟环境没激活**。应核对路径和配置结果，不为了消除这个单词重装工具。条目以 `//` 开头的行是帮助说明，以 `#` 开头的行是文件注释，也不是待执行命令。
-
-`-D` 属于 CMake 的缓存输入语法，类似 `-DCMAKE_MESSAGE_LOG_LEVEL:STRING=VERBOSE` 会更新一个指定项。它不会把任意名字自动变成 Zephyr 接口，也不会天然变成传给 GCC 的宏定义；必须有相应的 CMake/Zephyr 规则读取并使用它。缓存中有一项，最多证明值已存入，不能代替对有效配置与编译参数的检查。类型与未定类型的规则见 [CMake set 的缓存说明](https://cmake.org/cmake/help/latest/command/set.html#set-cache-entry)，本机原件为 CMake 安装根的 `share/cmake-<版本>/Help/command/set.rst`。
-
-<a id="section-12-1-1-2"></a>
-
-#### 12.1.1.2\_只看缓存时，不要意外重新配置
-
-执行下面操作的前提是 [P008 8.5](P008_选择应用与硬件目标并构建.md#85_windows-ucrt64-明确工具和路径边界) 配置已经成功。`-N` 进入仅查看模式，不执行配置和生成；`-L` 列出缓存选项，`A` 加上高级项，`H` 显示帮助文字。
-
-```bash
-# Windows UCRT64；源码根；前提：8.5 的 first-ucrt-zip 配置成功。
-cd /g/zephyr_practice/zephyr-main
-# 只读缓存；不存在时停止并返回 P008 8.5，不创建空文件。
-test -f build/learning-tools/first-ucrt-zip/CMakeCache.txt && \
-cmake -N -LAH build/learning-tools/first-ucrt-zip
-# -LAH 不显示全部 INTERNAL 项，以下直接读取原生成文件。
-grep -E '^(CMAKE_HOME_DIRECTORY|CMAKE_GENERATOR|BOARD|BOARD_QUALIFIERS|Zephyr_DIR):' \
-  build/learning-tools/first-ucrt-zip/CMakeCache.txt
-```
-
-`-LAH` 不显示所有 INTERNAL 条目，因此第二条检查直接读取缓存文件中的入口、生成器及板记录。两者都是只读，不会创建缺失缓存；若第一条 test 失败，先回到 [P008 8.5](P008_选择应用与硬件目标并构建.md#85_windows-ucrt64-明确工具和路径边界) 配置成功再读。不要把 `cmake -LAH 构建目录` 与带 `-N` 的写法混为一谈，前者可以重新配置工程。[当前命令索引](commands/current/P012_CMake缓存与构建排错/README.md)。命令选项见 [cmake(1) Options](https://cmake.org/cmake/help/latest/manual/cmake.1.html#options)，本机原件为 CMake 安装根的 `Help/manual/cmake.1.rst`（实际位于 `share/cmake-<版本>/` 下）。
-
-#### 12.1.1.3\_修改一项，然后故意不再传它
-
-用 `CMAKE_MESSAGE_LOG_LEVEL` 观察缓存。它是 **CMake 原生输入**，控制配置脚本 `message()` 输出的日志级别；选择 VERBOSE 便于排错，不改变本例的板与 SDK。这与构建阶段 `--verbose` 打印编译命令是两件事。
-
-```bash
-# Windows UCRT64；源码根；前提：first-ucrt-zip 已配置成功。
-cd /g/zephyr_practice/zephyr-main
-source .venv/Scripts/activate
-# CMake 原生日志输入：保存为缓存项并重新配置，未执行固件编译。
-cmake -S samples/hello_world -B build/learning-tools/first-ucrt-zip \
-  -DCMAKE_MESSAGE_LOG_LEVEL:STRING=VERBOSE
-# 应看到 CMAKE_MESSAGE_LOG_LEVEL:STRING=VERBOSE。
-cmake -N -LAH build/learning-tools/first-ucrt-zip | grep CMAKE_MESSAGE_LOG_LEVEL
-```
-
-**对应上方设置日志块的第 5—6 行**：`-DCMAKE_MESSAGE_LOG_LEVEL:STRING=VERBOSE` 创建或更新缓存条目，类型 STRING 表示字符串，CMake 重新配置以采用它。第 8 行 `cmake -N -LAH ...` 只查看缓存并筛选该项。应查到 `CMAKE_MESSAGE_LOG_LEVEL:STRING=VERBOSE`。有没有更多输出取决于脚本是否发出了 VERBOSE 级别消息，所以先以缓存条目验证值，不凭屏幕行数推断。
-
-现在仍用同一个目录重新配置，特意省略这项 `-D`：
-
-```bash
-# Windows UCRT64；源码根；前提：12.1.1.3 已把日志缓存项设为 VERBOSE。
-cd /g/zephyr_practice/zephyr-main
-source .venv/Scripts/activate
-# 特意省略 -D，仍配置同一目录。
-cmake -S samples/hello_world -B build/learning-tools/first-ucrt-zip
-# 应仍看到 VERBOSE，说明省略输入不会撤销缓存。
-cmake -N -LAH build/learning-tools/first-ucrt-zip | grep CMAKE_MESSAGE_LOG_LEVEL
-```
-
-**对应上方省略参数块**：第 5 行 `cmake -S ... -B ...` 没有重新传日志选项，第 7 行查询仍应读到 VERBOSE。这就证明**从下一条命令中省略参数，不会删除已写入的缓存项**。关闭终端、重新激活 `.venv` 也不会删除这个文件。相反，另用一个新的 `-B`，不会继承这里的条目。这里的“保留”以项目没有重写该项为前提，下一小节会解释项目脚本的覆盖。[当前命令索引](commands/current/P012_CMake缓存与构建排错/README.md)、[当前命令索引](commands/current/P012_CMake缓存与构建排错/README.md)。依据：[CMAKE_MESSAGE_LOG_LEVEL](https://cmake.org/cmake/help/latest/variable/CMAKE_MESSAGE_LOG_LEVEL.html)；本机原件 `Help/variable/CMAKE_MESSAGE_LOG_LEVEL.rst`，由 CMake 自身读取。
-
-#### 12.1.1.4\_恢复默认与项目脚本覆盖
-
-若要显式设为普通日志，可在配置时传 `-DCMAKE_MESSAGE_LOG_LEVEL:STRING=STATUS`；这仍会保留一个指定值。若要撤销刚才的显式选择，使用 `-U` 删除**准确的这一项**，并重新配置：
-
-```bash
-# Windows UCRT64；源码根；前提：12.1.1.3 已设置日志缓存项。
-cd /g/zephyr_practice/zephyr-main
-source .venv/Scripts/activate
-# 仅撤销本例的一项显式输入，再按默认规则配置。
-cmake -S samples/hello_world -B build/learning-tools/first-ucrt-zip \
-  -U CMAKE_MESSAGE_LOG_LEVEL
-# 无其他来源重建该项时，无输出且返回 1 是本检查的预期结果。
-grep '^CMAKE_MESSAGE_LOG_LEVEL:' build/learning-tools/first-ucrt-zip/CMakeCache.txt
-```
-
-**对应上方撤销缓存块**：第 6 行 `-U CMAKE_MESSAGE_LOG_LEVEL` 移除这一个缓存项；第 8 行 `grep` 查看结果。本例没有其他来源重新定义它时，该查询无输出、返回 1，表示缓存项已不存在，这在此处是预期结果。`-U` 会匹配缓存项名称，不用 `-U '*'` 盲目清空；它不会修改终端环境、预设或应用脚本。如果那些来源仍定义同名输入，下次配置仍可能取得或重新写入值。[当前命令索引](commands/current/P012_CMake缓存与构建排错/README.md)。
-
-`-D` 也不是不受任何脚本影响的最高优先级。本章源码的 `cmake/modules/kernel.cmake` 在第 167 行附近使用 `set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE CACHE BOOL ... FORCE)`，强制生成编译命令数据库，供 Zephyr 脚本使用。因此这个变量不适合拿来演示“改成 OFF 后一直保留”；项目配置会把它写回 TRUE。这里的省略号仅表示省去帮助文本的机制说明，原文件只读，读者无需修改。
-
-CMake 普通变量可以遮住同名缓存变量，带 CACHE 的 set 通常保留已有条目，而 FORCE 可以更新它。Zephyr 的 `zephyr_get` 还定义特定输入的读取与合并规则，接着看 12.1.2。这解释了为何应同时核对**传入值、保存值和实际使用结果**。依据：[CMake set 规则](https://cmake.org/cmake/help/latest/command/set.html)；[固定源码中的 FORCE 设置](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/cmake/modules/kernel.cmake#L163)。
-
-<a id="section-12-1-1-5"></a>
-
-#### 12.1.1.5\_清理、重新配置与重建的边界
-
-日常改代码先增量 build；改允许更新的配置输入先重新配置，再 build。只有需要清除编译产物时才 clean。下表按本章单应用 Ninja 工程解释，不把这些动作当作每次构建必做的流程。
-
-| 动作 | 保留或清除什么 | 适用情况 |
-| --- | --- | --- |
-| `cmake --build` | 复用规则及已完成产物，执行到期任务 | 日常源码修改 |
-| 再次 `cmake -S ... -B ... -D...` | 读取原缓存，更新传入项，重新生成规则 | 可变选项或配置片段改变 |
-| `cmake --build ... --target clean` | 清除后端管理的构建产物，保留 CMakeCache.txt 与规则 | 需要重编译原配置 |
-| `cmake --build ... --clean-first` | 先 clean 再构建，仍复用配置 | 一次完成清理与重编译 |
-| `cmake --fresh -S ... -B ...` | CMake 3.24+ 重建 CMakeCache.txt 和 CMakeFiles，不承诺删除目录内所有其他文件 | 重新执行 CMake 配置；Zephyr 下不能等同于 pristine |
-| 新的 `-B` 目录 | 从新的构建状态开始，旧目录保持可用 | 换板、生成器或工具链时优先采用 |
-| `west build -p always` | 先清空指定构建目录内的内容，再配置和构建 | 明确不要该目录旧产物与状态时 |
-
-表内带省略号的是调用形态；下方给本例的完整 clean 操作，不对源码目录或整个工作区运行清理：
-
-```bash
-# Windows UCRT64；源码根；前提：first-ucrt-zip 已成功构建。
-cd /g/zephyr_practice/zephyr-main
-source .venv/Scripts/activate
-# 本操作清理本节构建产物；不对源码目录执行。
-cmake --build build/learning-tools/first-ucrt-zip --target clean
-# 缓存与规则仍在。clean 不会撤销原来的板和工具链选择。
-ls build/learning-tools/first-ucrt-zip/CMakeCache.txt
-ls build/learning-tools/first-ucrt-zip/build.ninja
-# 复用原配置重新编译。
-cmake --build build/learning-tools/first-ucrt-zip --parallel 4
-```
-
-clean 后前两项检查应仍成功，随后 build 会重新生成固件。这说明 clean 不会解决“缓存仍然选旧 SDK”。`--clean-first` 是它的组合形式，不需要与这组命令重复执行。[当前命令索引](commands/current/P012_CMake缓存与构建排错/README.md)。
-
-`--fresh` 只重置 CMake 指定的状态，Zephyr 的 `zephyr/.config` 等文件可能仍留在目录并参与后续处理，不能把它讲成彻底干净的 Zephyr 构建。`west -p always` 范围更大，目录里的手工文件也会丢失；只对确认可重新生成的构建输出使用。本节不把 fresh/pristine 设为执行要求。若换板或编译器，优先复制完整配置命令并改用新的 -B；新目录必须重新给出 BOARD 等输入，不会读取旧目录的缓存。依据：[CMake fresh 与构建选项](https://cmake.org/cmake/help/latest/manual/cmake.1.html)；[Zephyr pristine 说明](https://docs.zephyrproject.org/latest/develop/west/build-flash-debug.html#pristine-builds)，原件 `doc/develop/west/build-flash-debug.rst` 与 `cmake/pristine.cmake`。
-
-生成器也是目录状态的一部分。Linux 从 Ninja 切到 Make 时，应像 [P008 Make 实验](P008_选择应用与硬件目标并构建.md#linux-make-build)那样建立新目录，再传 `-G "Unix Makefiles"`。出现生成器不匹配时，先查 `CMAKE_GENERATOR` 与 `CMAKE_MAKE_PROGRAM`；只修改 PATH 或执行 clean 不会把 build.ninja 转成 Makefile。Windows 安装 mingw32-make 也不会自动使原来的 Ninja 缓存采用它。
-
-另一个容易丢失的状态是菜单修改：`menuconfig` 保存当前 `zephyr/.config`，并不自动修改 `prj.conf`。需要重建的应用设置先写回受控配置片段，再考虑清理输出；完整操作见 [P008 菜单实验](P008_选择应用与硬件目标并构建.md#menuconfig-and-kbuild)。不能用 CMakeCache.txt 的持久性解释所有 Kconfig 修改的保存规则。
-
-#### 12.1.1.6\_预设保存输入，缓存保存一次配置的结果
-
-终端里的长命令可以保存为 CMake 的原生预设。读者在**官方应用目录 `samples/hello_world` 中自行创建** `CMakeUserPresets.json`；它是本机配置，不是原来应该存在的 Zephyr 文件。该文件已存在时只合并下面两个命名条目，保留原来的 version、include 和其他预设；不要覆盖整份个人配置。首次新建时用以下完整内容：
-
-```json
-{
-  "version": 3,
-  "configurePresets": [{
-    "name": "learning-mps2",
-    "generator": "Ninja",
-    "binaryDir": "${sourceDir}/../../build/learning-tools/cmake-presets",
-    "cacheVariables": {
-      "BOARD": "mps2/an386",
-      "Zephyr_DIR": "${sourceDir}/../../share/zephyr-package/cmake",
-      "Python3_EXECUTABLE": "${sourceDir}/../../.venv/Scripts/python.exe"
-    }
-  }],
-  "buildPresets": [{
-    "name": "learning-mps2",
-    "configurePreset": "learning-mps2"
-  }]
-}
-```
-
-`${sourceDir}` 是 CMake 预设宏，指这里的应用目录，不是自定义 shell 变量；向上两层才是 Zephyr 源码根。binaryDir 指定一份新缓存，cacheVariables 提供本次配置输入。SDK 沿 P004 的默认发现，不写无必要的默认工具链类型。下方操作只在该文件创建或合并完成、P008 工具与依赖检查通过后执行。
-
-```bash
-# Windows UCRT64；源码根；已按本节创建或合并 learning-mps2 预设。
-cd /g/zephyr_practice/zephyr-main
-source .venv/Scripts/activate
-# 在预设所属的官方应用目录调用；不改写它的 CMakeLists.txt。
-cd samples/hello_world
-cmake --list-presets
-# 确认列表包含 learning-mps2 后，配置成功才构建。
-cmake --preset learning-mps2 && cmake --build --preset learning-mps2
-```
-
-configurePresets 中的名字与 buildPresets 中的名字属于不同列表，本例为便于记忆取同名；构建预设通过 configurePreset 字段关联配置预设。`cmake --preset` 仍执行配置和生成；`cmake --build --preset` 仍调用后端。使用预设不会跳过 SDK 或模块发现。首次配置失败时停在该阶段；不要把旧输出当作成功。
-
-预设是读者维护的输入方案，缓存是工具生成的配置状态。修改 JSON 后重新运行配置预设，缓存才接收新输入；删除一个预设不会删除已经生成的构建目录。撤销时删除自己新增的两个命名条目，保留其他预设；不要直接删除含有其他个人配置的文件。
-
-依据：[CMake Presets](https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html)，本机原件为 CMake 帮助目录中的 `manual/cmake-presets.7.rst`；配套完整文件见 [预设示例](labs/cmake_presets/CMakeUserPresets.json)，由教程提供，需要按本节放入应用目录才生效。
-
-<a id="cmake-session-state"></a>
-
-#### 12.1.1.7\_退出终端以后，哪些设置还在
-
-把 12.1.1.3 的操作按时间回放一次：第一次用 -D 把日志级别写入 first-ucrt-zip 的缓存；第二次省略该参数，CMake 仍读取同一份缓存；此时关掉终端，磁盘上的缓存没有删除。新开 UCRT64 后重新激活 `.venv`，也不会清除那个条目。直到按 12.1.1.4 用 -U 撤销它，且没有其他来源重建，显式选择才从这份缓存中消失。
-
-| 接下来做的动作 | 会改变什么 | 不会顺带完成什么 |
-| --- | --- | --- |
-| 关闭并重新打开 UCRT64 | 重新建立进程环境；本次临时 export 不再由旧进程传递 | 不删除构建缓存或用户预设；启动配置仍可能再次 export |
-| 激活或退出 .venv | 改变当前终端的 Python 命令搜索环境 | 不改已缓存的 Python、SDK 或板选择 |
-| 修改用户预设里的值 | 改变下次选择该配置预设时的输入 | 不即时改写现有缓存，不自动触发构建 |
-| 从预设或下一条命令里删掉参数 | 不再从该处提供这项输入 | 不等于删除旧缓存中的同名项 |
-| 重新注册搬家后的 SDK | 更新当前用户的 CMake 包搜索候选 | 不修复预设或旧构建缓存中的显式旧路径 |
-| 使用新的 -B | 建立独立的构建状态 | 不自动复制旧目录的板、模块和工具输入 |
-
-因此恢复一个“不知道谁设置过”的值，要先确认本次操作的是哪一个构建目录，再查当前终端、选中的预设以及缓存；不是把三个地方都无条件重置。对于日志级别这样的独立可变项，本章给出精确 -U；对于板或工具链组合，保留旧结果并使用新的 -B 更容易确认来源。下一节解释 Zephyr 读取这些来源时的优先级。
+例如，给一次配置传入 `-DCMAKE_MESSAGE_LOG_LEVEL:STRING=VERBOSE`，CMake 便把日志级别写进当前构建目录的 `CMakeCache.txt`。下一次配置沿用同一个 `-B`，即使省略该选项，仍会读到 `VERBOSE`。新建的构建目录有自己的缓存。要撤销这次修改，原先没有该项时用 `-U CMAKE_MESSAGE_LOG_LEVEL` 重新配置，原先有值则写回原值。[在同一构建目录设置、复查并恢复日志级别](reference/CMake缓存的设置与恢复实验.md)
 
 <a id="section-12-1-2"></a>
 
-### 12.1.2\_缓存为什么能挡住新 export
+### 12.1.2\_缓存与环境变量的读取顺序
 
 CMake 的 `${名字}` 通常先找普通变量、再找缓存；`$ENV{名字}` 明确读进程环境。Zephyr 的辅助函数还能自行规定读取顺序。SDK 相关输入调用 `zephyr_get`；本系列普通单应用、不使用 snippets 的情况，相关标量按**缓存、环境、当前普通值**寻找已定义输入。
 
 因此，第一次用 SDK-A 配置构建目录后，第二次只在终端 export SDK-B，旧缓存可能仍使 A 生效。这是同一构建目录在保留选择，不是“注册失败”。换工具组合时使用新的构建目录，可以避免关联编译器和库配置残留；不能仅修改一个缓存路径就假定全部状态同步。
 
-还应区分 `ZEPHYR_SDK_INSTALL_DIR` 与 `Zephyr-sdk_DIR`：前者是 Zephyr 的 SDK 搜索位置输入，后者是 CMake 保存的 SDK 包配置目录。即使重新传了前者，有效的旧 `Zephyr-sdk_DIR` 仍可能先被 CMake 采用；`NO_DEFAULT_PATH` 只限制后续搜索范围，不会删除已有包缓存。[官方 SDK 译文](../zephyr_docs/toolchains/P002_ZephyrSDK.md)还允许前者指向多版本父目录，所以“指定搜索位置”与“已验证选中某个 SDK”也要分开。换 SDK 时用新构建目录，并一起核对这两个值与 `CMAKE_C_COMPILER`，不通过盲删其他缓存项修复。具体读取者为 `cmake/modules/FindZephyr-sdk.cmake` 的包查找分支，以及 CMake 的 [`find_package` 配置模式](https://cmake.org/cmake/help/latest/command/find_package.html#config-mode-search-procedure)。
+还应区分 `ZEPHYR_SDK_INSTALL_DIR` 与 `Zephyr-sdk_DIR`：前者是 Zephyr 的 SDK 搜索位置输入，后者是 CMake 保存的 SDK 包配置目录。即使重新传了前者，有效的旧 `Zephyr-sdk_DIR` 仍可能先被 CMake 采用；`NO_DEFAULT_PATH` 只限制后续搜索范围，不会删除已有包缓存。前者还可以指向多版本父目录，所以“指定搜索位置”与“已验证选中某个 SDK”也要分开。换 SDK 时用新构建目录，并一起核对这两个值与 `CMAKE_C_COMPILER`，不通过盲删其他缓存项修复。具体读取者为 `cmake/modules/FindZephyr-sdk.cmake` 的包查找分支，以及 CMake 的 [`find_package` 配置模式](https://cmake.org/cmake/help/latest/command/find_package.html#config-mode-search-procedure)。
 
 完整函数还考虑 sysbuild 与 snippets 作用域，不能把这个简化顺序说成所有 CMake 变量的通用规则。`ZEPHYR_BASE` 有自己的包入口分支；额外模块也不同：`EXTRA_ZEPHYR_MODULES` 与兼容名 `ZEPHYR_EXTRA_MODULES` 使用 MERGE 合并来源，所以只给空 `-D` 不一定清除环境里追加的路径。P014 的恢复分支分别处理旧环境和新构建目录。依据：[Zephyr 输入读取与优先级](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/cmake/modules/extensions.cmake#L4088)（原件 `cmake/modules/extensions.cmake`，第 4088 行附近）；[模块输入与发现脚本调用](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/cmake/modules/zephyr_module.cmake#L34)（原件 `cmake/modules/zephyr_module.cmake`，第 34 行附近）；[包入口 include_boilerplate](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/share/zephyr-package/cmake/ZephyrConfig.cmake#L28)（原件 `share/zephyr-package/cmake/ZephyrConfig.cmake`，第 28 行附近）。
 
@@ -282,7 +80,7 @@ CMake 的 `${名字}` 通常先找普通变量、再找缓存；`$ENV{名字}` �
 
 `BOARD_ROOT`、`SOC_ROOT`、`DTS_ROOT` 扩展硬件描述查找范围；`MODULE_EXT_ROOT` 用于模块接入文件放在外部的位置；`TOOLCHAIN_ROOT` 扩展工具链接入规则。它们虽然都带 ROOT，所寻找的目录结构和读取者不同。
 
-snippets 用于给构建添加命名的配置片段；sysbuild 在外层协调多个镜像，各镜像仍有自己的 Zephyr 配置与产物。初学单应用时先理解本章主线，遇到多镜像需求再进入 sysbuild，而不是在普通命令里预先堆上这些变量。相关官方说明已在 12.3 提供直接入口。依据：[外部项目模块说明](https://docs.zephyrproject.org/latest/develop/modules.html)（原件 `doc/develop/modules.rst`，第 3 行附近）；[树外工具链设计说明](https://docs.zephyrproject.org/latest/develop/toolchains/custom_cmake.html)（原件 `doc/develop/toolchains/custom_cmake.rst`，第 3 行附近）；[配置片段组合入口](https://docs.zephyrproject.org/latest/build/snippets/index.html)（原件 `doc/build/snippets/index.rst`，第 3 行附近）；[多镜像构建入口](https://docs.zephyrproject.org/latest/build/sysbuild/index.html)（原件 `doc/build/sysbuild/index.rst`，第 3 行附近）。
+snippets 用于给构建添加命名的配置片段；sysbuild 在外层协调多个镜像，各镜像仍有自己的 Zephyr 配置与产物。初学单应用时先理解本章主线，遇到多镜像需求再进入 sysbuild，而不是在普通命令里预先堆上这些变量。配套的[构建接口与源码索引](reference/UCRT64构建故障与源码依据.md#section-12-3)列出这些入口。依据：[外部项目模块说明](https://docs.zephyrproject.org/latest/develop/modules.html)（原件 `doc/develop/modules.rst`，第 3 行附近）；[树外工具链设计说明](https://docs.zephyrproject.org/latest/develop/toolchains/custom_cmake.html)（原件 `doc/develop/toolchains/custom_cmake.rst`，第 3 行附近）；[配置片段组合入口](https://docs.zephyrproject.org/latest/build/snippets/index.html)（原件 `doc/build/snippets/index.rst`，第 3 行附近）；[多镜像构建入口](https://docs.zephyrproject.org/latest/build/sysbuild/index.html)（原件 `doc/build/sysbuild/index.rst`，第 3 行附近）。
 
 
 <a id="section-12-2"></a>
@@ -310,19 +108,19 @@ snippets 用于给构建添加命名的配置片段；sysbuild 在外层协调�
 
 <a id="section-12-2-2"></a>
 
-### 12.2.2\_自查本次构建，不依赖后面的板级实验
+### 12.2.2\_AN386 构建目录
 
 本章沿用 P008 的 `build/learning-tools/first-ucrt-zip`。继续使用下方 12.2.4 的只读命令核对，不混读 P014 的其他构建目录。缓存不存在或生成失败时先回 P008，不手工创建空文件。
 
 <a id="section-12-2-3"></a>
 
-### 12.2.3\_三个问题检查是否理解模型
+### 12.2.3\_从构建记录定位输入
 
-**下载了一个 HAL，目录里有 module.yml，为什么编译器仍找不到头文件？** 先查项目是否成为模块候选，再查 zephyr_modules.txt、CMake 入口是否执行、配置条件与头文件目录设置。单凭下载成功无法跳过这些层。
+**下载了一个 HAL，目录里有 module.yml，为什么编译器仍找不到头文件？** 从报错的那一个 `.c` 出发，在 `compile_commands.json` 找它的编译命令。对于 `#include <vendor/foo.h>`，若磁盘上的文件是 `包根/include/vendor/foo.h`，编译器需要能从搜索目录 `包根/include` 拼出这个文件名。少了这个搜索目录，再查 `zephyr_modules.txt`：没有模块记录，先查发现路径；已有记录，则查模块构建规则是否在当前配置下把这个目录传给了编译目标。这样同一个错误信息就能区分两种原因。
 
 **SDK 已注册，为什么还会用旧 SDK？** 注册提供包搜索候选；旧环境、所选预设或构建缓存可能明确约束了另一套位置。先看实际配置输入和保存范围，不要反复 reinstall 或为每个终端重新注册。
 
-**从 MPS2 换到 HC32，为什么不能只改工具链变量？** 工具链规则负责如何编译；板/SoC、设备树、Kconfig 和驱动负责该芯片上的硬件与功能。后者需要按 P014 新增并接入，ARM 编译器通常可以复用。
+**从 MPS2 换到 HC32，为什么不能只改工具链变量？** 同一套 ARM 编译器能为两种芯片生成指令，却无法从指令集推出控制台接在哪个 USART。换板需要选择 HC32 的 SoC 支持，让板描述给出控制台节点，让匹配驱动以该节点的地址初始化 USART。若编译清单里仍是 MPS2 的 CMSDK UART、最终设备树里仍是 AN386 的硬件，更换 GCC 的安装目录不会改变这两个结果。[HC32 的完整接入实验](P014_HC32与外部源码模块接入.md#section-14-6)
 
 <a id="cmake-result-check"></a>
 
@@ -330,21 +128,22 @@ snippets 用于给构建添加命名的配置片段；sysbuild 在外层协调�
 
 现在把“缺组件”拆成可以核查的事实。磁盘上没有 CMSIS 原始文件时，返回当前清单的下载步骤；文件在磁盘上但模块记录没有它时，检查传入的模块集合；记录已经有它但编译计划缺少所需源码时，继续看 Kconfig 和 CMake 条件。换板后缺 UART 驱动则要检查新板的设备树和驱动支持，不能靠重装 CMSIS 解决。下面按这个顺序读取同一份产物。
 
-本节直接检查 P008 的 8.5 创建的 `build/learning-tools/first-ucrt-zip`，不要求先生成 P014 的另一套产物。先读配置保存了什么，再看某个源文件被安排怎样编译。下面都是只读操作；若没有相应文件，回到产生它的步骤，不手工创建空缓存或空 JSON。
+以下两项检查只读同一次构建的产物。在已设置 `ZEPHYR_BASE` 的 UCRT64 终端中，默认读取 P008 的 `build/learning-tools/first-ucrt-zip`。要检查 P010 的结果，先将 `AN386_BUILD_DIR` 设为 `build/learning-tools/p010/west-an386` 或 `build/learning-tools/p010/cmake-an386`。
 
 ```bash
-# Windows UCRT64；源码根；前提：8.5 的 first-ucrt-zip 已成功配置。
-cd /g/zephyr_practice/zephyr-main
+# UCRT64；从已设置的源码根读取本次构建的生成文件。
+cd "$ZEPHYR_BASE"
+build_dir="${AN386_BUILD_DIR:-build/learning-tools/first-ucrt-zip}"
 # 只读工具生成文件；不存在时返回配置步骤，不创建空文件。
-if test -f build/learning-tools/first-ucrt-zip/CMakeCache.txt; then
+if test -f "$build_dir/CMakeCache.txt"; then
   # 源码、应用、板、生成器和 Python 的保存值。
   grep -E '^(CMAKE_HOME_DIRECTORY|CMAKE_GENERATOR|BOARD|BOARD_QUALIFIERS|ZEPHYR_BASE|Zephyr_DIR|Python3_EXECUTABLE):' \
-    build/learning-tools/first-ucrt-zip/CMakeCache.txt
+    "$build_dir/CMakeCache.txt"
   # SDK 选择与配置阶段确定的 C 编译器。
   grep -E '^(ZEPHYR_TOOLCHAIN_VARIANT|ZEPHYR_SDK_INSTALL_DIR|Zephyr-sdk_DIR|CMAKE_C_COMPILER):' \
-    build/learning-tools/first-ucrt-zip/CMakeCache.txt
+    "$build_dir/CMakeCache.txt"
 else
-  printf '%s\n' '尚无本章缓存，请先完成 P008 8.5 的配置。'
+  printf '%s\n' '尚无本章缓存，请核对所选输出目录并完成配置。'
 fi
 # CMSIS 记录是模块发现结果；这里不下载、不添加模块。
 if test -f build/learning-tools/first-ucrt-zip/zephyr_modules.txt; then
@@ -356,23 +155,25 @@ fi
 
 本例应能关联出同一组选择：应用是 `samples/hello_world`，板是 `mps2/an386`，生成器是 Ninja，Python 指向项目 `.venv/Scripts/python.exe`，Zephyr 包入口位于当前源码根的 `share/zephyr-package/cmake`，SDK 根为实际选中的 SDK，`Zephyr-sdk_DIR` 指向该 SDK 的 `cmake` 包目录，C 编译器在它的 `gnu/arm-zephyr-eabi/bin` 下。本例缓存中 SDK 根的 Windows 路径为 `G:/zephyr_practice/zephyr-sdk-1.0.1`，读者使用其他有效位置时不必强行改成这个路径。BOARD 及限定项的保存形态可能随版本规范化，以板日志和相关记录共同核对。
 
-`cmsis_6` 的模块记录应指向 P005 获取的源码根；第三列若保留 `${ZEPHYR_CMSIS_6_CMAKE_DIR}`，这是供 Zephyr 后续解析的外置接入入口表达式，不是目录丢失，也不是要求读者创建这个名字的文件。其后续读取链已在 11.3.2—11.3.3 展开。[当前命令索引](commands/current/P012_CMake缓存与构建排错/README.md)。
+`cmsis_6` 的模块记录应指向 P005 获取的源码根；第三列若保留 `${ZEPHYR_CMSIS_6_CMAKE_DIR}`，这是供 Zephyr 后续解析的外置接入入口表达式，不是目录丢失，也不是要求读者创建这个名字的文件。其后续读取链已在 11.3.2—11.3.3 展开。[检查模块和配置来源](commands/current/P012_CMake缓存与构建排错/complete/step-07.txt)。
 
 再从生成的编译命令数据库只取 hello_world 的 main.c，避免在整份长 JSON 中反复搜索：
 
 ```bash
-# Windows UCRT64；源码根；前提：first-ucrt-zip 配置、生成成功。
-cd /g/zephyr_practice/zephyr-main
+# UCRT64；从已设置的源码根读取本次构建的生成文件。
+cd "$ZEPHYR_BASE"
+build_dir="${AN386_BUILD_DIR:-build/learning-tools/first-ucrt-zip}"
 source .venv/Scripts/activate
 # 只读编译命令数据库；-X utf8 是 Python 的 UTF-8 模式，适配 UCRT64 输出。
 # 不执行数据库中的命令，不修改源码或构建状态。
-python -X utf8 - <<'PY'
+python -X utf8 - "$build_dir" <<'PY'
+import sys
 import json
 from pathlib import Path
 
-database = Path('build/learning-tools/first-ucrt-zip/compile_commands.json')
+database = Path(sys.argv[1]) / 'compile_commands.json'
 if not database.is_file():
-    raise SystemExit('尚无编译命令数据库，请先检查 P008 8.5 的配置与生成结果。')
+    raise SystemExit('尚无编译命令数据库，请核对所选输出目录及其生成结果。')
 
 target = Path('samples/hello_world/src/main.c').resolve()
 for entry in json.loads(database.read_text(encoding='utf-8')):
@@ -392,7 +193,7 @@ PY
 
 **对应 `compile_commands.json` 查询块的三项输出：** “源文件”来自 `file`；“命令工作目录”来自 `directory`；“生成阶段安排的编译命令”来自 `command`，或没有该字段时的 `arguments` 列表。这段 Python 只读取 CMake 生成的 JSON，不创建测试工程，也不更改应用。`-X utf8` 是 Python 自身的 UTF-8 模式，用于这一条读取命令的中文输出，不是 Zephyr 变量，也不需要修改 `.venv`。观察打印命令的编译器路径、`-mcpu`/`-mthumb`、CMSIS 的头文件目录和 main.c 输入路径。`file` 表示源文件，`directory` 表示执行该编译命令时的工作目录；数据库中的相对路径应结合该目录理解。
 
-**数据库在生成阶段就能出现，因此它证明的是“这份构建计划使用什么命令”，不是“刚才已经执行了这条命令”。** 需要观察实际执行时看本节前面 `cmake --build … --verbose` 的执行日志；没有到期任务时无编译命令输出是正常的。当前 Zephyr 强制导出该数据库的依据见 12.1.1.4；格式见 [CMake 编译命令数据库说明](https://cmake.org/cmake/help/latest/variable/CMAKE_EXPORT_COMPILE_COMMANDS.html)，本机原件在 CMake 安装根的 `Help/variable/CMAKE_EXPORT_COMPILE_COMMANDS.rst`。[当前命令索引](commands/current/P012_CMake缓存与构建排错/README.md)。
+编译数据库在配置和生成成功时即可读取。要确认该命令确已执行，可用 `cmake --build 构建目录 --verbose` 查看实际构建日志；输入没有改变时，Ninja 可以直接复用已生成的目标文件。[从编译数据库追踪应用源文件](commands/current/P012_CMake缓存与构建排错/complete/step-08.txt)
 
 失败时先定位停在哪个阶段，再回到对应输入。不要看到最后一行 build stopped 就只改编译器路径。
 
@@ -402,203 +203,22 @@ PY
 | 找不到 Zephyr 包 | Zephyr_DIR 是否指向当前源码的包入口；不要用 SDK 根替代 | [P008 8.1.1](P008_选择应用与硬件目标并构建.md#zephyr-package-export) 与 [P011 11.1.2](P011_Zephyr的CMake输入与依赖发现.md#section-11-1-2) |
 | 找不到 Python、SDK 或 CMSIS | 配置日志中的实际路径、缓存和依赖文件；按缺失对象处理 | P003、P004 或 P005—P010 |
 | 构建目录没有规则，或无法加载缓存 | 上一次配置是否成功；--build 是否指向同一个目录 | [P008 8.5](P008_选择应用与硬件目标并构建.md#85_windows-ucrt64-明确工具和路径边界) |
-| 生成器不匹配，或修改板/编译器后状态混杂 | 是否复用了原来的 -B | [P008 8.7](P008_选择应用与硬件目标并构建.md#section-8-7) 与 12.1.1.5，改用独立输出目录 |
+| 生成器不匹配，或修改板/编译器后状态混杂 | 是否复用了原来的 -B | [P008 8.7](P008_选择应用与硬件目标并构建.md#section-8-7) 与 [清理与重建实验](reference/CMake缓存的设置与恢复实验.md#section-12-1-1-5)，改用独立输出目录 |
 | 配置完成，随后 C 文件编译或链接失败 | 第一处编译/链接诊断及对应任务的完整命令 | 本章 12.2.4 的 --verbose 检查；核对源码、头文件、库与功能配置 |
-| 修改缓存后没有表现出预期效果 | 改的是配置日志还是编译日志；是否又被脚本、环境或预设覆盖 | 12.1.1.3—12.1.2 |
+| 修改缓存后没有表现出预期效果 | 改的是配置日志还是编译日志；是否又被脚本、环境或预设覆盖 | [复查日志级别](reference/CMake缓存的设置与恢复实验.md#cache-step-3)及 12.1.2 |
 | 没有重新编译，只提示 no work to do | 文件是否保存、是否是当前 -S 的文件、是否已被目标引用 | [P008 8.5](P008_选择应用与硬件目标并构建.md#85_windows-ucrt64-明确工具和路径边界)—8.7 |
 
 
 <a id="section-12-3"></a>
 
-## 12.3\_官方文档与实现的定向阅读入口
+## 12.3\_确认读取缓存的构建规则
 
-已有实际问题和构建记录后，再按读取者查官方文档与实现。本节是定向查证入口，每个链接回答前面已经出现的问题，不要求第一次构建前通读。
+以 SDK 为例，配置命令给出 `ZEPHYR_SDK_INSTALL_DIR`，Zephyr 的 `FindZephyr-sdk.cmake` 据此搜索 SDK。CMake 还会把找到的包配置目录保存在 `Zephyr-sdk_DIR` 中。若新终端里改过 SDK 路径，而构建仍使用旧编译器，先在这次输出目录的 `CMakeCache.txt` 中对照这两个值，再在 `compile_commands.json` 中确认实际编译器路径。在新输出目录配置同一应用，可以保留原有固件作比较。[SDK 查找规则](../../cmake/modules/FindZephyr-sdk.cmake)
 
-<a id="section-12-3-1"></a>
+## 12.4\_按失败阶段定位构建故障
 
-### 12.3.1\_从网页到仓库原件的路线
+下载工具返回 HTTP 407 时，源码包尚未取得，应检查代理认证。若 CMake 已进入配置阶段，但报告找不到 CMSIS 或 YAML 文件，应核对模块目录、实际运行的 Python 和报错中的文件名。若编译已经开始，Ninja 最后一行只能说明构建停止；找到失败的编译命令及其第一条诊断，才能判断缺的是头文件、编译参数还是实现。
 
-在 Zephyr 文档网站进入 **Build and Configuration Systems**，先看 **Build System (CMake)** 的阶段图，再看 **CMake Reference** 的模块、目标属性与变量分类。需要理解应用文件时进入 **Developing with Zephyr → Application Development**；源码模块进入 **Modules (External projects)**；工具链进入 **Toolchains**。下面给出直接链接，不要求先全仓库搜索。
-
-| 当前想理解什么 | 直接阅读的官方页面与仓库原件 | 本章位置 |
-| --- | --- | --- |
-| CMake、Ninja、配置和构建阶段 | [构建阶段说明](https://docs.zephyrproject.org/latest/build/cmake/index.html#build-and-configuration-phases)（原件 `doc/build/cmake/index.rst`，第 52 行附近） | [P007 7.1](P007_原生CMake与目标模型.md#section-7-1)—7.3 与 P008 |
-| 应用入口怎样组织 | [应用开发说明](https://docs.zephyrproject.org/latest/develop/application/index.html)（原件 `doc/develop/application/index.rst`，第 3 行附近） | [P008 8.1](P008_选择应用与硬件目标并构建.md#81_应用入口和板目标分别选择什么) |
-| 包入口选择哪份源码 | [Zephyr 包发现说明](https://docs.zephyrproject.org/latest/build/zephyr_cmake_package.html)（原件 `doc/build/zephyr_cmake_package.rst`，第 3 行附近） | [P008 8.1.1](P008_选择应用与硬件目标并构建.md#zephyr-package-export)、[P011 11.1.2](P011_Zephyr的CMake输入与依赖发现.md#section-11-1-2) |
-| 命令、变量、模块的分类说明 | [CMake Reference 分类入口](https://docs.zephyrproject.org/latest/build/cmake-ref/index.html)（原件 `doc/build/cmake-ref/index.rst`，第 3 行附近） | 11.1、12.3.2 |
-| 板目标与配置片段输入 | [BOARD 变量参考](https://docs.zephyrproject.org/latest/build/cmake-ref/variable/BOARD.html)（原件 `doc/build/cmake-ref/variable/BOARD.rst`，第 4 行附近）；[CONF_FILE 变量参考](https://docs.zephyrproject.org/latest/build/cmake-ref/variable/CONF_FILE.html)（原件 `doc/build/cmake-ref/variable/CONF_FILE.rst`，第 4 行附近） | 11.1.3—11.1.4 |
-| SDK、独立编译器与自定义规则 | [SDK 文档](https://docs.zephyrproject.org/latest/develop/toolchains/zephyr_sdk.html)（原件 `doc/develop/toolchains/zephyr_sdk.rst`，第 3 行附近）；[独立 GNU 接入说明](https://docs.zephyrproject.org/latest/develop/toolchains/other_x_compilers.html)（原件 `doc/develop/toolchains/other_x_compilers.rst`，第 3 行附近）；[树外工具链设计说明](https://docs.zephyrproject.org/latest/develop/toolchains/custom_cmake.html)（原件 `doc/develop/toolchains/custom_cmake.rst`，第 3 行附近） | 11.2 |
-| module.yml 与外部源码接入 | [外部项目模块说明](https://docs.zephyrproject.org/latest/develop/modules.html)（原件 `doc/develop/modules.rst`，第 3 行附近） | 11.3 |
-| west build 的职责 | [west 构建命令说明](https://docs.zephyrproject.org/latest/develop/west/build-flash-debug.html)（原件 `doc/develop/west/build-flash-debug.rst`，第 3 行附近） | [P006 6.4](P006_工程布局与构建全景.md#section-6-4) |
-| 多镜像与配置组合 | [多镜像构建入口](https://docs.zephyrproject.org/latest/build/sysbuild/index.html)（原件 `doc/build/sysbuild/index.rst`，第 3 行附近）；[配置片段组合入口](https://docs.zephyrproject.org/latest/build/snippets/index.html)（原件 `doc/build/snippets/index.rst`，第 3 行附近） | 12.1.4 |
-
-<a id="section-12-3-2"></a>
-
-### 12.3.2\_有些接口文档为什么藏在 CMake 文件的注释里
-
-`doc/build/cmake-ref/module/extensions.rst` 很短，其中的 `cmake-module` 指令从 `cmake/modules/extensions.cmake` 提取文档。后者的 `.rst` 注释描述函数的参数、返回值或行为，随后就是实现。因此短 `.rst` 不代表接口没有文档，也不应让读者盲目搜索变量名。先按 Reference 分类找到函数所属模块，再读网页说明；需要核查边界时，直接打开本章给出的固定实现链接。
-
-变量页如 `doc/build/cmake-ref/variable/CONF_FILE.rst` 会把读取者指向 `configuration_files` 模块。下一步应读该模块的说明与实现，而不是把 CONF_FILE 当成 CMake 程序自身内置的参数。SDK 接口中一部分行为在独立 SDK 安装包，须到已标注的安装根查验。
-
-CMake 自身的命令与变量另读 [命令行手册](https://cmake.org/cmake/help/latest/manual/cmake.1.html)、[配置日志级别](https://cmake.org/cmake/help/latest/variable/CMAKE_MESSAGE_LOG_LEVEL.html)和[预设手册](https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html)。本机原件在 CMake 安装根的 `share/cmake-<版本>/Help/`；它们定义通用行为，Zephyr 仓库则定义具体工程怎样使用或覆盖这些行为。
-
-本章的实现定位清单如下。每项链接固定到本章源码提交；SDK 两项明确指向安装包文件，发行链接用于取得同版原件。
-
-- [构建阶段说明](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/doc/build/cmake/index.rst#L52)：`doc/build/cmake/index.rst`，第 52 行附近。
-- [扩展函数参考页](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/doc/build/cmake-ref/module/extensions.rst#L1)：`doc/build/cmake-ref/module/extensions.rst`，第 1 行附近。
-- [Zephyr 包发现说明](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/doc/build/zephyr_cmake_package.rst#L3)：`doc/build/zephyr_cmake_package.rst`，第 3 行附近。
-- [hello_world 原有入口](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/samples/hello_world/CMakeLists.txt#L3)：`samples/hello_world/CMakeLists.txt`，第 3 行附近。
-- [包入口 include_boilerplate](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/share/zephyr-package/cmake/ZephyrConfig.cmake#L28)：`share/zephyr-package/cmake/ZephyrConfig.cmake`，第 28 行附近。
-- [默认初始化顺序](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/cmake/modules/zephyr_default.cmake#L71)：`cmake/modules/zephyr_default.cmake`，第 71 行附近。
-- [app 目标创建处](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/cmake/modules/kernel.cmake#L236)：`cmake/modules/kernel.cmake`，第 236 行附近。
-- [外部模块 CMake 入口加载处](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/CMakeLists.txt#L778)：`CMakeLists.txt`，第 778 行附近。
-- [板选择的说明与实现](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/cmake/modules/boards.cmake#L6)：`cmake/modules/boards.cmake`，第 6 行附近。
-- [BOARD 变量参考](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/doc/build/cmake-ref/variable/BOARD.rst#L4)：`doc/build/cmake-ref/variable/BOARD.rst`，第 4 行附近。
-- [BOARD_ROOT 变量参考](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/doc/build/cmake-ref/variable/BOARD_ROOT.rst#L4)：`doc/build/cmake-ref/variable/BOARD_ROOT.rst`，第 4 行附近。
-- [配置片段的选取](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/cmake/modules/configuration_files.cmake#L43)：`cmake/modules/configuration_files.cmake`，第 43 行附近。
-- [CONF_FILE 变量参考](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/doc/build/cmake-ref/variable/CONF_FILE.rst#L4)：`doc/build/cmake-ref/variable/CONF_FILE.rst`，第 4 行附近。
-- [设备树配置入口](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/cmake/modules/dts.cmake#L9)：`cmake/modules/dts.cmake`，第 9 行附近。
-- [Kconfig 脚本调用处](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/cmake/modules/kconfig.cmake#L473)：`cmake/modules/kconfig.cmake`，第 473 行附近。
-- [SDK 请求与通用工具规则](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/cmake/modules/FindHostTools.cmake#L51)：`cmake/modules/FindHostTools.cmake`，第 51 行附近。
-- [SDK 输入与默认查找分支](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/cmake/modules/FindZephyr-sdk.cmake#L44)：`cmake/modules/FindZephyr-sdk.cmake`，第 44 行附近。
-- [目标工具链规则](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/cmake/modules/FindTargetTools.cmake#L30)：`cmake/modules/FindTargetTools.cmake`，第 30 行附近。
-- [树外工具链设计说明](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/doc/develop/toolchains/custom_cmake.rst#L3)：`doc/develop/toolchains/custom_cmake.rst`，第 3 行附近。
-- [ARM CPU 参数实现](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/cmake/compiler/gcc/target_arm.cmake#L5)：`cmake/compiler/gcc/target_arm.cmake`，第 5 行附近。
-- [模块输入与发现脚本调用](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/cmake/modules/zephyr_module.cmake#L34)：`cmake/modules/zephyr_module.cmake`，第 34 行附近。
-- [派生模块目录变量创建处](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/cmake/modules/zephyr_module.cmake#L141)：`cmake/modules/zephyr_module.cmake`，第 141 行附近。
-- [候选项目解析实现](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/scripts/zephyr_module.py#L627)：`scripts/zephyr_module.py`，第 627 行附近。
-- [外置模块接入文件选择](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/modules/modules.cmake#L5)：`modules/modules.cmake`，第 5 行附近。
-- [CMSIS 头文件接入实现](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/modules/cmsis_6/CMakeLists.txt#L4)：`modules/cmsis_6/CMakeLists.txt`，第 4 行附近。
-- [Zephyr 库创建接口](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/cmake/modules/extensions.cmake#L682)：`cmake/modules/extensions.cmake`，第 682 行附近。
-- [Zephyr 库源码接口](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/cmake/modules/extensions.cmake#L769)：`cmake/modules/extensions.cmake`，第 769 行附近。
-- [按配置加入源码](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/cmake/modules/extensions.cmake#L2831)：`cmake/modules/extensions.cmake`，第 2831 行附近。
-- [Zephyr 输入读取与优先级](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/cmake/modules/extensions.cmake#L4088)：`cmake/modules/extensions.cmake`，第 4088 行附近。
-- [Python 选择模块](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/cmake/modules/python.cmake#L4)：`cmake/modules/python.cmake`，第 4 行附近。
-- [west 构建命令说明](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/doc/develop/west/build-flash-debug.rst#L3)：`doc/develop/west/build-flash-debug.rst`，第 3 行附近。
-- [多镜像构建入口](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/doc/build/sysbuild/index.rst#L3)：`doc/build/sysbuild/index.rst`，第 3 行附近。
-- [配置片段组合入口](https://github.com/zephyrproject-rtos/zephyr/blob/25c8f4a23988dd3b2cfb463613622738298c2d6c/doc/build/snippets/index.rst#L3)：`doc/build/snippets/index.rst`，第 3 行附近。
-- [SDK 1.0.1 的默认类型实现（安装包内）](https://github.com/zephyrproject-rtos/sdk-ng/releases/tag/v1.0.1)：`cmake/Zephyr-sdkConfig.cmake`，第 15 行附近。
-- [SDK 1.0.1 的 ARM 映射（安装包内）](https://github.com/zephyrproject-rtos/sdk-ng/releases/tag/v1.0.1)：`cmake/zephyr/gnu/target.cmake`，第 5 行附近。
-
-到这里已经可以沿输入、缓存、模块记录和编译命令定位变化发生的位置。实际故障可能在配置开始之前就出现，尤其是 UCRT64 同时调用 Windows 工具时；下面将这条排查方法应用到下载、路径传递和模块发现。
-
-
-排错时先找最后一个成功的阶段，再读取该阶段交给下一阶段的产物。这样做的价值是减少同时改变的条件：编译器已经在编译驱动时，再反复重装 west 通常无法解释当前错误。
-
-“首条错误”指能够解释后续失败的第一处工具诊断，往往比末尾的 `ninja: build stopped` 更有信息。后者只说明执行器停止了，不能定位是哪一项配置或源文件出错。缓存可疑时，保留旧构建目录作对照，再用新目录重现相同输入；如果新目录成功，才继续比较缓存差异，而不是把删除所有材料当成固定步骤。
-
-## 12.4\_UCRT64 与 ZIP 源码的真实故障怎样定位
-
-先选图中实际失败的阶段，再回到下文对应的终端、路径与缓存检查。
-
-![有些接口文档为什么藏在 CMake 文件的注释里](assets/p012-diagram-02.svg)
-
-图例与读图：蓝框按行对应失败现象和检查对象，灰箭头表示定位方向，不是五个必须依次发生的错误。先选实际失败的一行，再检查该阶段输入；编译前失败时无需先追查串口接线。
-
-本节沿 UCRT64 中的普通构建检查故障：Windows CPython 项目 venv 运行构建脚本，Windows SDK 提供编译器，ZIP 源码与本地模块共同构建 mps2/an386。先判断故障发生在下载、路径传递、模块发现还是编译阶段，再选择相应检查。标准完整命令在 P008；以下诊断只在出现对应现象时使用。
-
-<a id="section-12-4-1"></a>
-
-### 12.4.1\_下载阶段的 407 先看代理，而不是改包版本
-
-pip 在取得包索引之前收到 407 Proxy Authentication Required，说明代理要求认证。随后出现 No matching distribution found，并不足以证明 west==1.5.0 不存在；网络层可能根本没有返回有效索引。
-
-先查当前终端代理和 pip 配置，只在自己终端查看，输出可能包含认证信息，不直接贴出：
-
-```bash
-# Windows UCRT64；任意目录；诊断当前进程环境。
-env | grep -iE '^(http|https|all|no)_proxy='
-# 已在项目源码根且 venv 可用时，检查 pip 自己的配置来源。
-.venv/Scripts/python.exe -m pip config debug
-```
-
-如果所在网络允许直连，且确定这些只是当前窗口残留的代理变量，可以临时取消：
-
-```bash
-# Windows UCRT64；仅在确认可以直连且要取消当前窗口代理时执行。
-unset HTTP_PROXY HTTPS_PROXY ALL_PROXY
-unset http_proxy https_proxy all_proxy
-```
-
-这只影响当前 shell 与之后启动的子进程，不修改 Windows 系统代理，也不清除 pip 配置文件里的 proxy。企业网络必须走代理时，应修复认证或使用批准的软件包来源；换 pip 镜像也不会自动绕过所有代理。恢复网络后重试同一解释器的安装，再运行 pip check。
-
-<a id="section-12-4-2"></a>
-
-### 12.4.2\_Python 找不到已有 YAML，先看它收到了哪种路径
-
-项目的 Windows venv 与 UCRT64 Python 可以同时存在。Windows Python 收到 /d/... 形式的字符串时，并不保证按 MSYS 的盘符映射解释它。CMake 在原生进程内部启动 Python，路径不会再次经过 Bash 转换；所以“Bash 的 ls 能看到文件”并不能证明 Python 的路径也有效。
-
-以下只读检查由 Python 运行，因为要检验的正是 Python 对路径的解释：
-
-```bash
-# Windows UCRT64；当前 Zephyr 源码根，Windows venv 已建立。
-PYTHON_WIN="$(cygpath -am .venv/Scripts/python.exe)"
-SCHEMA_WIN="$(cygpath -am scripts/schemas/build-schema.yaml)"
-MSYS2_ARG_CONV_EXCL='*' "$PYTHON_WIN" -c \
-  'import sys, pathlib; print(sys.executable); print(sys.argv[1]); print(pathlib.Path(sys.argv[1]).is_file())' \
-  "$SCHEMA_WIN"
-```
-
-应输出项目解释器、带盘符的绝对路径和 True。如果仍为 False，核对实际源码版本是否有该文件、路径是否选错层，不新建空 YAML。P008 同时固定 PYTHON_EXECUTABLE 和 Python3_EXECUTABLE，并转换源码、构建、SDK、模块路径，避免只修某一个 -D 参数而让子进程继续收到错误路径。
-
-<a id="section-12-4-3"></a>
-
-### 12.4.3\_源码包路径被拼接时，核对 CMake 的来源
-
-ZephyrConfig.cmake 明明存在却被查成“应用目录/D:/...”，说明传入位置没有按预期的绝对路径使用。先记录实际调用的工具、传入参数和缓存值，分别检查工具运行时不匹配、路径字符串错误及旧缓存；仅凭最终换一条命令成功，还不能确定是哪一项起了作用。
-
-```bash
-# Windows UCRT64；任意目录；只读查看所有同名程序。
-type -a cmake ninja python
-/ucrt64/bin/cmake --version
-/ucrt64/bin/ninja --version
-```
-
-确认后用 P008 完整 UCRT64 块和一个新构建目录复现。将同一个 cygpath 表达式先赋变量，可以方便检查字符串，但不改变路径含义；真正需要统一的是工具运行时、绝对路径、参数传递和缓存。-a 只保证绝对化，也不会把 MSYS CMake 变成 Windows CMake。
-
-### 12.4.4\_HAS_CMSIS_CORE 警告先检查模块发现
-
-如果生成的 Kconfig/Kconfig.modules 写着 No west and no Zephyr modules，就说明本次配置没有接入模块的 Kconfig 定义。这个证据比“磁盘上有 cmsis_6 目录”更直接：后续 CPU 配置选择相关功能时，依赖可能因定义未加载而不满足。
-
-先检查模块真实位置和 module.yml，再检查 P008 的 ZEPHYR_MODULES 参数。zip 分支使用的是完整列表；遗漏必需模块会让它从本次配置中消失。分号必须留在同一个参数内。已经有正确 west 工作区时可让其发现默认项目，新增一个自定义模块才考虑 EXTRA_ZEPHYR_MODULES；两者不是可随意互换的“追加路径”。
-
-CMSIS 与 CMSIS_6 可以分别位于不同目录。显式模块路线要把两个实际模块根交给 CMake，重新配置后确认生成记录；保留已有布局即可，无须搬动源码。
-
-HAS_CMSIS_CORE 这类警告也可能来自源码与模块版本不兼容。模块发现正确仍报错时，继续核对清单 revision、模块入口和实际配置依赖。不要关闭 Kconfig 警告来掩盖问题。
-
-<a id="section-12-4-5"></a>
-
-### 12.4.5\_DTC、Ccache 和 Git 警告分别判断
-
-| 现象 | 应核验的事实 | 怎样判断 |
-| --- | --- | --- |
-| Could NOT find Dtc | dtc 是否在本次 CMake 可见的路径；后续是否因此退出 | 本版部分配置可跳过对应诊断；按 P008 准备工具，再确认实际检测版本 |
-| Could NOT find Ccache | 是否安装缓存工具，配置是否要求它 | Ccache 可选；用版本命令和包查询判断安装状态 |
-| git describe 失败 | 当前源码是否有正确 .git；后续是否继续构建 | ZIP 缺少 Git 版本描述；继续按构建退出状态与产物判断 |
-| Git 中文错误乱码 | 原生 Git 输出编码与终端显示是否匹配 | 用同一 Git 命令复查；locale 中文输出正常不能证明 Git 输出正常 |
-
-补装 DTC 与可选 Ccache 的操作分开，避免让读者以为两者都是固件依赖：
-
-```bash
-# Windows UCRT64；任意目录；DTC 缺少时补装并核验。
-pacman -S --needed mingw-w64-ucrt-x86_64-dtc &&
-/ucrt64/bin/dtc --version &&
-pacman -Q mingw-w64-ucrt-x86_64-dtc
-```
-
-```bash
-# Windows UCRT64；任意目录；仅在需要编译缓存时执行，可跳过。
-pacman -S --needed mingw-w64-ucrt-x86_64-ccache &&
-/ucrt64/bin/ccache --version &&
-pacman -Q mingw-w64-ucrt-x86_64-ccache
-```
-
-软件包搜索结果只是“仓库提供这个包”，不是“本机已安装”。pacman 某个镜像下载失败后可能尝试其他地址，最终是否成功必须看退出状态和本机查询，不能从中途 407 或一行包名推定结果。
-
-### 12.4.6\_用阶段结果结束排查
-
-按以下顺序复核同一个构建目录：项目 Python 与包检查通过；CMake 使用正确工具和路径；模块记录中出现配套目录；.config 与 zephyr.dts 生成；Ninja 编译链接成功；ELF 生成。某一步失败就在该步的输入与日志中找原因，不提前修改后面的芯片驱动。
-
-最终检查的每条证据都要对应同一套输入。mps2/an386 的内存占用描述的是这个目标的固件；换成 HC32 后，应重新核对配置、链接布局和资源统计。构建成功证明已生成目标程序，程序能否启动、外设能否工作仍须通过运行与硬件验证。下一章从这个已知构建出发，加入自己的源码模块，观察输入如何改变最终程序。
+[按原始诊断核对 UCRT64 的下载、路径和模块发现故障](reference/UCRT64构建故障与源码依据.md)
 
 阅读导航：前一阶段：[P011_Zephyr的CMake输入与依赖发现](P011_Zephyr的CMake输入与依赖发现.md)；下一阶段：[P013_自定义源码模块与配置开关](P013_自定义源码模块与配置开关.md)。

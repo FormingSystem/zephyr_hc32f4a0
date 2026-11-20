@@ -4,7 +4,7 @@
 
 | 操作 | 终端 | 所属讲解 | 内容 |
 | --- | --- | --- | --- |
-| 001 | bash | [11.3.5_把选择过程和生成结果一一对上](../../../P011_Zephyr的CMake输入与依赖发现.md#section-11-3-5) | [完整命令](001-bash.txt) |
+| 001 | bash | [11.3.5_核对 AN386 的编译清单](../../../reference/AN386模块与编译清单实验.md#section-11-3-5) | [完整命令](001-bash.txt) |
 
 ## 配套完整操作
 
@@ -12,4 +12,6 @@
 
 | 操作 | 说明 |
 | --- | --- |
+| [编译并反汇编一个函数（PowerShell）](complete/compile-probe-powershell.txt) | 在[实验小节](../../../P011_Zephyr的CMake输入与依赖发现.md#section-11-2-2)保存 probe.c 后执行。 |
+| [编译并反汇编一个函数（UCRT64）](complete/compile-probe-ucrt64.txt) | GCC 生成 probe.o，再由 objdump 读取同一个对象。 |
 | [trace-selected-sources.txt](complete/trace-selected-sources.txt) | Windows UCRT64；P008 的 first-ucrt-zip 已配置成功；只读生成结果。 |
