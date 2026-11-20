@@ -1,2 +1,42 @@
-<!-- SPDX-License-Identifier: Apache-2.0 -->
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="210" viewBox="0 0 800 210" role="img" aria-labelledby="title desc"><title id="title">分五步加入 HC32 芯片与板级支持</title><desc id="desc">分五步加入 HC32 芯片与板级支持</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10Z" fill="#66788a"/></marker></defs><rect width="800" height="210" fill="white"/><g font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" fill="#243447"><rect x="20" y="20" width="240" height="60" rx="7" fill="#eaf2fc" stroke="#66788a"/><text x="140" y="56" font-size="16" text-anchor="middle"><tspan x="140" dy="0">1 认识已有板</tspan></text><rect x="280" y="20" width="240" height="60" rx="7" fill="#eaf2fc" stroke="#66788a"/><text x="400" y="56" font-size="16" text-anchor="middle"><tspan x="400" dy="0">2 编译已有板</tspan></text><path d="M260 50 H280" fill="none" stroke="#66788a" stroke-width="1.5" marker-end="url(#arrow)"/><rect x="540" y="20" width="240" height="60" rx="7" fill="#eaf2fc" stroke="#66788a"/><text x="660" y="56" font-size="16" text-anchor="middle"><tspan x="660" dy="0">3 对照新增板</tspan></text><path d="M520 50 H540" fill="none" stroke="#66788a" stroke-width="1.5" marker-end="url(#arrow)"/><rect x="540" y="130" width="240" height="60" rx="7" fill="#e6f3ec" stroke="#66788a"/><text x="660" y="166" font-size="16" text-anchor="middle"><tspan x="660" dy="0">4 新增芯片支持</tspan></text><rect x="540" y="130" width="240" height="60" rx="7" fill="none" stroke="#007f8a" stroke-width="3"/><path d="M660 80 V130" fill="none" stroke="#66788a" stroke-width="1.5" marker-end="url(#arrow)"/><rect x="280" y="130" width="240" height="60" rx="7" fill="#eaf2fc" stroke="#66788a"/><text x="400" y="166" font-size="16" text-anchor="middle"><tspan x="400" dy="0">5 核验结果</tspan></text><path d="M540 160 H520" fill="none" stroke="#66788a" stroke-width="1.5" marker-end="url(#arrow)"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="362" viewBox="0 0 800 362" role="img" aria-labelledby="title desc">
+  <title id="title">一个适配模块怎样提供板、SoC 和设备树搜索根</title>
+  <desc id="desc">hc32_port 工作副本 · 三个点号均相对于模块根。三个字段都写 .，构建系统却分别在模块根下查找 boards/、soc/ 和 dts/。第四步加入的驱动实现通过模块构建规则选入。</desc>
+  <rect width="800" height="362" fill="#ffffff"/>
+  <path d="M400 86 V103 M137.333 103 H662.667" fill="none" stroke="#6c808a" stroke-width="2"/>
+  <path d="M137.333 103 V124" fill="none" stroke="#6c808a" stroke-width="2"/>
+  <path d="M137.333 170 V187" fill="none" stroke="#25618b" stroke-width="2"/>
+  <path d="M137.333 233 V250" fill="none" stroke="#25618b" stroke-width="2"/>
+  <path d="M400 103 V124" fill="none" stroke="#6c808a" stroke-width="2"/>
+  <path d="M400 170 V187" fill="none" stroke="#705197" stroke-width="2"/>
+  <path d="M400 233 V250" fill="none" stroke="#705197" stroke-width="2"/>
+  <path d="M662.667 103 V124" fill="none" stroke="#6c808a" stroke-width="2"/>
+  <path d="M662.667 170 V187" fill="none" stroke="#207767" stroke-width="2"/>
+  <path d="M662.667 257 V274" fill="none" stroke="#207767" stroke-width="2"/>
+  <g text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif">
+  <rect x="14" y="12" width="772" height="74" rx="8" fill="#edf3f6" stroke="#37586a" stroke-width="1.5"/>
+  <text x="400" y="37" font-size="16" font-weight="400" fill="#435f70">hc32_port 工作副本 · 三个点号均相对于模块根</text>
+  <text x="400" y="64" font-size="17" font-weight="700" fill="#172d3e">hc32_port/zephyr/module.yml  ·  build.settings</text>
+  <rect x="14" y="124" width="246.667" height="46" rx="8" fill="#e9f4fb" stroke="#25618b" stroke-width="1.5"/>
+  <text x="137.333" y="152" font-size="17" font-weight="700" fill="#25618b">board_root: .</text>
+  <rect x="14" y="187" width="246.667" height="46" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="137.333" y="215" font-size="16" font-weight="400" fill="#182e3d">boards/uyup/uyup_rpi_a</text>
+  <rect x="14" y="250" width="246.667" height="70" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="137.333" y="278" font-size="16" font-weight="400" fill="#182e3d">登记板目标，提供板 DTS 和默</text>
+  <text x="137.333" y="302" font-size="16" font-weight="400" fill="#182e3d">认配置</text>
+  <rect x="276.667" y="124" width="246.667" height="46" rx="8" fill="#f4eff9" stroke="#705197" stroke-width="1.5"/>
+  <text x="400" y="152" font-size="17" font-weight="700" fill="#705197">soc_root: .</text>
+  <rect x="276.667" y="187" width="246.667" height="46" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="400" y="215" font-size="16" font-weight="400" fill="#182e3d">soc/xhsc/hc32f4a0</text>
+  <rect x="276.667" y="250" width="246.667" height="70" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="400" y="278" font-size="16" font-weight="400" fill="#182e3d">登记 SoC 并接入芯片初始化、</text>
+  <text x="400" y="302" font-size="16" font-weight="400" fill="#182e3d">时钟和选源规则</text>
+  <rect x="539.333" y="124" width="246.667" height="46" rx="8" fill="#e9f6f2" stroke="#207767" stroke-width="1.5"/>
+  <text x="662.667" y="152" font-size="17" font-weight="700" fill="#207767">dts_root: .</text>
+  <rect x="539.333" y="187" width="246.667" height="70" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="662.667" y="215" font-size="16" font-weight="400" fill="#182e3d">dts/arm/xhsc 与</text>
+  <text x="662.667" y="239" font-size="16" font-weight="400" fill="#182e3d">dts/bindings</text>
+  <rect x="539.333" y="274" width="246.667" height="70" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="662.667" y="302" font-size="16" font-weight="400" fill="#182e3d">芯片 .dtsi 描述片上外设，绑定</text>
+  <text x="662.667" y="326" font-size="16" font-weight="400" fill="#182e3d">文件解释设备树属性</text>
+  </g>
+</svg>

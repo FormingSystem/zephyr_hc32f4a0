@@ -1,30 +1,43 @@
-<!-- SPDX-License-Identifier: Apache-2.0 -->
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="366" viewBox="0 0 800 366" role="img" aria-labelledby="title desc">
-<title id="title">板、SoC 与架构配置的职责</title><desc id="desc">板配置关联 SoC 配置，SoC 选择处理器架构；板与 SoC 各自提供设备树描述。</desc>
-<defs>
-<marker id="data" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#2563eb"/></marker>
-<marker id="control" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#7c3aed"/></marker>
-<marker id="save" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#b95309"/></marker>
-<marker id="restore" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#15804a"/></marker>
-<marker id="pointer" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#64748b"/></marker>
-</defs>
-<rect width="800" height="366" fill="#fff"/>
-<g font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" fill="#243447">
-<rect x="20" y="20" width="338" height="56" rx="6" fill="#edf4ff" stroke="#94a3b8" stroke-width="1.3"/>
-<text x="189.0" y="54.0" font-size="16" fill="#243447" font-weight="600" text-anchor="middle">board.yml 与板级 Kconfig</text>
-<rect x="442" y="20" width="338" height="56" rx="6" fill="#fff4df" stroke="#94a3b8" stroke-width="1.3"/>
-<text x="611.0" y="54.0" font-size="16" fill="#243447" font-weight="600" text-anchor="middle">板级 DTS：实际 PCB 连接</text>
-<rect x="20" y="116" width="338" height="56" rx="6" fill="#edf4ff" stroke="#94a3b8" stroke-width="1.3"/>
-<text x="189.0" y="150.0" font-size="16" fill="#243447" font-weight="600" text-anchor="middle">soc.yml 与 Kconfig.soc</text>
-<rect x="442" y="116" width="338" height="56" rx="6" fill="#fff4df" stroke="#94a3b8" stroke-width="1.3"/>
-<text x="611.0" y="150.0" font-size="16" fill="#243447" font-weight="600" text-anchor="middle">SoC DTS：寄存器与存储</text>
-<rect x="20" y="212" width="338" height="56" rx="6" fill="#edf4ff" stroke="#94a3b8" stroke-width="1.3"/>
-<text x="189.0" y="246.0" font-size="16" fill="#243447" font-weight="600" text-anchor="middle">SoC Kconfig 选择 Cortex-M4</text>
-<rect x="20" y="308" width="338" height="42" rx="6" fill="#edf8f0" stroke="#94a3b8" stroke-width="1.3"/>
-<text x="189.0" y="335.0" font-size="16" fill="#243447" font-weight="600" text-anchor="middle">arch/arm 共用实现</text>
-<path d="M189 76V116" fill="none" stroke="#2563eb" stroke-width="2.4" marker-end="url(#data)"/>
-<path d="M358 48H442" fill="none" stroke="#2563eb" stroke-width="2.4" marker-end="url(#data)"/>
-<path d="M358 144H442" fill="none" stroke="#2563eb" stroke-width="2.4" marker-end="url(#data)"/>
-<path d="M189 172V212" fill="none" stroke="#2563eb" stroke-width="2.4" marker-end="url(#data)"/>
-<path d="M189 268V308" fill="none" stroke="#2563eb" stroke-width="2.4" marker-end="url(#data)"/>
-</g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="362" viewBox="0 0 800 362" role="img" aria-labelledby="title desc">
+  <title id="title">HC32 板级连接、芯片资源和架构支持分别在哪里</title>
+  <desc id="desc">本章构建参数中的硬件目标。若要改板上控制台的接线，从 UYUP 板 DTS 开始；若要查 USART 自身的地址，则沿芯片的 .dtsi 阅读。两者使用的 Cortex-M 架构代码可在主源码树中找到。</desc>
+  <rect width="800" height="362" fill="#ffffff"/>
+  <path d="M400 86 V103 M137.333 103 H662.667" fill="none" stroke="#6c808a" stroke-width="2"/>
+  <path d="M137.333 103 V124" fill="none" stroke="#6c808a" stroke-width="2"/>
+  <path d="M137.333 170 V187" fill="none" stroke="#25618b" stroke-width="2"/>
+  <path d="M137.333 233 V250" fill="none" stroke="#25618b" stroke-width="2"/>
+  <path d="M400 103 V124" fill="none" stroke="#6c808a" stroke-width="2"/>
+  <path d="M400 170 V187" fill="none" stroke="#705197" stroke-width="2"/>
+  <path d="M400 233 V250" fill="none" stroke="#705197" stroke-width="2"/>
+  <path d="M662.667 103 V124" fill="none" stroke="#6c808a" stroke-width="2"/>
+  <path d="M662.667 170 V187" fill="none" stroke="#207767" stroke-width="2"/>
+  <path d="M662.667 233 V250" fill="none" stroke="#207767" stroke-width="2"/>
+  <g text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif">
+  <rect x="14" y="12" width="772" height="74" rx="8" fill="#edf3f6" stroke="#37586a" stroke-width="1.5"/>
+  <text x="400" y="37" font-size="16" font-weight="400" fill="#435f70">本章构建参数中的硬件目标</text>
+  <text x="400" y="64" font-size="17" font-weight="700" fill="#172d3e">-DBOARD=uyup_rpi_a/hc32f4a0pitb</text>
+  <rect x="14" y="124" width="246.667" height="46" rx="8" fill="#e9f4fb" stroke="#25618b" stroke-width="1.5"/>
+  <text x="137.333" y="152" font-size="17" font-weight="700" fill="#25618b">板 · UYUP</text>
+  <rect x="14" y="187" width="246.667" height="46" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="137.333" y="215" font-size="16" font-weight="400" fill="#182e3d">boards/uyup/uyup_rpi_a</text>
+  <rect x="14" y="250" width="246.667" height="70" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="137.333" y="278" font-size="16" font-weight="400" fill="#182e3d">board.yml 登记所用 SoC；板</text>
+  <text x="137.333" y="302" font-size="16" font-weight="400" fill="#182e3d">DTS 选择控制台和引脚</text>
+  <rect x="276.667" y="124" width="246.667" height="46" rx="8" fill="#f4eff9" stroke="#705197" stroke-width="1.5"/>
+  <text x="400" y="152" font-size="17" font-weight="700" fill="#705197">SoC · 小华</text>
+  <rect x="276.667" y="187" width="246.667" height="46" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="400" y="215" font-size="16" font-weight="400" fill="#182e3d">soc/xhsc/hc32f4a0</text>
+  <rect x="276.667" y="250" width="246.667" height="94" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="400" y="278" font-size="16" font-weight="400" fill="#182e3d">soc.yml 声明芯片系列；</text>
+  <text x="400" y="302" font-size="16" font-weight="400" fill="#182e3d">dts/arm/xhsc 下的 .dtsi 描述</text>
+  <text x="400" y="326" font-size="16" font-weight="400" fill="#182e3d">片上存储与外设</text>
+  <rect x="539.333" y="124" width="246.667" height="46" rx="8" fill="#e9f6f2" stroke="#207767" stroke-width="1.5"/>
+  <text x="662.667" y="152" font-size="17" font-weight="700" fill="#207767">架构 · Arm</text>
+  <rect x="539.333" y="187" width="246.667" height="46" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="662.667" y="215" font-size="16" font-weight="400" fill="#182e3d">Cortex-M4</text>
+  <rect x="539.333" y="250" width="246.667" height="94" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="662.667" y="278" font-size="16" font-weight="400" fill="#182e3d">Zephyr 主仓</text>
+  <text x="662.667" y="302" font-size="16" font-weight="400" fill="#182e3d">arch/arm/core/cortex_m 提</text>
+  <text x="662.667" y="326" font-size="16" font-weight="400" fill="#182e3d">供异常和内核共用机制</text>
+  </g>
+</svg>

@@ -1,2 +1,41 @@
-<!-- SPDX-License-Identifier: Apache-2.0 -->
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="210" viewBox="0 0 800 210" role="img" aria-labelledby="title desc"><title id="title">用已经准备好的输入编译 hello_world</title><desc id="desc">用已经准备好的输入编译 hello_world</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10Z" fill="#66788a"/></marker></defs><rect width="800" height="210" fill="white"/><g font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" fill="#243447"><rect x="20" y="20" width="240" height="60" rx="7" fill="#eaf2fc" stroke="#66788a"/><text x="140" y="56" font-size="16" text-anchor="middle"><tspan x="140" dy="0">1 认识已有板</tspan></text><rect x="280" y="20" width="240" height="60" rx="7" fill="#e6f3ec" stroke="#66788a"/><text x="400" y="56" font-size="16" text-anchor="middle"><tspan x="400" dy="0">2 编译已有板</tspan></text><rect x="280" y="20" width="240" height="60" rx="7" fill="none" stroke="#007f8a" stroke-width="3"/><path d="M260 50 H280" fill="none" stroke="#66788a" stroke-width="1.5" marker-end="url(#arrow)"/><rect x="540" y="20" width="240" height="60" rx="7" fill="#eaf2fc" stroke="#66788a"/><text x="660" y="56" font-size="16" text-anchor="middle"><tspan x="660" dy="0">3 对照新增板</tspan></text><path d="M520 50 H540" fill="none" stroke="#66788a" stroke-width="1.5" marker-end="url(#arrow)"/><rect x="540" y="130" width="240" height="60" rx="7" fill="#eaf2fc" stroke="#66788a"/><text x="660" y="166" font-size="16" text-anchor="middle"><tspan x="660" dy="0">4 新增芯片支持</tspan></text><path d="M660 80 V130" fill="none" stroke="#66788a" stroke-width="1.5" marker-end="url(#arrow)"/><rect x="280" y="130" width="240" height="60" rx="7" fill="#eaf2fc" stroke="#66788a"/><text x="400" y="166" font-size="16" text-anchor="middle"><tspan x="400" dy="0">5 核验结果</tspan></text><path d="M540 160 H520" fill="none" stroke="#66788a" stroke-width="1.5" marker-end="url(#arrow)"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="338" viewBox="0 0 800 338" role="img" aria-labelledby="title desc">
+  <title id="title">从官方板的构建目录核对基准固件</title>
+  <desc id="desc">UCRT64 · Zephyr 源码根，已按 15.2 配置 AN386。构建命令只给出一个目录。目录里的规则已经确定输入，.config 记录板和处理器，zephyr.elf 是后面两次换板实验的对照。</desc>
+  <rect width="800" height="338" fill="#ffffff"/>
+  <path d="M400 86 V103 M137.333 103 H662.667" fill="none" stroke="#6c808a" stroke-width="2"/>
+  <path d="M137.333 103 V124" fill="none" stroke="#6c808a" stroke-width="2"/>
+  <path d="M137.333 170 V187" fill="none" stroke="#25618b" stroke-width="2"/>
+  <path d="M137.333 233 V250" fill="none" stroke="#25618b" stroke-width="2"/>
+  <path d="M400 103 V124" fill="none" stroke="#6c808a" stroke-width="2"/>
+  <path d="M400 170 V187" fill="none" stroke="#705197" stroke-width="2"/>
+  <path d="M400 233 V250" fill="none" stroke="#705197" stroke-width="2"/>
+  <path d="M662.667 103 V124" fill="none" stroke="#6c808a" stroke-width="2"/>
+  <path d="M662.667 170 V187" fill="none" stroke="#207767" stroke-width="2"/>
+  <path d="M662.667 233 V250" fill="none" stroke="#207767" stroke-width="2"/>
+  <g text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif">
+  <rect x="14" y="12" width="772" height="74" rx="8" fill="#edf3f6" stroke="#37586a" stroke-width="1.5"/>
+  <text x="400" y="37" font-size="16" font-weight="400" fill="#435f70">UCRT64 · Zephyr 源码根，已按 15.2 配置 AN386</text>
+  <text x="400" y="64" font-size="17" font-weight="700" fill="#172d3e">cmake --build build/learning-tools/p003/build-mps2-sdk-auto</text>
+  <rect x="14" y="124" width="246.667" height="46" rx="8" fill="#e9f4fb" stroke="#25618b" stroke-width="1.5"/>
+  <text x="137.333" y="152" font-size="17" font-weight="700" fill="#25618b">读取生成规则</text>
+  <rect x="14" y="187" width="246.667" height="46" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="137.333" y="215" font-size="16" font-weight="400" fill="#182e3d">build.ninja</text>
+  <rect x="14" y="250" width="246.667" height="70" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="137.333" y="278" font-size="16" font-weight="400" fill="#182e3d">按已有规则编译和链接</text>
+  <text x="137.333" y="302" font-size="16" font-weight="400" fill="#182e3d">hello_world</text>
+  <rect x="276.667" y="124" width="246.667" height="46" rx="8" fill="#f4eff9" stroke="#705197" stroke-width="1.5"/>
+  <text x="400" y="152" font-size="17" font-weight="700" fill="#705197">核对硬件目标</text>
+  <rect x="276.667" y="187" width="246.667" height="46" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="400" y="215" font-size="16" font-weight="400" fill="#182e3d">zephyr/.config</text>
+  <rect x="276.667" y="250" width="246.667" height="70" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="400" y="278" font-size="16" font-weight="400" fill="#182e3d">板为 mps2，SoC 为 an386，</text>
+  <text x="400" y="302" font-size="16" font-weight="400" fill="#182e3d">选中 Cortex-M4</text>
+  <rect x="539.333" y="124" width="246.667" height="46" rx="8" fill="#e9f6f2" stroke="#207767" stroke-width="1.5"/>
+  <text x="662.667" y="152" font-size="17" font-weight="700" fill="#207767">保存对照固件</text>
+  <rect x="539.333" y="187" width="246.667" height="46" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="662.667" y="215" font-size="16" font-weight="400" fill="#182e3d">zephyr/zephyr.elf</text>
+  <rect x="539.333" y="250" width="246.667" height="70" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="662.667" y="278" font-size="16" font-weight="400" fill="#182e3d">练习板和 HC32 使用各自的构</text>
+  <text x="662.667" y="302" font-size="16" font-weight="400" fill="#182e3d">建目录，便于比较三次结果</text>
+  </g>
+</svg>

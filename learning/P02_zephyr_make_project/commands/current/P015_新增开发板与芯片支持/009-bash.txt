@@ -1,5 +1,5 @@
 # Windows UCRT64；源码根；15.2.3 已完成配置和构建。
-cd /g/zephyr_practice/zephyr-main &&
+cd "$ZEPHYR_BASE" &&
 grep -E '^(ZEPHYR_TOOLCHAIN_VARIANT|CROSS_COMPILE|CROSS_COMPILE_TOOLCHAIN_PATH|CMAKE_C_COMPILER|SYSROOT_DIR):' \
   build/learning-tools/p003/build-mps2-cross-compile-layout2/CMakeCache.txt
 # 此独立路线不应出现 SDK 根记录；无匹配时 grep 返回 1 是这里的预期。

@@ -1,7 +1,7 @@
 # UCRT64；源码根。复制当前同一修订的官方文件，保留 SPDX 和版权。
 (
 set -eu
-cd /g/zephyr_practice/zephyr-main
+cd "$ZEPHYR_BASE"
 test -f build/learning-tools/p003/new-board/boards/others/practice_mps2/board.yml
 for name in practice_mps2_an386.dts mps2_base.dtsi mps2-pinctrl.dtsi practice_mps2_an386_defconfig; do
   if test -e "build/learning-tools/p003/new-board/boards/others/practice_mps2/$name"; then

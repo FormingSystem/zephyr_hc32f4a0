@@ -1,2 +1,45 @@
-<!-- SPDX-License-Identifier: Apache-2.0 -->
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="210" viewBox="0 0 800 210" role="img" aria-labelledby="title desc"><title id="title">按阶段验收，留下可以解释的结果</title><desc id="desc">按阶段验收，留下可以解释的结果</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10Z" fill="#66788a"/></marker></defs><rect width="800" height="210" fill="white"/><g font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" fill="#243447"><rect x="20" y="20" width="240" height="60" rx="7" fill="#eaf2fc" stroke="#66788a"/><text x="140" y="56" font-size="16" text-anchor="middle"><tspan x="140" dy="0">1 认识已有板</tspan></text><rect x="280" y="20" width="240" height="60" rx="7" fill="#eaf2fc" stroke="#66788a"/><text x="400" y="56" font-size="16" text-anchor="middle"><tspan x="400" dy="0">2 编译已有板</tspan></text><path d="M260 50 H280" fill="none" stroke="#66788a" stroke-width="1.5" marker-end="url(#arrow)"/><rect x="540" y="20" width="240" height="60" rx="7" fill="#eaf2fc" stroke="#66788a"/><text x="660" y="56" font-size="16" text-anchor="middle"><tspan x="660" dy="0">3 对照新增板</tspan></text><path d="M520 50 H540" fill="none" stroke="#66788a" stroke-width="1.5" marker-end="url(#arrow)"/><rect x="540" y="130" width="240" height="60" rx="7" fill="#eaf2fc" stroke="#66788a"/><text x="660" y="166" font-size="16" text-anchor="middle"><tspan x="660" dy="0">4 新增芯片支持</tspan></text><path d="M660 80 V130" fill="none" stroke="#66788a" stroke-width="1.5" marker-end="url(#arrow)"/><rect x="280" y="130" width="240" height="60" rx="7" fill="#e6f3ec" stroke="#66788a"/><text x="400" y="166" font-size="16" text-anchor="middle"><tspan x="400" dy="0">5 核验结果</tspan></text><rect x="280" y="130" width="240" height="60" rx="7" fill="none" stroke="#007f8a" stroke-width="3"/><path d="M540 160 H520" fill="none" stroke="#66788a" stroke-width="1.5" marker-end="url(#arrow)"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="386" viewBox="0 0 800 386" role="img" aria-labelledby="title desc">
+  <title id="title">如何从一次 HC32 构建反查硬件、源码和固件</title>
+  <desc id="desc">以下相对路径均从本次 HC32 构建目录开始。若要确认芯片支持已选中，先读 .config；若要确认驱动已编译，则读编译清单。ELF、HEX 和 BIN 可核对固件交付，板上的启动和串口通信还需要实测。</desc>
+  <rect width="800" height="386" fill="#ffffff"/>
+  <path d="M400 86 V103 M137.333 103 H662.667" fill="none" stroke="#6c808a" stroke-width="2"/>
+  <path d="M137.333 103 V124" fill="none" stroke="#6c808a" stroke-width="2"/>
+  <path d="M137.333 170 V187" fill="none" stroke="#25618b" stroke-width="2"/>
+  <path d="M137.333 257 V274" fill="none" stroke="#25618b" stroke-width="2"/>
+  <path d="M400 103 V124" fill="none" stroke="#6c808a" stroke-width="2"/>
+  <path d="M400 170 V187" fill="none" stroke="#705197" stroke-width="2"/>
+  <path d="M400 233 V250" fill="none" stroke="#705197" stroke-width="2"/>
+  <path d="M662.667 103 V124" fill="none" stroke="#6c808a" stroke-width="2"/>
+  <path d="M662.667 170 V187" fill="none" stroke="#207767" stroke-width="2"/>
+  <path d="M662.667 281 V298" fill="none" stroke="#207767" stroke-width="2"/>
+  <g text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif">
+  <rect x="14" y="12" width="772" height="74" rx="8" fill="#edf3f6" stroke="#37586a" stroke-width="1.5"/>
+  <text x="400" y="37" font-size="16" font-weight="400" fill="#435f70">以下相对路径均从本次 HC32 构建目录开始</text>
+  <text x="400" y="64" font-size="17" font-weight="700" fill="#172d3e">build/learning-tools/p003/build-hc32-sdk-auto</text>
+  <rect x="14" y="124" width="246.667" height="46" rx="8" fill="#e9f4fb" stroke="#25618b" stroke-width="1.5"/>
+  <text x="137.333" y="152" font-size="17" font-weight="700" fill="#25618b">选中了哪套硬件</text>
+  <rect x="14" y="187" width="246.667" height="70" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="137.333" y="215" font-size="16" font-weight="400" fill="#182e3d">zephyr/.config 与</text>
+  <text x="137.333" y="239" font-size="16" font-weight="400" fill="#182e3d">zephyr/zephyr.dts</text>
+  <rect x="14" y="274" width="246.667" height="70" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="137.333" y="302" font-size="16" font-weight="400" fill="#182e3d">核对 SoC、时钟配置和</text>
+  <text x="137.333" y="326" font-size="16" font-weight="400" fill="#182e3d">chosen 中的控制台节点</text>
+  <rect x="276.667" y="124" width="246.667" height="46" rx="8" fill="#f4eff9" stroke="#705197" stroke-width="1.5"/>
+  <text x="400" y="152" font-size="17" font-weight="700" fill="#705197">编译了哪些实现</text>
+  <rect x="276.667" y="187" width="246.667" height="46" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="400" y="215" font-size="16" font-weight="400" fill="#182e3d">compile_commands.json</text>
+  <rect x="276.667" y="250" width="246.667" height="94" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="400" y="278" font-size="16" font-weight="400" fill="#182e3d">核对工具路径和 CMSIS</text>
+  <text x="400" y="302" font-size="16" font-weight="400" fill="#182e3d">头文件搜索目录，再核对</text>
+  <text x="400" y="326" font-size="16" font-weight="400" fill="#182e3d">串口驱动与 DDL 源文件</text>
+  <rect x="539.333" y="124" width="246.667" height="46" rx="8" fill="#e9f6f2" stroke="#207767" stroke-width="1.5"/>
+  <text x="662.667" y="152" font-size="17" font-weight="700" fill="#207767">生成了哪份镜像</text>
+  <rect x="539.333" y="187" width="246.667" height="94" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="662.667" y="215" font-size="16" font-weight="400" fill="#182e3d">zephyr/zephyr.elf</text>
+  <text x="662.667" y="239" font-size="16" font-weight="400" fill="#182e3d">zephyr/zephyr.hex</text>
+  <text x="662.667" y="263" font-size="16" font-weight="400" fill="#182e3d">zephyr/zephyr.bin</text>
+  <rect x="539.333" y="298" width="246.667" height="70" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="662.667" y="326" font-size="16" font-weight="400" fill="#182e3d">下载回读、复位启动和串口输</text>
+  <text x="662.667" y="350" font-size="16" font-weight="400" fill="#182e3d">出需要实板记录</text>
+  </g>
+</svg>

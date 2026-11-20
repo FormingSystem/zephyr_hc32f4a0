@@ -1,9 +1,9 @@
 # Windows UCRT64；仅 HC32 路线；选择已存在的实际模块根，不下载或改名。
-cd /g/zephyr_practice/zephyr-main
+cd "$ZEPHYR_BASE"  # 沿用 15.2.1 的源码根。
 if test -f ../hal_xhsc/zephyr/module.yml; then
-  HAL_XHSC_DIR="$(cygpath -m "$PWD/../hal_xhsc")"
+  HAL_XHSC_DIR="$ZEPHYR_BASE/../hal_xhsc"
 elif test -f ../hal_xhsc-zephyr/zephyr/module.yml; then
-  HAL_XHSC_DIR="$(cygpath -m "$PWD/../hal_xhsc-zephyr")"
+  HAL_XHSC_DIR="$ZEPHYR_BASE/../hal_xhsc-zephyr"
 else
   HAL_XHSC_DIR=
   printf '%s\n' '没有找到现有 HAL：返回 P014 外部 HAL 路线确认真实位置。'

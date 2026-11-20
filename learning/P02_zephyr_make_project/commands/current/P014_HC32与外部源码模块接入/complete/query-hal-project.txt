@@ -1,7 +1,7 @@
 # P014 14.3：只读确认当前清单是否声明 hal_xhsc
-# 按正文前提选择本操作，不批量执行整个目录。
+# 起点为当前终端 ZEPHYR_BASE 指向的 Zephyr 源码根。
 # Windows UCRT64；P006 工作区与 .venv 已就绪；只读、不下载。
-cd /g/zephyr_practice/zephyr-main
+cd "$ZEPHYR_BASE"
 source .venv/Scripts/activate
 west list --all -f '{name}' | grep -x 'hal_xhsc'
 west list hal_xhsc

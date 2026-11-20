@@ -1,2 +1,54 @@
-<!-- SPDX-License-Identifier: Apache-2.0 -->
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="210" viewBox="0 0 800 210" role="img" aria-labelledby="title desc"><title id="title">逐文件新增 practice_mps2 板</title><desc id="desc">逐文件新增 practice_mps2 板</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10Z" fill="#66788a"/></marker></defs><rect width="800" height="210" fill="white"/><g font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" fill="#243447"><rect x="20" y="20" width="240" height="60" rx="7" fill="#eaf2fc" stroke="#66788a"/><text x="140" y="56" font-size="16" text-anchor="middle"><tspan x="140" dy="0">1 认识已有板</tspan></text><rect x="280" y="20" width="240" height="60" rx="7" fill="#eaf2fc" stroke="#66788a"/><text x="400" y="56" font-size="16" text-anchor="middle"><tspan x="400" dy="0">2 编译已有板</tspan></text><path d="M260 50 H280" fill="none" stroke="#66788a" stroke-width="1.5" marker-end="url(#arrow)"/><rect x="540" y="20" width="240" height="60" rx="7" fill="#e6f3ec" stroke="#66788a"/><text x="660" y="56" font-size="16" text-anchor="middle"><tspan x="660" dy="0">3 对照新增板</tspan></text><rect x="540" y="20" width="240" height="60" rx="7" fill="none" stroke="#007f8a" stroke-width="3"/><path d="M520 50 H540" fill="none" stroke="#66788a" stroke-width="1.5" marker-end="url(#arrow)"/><rect x="540" y="130" width="240" height="60" rx="7" fill="#eaf2fc" stroke="#66788a"/><text x="660" y="166" font-size="16" text-anchor="middle"><tspan x="660" dy="0">4 新增芯片支持</tspan></text><path d="M660 80 V130" fill="none" stroke="#66788a" stroke-width="1.5" marker-end="url(#arrow)"/><rect x="280" y="130" width="240" height="60" rx="7" fill="#eaf2fc" stroke="#66788a"/><text x="400" y="166" font-size="16" text-anchor="middle"><tspan x="400" dy="0">5 核验结果</tspan></text><path d="M540 160 H520" fill="none" stroke="#66788a" stroke-width="1.5" marker-end="url(#arrow)"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="594" viewBox="0 0 800 594" role="img" aria-labelledby="title desc">
+  <title id="title">练习板的板名和搜索根怎样找到同一目录</title>
+  <desc id="desc">UCRT64 · Zephyr 源码根，使用本节 15.4.3 的配置命令。BOARD_ROOT 指向含有 boards/ 的目录，BOARD 再从里面选择 practice_mps2/an386。因此可以增加一块板，同时继续使用原有的 AN386 支持。</desc>
+  <rect width="800" height="594" fill="#ffffff"/>
+  <path d="M400 294 V311 M137.333 311 H662.667" fill="none" stroke="#6c808a" stroke-width="2"/>
+  <path d="M137.333 311 V332" fill="none" stroke="#6c808a" stroke-width="2"/>
+  <path d="M137.333 378 V395" fill="none" stroke="#25618b" stroke-width="2"/>
+  <path d="M137.333 441 V458" fill="none" stroke="#25618b" stroke-width="2"/>
+  <path d="M400 311 V332" fill="none" stroke="#6c808a" stroke-width="2"/>
+  <path d="M400 378 V395" fill="none" stroke="#705197" stroke-width="2"/>
+  <path d="M400 465 V482" fill="none" stroke="#705197" stroke-width="2"/>
+  <path d="M662.667 311 V332" fill="none" stroke="#6c808a" stroke-width="2"/>
+  <path d="M662.667 378 V395" fill="none" stroke="#207767" stroke-width="2"/>
+  <path d="M662.667 465 V482" fill="none" stroke="#207767" stroke-width="2"/>
+  <g text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif">
+  <rect x="14" y="12" width="772" height="282" rx="8" fill="#edf3f6" stroke="#37586a" stroke-width="1.5"/>
+  <text x="400" y="37" font-size="16" font-weight="400" fill="#435f70">UCRT64 · Zephyr 源码根，使用本节 15.4.3 的配置命令</text>
+  <text x="400" y="64" font-size="17" font-weight="700" fill="#172d3e">cmake -S samples/hello_world \</text>
+  <text x="400" y="90" font-size="17" font-weight="700" fill="#172d3e">-B build/learning-tools/p003/build-practice-sdk-auto -G Ninja \</text>
+  <text x="400" y="116" font-size="17" font-weight="700" fill="#172d3e">-DBOARD=practice_mps2/an386 \</text>
+  <text x="400" y="142" font-size="17" font-weight="700" fill="#172d3e">"-DBOARD_ROOT=$ZEPHYR_BASE/build/learning-tools/p003/new-board" \</text>
+  <text x="400" y="168" font-size="17" font-weight="700" fill="#172d3e">"-DZephyr_DIR=$ZEPHYR_BASE/share/zephyr-package/cmake" \</text>
+  <text x="400" y="194" font-size="17" font-weight="700" fill="#172d3e">"-DZEPHYR_BASE=$ZEPHYR_BASE" \</text>
+  <text x="400" y="220" font-size="17" font-weight="700" fill="#172d3e">-DEXTRA_ZEPHYR_MODULES= -DZEPHYR_EXTRA_MODULES= \</text>
+  <text x="400" y="246" font-size="17" font-weight="700" fill="#172d3e">"-DPython3_EXECUTABLE=$PWD/.venv/Scripts/python.exe" \</text>
+  <text x="400" y="272" font-size="17" font-weight="700" fill="#172d3e">-DCMAKE_EXPORT_COMPILE_COMMANDS=ON</text>
+  <rect x="14" y="332" width="246.667" height="46" rx="8" fill="#e9f4fb" stroke="#25618b" stroke-width="1.5"/>
+  <text x="137.333" y="360" font-size="17" font-weight="700" fill="#25618b">从哪里找板</text>
+  <rect x="14" y="395" width="246.667" height="46" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="137.333" y="423" font-size="16" font-weight="400" fill="#182e3d">-DBOARD_ROOT</text>
+  <rect x="14" y="458" width="246.667" height="94" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="137.333" y="486" font-size="16" font-weight="400" fill="#182e3d">new-board/boards/others/</text>
+  <text x="137.333" y="510" font-size="16" font-weight="400" fill="#182e3d">practice_mps2/board.yml 登</text>
+  <text x="137.333" y="534" font-size="16" font-weight="400" fill="#182e3d">记新板</text>
+  <rect x="276.667" y="332" width="246.667" height="46" rx="8" fill="#f4eff9" stroke="#705197" stroke-width="1.5"/>
+  <text x="400" y="360" font-size="17" font-weight="700" fill="#705197">选哪套硬件</text>
+  <rect x="276.667" y="395" width="246.667" height="70" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="400" y="423" font-size="16" font-weight="400" fill="#182e3d">-DBOARD=practice_mps2/</text>
+  <text x="400" y="447" font-size="16" font-weight="400" fill="#182e3d">an386</text>
+  <rect x="276.667" y="482" width="246.667" height="94" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="400" y="510" font-size="16" font-weight="400" fill="#182e3d">板的限定名选中原有 AN386；</text>
+  <text x="400" y="534" font-size="16" font-weight="400" fill="#182e3d">板 DTS 和 defconfig 给出连接</text>
+  <text x="400" y="558" font-size="16" font-weight="400" fill="#182e3d">与默认功能</text>
+  <rect x="539.333" y="332" width="246.667" height="46" rx="8" fill="#e9f6f2" stroke="#207767" stroke-width="1.5"/>
+  <text x="662.667" y="360" font-size="17" font-weight="700" fill="#207767">输出放在哪里</text>
+  <rect x="539.333" y="395" width="246.667" height="70" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="662.667" y="423" font-size="16" font-weight="400" fill="#182e3d">-B 指向</text>
+  <text x="662.667" y="447" font-size="16" font-weight="400" fill="#182e3d">build-practice-sdk-auto</text>
+  <rect x="539.333" y="482" width="246.667" height="94" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="662.667" y="510" font-size="16" font-weight="400" fill="#182e3d">查看 zephyr/.config，板名为</text>
+  <text x="662.667" y="534" font-size="16" font-weight="400" fill="#182e3d">practice_mps2，SoC 仍为</text>
+  <text x="662.667" y="558" font-size="16" font-weight="400" fill="#182e3d">an386</text>
+  </g>
+</svg>

@@ -1,20 +1,20 @@
 # P014 14.6.4：HC32 全部前提就绪后用 west 构建
-# 按正文前提选择本操作，不批量执行整个目录。
+# 起点为当前终端 ZEPHYR_BASE 指向的 Zephyr 源码根。
 # Windows UCRT64；前提：copy-hc32-port.txt 已建立 hc32_port 副本，匹配HAL、CMSIS_6、SDK与venv已准备。
 (
 set -eu
-cd /g/zephyr_practice/zephyr-main
+cd "$ZEPHYR_BASE"
 source .venv/Scripts/activate
-export ZEPHYR_BASE="$(cygpath -m /g/zephyr_practice/zephyr-main)"
+export ZEPHYR_BASE="$(cygpath -am .)"
 if test -f ../hal_xhsc/zephyr/module.yml; then
-  HAL_XHSC_DIR="$(cygpath -m /g/zephyr_practice/hal_xhsc)"
+  HAL_XHSC_DIR="$ZEPHYR_BASE/../hal_xhsc"
 elif test -f ../hal_xhsc-zephyr/zephyr/module.yml; then
-  HAL_XHSC_DIR="$(cygpath -m /g/zephyr_practice/hal_xhsc-zephyr)"
+  HAL_XHSC_DIR="$ZEPHYR_BASE/../hal_xhsc-zephyr"
 else
-  printf '%s\n' 'HAL未准备：按P014 13.2和13.3确认来源和实际目录。' >&2
+  printf '%s\n' 'HAL未准备：按本章的 HAL 准备步骤确认来源和目录。' >&2
   exit 1
 fi
-HC32_PORT_DIR="$(cygpath -m /g/zephyr_practice/zephyr-main/build/learning-tools/p003/hc32_port)"
+HC32_PORT_DIR="$ZEPHYR_BASE/build/learning-tools/p003/hc32_port"
 test -f "$HC32_PORT_DIR/zephyr/module.yml"
 test -f "$HAL_XHSC_DIR/hc32_ddl/hc32f4a0/soc/hc32f4a0.h"
 west build -b uyup_rpi_a/hc32f4a0pitb samples/hello_world \

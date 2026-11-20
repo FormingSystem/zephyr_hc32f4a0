@@ -1,10 +1,15 @@
 # P015 / 15.6.5\_检查工作模块与配套材料是否一致
 # 先核对正文的终端、目录与前提，再执行此完整操作单元。
 # UCRT64；源码根；完成前四步后运行，只读比较，不修改文件。
-python - <<'PY'
+cd "$ZEPHYR_BASE"
+python - "${HC32_PORT_SOURCE:?请先设置教材适配目录}" <<'PY'
 from pathlib import Path
-a = Path('learning/board/labs/hc32_port')
+from sys import argv
+a = Path(argv[1])
 b = Path('build/learning-tools/p003/hc32_port')
+for root in (a, b):
+    if not (root / "zephyr/module.yml").is_file():
+        raise SystemExit(f"缺少模块入口 {root}/zephyr/module.yml")
 expected = {p.relative_to(a) for p in a.rglob('*') if p.is_file() and p.name != 'README.md'}
 missing = [str(p) for p in sorted(expected) if not (b/p).is_file()]
 changed = [str(p) for p in sorted(expected) if (b/p).is_file() and (a/p).read_bytes() != (b/p).read_bytes()]

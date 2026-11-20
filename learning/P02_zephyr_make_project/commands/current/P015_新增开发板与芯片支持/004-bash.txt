@@ -2,7 +2,7 @@
 # 任一步失败会停止本块；圆括号使退出仅结束检查，不关闭当前终端。
 (
 set -e
-cd /g/zephyr_practice/zephyr-main
+cd "$ZEPHYR_BASE"
 source .venv/Scripts/activate
 for tool in python west cmake ninja dtc gperf git; do
   command -v "$tool"

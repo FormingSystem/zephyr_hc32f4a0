@@ -1,8 +1,8 @@
 # P014 14.3：没有可复用 HAL 时下载固定修订
-# 按正文前提选择本操作，不批量执行整个目录。
+# 起点为当前终端 ZEPHYR_BASE 指向的 Zephyr 源码根。
 # Windows UCRT64；仅准备 HC32 且没有可复用 HAL 根时下载。
 # 已有 hal_xhsc-zephyr 等完整目录时跳过此块，不再克隆第二份。
-cd /g/zephyr_practice/zephyr-main
+cd "$ZEPHYR_BASE"
 test ! -e ../hal_xhsc && \
   git clone --no-checkout https://github.com/zephyrproject-rtos/hal_xhsc \
     ../hal_xhsc && \

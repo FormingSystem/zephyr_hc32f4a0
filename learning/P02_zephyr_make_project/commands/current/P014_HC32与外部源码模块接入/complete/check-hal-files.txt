@@ -1,7 +1,7 @@
 # P014 14.3：选择已有 HAL 根并核对模块入口及器件文件
-# 按正文前提选择本操作，不批量执行整个目录。
+# 起点为当前终端 ZEPHYR_BASE 指向的 Zephyr 源码根。
 # Windows UCRT64；从主线源码根选择实际 HAL 根，不创建或移动目录。
-cd /g/zephyr_practice/zephyr-main
+cd "$ZEPHYR_BASE"
 HAL_DIR=../hal_xhsc
 if [ ! -d "$HAL_DIR" ]; then
   HAL_DIR=../hal_xhsc-zephyr
