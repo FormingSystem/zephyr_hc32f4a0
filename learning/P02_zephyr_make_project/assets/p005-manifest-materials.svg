@@ -1,45 +1,46 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="510" viewBox="0 0 760 510" role="img" aria-labelledby="title desc">
-<title id="title">主仓中的清单与接入规则如何关联外部 CMSIS 源码</title>
-<desc id="desc">主仓中的清单与接入规则如何关联外部 CMSIS 源码。原创教学示意；箭头与颜色含义见图内图例和正文。</desc>
-<defs>
-<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1769aa"/></marker>
-<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7540a0"/></marker>
-<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#b45b13"/></marker>
-<marker id="green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#217346"/></marker>
-<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#667080"/></marker>
-</defs>
-<rect width="760" height="100%" fill="#fff"/>
-<g font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="16" fill="#243447">
-<rect x="20" y="25" width="330" height="235" rx="8" fill="#e8f2fc" stroke="#1769aa" stroke-width="1.5"/>
-<text x="38" y="53" text-anchor="start" font-weight="700">已经下载的 Zephyr 主源码</text>
-<rect x="40" y="75" width="290" height="65" rx="8" fill="#e8f2fc" stroke="#1769aa" stroke-width="1.5"/>
-<text x="185.0" y="101.5" text-anchor="middle" font-weight="700">west.yml</text>
-<text x="185.0" y="125.5" text-anchor="middle">记录项目、修订与相对位置</text>
-<rect x="40" y="170" width="290" height="65" rx="8" fill="#f1eafa" stroke="#7540a0" stroke-width="1.5"/>
-<text x="185.0" y="196.5" text-anchor="middle" font-weight="700">modules/cmsis_6</text>
-<text x="185.0" y="220.5" text-anchor="middle">主仓内的构建接入规则</text>
-<rect x="430" y="75" width="310" height="65" rx="8" fill="#fff0df" stroke="#b45b13" stroke-width="1.5"/>
-<text x="585.0" y="101.5" text-anchor="middle" font-weight="700">获取匹配版本的模块源码</text>
-<text x="585.0" y="125.5" text-anchor="middle">west / 内部 Git / 配套归档</text>
-<polyline points="330,107 430,107" fill="none" stroke="#b45b13" stroke-width="2" marker-end="url(#orange)"/>
-<text x="350" y="91" text-anchor="start" fill="#b45b13">按清单</text>
-<rect x="430" y="195" width="310" height="80" rx="8" fill="#e8f5ec" stroke="#217346" stroke-width="1.5"/>
-<text x="585.0" y="217.0" text-anchor="middle" font-weight="700">工作区外部源码位置</text>
-<text x="585.0" y="241.0" text-anchor="middle">modules/hal/cmsis_6</text>
-<text x="585.0" y="265.0" text-anchor="middle">含实际 Core 头文件</text>
-<polyline points="585,140 585,195" fill="none" stroke="#217346" stroke-width="2" marker-end="url(#green)"/>
-<rect x="210" y="355" width="360" height="70" rx="8" fill="#f1eafa" stroke="#7540a0" stroke-width="1.5"/>
-<text x="390.0" y="384.0" text-anchor="middle" font-weight="700">CMake 读取规则和实际源码</text>
-<text x="390.0" y="408.0" text-anchor="middle">配置选择后才参与这次构建</text>
-<polyline points="185,235 185,390 210,390" fill="none" stroke="#7540a0" stroke-width="2" marker-end="url(#purple)"/>
-<polyline points="585,275 585,390 570,390" fill="none" stroke="#217346" stroke-width="2" marker-end="url(#green)"/>
-<text x="25" y="463" text-anchor="start">本章同时准备清单指定的 cmsis 与 cmsis_6；图展开后者的接入。</text>
-<line x1="24" y1="483" x2="48" y2="483" stroke="#1769aa"/>
-<text x="54" y="488" text-anchor="start">主仓已有</text>
-<line x1="140" y1="483" x2="164" y2="483" stroke="#b45b13"/>
-<text x="170" y="488" text-anchor="start">取得/核验</text>
-<line x1="272" y1="483" x2="296" y2="483" stroke="#217346"/>
-<text x="302" y="488" text-anchor="start">模块源码</text>
-<line x1="388" y1="483" x2="412" y2="483" stroke="#7540a0"/>
-<text x="418" y="488" text-anchor="start">接入规则</text>
-</g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="386" viewBox="0 0 800 386" role="img" aria-labelledby="title desc">
+  <title id="title">从清单里的 cmsis_6 到实际参与编译的头文件</title>
+  <desc id="desc">Zephyr 源码根 · west.yml 的 projects 列表。以清单条目 cmsis_6 为起点，revision 与 path 用于取得匹配源码。Zephyr 主仓保存接入规则，模块目录提供 core_cm4.h，二者在编译命令的头文件搜索路径上对应起来。</desc>
+  <rect width="800" height="386" fill="#ffffff"/>
+  <path d="M400 86 V103 M137.333 103 H662.667" fill="none" stroke="#6c808a" stroke-width="2"/>
+  <path d="M137.333 103 V124" fill="none" stroke="#6c808a" stroke-width="2"/>
+  <path d="M137.333 170 V187" fill="none" stroke="#25618b" stroke-width="2"/>
+  <path d="M137.333 233 V250" fill="none" stroke="#25618b" stroke-width="2"/>
+  <path d="M400 103 V124" fill="none" stroke="#6c808a" stroke-width="2"/>
+  <path d="M400 170 V187" fill="none" stroke="#705197" stroke-width="2"/>
+  <path d="M400 257 V274" fill="none" stroke="#705197" stroke-width="2"/>
+  <path d="M662.667 103 V124" fill="none" stroke="#6c808a" stroke-width="2"/>
+  <path d="M662.667 170 V187" fill="none" stroke="#207767" stroke-width="2"/>
+  <path d="M662.667 233 V250" fill="none" stroke="#207767" stroke-width="2"/>
+  <g text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif">
+  <rect x="14" y="12" width="772" height="74" rx="8" fill="#edf3f6" stroke="#37586a" stroke-width="1.5"/>
+  <text x="400" y="37" font-size="16" font-weight="400" fill="#435f70">Zephyr 源码根 · west.yml 的 projects 列表</text>
+  <text x="400" y="64" font-size="17" font-weight="700" fill="#172d3e">name: cmsis_6</text>
+  <rect x="14" y="124" width="246.667" height="46" rx="8" fill="#e9f4fb" stroke="#25618b" stroke-width="1.5"/>
+  <text x="137.333" y="152" font-size="17" font-weight="700" fill="#25618b">按清单取得源码</text>
+  <rect x="14" y="187" width="246.667" height="46" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="137.333" y="215" font-size="16" font-weight="400" fill="#182e3d">revision 和 path</text>
+  <rect x="14" y="250" width="246.667" height="94" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="137.333" y="278" font-size="16" font-weight="400" fill="#182e3d">按记录的修订准备源码，放在</text>
+  <text x="137.333" y="302" font-size="16" font-weight="400" fill="#182e3d">工作区的</text>
+  <text x="137.333" y="326" font-size="16" font-weight="400" fill="#182e3d">modules/hal/cmsis_6</text>
+  <rect x="276.667" y="124" width="246.667" height="46" rx="8" fill="#f4eff9" stroke="#705197" stroke-width="1.5"/>
+  <text x="400" y="152" font-size="17" font-weight="700" fill="#705197">找到构建入口</text>
+  <rect x="276.667" y="187" width="246.667" height="70" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="400" y="215" font-size="16" font-weight="400" fill="#182e3d">zephyr/module.yml</text>
+  <text x="400" y="239" font-size="16" font-weight="400" fill="#182e3d">build.cmake-ext: true</text>
+  <rect x="276.667" y="274" width="246.667" height="94" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="400" y="302" font-size="16" font-weight="400" fill="#182e3d">对应的接入规则位于 Zephyr</text>
+  <text x="400" y="326" font-size="16" font-weight="400" fill="#182e3d">源码根的 modules/cmsis_6/</text>
+  <text x="400" y="350" font-size="16" font-weight="400" fill="#182e3d">CMakeLists.txt</text>
+  <rect x="539.333" y="124" width="246.667" height="46" rx="8" fill="#e9f6f2" stroke="#207767" stroke-width="1.5"/>
+  <text x="662.667" y="152" font-size="17" font-weight="700" fill="#207767">核对使用结果</text>
+  <rect x="539.333" y="187" width="246.667" height="46" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="662.667" y="215" font-size="16" font-weight="400" fill="#182e3d">CMSIS/Core/Include</text>
+  <rect x="539.333" y="250" width="246.667" height="118" rx="8" fill="#ffffff" stroke="#9bacb6" stroke-width="1.5"/>
+  <text x="662.667" y="278" font-size="16" font-weight="400" fill="#182e3d">在 AN386 的</text>
+  <text x="662.667" y="302" font-size="16" font-weight="400" fill="#182e3d">compile_commands.json 中</text>
+  <text x="662.667" y="326" font-size="16" font-weight="400" fill="#182e3d">找到这个搜索目录，目录里有</text>
+  <text x="662.667" y="350" font-size="16" font-weight="400" fill="#182e3d">core_cm4.h</text>
+  </g>
+</svg>

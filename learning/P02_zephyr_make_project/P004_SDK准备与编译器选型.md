@@ -12,11 +12,11 @@ domains: [zephyr, tools]
 
 完成 [P003 的主机环境准备](P003_主机工具与Python环境_UCRT64.md#section-3-2)之后，CMake、Python 和 Ninja 能在电脑上运行了，但它们还不能替 Cortex-M4 生成指令。现在继续同一个任务：把官方 `hello_world` 交给 `mps2/an386`。我们需要一套运行于 Windows、面向 ARM 目标的编译器；后续 HC32F4A0 同样使用 Cortex-M4 系列内核，可以复用它，芯片外设支持另在源码中准备。
 
-**官方译文对照：** [Zephyr SDK](../zephyr_docs/toolchains/P002_ZephyrSDK.md)、[环境变量](../zephyr_docs/toolchains/P003_环境变量.md)与[其他交叉编译器](../zephyr_docs/toolchains/P005_其他交叉编译器.md)。以下沿用本教程的 SDK 1.0.1 和已注明的源码修订，按本地译文核对包类型、发现接口与替代工具链的边界。
+以下以 SDK 1.0.1 为例。SDK 安装包的内容决定还需下载哪些工具，Zephyr 的配置结果可以用来核对最终选中的编译器。
 
 本章要把下载页上的压缩包变成电脑上可运行、工程能找到的 ARM 工具链。操作按 **选包 → 下载和校验 → 解压与必要的补装 → 核验 → 选择发现方式** 进行。下载、浏览目录和启动安装脚本可以用鼠标完成；摘要校验、精确指定安装目标和查询编译器版本保留可复制命令。鼠标与命令是完成同一步的不同入口，标为“替代”的操作不需要重复执行。[当前命令索引](commands/current/P004_SDK准备与编译器选型/README.md)、[环境与依赖导航](环境与依赖导航.md)。
 
-前置：PowerShell 路线完成对应 P002；UCRT64 路线完成 [P003](P003_主机工具与Python环境_UCRT64.md)，已经准备 CMake、7-Zip、Python 与 `.venv`。实验源码在 PowerShell 中为 `G:\zephyr_practice\zephyr-main`，在 UCRT64 中为 `/g/zephyr_practice/zephyr-main`；UCRT64 分支的普通命令使用 **Windows UCRT64 Bash**，`setup.cmd` 和注册表命令切换 **Windows PowerShell**，也可按正文从 Windows 界面启动。两个终端的当前目录和临时环境变量不互相继承。选择原生 PowerShell 的读者使用下方 4.2.5 的独立安装操作，不必为解压启动 UCRT64。Linux 的安装操作见 [Ubuntu 22.04 分支](P002_环境安装与源码准备_Linux.md)，不要照抄本章 `.cmd` 和 Windows 注册表命令。
+前置：PowerShell 路线完成对应 P002；UCRT64 路线完成 [P003](P003_主机工具与Python环境_UCRT64.md)，已经准备 CMake、7-Zip、Python 与 `.venv`。UCRT64 分支的普通命令使用 **Windows UCRT64 Bash**，`setup.cmd` 和注册表命令切换 **Windows PowerShell**，也可按正文从 Windows 界面启动。两个终端的当前目录和临时环境变量不互相继承。选择原生 PowerShell 的读者使用下方 4.2.5 的独立安装操作，不必为解压启动 UCRT64。Linux 的安装操作见 [Ubuntu 22.04 分支](P002_环境安装与源码准备_Linux.md)，不要照抄本章 `.cmd` 和 Windows 注册表命令。
 
 ![SDK准备与编译器选型](assets/p005-diagram-01.svg)
 
@@ -66,7 +66,7 @@ SDK 提供把源码变成目标指令的工具。MPS2 的板描述、芯片支�
 
 下面先看①或②完成后的目录目标，随后动手生成它。第三条路线的目录和操作在 [4.4.2](#standalone-toolchain) 单列。**无需三条都做。**
 
-下面以 UCRT64 中的 `/g/zephyr_practice/zephyr-sdk-1.0.1` 为 SDK 根；Windows 文件选择器中对应 `G:\zephyr_practice\zephyr-sdk-1.0.1`。文件由官方归档提供，不需要读者新建 `.cmake` 文件。
+以下以 `zephyr-sdk-1.0.1` 为 SDK 根。文件由官方归档提供，不需要读者新建 `.cmake` 文件。
 
 ```text
 zephyr-sdk-1.0.1/                    # 官方 SDK 根
@@ -129,7 +129,7 @@ cat SDK_VERSION
 
 选①只取 GNU 包和摘要清单；选②在线补装只取 Minimal 和清单，ARM 组件稍后由 setup 下载；选②离线补装再多取 ARM 组件。下载结束后点击浏览器下载列表中的文件夹图标，在资源管理器确认实际文件名，不能把浏览器未下载完的临时文件拿去解压。
 
-本期文件统一保存到 `G:\zephyr_practice`。UCRT64 中写作 `/g/zephyr_practice`；传给 Windows 程序的路径使用 `G:/zephyr_practice`。`cygpath -m` 仅负责从 Bash 路径转换为 Windows 可识别的路径，不是 Zephyr 变量。
+下载目录为 `G:\zephyr_practice`。
 
 <details>
 <summary>查证下载地址的来源：官方源码 doc/conf.py 中的 SDK_URL_BASE</summary>
@@ -165,7 +165,7 @@ grep -F " $archive" sha256.sum | sha256sum --check
 
 **对着图找 `sdk_version` 和 `setup.cmd`，而不是只认文件夹名字。** 图中是已有 GNU 内容的 SDK，因此还有 `gnu`；Minimal 刚解压时尚没有可用的 `gnu/arm-zephyr-eabi`。若使用“解压到同名文件夹”多包了一层，真正 SDK 根仍是直接包含这些文件的内层。本文统一用单层路径 `G:\zephyr_practice\zephyr-sdk-1.0.1`；旧截图中的较长外层目录不是必须建立的目录。
 
-**命令替代：校验和解压连续完成。** 还未用界面解压时，可以改用下列对应的一块命令；已经完成鼠标操作就跳过。`&&` 表示上一项成功才继续；`PWD` 是 Bash 保存当前目录的变量，`cygpath -m` 把它转换后交给 7-Zip 的 `-o` 输出目录参数。`test ! -e` 要求目标安装目录尚不存在，防止误覆盖已有 SDK。
+**命令替代：校验和解压连续完成。** 还未用界面解压时，可以改用下列对应的一块命令；已经完成鼠标操作就跳过。`&&` 表示上一项成功才继续；7-Zip 的 `-o` 指定解压目录。`test ! -e` 要求目标安装目录尚不存在，防止误覆盖已有 SDK。
 
 **① 完整 GNU 路线：**
 
@@ -385,7 +385,7 @@ if ($LASTEXITCODE -ne 0) { throw '目标架构查询失败' }
 | CMake 原生 `Zephyr-sdk_DIR` | `SDK根/cmake`，直接含 SDK 包配置文件的目录 | CMake 包目录提示；与 SDK 根不是同一层 |
 | CMake 原生 `CMAKE_PREFIX_PATH` | 包的安装前缀，本例为 SDK 根 | 可影响多个包的搜索，不只 SDK |
 
-本章示例传入单套 SDK 根，以便固定 1.0.1；接口本身也允许传入多版本父目录，例如 `G:/zephyr_practice`，再从其下 `zephyr-sdk-*` 安装中查找兼容版本。因此“显式路径”不必然等于“已固定唯一版本”。这与[官方 SDK 译文的安装包与变量说明](../zephyr_docs/toolchains/P002_ZephyrSDK.md)一致。
+本章示例传入单套 SDK 根，以便固定 1.0.1；接口本身也允许传入多版本父目录，例如 `G:/zephyr_practice`，再从其下 `zephyr-sdk-*` 安装中查找兼容版本。因此“显式路径”不必然等于“已固定唯一版本”。
 
 **默认自动发现成功时，不需要额外填写 SDK 根或 `ZEPHYR_TOOLCHAIN_VARIANT=zephyr`。** 不愿写用户注册表，或需要明确固定某套 SDK 时，用环境变量或 `-D` 即可。不需要将所有入口叠加设置；普通使用优先理解 Zephyr 的 SDK 根接口。
 
@@ -455,7 +455,7 @@ export ZEPHYR_SDK_INSTALL_DIR="$(cygpath -m /g/zephyr_practice/zephyr-sdk-1.0.1)
 printf '%s\n' "$ZEPHYR_SDK_INSTALL_DIR"
 ```
 
-这里的 `export` 是 Bash 命令，`ZEPHYR_SDK_INSTALL_DIR` 是 Zephyr 提供的输入变量。`cygpath -m` 将 `/g/...` 转换成 Windows CMake 可识别的 `G:/...`，再由 `export` 保存转换后的值，并指向 SDK 根，不是 `gnu` 或 `bin`。之后从同一窗口启动的 CMake 会继承；不是已经完成一次工程配置。
+这里的 `export` 是 Bash 命令，`ZEPHYR_SDK_INSTALL_DIR` 是 Zephyr 提供的输入变量。赋值时选 SDK 根。之后从同一窗口启动的 CMake 会继承；不是已经完成一次工程配置。
 
 关闭窗口会失去这次进程环境设置，但已经产生的构建缓存仍可能保留 SDK 选择。当前窗口取消输入用：
 
@@ -480,13 +480,15 @@ SDK 已经定位后，还要根据板目标决定用其中哪套编译器。下�
 
 ### 4.4.1\_SDK 根与芯片配置分别决定什么
 
+打开安装目录的 `gnu/arm-zephyr-eabi/bin`，并排找 `arm-zephyr-eabi-gcc.exe` 和 `arm-zephyr-eabi-objdump.exe`。前者把 C 函数编成目标文件，后者能把其中的机器指令显示出来。两次操作用的是不同程序，路径和程序名的前半段却完全相同。例如终端执行 `arm-zephyr-eabi-gcc -c probe.c -o probe.o` 时写出目标文件，再执行 `arm-zephyr-eabi-objdump -d probe.o` 时就能读回其中的指令。把两条命令并排看，`arm-zephyr-eabi-` 一样，末尾的名字才决定由哪个程序工作。独立工具链的 `CROSS_COMPILE` 保存目录和这段共同前缀，后续规则分别补上 `gcc`、`objdump` 等名字。[亲手编译一个函数并反汇编](P011_Zephyr的CMake输入与依赖发现.md#section-11-2-2)
+
 SDK 根决定使用哪一套发行包；板与 SoC 的配置给出目标架构、CPU、FPU 与 ABI。对于本系列 32 位 ARM 目标，SDK 的 `cmake/zephyr/gnu/target.cmake` 把 `ARCH=arm` 对应到 `arm-zephyr-eabi`，据此组成 `SDK根/gnu/arm-zephyr-eabi/bin/arm-zephyr-eabi-` 前缀。Zephyr 的 GCC 规则再选择程序、生成 CPU/FPU 参数。
 
-![SDK 根与芯片配置分别决定什么](assets/p005-diagram-04.svg)
+![一条 ARM 编译命令的工具路径与目标参数从何而来](assets/p005-diagram-04.svg)
 
-图例与读图：浅蓝节点表示文件或软件对象，深灰箭头的具体关系由线旁文字标明；先沿 BOARD 找到处理器与架构，再与已发现的 SDK 根汇合。SDK 决定工具在哪里，目标配置决定 CPU/FPU/ABI 参数；两条信息缺一不可。
+打开一条编译记录，先看 GCC 路径指向哪套 SDK，再读 `-mcpu` 和 `-mthumb`。前者可追到已发现的工具包，后两项可追到板所选的处理器配置。
 
-从图顶端的 **BOARD** 向下读：板与芯片配置确定目标 ARM 内核及浮点能力；旁边的 **已发现的 SDK 根** 确定去哪套安装里取工具。这两条输入汇合后才得到具体 GCC 路径，随后加入 CPU/FPU/ABI 参数生成构建命令。CPU 是处理器内核，FPU（Floating-Point Unit，浮点运算单元）决定可用的硬件浮点能力，ABI（Application Binary Interface，应用二进制接口）约束编译后的调用约定。不能仅凭 GCC 文件存在，就断言芯片参数已经配置正确。
+CPU 是处理器内核，FPU（Floating-Point Unit，浮点运算单元）是硬件浮点单元。ABI（Application Binary Interface，应用二进制接口）约定编译后如何传递参数和返回值。选择工具包以后，仍须核对这些目标参数。
 
 调用入口在官方源码 `cmake/toolchain/zephyr/target.cmake`，它加载 SDK 的目标规则；参数来源在 `cmake/compiler/gcc/target_arm.cmake`。对于 HC32F4A0 的 Cortex-M4F，需要 ARM 工具链与正确的 CPU/FPU 选择，而非下载一个叫 HC32 的专用 SDK。新增芯片的存储器、时钟、引脚与驱动属于 P014 的板 / SoC 适配工作。其他架构的映射应看本版 SDK 文件，不能把 ARM 前缀套给 RISC-V。
 

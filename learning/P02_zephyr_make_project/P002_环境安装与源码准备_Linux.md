@@ -16,7 +16,7 @@ domains: [zephyr, linux, tools]
 
 `hello_world` 是应用，入口文件为应用根的 `CMakeLists.txt` 和 `prj.conf`；`mps2/an386` 是所选硬件目标，表示 Arm MPS2 FPGA 平台的 Cortex-M4F 系统配置。应用回答做什么，板回答在哪里运行。以后同板换应用或同应用换板，都建立各自构建目录；先不把应用源码、板文件和生成目录混为一处。
 
-**官方译文对照：** [入门指南](../zephyr_docs/getting_started/P002_入门指南.md)、[Linux 主机依赖](../zephyr_docs/getting_started/P007_Linux主机依赖.md)与 [Zephyr SDK](../zephyr_docs/toolchains/P002_ZephyrSDK.md)。官方快速开始使用 Ubuntu 24.04 及更新版本，本章保留 22.04 的工具补齐路线；源码和 SDK 的固定版本不因译文来自 `latest` 而自动升级。
+本章使用 Ubuntu 22.04，按后文步骤补齐该发行版所需的主机工具。源码与 SDK 版本按本章列出的修订和安装包配套。
 
 本教程使用 **Ubuntu 22.04 LTS（Jammy）**，命令在 Linux Bash 执行。WSL Ubuntu 也按 Linux 分支处理。Windows UCRT64 读者转到 [Windows 环境](环境与依赖导航.md)。其他发行版使用[官方 Linux 依赖说明](https://docs.zephyrproject.org/latest/develop/getting_started/installation_linux.html)。
 
@@ -266,7 +266,7 @@ cd ~/zephyr-sdk-1.0.1
 test -d hosttools/sysroots && printf 'Linux SDK 主机工具已展开。\n'
 ```
 
-**对应手动安装块第 7 行 `./setup.sh`：** `-t arm-zephyr-eabi` 准备 ARM 目标工具链，`-h` 初始化主机工具，`-c` 保存当前用户的 SDK 包位置；三个选项是独立动作。Linux SDK 1.0.1 归档的 `hosttools/` 初始含主机工具安装器，`-h` 才执行它并展开 `hosttools/sysroots/`；只运行 `-t ... -c` 不会完成这一步。完整 GNU 包虽然预带目标工具链，同样需要初始化 Linux 主机工具。第 8 行 `arm-zephyr-eabi-gcc --version` 应显示编译器版本；第 9 行 `test -d hosttools/sysroots` 成功后才打印“Linux SDK 主机工具已展开。”，但不等于已经运行 QEMU 或构建固件。依据见[官方 SDK 译文的 Linux 安装步骤](../zephyr_docs/toolchains/P002_ZephyrSDK.md)与 [SDK 1.0.1 的 POSIX setup 原件](https://github.com/zephyrproject-rtos/sdk-ng/blob/v1.0.1/scripts/template_setup_posix)中的 `-h` 分支和 host tools 安装段；官方 `scripts/west_commands/sdk.py` 的 `run_setup()` 也会默认传入 `-h`。
+**对应手动安装块第 7 行 `./setup.sh`：** `-t arm-zephyr-eabi` 准备 ARM 目标工具链，`-h` 初始化主机工具，`-c` 保存当前用户的 SDK 包位置；三个选项是独立动作。Linux SDK 1.0.1 归档的 `hosttools/` 初始含主机工具安装器，`-h` 才执行它并展开 `hosttools/sysroots/`；只运行 `-t ... -c` 不会完成这一步。完整 GNU 包虽然预带目标工具链，同样需要初始化 Linux 主机工具。第 8 行 `arm-zephyr-eabi-gcc --version` 应显示编译器版本；第 9 行 `test -d hosttools/sysroots` 成功后才打印“Linux SDK 主机工具已展开。”，但不等于已经运行 QEMU 或构建固件。依据见[SDK 1.0.1 的 POSIX setup 原件](https://github.com/zephyrproject-rtos/sdk-ng/blob/v1.0.1/scripts/template_setup_posix)中的 `-h` 分支和 host tools 安装段；官方 `scripts/west_commands/sdk.py` 的 `run_setup()` 也会默认传入 `-h`。
 
 `-c` 调用 SDK 包内的导出脚本，在当前 Linux 用户的 `~/.cmake/packages/Zephyr-sdk/` 下写入地址记录，内容指向 SDK 的 cmake 目录。它跨终端和重启保存，供同一 Linux 用户的多个 CMake 工程自动查找，不绑定当前工程或 .venv，也不写 Windows 注册表。可查看该目录中文件核对；取消某条记录时只移除内容指向对应 SDK 的文件，不删除其他 SDK 项。
 

@@ -1,17 +1,10 @@
-# Windows UCRT64；P003 环境与 P005 两个 CMSIS 模块已准备；使用新构建目录。
+# UCRT64；已按 P008 激活环境，应用及两个 CMSIS 模块均已就绪。
 (
 set -e
-cd /g/zephyr_practice/zephyr-main
-source .venv/Scripts/activate
-test -f ../modules/hal/cmsis/zephyr/module.yml
-test -f ../modules/hal/cmsis_6/CMSIS/Core/Include/core_cm4.h
-MSYS2_ARG_CONV_EXCL='*' /ucrt64/bin/cmake \
-  -S "$(cygpath -am samples/hello_world)" -B "$(cygpath -am build/learning-tools/p003/sdk-explicit)" \
-  -G Ninja -DBOARD=mps2/an386 \
-  "-DZephyr_DIR=$(cygpath -am share/zephyr-package/cmake)" \
-  "-DPYTHON_EXECUTABLE=$(cygpath -am .venv/Scripts/python.exe)" "-DPython3_EXECUTABLE=$(cygpath -am .venv/Scripts/python.exe)" \
-  "-DCMAKE_MAKE_PROGRAM=$(cygpath -am /ucrt64/bin/ninja.exe)" \
-  "-DZEPHYR_MODULES=$(cygpath -am ../modules/hal/cmsis);$(cygpath -am ../modules/hal/cmsis_6)" \
-  "-DZEPHYR_SDK_INSTALL_DIR=$(cygpath -am ../zephyr-sdk-1.0.1)" \
+cd "$ZEPHYR_BASE"
+hal_dir="$(cygpath -am ../modules/hal)"
+cmake -S samples/hello_world -B build/learning-tools/p003/sdk-explicit -G Ninja \
+  -DBOARD=mps2/an386 "-DZEPHYR_MODULES=$hal_dir/cmsis;$hal_dir/cmsis_6" \
+  "-DZEPHYR_SDK_INSTALL_DIR=$PWD/../zephyr-sdk-1.0.1" \
   -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 )

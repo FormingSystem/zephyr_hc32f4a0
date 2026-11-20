@@ -14,7 +14,7 @@ domains: [zephyr, application, modules, build]
 
 P003 已准备好编译工具。第一次拿到 Zephyr 源码时，我们已知道产品使用哪颗芯片，但未必知道需要下载哪些外部源码。本章先教会读者从已有 SoC/板登记、架构配置及其接入规则找出 CMSIS 需求，再让清单给出仓库、版本和落盘位置，完成下载与核验。
 
-**官方译文对照：** [迁移到 Zephyr 4.2 的 CMSIS 说明](../../zephyr_docs/releases_guides/P004_迁移到Zephyr_4.2.md)、[模块与外部项目](../../zephyr_docs/modules/P001_模块与外部项目.md)与 [west 主线译文](../../zephyr_docs/reading/west.md)。CMSIS 选择仍按本章固定源码的实际消费者与清单确定，不以 `latest` 页面替换既有依赖修订。
+本文使用固定修订的 Zephyr 清单核对 CMSIS 版本，并以本次目标所编译的代码确认它使用了哪些头文件。
 
 阅读顺序是 **确认 CMSIS 来源 → 核对 Git 与 west → 下载及版本核验 → 必要时排错**。完成后，P005 用官方 MPS2 目标解释 Zephyr 如何组织应用和设备驱动；理解这些规则后，P006 再选择 HC32 的 DDL 并接入工程。
 
@@ -374,7 +374,7 @@ west config manifest.file
 
 本系列输出应分别为 `G:/zephyr_practice`、`zephyr-main`、`west.yml`。若已经得到这三个结果，即使先前误执行 init 报了 `already initialized`，也可以继续下载，**不按通用错误提示删除 `.west`**。如果三项指向其他项目，先回到正确的源码根核对，停止本章下载，不覆盖那份工作区配置。
 
-清单格式、自己新建清单、多仓库版本管理已有独立的 [west 实验专题](../../west/大纲.md)。那里的练习工作区和模拟仓库服务于 west 实验，不能把其练习 `west.yml` 搬来替换这里的官方清单。
+这里使用现有 Zephyr 仓库中的 `west.yml`。下一步按项目名读取 `cmsis` 和 `cmsis_6` 的清单条目，核对各自的来源和修订。
 
 <a id="west-package-list"></a>
 
@@ -501,7 +501,7 @@ git -C ../modules/hal/cmsis_6 rev-parse HEAD
 git -C ../modules/hal/cmsis_6 rev-parse manifest-rev
 ```
 
-两项应一致；本次均为上面的固定提交。这里只按名取得当前最小示例所需 CMSIS，其他应用有其他依赖；全量下载与项目分组交给 west 专题，不在本期展开。
+两项应一致；本次均为上面的固定提交。这里只按名取得当前最小示例所需 CMSIS，更换应用或目标板后，所需模块应按相应的清单与构建输入确定。
 
 到这里，当前示例所需 CMSIS 已由 west 管理。下一章使用同一工作区讲解 MPS2 工程与构建：Zephyr 按默认规则从 west 项目发现 CMSIS。CMSIS 源码就绪以后，还要结合目标、SDK 与应用配置完成构建。
 

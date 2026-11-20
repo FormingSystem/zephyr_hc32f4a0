@@ -14,9 +14,9 @@ domains: [zephyr, tools]
 
 对照板与后续 HC32 板共用这套主机环境，因此不因换芯片而重装一份 Python。我们要能在任意一个新开的 UCRT64 窗口里，回到同一源码根并恢复它。 返回 [环境与依赖导航](环境与依赖导航.md)。各章独立编号，完整复制单元按当前小节编号放在 [当前命令索引](commands/current/P003_主机工具与Python环境_UCRT64/README.md)。
 
-**官方译文对照：** [入门指南的主机依赖与 Python 环境](../zephyr_docs/getting_started/P002_入门指南.md)。本章保留教程选择的 Windows CPython 3.12.10、west 1.5.0 和 UCRT64 操作顺序；官方完整工作区的 `west packages` 流程与本章先安装基础构建依赖的步骤应分开理解。
+本章使用 Windows CPython 3.12.10 和 west 1.5.0，在 UCRT64 中安装基础构建依赖。后续取得完整工作区后，才具备按清单安装各模块 Python 依赖的条件。
 
-实验源码根为 Windows 的 `G:\zephyr_practice\zephyr-main`，UCRT64 中为 `/g/zephyr_practice/zephyr-main`。默认 UCRT64；Windows 专用 setup.cmd 等步骤按正文切换 PowerShell。各模块不重复安装已经完成的前置工具。
+本章使用 UCRT64；Windows 专用 setup.cmd 等步骤按正文切换 PowerShell。各模块不重复安装已经完成的前置工具。
 
 **复制命令：** [当前命令索引](commands/current/P003_主机工具与Python环境_UCRT64/README.md)。按正文选择分支，不把整个目录的命令依次执行。
 
@@ -24,9 +24,9 @@ domains: [zephyr, tools]
 
 ## 3.1\_固定 UCRT64 工具与 Windows Python
 
-![固定 UCRT64 工具与 Windows Python](assets/p004-ucrt-diagram-01.svg)
+![当前终端能运行哪份构建工具](assets/p004-ucrt-diagram-01.svg)
 
-图例与读图：绿底与加深边框标出当前主机工具步骤，蓝框是整条准备路线中的其他步骤，灰箭头表示先后。本图用于定位进度；下文先让当前终端真正找到所需程序。
+终端身份、工具位置和 Python 版本各有自己的检查方法。`MSYSTEM` 显示 UCRT64 后，还要看 CMake、Ninja 与解释器分别解析到了哪里。
 
 先确认自己仍在上一期的终端里。进入某个叫 `ucrt64` 的文件夹并不会切换环境，判断依据是启动器和环境标识：
 
@@ -169,12 +169,12 @@ curl -fL https://www.python.org/ftp/python/3.12.10/python-3.12.10-amd64.exe \
 ```bash
 # Windows UCRT64；官方安装器已完整下载，尚未安装该版本。
 cd /g/zephyr_practice/downloads
-MSYS2_ARG_CONV_EXCL='*' ./python-3.12.10-amd64.exe \
+MSYS2_ARG_CONV_EXCL='/passive' ./python-3.12.10-amd64.exe \
   /passive InstallAllUsers=0 PrependPath=1 \
   Include_pip=1 Include_launcher=1 InstallLauncherAllUsers=0 Include_test=0
 ```
 
-**对应安装器参数块，从上往下读：** 第 3 行 `MSYS2_ARG_CONV_EXCL='*'` 仅对这次调用关闭 MSYS2 参数路径转换，保留 `/passive` 原样；第 4 行 `/passive` 显示安装进度，`InstallAllUsers=0` 安装给当前用户，`PrependPath=1` 让新终端可找到 Python；第 5 行 `Include_pip=1` 保留包安装器，`Include_launcher=1` 安装 `py`，`InstallLauncherAllUsers=0` 将启动器也装给当前用户，`Include_test=0` 不安装 Python 自带的测试套件。参数依据见 [Python 官方安装说明](https://docs.python.org/3.12/using/windows.html#installing-without-ui)。
+**对应安装器参数块，从上往下读：** 第 3 行 `MSYS2_ARG_CONV_EXCL='/passive'` 让安装器收到原样的 `/passive` 开关；第 4 行 `/passive` 显示安装进度，`InstallAllUsers=0` 安装给当前用户，`PrependPath=1` 让新终端可找到 Python；第 5 行 `Include_pip=1` 保留包安装器，`Include_launcher=1` 安装 `py`，`InstallLauncherAllUsers=0` 将启动器也装给当前用户，`Include_test=0` 不安装 Python 自带的测试套件。参数依据见 [Python 官方安装说明](https://docs.python.org/3.12/using/windows.html#installing-without-ui)。
 
 等待安装成功后，关闭当前 UCRT64 并重新打开，再按下一节选择解释器。若进入 Modify/Repair 维护界面，说明已有安装；先核对版本，不能用换目录的方式假定安装了第二份。
 
@@ -217,17 +217,15 @@ python -c "import sys, sysconfig; print(sys.executable); print(sysconfig.get_pla
 
 先区分磁盘上的环境与终端里的选择：创建只需在合适位置做一次，重新开窗口通常只需恢复选择。
 
-![WindowsPython创建venv与UCRT64激活选择的区别](assets/p003-python-ownership.svg)
+![哪一份 Python 创建并拥有工程环境](assets/p003-python-ownership.svg)
 
-图例：**蓝色是已安装解释器，绿色是创建出的环境文件，紫色是当前窗口的 PATH 选择，橙色是装入该环境的项目包。** 激活箭头不表示再安装一份 Python。
+`py -3.12` 选创建环境的解释器，`.venv` 是创建位置。激活后用 `python -m pip --version` 检查输出路径，即可确认后续依赖装进哪一份环境。
 
 名称注释：`CPython（Python 的常用实现）：本章选用 Windows 发行版。` `venv（Virtual Environment－虚拟环境）：隔离项目包及其解释器入口。` `PATH（命令搜索路径）：决定短命令优先找到哪个程序。`
 
-沿绿色线，用选定的 Windows Python 在源码根创建 `.venv`；沿紫线，让当前 UCRT64 窗口优先调用它的 `Scripts/python.exe`。再用这个解释器执行 `python -m pip`，橙色框里的包才属于预期环境。关闭终端会结束本窗口的选择，但不会删除绿色框中的文件；后面恢复环境正是在重做紫色步骤。
+![pip 给哪个环境安装哪些依赖](assets/p004-ucrt-diagram-02.svg)
 
-![给正确的_Python_安装依赖包](assets/p004-ucrt-diagram-02.svg)
-
-图例与读图：绿底与加深边框标出当前 Python 环境步骤，蓝框为其余准备条件，灰箭头表示顺序。这里安装的是主机端 Python 包，不是芯片的目标库。
+同一条安装命令同时指定了安装器和依赖清单。`python -m pip` 跟随当前解释器，`-r` 后的文件来自所选 Zephyr 源码。
 
 现在基础 Python 已经能执行，但 Zephyr 的配置脚本还需要 Python 库。把包直接装进电脑的全局 Python，会让不同项目共享同一份版本选择。本期使用 **Python 虚拟环境（virtual environment，venv）**：为项目准备独立的解释器入口和包目录，安装动作由这个环境自己的 **pip 包安装器** 完成。
 
@@ -279,7 +277,7 @@ python -m west --version
 
 下载慢时可以仅对这次安装指定索引，例如把安装命令替换为 `python -m pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r scripts/requirements-base.txt "west==1.5.0"`。这只影响 pip，不影响 SDK；镜像缺包或同步延迟时恢复默认索引重试，先保留原始错误信息。不要通过关闭证书校验来处理普通的超时。
 
-west 可以运行，只表示管理工具已安装。P005 才会检查或建立 `.west` 工作区，读取当前 `west.yml` 并取得 MPS2 对照示例配套的 cmsis 与 cmsis_6；P010 先解释官方工程的驱动模型，P011 再展开构建系统的模块发现。`pip install west` 不会下载 CMSIS，也不会令当前目录自动变成 west 工作区。按 P014 准备 HC32 时再增加它所需的 HAL，不能把华大 DDL 当成所有 ARM 应用的公共前提；更完整的模块管理见 [west 大纲](../west/大纲.md)。
+运行 `west --version` 可以确认管理工具已经安装。MPS2 所需的 `cmsis` 和 `cmsis_6` 由 Zephyr 的 `west.yml` 指定版本，建立工作区后可用 `west update cmsis cmsis_6` 取得。HC32 适配另外使用华大 DDL，在选择该目标时再准备。[建立工作区并取得 CMSIS](P005_源码依赖与离线准备.md)
 
 <a id="section-3-2-2"></a>
 
